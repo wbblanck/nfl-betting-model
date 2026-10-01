@@ -1,0 +1,54 @@
+{
+ "count": 187,
+ "pageIndex": 1,
+ "pageSize": 200,
+ "pageCount": 1,
+ "items": [
+  {
+   "spread": 1.0,
+   "overOdds": -104.0,
+   "underOdds": -106.0,
+   "lineDate": "2012-09-09T17:00Z",
+   "totalLine": 43.0,
+   "totalResult": "O",
+   "pastCompetition": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/320909012/competitions/320909012?lang=en&region=us"
+   },
+   "moneyLineOdds": 118.0,
+   "moneylineWinner": false,
+   "spreadOdds": 114.0,
+   "spreadWinner": false
+  },
+  {
+   "spread": 3.0,
+   "overOdds": -107.0,
+   "underOdds": -103.0,
+   "lineDate": "2012-09-16T17:00Z",
+   "totalLine": 45.0,
+   "totalResult": "O",
+   "pastCompetition": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/320916002/competitions/320916002?lang=en&region=us"
+   },
+   "moneyLineOdds": 147.0,
+   "moneylineWinner": false,
+   "spreadOdds": 102.0,
+   "spreadWinner": false
+  },
+  {
+   "spread": 9.0,
+   "overOdds": -105.0,
+   "underOdds": -105.0,
+   "lineDate": "2012-09-23T17:00Z",
+   "totalLine": 51.5,
+   "totalResult": "U",
+   "pastCompetition": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/320923018/competitions/320923018?lang=en&region=us"
+   },
+   "moneyLineOdds": 324.0,
+   "moneylineWinner": true,
+   "spreadOdds": -113.0,
+   "spreadWinner": true
+  },
+  "... 184 more"
+ ]
+}
