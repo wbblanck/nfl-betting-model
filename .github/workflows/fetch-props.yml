@@ -1,0 +1,51 @@
+name: Fetch props
+# Action Network NFL player-prop lines -> data/props/an_props_<season>.csv.
+# Weekly (Tuesday, after Monday night): refetch 2026 and regrade the four locked rules (interim until the
+# regular season is final). Scheduled runs only fire from the default branch.
+on:
+  schedule:
+    - cron: '17 15 * * 2'
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "Season to fetch"
+        required: true
+        default: "2026"
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/fetch/an_props.py', '.github/workflows/fetch-props.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-props-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      SEASON: ${{ github.event.inputs.season || '2026' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Fetch
+        run: python scripts/fetch/an_props.py --season "$SEASON"
+      - name: Grade 2026 (interim until the season is final)
+        if: env.SEASON == '2026'
+        run: python scripts/grade_2026.py
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          for f in "data/props/an_props_${SEASON}.csv" data/backtests/grade_2026.json docs/grade_2026.md; do
+            [ -f "$f" ] && git add "$f"
+          done
+          git commit -m "props: lines ${SEASON}$( [ "$SEASON" = 2026 ] && echo ' + 2026 grade')" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done

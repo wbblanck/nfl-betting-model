@@ -1,0 +1,52 @@
+{
+ "generated_utc": "2026-10-01T19:19:53.952655+00:00",
+ "season": 2026,
+ "status": "INTERIM (descriptive only)",
+ "games_final": "48/272",
+ "rules": {
+  "R1_three_plus_books": {
+   "n": 738,
+   "weeks": 3,
+   "under_rate": 0.5447154471544715,
+   "roi": 0.01893872571389904,
+   "roi_ci": [
+    -0.07456839690503435,
+    0.08318225107035275
+   ],
+   "pass": false
+  },
+  "R2_under_priced_below_-120": {
+   "n": 109,
+   "weeks": 3,
+   "under_rate": 0.5596330275229358,
+   "roi": -0.03598144008106908,
+   "roi_ci": [
+    -0.14067994282576313,
+    0.02206551981199557
+   ],
+   "pass": false
+  },
+  "R3_high_line_at_BetRivers_or_BetMGM": {
+   "n": 389,
+   "weeks": 3,
+   "under_rate": 0.5115681233933161,
+   "roi": -0.05370080406185056,
+   "roi_ci": [
+    -0.09472781409545922,
+    -0.016528654039468384
+   ],
+   "pass": false
+  },
+  "P1_projection_under_dk_high_line": {
+   "n": 155,
+   "weeks": 3,
+   "under_rate": 0.5741935483870968,
+   "roi": 0.055151695210713766,
+   "roi_ci": [
+    -0.1660755580525536,
+    0.34190047001575136
+   ],
+   "pass": false
+  }
+ }
+}
