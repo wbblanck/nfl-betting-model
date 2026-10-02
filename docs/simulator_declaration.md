@@ -22,3 +22,10 @@ Committed 2026-10-02 before the simulator was built and before any milestone (la
    distribution width (share of results inside the simulated 50% and 80% ranges).
 3. Ladders: on 2024–2025, compare each milestone price with the probability implied by the simulator centered on
    the same book's main line; any rule is a bet at the posted milestone price, graded on the actual stat.
+
+## Addendum (2026-10-02, before any matchup result): opponent defense
+The simulator v1 results are in `docs/simulator_report.md`. Added input: the opponent defense's record against
+the player's position group in its earlier games only (catch rate, yards per catch, yards per carry, completion
+rate, yards per completion allowed, and the share of targets / carries going to that position), relative to
+the league average and shrunk toward average. One strength weight is chosen on 2024 (grid 0, 0.5, 1, 1.5);
+2025 checks it. Same evaluation as above; anything found is still a hypothesis for 2026.
