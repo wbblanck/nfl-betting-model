@@ -1,0 +1,11 @@
+
+== 2024: ESPN paired props 10459, matched to a DraftKings line 9280
+  final line vs DK: equal 59.1%, within 1 77.0%, median |diff| 0.0
+  open line vs DK:  equal 33.1%, within 1 53.5%, median |diff| 1.0
+  mean |actual - line|: ESPN final 18.02, DK 17.97, ESPN open 18.41
+  where ESPN final != DK (n 3794): corr(ESPN - DK, actual - DK) -0.033; ESPN on the actual's side of DK 51.3%  (an in-game line would be far above 50%)
+    rec_yds   n  1893 equal 18.0% within 1 50.6%
+    rush_yds  n   848 equal 17.2% within 1 44.3%
+    pass_yds  n   469 equal 4.1% within 1 11.3%
+    rec       n  2054 equal 95.7% within 1 100.0%
+2025: no ESPN file
