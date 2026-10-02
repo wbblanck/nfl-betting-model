@@ -33,3 +33,15 @@ def test_simulated_means_match_rates():
     assert out["rush_att"].max() == 0 and "pass_yds" not in out
     again = S.simulate_row(r, vol, pools, np.random.default_rng(1), n=40000)
     assert np.array_equal(out["rec_yds"], again["rec_yds"])                    # same seed, same draws
+
+
+def test_center_matches_market_and_recovers_shape():
+    from nflbet import ladder as L
+    rng = np.random.default_rng(3)
+    true = rng.gamma(4.0, 15.0, 200000)                      # "real" yards distribution, mean 60
+    sim = rng.gamma(4.0, 15.0, 200000) * 0.8                 # simulator with the right shape, mean 20% too low
+    p_mkt = float(np.mean(true > 54.5))
+    c = L.center(sim, 54.5, p_mkt)
+    assert abs(np.mean(c > 54.5) - p_mkt) < 0.002            # matches the book's main line
+    for n in (40, 60, 80, 100):                              # and the ladder then matches the true tail
+        assert abs(np.mean(c >= n) - np.mean(true >= n)) < 0.01
