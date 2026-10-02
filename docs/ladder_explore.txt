@@ -15,4 +15,22 @@
     rush_yds  n   345 hit 0.151 implied 0.170 ROI -0.165
     rung below main line  n     2 hit 0.500 ROI -0.375
     rung above main line  n  2746 hit 0.151 ROI -0.107
-2025: no milestone file
+
+== 2025: 79637 milestone prices with a same-book main line and a simulation; books {'BetMGM NJ': 112, 'FanDuel NJ': 18555, 'DK NJ': 60970}
+  no model, 'yes' at every milestone, by implied probability:
+    implied [0.00,0.10): n  18513  implied 0.056  model 0.091  hit 0.035  ROI -0.377
+    implied [0.10,0.25): n  18331  implied 0.165  model 0.195  hit 0.127  ROI -0.236
+    implied [0.25,0.50): n  17500  implied 0.365  model 0.367  hit 0.313  ROI -0.145
+    implied [0.50,0.75): n  13418  implied 0.621  model 0.573  hit 0.557  ROI -0.104
+    implied [0.75,1.01): n  11875  implied 0.867  model 0.792  hit 0.814  ROI -0.062
+  'yes' when model - implied >= 0.03: n  19797  hit 0.143  implied 0.184  ROI -0.322  weeks 18
+  'yes' when model - implied >= 0.05: n  13484  hit 0.146  implied 0.188  ROI -0.328  weeks 18
+  'yes' when model - implied >= 0.10: n   6113  hit 0.148  implied 0.194  ROI -0.359  weeks 18
+    pass_att  n   138 hit 0.217 implied 0.180 ROI +0.385
+    pass_yds  n   332 hit 0.139 implied 0.144 ROI -0.110
+    rec       n  7115 hit 0.186 implied 0.231 ROI -0.274
+    rec_yds   n  4510 hit 0.084 implied 0.132 ROI -0.476
+    rush_att  n   273 hit 0.165 implied 0.203 ROI -0.029
+    rush_yds  n  1116 hit 0.127 implied 0.148 ROI -0.300
+    rung below main line  n    57 hit 0.614 ROI -0.175
+    rung above main line  n 13427 hit 0.144 ROI -0.328
