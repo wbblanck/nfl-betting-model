@@ -17,16 +17,14 @@ from nflbet.sim import Simulator
 MARKETS = ["rec", "rec_yds", "rush_att", "rush_yds", "rush_rec_yds", "pass_att", "pass_cmp", "pass_yds", "pass_rush_yds"]
 
 
-def scored(season: int, sim: Simulator) -> pl.DataFrame:
-    g = P.graded(P.join(P.load_lines(season), P.load_stats(season), P.load_snaps(season)))
-    s = C.screened(g).filter(pl.col("result") != "push", pl.col("market").is_in(MARKETS))
+def score(s: pl.DataFrame, proj: pl.DataFrame, sim_out: dict) -> pl.DataFrame:
+    """Votes for every DraftKings prop in `s` (screened rows from all real books, with p_over / hold / prices).
+    `proj`: player_id, week, market, proj. `sim_out`: {(player_id, week): {market: samples}}."""
     agg = s.group_by(C.KEY).agg(pl.col("line").n_unique().alias("nl"), pl.col("line").max().alias("hi"),
                                 pl.col("line").min().alias("lo"))
     dk = s.filter(pl.col("book") == "DK NJ").unique(subset=C.KEY).join(agg, on=C.KEY)
-    pj = R.projections(season).select("player_id", "week", "market", "proj")
-    dk = dk.join(pj, on=["player_id", "week", "market"], how="left")
-    out = sim.run(season, keep=set(zip(dk["player_id"].to_list(), dk["week"].to_list())))
-    p_sim = [float(np.mean(out[(a, b)][m] > l)) if (a, b) in out and m in out[(a, b)] else None
+    dk = dk.join(proj.select("player_id", "week", "market", "proj"), on=["player_id", "week", "market"], how="left")
+    p_sim = [float(np.mean(sim_out[(a, b)][m] > l)) if (a, b) in sim_out and m in sim_out[(a, b)] else None
              for a, b, m, l in zip(dk["player_id"], dk["week"], dk["market"], dk["line"])]
     dk = dk.with_columns(pl.Series("p_sim", p_sim, dtype=pl.Float64))
     gap = (pl.col("line") - pl.col("proj")) / pl.col("line").abs().clip(lower_bound=1)
@@ -38,6 +36,14 @@ def scored(season: int, sim: Simulator) -> pl.DataFrame:
              pl.col("p_sim") - pl.col("p_over") >= 0.05).fill_null(0).alias("v_sim"),
         vote(pl.col("under_odds") < -120, pl.col("over_odds") < -120).alias("v_price"),
         (pl.col("p_sim") - pl.col("p_over")).alias("sim_edge"))
+
+
+def scored(season: int, sim: Simulator) -> pl.DataFrame:
+    """Historical scoring: final lines, graded rows, pushes dropped before the books-disagree count."""
+    g = P.graded(P.join(P.load_lines(season), P.load_stats(season), P.load_snaps(season)))
+    s = C.screened(g).filter(pl.col("result") != "push", pl.col("market").is_in(MARKETS))
+    out = sim.run(season, keep=set(zip(s["player_id"].to_list(), s["week"].to_list())))
+    return score(s, R.projections(season), out)
 
 
 def grade(x: pl.DataFrame) -> tuple[int, float, float, int]:

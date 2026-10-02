@@ -1,0 +1,52 @@
+name: S1 live
+# Rule S1 live (docs/s1_live_rules.md): record picks before each game window; grade on Tuesdays.
+# Times are UTC and chosen to stay before kickoff in both EDT and EST. Scheduled runs fire from main only and can
+# start late; every run scores all games of the week that have not started, so an earlier run is the fallback.
+on:
+  schedule:
+    - cron: '0 20 * * 4'     # Thursday, before TNF
+    - cron: '0 14 * * 6'     # Saturday morning (late-season Saturday games)
+    - cron: '30 12 * * 0'    # Sunday, before London games
+    - cron: '50 15 * * 0'    # Sunday, before 1 PM ET
+    - cron: '0 19 * * 0'     # Sunday, before 4 PM ET
+    - cron: '45 22 * * 0'    # Sunday, before SNF
+    - cron: '0 21 * * 1'     # Monday, before MNF
+    - cron: '33 15 * * 2'    # Tuesday: grade
+  workflow_dispatch:
+    inputs:
+      step:
+        description: "run or grade"
+        required: true
+        default: "run"
+permissions:
+  contents: write
+concurrency:
+  group: live-s1
+  cancel-in-progress: false
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Pick or grade
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then STEP="${{ github.event.inputs.step }}";
+          elif [ "${{ github.event.schedule }}" = "33 15 * * 2" ]; then STEP=grade; else STEP=run; fi
+          python scripts/live_s1.py "$STEP"
+          [ "$STEP" = run ] && python scripts/live_s1.py grade || true
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          for f in data/live/s1_picks_2026.csv data/live/s1_runs_2026.csv data/live/s1_record_2026.csv docs/s1_live.md; do
+            [ -f "$f" ] && git add "$f"
+          done
+          [ -d data/live/lines ] && git add data/live/lines
+          git commit -m "S1 live: ${{ github.event.schedule || github.event.inputs.step }}" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done

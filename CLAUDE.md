@@ -1,6 +1,8 @@
 # nfl-betting-model: NFL player-prop research
 
-Owner: Will. Analysis only: ROI, CLV and log loss in backtests are fine; no daily pick lists or "bet this".
+Owner: Will. Analysis only: ROI, CLV and log loss in backtests are fine; no pick lists or "bet this", with one
+exception Will asked for (2026-10-02): the S1 live tracker (docs/s1_live_rules.md) records rule S1's picks before
+kickoff and grades them, labeled as unvalidated. No other pick list.
 
 ## Standing rules
 - Never state a number that was not computed or looked up in the same session; recompute from committed files.
