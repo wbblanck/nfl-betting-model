@@ -29,3 +29,11 @@ The centered simulator's upper tail is too fat: on longshot rungs it says 9-11%,
 ### What it does show
 DraftKings' milestone ladders carry the heaviest margins seen in this project: "yes" lost money in every
 probability band in both seasons. 2026 milestone lines were fetched by the weekly job but never read.
+
+## Addendum: opponent-defense matchup (`docs/matchup_eval.txt`)
+Each defense's record against the position group in its last 16 games (catch rate, yards per catch / carry /
+completion, completion rate, share of targets and carries to the position), relative to league average and shrunk.
+Chosen on 2024 by over/under log loss: weight 0 (0.7546), 0.5 (0.7548), 1.0 (0.7578), 1.5 (0.7624), so the rule
+picks no matchup. Descriptive 2025 at full weight: log loss 0.7514 vs 0.7500 without, mean miss 17.92 vs 17.90;
+ladder "yes" bets where the model beats the price −5.7% to −11.2%. The matchup, measured this way, adds nothing
+the spread and total don't already carry.

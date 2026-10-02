@@ -1,0 +1,31 @@
+== choose the matchup weight on 2024 (over/under log loss of the simulator's own P(over); lower is better)
+  w 0.0: n 11492  log loss 0.7546  mean miss 18.78
+  w 0.5: n 11492  log loss 0.7548  mean miss 18.79
+  w 1.0: n 11492  log loss 0.7578  mean miss 18.89
+  w 1.5: n 11492  log loss 0.7624  mean miss 19.07
+  chosen w = 0.0
+
+== 2025 check: chosen weight vs no matchup
+  no matchup (w 0): over/unders n 10027  log loss 0.7500 (DK 0.6902)  mean miss 17.90 (line 16.25)
+     over  when >= 0.05 off DK: n  2311 win 0.491
+     under when >= 0.05 off DK: n  4758 win 0.531
+     over  when >= 0.10 off DK: n  1287 win 0.503
+     under when >= 0.10 off DK: n  3295 win 0.522
+     ladder 'yes' when model - implied >= 0.05: n  12319  hit 0.245  implied 0.268  ROI -0.137
+     ladder 'yes' when model - implied >= 0.10: n   5367  hit 0.263  implied 0.280  ROI -0.092
+     ladder 'yes' when model - implied >= 0.20: n   1132  hit 0.266  implied 0.275  ROI -0.017
+  matchup (w 0.0): over/unders n 10027  log loss 0.7500 (DK 0.6902)  mean miss 17.90 (line 16.25)
+     over  when >= 0.05 off DK: n  2311 win 0.491
+     under when >= 0.05 off DK: n  4758 win 0.531
+     over  when >= 0.10 off DK: n  1287 win 0.503
+     under when >= 0.10 off DK: n  3295 win 0.522
+     ladder 'yes' when model - implied >= 0.05: n  12319  hit 0.245  implied 0.268  ROI -0.137
+     ladder 'yes' when model - implied >= 0.10: n   5367  hit 0.263  implied 0.280  ROI -0.092
+     ladder 'yes' when model - implied >= 0.20: n   1132  hit 0.266  implied 0.275  ROI -0.017
+
+== descriptive (not the chosen weight): 2025 with the matchup at full strength (w 1.0)
+  w 0.0: over/under log loss 0.7500  mean miss 17.90
+  w 1.0: over/under log loss 0.7514  mean miss 17.92
+  w 1.0 ladder 'yes' when model - implied >= 0.05: n  12776 hit 0.252 ROI -0.112
+  w 1.0 ladder 'yes' when model - implied >= 0.10: n   6071 hit 0.261 ROI -0.097
+  w 1.0 ladder 'yes' when model - implied >= 0.20: n   1333 hit 0.252 ROI -0.057

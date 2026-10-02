@@ -35,7 +35,8 @@ def player_games(seasons: list[int]) -> pl.DataFrame:
     s = s.with_columns(pl.col("position").replace_strict(POS, default=None).alias("pos")).filter(pl.col("pos").is_not_null())
     cols = ["targets", "receptions", "receiving_yards", "carries", "rushing_yards", "attempts", "completions",
             "passing_yards"]
-    s = s.select("player_id", "season", "week", "team", "pos", *[pl.col(c).fill_null(0).cast(pl.Float64) for c in cols])
+    s = s.select("player_id", "season", "week", "team", pl.col("opponent_team").alias("opp"), "pos",
+                 *[pl.col(c).fill_null(0).cast(pl.Float64) for c in cols])
     team = s.group_by("season", "week", "team").agg(pl.col("attempts").sum().alias("team_att"),
                                                      pl.col("carries").sum().alias("team_car"),
                                                      pl.col("targets").sum().alias("team_tgt"))
@@ -123,6 +124,42 @@ def rates(pg: pl.DataFrame, pos_mean: pl.DataFrame) -> pl.DataFrame:
     ).filter(pl.col("n_prior") >= MIN_GAMES)
 
 
+# ------------------------------------------------------------------------------------------- matchup
+
+DEF_ROLL = 16           # the defense's last 16 games
+DEF_SHRINK = {"catch": 80.0, "ypr": 60.0, "ypc": 150.0, "cmp": 150.0, "ypcmp": 100.0, "tshare": 200.0,
+              "cshare": 200.0}
+
+
+def defense_factors(pg: pl.DataFrame, pos_mean: pl.DataFrame, fit: pl.DataFrame) -> pl.DataFrame:
+    """Per (defense, position group, game): what the defense allowed to that position in its EARLIER games,
+    relative to the fit season's league average, shrunk toward 1. 1.0 = average defense."""
+    cols = ["targets", "receptions", "receiving_yards", "carries", "rushing_yards", "attempts", "completions",
+            "passing_yards"]
+    by_pos = pg.group_by("opp", "pos", "t").agg(*[pl.col(c).sum() for c in cols])
+    tot = pg.group_by("opp", "t").agg(pl.col("targets").sum().alias("all_tgt"), pl.col("carries").sum().alias("all_car"))
+    d = by_pos.join(tot, on=["opp", "t"]).sort("t")
+
+    def prior(c):
+        return pl.col(c).shift(1).rolling_sum(DEF_ROLL, min_samples=1).over(["opp", "pos"])
+    d = d.with_columns(*[prior(c).fill_null(0).alias(f"a_{c}") for c in cols + ["all_tgt", "all_car"]])
+    lg = fit.group_by("pos").agg((pl.col("targets").sum() / fit["targets"].sum()).alias("lg_tshare"),
+                                 (pl.col("carries").sum() / fit["carries"].sum()).alias("lg_cshare"))
+    d = d.join(pos_mean, on="pos", how="left").join(lg, on="pos", how="left")
+
+    def ratio(num, den, mean, k):
+        m = pl.col(mean).fill_nan(0).fill_null(0)
+        return ((pl.col(num) + k * m) / (pl.col(den) + k) / m).fill_nan(1.0).fill_null(1.0)
+    return d.select("opp", "pos", "t",
+                    ratio("a_receptions", "a_targets", "m_catch", DEF_SHRINK["catch"]).alias("d_catch"),
+                    ratio("a_receiving_yards", "a_receptions", "m_ypr", DEF_SHRINK["ypr"]).alias("d_ypr"),
+                    ratio("a_rushing_yards", "a_carries", "m_ypc", DEF_SHRINK["ypc"]).alias("d_ypc"),
+                    ratio("a_completions", "a_attempts", "m_cmp", DEF_SHRINK["cmp"]).alias("d_cmp"),
+                    ratio("a_passing_yards", "a_completions", "m_ypcmp", DEF_SHRINK["ypcmp"]).alias("d_ypcmp"),
+                    ratio("a_targets", "a_all_tgt", "lg_tshare", DEF_SHRINK["tshare"]).alias("d_tshare"),
+                    ratio("a_carries", "a_all_car", "lg_cshare", DEF_SHRINK["cshare"]).alias("d_cshare"))
+
+
 # ------------------------------------------------------------------------------------------ simulation
 
 def _beta_share(rng, m, n):
@@ -139,8 +176,14 @@ def _sum_draws(rng, counts: np.ndarray, pool: np.ndarray, scale: float) -> np.nd
     return (draws * mask).sum(axis=1)
 
 
-def simulate_row(r: dict, vol: dict, pools: dict, rng: np.random.Generator, n: int = N_SIMS) -> dict:
-    """Simulated stats for one player-game row (a dict from `inputs`)."""
+def simulate_row(r: dict, vol: dict, pools: dict, rng: np.random.Generator, n: int = N_SIMS, w: float = 0.0) -> dict:
+    """Simulated stats for one player-game row (a dict from `inputs`). w = matchup weight: each opponent factor
+    enters as factor**w (0 = ignore the matchup)."""
+    if w:
+        f = lambda k: float(r.get(k) or 1.0) ** w  # noqa: E731
+        r = dict(r, tgt_share=(r["tgt_share"] or 0) * f("d_tshare"), car_share=(r["car_share"] or 0) * f("d_cshare"),
+                 catch=r["catch"] * f("d_catch"), ypr=r["ypr"] * f("d_ypr"), ypc=r["ypc"] * f("d_ypc"),
+                 cmp=r["cmp"] * f("d_cmp"), ypcmp=r["ypcmp"] * f("d_ypcmp"))
     def team(col):
         c = vol[col]["coef"]
         mu = c[0] + c[1] * r["implied"] + c[2] * r["team_spread"]
@@ -168,18 +211,22 @@ def simulate_row(r: dict, vol: dict, pools: dict, rng: np.random.Generator, n: i
     return out
 
 
-def inputs(pg: pl.DataFrame, sched: pl.DataFrame, season: int, pos_mean: pl.DataFrame) -> pl.DataFrame:
-    return rates(pg, pos_mean).filter(pl.col("season") == season).join(sched, on=["season", "week", "team"], how="inner")
+def inputs(pg: pl.DataFrame, sched: pl.DataFrame, season: int, pos_mean: pl.DataFrame,
+           dfac: pl.DataFrame | None = None) -> pl.DataFrame:
+    x = rates(pg, pos_mean).filter(pl.col("season") == season).join(sched, on=["season", "week", "team"], how="inner")
+    return x if dfac is None else x.join(dfac, on=["opp", "pos", "t"], how="left")
 
 
 class Simulator:
     """Fit on one season; simulate any later season's player-games."""
 
-    def __init__(self, fit_season: int, seasons: list[int]):
+    def __init__(self, fit_season: int, seasons: list[int], matchup_weight: float = 0.0):
         self.pg = player_games(seasons)
         self.sched = schedule_features(seasons)
         self.vol = fit_volume(self.pg, self.sched, fit_season)
         self.pos_mean = position_means(self.pg.filter(pl.col("season") == fit_season))
+        self.w = matchup_weight
+        self.dfac = defense_factors(self.pg, self.pos_mean, self.pg.filter(pl.col("season") == fit_season))
         pos_of = dict(zip(self.pg["player_id"].to_list(), self.pg["pos"].to_list()))
         self.pools = play_yards([s for s in seasons if s <= fit_season], pos_of)
 
@@ -187,8 +234,8 @@ class Simulator:
         """{(player_id, week): {market: samples}} for the season's player-games (optionally only `keep`)."""
         rng = np.random.default_rng(seed)
         out = {}
-        for r in inputs(self.pg, self.sched, season, self.pos_mean).iter_rows(named=True):
+        for r in inputs(self.pg, self.sched, season, self.pos_mean, self.dfac).iter_rows(named=True):
             if keep is not None and (r["player_id"], r["week"]) not in keep:
                 continue
-            out[(r["player_id"], r["week"])] = simulate_row(r, self.vol, self.pools, rng)
+            out[(r["player_id"], r["week"])] = simulate_row(r, self.vol, self.pools, rng, w=self.w)
         return out
