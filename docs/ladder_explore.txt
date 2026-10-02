@@ -1,0 +1,18 @@
+
+== 2024: 21275 milestone prices with a same-book main line and a simulation; books {'FanDuel NJ': 108, 'DK NJ': 21167}
+  no model, 'yes' at every milestone, by implied probability:
+    implied [0.00,0.10): n   1924  implied 0.083  model 0.114  hit 0.063  ROI -0.242
+    implied [0.10,0.25): n   6474  implied 0.166  model 0.192  hit 0.147  ROI -0.121
+    implied [0.25,0.50): n   6255  implied 0.361  model 0.356  hit 0.327  ROI -0.097
+    implied [0.50,0.75): n   4032  implied 0.606  model 0.556  hit 0.567  ROI -0.067
+    implied [0.75,1.01): n   2590  implied 0.861  model 0.781  hit 0.793  ROI -0.081
+  'yes' when model - implied >= 0.03: n   4570  hit 0.171  implied 0.181  ROI -0.071  weeks 18
+  'yes' when model - implied >= 0.05: n   2748  hit 0.152  implied 0.167  ROI -0.107  weeks 18
+  'yes' when model - implied >= 0.10: n    761  hit 0.129  implied 0.151  ROI -0.132  weeks 18
+    pass_yds  n   328 hit 0.216 implied 0.183 ROI +0.198
+    rec       n    11 hit 0.000 implied 0.307 ROI -1.000
+    rec_yds   n  2064 hit 0.142 implied 0.164 ROI -0.141
+    rush_yds  n   345 hit 0.151 implied 0.170 ROI -0.165
+    rung below main line  n     2 hit 0.500 ROI -0.375
+    rung above main line  n  2746 hit 0.151 ROI -0.107
+2025: no milestone file
