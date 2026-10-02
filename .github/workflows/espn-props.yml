@@ -1,0 +1,33 @@
+name: ESPN props
+# ESPN BET player props (open and final line) for 2024 and 2025 -> data/espn/espn_props_<season>.csv
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/fetch/espn_props.py', '.github/workflows/espn-props.yml']
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      max-parallel: 1
+      matrix:
+        season: [2024, 2025]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/fetch/espn_props.py --season ${{ matrix.season }}
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          f=data/espn/espn_props_${{ matrix.season }}.csv
+          [ -f "$f" ] || exit 0
+          gzip -kf "$f" && git add "$f.gz"
+          git commit -m "espn: ESPN BET props ${{ matrix.season }}" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
