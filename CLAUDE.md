@@ -25,3 +25,9 @@ Owner: Will. Analysis only: ROI, CLV and log loss in backtests are fine; no dail
 - **Blank player team** in Action Network: match against both teams in the game; name match, else last name +
   first initial; never guess.
 - Sandbox cannot reach Action Network; fetch in GitHub Actions. Scheduled workflows run only from `main`.
+
+## Agent team rules
+- Teammates (`.claude/agents/`: ux, backend on Sonnet at medium effort in their own worktrees; adversary on
+  Fable) claim subtasks from the team's shared task list and settle contracts with each other directly.
+- Teammates must request a security review from the `adversary` teammate, and address or answer every finding,
+  before opening a pull request for the lead session.
