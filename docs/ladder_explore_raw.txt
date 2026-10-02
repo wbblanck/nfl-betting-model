@@ -1,0 +1,22 @@
+
+== 2024 (fit season): 21782 milestone prices with a simulation
+  calibration of the simulator's own P(milestone):
+    model [0.00,0.10): n   3872  model 0.058  book implied 0.146  hit 0.115
+    model [0.10,0.25): n   6401  model 0.170  book implied 0.223  hit 0.201
+    model [0.25,0.50): n   6535  model 0.363  book implied 0.418  hit 0.388
+    model [0.50,0.75): n   3549  model 0.612  book implied 0.670  hit 0.623
+    model [0.75,1.01): n   1425  model 0.839  book implied 0.875  hit 0.822
+  'yes' when model - implied >= 0.05: n   2693  hit 0.281  implied 0.293  ROI -0.033
+  'yes' when model - implied >= 0.10: n   1267  hit 0.275  implied 0.294  ROI -0.069
+  'yes' when model - implied >= 0.20: n    292  hit 0.274  implied 0.290  ROI -0.057
+
+== 2025 (check): 84072 milestone prices with a simulation
+  calibration of the simulator's own P(milestone):
+    model [0.00,0.10): n  22620  model 0.047  book implied 0.089  hit 0.063
+    model [0.10,0.25): n  19862  model 0.168  book implied 0.204  hit 0.165
+    model [0.25,0.50): n  19973  model 0.366  book implied 0.416  hit 0.358
+    model [0.50,0.75): n  13820  model 0.620  book implied 0.676  hit 0.614
+    model [0.75,1.01): n   7797  model 0.844  book implied 0.876  hit 0.839
+  'yes' when model - implied >= 0.05: n  12319  hit 0.245  implied 0.268  ROI -0.137
+  'yes' when model - implied >= 0.10: n   5367  hit 0.263  implied 0.280  ROI -0.092
+  'yes' when model - implied >= 0.20: n   1132  hit 0.266  implied 0.275  ROI -0.017
