@@ -1,0 +1,32 @@
+
+== 2024: 10150 ESPN props with an open line and a projection; line moved on 56.8%
+  final = a + b*open + c*projection: c = +0.133 (week-bootstrap 95% +0.112 to +0.159)
+  UNDER at open, gap >= 0.05: n  3364  win 0.548  ROI -0.050  line then moved our way 42.1% / against 16.6%
+  UNDER at open, gap >= 0.10: n  2530  win 0.551  ROI -0.050  line then moved our way 43.2% / against 16.1%
+  UNDER at open, gap >= 0.20: n  1398  win 0.558  ROI -0.049  line then moved our way 43.6% / against 16.2%
+  UNDER at open, gap >= 0.30: n   842  win 0.574  ROI -0.029  line then moved our way 44.4% / against 16.9%
+  OVER at open, gap >= 0.05: n  4525  win 0.537  ROI -0.041  line then moved our way 42.5% / against 15.0%
+  OVER at open, gap >= 0.10: n  3650  win 0.540  ROI -0.043  line then moved our way 44.1% / against 14.0%
+  OVER at open, gap >= 0.20: n  2376  win 0.549  ROI -0.045  line then moved our way 47.5% / against 11.8%
+  OVER at open, gap >= 0.30: n  1539  win 0.558  ROI -0.043  line then moved our way 50.1% / against 10.9%
+    UNDER gap>=0.10 rec          n  634 win 0.573 ROI -0.057
+    UNDER gap>=0.10 rec_yds      n  436 win 0.557 ROI -0.069
+    UNDER gap>=0.10 rush_yds     n  205 win 0.595 ROI +0.046
+    UNDER gap>=0.10 rush_rec_yds n  382 win 0.537 ROI -0.016
+    UNDER gap>=0.10 pass_yds     n  123 win 0.553 ROI -0.073
+
+== 2025: 7860 ESPN props with an open line and a projection; line moved on 56.2%
+  final = a + b*open + c*projection: c = +0.093 (week-bootstrap 95% +0.055 to +0.132)
+  UNDER at open, gap >= 0.05: n  2379  win 0.534  ROI -0.044  line then moved our way 35.1% / against 20.4%
+  UNDER at open, gap >= 0.10: n  1756  win 0.539  ROI -0.041  line then moved our way 35.1% / against 19.8%
+  UNDER at open, gap >= 0.20: n  1023  win 0.523  ROI -0.084  line then moved our way 35.4% / against 19.1%
+  UNDER at open, gap >= 0.30: n   584  win 0.509  ROI -0.118  line then moved our way 37.2% / against 18.0%
+  OVER at open, gap >= 0.05: n  3658  win 0.498  ROI -0.089  line then moved our way 36.7% / against 21.2%
+  OVER at open, gap >= 0.10: n  3025  win 0.503  ROI -0.082  line then moved our way 37.5% / against 20.4%
+  OVER at open, gap >= 0.20: n  2078  win 0.518  ROI -0.061  line then moved our way 38.4% / against 19.0%
+  OVER at open, gap >= 0.30: n  1479  win 0.526  ROI -0.053  line then moved our way 38.5% / against 17.7%
+    UNDER gap>=0.10 rec          n  451 win 0.561 ROI -0.021
+    UNDER gap>=0.10 rec_yds      n  302 win 0.503 ROI -0.078
+    UNDER gap>=0.10 rush_yds     n  221 win 0.548 ROI +0.012
+    UNDER gap>=0.10 rush_rec_yds n  106 win 0.632 ROI +0.178
+    UNDER gap>=0.10 pass_yds     n   90 win 0.433 ROI -0.217
