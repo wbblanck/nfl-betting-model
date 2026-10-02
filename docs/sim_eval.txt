@@ -1,0 +1,63 @@
+team volume fit (2024): {'team_att': [25.627, 0.32, 0.305, 7.84], 'team_car': [26.977, 0.0, -0.396, 7.17]}
+
+== 2024 (fit, in-sample): 11492 of 11798 DK props simulated
+  log loss: simulator 0.7546 | DK de-vigged 0.6900 | coin 0.6931
+  inside simulated 50% range 0.549 (target 0.50), 80% range 0.826 (target 0.80)
+  mean |actual - sim mean| 18.78 vs |actual - line| 17.11
+  calibration (simulator P(over) decile: mean p, over rate):
+    [0.00,0.27] n  1149  p 0.164  over 0.479
+    [0.27,0.34] n  1146  p 0.308  over 0.455
+    [0.34,0.38] n  1152  p 0.361  over 0.484
+    [0.38,0.42] n  1142  p 0.399  over 0.482
+    [0.42,0.45] n  1156  p 0.431  over 0.519
+    [0.45,0.48] n  1148  p 0.462  over 0.489
+    [0.48,0.51] n  1145  p 0.494  over 0.493
+    [0.51,0.55] n  1148  p 0.532  over 0.493
+    [0.55,0.61] n  1155  p 0.580  over 0.489
+    [0.61,0.99] n  1151  p 0.692  over 0.480
+    rec           n  2626  log loss sim 0.7230  DK 0.6828  in50 0.68 in80 0.90
+    rec_yds       n  2860  log loss sim 0.7371  DK 0.6928  in50 0.56 in80 0.86
+    rush_att      n  1074  log loss sim 0.7763  DK 0.6889  in50 0.54 in80 0.80
+    rush_yds      n  1330  log loss sim 0.7437  DK 0.6921  in50 0.46 in80 0.75
+    rush_rec_yds  n  1676  log loss sim 0.7463  DK 0.6928  in50 0.50 in80 0.80
+    pass_att      n   484  log loss sim 0.8572  DK 0.6947  in50 0.46 in80 0.72
+    pass_cmp      n   480  log loss sim 0.8396  DK 0.6887  in50 0.47 in80 0.78
+    pass_yds      n   495  log loss sim 0.8013  DK 0.6928  in50 0.48 in80 0.77
+    pass_rush_yds n   467  log loss sim 0.8070  DK 0.6932  in50 0.47 in80 0.77
+  bet over  when the simulator is >= 0.05 off DK: n  2338  win 0.479  ROI -0.095
+  bet under when the simulator is >= 0.05 off DK: n  5878  win 0.507  ROI -0.047
+  bet over  when the simulator is >= 0.10 off DK: n  1308  win 0.453  ROI -0.143
+  bet under when the simulator is >= 0.10 off DK: n  4009  win 0.513  ROI -0.034
+  bet over  when the simulator is >= 0.15 off DK: n   752  win 0.452  ROI -0.142
+  bet under when the simulator is >= 0.15 off DK: n  2528  win 0.521  ROI -0.016
+
+== 2025 (check): 10027 of 10312 DK props simulated
+  log loss: simulator 0.7500 | DK de-vigged 0.6902 | coin 0.6931
+  inside simulated 50% range 0.569 (target 0.50), 80% range 0.836 (target 0.80)
+  mean |actual - sim mean| 17.90 vs |actual - line| 16.25
+  calibration (simulator P(over) decile: mean p, over rate):
+    [0.00,0.26] n  1003  p 0.158  over 0.473
+    [0.26,0.34] n  1000  p 0.302  over 0.468
+    [0.34,0.38] n  1005  p 0.362  over 0.459
+    [0.38,0.42] n   996  p 0.403  over 0.451
+    [0.42,0.46] n  1008  p 0.439  over 0.451
+    [0.46,0.49] n   999  p 0.474  over 0.459
+    [0.49,0.52] n  1001  p 0.507  over 0.449
+    [0.52,0.56] n  1007  p 0.542  over 0.473
+    [0.56,0.62] n  1002  p 0.588  over 0.521
+    [0.62,0.99] n  1006  p 0.690  over 0.495
+    rec           n  2585  log loss sim 0.7172  DK 0.6830  in50 0.70 in80 0.93
+    rec_yds       n  2707  log loss sim 0.7250  DK 0.6934  in50 0.56 in80 0.86
+    rush_att      n   823  log loss sim 0.7649  DK 0.6892  in50 0.56 in80 0.81
+    rush_yds      n  1354  log loss sim 0.7454  DK 0.6924  in50 0.48 in80 0.76
+    rush_rec_yds  n   643  log loss sim 0.7376  DK 0.6931  in50 0.48 in80 0.77
+    pass_att      n   494  log loss sim 0.8208  DK 0.6952  in50 0.49 in80 0.75
+    pass_cmp      n   496  log loss sim 0.8381  DK 0.6923  in50 0.53 in80 0.76
+    pass_yds      n   501  log loss sim 0.8167  DK 0.6931  in50 0.49 in80 0.76
+    pass_rush_yds n   424  log loss sim 0.8490  DK 0.6931  in50 0.49 in80 0.78
+  bet over  when the simulator is >= 0.05 off DK: n  2311  win 0.491  ROI -0.061
+  bet under when the simulator is >= 0.05 off DK: n  4758  win 0.531  ROI +0.001
+  bet over  when the simulator is >= 0.10 off DK: n  1287  win 0.503  ROI -0.036
+  bet under when the simulator is >= 0.10 off DK: n  3295  win 0.522  ROI -0.016
+  bet over  when the simulator is >= 0.15 off DK: n   644  win 0.491  ROI -0.059
+  bet under when the simulator is >= 0.15 off DK: n  2152  win 0.521  ROI -0.017
