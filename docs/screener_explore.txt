@@ -1,0 +1,42 @@
+
+== 2024: 11798 DK props scored
+  v_disagree votes under   132  over    89
+  v_proj     votes under  2595  over  4419
+  v_sim      votes under  5878  over  2338
+  v_price    votes under  2104  over  2174
+  bet every prop with at least k signals agreeing (and none against):
+    >= 1 agree: n  7922  win 0.514  ROI -0.066  weeks 18
+    >= 2 agree: n  4123  win 0.518  ROI -0.071  weeks 18
+    >= 3 agree: n   884  win 0.574  ROI -0.029  weeks 18
+    >= 4 agree: n     2  win 1.000  ROI +0.639  weeks 1
+  bet only the top K per week (most signals agreeing, then the simulator's edge):
+    top  3/week: n    54  win 0.463  ROI -0.194  weeks 18
+    top  5/week: n    90  win 0.522  ROI -0.096  weeks 18
+    top 10/week: n   180  win 0.556  ROI -0.048  weeks 18
+    top 20/week: n   360  win 0.561  ROI -0.046  weeks 18
+
+== 2025: 10312 DK props scored
+  v_disagree votes under  2067  over  1181
+  v_proj     votes under  2255  over  3727
+  v_sim      votes under  4758  over  2311
+  v_price    votes under  1923  over  1552
+  bet every prop with at least k signals agreeing (and none against):
+    >= 1 agree: n  6540  win 0.527  ROI -0.036  weeks 18
+    >= 2 agree: n  3990  win 0.535  ROI -0.031  weeks 18
+    >= 3 agree: n  1293  win 0.554  ROI -0.020  weeks 18
+    >= 4 agree: n    61  win 0.623  ROI +0.052  weeks 13
+  bet only the top K per week (most signals agreeing, then the simulator's edge):
+    top  3/week: n    54  win 0.537  ROI -0.070  weeks 18
+    top  5/week: n    90  win 0.533  ROI -0.065  weeks 18
+    top 10/week: n   180  win 0.517  ROI -0.098  weeks 18
+    top 20/week: n   360  win 0.533  ROI -0.058  weeks 18
+
+== variant: three signals (disagree, proj, sim), no price signal
+  2024 >= 2 of 3 agree: n  3861 win 0.504 ROI -0.068 weeks 18
+  2024 >= 3 of 3 agree: n    26 win 0.423 ROI -0.221 weeks 3
+     under only, >= 2 agree: n  2249 win 0.528 ROI -0.030
+     over  only, >= 2 agree: n  1612 win 0.470 ROI -0.122
+  2025 >= 2 of 3 agree: n  3706 win 0.516 ROI -0.037 weeks 18
+  2025 >= 3 of 3 agree: n   563 win 0.538 ROI +0.002 weeks 13
+     under only, >= 2 agree: n  2200 win 0.536 ROI -0.007
+     over  only, >= 2 agree: n  1506 win 0.487 ROI -0.081

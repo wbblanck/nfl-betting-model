@@ -1,4 +1,5 @@
-"""Grade the four rules locked for 2026 (docs/selective_props_confirm.md R1-R3, docs/projection_props_confirm.md P1).
+"""Grade the rules locked for 2026 (docs/selective_props_confirm.md R1-R3, docs/projection_props_confirm.md P1,
+docs/simulator_confirm.md S1).
 
 Writes data/backtests/grade_2026.json and docs/grade_2026.md. Until every 2026 regular-season game is final the
 output is marked INTERIM: descriptive only, no rule passes or fails before then (per the pre-registrations).
@@ -13,6 +14,8 @@ import polars as pl
 from nflbet import config
 from nflbet import props_projection as R
 from nflbet import props_selective as S
+from nflbet import screener as Sc
+from nflbet.sim import Simulator
 
 SEASON = 2026
 
@@ -27,7 +30,9 @@ def season_complete() -> tuple[bool, int, int]:
 
 def main() -> None:
     final, done, total = season_complete()
-    res = {**S.run(SEASON), **R.run(SEASON)}
+    sim = Simulator(fit_season=2024, seasons=[2023, 2024, SEASON - 1, SEASON])
+    s1 = S.evaluate(Sc.bets_frame(Sc.rule_s1(Sc.scored(SEASON, sim))), level=0.025)
+    res = {**S.run(SEASON), **R.run(SEASON), "S1_all_four_signals_agree": s1}
     out = {"generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(), "season": SEASON,
            "status": "FINAL" if final else "INTERIM (descriptive only)", "games_final": f"{done}/{total}",
            "rules": res}
@@ -43,7 +48,8 @@ def main() -> None:
         lines.append(f"| {k} | {v['n']} | {v['weeks']} | {v['under_rate']:.1%} | {v['roi']:+.1%} | "
                      f"{v['roi_ci'][0]:+.1%} to {v['roi_ci'][1]:+.1%} | {verdict} |")
     lines += ["", "R1-R3: docs/selective_props_confirm.md (interval at one-sided 2.5%/3). "
-              "P1: docs/projection_props_confirm.md (one-sided 2.5%). Pass needs n >= 30 bets in >= 10 weeks and the "
+              "P1: docs/projection_props_confirm.md, S1: docs/simulator_confirm.md (one-sided 2.5%). "
+              "For S1 'Under won' is the bet side's win rate. Pass needs n >= 30 bets in >= 10 weeks and the "
               "interval's lower end above 0."]
     (config.ROOT / "docs" / "grade_2026.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
