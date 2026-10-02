@@ -11,6 +11,10 @@ on:
         description: "Season to fetch"
         required: true
         default: "2026"
+      milestones_only:
+        description: "Only (re)write the milestone file"
+        required: false
+        default: "false"
   push:
     branches-ignore: [main]
     paths: ['scripts/fetch/an_props.py', '.github/workflows/fetch-props.yml']
@@ -35,16 +39,16 @@ jobs:
           python-version: '3.11'
       - run: pip install -e .
       - name: Fetch
-        run: python scripts/fetch/an_props.py --season "$SEASON"
+        run: python scripts/fetch/an_props.py --season "$SEASON" $( [ "${{ github.event.inputs.milestones_only }}" = "true" ] && echo --milestones-only )
       - name: Grade 2026 (interim until the season is final)
-        if: env.SEASON == '2026'
+        if: env.SEASON == '2026' && github.event.inputs.milestones_only != 'true'
         run: python scripts/grade_2026.py
       - name: Commit
         if: always()
         run: |
           git config user.name "nfl-betting-model"
           git config user.email "nfl-betting-model@users.noreply.github.com"
-          for f in "data/props/an_props_${SEASON}.csv" data/backtests/grade_2026.json docs/grade_2026.md; do
+          for f in "data/props/an_props_${SEASON}.csv" "data/props/an_milestones_${SEASON}.csv" data/backtests/grade_2026.json docs/grade_2026.md; do
             [ -f "$f" ] && git add "$f"
           done
           git commit -m "props: lines ${SEASON}$( [ "$SEASON" = 2026 ] && echo ' + 2026 grade')" || exit 0

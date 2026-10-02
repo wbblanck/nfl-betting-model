@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import sys
 import time
 import urllib.error
@@ -41,6 +42,14 @@ MARKETS = {
     "core_bet_type_71_passing_rushing_yards": "pass_rush_yds",
     "core_bet_type_62_anytime_touchdown_scorer": "anytime_td",
 }
+# Milestone ladders, e.g. core_bet_type_530_1025_player_receiving_yards_milestones_50_or_more -> ("rec_yds", 50)
+MILESTONE = re.compile(r"core_bet_type_\d+_\d+_player_(passing_yards|rushing_yards|receiving_yards|receptions|"
+                       r"passing_touchdowns|rushing_attempts|passing_attempts)_milestones_(\d+)_or_more$")
+MILESTONE_MARKET = {"passing_yards": "pass_yds", "rushing_yards": "rush_yds", "receiving_yards": "rec_yds",
+                    "receptions": "rec", "passing_touchdowns": "pass_td", "rushing_attempts": "rush_att",
+                    "passing_attempts": "pass_att"}
+MS_FIELDS = ["season", "week", "an_game_id", "start_time", "home", "away", "market", "threshold", "an_player_id",
+             "player", "player_team", "book_id", "book", "yes_odds"]
 FIELDS = ["season", "week", "an_game_id", "start_time", "home", "away", "market", "an_player_id", "player",
           "player_team", "book_id", "book", "line", "over_odds", "under_odds", "yes_odds"]
 
@@ -109,12 +118,41 @@ def rows_for_game(props: dict, game: dict, season: int, week: int, books: dict) 
     return out
 
 
+def milestone_rows(props: dict, game: dict, season: int, week: int, books: dict) -> list[dict]:
+    """One row per (player, market, threshold, book): the one-sided "N or more" price. Full-game only."""
+    teams = team_abbrs(game)
+    who = players_of(props)
+    out = []
+    for key, entries in ((props.get("player_props") or {}).items()):
+        m = MILESTONE.match(key)
+        if not m:
+            continue
+        market, thr = MILESTONE_MARKET[m.group(1)], int(m.group(2))
+        seen = {}
+        for e in entries:
+            for book, lines in (e.get("lines") or {}).items():
+                for ln in lines:
+                    if ln.get("period", "event") != "event" or ln.get("odds") is None:
+                        continue
+                    seen[(ln.get("player_id"), str(book))] = ln.get("odds")
+        for (pid, book), odds in seen.items():
+            name, team_id = who.get(pid, ("", None))
+            out.append({"season": season, "week": week, "an_game_id": game["id"], "start_time": game.get("start_time"),
+                        "home": teams.get(game.get("home_team_id")), "away": teams.get(game.get("away_team_id")),
+                        "market": market, "threshold": thr, "an_player_id": pid, "player": name,
+                        "player_team": teams.get(team_id, ""), "book_id": book, "book": books.get(book, ""),
+                        "yes_odds": odds})
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--season", type=int, required=True)
     ap.add_argument("--weeks", default="1-18")
     ap.add_argument("--out")
     ap.add_argument("--pause", type=float, default=1.0)
+    ap.add_argument("--milestones-only", action="store_true",
+                    help="write only an_milestones_<season>.csv; leave the over/under file untouched")
     a = ap.parse_args()
     if a.season != EXPLORATION and not CONFIRM_PREREG.exists():
         sys.exit(f"refused: {a.season} is held out until {CONFIRM_PREREG} is committed (docs/props_preregistration.md)")
@@ -124,8 +162,12 @@ def main() -> None:
     bd = get(AN + "/web/v1/books", a.pause)
     books = {str(b.get("id")): b.get("display_name") or b.get("name") or "" for b in ((bd or {}).get("books") or [])}
     stats = Counter()
-    with out.open("w", newline="") as fh:
+    ms_path = out.with_name(out.name.replace("an_props_", "an_milestones_"))
+    import io
+    with (io.StringIO() if a.milestones_only else out.open("w", newline="")) as fh, ms_path.open("w", newline="") as mfh:
         w = csv.DictWriter(fh, fieldnames=FIELDS)
+        mw = csv.DictWriter(mfh, fieldnames=MS_FIELDS)
+        mw.writeheader()
         w.writeheader()
         for week in range(lo, hi + 1):
             sb = get(f"{AN}/web/v2/scoreboard/nfl?season={a.season}&week={week}&periods=event", a.pause)
@@ -142,6 +184,10 @@ def main() -> None:
                     stats["props_failed"] += 1
                     continue
                 rows = rows_for_game(props, g, a.season, week, books)
+                ms = milestone_rows(props, g, a.season, week, books)
+                for r in ms:
+                    mw.writerow(r)
+                stats["milestone_rows"] += len(ms)
                 stats["games"] += 1
                 stats["games_with_props"] += bool(rows)
                 stats["rows_without_name"] += sum(1 for r in rows if not r["player"])
