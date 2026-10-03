@@ -34,3 +34,34 @@ def test_flag_known_answer():
     assert got["c"] == ("", "WR Q: Questionable; TE D: Questionable", False)   # questionable is shown, not "against"
     assert got["d"] == ("Questionable", "WR Q: Questionable", True)            # over, player himself listed
     assert got["e"] == ("", "", False)                         # Active teammate and a non-recent IR player ignored
+
+
+def test_depth_parse_and_changes_on_runner_snapshot():
+    from nflbet import depth as D
+
+    d = sorted(glob.glob("docs/evidence/espn_depth/*/"))[0]
+    charts = {k: {"id": v["id"], "body": v["body"]} for k, v in json.load(gzip.open(d + "core_depthcharts.json.gz", "rt")).items()}
+    dc = D.parse(charts)
+    assert dc["team"].n_unique() == 32 and set(dc["pos"].unique().to_list()) == {"QB", "RB"}
+    nyj = dc.filter(pl.col("team") == "NYJ", pl.col("pos") == "RB").sort("rank")["espn_id"].to_list()
+    assert nyj[:2] == ["4427366", "4685247"]                   # Breece Hall still listed first, Braelon Allen second
+    inj = Inj.parse(json.load(gzip.open(d + "site_injuries.json.gz", "rt"))["body"])
+    players = pl.DataFrame({"espn_id": ["4427366", "4685247"], "player_id": ["hall", "allen"], "name": ["Hall", "Allen"]})
+    usage = pl.DataFrame({"player_id": ["hall", "allen"], "team": ["NYJ", "NYJ"], "pos": ["RB", "RB"], "n": [51, 19]})
+    # Hall is Out: the healthy chart starter is Allen, but the leader is injured -> the injury flag's case, no change
+    assert D.changes(dc.filter(pl.col("team") == "NYJ"), inj, players, usage).height == 0
+
+
+def test_depth_flag_known_answer():
+    from nflbet import depth as D
+
+    ch = pl.DataFrame({"team": ["SEA", "GB"], "pos": ["QB", "RB"], "starter_id": ["new", "kj"], "starter_name": ["New", "KJ"],
+                       "starter_n": [10, 12], "leader_id": ["old", "ml"], "leader_name": ["Old", "ML"], "leader_n": [60, 23]})
+    picks = pl.DataFrame({"player_id": ["new", "new", "old", "wr", "kj", "kj", "ml"],
+                          "team": ["SEA", "SEA", "SEA", "SEA", "GB", "GB", "GB"],
+                          "market": ["pass_cmp", "pass_yds", "pass_att", "rec", "rush_att", "rec", "rush_yds"],
+                          "side": ["under", "over", "over", "under", "under", "under", "under"]})
+    f = D.flag(picks, ch)
+    assert f["depth_against"].to_list() == [True, False, True, False, True, False, False]
+    notes = f["depth_note"].to_list()
+    assert notes[3].startswith("team QB change") and notes[5] == "" and notes[6].startswith("RB change")

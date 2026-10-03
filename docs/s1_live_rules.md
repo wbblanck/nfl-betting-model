@@ -25,3 +25,10 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   Doubtful or on IR, or an over whose player is himself listed. Descriptive only: S1 is unchanged, flagged picks
   are still recorded and graded, and `docs/s1_live.md` shows the record with and without them. A rule that drops
   flagged picks would be a new hypothesis and needs its own pre-registration before it is judged.
+- **Depth-chart flag (added 2026-10-03):** QB and RB only. Each run fetches every team's ESPN depth chart
+  (archived in `data/live/depth/`). A team has a role change when its listed starter (highest-ranked player not
+  Out / Doubtful / IR) differs from the player who led it in attempts (QB) or carries (RB) over its last 3 weeks,
+  and that leader is healthy (an injured leader is the injury flag's case). A pick is **against** when it is an
+  under on the new starter or an over on the old leader in that position's markets; receiving picks on a team whose
+  QB changed get a note. WRs and TEs are left out: TE order often reflects blocking roles. Probe and reasoning:
+  `src/nflbet/depth.py`, `docs/evidence/espn_depth/`. Descriptive only, like the injury flag.

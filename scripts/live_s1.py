@@ -14,7 +14,7 @@ import sys
 
 import polars as pl
 
-from nflbet import config, injuries as Inj, live as Lv, props as P
+from nflbet import config, depth as D, injuries as Inj, live as Lv, props as P
 
 SEASON = 2026
 PICKS = Lv.LIVE / f"s1_picks_{SEASON}.csv"
@@ -31,7 +31,7 @@ def do_run() -> None:
                     "--weeks", f"{week}-{week}", "--out", str(tmp)], check=True)
     when = Lv.now_utc()
     picks, log = Lv.run(SEASON, tmp, when)
-    picks = with_injuries(picks, week, when)
+    picks = with_news(picks, week, when)
     arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"
     arch.parent.mkdir(parents=True, exist_ok=True)
     with open(tmp, "rb") as f, gzip.open(arch, "wb") as g:
@@ -42,23 +42,56 @@ def do_run() -> None:
           f"{picks.height} S1 picks")
     for r in picks.sort("start_time").iter_rows(named=True):
         print(f"  {r['away']}@{r['home']}  {r['player']:24s} {r['market']:12s} {r['side']:5s} {r['line']:6} {r['odds']:+.0f}"
-              f"  {'INJURY NEWS AGAINST ' if r['inj_against'] else ''}{r['inj_self'] or ''} {r['inj_teammates'] or ''}")
+              f"  {'INJURY NEWS AGAINST ' if r['inj_against'] else ''}{r['inj_self'] or ''} {r['inj_teammates'] or ''}"
+              f"  {'DEPTH CHART AGAINST ' if r['depth_against'] else ''}{r['depth_note'] or ''}")
 
 
-def with_injuries(picks: pl.DataFrame, week: int, when: dt.datetime) -> pl.DataFrame:
-    """Descriptive injury flag (src/nflbet/injuries.py); the ESPN response is archived. A failed fetch leaves the
-    flag empty and never stops the run."""
+def _archive(body, kind: str, week: int, when: dt.datetime) -> None:
+    arch = Lv.LIVE / kind / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.json.gz"
+    arch.parent.mkdir(parents=True, exist_ok=True)
+    with gzip.open(arch, "wt") as f:
+        json.dump(body, f)
+
+
+def with_news(picks: pl.DataFrame, week: int, when: dt.datetime) -> pl.DataFrame:
+    """Descriptive flags (src/nflbet/injuries.py, src/nflbet/depth.py) from ESPN at run time; responses are
+    archived. A failed fetch leaves that flag empty and never stops the run: the picks still count."""
+    inj = None
     try:
         body = Inj.fetch()
-        arch = Lv.LIVE / "injuries" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.json.gz"
-        arch.parent.mkdir(parents=True, exist_ok=True)
-        with gzip.open(arch, "wt") as f:
-            json.dump(body, f)
-        return Inj.flag(picks, Inj.parse(body), Inj.espn_ids(), Inj.recent_players(SEASON, week))
-    except Exception as e:  # noqa: BLE001 - the picks still count; only the flag is missing
+        _archive(body, "injuries", week, when)
+        inj = Inj.parse(body)
+        picks = Inj.flag(picks, inj, Inj.espn_ids(), Inj.recent_players(SEASON, week))
+    except Exception as e:  # noqa: BLE001
         print(f"injury flag unavailable: {type(e).__name__}: {e}")
-        return picks.with_columns(pl.lit("fetch failed").alias("inj_self"), pl.lit(None, pl.Utf8).alias("inj_teammates"),
-                                  pl.lit(None, pl.Boolean).alias("inj_against"))
+        picks = picks.with_columns(pl.lit("fetch failed").alias("inj_self"), pl.lit(None, pl.Utf8).alias("inj_teammates"),
+                                   pl.lit(None, pl.Boolean).alias("inj_against"))
+    try:
+        if inj is None:
+            raise RuntimeError("needs the injury list")
+        charts = D.fetch(SEASON)
+        _archive(charts, "depth", week, when)
+        ch = D.changes(D.parse(charts), inj, D.players_table(), D.recent_usage(SEASON, week))
+        print("depth-chart changes:", [f"{r['team']} {r['pos']}: {r['starter_name']} over {r['leader_name']}" for r in ch.iter_rows(named=True)])
+        picks = D.flag(picks, ch)
+    except Exception as e:  # noqa: BLE001
+        print(f"depth flag unavailable: {type(e).__name__}: {e}")
+        picks = picks.with_columns(pl.lit("fetch failed").alias("depth_note"), pl.lit(None, pl.Boolean).alias("depth_against"))
+    return picks
+
+
+def news(r: dict) -> str:
+    """One cell: injury and depth-chart news recorded at the pick's run (string fields as read back from the CSV)."""
+    if r["inj_against"] is None:
+        inj = f"injuries {r['inj_self'] or 'not checked'}"
+    else:
+        inj = "; ".join(x for x in (f"self: {r['inj_self']}" if r["inj_self"] else "", r["inj_teammates"] or "") if x)
+        inj = ("**Injury against** — " + inj) if r["inj_against"] == "true" else inj
+    if r["depth_against"] is None:
+        dep = f"depth chart {r['depth_note'] or 'not checked'}"
+    else:
+        dep = ("**Depth chart against** — " + (r["depth_note"] or "")) if r["depth_against"] == "true" else (r["depth_note"] or "")
+    return "; ".join(x for x in (inj, dep) if x)
 
 
 def do_grade() -> None:
@@ -97,25 +130,24 @@ def do_grade() -> None:
         if r["W"] + r["L"] + r["P"]:
             lines.append(f"| {wk} | {r['W']}-{r['L']}-{r['P']} | {r['win_pct']:.1%} | {r['units']:+.2f} | {r['roi']:+.1%} |"
                          if r["win_pct"] is not None else f"| {wk} | {r['W']}-{r['L']}-{r['P']} | | | |")
-    if "inj_against" in d.columns:
-        lines += ["", "Injury flag (from 2026-10-03; descriptive, S1 unchanged): ESPN statuses at the pick's run. "
-                  "**Against** = an under whose teammate at the same position is Out / Doubtful / IR, or an over whose "
-                  "player is himself listed."]
-        for lab, x in (("Injury news against", d.filter(pl.col("inj_against") == "true")),
-                       ("No injury news against", d.filter(pl.col("inj_against") == "false"))):
-            r = Lv.record(x)
-            lines.append(f"- {lab}: {r['W']}-{r['L']}-{r['P']}" +
-                         (f", {r['units']:+.2f} units" if r["W"] + r["L"] else "") + f" (pending {r['pending']})")
-    else:
-        d = d.with_columns(*[pl.lit(None, pl.Utf8).alias(c) for c in Inj.FLAG_COLS])
-    lines += ["", "## Picks", "", "| Week | Game | Player | Prop | Side | Line | Odds | Injury news at pick | Result |",
+    for c in Inj.FLAG_COLS + D.FLAG_COLS:
+        if c not in d.columns:
+            d = d.with_columns(pl.lit(None, pl.Utf8).alias(c))
+    lines += ["", "News flags (descriptive; S1 unchanged), from ESPN at the pick's run. **Injury against** = an under whose "
+              "teammate at the same position is Out / Doubtful / IR, or an over whose player is himself listed (from "
+              "2026-10-03). **Depth chart against** = the team's listed QB / RB starter differs from its recent usage "
+              "leader, and the pick is an under on the new starter or an over on the old leader (from 2026-10-03)."]
+    for lab, x in (("Injury against", d.filter(pl.col("inj_against") == "true")),
+                   ("Depth chart against", d.filter(pl.col("depth_against") == "true")),
+                   ("Neither flag against", d.filter(pl.col("inj_against") == "false", pl.col("depth_against") == "false"))):
+        r = Lv.record(x)
+        lines.append(f"- {lab}: {r['W']}-{r['L']}-{r['P']}" + (f", {r['units']:+.2f} units" if r["W"] + r["L"] else "")
+                     + f" (pending {r['pending']})")
+    lines += ["", "## Picks", "", "| Week | Game | Player | Prop | Side | Line | Odds | News at pick | Result |",
               "|---|---|---|---|---|---|---|---|---|"]
     for r in d.sort("week", "start_time", "player", descending=[True, False, False]).iter_rows(named=True):
-        news = "; ".join(x for x in (f"self: {r['inj_self']}" if r["inj_self"] else "", r["inj_teammates"] or "") if x)
-        news = ("**Against** — " if r["inj_against"] == "true" else "") + news if r["inj_against"] is not None \
-            else (r["inj_self"] or "not checked")
         lines.append(f"| {r['week']} | {r['away']}@{r['home']} | {r['player']} | {r['market']} | {r['side']} | {r['line']} | "
-                     f"{int(r['odds']):+d} | {news} | {r['result']} |")
+                     f"{int(r['odds']):+d} | {news(r)} | {r['result']} |")
     (config.ROOT / "docs" / "s1_live.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines[:16]))
 
