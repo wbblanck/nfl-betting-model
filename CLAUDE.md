@@ -26,7 +26,11 @@ kickoff and grades them, labeled as unvalidated. No other pick list.
   no snaps = void (as books grade).
 - **Blank player team** in Action Network: match against both teams in the game; name match, else last name +
   first initial; never guess.
-- Sandbox cannot reach Action Network; fetch in GitHub Actions. Scheduled workflows run only from `main`.
+- **Injury news is invisible to the model** (it projects from past usage) and **nflverse injury reports lag**: on
+  Friday night of 2026 week 4 they had game statuses for 9 of 291 rows, while ESPN listed Breece Hall Out from
+  15:26 UTC that Friday. Live statuses come from ESPN's site API (`nflbet.injuries`); the S1 tracker flags picks
+  with injury news against them.
+- Sandbox cannot reach Action Network or ESPN; fetch in GitHub Actions. Scheduled workflows run only from `main`.
 
 ## Agent team rules
 - Teammates (`.claude/agents/`: ux, backend on Sonnet at medium effort in their own worktrees; adversary on
