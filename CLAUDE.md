@@ -29,7 +29,8 @@ kickoff and grades them, labeled as unvalidated. No other pick list.
 - **Injury news is invisible to the model** (it projects from past usage) and **nflverse injury reports lag**: on
   Friday night of 2026 week 4 they had game statuses for 9 of 291 rows, while ESPN listed Breece Hall Out from
   15:26 UTC that Friday. Live statuses come from ESPN's site API (`nflbet.injuries`); the S1 tracker flags picks
-  with injury news against them.
+  with injury news against them. ESPN depth charts do NOT track injuries (9 listed offensive starters were Out on
+  2026-10-03); use them only for healthy starter changes (`nflbet.depth`).
 - Sandbox cannot reach Action Network or ESPN; fetch in GitHub Actions. Scheduled workflows run only from `main`.
 
 ## Agent team rules
