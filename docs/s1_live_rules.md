@@ -17,3 +17,11 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
 - **What it is not:** S1 is not validated. Its 2025 exploration was 61 bets, +5.2%, interval −16% to +27%. The
   formal verdict is the season-end test in docs/simulator_confirm.md (graded on final lines); this tracker shows
   the same rule at prices that were actually available before kickoff.
+- **Injury flag (added 2026-10-03, after week 4's first run):** the model cannot see injury news; it projects from
+  each player's past usage. Breece Hall was listed Out on ESPN at 15:26 UTC on 2026-10-02 and the 18:00 run still
+  picked Braelon Allen's rush attempts under 14.5 (model 5.2 carries, built from Hall's weeks as the starter). Each
+  run now fetches ESPN's injury statuses (archived in `data/live/injuries/`) and marks a pick **against** when it is
+  an under whose teammate at the same position (QB / RB / WR+TE, played in the team's last 3 weeks) is Out,
+  Doubtful or on IR, or an over whose player is himself listed. Descriptive only: S1 is unchanged, flagged picks
+  are still recorded and graded, and `docs/s1_live.md` shows the record with and without them. A rule that drops
+  flagged picks would be a new hypothesis and needs its own pre-registration before it is judged.

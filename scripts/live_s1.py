@@ -7,13 +7,14 @@ from __future__ import annotations
 
 import datetime as dt
 import gzip
+import json
 import shutil
 import subprocess
 import sys
 
 import polars as pl
 
-from nflbet import config, live as Lv, props as P
+from nflbet import config, injuries as Inj, live as Lv, props as P
 
 SEASON = 2026
 PICKS = Lv.LIVE / f"s1_picks_{SEASON}.csv"
@@ -30,6 +31,7 @@ def do_run() -> None:
                     "--weeks", f"{week}-{week}", "--out", str(tmp)], check=True)
     when = Lv.now_utc()
     picks, log = Lv.run(SEASON, tmp, when)
+    picks = with_injuries(picks, week, when)
     arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"
     arch.parent.mkdir(parents=True, exist_ok=True)
     with open(tmp, "rb") as f, gzip.open(arch, "wb") as g:
@@ -39,7 +41,24 @@ def do_run() -> None:
     print(f"week {week}: {log.height} games not yet started, {int(log['props_scored'].sum())} props scored, "
           f"{picks.height} S1 picks")
     for r in picks.sort("start_time").iter_rows(named=True):
-        print(f"  {r['away']}@{r['home']}  {r['player']:24s} {r['market']:12s} {r['side']:5s} {r['line']:6} {r['odds']:+.0f}")
+        print(f"  {r['away']}@{r['home']}  {r['player']:24s} {r['market']:12s} {r['side']:5s} {r['line']:6} {r['odds']:+.0f}"
+              f"  {'INJURY NEWS AGAINST ' if r['inj_against'] else ''}{r['inj_self'] or ''} {r['inj_teammates'] or ''}")
+
+
+def with_injuries(picks: pl.DataFrame, week: int, when: dt.datetime) -> pl.DataFrame:
+    """Descriptive injury flag (src/nflbet/injuries.py); the ESPN response is archived. A failed fetch leaves the
+    flag empty and never stops the run."""
+    try:
+        body = Inj.fetch()
+        arch = Lv.LIVE / "injuries" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.json.gz"
+        arch.parent.mkdir(parents=True, exist_ok=True)
+        with gzip.open(arch, "wt") as f:
+            json.dump(body, f)
+        return Inj.flag(picks, Inj.parse(body), Inj.espn_ids(), Inj.recent_players(SEASON, week))
+    except Exception as e:  # noqa: BLE001 - the picks still count; only the flag is missing
+        print(f"injury flag unavailable: {type(e).__name__}: {e}")
+        return picks.with_columns(pl.lit("fetch failed").alias("inj_self"), pl.lit(None, pl.Utf8).alias("inj_teammates"),
+                                  pl.lit(None, pl.Boolean).alias("inj_against"))
 
 
 def do_grade() -> None:
@@ -78,10 +97,25 @@ def do_grade() -> None:
         if r["W"] + r["L"] + r["P"]:
             lines.append(f"| {wk} | {r['W']}-{r['L']}-{r['P']} | {r['win_pct']:.1%} | {r['units']:+.2f} | {r['roi']:+.1%} |"
                          if r["win_pct"] is not None else f"| {wk} | {r['W']}-{r['L']}-{r['P']} | | | |")
-    lines += ["", "## Picks", "", "| Week | Game | Player | Prop | Side | Line | Odds | Result |", "|---|---|---|---|---|---|---|---|"]
+    if "inj_against" in d.columns:
+        lines += ["", "Injury flag (from 2026-10-03; descriptive, S1 unchanged): ESPN statuses at the pick's run. "
+                  "**Against** = an under whose teammate at the same position is Out / Doubtful / IR, or an over whose "
+                  "player is himself listed."]
+        for lab, x in (("Injury news against", d.filter(pl.col("inj_against") == "true")),
+                       ("No injury news against", d.filter(pl.col("inj_against") == "false"))):
+            r = Lv.record(x)
+            lines.append(f"- {lab}: {r['W']}-{r['L']}-{r['P']}" +
+                         (f", {r['units']:+.2f} units" if r["W"] + r["L"] else "") + f" (pending {r['pending']})")
+    else:
+        d = d.with_columns(*[pl.lit(None, pl.Utf8).alias(c) for c in Inj.FLAG_COLS])
+    lines += ["", "## Picks", "", "| Week | Game | Player | Prop | Side | Line | Odds | Injury news at pick | Result |",
+              "|---|---|---|---|---|---|---|---|---|"]
     for r in d.sort("week", "start_time", "player", descending=[True, False, False]).iter_rows(named=True):
+        news = "; ".join(x for x in (f"self: {r['inj_self']}" if r["inj_self"] else "", r["inj_teammates"] or "") if x)
+        news = ("**Against** — " if r["inj_against"] == "true" else "") + news if r["inj_against"] is not None \
+            else (r["inj_self"] or "not checked")
         lines.append(f"| {r['week']} | {r['away']}@{r['home']} | {r['player']} | {r['market']} | {r['side']} | {r['line']} | "
-                     f"{int(r['odds']):+d} | {r['result']} |")
+                     f"{int(r['odds']):+d} | {news} | {r['result']} |")
     (config.ROOT / "docs" / "s1_live.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines[:16]))
 
