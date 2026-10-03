@@ -1,0 +1,328 @@
+{
+ "teams_status": 200,
+ "n_teams": 32,
+ "teams": [
+  {
+   "team": "ARI",
+   "id": "22",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:47 GMT",
+   "Cache-Control": "max-age=570, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "ATL",
+   "id": "1",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:47 GMT",
+   "Cache-Control": "max-age=327, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "BAL",
+   "id": "33",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:48 GMT",
+   "Cache-Control": "max-age=570, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "BUF",
+   "id": "2",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:48 GMT",
+   "Cache-Control": "max-age=570, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "CAR",
+   "id": "29",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:49 GMT",
+   "Cache-Control": "max-age=668, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "CHI",
+   "id": "3",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:49 GMT",
+   "Cache-Control": "max-age=569, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "CIN",
+   "id": "4",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:49 GMT",
+   "Cache-Control": "max-age=569, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "CLE",
+   "id": "5",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:50 GMT",
+   "Cache-Control": "max-age=667, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "DAL",
+   "id": "6",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:50 GMT",
+   "Cache-Control": "max-age=324, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "DEN",
+   "id": "7",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:51 GMT",
+   "Cache-Control": "max-age=324, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "DET",
+   "id": "8",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:51 GMT",
+   "Cache-Control": "max-age=324, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "GB",
+   "id": "9",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:52 GMT",
+   "Cache-Control": "max-age=900, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "HOU",
+   "id": "34",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:52 GMT",
+   "Cache-Control": "max-age=566, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "IND",
+   "id": "11",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:53 GMT",
+   "Cache-Control": "max-age=36, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "JAX",
+   "id": "30",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:53 GMT",
+   "Cache-Control": "max-age=565, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "KC",
+   "id": "12",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:53 GMT",
+   "Cache-Control": "max-age=900, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "LV",
+   "id": "13",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:54 GMT",
+   "Cache-Control": "max-age=900, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "LAC",
+   "id": "24",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:54 GMT",
+   "Cache-Control": "max-age=564, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "LAR",
+   "id": "14",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:55 GMT",
+   "Cache-Control": "max-age=320, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "MIA",
+   "id": "15",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:55 GMT",
+   "Cache-Control": "max-age=900, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "MIN",
+   "id": "16",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:56 GMT",
+   "Cache-Control": "max-age=562, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "NE",
+   "id": "17",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:56 GMT",
+   "Cache-Control": "max-age=561, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "NO",
+   "id": "18",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:56 GMT",
+   "Cache-Control": "max-age=561, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "NYG",
+   "id": "19",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:57 GMT",
+   "Cache-Control": "max-age=561, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "NYJ",
+   "id": "20",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:57 GMT",
+   "Cache-Control": "max-age=662, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "PHI",
+   "id": "21",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:58 GMT",
+   "Cache-Control": "max-age=560, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "PIT",
+   "id": "23",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:58 GMT",
+   "Cache-Control": "max-age=662, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "SF",
+   "id": "25",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:58 GMT",
+   "Cache-Control": "max-age=559, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "SEA",
+   "id": "26",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:59 GMT",
+   "Cache-Control": "max-age=561, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "TB",
+   "id": "27",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:37:59 GMT",
+   "Cache-Control": "max-age=559, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "TEN",
+   "id": "10",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:38:00 GMT",
+   "Cache-Control": "max-age=661, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  },
+  {
+   "team": "WSH",
+   "id": "28",
+   "status": 200,
+   "Last-Modified": null,
+   "Date": "Sat, 03 Oct 2026 03:38:00 GMT",
+   "Cache-Control": "max-age=558, stale-while-revalidate=7200",
+   "Age": null,
+   "ETag": null
+  }
+ ],
+ "site_depthchart_status": 200,
+ "injuries_status": 200
+}
