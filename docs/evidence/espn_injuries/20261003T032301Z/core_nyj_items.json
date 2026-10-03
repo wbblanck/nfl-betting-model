@@ -1,0 +1,2001 @@
+{
+ "list_status": 200,
+ "items": [
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4243375/injuries/640417?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4243375/injuries/640417?lang=en&region=us",
+    "id": "640417",
+    "longComment": "Parham was unable to finish the Jets' Week 3 loss to the Lions after sustaining a knee injury. He could not participate in any of the Jets' three practice sessions during Week 4 prep, and in his absence, Jordan Meredith will likely start at left guard against Chicago.",
+    "shortComment": "Parham (knee) has been ruled out for Sunday's game against the Bears, Zack Rosenblatt of The Athletic reports.",
+    "status": "Out",
+    "date": "2026-10-03T00:52Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4243375?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "4",
+     "name": "INJURY_STATUS_OUT",
+     "description": "out",
+     "abbreviation": "O"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "OUT",
+      "abbreviation": "OUT"
+     },
+     "type": "Knee",
+     "location": "Leg",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2026-10-11"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4569371/injuries/640402?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4569371/injuries/640402?lang=en&region=us",
+    "id": "640402",
+    "longComment": "Williams has played 80 percent or more of the Jets' offensive snaps in each of the last two games, though he logged only one catch (on two targets) in a Week 3 loss to the Lions. However, with both Mitchell and Mason Taylor (thumb) sidelined and Kenyon Sadiq (back) listed as questionable, Williams should see more targets from Geno Smith in the passing game.",
+    "shortComment": "Williams will have the opportunity to work as the Jets' WR2 behind Garrett Wilson for Sunday's game against the Bears due to the absence of Adonai Mitchell (finger).",
+    "status": "Active",
+    "date": "2026-10-03T00:16Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4569371?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361372/injuries/640372?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361372/injuries/640372?lang=en&region=us",
+    "id": "640372",
+    "longComment": "Ruckert was limited Wednesday and Thursday but managed to log a full session Friday, clearing the way for his availability for the Week 4 meeting with the Bears. With Mason Taylor (thumb) still sidelined, Ruckert should continue to be more involved. He might see the field even more Sunday if Kenyon Sadiq (back), who is questionable, can't suit up.",
+    "shortComment": "Ruckert (knee) was a full participant in Friday's practice.",
+    "status": "Active",
+    "date": "2026-10-02T23:11Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361372?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/5083315/injuries/640323?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/5083315/injuries/640323?lang=en&region=us",
+    "id": "640323",
+    "longComment": "After logging limited practices earlier in the week, Sadiq now carries a questionable tag into Week 4. With Mason Taylor (thumb) already ruled out against Chicago, Sadiq's status bears monitoring over the next 48 hours. If he's cleared to play, the rookie tight end should once again have a significant pass-catching role after posting his first career 100-yard receiving game with a touchdown last Sunday against the Lions.",
+    "shortComment": "Sadiq (back) is questionable for Sunday's game against the Bears.",
+    "status": "Questionable",
+    "date": "2026-10-02T19:47Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/5083315?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "2",
+     "name": "INJURY_STATUS_QUESTIONABLE",
+     "description": "questionable",
+     "abbreviation": "Q"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "QUESTIONABLE",
+      "abbreviation": "QUESTIONABLE"
+     },
+     "type": "Back",
+     "location": "Torso",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2026-10-04"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4597500/injuries/640285?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4597500/injuries/640285?lang=en&region=us",
+    "id": "640285",
+    "longComment": "With Mitchell out last week, fellow wideout Isaiah Williams played 90 percent of snaps but drew just two targets on 39 routes. Sterling Shepard saw just one target on 22 routes as the No. 3 receiver, while WR Garrett Wilson got 13 targets and the tight ends combined for 14. Williams and Shepard could see a bit more volume this week, but the offense still figures to run through Wilson, the RBs and the TEs. As for Mitchell, his next chance to play will be Week 5 against Cleveland (Oct. 11).",
+    "shortComment": "Mitchell (finger) is out for Sunday's game against the Bears, Zack Rosenblatt reports.",
+    "status": "Out",
+    "date": "2026-10-02T15:31Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4597500?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "4",
+     "name": "INJURY_STATUS_OUT",
+     "description": "out",
+     "abbreviation": "O"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "OUT",
+      "abbreviation": "OUT"
+     },
+     "type": "Finger",
+     "location": "Arm",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2026-10-11"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4700136/injuries/640283?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4700136/injuries/640283?lang=en&region=us",
+    "id": "640283",
+    "longComment": "Mauigoa will miss a second straight game after he was injured in the Jets' Week 2 loss to the Packers. Mauigoa has played just 24 snaps on special teams this season.",
+    "shortComment": "Mauigoa (quadriceps) has been ruled out for Sunday's game against the Bears, Zack Rosenblatt of The Athletic reports.",
+    "status": "Out",
+    "date": "2026-10-02T15:26Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4700136?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "4",
+     "name": "INJURY_STATUS_OUT",
+     "description": "out",
+     "abbreviation": "O"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "OUT",
+      "abbreviation": "OUT"
+     },
+     "type": "Quadriceps",
+     "location": "Leg",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2026-10-11"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4427366/injuries/640282?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4427366/injuries/640282?lang=en&region=us",
+    "id": "640282",
+    "longComment": "Hall is considered week-to-week and hasn't practiced since making an early exit from last week's loss at Detroit. Braelon Allen will fill in as the Jets' lead back this Sunday, with Isaiah Davis also expected to have a role.",
+    "shortComment": "Hall (quadriceps) is out for Sunday's game at Chicago, according to Zack Rosenblatt of The Athletic.",
+    "status": "Out",
+    "date": "2026-10-02T15:26Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4427366?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "4",
+     "name": "INJURY_STATUS_OUT",
+     "description": "out",
+     "abbreviation": "O"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "OUT",
+      "abbreviation": "OUT"
+     },
+     "type": "Quadriceps",
+     "location": "Leg",
+     "detail": "Not Specified",
+     "side": "Right",
+     "returnDate": "2026-10-11"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4808766/injuries/640281?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4808766/injuries/640281?lang=en&region=us",
+    "id": "640281",
+    "longComment": "Taylor remained out of practice this week and will miss a second straight game. Provided he's healthy enough to play, Kenyon Sadiq (back) should handle more of the workload at tight end once again for the Jets after he secured seven of eight targets for 105 yards and a touchdown last Sunday against Detroit.",
+    "shortComment": "Taylor (thumb) has been ruled out for Sunday's game against the Bears, Zack Rosenblatt of The Athletic reports.",
+    "status": "Out",
+    "date": "2026-10-02T15:19Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4808766?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "4",
+     "name": "INJURY_STATUS_OUT",
+     "description": "out",
+     "abbreviation": "O"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "OUT",
+      "abbreviation": "OUT"
+     },
+     "type": "Thumb",
+     "location": "Arm",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2026-10-11"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3925345/injuries/640187?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3925345/injuries/640187?lang=en&region=us",
+    "id": "640187",
+    "longComment": "Fitzpatrick appears set to return to his starting safety role after missing the last two games due to his groin injury. The fact Fitzpatrick will seemingly be available to slot in alongside Dane Belton will help the Jets' quest to slow down an aggressive Ben Johnson offense at Soldier Field in the Week 4 matchup against the Bears on Sunday.",
+    "shortComment": "Fitzpatrick (groin) was a full participant in practice Thursday.",
+    "status": "Active",
+    "date": "2026-10-01T21:49Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3925345?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4362840/injuries/640186?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4362840/injuries/640186?lang=en&region=us",
+    "id": "640186",
+    "longComment": "Enagbare opened the week as a limited participant in Wednesday's practice, but he now appears to be trending in the wrong direction for the Week 4 after not participating Thursday. The 26-year-old played his usual snap count in Week 3 (38), so it's unclear when the injury occurred. If Enagbare misses practice again Friday, he could be in danger of missing the Jets' Week 4 game versus the Bears on Sunday.",
+    "shortComment": "Enagbare (knee) was unable to participate in practice Thursday.",
+    "status": "Questionable",
+    "date": "2026-10-01T21:40Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4362840?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "2",
+     "name": "INJURY_STATUS_QUESTIONABLE",
+     "description": "questionable",
+     "abbreviation": "Q"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "QUESTIONABLE",
+      "abbreviation": "QUESTIONABLE"
+     },
+     "type": "Knee",
+     "location": "Leg",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2026-10-04"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/14958/injuries/640116?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/14958/injuries/640116?lang=en&region=us",
+    "id": "640116",
+    "longComment": "Davis again led Jets linebackers in snaps in Week 3, but it was his first time registering a double-digit tackle total since Week 12 of the 2025 season. With that said, he remains solidly on the IDP radar in most formats going into a Week 4 matchup against a run-first Chicago offense.",
+    "shortComment": "Davis recorded 10 tackles (seven solo), including 1.0 sacks, during Sunday's 31-24 loss at Detroit.",
+    "status": "Active",
+    "date": "2026-10-01T01:51Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/14958?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4035537/injuries/640081?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4035537/injuries/640081?lang=en&region=us",
+    "id": "640081",
+    "longComment": "Head coach Aaron Glenn suggested before Wednesday's session that Nwangwu would be limited in practice, but the running back instead took every rep in the Jets' first Week 4 session. With the back issue seemingly behind him, Nwangwu looks ready to make his 2026 debut Sunday against the Bears. Lead back Breece Hall (quadriceps) is considered week-to-week and will likely sit out Sunday, leaving Nwangwu in line to serve as the Jets' No. 3 back behind Braelon Allen and Isaiah Davis.",
+    "shortComment": "Nwangwu (back) was listed as a full participant in Wednesday's practice.",
+    "status": "Active",
+    "date": "2026-10-01T00:25Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4035537?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3124679/injuries/639822?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3124679/injuries/639822?lang=en&region=us",
+    "id": "639822",
+    "longComment": "Though New York cut him at the conclusion of the preseason, Sanders re-signed with the organization as a member of the practice squad and was elevated for each of the first three games of the season. He went 5-for-6 on field-goal tries and drilled all five of his point-after attempts during that stretch, with his performance earning him a spot on the 53-man roster. Sanders should have more security after New York waived Blake Grupe in a corresponding move.",
+    "shortComment": "The Jets signed Sanders off their practice squad Tuesday, Eric Allen of the team's official site reports.",
+    "status": "Active",
+    "date": "2026-09-29T17:18Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3124679?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4695404/injuries/639814?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4695404/injuries/639814?lang=en&region=us",
+    "id": "639814",
+    "longComment": "Davis didn't see any work on offense in Week 3, but he could be called upon to handle a complementary role in the backfield next Sunday in Chicago. After exiting the loss to the Lions in the fourth quarter with a thigh injury, starter Breece Hall is considered week-to-week and looks likely to miss at least one game. Braelon Allen should be in line to lead the New York backfield in Hall's absence, while Davis may serve as a change-of-pace option.",
+    "shortComment": "Davis played 16 special-teams snaps during the Jets' 31-24 loss to the Lions on Sunday.",
+    "status": "Active",
+    "date": "2026-09-29T04:58Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4695404?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2976592/injuries/639779?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2976592/injuries/639779?lang=en&region=us",
+    "id": "639779",
+    "longComment": "In his first action of the season, Shepard played 30 of 66 offensive snaps in Sunday's loss to the Lions, turning his only target into a three-yard reception. With Adonai Mitchell (finger) battling an injury, Shepard could again be elevated ahead of next Sunday's game against the Bears. He has no fantasy appeal.",
+    "shortComment": "Shepard reverted to the Jets' practice squad Monday, per the NFL's transaction log.",
+    "status": "Active",
+    "date": "2026-09-29T01:24Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2976592?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685247/injuries/639699?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685247/injuries/639699?lang=en&region=us",
+    "id": "639699",
+    "longComment": "Hall exited in the fourth quarter of Sunday's loss at Detroit due to a thigh injury, and afterward he relayed that he \"felt something\" while running, per Brian Costello of the New York Post. Ian Rapoport and Adam Schefter of ESPN then reported Monday that Hall is considered week-to-week. While Hall hasn't outright been ruled out for Week 4 or beyond, Allen currently ranks second on the team in carries with 19, which have gone for 61 yards, while Davis hasn't logged an offensive snap through three contests to begin the season. As a result, Allen is the better bet to take advantage of an absent Hall, if that comes to pass.",
+    "shortComment": "Allen and Isaiah Davis will man the Jets backfield for as long as Breece Hall (thigh) is potentially sidelined, Rich Cimini of ESPN.com reports.",
+    "status": "Active",
+    "date": "2026-09-28T20:48Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685247?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4570470/injuries/-2019249?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4570470/injuries/-2019249?lang=en&region=us",
+    "id": "-2019249",
+    "longComment": "",
+    "shortComment": "",
+    "status": "Active",
+    "date": "2026-09-28T18:58Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4570470?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/15864/injuries/639527?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/15864/injuries/639527?lang=en&region=us",
+    "id": "639527",
+    "longComment": "The veteran QB was almost flawless as the Jets nearly pulled off the upset, with his only turnover being a fumble on his fifth sack of the day late in the fourth quarter, ending his final possession. Smith spread the ball around, completing passes to eight different targets and connecting with Garrett Wilson, Jeremy Ruckert and rookie first-round pick Kenyon Sadiq for his scores. Smith has been extremely efficient to begin the season, posting a 75.5 percent completion rate (77-for-102) with a 4:0 TD:INT and 7.7 YPA. He'll look to stay sharp in a Week 4 road trip to Chicago.",
+    "shortComment": "Smith completed 31 of 37 passes for 321 yards and three touchdowns in Sunday's 31-24 loss to the Lions. He added 12 rushing yards on two carries and threw a two-point conversion.",
+    "status": "Active",
+    "date": "2026-09-27T22:25Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/15864?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4569618/injuries/639521?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4569618/injuries/639521?lang=en&region=us",
+    "id": "639521",
+    "longComment": "The star wideout -- who was evaluated for a head injury and cleared to return -- paced Jets pass catchers in all three receiving categories, and his 23-yard TD from Geno Smith in the fourth quarter tied the game at 24-24, only for the Lions to respond inside the final two minutes. It's Wilson's first 100-yard performance since Week 14 of the 2024 season, as injuries disrupted his 2025 campaign. Wilson also has found the end zone in back-to-back games, and he'll take a 21-243-2 line on 27 targets into a Week 4 road trip to Chicago.",
+    "shortComment": "Wilson caught 10 of 13 targets for 107 yards and a touchdown in Sunday's 31-24 loss to Detroit.",
+    "status": "Active",
+    "date": "2026-09-27T22:14Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4569618?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/5208977/injuries/639425?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/5208977/injuries/639425?lang=en&region=us",
+    "id": "639425",
+    "longComment": "Stiggers exited the contest after suffering a hand injury early in the first quarter. However, it appears the injury wasn't anything serious, though his return mostly impacts the special-teams unit while adding depth to the secondary.",
+    "shortComment": "Stiggers (hand) returned to Sunday's game versus the Lions, Brian Costello of the New York Post reports.",
+    "status": "Active",
+    "date": "2026-09-27T17:51Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/5208977?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4362094/injuries/639411?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4362094/injuries/639411?lang=en&region=us",
+    "id": "639411",
+    "longComment": "Ossai was trending in the right direction for Week 3 after logging a full practice Friday, and the veteran pass rusher has been given the green light to play Sunday after going through pregame warmups. It will be Ossai's 2026 regular-season debut, and he's expected to serve in a rotational role at defensive end behind starters Will McDonald and Kingsley Enagbare.",
+    "shortComment": "Ossai (foot) is active for Sunday's game against the Lions.",
+    "status": "Active",
+    "date": "2026-09-27T16:42Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4362094?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4892576/injuries/639270?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4892576/injuries/639270?lang=en&region=us",
+    "id": "639270",
+    "longComment": "The Jets signed Pritchett to the practice squad Sept. 2 after waiving the wide receiver on cutdown day. The second-year player out of South Alabama has yet to play in an NFL contest. If Adonai Mitchell (finger) cannot suit up for Sunday's game against the Lions, Pritchett is set to be the No. 4 option for the Jets in his debut.",
+    "shortComment": "The Jets signed Pritchett from the practice squad to the active roster Saturday, Zack Rosenblatt of The Athletic reports.",
+    "status": "Active",
+    "date": "2026-09-26T16:19Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4892576?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4429105/injuries/638853?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4429105/injuries/638853?lang=en&region=us",
+    "id": "638853",
+    "longComment": "Smith suffered a knee injury during the 20-17 overtime loss to Green Bay in Week 2. He will finish the 2026 campaign without a catch (one target), adding four carries for 13 yards. With Smith, Omar Cooper (ankle) and Tim Patrick (groin) out of the equation, Isaiah Williams could be in line for more opportunities behind Adonai Mitchell and Garrett Wilson. The Jets also signed Malik McClain off the practice squad Tuesday, which will help fill some of the void left by the injuries within the receiving corps.",
+    "shortComment": "Smith (knee) underwent surgery Wednesday to repair a torn ACL and will miss the rest of the season, Antwan V. Staley of the New York Daily News reports.",
+    "status": "Injured Reserve",
+    "date": "2026-09-23T21:53Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4429105?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "5",
+     "name": "INJURY_STATUS_IR",
+     "description": "Injured Reserve",
+     "abbreviation": "IR"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "IR",
+      "abbreviation": "IR"
+     },
+     "type": "Knee - ACL",
+     "location": "Leg",
+     "detail": "Surgery",
+     "side": "Not Specified",
+     "returnDate": "2027-02-15"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4002046/injuries/638850?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4002046/injuries/638850?lang=en&region=us",
+    "id": "638850",
+    "longComment": "Onyemata was injured during the 20-17 overtime loss to Green Bay in Week 2. He was placed on the injured reserve list Tuesday, and while that means he will miss at least four games, he is anticipated to be out longer, though head coach Aaron Glenn expects him back before the end of the season. While Onyemata is out of commission, Darrell Jackson, Jowon Briggs, T'Vondre Sweat and Harrison Phillips will presumably see more snaps in each game moving ahead.",
+    "shortComment": "Onyemata (groin) underwent core-muscle surgery Wednesday, Antwan V. Staley of the New York Daily News reports.",
+    "status": "Injured Reserve",
+    "date": "2026-09-23T21:40Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4002046?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "5",
+     "name": "INJURY_STATUS_IR",
+     "description": "Injured Reserve",
+     "abbreviation": "IR"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "IR",
+      "abbreviation": "IR"
+     },
+     "type": "Groin",
+     "location": "Groin",
+     "detail": "Surgery",
+     "side": "Not Specified",
+     "returnDate": "2026-11-08"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685248/injuries/-2012796?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685248/injuries/-2012796?lang=en&region=us",
+    "id": "-2012796",
+    "longComment": "",
+    "shortComment": "",
+    "status": "Active",
+    "date": "2026-09-23T20:28Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685248?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361331/injuries/638727?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361331/injuries/638727?lang=en&region=us",
+    "id": "638727",
+    "longComment": "Sherwood was working through a minor knee issue during Week 2 prep, but he managed to play every single defensive snap during Sunday's OT loss and finished tied with Dane Belton for the most tackles on the Jets. Sherwood is up to 10 total tackles through two games, and he's currently behind pace to reach the 100-tackle mark for a third consecutive year. He'll have his hands full in the Jets' Week 3 road tilt against the Lions on Sunday.",
+    "shortComment": "Sherwood posted six tackles (three solo) and a pass defense during the Jets' 20-17 overtime loss to the Packers on Sunday.",
+    "status": "Active",
+    "date": "2026-09-23T01:27Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361331?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4045299/injuries/-2012063?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4045299/injuries/-2012063?lang=en&region=us",
+    "id": "-2012063",
+    "longComment": "ir",
+    "shortComment": "ir",
+    "status": "Injured Reserve",
+    "date": "2026-09-23T00:35Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4045299?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "5",
+     "name": "INJURY_STATUS_IR",
+     "description": "Injured Reserve",
+     "abbreviation": "IR"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "IR",
+      "abbreviation": "IR"
+     },
+     "type": "Ankle",
+     "location": "Leg",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2026-10-25"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116177/injuries/638692?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116177/injuries/638692?lang=en&region=us",
+    "id": "638692",
+    "longComment": "Reeder played 25 snaps on special teams as a standard elevation in Sunday's overtime loss to the Packers. He's now got a spot on the 53-man roster and will serve as a depth linebacker and special-teams piece for Gang Green.",
+    "shortComment": "The Jets signed Reeder off the practice squad Tuesday.",
+    "status": "Active",
+    "date": "2026-09-23T00:30Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116177?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4682509/injuries/638669?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4682509/injuries/638669?lang=en&region=us",
+    "id": "638669",
+    "longComment": "The Jets needed depth at wide receiver due to Omar Cooper (ankle), Tim Patrick (groin) and, most recently, Arian Smith (knee) going on injured reserve. The Jets now have four healthy wide receivers on the active roster in McClain, Garrett Wilson, Adonai Mitchell and Isaiah Williams. McClain joined the Jets in early May as an undrafted free agent following his final college season at Arizona State, when he caught 31 passes for 441 yards and one touchdown across 13 games.",
+    "shortComment": "The Jets signed McClain from the practice squad to the active roster Tuesday.",
+    "status": "Active",
+    "date": "2026-09-22T23:58Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4682509?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4683815/injuries/-2010416?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4683815/injuries/-2010416?lang=en&region=us",
+    "id": "-2010416",
+    "longComment": "",
+    "shortComment": "",
+    "status": "Active",
+    "date": "2026-09-21T18:41Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4683815?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/5118340/injuries/-2010418?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/5118340/injuries/-2010418?lang=en&region=us",
+    "id": "-2010418",
+    "longComment": "",
+    "shortComment": "",
+    "status": "Active",
+    "date": "2026-09-21T18:41Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/5118340?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361767/injuries/638105?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361767/injuries/638105?lang=en&region=us",
+    "id": "638105",
+    "longComment": "After limited practice sessions Thursday and Friday, McDonald, the only Jet whose status was in question this week, will get clearance to take the field. The one-time first-round pick was on the field for 50.0 percent of the team's snaps in Week 1 against Tennessee and managed to record 1.0 sacks, in addition to putting in some light work on special teams.",
+    "shortComment": "McDonald (ankle) is active for Sunday's Week 2 matchup against the Packers.",
+    "status": "Active",
+    "date": "2026-09-20T15:41Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361767?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4723820/injuries/638034?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4723820/injuries/638034?lang=en&region=us",
+    "id": "638034",
+    "longComment": "Cooper suffered a sprained ankle early on in his pro debut this past Sunday at Tennessee that left him week-to-week. He predictably didn't practice during Week 2 prep and then was ruled out ahead of Sunday's matchup with the Packers. Once he's officially on injured reserve, Cooper will need to miss at least the next four games, at which point New York will be able to designate him for return from IR. In the meantime, Isaiah Williams figures to take on a bigger role behind Garrett Williams and Adonai Mitchell.",
+    "shortComment": "The Jets are expected to place Cooper (ankle) on injured reserve, Ian Rapoport of NFL Network reports.",
+    "status": "Injured Reserve",
+    "date": "2026-09-19T16:24Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4723820?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "5",
+     "name": "INJURY_STATUS_IR",
+     "description": "Injured Reserve",
+     "abbreviation": "IR"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "IR",
+      "abbreviation": "IR"
+     },
+     "type": "Ankle",
+     "location": "Leg",
+     "detail": "Sprain",
+     "side": "Not Specified",
+     "returnDate": "2026-10-18"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4426817/injuries/637087?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4426817/injuries/637087?lang=en&region=us",
+    "id": "637087",
+    "longComment": "Brownlee was carted from the sideline to the locker room after sustaining a calf injury. However, the third-year pro has cleared tests and been given the green light to return against the team that drafted him in the fifth round of the 2024 NFL Draft.",
+    "shortComment": "Brownlee (calf) has been cleared to return to Sunday's game against the Titans, Brian Costello of the New York Post reports.",
+    "status": "Active",
+    "date": "2026-09-13T19:20Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4426817?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3134353/injuries/636970?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3134353/injuries/636970?lang=en&region=us",
+    "id": "636970",
+    "longComment": "Patrick was ruled out ahead of Sunday's contest after Friday's practice. The wide receiver's groin injury seems to be lingering, so the 32-year-old will spend some time on IR. Patrick will be eligible to return from IR after four games, meaning Isaiah Williams and Arian Smith will likely see a greater share of reserve opportunities with the Jets' wide receiver corps.",
+    "shortComment": "The Jets placed Patrick (groin) on injured reserve Saturday, Zack Rosenblatt of The Athletic reports.",
+    "status": "Injured Reserve",
+    "date": "2026-09-12T18:56Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3134353?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "5",
+     "name": "INJURY_STATUS_IR",
+     "description": "Injured Reserve",
+     "abbreviation": "IR"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "IR",
+      "abbreviation": "IR"
+     },
+     "type": "Groin",
+     "location": "Groin",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2026-10-11"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4837388/injuries/-1998806?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4837388/injuries/-1998806?lang=en&region=us",
+    "id": "-1998806",
+    "longComment": "ir",
+    "shortComment": "ir",
+    "status": "Injured Reserve",
+    "date": "2026-09-08T20:42Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4837388?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "5",
+     "name": "INJURY_STATUS_IR",
+     "description": "Injured Reserve",
+     "abbreviation": "IR"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "IR-R",
+      "abbreviation": "IR-R"
+     },
+     "type": "Undisclosed",
+     "location": "Other",
+     "detail": "Bruise",
+     "side": "Not Specified",
+     "returnDate": "2026-10-11"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4240405/injuries/-1998780?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4240405/injuries/-1998780?lang=en&region=us",
+    "id": "-1998780",
+    "longComment": "ir",
+    "shortComment": "ir",
+    "status": "Injured Reserve",
+    "date": "2026-09-08T20:42Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4240405?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "5",
+     "name": "INJURY_STATUS_IR",
+     "description": "Injured Reserve",
+     "abbreviation": "IR"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "IR",
+      "abbreviation": "IR"
+     },
+     "type": "Thigh",
+     "location": "Leg",
+     "detail": "Bruise",
+     "side": "Not Specified",
+     "returnDate": "2027-02-15"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4241373/injuries/635687?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4241373/injuries/635687?lang=en&region=us",
+    "id": "635687",
+    "longComment": "The nature of Brown's injury is not clear, nor when he sustained the injury. However, his placement on IR without a return designation means the 2021 fourth-rounder will be forced to miss the entire upcoming season unless an injury settlement is reached with the Jets. Brown appeared in 10 regular-season games between the Rams and Jets in 2025, finishing with eight tackles (four solo).",
+    "shortComment": "Brown (undisclosed) was placed on the Jets' injured reserve Sunday, Amanda Vogt and Eric Allen of the team's official site report.",
+    "status": "Injured Reserve",
+    "date": "2026-08-31T23:57Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4241373?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "5",
+     "name": "INJURY_STATUS_IR",
+     "description": "Injured Reserve",
+     "abbreviation": "IR"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "IR",
+      "abbreviation": "IR"
+     },
+     "type": "Finger",
+     "location": "Arm",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2027-02-15"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4692555/injuries/635685?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4692555/injuries/635685?lang=en&region=us",
+    "id": "635685",
+    "longComment": "Baron opened training camp on the active/PUP list due to a knee injury he sustained last December. He's not quite ready to participate in practice, and the move to reserve/PUP means he'll be required to miss at least the first four games of the regular season. The second-year pro logged nine tackles (five solo) across six regular-season games last year before his knee injury.",
+    "shortComment": "The Jets moved Baron (knee) to the reserve/PUP list Sunday, Eric Allen and Amanda Vogt of the team's official site report.",
+    "status": "Out",
+    "date": "2026-08-31T23:53Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4692555?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "4",
+     "name": "INJURY_STATUS_OUT",
+     "description": "out",
+     "abbreviation": "O"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "PUP-R",
+      "abbreviation": "PUP-R"
+     },
+     "type": "Knee",
+     "location": "Leg",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2026-10-11"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685413/injuries/635593?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685413/injuries/635593?lang=en&region=us",
+    "id": "635593",
+    "longComment": "The Jets cut both Brady Cook and Bailey Zappe over the weekend, leaving the rookie Klubnik as the lone signal-caller on the roster other thant Smith. Glenn said Monday any further additions to the quarterback room prior to Week 1 would come in the form of a practice-squad signing. A fourth-round draft pick out of Clemson, Klubnik completed 21 of 34 pass attempts for 197 scoreless yards and one interception during the preseason.",
+    "shortComment": "Head coach Aaron Glenn confirmed Monday that Klubnik will open the season as the Jets' No. 2 quarterback behind Geno Smith, Zack Rosenblatt of The Athletic reports.",
+    "status": "Active",
+    "date": "2026-08-31T18:45Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685413?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4430893/injuries/635592?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4430893/injuries/635592?lang=en&region=us",
+    "id": "635592",
+    "longComment": "Trayanum suffered a neck injury in the team's preseason finale against the Giants on Friday. The running back is now set to miss the entire 2026 campaign while on IR with New York, and he'd have to reach an injury settlement with the team to have a chance to play this season.",
+    "shortComment": "Trayanum (neck) was placed on injured reserve by the Jets on Sunday, Eric Allen &amp; Amanda Vogt of the team's official website report.",
+    "status": "Injured Reserve",
+    "date": "2026-08-31T18:44Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4430893?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "5",
+     "name": "INJURY_STATUS_IR",
+     "description": "Injured Reserve",
+     "abbreviation": "IR"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "IR",
+      "abbreviation": "IR"
+     },
+     "type": "Neck",
+     "location": "Head",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2027-02-15"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4905597/injuries/635482?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4905597/injuries/635482?lang=en&region=us",
+    "id": "635482",
+    "longComment": "Cooper suffered a shoulder injury during Friday's preseason finale against the Giants. The rookie sixth-rounder is set to be a primary piece of depth for the Jets' offensive line throughout 2026. Cooper will be required to miss at least the first four weeks of the regular season until he is eligible to return to the Jets' active roster.",
+    "shortComment": "The Jets placed Cooper (shoulder) on injured reserve Sunday with a designation to return, Al Iannazzone of Newsday reports.",
+    "status": "Injured Reserve",
+    "date": "2026-08-31T01:38Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4905597?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "5",
+     "name": "INJURY_STATUS_IR",
+     "description": "Injured Reserve",
+     "abbreviation": "IR"
+    },
+    "details": {
+     "fantasyStatus": {
+      "description": "IR-R",
+      "abbreviation": "IR-R"
+     },
+     "type": "Shoulder",
+     "location": "Arm",
+     "detail": "Not Specified",
+     "side": "Not Specified",
+     "returnDate": "2026-10-11"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4076803/injuries/635449?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4076803/injuries/635449?lang=en&region=us",
+    "id": "635449",
+    "longComment": "Meredith started 19 games for the Raiders over the past two seasons. The center was replaced during the 2025 offseason by former Raven Tyler Linderbaum. Meredith will likely function as the primary backup to Josh Myers for the Jets throughout the 2026 regular season.",
+    "shortComment": "The Raiders traded Meredith and a 2029 seventh-round pick to the Jets on Sunday in exchange for a 2027 sixth-round pick, Ian Rapoport of ESPN and NFL Network reports.",
+    "status": "Active",
+    "date": "2026-08-30T22:36Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4076803?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4428617/injuries/-1987075?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4428617/injuries/-1987075?lang=en&region=us",
+    "id": "-1987075",
+    "longComment": "",
+    "shortComment": "",
+    "status": "Active",
+    "date": "2026-08-19T12:07Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4428617?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361939/injuries/-1987077?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361939/injuries/-1987077?lang=en&region=us",
+    "id": "-1987077",
+    "longComment": "",
+    "shortComment": "",
+    "status": "Active",
+    "date": "2026-08-19T12:07Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361939?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4241410/injuries/632766?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4241410/injuries/632766?lang=en&region=us",
+    "id": "632766",
+    "longComment": "The 2022 Colts third-round pick re-signed with the Jets in early March and has made an impression on the team's new quarterback. With first-round rookie Kenyon Sadiq (abdomen) unable to practice for the time being, Woods has been making his case to climb the depth chart. Mason Taylor and Jeremy Ruckert are also contending for the depth chart slotting, however, so Woods will presumably need to keep up his current level of play to have a chance of cracking the 53- man roster.",
+    "shortComment": "Quarterback Geno Smith mentioned Woods as a standout player in training camp, Connor Hughes of SNY.tv reports.",
+    "status": "Active",
+    "date": "2026-08-06T22:39Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4241410?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4035824/injuries/632729?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4035824/injuries/632729?lang=en&region=us",
+    "id": "632729",
+    "longComment": "Stephens was dealing with a neck injury at the end of last season that forced him to miss the Week 18 loss to the Bills. The 28-year-old is once again expected to serve as one of the Jets' starting cornerbacks during the upcoming campaign.",
+    "shortComment": "Stephens (neck) participated in the Jets' training camp Wednesday, Amanda Vogt of the team's official site reports.",
+    "status": "Active",
+    "date": "2026-08-06T04:56Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4035824?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4428681/injuries/631395?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4428681/injuries/631395?lang=en&region=us",
+    "id": "631395",
+    "longComment": "Tippmann, who was approaching the final year of his rookie pact, now is under contract with the Jets through 2030 on a deal that includes $31 million in new guarantees, per Cimini. The 2023 second-rounder, who has missed only one regular-season game through his first three campaigns as a pro, worked at center in 2023 and parts of 2024, but made the full-time switch to right guard (where he'll continue to start) last year.",
+    "shortComment": "Tippmann has agreed to a four-year, $62 million extension with the Jets, Rich Cimini of ESPN.com reports.",
+    "status": "Active",
+    "date": "2026-06-15T15:18Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4428681?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685596/injuries/631135?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685596/injuries/631135?lang=en&region=us",
+    "id": "631135",
+    "longComment": "The cornerback's 2025 season ended in December when he suffered the shoulder injury. A third-round pick a year ago, Thomas played in 12 games and on 311 defensive snaps as a rookie, recording seven pass breakups. He should be in the mix for a role again as 2026 approaches.",
+    "shortComment": "Thomas (shoulder) is participating in OTAs, Rich Cimini of ESPN.com reports.",
+    "status": "Active",
+    "date": "2026-06-02T00:34Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4685596?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4612836/injuries/630355?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4612836/injuries/630355?lang=en&region=us",
+    "id": "630355",
+    "longComment": "Jackson spent the last three seasons of his five-year college career with Florida State. He operated as an effective run stopper on the Seminoles' interior defensive line, and he was named an All-ACC Honorable Mention in each of 2024 and 2025. He ended his senior year with 45 total tackles, including 1.0 sacks, across 12 games. Jackson has the size and strength to beat blockers and wreak havoc in the interior line, and he'll be an intriguing developmental project under Jets head coach Aaron Glenn. Jackson is slated to work in rotation with T'Vondre Sweat, Harrison Phillips and Mazi Smith.",
+    "shortComment": "The Jets selected Jackson in the fourth round of the 2026 NFL Draft, 103rd overall.",
+    "status": "Active",
+    "date": "2026-04-25T16:18Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4612836?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4426676/injuries/629930?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4426676/injuries/629930?lang=en&region=us",
+    "id": "629930",
+    "longComment": "The Jets placed an exclusive rights tender on Briggs in early March, and the 2024 seventh-rounder will play on a league-minimum contract for the upcoming season. He saw his defensive snap count increase over the course of the 2025 regular season. Briggs played at least 65 percent of the Jets' defensive snaps in each of the final seven games of the regular season, and over that span he accumulated 25 tackles (11 solo), including 2.0 sacks. He'll likely work in a rotational role on the defensive line in 2026 behind T'Vondre Sweat and Harrison Phillips.",
+    "shortComment": "The Jets signed Briggs to a contract Monday, Aaron Wilson of KPRC 2 Houston reports.",
+    "status": "Active",
+    "date": "2026-03-16T23:00Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4426676?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3129473/injuries/629854?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3129473/injuries/629854?lang=en&region=us",
+    "id": "629854",
+    "longComment": "The 2018 third-round pick from Western Michigan will now remain in New York after spending his 2025 campaign with the Jets. Okorafor appeared in 14 games last season, logging just 45 special-teams snaps. Now back with the Jets, he's expected to compete for a reserve role on the team's offensive line throughout the offseason.",
+    "shortComment": "The Jets and Okorafor agreed to terms on a contract Friday, Brian Costello of the New York Post reports.",
+    "status": "Active",
+    "date": "2026-03-13T17:05Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3129473?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4373656/injuries/629714?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4373656/injuries/629714?lang=en&region=us",
+    "id": "629714",
+    "longComment": "Mitchell is re-signing with the Jets as a depth piece on the offensive line. The 26-year-old has spent all four of his previous NFL seasons with New York, starting in 17 total games in his career.",
+    "shortComment": "The Jets have agreed to a one-year deal with Mitchell, Rich Cimini of ESPN.com reports.",
+    "status": "Active",
+    "date": "2026-03-11T19:24Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4373656?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3125107/injuries/629601?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3125107/injuries/629601?lang=en&region=us",
+    "id": "629601",
+    "longComment": "Beck appeared in all 17 regular-season games for the Jets in 2025, finishing with one carry for five yards and six catches (on nine targets) for 45 yards and two touchdowns. Beck will return for 2026 and serve as the team's main backfield blocker while also contributing on special teams.",
+    "shortComment": "The Jets and Beck agreed to a one-year, $1.5 million contract Monday, NFL reporter Jordan Schultz reports.",
+    "status": "Active",
+    "date": "2026-03-09T23:45Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3125107?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4426686/injuries/629595?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4426686/injuries/629595?lang=en&region=us",
+    "id": "629595",
+    "longComment": "Belton spent the first four years of his NFL career with the Giants after being selected in the fourth round of the 2022 NFL Draft, and he'll stay in New York but suit up for the Jets in 2026. He's coming off the most productive season of his career, finishing with 120 tackles (60 solo), including 2.0 sacks, five pass defenses (one interception) and three forced fumbles across 17 regular-season games in 2025. Belton will likely compete with Malachi Moore for the second starting spot at safety alongside Minkah Fitzpatrick.",
+    "shortComment": "Belton and the Jets agreed to terms Monday on a one-year contract worth up to $6 million, NFL reporter Jordan Schultz reports.",
+    "status": "Active",
+    "date": "2026-03-09T23:23Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4426686?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3117255/injuries/627582?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3117255/injuries/627582?lang=en&region=us",
+    "id": "627582",
+    "longComment": "After coming over in a trade from Minnesota shortly before the start of the regular season, Phillips proceeded to play in all 17 regular-season games for the fourth consecutive campaign and reached the 60-tackle mark for only the second time in his eight-year NFL career. His cap hit will climb from $4.2 million in 2025 to $7.5 million in 2026, but given Phillips' solid on-field production and off-field leadership coupled with the Jets' lack of depth on the interior of the defensive line, the Jets will likely be willing to eat that increase for his age-30 season.",
+    "shortComment": "Phillips recorded 60 tackles (22 solo), including 0.5 sacks, and two passes defensed across 17 appearances in 2025.",
+    "status": "Active",
+    "date": "2026-01-07T22:10Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3117255?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4692024/injuries/627580?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4692024/injuries/627580?lang=en&region=us",
+    "id": "627580",
+    "longComment": "Moore was one of the few bright spots for the Jets in a forgettable season. The rookie fourth-round pick out of Alabama finished second on the team in tackles behind Jamien Sherwood's 154, and Moore forced one of the Jets' league-low four takeaways. The Jets have plenty of holes to fill heading into 2026, but they seem to have found a starting safety in Moore.",
+    "shortComment": "Moore registered 101 tackles (56 solo), three passes defensed and a forced fumble across 17 appearances in 2025.",
+    "status": "Active",
+    "date": "2026-01-07T22:04Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4692024?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4431582/injuries/-1903336?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4431582/injuries/-1903336?lang=en&region=us",
+    "id": "-1903336",
+    "longComment": "",
+    "shortComment": "",
+    "status": "Active",
+    "date": "2025-12-22T16:39Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4431582?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4242000/injuries/622361?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4242000/injuries/622361?lang=en&region=us",
+    "id": "622361",
+    "longComment": "Myers was brought in by the Jets in March on a one-year contract to initially serve as the backup center to Joe Tippmann. However, Myers was thrust into the starting role at center after Alijah Vera-Tucker suffered a season-ending triceps injury in early September, which led to Tippmann being shifted over to right guard. Per Cimini, Myers ranks ninth among centers in ESPN's pass-block win rate and 27th in run-block win rate.",
+    "shortComment": "Myers and the Jets agreed to a two-year, $11 million contract extension Friday, Rich Cimini of ESPN reports.",
+    "status": "Active",
+    "date": "2025-12-12T23:20Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4242000?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4431809/injuries/598676?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2024/athletes/4431809/injuries/598676?lang=en&region=us",
+    "id": "598676",
+    "longComment": "Fashanu's rookie 2024 season ended early due to a foot injury he suffered in Week 16. The issue didn't require surgery, and Fashanu appears to be back to full health as he prepares for a likely starting role at left tackle in the upcoming campaign.",
+    "shortComment": "Fashanu (foot) has been participating in the Jets' offseason training activities.",
+    "status": "Active",
+    "date": "2025-06-07T03:11Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2024/athletes/4431809?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2024/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4789907/injuries/597696?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2024/athletes/4789907/injuries/597696?lang=en&region=us",
+    "id": "597696",
+    "longComment": "Membou (6-foot-4, 332 pounds) boasts a rare combination of easy road-grading strength and elite athleticism (4.91-second 40-yard dash), giving the Missouri product an uncommon upside projection at the NFL level. For someone that heavy to move that fast packs a serious wallop in the ground game, and in pass protection Membou's rare mobility does a lot to offset his otherwise relatively short arms (33 and 1/2 inches). Between Membou and 2024 first-round pick Olu Fashanu, there's a realistic hope that the Jets will have one of the league's best tackle tandems in the near and foreseeable future.",
+    "shortComment": "The Jets selected Membou in the first round of the 2025 NFL Draft, seventh overall.",
+    "status": "Active",
+    "date": "2025-04-25T01:02Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2024/athletes/4789907?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2024/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  },
+  {
+   "ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2983155/injuries/-1137886?lang=en&region=us",
+   "status": 200,
+   "body": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2019/athletes/2983155/injuries/-1137886?lang=en&region=us",
+    "id": "-1137886",
+    "longComment": "",
+    "shortComment": "",
+    "status": "Active",
+    "date": "2019-10-05T21:48Z",
+    "athlete": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2019/athletes/2983155?lang=en&region=us"
+    },
+    "team": {
+     "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2019/teams/20?lang=en&region=us"
+    },
+    "source": {
+     "id": "1",
+     "description": "basic/manual",
+     "state": "basic"
+    },
+    "type": {
+     "id": "0",
+     "name": "INJURY_STATUS_ACTIVE",
+     "description": "active",
+     "abbreviation": "A"
+    }
+   }
+  }
+ ]
+}
