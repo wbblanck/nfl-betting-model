@@ -32,3 +32,8 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   under on the new starter or an over on the old leader in that position's markets; receiving picks on a team whose
   QB changed get a note. WRs and TEs are left out: TE order often reflects blocking roles. Probe and reasoning:
   `src/nflbet/depth.py`, `docs/evidence/espn_depth/`. Descriptive only, like the injury flag.
+- **Start times (from 2026-10-03):** GitHub started the Saturday 14:00 UTC run at 17:46, so Claude routines
+  dispatch `live-s1.yml` on time (America/New_York): Sun/Sat 8:50 AM and 11:50 AM (London and 1 PM games), 3:05 PM
+  and 7:05 PM (late afternoon and night games), Thu 11:05 AM and 7:05 PM, Mon 6:05 PM and 7:05 PM. Each lands after
+  the inactives list (~90 min before kickoff) and before kickoff. The workflow's own cron stays as a fallback; a
+  duplicate run is harmless (the last run before kickoff is the official one).
