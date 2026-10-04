@@ -89,8 +89,8 @@ def run(season: int, lines_path: Path, when: dt.datetime | None = None) -> tuple
     when = when or now_utc()
     raw = pl.read_csv(lines_path, infer_schema_length=0)
     week = int(raw["week"].cast(pl.Int64).max())
-    lines = P.load_lines(season, path=lines_path).filter(pl.col("week") == week) \
-        .filter(pl.col("start_time").map_elements(lambda s: parse_ts(s) > when, return_dtype=pl.Boolean))
+    not_started = pl.col("start_time").map_elements(lambda s: parse_ts(s) > when, return_dtype=pl.Boolean)
+    lines = P.load_lines(season, path=lines_path, where=not_started).filter(pl.col("week") == week)
     games = lines.select("an_game_id", "start_time", "home", "away").unique()
     up = upcoming_rows(season, week)
     stats = P.load_stats(season)

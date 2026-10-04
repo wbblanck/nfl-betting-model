@@ -50,3 +50,25 @@ def test_settle_results_and_units():
     r = Lv.record(d)
     assert (r["W"], r["L"], r["P"], r["pending"]) == (2, 1, 1, 1)
     assert abs(r["units"] - (100 / 120 + 100 / 110 - 1)) < 1e-9
+
+
+def test_load_lines_ignores_in_play_lines_of_started_games(tmp_path):
+    """A game in progress carries several live lines per prop; the one-line-per-book guard must not stop a run that
+    only scores games not yet started (2026-10-04: the 11:50 AM ET run failed on IND@WAS in-play lines)."""
+    from nflbet import props as P
+
+    cols = ["season", "week", "an_game_id", "start_time", "home", "away", "market", "an_player_id", "player", "player_team",
+            "book_id", "line", "over_odds", "under_odds", "yes_odds"]
+    row = lambda gid, start, line: dict(zip(cols, ["2026", "4", gid, start, "WAS", "IND", "rec", "9", "X", "IND", "68", line, "-110", "-110", ""]))  # noqa: E731
+    rows = [row("1", "2026-10-04T13:30:00.000Z", "4.5"), row("1", "2026-10-04T13:30:00.000Z", "5.5"),   # started, two live lines
+            row("2", "2026-10-04T17:00:00.000Z", "4.5")]
+    path = tmp_path / "lines.csv"
+    pl.DataFrame(rows).write_csv(path)
+    try:
+        P.load_lines(2026, path)
+        raise AssertionError("the guard should refuse a file with two lines per book")
+    except ValueError as e:
+        assert "game 1" in str(e)                                  # the message names the offending prop
+    not_started = pl.col("start_time").map_elements(lambda s: Lv.parse_ts(s) > Lv.parse_ts("2026-10-04T15:50:00Z"), return_dtype=pl.Boolean)
+    kept = P.load_lines(2026, path, where=not_started)
+    assert kept["an_game_id"].to_list() == ["2"]

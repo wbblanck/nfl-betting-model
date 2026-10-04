@@ -30,12 +30,12 @@ def do_run() -> None:
     subprocess.run([sys.executable, str(config.ROOT / "scripts" / "fetch" / "an_props.py"), "--season", str(SEASON),
                     "--weeks", f"{week}-{week}", "--out", str(tmp)], check=True)
     when = Lv.now_utc()
-    picks, log = Lv.run(SEASON, tmp, when)
-    picks = with_news(picks, week, when)
-    arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"
+    arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"   # saved first: a failed run leaves its input
     arch.parent.mkdir(parents=True, exist_ok=True)
     with open(tmp, "rb") as f, gzip.open(arch, "wb") as g:
         shutil.copyfileobj(f, g)
+    picks, log = Lv.run(SEASON, tmp, when)
+    picks = with_news(picks, week, when)
     Lv.append(picks, PICKS)
     Lv.append(log, RUNS)
     print(f"week {week}: {log.height} games not yet started, {int(log['props_scored'].sum())} props scored, "

@@ -67,12 +67,18 @@ def check_one_line_per_book(d: pl.DataFrame) -> None:
     dup = d.filter(pl.col("market") != "anytime_td", two_sided).group_by("an_game_id", "an_player_id", "market", "book_id") \
         .agg(pl.col("line").n_unique().alias("n")).filter(pl.col("n") > 1)
     if dup.height:
-        raise ValueError(f"{dup.height} player-game-market-book groups carry more than one line")
+        sample = "; ".join(f"game {r['an_game_id']} player {r['an_player_id']} {r['market']} book {r['book_id']}"
+                           for r in dup.head(5).iter_rows(named=True))
+        raise ValueError(f"{dup.height} player-game-market-book groups carry more than one line (e.g. {sample})")
 
 
-def load_lines(season: int, path: Path | None = None) -> pl.DataFrame:
+def load_lines(season: int, path: Path | None = None, where: pl.Expr | None = None) -> pl.DataFrame:
+    """`where` filters the raw rows before the one-line-per-book check (the live tracker passes "game not yet
+    started": a game in progress carries live in-play lines, several per prop, which are not pregame quotes)."""
     path = path or config.ROOT / "data" / "props" / f"an_props_{season}.csv"
     d = pl.read_csv(path, infer_schema_length=0)
+    if where is not None:
+        d = d.filter(where)
     check_one_line_per_book(d.filter(~pl.col("book_id").is_in(list(NON_BOOKS))))
     return (d.with_columns(pl.col("season").cast(pl.Int64), pl.col("week").cast(pl.Int64),
                            pl.col("line").cast(pl.Float64),
