@@ -37,3 +37,10 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   and 7:05 PM (late afternoon and night games), Thu 11:05 AM and 7:05 PM, Mon 6:05 PM and 7:05 PM. Each lands after
   the inactives list (~90 min before kickoff) and before kickoff. The workflow's own cron stays as a fallback; a
   duplicate run is harmless (the last run before kickoff is the official one).
+- **Dashboard (added 2026-10-04):** `docs/s1_dashboard.html`, built by `scripts/dashboard.py` (`src/nflbet/dashboard.py`)
+  after every run and grading step, from the committed files in `data/live/` only. It shows the season record and
+  progress toward the season test's minimums, the week game by game (price, break-even, market and model
+  probabilities, injury and depth-chart flags, result), cumulative units, the record by week / flag / prop / side,
+  which picks appeared and were dropped between runs, and a run log. Published as an artifact at
+  https://claude.ai/artifact/7STiYJgYi9wj2dzrr1T7vw by the run routines. Monday and Wednesday grading crons were added
+  so results appear before Tuesday. Descriptive; it does not decide the season test.
