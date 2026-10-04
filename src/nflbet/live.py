@@ -157,6 +157,16 @@ def settle(off: pl.DataFrame, stats: pl.DataFrame, played: set, final_games: set
     return d.with_columns(pl.Series("units", units))
 
 
+def gradable(games: pl.DataFrame, final: pl.DataFrame, published: set) -> set:
+    """an_game_id of games that are final AND whose player stats nflverse has published. The schedule shows a final
+    score hours before the player stats and snap counts arrive; grading in that gap would call every pick on the
+    game void (no stat row, no snaps). games: an_game_id, week, home_team, away_team. final: week, home_team,
+    away_team. published: {(week, team)} with at least one player stat row."""
+    j = games.join(final, on=["week", "home_team", "away_team"])
+    return {r["an_game_id"] for r in j.iter_rows(named=True)
+            if (r["week"], r["home_team"]) in published or (r["week"], r["away_team"]) in published}
+
+
 def record(d: pl.DataFrame) -> dict:
     w, l, p = (int((d["result"] == k).sum()) for k in ("W", "L", "P"))
     staked = w + l

@@ -72,3 +72,14 @@ def test_load_lines_ignores_in_play_lines_of_started_games(tmp_path):
     not_started = pl.col("start_time").map_elements(lambda s: Lv.parse_ts(s) > Lv.parse_ts("2026-10-04T15:50:00Z"), return_dtype=pl.Boolean)
     kept = P.load_lines(2026, path, where=not_started)
     assert kept["an_game_id"].to_list() == ["2"]
+
+
+def test_gradable_waits_for_published_stats():
+    """2026-10-04: the schedule had IND@WAS final while nflverse had no week-4 stats for either team yet, so the
+    grader called Tyler Warren's pick void. A game is gradable only once its player stats exist."""
+    games = pl.DataFrame({"an_game_id": ["1", "2", "3"], "week": [4, 4, 4], "home_team": ["WAS", "HOU", "PHI"],
+                          "away_team": ["IND", "DAL", "LA"]}, schema_overrides={"week": pl.Int32})
+    final = pl.DataFrame({"week": [4, 4], "home_team": ["WAS", "HOU"], "away_team": ["IND", "DAL"]}, schema_overrides={"week": pl.Int32})
+    assert Lv.gradable(games, final, published={(4, "CLE"), (4, "PIT")}) == set()            # final, stats not out yet
+    assert Lv.gradable(games, final, published={(4, "HOU"), (4, "DAL")}) == {"2"}            # HOU@DAL has stats; PHI game not final
+    assert Lv.gradable(games, final, published={(4, "WAS")}) == {"1"}

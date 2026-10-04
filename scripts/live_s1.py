@@ -106,8 +106,8 @@ def do_grade() -> None:
     fix = lambda c: pl.col(c).replace(P.TEAM_FIX)  # noqa: E731
     final = sched.filter(pl.col("result").is_not_null()).select("week", "home_team", "away_team")
     g = runs.select("an_game_id", pl.col("week").cast(pl.Int32), fix("home").alias("home_team"), fix("away").alias("away_team")).unique()
-    final_games = set(g.join(final, on=["week", "home_team", "away_team"])["an_game_id"].to_list())
     st = P.load_stats(SEASON)
+    final_games = Lv.gradable(g, final, set(zip(st["week"].cast(pl.Int32).to_list(), st["team"].to_list())))
     long = st.unpivot(index=["player_id", "week"], on=list(P.STAT), variable_name="market", value_name="actual") \
         .with_columns(pl.col("week").cast(pl.Int64), pl.col("actual").cast(pl.Float64))
     sn = P.load_snaps(SEASON)
