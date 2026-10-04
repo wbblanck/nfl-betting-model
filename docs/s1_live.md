@@ -2,15 +2,15 @@
 
 Rule S1: bet only props where all four signals agree (docs/simulator_confirm.md). NOT validated: in 2025 it
 went 38-23 (+5.2%) on 61 bets, an interval of -16% to +27%. Official pick = the last run before kickoff.
-Updated 2026-10-04 19:07 UTC.
+Updated 2026-10-04 19:09 UTC.
 
-**Season: 0-0** (pending 16, void 1)
+**Season: 0-0** (pending 17, void 0)
 
 | Week | W-L-P | Win % | Units | ROI |
 |---|---|---|---|---|
 
 News flags (descriptive; S1 unchanged), from ESPN at the pick's run. **Injury against** = an under whose teammate at the same position is Out / Doubtful / IR, or an over whose player is himself listed (from 2026-10-03). **Depth chart against** = the team's listed QB / RB starter differs from its recent usage leader, and the pick is an under on the new starter or an over on the old leader (from 2026-10-03).
-- Injury against: 0-0-0 (pending 6)
+- Injury against: 0-0-0 (pending 7)
 - Depth chart against: 0-0-0 (pending 0)
 - Neither flag against: 0-0-0 (pending 10)
 
@@ -18,7 +18,7 @@ News flags (descriptive; S1 unchanged), from ESPN at the pick's run. **Injury ag
 
 | Week | Game | Player | Prop | Side | Line | Odds | News at pick | Result |
 |---|---|---|---|---|---|---|---|---|
-| 4 | IND@WAS | Tyler Warren | rec | under | 6.5 | -150 | **Injury against** — WR Alec Pierce: Injured Reserve; WR Keenan Allen: Out | void |
+| 4 | IND@WAS | Tyler Warren | rec | under | 6.5 | -150 | **Injury against** — WR Alec Pierce: Injured Reserve; WR Keenan Allen: Out | pending |
 | 4 | JAC@CIN | Bhayshul Tuten | rush_att | under | 13.5 | -133 |  | pending |
 | 4 | LA@PHI | Darius Cooper | rec | under | 2.5 | -185 | **Injury against** — TE Dallas Goedert: Out; WR Hollywood Brown: Out; WR DeVonta Smith: Out | pending |
 | 4 | ARI@NYG | Jameis Winston | pass_cmp | under | 18.5 | -125 | **Injury against** — QB Jaxson Dart: Injured Reserve | pending |
