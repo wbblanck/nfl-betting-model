@@ -11,7 +11,9 @@ on:
     - cron: '0 19 * * 0'     # Sunday, before 4 PM ET
     - cron: '45 22 * * 0'    # Sunday, before SNF
     - cron: '0 21 * * 1'     # Monday, before MNF
+    - cron: '7 14 * * 1'     # Monday morning: grade Sunday's games
     - cron: '33 15 * * 2'    # Tuesday: grade
+    - cron: '7 14 * * 3'     # Wednesday: grade Monday night
   workflow_dispatch:
     inputs:
       step:
@@ -36,15 +38,19 @@ jobs:
       - name: Pick or grade
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then STEP="${{ github.event.inputs.step }}";
-          elif [ "${{ github.event.schedule }}" = "33 15 * * 2" ]; then STEP=grade; else STEP=run; fi
+          else case "${{ github.event.schedule }}" in "7 14 * * 1"|"33 15 * * 2"|"7 14 * * 3") STEP=grade;; *) STEP=run;; esac; fi
           python scripts/live_s1.py "$STEP"
           [ "$STEP" = run ] && python scripts/live_s1.py grade || true
+      - name: Dashboard page
+        if: always()
+        continue-on-error: true
+        run: python scripts/dashboard.py
       - name: Commit
         if: always()
         run: |
           git config user.name "nfl-betting-model"
           git config user.email "nfl-betting-model@users.noreply.github.com"
-          for f in data/live/s1_picks_2026.csv data/live/s1_runs_2026.csv data/live/s1_record_2026.csv docs/s1_live.md; do
+          for f in data/live/s1_picks_2026.csv data/live/s1_runs_2026.csv data/live/s1_record_2026.csv docs/s1_live.md docs/s1_dashboard.html; do
             [ -f "$f" ] && git add "$f"
           done
           [ -d data/live/lines ] && git add data/live/lines

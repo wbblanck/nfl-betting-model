@@ -1,0 +1,86 @@
+"""Known-answer checks for the S1 dashboard numbers (src/nflbet/dashboard.py)."""
+import datetime as dt
+
+import polars as pl
+
+from nflbet import dashboard as D
+
+NOW = dt.datetime(2026, 10, 4, 15, 0, tzinfo=dt.timezone.utc)
+START1, START2 = "2026-10-04T17:00:00.000Z", "2026-10-04T13:30:00.000Z"
+COLS = ["run_utc", "season", "week", "an_game_id", "start_time", "home", "away", "player", "player_id", "team", "market", "side",
+        "line", "odds", "p_over_dk", "proj", "p_sim", "v_disagree", "v_proj", "v_sim", "v_price", "inj_self", "inj_teammates",
+        "inj_against", "depth_note", "depth_against"]
+
+
+def pick(run, player, odds, game="1", start=START1, side="under", line="4.5", inj_against="false"):
+    return dict(run_utc=run, season="2026", week="4", an_game_id=game, start_time=start, home="BUF", away="NE", player=player,
+                player_id=player.lower(), team="BUF", market="rec", side=side, line=line, odds=odds, p_over_dk="0.45", proj="3.1",
+                p_sim="0.2", v_disagree="-1", v_proj="-1", v_sim="-1", v_price="-1", inj_self="", inj_teammates="",
+                inj_against=inj_against, depth_note="", depth_against="false")
+
+
+def test_break_even_and_summary():
+    assert D.break_even(-150) == 0.6 and D.break_even(100) == 0.5 and abs(D.break_even(-110) - 110 / 210) < 1e-12
+    rec = pl.DataFrame({"result": ["W", "L", "P", "pending", "void"], "units": [100 / 120, -1.0, 0.0, 0.0, 0.0],
+                        "be": [0.5455, 0.6, 0.5, 0.5, 0.5], "week": [4] * 5})
+    s = D.summarize(rec)
+    assert (s["W"], s["L"], s["P"], s["pending"], s["void"], s["n"]) == (1, 1, 1, 1, 1, 2)
+    assert abs(s["units"] - (100 / 120 - 1)) < 1e-12 and abs(s["roi"] - (100 / 120 - 1) / 2) < 1e-12 and s["win"] == 0.5
+    assert abs(s["be"] - (0.5455 + 0.6) / 2) < 1e-12
+    assert D.summarize(rec.head(0))["roi"] is None
+
+
+def test_week_ci_needs_three_weeks_and_brackets_the_roi():
+    mk = lambda w, r, u: {"week": w, "result": r, "units": u}  # noqa: E731
+    two = pl.DataFrame([mk(4, "W", 0.9), mk(4, "L", -1.0), mk(5, "W", 0.9), mk(5, "L", -1.0)])
+    assert D.week_ci(two) is None
+    many = pl.DataFrame([mk(w, r, u) for w in range(4, 14) for r, u in (("W", 0.9), ("W", 0.9), ("L", -1.0))])
+    lo, hi = D.week_ci(many)
+    assert lo <= 0.8 / 3 <= hi and abs(lo - hi) < 1e-9 or lo <= 0.8 / 3 <= hi     # all weeks identical: the interval is the ROI
+
+
+def test_changes_kept_and_dropped():
+    picks = pl.DataFrame([pick("2026-10-04T12:00:00Z", "A", "-110"), pick("2026-10-04T16:00:00Z", "A", "-120"),
+                          pick("2026-10-04T12:00:00Z", "B", "-130"), pick("2026-10-04T16:00:00Z", "C", "-140"),
+                          pick("2026-10-04T18:00:00Z", "D", "-150")])               # after kickoff: not a deciding run
+    runs = pl.DataFrame([{"run_utc": t, "season": "2026", "week": "4", "an_game_id": "1", "start_time": START1, "home": "BUF",
+                          "away": "NE", "props_scored": "40"} for t in ("2026-10-04T12:00:00Z", "2026-10-04T16:00:00Z", "2026-10-04T18:00:00Z")])
+    ch = {c["player"]: c for c in D.changes(picks, runs, 4, NOW)}
+    assert ch["A"]["kept"] and ch["A"]["odds_first"] == -110 and ch["A"]["odds_last"] == -120 and ch["A"]["n_seen"] == 2
+    assert not ch["B"]["kept"] and ch["C"]["kept"] and (ch["C"]["n_seen"], ch["C"]["n_runs"]) == (1, 2)
+
+
+def test_run_log_flags_archives(tmp_path):
+    runs = pl.DataFrame([{"run_utc": t, "season": "2026", "week": "4", "an_game_id": "1", "start_time": START1, "home": "BUF",
+                          "away": "NE", "props_scored": "40"} for t in ("2026-10-04T12:00:00Z", "2026-10-04T16:00:00Z")])
+    (tmp_path / "injuries").mkdir()
+    (tmp_path / "injuries" / "20261004T1600Z_w4.json.gz").write_bytes(b"x")
+    log = {r["run"]: r for r in D.run_log(pl.DataFrame(), runs, tmp_path)}
+    assert log["2026-10-04T16:00:00Z"]["inj"] and not log["2026-10-04T16:00:00Z"]["depth"] and not log["2026-10-04T12:00:00Z"]["inj"]
+    assert log["2026-10-04T12:00:00Z"]["lead"] == 300 and log["2026-10-04T16:00:00Z"]["lead"] == 60
+
+
+def _write(tmp, rows, runs):
+    pl.DataFrame(rows).select(COLS).write_csv(tmp / "s1_picks_2026.csv")
+    pl.DataFrame(runs).write_csv(tmp / "s1_runs_2026.csv")
+
+
+def test_build_with_results_and_empty(tmp_path):
+    t = "2026-10-04T12:00:00Z"
+    rows = [pick(t, "Won", "-120"), pick(t, "Lost", "-110", side="over", inj_against="true"),
+            pick(t, "Open", "-130", game="2", start="2026-10-05T00:15:00.000Z")]
+    runs = [{"run_utc": t, "season": "2026", "week": "4", "an_game_id": g, "start_time": s, "home": "BUF", "away": "NE", "props_scored": "40"}
+            for g, s in (("1", START1), ("2", "2026-10-05T00:15:00.000Z"))]
+    _write(tmp_path, rows, runs)
+    rec = pl.DataFrame(rows).with_columns(pl.Series("actual", ["3", "6", ""]), pl.Series("result", ["W", "L", "pending"]),
+                                          pl.Series("units", [str(100 / 120), "-1.0", "0.0"]))
+    rec.write_csv(tmp_path / "s1_record_2026.csv")
+    page = D.build(D.load(tmp_path), NOW)
+    assert page.count('class="pick"') == 3
+    assert "1-1" in page and "-0.17" in page and "-8.3%" in page   # record, units and ROI recomputed from the files
+    assert "+0.83" in page                                         # the winning -120 pick returns 100/120 units
+    assert 'data-against="1"' in page and "Injury news against" in page
+    assert "Season units" in page and "polyline" in page          # a graded pick draws the cumulative line
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    assert "S1 Live Tracker" in D.build(D.load(empty), NOW)       # no files at all: a page, not a crash
