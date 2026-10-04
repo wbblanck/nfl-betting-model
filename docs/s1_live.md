@@ -2,9 +2,9 @@
 
 Rule S1: bet only props where all four signals agree (docs/simulator_confirm.md). NOT validated: in 2025 it
 went 38-23 (+5.2%) on 61 bets, an interval of -16% to +27%. Official pick = the last run before kickoff.
-Updated 2026-10-04 22:18 UTC.
+Updated 2026-10-04 23:08 UTC.
 
-**Season: 5-3, 62.5% wins, +0.38 units, ROI +4.8%** (pending 8, void 0)
+**Season: 5-3, 62.5% wins, +0.38 units, ROI +4.8%** (pending 7, void 0)
 
 | Week | W-L-P | Win % | Units | ROI |
 |---|---|---|---|---|
@@ -13,7 +13,7 @@ Updated 2026-10-04 22:18 UTC.
 News flags (descriptive; S1 unchanged), from ESPN at the pick's run. **Injury against** = an under whose teammate at the same position is Out / Doubtful / IR, or an over whose player is himself listed (from 2026-10-03). **Depth chart against** = the team's listed QB / RB starter differs from its recent usage leader, and the pick is an under on the new starter or an over on the old leader (from 2026-10-03).
 - Injury against: 2-1-0, +0.47 units (pending 4)
 - Depth chart against: 0-0-0 (pending 0)
-- Neither flag against: 3-2-0, -0.08 units (pending 4)
+- Neither flag against: 3-2-0, -0.08 units (pending 3)
 
 ## Picks
 
@@ -32,6 +32,5 @@ News flags (descriptive; S1 unchanged), from ESPN at the pick's run. **Injury ag
 | 4 | DEN@SF | George Kittle | rec | over | 4.5 | -139 |  | pending |
 | 4 | LAC@SEA | Jaxon Smith-Njigba | rec | over | 6.5 | -139 | team QB change: chart lists Sam Darnold (47 attempts last 3 wks) over Drew Lock (48) | pending |
 | 4 | LAC@SEA | Ladd McConkey | rec | under | 4.5 | -156 | **Injury against** — TE Charlie Kolar: Out; WR Brenen Thompson: Out | pending |
-| 4 | DET@CAR | Jared Goff | rush_yds | over | 0.5 | -122 |  | pending |
-| 4 | DET@CAR | Tetairoa McMillan | rec | under | 5.5 | -148 | **Injury against** — WR Xavier Legette: Injured Reserve; WR Jalen Coker: Questionable | pending |
+| 4 | DET@CAR | Tetairoa McMillan | rec | under | 5.5 | -148 | **Injury against** — WR Xavier Legette: Injured Reserve; WR Jalen Coker: Out | pending |
 | 4 | ATL@NO | Devaughn Vele | rec | under | 4.5 | -163 | TE Noah Fant: Questionable | pending |
