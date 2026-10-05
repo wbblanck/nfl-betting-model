@@ -1,0 +1,51 @@
+[
+ {
+  "path": "/docs",
+  "status": 200,
+  "bytes": 1320,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/openapi.json",
+  "status": 200,
+  "bytes": 46689,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/docs/openapi.json",
+  "status": 404,
+  "bytes": 22,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/openapi.json",
+  "status": 404,
+  "bytes": 22,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1",
+  "status": 404,
+  "bytes": 22,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/games?limit=2",
+  "status": 200,
+  "bytes": 775,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/seasons",
+  "status": 404,
+  "bytes": 22,
+  "content_type": null,
+  "rate_limit": {}
+ }
+]
