@@ -12,7 +12,14 @@ from pathlib import Path
 
 BASE = "https://api.nfldata.org"
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
-PATHS = ["/docs", "/openapi.json", "/docs/openapi.json", "/v1/openapi.json", "/v1", "/v1/games?limit=2", "/v1/seasons"]
+PATHS = ["/v1/meta", "/v1/health",
+         "/v1/participation?game_id=2026_04_IND_WAS&limit=3",      # 2026 week 4
+         "/v1/participation?game_id=2025_04_MIN_PIT&limit=3",      # a 2025 control game
+         "/v1/participation?game_id=2025_06_PHI_MIN&limit=3",
+         "/v1/charting?season=2026&week=4&limit=2",
+         "/v1/stats/ngs/receiving?season=2026&week=4&limit=2",
+         "/v1/plays?season=2026&week=4&limit=2",
+         "/v1/games?season=2026&week=4&limit=20"]
 
 
 def get(path: str):
