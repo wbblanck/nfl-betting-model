@@ -1,0 +1,68 @@
+[
+ {
+  "path": "/v1/meta",
+  "status": 200,
+  "bytes": 3306,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/health",
+  "status": 200,
+  "bytes": 911,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/participation?game_id=2026_04_IND_WAS&limit=3",
+  "status": 200,
+  "bytes": 42,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/participation?game_id=2025_04_MIN_PIT&limit=3",
+  "status": 200,
+  "bytes": 2259,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/participation?game_id=2025_06_PHI_MIN&limit=3",
+  "status": 200,
+  "bytes": 42,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/charting?season=2026&week=4&limit=2",
+  "status": 200,
+  "bytes": 42,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/stats/ngs/receiving?season=2026&week=4&limit=2",
+  "status": 200,
+  "bytes": 42,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/plays?season=2026&week=4&limit=2",
+  "status": 200,
+  "bytes": 42,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "path": "/v1/games?season=2026&week=4&limit=20",
+  "status": 200,
+  "bytes": 5821,
+  "content_type": null,
+  "rate_limit": {}
+ },
+ {
+  "link_scan_error": "[Errno 2] No such file or directory: 'docs/evidence/nfldata/20261005T023957Z/docs.txt'"
+ }
+]
