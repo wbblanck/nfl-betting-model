@@ -2,16 +2,16 @@
 
 Rule S1: bet only props where all four signals agree (docs/simulator_confirm.md). NOT validated: in 2025 it
 went 38-23 (+5.2%) on 61 bets, an interval of -16% to +27%. Official pick = the last run before kickoff.
-Updated 2026-10-05 01:18 UTC.
+Updated 2026-10-05 21:26 UTC.
 
-**Season: 8-5, 61.5% wins, +0.36 units, ROI +2.8%** (pending 2, void 0)
+**Season: 8-6, 57.1% wins, -0.64 units, ROI -4.6%** (pending 1, void 0)
 
 | Week | W-L-P | Win % | Units | ROI |
 |---|---|---|---|---|
-| 4 | 8-5-0 | 61.5% | +0.36 | +2.8% |
+| 4 | 8-6-0 | 57.1% | -0.64 | -4.6% |
 
 News flags (descriptive; S1 unchanged), from ESPN at the pick's run. **Injury against** = an under whose teammate at the same position is Out / Doubtful / IR, or an over whose player is himself listed (from 2026-10-03). **Depth chart against** = the team's listed QB / RB starter differs from its recent usage leader, and the pick is an under on the new starter or an over on the old leader (from 2026-10-03).
-- Injury against: 5-1-0, +2.44 units (pending 1)
+- Injury against: 5-2-0, +1.44 units (pending 0)
 - Depth chart against: 0-0-0 (pending 0)
 - Neither flag against: 3-4-0, -2.08 units (pending 1)
 
@@ -32,5 +32,5 @@ News flags (descriptive; S1 unchanged), from ESPN at the pick's run. **Injury ag
 | 4 | DEN@SF | George Kittle | rec | over | 4.5 | -139 |  | L |
 | 4 | LAC@SEA | Jaxon Smith-Njigba | rec | over | 6.5 | -139 | team QB change: chart lists Sam Darnold (47 attempts last 3 wks) over Drew Lock (48) | L |
 | 4 | LAC@SEA | Ladd McConkey | rec | under | 4.5 | -156 | **Injury against** — TE Charlie Kolar: Out; WR Brenen Thompson: Out | W |
-| 4 | DET@CAR | Tetairoa McMillan | rec | under | 5.5 | -148 | **Injury against** — WR Xavier Legette: Injured Reserve; WR Jalen Coker: Out | pending |
+| 4 | DET@CAR | Tetairoa McMillan | rec | under | 5.5 | -148 | **Injury against** — WR Xavier Legette: Injured Reserve; WR Jalen Coker: Out | L |
 | 4 | ATL@NO | Devaughn Vele | rec | under | 4.5 | -163 | TE Noah Fant: Questionable | pending |
