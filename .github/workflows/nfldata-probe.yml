@@ -1,0 +1,30 @@
+name: nfldata API probe
+# Evidence only: api.nfldata.org docs and OpenAPI spec.
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/audit/nfldata_probe.py', '.github/workflows/nfldata-probe.yml']
+permissions:
+  contents: write
+concurrency:
+  group: nfldata-probe-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/audit/nfldata_probe.py
+      - name: Commit evidence
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add docs/evidence/nfldata || exit 0
+          git commit -m "evidence: nfldata API probe" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
