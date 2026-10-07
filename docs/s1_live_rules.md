@@ -53,3 +53,7 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   2026-10-05 the allowance ran out and the Monday night routines never ran. The four S1 routines are paused (not deleted). The
   workflow now has an extra cron ~3 h ahead of each window (GitHub starts schedules up to ~4 h late). The tracker uses no
   paid API keys: Action Network, ESPN and nflverse are keyless.
+- **Coverage context for picks (added 2026-10-07):** when Will supplies a team coverage table (`data/external/coverage_fantasypoints_2026_w1-N.csv`),
+  each pick from week N+1 on shows the opponent defense's coverage mix from the newest table that ends before the pick's week
+  (never one that includes the game). It is context on the picks page only; it is not a signal in rule S1. Using coverage to
+  choose picks would be a new model input and would first have to beat the current inputs on held-out seasons (CLAUDE.md).

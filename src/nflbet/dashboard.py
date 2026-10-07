@@ -10,6 +10,7 @@ from __future__ import annotations
 import datetime as dt
 import html
 import math
+import re
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -170,6 +171,35 @@ def esc(x) -> str:
     return html.escape(str(x), quote=True)
 
 
+COVERAGE_GLOB = "coverage_fantasypoints_2026_w1-*.csv"
+TEAM_FIX = {"JAC": "JAX", "LAR": "LA", "WSH": "WAS"}
+
+
+def coverage_for_pick(r: dict, ext: Path | None = None) -> str:
+    """Opponent defense's coverage mix from the newest hand-transcribed table that ends BEFORE the pick's week (so the
+    game itself is not in it). Context only: it is not an input to rule S1. Empty when no such table exists."""
+    ext = ext or config.ROOT / "data" / "external"
+    try:
+        wk = int(r["week"])
+    except (KeyError, TypeError, ValueError):
+        return ""
+    best = None
+    for f in ext.glob(COVERAGE_GLOB):
+        m = re.search(r"w1-(\d+)\.csv$", f.name)
+        if m and int(m.group(1)) < wk and (best is None or int(m.group(1)) > best[0]):
+            best = (int(m.group(1)), f)
+    if best is None:
+        return ""
+    team = TEAM_FIX.get(r.get("team"), r.get("team"))
+    home, away = TEAM_FIX.get(r.get("home"), r.get("home")), TEAM_FIX.get(r.get("away"), r.get("away"))
+    opp = away if team == home else home
+    d = pl.read_csv(best[1]).filter(pl.col("team") == opp, pl.col("table") == "all_plays")
+    if not d.height:
+        return ""
+    x = d.row(0, named=True)
+    return f"{opp} defense, weeks 1-{best[0]}: man {x['man_total']:.0f}% of plays, Cover 3 {x['cov3']:.0f}%, EPA per DB {x['epa_per_db']:+.2f}"
+
+
 def chip(kind: str, text: str, title: str = "") -> str:
     return f'<span class="chip {kind}"' + (f' title="{esc(title)}"' if title else "") + f">{esc(text)}</span>"
 
@@ -199,6 +229,7 @@ def pick_row(r: dict, locked: bool) -> str:
         + (f'<span class="actual">actual {float(r["actual"]):g}</span>' if r.get("actual") not in (None, "") else "")
         + "</div>"
         + (f'<div class="news">{"".join(flags)}<span class="detail">{esc(detail)}</span></div>' if flags or detail else "")
+        + (f'<div class="news"><span class="detail">{esc(cov)}</span></div>' if (cov := coverage_for_pick(r)) else "")
         + "</li>")
 
 

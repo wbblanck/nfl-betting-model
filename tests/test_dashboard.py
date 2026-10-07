@@ -84,3 +84,14 @@ def test_build_with_results_and_empty(tmp_path):
     empty = tmp_path / "empty"
     empty.mkdir()
     assert "S1 Live Tracker" in D.build(D.load(empty), NOW)       # no files at all: a page, not a crash
+
+
+def test_coverage_context_only_from_tables_before_the_picks_week(tmp_path):
+    cols = "table,team,cov0,cov1,cov2man,cov2,cov3,cov4,cov6,man_total,zone_total,epa_per_db"
+    (tmp_path / "coverage_fantasypoints_2026_w1-4.csv").write_text(cols + "\nall_plays,CAR,1,2,0,3,42.1,5,6,18.0,60.0,0.29\n")
+    r = {"week": "5", "team": "DET", "home": "CAR", "away": "DET"}
+    assert D.coverage_for_pick(r, tmp_path) == "CAR defense, weeks 1-4: man 18% of plays, Cover 3 42%, EPA per DB +0.29"
+    assert D.coverage_for_pick(dict(r, week="4"), tmp_path) == ""            # week 4's own game is inside that table: not shown
+    assert D.coverage_for_pick(dict(r, team="CAR"), tmp_path) == ""           # opponent is DET: no row for it
+    (tmp_path / "coverage_fantasypoints_2026_w1-5.csv").write_text(cols + "\nall_plays,CAR,0,0,0,0,50,0,0,10.0,70.0,0.10\n")
+    assert "weeks 1-5" in D.coverage_for_pick(dict(r, week="6"), tmp_path)    # newest table that ends before the week
