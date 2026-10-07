@@ -29,6 +29,11 @@ def do_run() -> None:
     tmp.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run([sys.executable, str(config.ROOT / "scripts" / "fetch" / "an_props.py"), "--season", str(SEASON),
                     "--weeks", f"{week}-{week}", "--out", str(tmp)], check=True)
+    with open(tmp) as f:
+        n_rows = sum(1 for _ in f) - 1                                  # header excluded
+    if n_rows <= 0:                                                      # books have not posted this week's props yet
+        print(f"week {week}: Action Network has no player props posted yet; nothing to score (not an error)")
+        return
     when = Lv.now_utc()
     arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"   # saved first: a failed run leaves its input
     arch.parent.mkdir(parents=True, exist_ok=True)

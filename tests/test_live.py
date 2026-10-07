@@ -83,3 +83,25 @@ def test_gradable_waits_for_published_stats():
     assert Lv.gradable(games, final, published={(4, "CLE"), (4, "PIT")}) == set()            # final, stats not out yet
     assert Lv.gradable(games, final, published={(4, "HOU"), (4, "DAL")}) == {"2"}            # HOU@DAL has stats; PHI game not final
     assert Lv.gradable(games, final, published={(4, "WAS")}) == {"1"}
+
+
+def test_run_exits_cleanly_when_no_props_are_posted(tmp_path, monkeypatch, capsys):
+    """2026-10-07, 2:30 PM ET: week 5 had no props yet; the early run crashed on the empty file. It must say so and stop."""
+    import importlib.util
+    import sys
+
+    spec = importlib.util.spec_from_file_location("live_s1", "scripts/live_s1.py")
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules["live_s1"] = mod
+    spec.loader.exec_module(mod)
+    monkeypatch.setattr(mod.Lv, "LIVE", tmp_path)
+    monkeypatch.setattr(mod.Lv, "current_week", lambda season: 5)
+
+    def fake_fetch(cmd, check):          # writes a header-only lines file, as the fetch did
+        out = cmd[cmd.index("--out") + 1]
+        open(out, "w").write("season,week,an_game_id,start_time,home,away,market,an_player_id,player,player_team,book_id,book,line,over_odds,under_odds,yes_odds\n")
+
+    monkeypatch.setattr(mod.subprocess, "run", fake_fetch)
+    mod.do_run()
+    assert "no player props posted yet" in capsys.readouterr().out
+    assert not (tmp_path / "lines").exists()                              # nothing archived, nothing recorded
