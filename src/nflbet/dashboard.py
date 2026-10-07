@@ -561,6 +561,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         f'<li>Rule S1: DraftKings props where the disagree, projection, simulator and price signals all point the same way. Locked before the season; '
         f'<a href="{REPO}docs/s1_live_rules.md">tracker rules</a> · <a href="{REPO}docs/simulator_confirm.md">season test</a>.</li>'
         f'<li>Season test: pass only if at least {PASS_N} bets in at least {PASS_WEEKS} weeks and the week-clustered ROI interval has its lower end above 0. This page does not decide that.</li>'
+        f'<li>Weekly recaps (why each pick landed where it did): <a href="{REPO}docs/recaps/">docs/recaps</a>, written after each week is graded.</li>'
         '<li>The official pick for a game is the last run before kickoff. Nothing is edited after kickoff. A player who does not play is void.</li>'
         '<li>Results come from nflverse player stats and snap counts, which can lag a game by hours. Injury news is ESPN at the time of each run, saved in <code>data/live/injuries</code>.</li>'
         '</ul></div>')

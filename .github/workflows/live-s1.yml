@@ -41,6 +41,10 @@ jobs:
           else case "${{ github.event.schedule }}" in "7 14 * * 1"|"33 15 * * 2"|"7 14 * * 3") STEP=grade;; *) STEP=run;; esac; fi
           python scripts/live_s1.py "$STEP"
           [ "$STEP" = run ] && python scripts/live_s1.py grade || true
+      - name: Weekly recap
+        if: always() && (github.event.schedule == '33 15 * * 2' || github.event.schedule == '7 14 * * 3' || github.event.inputs.step == 'grade')
+        continue-on-error: true
+        run: python scripts/recap.py
       - name: Dashboard page
         if: always()
         continue-on-error: true
@@ -56,5 +60,7 @@ jobs:
           [ -d data/live/lines ] && git add data/live/lines
           [ -d data/live/injuries ] && git add data/live/injuries
           [ -d data/live/depth ] && git add data/live/depth
+          [ -d docs/recaps ] && git add docs/recaps
+          [ -f data/live/recap_ledger_2026.csv ] && git add data/live/recap_ledger_2026.csv
           git commit -m "S1 live: ${{ github.event.schedule || github.event.inputs.step }}" || exit 0
           for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done

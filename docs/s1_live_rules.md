@@ -44,3 +44,8 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   which picks appeared and were dropped between runs, and a run log. Published as an artifact at
   https://claude.ai/artifact/7STiYJgYi9wj2dzrr1T7vw by the run routines. Monday and Wednesday grading crons were added
   so results appear before Tuesday. Descriptive; it does not decide the season test.
+- **Weekly recap (added 2026-10-07):** `scripts/recap.py` (`src/nflbet/recap.py`) writes `docs/recaps/week_N.md` and appends
+  `data/live/recap_ledger_2026.csv` once a week's picks are all graded (Tuesday and Wednesday grading runs). Each pick is
+  split into volume, role and efficiency against the player's own usual numbers, with game script, weather, Next Gen
+  Stats, the opponent's coverage mix (hand-transcribed table in `data/external/`) and the injury news at pick time as
+  context. Descriptive only; a lesson that would change the picks needs its own pre-registered test.
