@@ -4,6 +4,15 @@ name: S1 live
 # start late; every run scores all games of the week that have not started, so an earlier run is the fallback.
 on:
   schedule:
+    # Earlier backups (added 2026-10-07): GitHub starts scheduled runs up to ~4 h late, so each window has a run ~3 h
+    # ahead of the main one. A run is cheap and idempotent; each game's official pick is the last run before kickoff.
+    - cron: '0 16 * * 4'     # Thursday, early (TNF)
+    - cron: '0 10 * * 6'     # Saturday, early
+    - cron: '30 9 * * 0'     # Sunday, early (London games)
+    - cron: '50 12 * * 0'    # Sunday, early (1 PM ET games)
+    - cron: '0 16 * * 0'     # Sunday, early (4 PM ET games)
+    - cron: '45 19 * * 0'    # Sunday, early (SNF)
+    - cron: '0 17 * * 1'     # Monday, early (MNF)
     - cron: '0 20 * * 4'     # Thursday, before TNF
     - cron: '0 14 * * 6'     # Saturday morning (late-season Saturday games)
     - cron: '30 12 * * 0'    # Sunday, before London games

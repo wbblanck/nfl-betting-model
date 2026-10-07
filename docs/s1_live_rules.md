@@ -49,3 +49,7 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   split into volume, role and efficiency against the player's own usual numbers, with game script, weather, Next Gen
   Stats, the opponent's coverage mix (hand-transcribed table in `data/external/`) and the injury news at pick time as
   context. Descriptive only; a lesson that would change the picks needs its own pre-registered test.
+- **Routines paused, earlier backups added (2026-10-07):** the Claude routines wake a session and use Will's usage allowance; on
+  2026-10-05 the allowance ran out and the Monday night routines never ran. The four S1 routines are paused (not deleted). The
+  workflow now has an extra cron ~3 h ahead of each window (GitHub starts schedules up to ~4 h late). The tracker uses no
+  paid API keys: Action Network, ESPN and nflverse are keyless.
