@@ -534,6 +534,10 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
     weeks_graded = rec.filter(pl.col("result").is_in(["W", "L"])).select(pl.col("week").n_unique()).item() if n_all else 0
     ci = week_ci(rec) if n_all else None
     cur_week = int(runs["week"].cast(pl.Int64).max()) if runs.height else None
+    pa_rec = data.get("pa_rec", pl.DataFrame())
+    if pa_rec.height:                                  # the ParlayAPI record can reach a week before Action Network posts
+        pa_week = int(pa_rec["week"].cast(pl.Int64).max())
+        cur_week = pa_week if cur_week is None else max(cur_week, pa_week)
     last_run = runs["run_utc"].max() if runs.height else None
 
     # ---- header / tiles
@@ -569,12 +573,15 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         blocks.append('<section class="game quiet"><header><h3>No picks</h3></header><ul class="nopick">' + "".join(
             f'<li><span>{esc(g["away"])} at {esc(g["home"])}</span><span class="ko">{fmt_dt(g["start_time"])} ET</span></li>' for g in quiet) +
             '</ul><p class="note">None of these games had a prop where all four signals agreed at the latest run.</p></section>')
+    if not games:
+        blocks.append('<p class="empty">Action Network has not posted this week\'s player props yet, so official S1 has '
+                      'nothing to score. The ParlayAPI record below already covers this week.</p>')
     n_open = sum(1 for g in games if Lv.parse_ts(g["start_time"]) > now)
     n_flag = sum(1 for r in cur.to_dicts() if r.get("inj_against") == "true" or r.get("depth_against") == "true") if cur.height else 0
     colhead = ('<div class="colhead"><span>Player</span><span>Bet</span><span class="r">Price</span>'
                '<span class="p"><span title="Break-even for the price">BE</span><span title="DraftKings, de-vigged">Mkt</span><span title="Simulator">Model</span></span><span class="r">Result</span></div>')
     week_html = (
-        f'<section><div class="weekhead"><h2>Week {cur_week}: {cur.height} picks in {len(games) - len(quiet)} of {len(games)} games</h2>'
+        f'<section><div class="weekhead"><h2>Week {cur_week}, official S1: {cur.height} picks in {len(games) - len(quiet)} of {len(games)} games</h2>'
         f'<div class="filters" role="group" aria-label="Filter picks">'
         f'<button type="button" data-mode="all" aria-pressed="true">All</button>'
         f'<button type="button" data-mode="flagged" aria-pressed="false">News against ({n_flag})</button>'
@@ -678,7 +685,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations. In 2025 it went '
         f'{REF["w"]}-{REF["l"]} on 61 bets with a 95% interval of {fmt_pct(REF["lo"], 0, True)} to {fmt_pct(REF["hi"], 0, True)} ROI.</div>'
         f'<div class="tiles">{tiles}</div>'
-        f'{week_html}{pa_section(data.get("pa_rec", pl.DataFrame()), rec, now)}{charts}{breakdowns}{stab_html}{runs_html}{parlay_card(data.get("pcmp", pl.DataFrame()))}'
+        f'{week_html}{pa_section(pa_rec, rec, now)}{charts}{breakdowns}{stab_html}{runs_html}{parlay_card(data.get("pcmp", pl.DataFrame()))}'
         + ("<section><h2>Earlier weeks</h2><div class=\"games\">" + "".join(old) + "</div></section>" if old else "")
         + f'{foot}</div><script>{JS}</script>')
 
