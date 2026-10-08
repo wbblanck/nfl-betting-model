@@ -1,0 +1,125 @@
+{
+ "count": 1138,
+ "pageIndex": 1,
+ "pageSize": 25,
+ "pageCount": 46,
+ "items": [
+  {
+   "competition": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772634/competitions/401772634?lang=en&region=us"
+   },
+   "athlete": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4362887?lang=en&region=us"
+   },
+   "provider": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+   },
+   "type": {
+    "id": "8",
+    "name": "Total Passing Yards (incl. overtime)"
+   },
+   "lastUpdated": "2025-10-12T19:38Z",
+   "current": {
+    "under": {
+     "value": 1.8696,
+     "displayValue": "20/23",
+     "alternateDisplayValue": "-115",
+     "decimal": 1.8696,
+     "fraction": "20/23",
+     "american": "-115"
+    },
+    "target": {
+     "value": 184.5,
+     "displayValue": "184.5"
+    }
+   },
+   "open": {
+    "under": {
+     "value": 1.9524,
+     "displayValue": "20/21",
+     "alternateDisplayValue": "-105",
+     "decimal": 1.9524,
+     "fraction": "20/21",
+     "american": "-105"
+    },
+    "target": {
+     "value": 194.5,
+     "displayValue": "194.5"
+    }
+   }
+  },
+  {
+   "competition": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772634/competitions/401772634?lang=en&region=us"
+   },
+   "athlete": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4362887?lang=en&region=us"
+   },
+   "provider": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+   },
+   "type": {
+    "id": "8",
+    "name": "Total Passing Yards (incl. overtime)"
+   },
+   "lastUpdated": "2025-10-12T19:37Z",
+   "current": {
+    "target": {
+     "value": 149.5,
+     "displayValue": "149.5"
+    }
+   },
+   "open": {
+    "target": {
+     "value": 149.5,
+     "displayValue": "149.5"
+    }
+   }
+  },
+  {
+   "competition": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772634/competitions/401772634?lang=en&region=us"
+   },
+   "athlete": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4362887?lang=en&region=us"
+   },
+   "provider": {
+    "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+   },
+   "type": {
+    "id": "8",
+    "name": "Total Passing Yards (incl. overtime)"
+   },
+   "lastUpdated": "2025-10-12T19:38Z",
+   "current": {
+    "over": {
+     "value": 1.8696,
+     "displayValue": "20/23",
+     "alternateDisplayValue": "-115",
+     "decimal": 1.8696,
+     "fraction": "20/23",
+     "american": "-115"
+    },
+    "target": {
+     "value": 184.5,
+     "displayValue": "184.5"
+    }
+   },
+   "open": {
+    "over": {
+     "value": 1.8,
+     "displayValue": "4/5",
+     "alternateDisplayValue": "-125",
+     "decimal": 1.8,
+     "fraction": "4/5",
+     "american": "-125"
+    },
+    "target": {
+     "value": 194.5,
+     "displayValue": "194.5"
+    }
+   }
+  },
+  "... 22 more"
+ ]
+}
