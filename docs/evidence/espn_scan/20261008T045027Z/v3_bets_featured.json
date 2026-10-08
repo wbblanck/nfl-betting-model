@@ -1,0 +1,130 @@
+{
+ "count": 132,
+ "items": [
+  {
+   "id": "0152d976-a5cc-453a-bc9f-93beed2a89d9",
+   "name": "Merry Fistmas",
+   "type": {
+    "type": "FEATURED_BET_TYPE_PARLAY",
+    "description": "Featured bet with multiple legs from different events"
+   },
+   "order": 21,
+   "wagers": 8,
+   "betUrl": "https://espnbet.app.link/integrations?%243p=a_espn&clr=espnbettingintegration&$canonical_url=/parlay-lounge/section/featured&featured_bet_id=0152d976-a5cc-453a-bc9f-93beed2a89d9",
+   "odds": {
+    "decimal": 16.25,
+    "fraction": "61/4",
+    "american": "+1525"
+   },
+   "locations": [
+    "FEATURED_BET_LOCATION_HOME",
+    "FEATURED_BET_LOCATION-PARLAY_LOUNGE",
+    "FEATURED_BET_LOCATION_COMPETITION"
+   ],
+   "tags": {
+    "organization": "international",
+    "competition": "boxing",
+    "sport": "boxing"
+   },
+   "selections": [
+    {
+     "id": "672c23f9-f44a-4d3d-858d-b7e19bfce0cc",
+     "market": {
+      "id": "2ad3d26f-e007-4b43-9b74-46f670efda96"
+     }
+    },
+    {
+     "id": "152ea264-dd15-4752-86fe-b93313569071",
+     "market": {
+      "id": "de2c258d-1fbd-4513-bbf8-ea8b31dbd531"
+     }
+    }
+   ]
+  },
+  {
+   "id": "024e4d07-b6b8-4897-a713-48f5335c56b8",
+   "name": "Panthers Pounce",
+   "type": {
+    "type": "FEATURED_BET_TYPE_PARLAY_PLUS",
+    "description": "SGP featured bet which have at two legs from the same event"
+   },
+   "order": 72,
+   "wagers": 3,
+   "betUrl": "https://espnbet.app.link/integrations?%243p=a_espn&clr=espnbettingintegration&$canonical_url=/parlay-lounge/section/featured&featured_bet_id=024e4d07-b6b8-4897-a713-48f5335c56b8",
+   "odds": {
+    "decimal": 8.1329,
+    "fraction": "71329/10000",
+    "american": "+713"
+   },
+   "locations": [
+    "FEATURED_BET_LOCATION_HOME",
+    "FEATURED_BET_LOCATION-PARLAY_LOUNGE",
+    "FEATURED_BET_LOCATION_COMPETITION"
+   ],
+   "tags": {
+    "organization": "united-states",
+    "competition": "nhl",
+    "sport": "hockey"
+   },
+   "selections": [
+    {
+     "id": "8cbe5b18-9b1e-4982-bab7-bff86faea110",
+     "market": {
+      "id": "8c5b93b8-ccea-4774-8f26-ab815d6c43b0"
+     }
+    },
+    {
+     "id": "29cfb745-4d40-44ae-84ad-318b537a35ee",
+     "market": {
+      "id": "518b4f9b-930a-4294-89b4-b404a97df1aa"
+     }
+    },
+    {
+     "id": "a78e1220-0194-4f81-9779-be6167ee4173",
+     "market": {
+      "id": "914657ed-9edc-4ac9-8410-5a1ec930aac8"
+     }
+    },
+    "... 1 more"
+   ]
+  },
+  {
+   "id": "0278e6fe-14e8-4c16-9267-e53cde2a4599",
+   "name": "NFL Odds Boosts",
+   "type": {
+    "type": "FEATURED_BET_TYPE_ODDS_BOOST",
+    "description": "Odds Boost special"
+   },
+   "carousalOrder": 4,
+   "wagers": 275,
+   "betUrl": "https://espnbet.app.link/integrations?%243p=a_espn&clr=espnbettingintegration&$canonical_url=/exclusives/sections/odds_boosts&featured_bet_id=0278e6fe-14e8-4c16-9267-e53cde2a4599",
+   "boost": {
+    "decimal": 2.75,
+    "fraction": "7/4",
+    "american": "+175"
+   },
+   "odds": {
+    "decimal": 3.05,
+    "fraction": "41/20",
+    "american": "+205"
+   },
+   "locations": [
+    "FEATURED_BET_LOCATION_ADHOC"
+   ],
+   "tags": {
+    "organization": "odds-boosts",
+    "competition": "odds-boosts",
+    "sport": "odds-boost"
+   },
+   "selections": [
+    {
+     "id": "79e4b94a-e372-4826-8306-a20492d6c1d9",
+     "market": {
+      "id": "780bccae-9a43-43ea-b549-93849077a4e4"
+     }
+    }
+   ]
+  },
+  "... 129 more"
+ ]
+}

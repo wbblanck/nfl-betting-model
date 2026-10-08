@@ -1,0 +1,211 @@
+{
+ "count": 43,
+ "items": [
+  {
+   "valid": true,
+   "details": "DAL -8.5",
+   "overUnder": 47.5,
+   "spread": -8.5,
+   "overOdds": -115.0,
+   "underOdds": -105.0,
+   "awayTeamOdds": {
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 360,
+    "spreadOdds": -105.0,
+    "open": {
+     "favorite": false,
+     "pointSpread": {
+      "alternateDisplayValue": "+3.5",
+      "american": "+3.5"
+     },
+     "spread": {
+      "value": 1.9,
+      "displayValue": "10/11",
+      "alternateDisplayValue": "-110",
+      "decimal": 1.9,
+      "fraction": "10/11",
+      "american": "-110"
+     },
+     "moneyLine": {
+      "value": 2.7,
+      "displayValue": "17/10",
+      "alternateDisplayValue": "+170",
+      "decimal": 2.7,
+      "fraction": "17/10",
+      "american": "+170"
+     }
+    },
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "+8.5",
+      "american": "+8.5"
+     },
+     "spread": {
+      "value": 1.95,
+      "displayValue": "20/21",
+      "alternateDisplayValue": "-105",
+      "decimal": 1.95,
+      "fraction": "20/21",
+      "american": "-105"
+     },
+     "moneyLine": {
+      "value": 4.6,
+      "displayValue": "18/5",
+      "alternateDisplayValue": "+360",
+      "decimal": 4.6,
+      "fraction": "18/5",
+      "american": "+360"
+     }
+    }
+   },
+   "homeTeamOdds": {
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -470,
+    "spreadOdds": -115.0,
+    "open": {
+     "favorite": true,
+     "pointSpread": {
+      "alternateDisplayValue": "-3.5",
+      "american": "-3.5"
+     },
+     "spread": {
+      "value": 1.9,
+      "displayValue": "10/11",
+      "alternateDisplayValue": "-110",
+      "decimal": 1.9,
+      "fraction": "10/11",
+      "american": "-110"
+     },
+     "moneyLine": {
+      "value": 1.48,
+      "displayValue": "20/41",
+      "alternateDisplayValue": "-205",
+      "decimal": 1.48,
+      "fraction": "20/41",
+      "american": "-205"
+     }
+    },
+    "current": {
+     "pointSpread": {
+      "alternateDisplayValue": "-8.5",
+      "american": "-8.5"
+     },
+     "spread": {
+      "value": 1.86,
+      "displayValue": "20/23",
+      "alternateDisplayValue": "-115",
+      "decimal": 1.86,
+      "fraction": "20/23",
+      "american": "-115"
+     },
+     "moneyLine": {
+      "value": 1.21,
+      "displayValue": "10/47",
+      "alternateDisplayValue": "-470",
+      "decimal": 1.21,
+      "fraction": "10/47",
+      "american": "-470"
+     }
+    }
+   },
+   "homeBetUrl": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0ML84695570_1",
+   "awayBetUrl": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0ML84695570_3",
+   "homeSpreadUrl": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0HC84695570N850_1",
+   "awaySpreadUrl": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0HC84695570P850_3",
+   "overUrl": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0OU84695570O4750_1",
+   "underUrl": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0OU84695570U4750_3",
+   "gameUrl": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137",
+   "open": {
+    "over": {
+     "value": 1.9,
+     "displayValue": "10/11",
+     "alternateDisplayValue": "-110",
+     "decimal": 1.9,
+     "fraction": "10/11",
+     "american": "-110"
+    },
+    "under": {
+     "value": 1.9,
+     "displayValue": "10/11",
+     "alternateDisplayValue": "-110",
+     "decimal": 1.9,
+     "fraction": "10/11",
+     "american": "-110"
+    },
+    "total": {
+     "alternateDisplayValue": "52.5",
+     "american": "52.5"
+    }
+   },
+   "current": {
+    "over": {
+     "value": 1.86,
+     "displayValue": "20/23",
+     "alternateDisplayValue": "-115",
+     "decimal": 1.86,
+     "fraction": "20/23",
+     "american": "-115"
+    },
+    "under": {
+     "value": 1.95,
+     "displayValue": "20/21",
+     "alternateDisplayValue": "-105",
+     "decimal": 1.95,
+     "fraction": "20/21",
+     "american": "-105"
+    },
+    "total": {
+     "alternateDisplayValue": "47.5",
+     "american": "47.5"
+    }
+   }
+  },
+  {
+   "valid": false,
+   "details": "OFF",
+   "awayTeamOdds": {
+    "favorite": false,
+    "underdog": true,
+    "moneyLine": 375,
+    "current": {
+     "moneyLine": {
+      "alternateDisplayValue": "+375",
+      "american": "+375"
+     }
+    }
+   },
+   "homeTeamOdds": {
+    "favorite": true,
+    "underdog": false,
+    "moneyLine": -450,
+    "current": {
+     "moneyLine": {
+      "alternateDisplayValue": "-450",
+      "american": "-450"
+     }
+    }
+   },
+   "homeBetUrl": "https://online.caliente.mx/page?member=espndigital&campaign=DEFAULT&channel=DEFAULT&zone=54300998&lp=57942232&ev_id=33388868",
+   "awayBetUrl": "https://online.caliente.mx/page?member=espndigital&campaign=DEFAULT&channel=DEFAULT&zone=54300998&lp=57942232&ev_id=33388868"
+  },
+  {
+   "valid": false,
+   "details": "OFF",
+   "awayTeamOdds": {
+    "favorite": false,
+    "underdog": true,
+    "spreadReturn": 4.3
+   },
+   "homeTeamOdds": {
+    "favorite": true,
+    "underdog": false,
+    "spreadReturn": 1.22
+   },
+   "homeBetUrl": "https://www.tab.com.au/sports/betting/American%20Football/competitions/NFL/matches/Dallas%20v%20Tampa%20Bay",
+   "awayBetUrl": "https://www.tab.com.au/sports/betting/American%20Football/competitions/NFL/matches/Dallas%20v%20Tampa%20Bay"
+  },
+  "... 40 more"
+ ]
+}

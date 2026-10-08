@@ -1,0 +1,18 @@
+{
+ "count": 63,
+ "pageIndex": 1,
+ "pageSize": 200,
+ "pageCount": 1,
+ "items": [
+  {
+   "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/52?lang=en&region=us"
+  },
+  {
+   "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/39?lang=en&region=us"
+  },
+  {
+   "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/40?lang=en&region=us"
+  },
+  "... 60 more"
+ ]
+}

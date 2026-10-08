@@ -1,0 +1,144 @@
+{
+ "count": 1167,
+ "items": [
+  {
+   "id": "001a92c7-fbd4-4767-abb2-050a8725c203",
+   "name": "Panthers @ 49ers",
+   "type": {
+    "type": "TRENDING_BETS_TYPE_PARLAY_PLUS",
+    "description": "SGP fantasy roster bet which has at least two legs from the same event"
+   },
+   "betUrl": "https://espnbet.app.link/integrations?%243p=a_espn&clr=espnbettingintegration&$canonical_url=/fan-center/section/fantasy&market_selection_id[0]=81f84e69-1c09-49f5-960c-d63f0be0e974&odds_numerator[0]=23&odds_denominator[0]=13&market_selection_id[1]=c06df721-1b60-458e-8284-d52ad2d51a4f&odds_numerator[1]=13&odds_denominator[1]=4&market_selection_id[2]=85e54d4c-d8b9-4acc-b21e-9088a92bb583&odds_numerator[2]=9&odds_denominator[2]=4&market_selection_id[3]=7e1793e7-91a3-40d7-88ae-0e80de66be09&odds_numerator[3]=9&odds_denominator[3]=4",
+   "odds": {
+    "decimal": 24.64,
+    "fraction": "29553/1250",
+    "american": "+2364"
+   },
+   "selections": [
+    {
+     "id": "c06df721-1b60-458e-8284-d52ad2d51a4f",
+     "market": {
+      "id": "8b332023-ed46-4ba1-89b6-4440f44d19f2"
+     },
+     "wagers": 0,
+     "ids": {
+      "competition": "5fb58fdd-587e-3733-8eac-c5ec2276a59a",
+      "competitor": "db08ac19-dbd9-a776-5885-de1fe6830bc2"
+     }
+    },
+    {
+     "id": "7e1793e7-91a3-40d7-88ae-0e80de66be09",
+     "market": {
+      "id": "d438616a-82b7-47b6-ab67-4a6c4f95c352"
+     },
+     "wagers": 0,
+     "ids": {
+      "competition": "5fb58fdd-587e-3733-8eac-c5ec2276a59a",
+      "competitor": "5b060a16-d491-3595-b199-6ba05b4d9391"
+     }
+    },
+    {
+     "id": "85e54d4c-d8b9-4acc-b21e-9088a92bb583",
+     "market": {
+      "id": "26f048ab-22f3-4241-94e5-8bd7238372d6"
+     },
+     "wagers": 0,
+     "ids": {
+      "competition": "5fb58fdd-587e-3733-8eac-c5ec2276a59a",
+      "competitor": "9c61fb91-fc5a-7cc3-8367-a8dbc589f97a"
+     }
+    },
+    "... 1 more"
+   ]
+  },
+  {
+   "id": "0020680e-2273-41ca-952d-268fda0dc03f",
+   "name": "Giants @ Patriots",
+   "type": {
+    "type": "TRENDING_BETS_TYPE_PARLAY_PLUS",
+    "description": "SGP fantasy roster bet which has at least two legs from the same event"
+   },
+   "betUrl": "https://espnbet.app.link/integrations?%243p=a_espn&clr=espnbettingintegration&$canonical_url=/fan-center/section/fantasy&market_selection_id[0]=2e5deb1d-a956-4ce2-9b5d-d567351cf86a&odds_numerator[0]=13&odds_denominator[0]=4&market_selection_id[1]=e3cf2912-014e-4564-9493-76cf0462194f&odds_numerator[1]=11&odds_denominator[1]=5&market_selection_id[2]=c848febb-dc6c-4bbf-a984-d29af51f6cf1&odds_numerator[2]=13&odds_denominator[2]=4&market_selection_id[3]=86195062-eeea-4218-8ed5-c84d005fd690&odds_numerator[3]=41&odds_denominator[3]=21",
+   "odds": {
+    "decimal": 37.67,
+    "fraction": "366653/10000",
+    "american": "+3667"
+   },
+   "selections": [
+    {
+     "id": "2e5deb1d-a956-4ce2-9b5d-d567351cf86a",
+     "market": {
+      "id": "50e9de88-6d61-4573-bcaa-f1a251236e10"
+     },
+     "wagers": 0
+    },
+    {
+     "id": "e3cf2912-014e-4564-9493-76cf0462194f",
+     "market": {
+      "id": "5edb5895-ccb3-42b8-a054-cc8bd93f184e"
+     },
+     "wagers": 0
+    },
+    {
+     "id": "86195062-eeea-4218-8ed5-c84d005fd690",
+     "market": {
+      "id": "81e495bf-6dce-4ae4-ae2e-985a0b78e401"
+     },
+     "wagers": 0
+    },
+    "... 1 more"
+   ]
+  },
+  {
+   "id": "0060bd08-1640-4fb9-b81e-98c489d8113d",
+   "name": "For You 4-Pack",
+   "type": {
+    "type": "TRENDING_BETS_TYPE_PARLAY_PLUS",
+    "description": "SGP fantasy roster bet which has at least two legs from the same event"
+   },
+   "betUrl": "https://espnbet.app.link/integrations?%243p=a_espn&clr=espnbettingintegration&$canonical_url=/fan-center/section/fantasy&market_selection_id[0]=ab7f35fe-9fc9-4b07-8aad-19fb6b80f3da&odds_numerator[0]=43&odds_denominator[0]=23&market_selection_id[1]=d8d784a0-e7f2-4f40-a429-01bc637d06a1&odds_numerator[1]=41&odds_denominator[1]=21&market_selection_id[2]=aaaa9025-6a86-466c-a53c-492c776067ba&odds_numerator[2]=49&odds_denominator[2]=29&market_selection_id[3]=ae4f9700-cf5c-40a5-b1d4-3eaf9ef6823c&odds_numerator[3]=41&odds_denominator[3]=21",
+   "odds": {
+    "decimal": 12.2,
+    "fraction": "874687/78125",
+    "american": "+1120"
+   },
+   "selections": [
+    {
+     "id": "ae4f9700-cf5c-40a5-b1d4-3eaf9ef6823c",
+     "market": {
+      "id": "49d47be6-77a6-42b9-bddf-d6c0caebeaee"
+     },
+     "wagers": 0,
+     "ids": {
+      "competition": "49ed1808-5353-35cc-ade8-0016462d9fd7",
+      "competitor": "750f545c-3cc8-fea4-91cd-828da373cc8e"
+     }
+    },
+    {
+     "id": "ab7f35fe-9fc9-4b07-8aad-19fb6b80f3da",
+     "market": {
+      "id": "20512e38-9cd2-49c6-98ad-2e4a82b9ae53"
+     },
+     "wagers": 0,
+     "ids": {
+      "competition": "49ed1808-5353-35cc-ade8-0016462d9fd7",
+      "competitor": "34e5ec5d-10b3-ba59-2ba1-3a3be9a1be22"
+     }
+    },
+    {
+     "id": "aaaa9025-6a86-466c-a53c-492c776067ba",
+     "market": {
+      "id": "cfbf4251-5616-4803-b94e-f4f1440f805b"
+     },
+     "wagers": 0,
+     "ids": {
+      "competition": "3bd4b584-34c8-30c2-9701-f4079c79f373",
+      "competitor": "153b92a9-8489-74e3-c524-6527eb991e84"
+     }
+    },
+    "... 1 more"
+   ]
+  },
+  "... 1164 more"
+ ]
+}
