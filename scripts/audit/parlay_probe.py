@@ -57,7 +57,15 @@ def main() -> None:
     print("sports", st, hdr, keys, flush=True)
     nfl = next((k for k in keys if k and "nfl" in k.lower() and "preseason" not in k.lower()), "americanfootball_nfl")
 
-    url, st, hdr, rows = get(f"/sports/{nfl}/props", limit=10000, oddsFormat="american")
+    url, st, hdr, mk = get(f"/sports/{nfl}/props/markets")
+    summary["markets_endpoint"] = {"url": url, "status": st, "headers": hdr, "body": mk}
+    params = {"limit": 10000, "oddsFormat": "american"}
+    if os.environ.get("PARLAY_BOOKS"):
+        params["bookmakers"] = os.environ["PARLAY_BOOKS"]
+    if os.environ.get("PARLAY_MARKETS"):
+        params["markets"] = os.environ["PARLAY_MARKETS"]
+    summary["params"] = params
+    url, st, hdr, rows = get(f"/sports/{nfl}/props", **params)
     s = {"sport_key": nfl, "url": url, "status": st, "headers": hdr}
     if isinstance(rows, list):
         s["n_rows"] = len(rows)
