@@ -95,3 +95,16 @@ def test_coverage_context_only_from_tables_before_the_picks_week(tmp_path):
     assert D.coverage_for_pick(dict(r, team="CAR"), tmp_path) == ""           # opponent is DET: no row for it
     (tmp_path / "coverage_fantasypoints_2026_w1-5.csv").write_text(cols + "\nall_plays,CAR,0,0,0,0,50,0,0,10.0,70.0,0.10\n")
     assert "weeks 1-5" in D.coverage_for_pick(dict(r, week="6"), tmp_path)    # newest table that ends before the week
+
+
+def test_parlay_card_and_second_source():
+    pc = pl.DataFrame({"run_utc": ["2026-10-08T06:00:00Z"] * 2 + ["2026-10-08T20:00:00Z"] * 2, "week": ["5"] * 4,
+                       "book": ["dk", "fd"] * 2, "n_parlay": ["400", "300", "410", "341"], "n_an": ["0", "0", "380", "300"],
+                       "n_both": ["0", "0", "360", "280"], "same_line": ["0", "0", "324", "266"],
+                       "mean_p_gap_pts": ["", "", "1.2", "0.8"], "credits_left": ["994", "994", "991", "991"]})
+    html = D.parlay_card(pc)
+    assert "90%" in html and "95%" in html and "1.2 pts" in html and "991" in html     # latest run only
+    assert D.parlay_card(pl.DataFrame()) == ""
+    assert D.second_source({"line": "82.5"}) == ""
+    same = D.second_source({"line": "82.5", "pa_dk_line": "82.5", "pa_dk_odds": "-111"})
+    assert "DK 82.5 -111" in same and "differs" not in same

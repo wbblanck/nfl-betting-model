@@ -50,7 +50,7 @@ def load(live: Path | None = None) -> dict:
         rec = rec.with_columns(pl.col("week").cast(pl.Int64), pl.col("line").cast(pl.Float64), pl.col("odds").cast(pl.Float64),
                                pl.col("p_sim").cast(pl.Float64), pl.col("p_over_dk").cast(pl.Float64),
                                pl.col("proj").cast(pl.Float64), pl.col("units").cast(pl.Float64))
-    return {"rec": rec, "picks": picks, "runs": runs, "live": live}
+    return {"rec": rec, "picks": picks, "runs": runs, "live": live, "pcmp": _read(live / f"parlay_compare_{SEASON}.csv")}
 
 
 # ------------------------------------------------------------------------------------------------ numbers
@@ -230,7 +230,41 @@ def pick_row(r: dict, locked: bool) -> str:
         + "</div>"
         + (f'<div class="news">{"".join(flags)}<span class="detail">{esc(detail)}</span></div>' if flags or detail else "")
         + (f'<div class="news"><span class="detail">{esc(cov)}</span></div>' if (cov := coverage_for_pick(r)) else "")
+        + second_source(r)
         + "</li>")
+
+
+def second_source(r: dict) -> str:
+    """ParlayAPI's DK / FanDuel line and price on the pick's side at the same run (from 2026-10-08)."""
+    parts, differs = [], False
+    for b, lab in (("dk", "DK"), ("fd", "FanDuel")):
+        ln, od = r.get(f"pa_{b}_line"), r.get(f"pa_{b}_odds")
+        if ln in (None, "") or od in (None, ""):
+            continue
+        parts.append(f"{lab} {float(ln):g} {float(od):+.0f}")
+        differs |= b == "dk" and float(ln) != float(r["line"])
+    if not parts:
+        return ""
+    return ('<div class="news">' + (chip("warn", "ParlayAPI DK line differs") if differs else "")
+            + f'<span class="detail">ParlayAPI at this run: {esc(", ".join(parts))}</span></div>')
+
+
+def parlay_card(pc: pl.DataFrame) -> str:
+    """Latest run's comparison of ParlayAPI with Action Network, per book."""
+    if not pc.height:
+        return ""
+    last = pc["run_utc"].max()
+    x = pc.filter(pl.col("run_utc") == last)
+    name = {"dk": "DraftKings", "fd": "FanDuel"}
+    rows = [[name.get(r["book"], r["book"]), r["n_parlay"], r["n_an"], r["n_both"],
+             f'{int(r["same_line"]) / int(r["n_both"]):.0%}' if r["n_both"] not in (None, "", "0") else "–",
+             f'{float(r["mean_p_gap_pts"]):.1f} pts' if r["mean_p_gap_pts"] not in (None, "") else "–"] for r in x.to_dicts()]
+    left = x["credits_left"].drop_nulls()
+    return ('<div class="card"><h2>Second price source</h2>' +
+            table(["Book", "ParlayAPI props", "Action Network props", "In both", "Same line", "P(over) gap at same line"], rows, "num") +
+            f'<p class="note">Run {esc(fmt_dt(last))} ET. ParlayAPI (DraftKings, FanDuel) is a record next to Action Network; S1 still picks from '
+            'Action Network, whose book set the rule was locked on. The gap is the mean absolute difference in de-vigged P(over) where both list the same line.'
+            + (f' ParlayAPI requests left this month: {esc(left[-1])}.' if left.len() else "") + '</p></div>')
 
 
 def game_block(g: dict, rows: list[dict], now: dt.datetime) -> str:
@@ -608,7 +642,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations. In 2025 it went '
         f'{REF["w"]}-{REF["l"]} on 61 bets with a 95% interval of {fmt_pct(REF["lo"], 0, True)} to {fmt_pct(REF["hi"], 0, True)} ROI.</div>'
         f'<div class="tiles">{tiles}</div>'
-        f'{week_html}{charts}{breakdowns}{stab_html}{runs_html}'
+        f'{week_html}{charts}{breakdowns}{stab_html}{runs_html}{parlay_card(data.get("pcmp", pl.DataFrame()))}'
         + ("<section><h2>Earlier weeks</h2><div class=\"games\">" + "".join(old) + "</div></section>" if old else "")
         + f'{foot}</div><script>{JS}</script>')
 

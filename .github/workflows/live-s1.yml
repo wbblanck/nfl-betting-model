@@ -45,6 +45,8 @@ jobs:
           python-version: '3.11'
       - run: pip install -e .
       - name: Pick or grade
+        env:
+          PARLAY_API_KEY: ${{ secrets.PARLAY_API_KEY }}   # second price record only; S1 runs on Action Network
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then STEP="${{ github.event.inputs.step }}";
           else case "${{ github.event.schedule }}" in "7 14 * * 1"|"33 15 * * 2"|"7 14 * * 3") STEP=grade;; *) STEP=run;; esac; fi
@@ -69,6 +71,8 @@ jobs:
           [ -d data/live/lines ] && git add data/live/lines
           [ -d data/live/injuries ] && git add data/live/injuries
           [ -d data/live/depth ] && git add data/live/depth
+          [ -d data/live/parlay ] && git add data/live/parlay
+          [ -f data/live/parlay_compare_2026.csv ] && git add data/live/parlay_compare_2026.csv
           [ -d docs/recaps ] && git add docs/recaps
           [ -f data/live/recap_ledger_2026.csv ] && git add data/live/recap_ledger_2026.csv
           git commit -m "S1 live: ${{ github.event.schedule || github.event.inputs.step }}" || exit 0

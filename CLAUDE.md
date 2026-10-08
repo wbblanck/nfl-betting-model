@@ -31,6 +31,9 @@ kickoff and grades them, labeled as unvalidated. No other pick list.
   15:26 UTC that Friday. Live statuses come from ESPN's site API (`nflbet.injuries`); the S1 tracker flags picks
   with injury news against them. ESPN depth charts do NOT track injuries (9 listed offensive starters were Out on
   2026-10-03); use them only for healthy starter changes (`nflbet.depth`).
+- **ParlayAPI NFL props:** an unfiltered call stops at its 10,000-row cap (mostly correct-score and milestone rows),
+  so filter by `bookmakers` and `markets`; each book files a market under its own key (DK `player_receiving_yards`,
+  FanDuel `player_rec_yds`; map in `nflbet.parlay.KEYS`). Free tier: 1,000 requests a month, 3 per props call.
 - Sandbox cannot reach Action Network or ESPN; fetch in GitHub Actions. Scheduled workflows run only from `main`.
 
 ## Agent team rules

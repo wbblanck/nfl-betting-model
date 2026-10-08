@@ -8,17 +8,19 @@ from __future__ import annotations
 import datetime as dt
 import gzip
 import json
+import os
 import shutil
 import subprocess
 import sys
 
 import polars as pl
 
-from nflbet import config, depth as D, injuries as Inj, live as Lv, props as P
+from nflbet import config, depth as D, injuries as Inj, live as Lv, parlay as Pa, props as P
 
 SEASON = 2026
 PICKS = Lv.LIVE / f"s1_picks_{SEASON}.csv"
 RUNS = Lv.LIVE / f"s1_runs_{SEASON}.csv"
+PARLAY_CMP = Lv.LIVE / f"parlay_compare_{SEASON}.csv"
 
 
 def do_run() -> None:
@@ -31,16 +33,18 @@ def do_run() -> None:
                     "--weeks", f"{week}-{week}", "--out", str(tmp)], check=True)
     with open(tmp) as f:
         n_rows = sum(1 for _ in f) - 1                                  # header excluded
+    when = Lv.now_utc()
+    pa = parlay_record(week, when, tmp if n_rows > 0 else None)
     if n_rows <= 0:                                                      # books have not posted this week's props yet
         print(f"week {week}: Action Network has no player props posted yet; nothing to score (not an error)")
         return
-    when = Lv.now_utc()
     arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"   # saved first: a failed run leaves its input
     arch.parent.mkdir(parents=True, exist_ok=True)
     with open(tmp, "rb") as f, gzip.open(arch, "wb") as g:
         shutil.copyfileobj(f, g)
     picks, log = Lv.run(SEASON, tmp, when)
     picks = with_news(picks, week, when)
+    picks = Pa.attach(picks, pa)
     Lv.append(picks, PICKS)
     Lv.append(log, RUNS)
     print(f"week {week}: {log.height} games not yet started, {int(log['props_scored'].sum())} props scored, "
@@ -49,6 +53,38 @@ def do_run() -> None:
         print(f"  {r['away']}@{r['home']}  {r['player']:24s} {r['market']:12s} {r['side']:5s} {r['line']:6} {r['odds']:+.0f}"
               f"  {'INJURY NEWS AGAINST ' if r['inj_against'] else ''}{r['inj_self'] or ''} {r['inj_teammates'] or ''}"
               f"  {'DEPTH CHART AGAINST ' if r['depth_against'] else ''}{r['depth_note'] or ''}")
+
+
+def parlay_record(week: int, when: dt.datetime, an_path) -> pl.DataFrame | None:
+    """Second price record (src/nflbet/parlay.py): ParlayAPI's DK and FanDuel lines, archived in data/live/parlay/,
+    and per book how they compare with Action Network's at this run (data/live/parlay_compare_2026.csv). Descriptive;
+    S1 still runs on Action Network. Skipped without PARLAY_API_KEY; a failure never stops the run."""
+    if not os.environ.get("PARLAY_API_KEY"):
+        print("ParlayAPI record skipped: PARLAY_API_KEY not set")
+        return None
+    try:
+        rows, hdr = Pa.fetch()
+        _archive(rows, "parlay", week, when)
+        pa = Pa.parse(rows)
+        an = Pa.an_lines(an_path) if an_path is not None else Pa.parse([])
+        if an_path is not None:                                         # games already started carry in-play lines
+            started = {Pa.game_key(P.TEAM_FIX.get(h, h), P.TEAM_FIX.get(a, a))
+                       for h, a, t in pl.read_csv(an_path, infer_schema_length=0).select("home", "away", "start_time").unique().iter_rows()
+                       if Lv.parse_ts(t) <= when}
+            an = an.filter(~pl.col("game").is_in(list(started)))
+            pa = pa.filter(~pl.col("game").is_in(list(started)))
+        stamp = when.strftime("%Y-%m-%dT%H:%M:%SZ")
+        cmp = pl.DataFrame([{"run_utc": stamp, "week": week, **c, "credits_left": hdr.get("x-requests-remaining")}
+                            for c in Pa.compare(pa, an)])
+        Lv.append(cmp, PARLAY_CMP)
+        for c in cmp.iter_rows(named=True):
+            print(f"ParlayAPI {c['book']}: {c['n_parlay']} props, Action Network {c['n_an']}, both {c['n_both']}, "
+                  f"same line {c['same_line']}, mean P(over) gap at same line {c['mean_p_gap_pts']} pts")
+        print(f"ParlayAPI credits left: {hdr.get('x-requests-remaining')}")
+        return pa
+    except Exception as e:  # noqa: BLE001
+        print(f"ParlayAPI record unavailable: {type(e).__name__}: {e}")
+        return None
 
 
 def _archive(body, kind: str, week: int, when: dt.datetime) -> None:

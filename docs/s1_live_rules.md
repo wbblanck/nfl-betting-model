@@ -52,8 +52,18 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
 - **Routines paused, earlier backups added (2026-10-07):** the Claude routines wake a session and use Will's usage allowance; on
   2026-10-05 the allowance ran out and the Monday night routines never ran. The four S1 routines are paused (not deleted). The
   workflow now has an extra cron ~3 h ahead of each window (GitHub starts schedules up to ~4 h late). The tracker uses no
-  paid API keys: Action Network, ESPN and nflverse are keyless.
+  paid API keys: Action Network, ESPN and nflverse are keyless (from 2026-10-08 the ParlayAPI record uses a free-tier key; see below).
 - **Coverage context for picks (added 2026-10-07):** when Will supplies a team coverage table (`data/external/coverage_fantasypoints_2026_w1-N.csv`),
   each pick from week N+1 on shows the opponent defense's coverage mix from the newest table that ends before the pick's week
   (never one that includes the game). It is context on the picks page only; it is not a signal in rule S1. Using coverage to
   choose picks would be a new model input and would first have to beat the current inputs on held-out seasons (CLAUDE.md).
+- **Second price source, ParlayAPI (added 2026-10-08):** each run also fetches ParlayAPI's DraftKings and FanDuel lines and
+  prices for the S1 markets (`src/nflbet/parlay.py`; one call, 3 of the key's 1,000 monthly requests; secret
+  `PARLAY_API_KEY`), archives the response in `data/live/parlay/`, appends per book how it compares with Action Network at
+  that run (props at each, props at both, share at the same line, mean gap in de-vigged P(over) at the same line) to
+  `data/live/parlay_compare_2026.csv`, and stores ParlayAPI's line and price on each pick's side (`pa_dk_*`, `pa_fd_*`).
+  It runs even when Action Network has no props posted yet. S1 still picks from Action Network: its "books disagree" vote
+  was locked on Action Network's books (DK, FanDuel, BetMGM, BetRivers, Caesars), and ParlayAPI has no BetMGM,
+  BetRivers or Caesars. Using ParlayAPI for picks would be a rule change. Probe: `docs/evidence/parlay/` on branch
+  `claude/espn-props-full` (ESPN's own APIs carry 2026 DK prop lines but no prices: `docs/evidence/espn_props/`,
+  `docs/evidence/espn_scan/` on the same branch).
