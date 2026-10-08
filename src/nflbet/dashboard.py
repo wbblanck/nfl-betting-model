@@ -205,8 +205,8 @@ def chip(kind: str, text: str, title: str = "") -> str:
     return f'<span class="chip {kind}"' + (f' title="{esc(title)}"' if title else "") + f">{esc(text)}</span>"
 
 
-def pick_row(r: dict, locked: bool) -> str:
-    flags = []
+def pick_row(r: dict, locked: bool, tag: str = "") -> str:
+    flags = [chip("tag", tag)] if tag else []
     if r.get("inj_against") == "true":
         flags.append(chip("flag", "Injury news against"))
     if r.get("depth_against") == "true":
@@ -221,7 +221,7 @@ def pick_row(r: dict, locked: bool) -> str:
     return (
         f'<li class="pick" data-against="{against}">'
         f'<div class="who"><span class="name">{esc(r["player"])}</span><span class="team">{esc(r["team"])}</span></div>'
-        f'<div class="bet"><span class="side {esc(r["side"])}">{esc(r["side"])}</span> '
+        f'<div class="bet"><span class="side-pill {esc(r["side"])}">{esc(r["side"])}</span> '
         f'<span class="line">{r["line"]:g}</span> <span class="mkt">{esc(MARKET.get(r["market"], r["market"]))}</span></div>'
         f'<div class="price">{r["odds"]:+.0f}</div>'
         f'<div class="probs" title="Break-even for this price, DraftKings de-vigged, model">'
@@ -273,37 +273,39 @@ def pa_section(pa: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime) -> str:
     A separate record from the official one; never pooled."""
     if not pa.height:
         return ""
-    pa = pa.with_columns(pl.col("week").cast(pl.Int64), pl.col("line").cast(pl.Float64), pl.col("odds").cast(pl.Float64),
-                         pl.col("p_sim").cast(pl.Float64), pl.col("p_over_dk").cast(pl.Float64), pl.col("units").cast(pl.Float64))
-    pa = with_probs(pa)
-    tot = summarize(pa)
+    pa = prep(pa)
     wk = int(pa["week"].max())
     official = {(r["player_id"], r["market"], r["side"]) for r in rec.to_dicts()} if rec.height else set()
-    rows = []
-    for r in pa.filter(pl.col("week") == wk).sort("start_time", "player").to_dicts():
-        res = r["result"]
-        locked = Lv.parse_ts(r["start_time"]) <= now
-        rc = {"W": "win", "L": "loss"}.get(res, "idle")
-        flag = " ".join(x for x in (chip("flag", "Injury news against") if r.get("inj_against") == "true" else "",
-                                    chip("flag", "Depth chart against") if r.get("depth_against") == "true" else "") if x)
-        rows.append([esc(fmt_dt(r["start_time"])), f'{esc(r["away"])} at {esc(r["home"])}',
-                     f'{esc(r["player"])} <span class="team">{esc(r["team"])}</span>',
-                     f'{esc(r["side"])} {r["line"]:g} {esc(MARKET.get(r["market"], r["market"]))}', f'{r["odds"]:+.0f}',
-                     f'{fmt_pct(r["be"])} / {fmt_pct(r["p_mkt"])} / {fmt_pct(r["p_model"])}',
-                     "yes" if (r["player_id"], r["market"], r["side"]) in official else "no",
-                     chip(rc, (RESULT_ICON.get(res, res) + " " + res) if res != "pending" else ("Locked" if locked else "Open")) + (" " + flag if flag else "")])
-    rec_txt = (f'{tot["W"]}-{tot["L"]}' + (f'-{tot["P"]}' if tot["P"] else "") +
-               (f', {fmt_units(tot["units"])} units' if tot["n"] else "") + f' · {tot["pending"]} open')
-    return ('<section class="card"><h2>S1 on ParlayAPI lines (separate record)</h2>'
-            f'<p class="note" style="margin-top:0">Season: <b>{esc(rec_txt)}</b>. Same rule and model, scored on ParlayAPI\'s DraftKings and '
-            'FanDuel lines, so it runs as soon as DraftKings posts (Action Network can lag by days). One difference: the '
-            '"books disagree" vote compares DraftKings with FanDuel only, not four books, so this is a different record from '
-            'official S1 and the two are never added together. Unvalidated, like S1. The official pick per game is the last run before kickoff.</p>'
-            + (table(["Kickoff (ET)", "Game", "Player", "Bet", "Price", "BE / Mkt / Model", "Also official S1", "Result"], rows)
-               if rows else f'<p class="empty">No week {wk} props met all four signals.</p>') + '</section>')
+    cur = pa.filter(pl.col("week") == wk).sort("start_time", "player")
+    blocks = []
+    for _, x in sorted(cur.group_by("away", "home"), key=lambda kv: kv[1]["start_time"].min()):
+        rows = x.sort("player").to_dicts()
+        g = {"start_time": rows[0]["start_time"], "home": rows[0]["home"], "away": rows[0]["away"]}
+        locked = Lv.parse_ts(g["start_time"]) <= now
+        body = "".join(pick_row(r, locked, "Also official S1" if (r["player_id"], r["market"], r["side"]) in official else "")
+                       for r in rows)
+        blocks.append(game_block(g, rows, now, body))
+    return ('<section class="block" id="parlay"><div class="sechead"><div><p class="eyebrow">Separate record · not pooled</p>'
+            f'<h2>Week {wk}, S1 on ParlayAPI lines: {cur.height} picks</h2></div></div>'
+            '<p class="lede">Same rule and model, scored on ParlayAPI\'s DraftKings and FanDuel lines, so it runs as soon as DraftKings posts. '
+            'The books-disagree vote here compares DraftKings with FanDuel only, so this record is kept apart from official S1. Unvalidated, like S1.</p>'
+            + (COLHEAD + f'<div class="games">{"".join(blocks)}</div>' if blocks else f'<p class="empty">No week {wk} props met all four signals.</p>')
+            + '</section>')
 
 
-def game_block(g: dict, rows: list[dict], now: dt.datetime) -> str:
+COLHEAD = ('<div class="colhead" aria-hidden="true"><span>Player</span><span>Bet</span><span class="r">Price</span>'
+           '<span class="p"><span title="Break-even for the price">BE</span><span title="DraftKings, de-vigged">Mkt</span>'
+           '<span title="Simulator">Model</span></span><span class="r">Result</span></div>')
+
+
+def prep(d: pl.DataFrame) -> pl.DataFrame:
+    """Typed columns plus break-even / market / model probabilities for the side taken."""
+    return with_probs(d.with_columns(pl.col("week").cast(pl.Int64), pl.col("line").cast(pl.Float64), pl.col("odds").cast(pl.Float64),
+                                     pl.col("p_sim").cast(pl.Float64), pl.col("p_over_dk").cast(pl.Float64),
+                                     pl.col("units").cast(pl.Float64)))
+
+
+def game_block(g: dict, rows: list[dict], now: dt.datetime, body: str | None = None) -> str:
     start = Lv.parse_ts(g["start_time"])
     locked = start <= now
     graded = [r for r in rows if r["result"] in ("W", "L", "P", "void")]
@@ -311,7 +313,8 @@ def game_block(g: dict, rows: list[dict], now: dt.datetime) -> str:
     label = {"open": "Open", "locked": "Kicked off", "final": "Final"}[state]
     if locked and not rows:
         label = "Kicked off, no picks"
-    body = "".join(pick_row(r, locked) for r in rows) if rows else '<li class="none">No pick met all four signals at the deciding run.</li>'
+    if body is None:
+        body = "".join(pick_row(r, locked) for r in rows) if rows else '<li class="none">No pick met all four signals at the deciding run.</li>'
     return (f'<section class="game {state}"><header><h3>{esc(g["away"])} <span class="at">at</span> {esc(g["home"])}</h3>'
             f'<span class="ko">{fmt_dt(g["start_time"])} ET</span>{chip("state " + state, label, "Open games can still change their picks until kickoff" if state == "open" else "")}</header>'
             f'<ul class="picks">{body}</ul></section>')
@@ -321,33 +324,44 @@ def scale(vals: list[float], lo: float, hi: float, a: float, b: float):
     return lambda v: a + (v - lo) / (hi - lo) * (b - a)
 
 
+def tipattr(text: str) -> str:
+    return f' data-tip="{esc(text)}" tabindex="0"'
+
+
 def chart_edge(rows: list[dict]) -> str:
-    """Dumbbell per pick: break-even for the price (hollow) to the model's win probability (filled), market tick."""
+    """Dumbbell per open pick: break-even for the price (hollow ring) to the model's win probability (filled dot), with
+    DraftKings' de-vigged market as a tick. Rows from both records, tagged."""
     if not rows:
-        return '<p class="empty">No picks to plot yet.</p>'
+        return '<p class="empty">No open picks right now. Picks appear here after the next run and stay until kickoff.</p>'
     rows = sorted(rows, key=lambda r: r["p_model"] - r["be"], reverse=True)
     lo, hi = 0.30, 1.0
-    left, right, top, rh = 132, 20, 26, 22
-    w, h = 520, top + rh * len(rows) + 30
+    left, right, top, rh = 250, 24, 14, 34
+    w, h = 820, top + rh * len(rows) + 30
     x = scale([], lo, hi, left, w - right)
-    out = [f'<svg class="chart" viewBox="0 0 {w} {h}" role="img" aria-label="Model win probability against break-even, one row per pick">']
-    for t in (0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
-        out.append(f'<line class="grid" x1="{x(t):.1f}" x2="{x(t):.1f}" y1="{top - 8}" y2="{h - 26}"/>'
-                   f'<text class="tick" x="{x(t):.1f}" y="{h - 8}" text-anchor="middle">{t * 100:.0f}%</text>')
+    out = [f'<svg class="chart edge" viewBox="0 0 {w} {h}" role="img" aria-label="Model win probability against break-even, one row per open pick">']
+    for t in (0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0):
+        out.append(f'<line class="{"mid" if t == 0.5 else "grid"}" x1="{x(t):.1f}" x2="{x(t):.1f}" y1="{top - 4}" y2="{h - 26}"/>'
+                   f'<text class="tick" x="{x(t):.1f}" y="{h - 9}" text-anchor="middle">{t * 100:.0f}%</text>')
     for i, r in enumerate(rows):
         y = top + rh * i + rh / 2
-        name = f'{r["player"].split()[-1][:10]} {r["side"][0].upper()}{r["line"]:g} {MARKET.get(r["market"], r["market"]).split()[0][:4]}'
-        out.append(f'<text class="rowl" x="{left - 8}" y="{y + 4:.1f}" text-anchor="end">{esc(name)}</text>'
+        tag = r.get("_tag", "")
+        name = f'{r["player"]}'
+        sub = f'{r["side"]} {r["line"]:g} {MARKET.get(r["market"], r["market"])} · {r["odds"]:+.0f}{" · " + tag if tag else ""}'
+        tip = (f'{r["player"]} {r["side"]} {r["line"]:g} {MARKET.get(r["market"], r["market"])} at {r["odds"]:+.0f}{" (" + tag + ")" if tag else ""}'
+               f' | break-even {fmt_pct(r["be"])} · DraftKings {fmt_pct(r["p_mkt"])} · model {fmt_pct(r["p_model"])}')
+        out.append(f'<g class="row"{tipattr(tip)}><rect class="hit" x="0" y="{y - rh / 2:.1f}" width="{w}" height="{rh}"/>'
+                   f'<text class="rowl" x="{left - 10}" y="{y - 2:.1f}" text-anchor="end">{esc(name)}</text>'
+                   f'<text class="rows" x="{left - 10}" y="{y + 12:.1f}" text-anchor="end">{esc(sub)}</text>'
                    f'<line class="gap" x1="{x(r["be"]):.1f}" x2="{x(r["p_model"]):.1f}" y1="{y:.1f}" y2="{y:.1f}"/>'
-                   f'<circle class="be" cx="{x(r["be"]):.1f}" cy="{y:.1f}" r="4.5"/>'
-                   f'<rect class="mk" x="{x(r["p_mkt"]) - 1.5:.1f}" y="{y - 6:.1f}" width="3" height="12" rx="1"/>'
-                   f'<circle class="md" cx="{x(r["p_model"]):.1f}" cy="{y:.1f}" r="4.5"/>')
+                   f'<rect class="mk" x="{x(r["p_mkt"]) - 1.5:.1f}" y="{y - 7:.1f}" width="3" height="14" rx="1.5"/>'
+                   f'<circle class="be" cx="{x(r["be"]):.1f}" cy="{y:.1f}" r="5"/>'
+                   f'<circle class="md" cx="{x(r["p_model"]):.1f}" cy="{y:.1f}" r="5"/></g>')
     out.append("</svg>")
     return "".join(out)
 
 
 def chart_units(d: pl.DataFrame) -> str:
-    """Cumulative units over graded picks in kickoff order."""
+    """Cumulative units over graded picks in kickoff order, with a hover readout per pick."""
     g = d.filter(pl.col("result").is_in(["W", "L"])).sort("start_time", "player")
     if not g.height:
         return ('<p class="empty">Nothing is graded yet. The first results appear after the early games on '
@@ -356,22 +370,77 @@ def chart_units(d: pl.DataFrame) -> str:
     for u in g["units"].to_list():
         s += u
         cum.append(s)
-    w, h, l, r_, t, b = 520, 220, 44, 20, 16, 30
-    lo, hi = min(0.0, min(cum)) - 0.5, max(0.0, max(cum)) + 0.5
-    xs = scale([], 0, max(len(cum) - 1, 1), l, w - r_)
-    ys = scale([], lo, hi, h - b, t)
-    pts = " ".join(f"{xs(i):.1f},{ys(v):.1f}" for i, v in enumerate(cum))
+    w, h, l, r_, t, b = 560, 240, 40, 64, 14, 28
+    lo, hi = min(0.0, min(cum)), max(0.0, max(cum))
     step = max(1, math.ceil((hi - lo) / 5))
-    ticks = [v for v in range(math.floor(lo), math.ceil(hi) + 1) if v % step == 0]
-    out = [f'<svg class="chart" viewBox="0 0 {w} {h}" role="img" aria-label="Cumulative units after each graded pick">']
-    for v in ticks:
+    lo, hi = math.floor(lo / step) * step - (step if lo == math.floor(lo / step) * step and lo < 0 else 0), math.ceil(hi / step) * step
+    lo, hi = min(lo, -step), max(hi, step)
+    xs = scale([], 0, len(cum), l, w - r_)          # x = 0 is the start (0 units), then one step per graded pick
+    ys = scale([], lo, hi, h - b, t)
+    pts = [(xs(0), ys(0))] + [(xs(i + 1), ys(v)) for i, v in enumerate(cum)]
+    line = " ".join(f"{a:.1f},{c:.1f}" for a, c in pts)
+    out = [f'<svg class="chart units" viewBox="0 0 {w} {h}" role="img" aria-label="Cumulative units after each graded pick, ending at {cum[-1]:+.2f}">']
+    for v in range(int(lo), int(hi) + 1, step):
         out.append(f'<line class="{"zero" if v == 0 else "grid"}" x1="{l}" x2="{w - r_}" y1="{ys(v):.1f}" y2="{ys(v):.1f}"/>'
-                   f'<text class="tick" x="{l - 6}" y="{ys(v) + 4:.1f}" text-anchor="end">{v:+d}</text>')
-    out.append(f'<polygon class="area" points="{xs(0):.1f},{ys(0):.1f} {pts} {xs(len(cum) - 1):.1f},{ys(0):.1f}"/>'
-               f'<polyline class="ln" points="{pts}"/>'
-               f'<circle class="end" cx="{xs(len(cum) - 1):.1f}" cy="{ys(cum[-1]):.1f}" r="4.5"/>'
-               f'<text class="endl" x="{xs(len(cum) - 1) - 8:.1f}" y="{ys(cum[-1]) - 9:.1f}" text-anchor="end">{cum[-1]:+.2f} units</text>'
-               f'<text class="tick" x="{w - r_}" y="{h - 8}" text-anchor="end">graded picks, in kickoff order</text></svg>')
+                   f'<text class="tick" x="{l - 8}" y="{ys(v) + 4:.1f}" text-anchor="end">{v:+d}</text>')
+    out.append(f'<polygon class="area" points="{xs(0):.1f},{ys(0):.1f} {line} {xs(len(cum)):.1f},{ys(0):.1f}"/>'
+               f'<polyline class="ln" points="{line}"/>')
+    rows = g.to_dicts()
+    seg = (xs(1) - xs(0))
+    for i, (r, v) in enumerate(zip(rows, cum)):
+        cx, cy = pts[i + 1]
+        tip = (f'Pick {i + 1}: {r["player"]} {r["side"]} {r["line"]:g} {MARKET.get(r["market"], r["market"])}, week {r["week"]} | '
+               f'{"won" if r["result"] == "W" else "lost"} {r["units"]:+.2f} · season {v:+.2f} units')
+        out.append(f'<g class="pt"{tipattr(tip)}><rect class="hit" x="{cx - seg / 2:.1f}" y="{t}" width="{seg:.1f}" height="{h - t - b}"/>'
+                   f'<line class="xh" x1="{cx:.1f}" x2="{cx:.1f}" y1="{t}" y2="{h - b}"/>'
+                   f'<circle class="dot {"w" if r["result"] == "W" else "l"}" cx="{cx:.1f}" cy="{cy:.1f}" r="4"/></g>')
+    ex, ey = pts[-1]
+    out.append(f'<circle class="end" cx="{ex:.1f}" cy="{ey:.1f}" r="5"/>'
+               f'<text class="endl" x="{ex + 9:.1f}" y="{ey + 4:.1f}">{cum[-1]:+.2f}</text>'
+               f'<text class="tick" x="{l}" y="{h - 8}">start</text>'
+               f'<text class="tick" x="{w - r_}" y="{h - 8}" text-anchor="end">pick {len(cum)}</text></svg>')
+    return "".join(out)
+
+
+def chart_weeks(d: pl.DataFrame) -> str:
+    """Units per week, a column per graded week from one zero baseline; value on the cap."""
+    g = d.filter(pl.col("result").is_in(["W", "L"]))
+    if not g.height:
+        return '<p class="empty">No graded weeks yet.</p>'
+    wk = sorted(((int(w), x) for (w,), x in g.group_by("week")), key=lambda kv: kv[0])
+    vals = [(w, float(x["units"].sum()), summarize(x)) for w, x in wk]
+    w, h, l, r_, t, b = 560, 240, 40, 12, 22, 28
+    m = max(1.0, max(abs(v) for _, v, _ in vals))
+    step = max(1, math.ceil(m / 3))
+    top_ = math.ceil(m / step) * step
+    ys = scale([], -top_, top_, h - b, t)
+    n = max(len(vals), 6)                                   # fixed slot width so one week is not one fat bar
+    slot = (w - l - r_) / n
+    bw = min(24, slot * 0.5)
+    out = [f'<svg class="chart" viewBox="0 0 {w} {h}" role="img" aria-label="Units won or lost in each graded week">']
+    for v in range(-top_, top_ + 1, step):
+        out.append(f'<line class="{"zero" if v == 0 else "grid"}" x1="{l}" x2="{w - r_}" y1="{ys(v):.1f}" y2="{ys(v):.1f}"/>'
+                   f'<text class="tick" x="{l - 8}" y="{ys(v) + 4:.1f}" text-anchor="end">{v:+d}</text>')
+    for i, (wn, v, s) in enumerate(vals):
+        cx = l + slot * i + slot / 2
+        y0, y1 = ys(0), ys(v)
+        hgt = abs(y1 - y0)
+        rr = min(4, hgt)
+        x0 = cx - bw / 2
+        if v >= 0:   # rounded at the data end (top), square at the baseline
+            path = (f"M{x0:.1f},{y0:.1f} V{y1 + rr:.1f} Q{x0:.1f},{y1:.1f} {x0 + rr:.1f},{y1:.1f} H{x0 + bw - rr:.1f} "
+                    f"Q{x0 + bw:.1f},{y1:.1f} {x0 + bw:.1f},{y1 + rr:.1f} V{y0:.1f} Z")
+            ly = y1 - 6
+        else:
+            path = (f"M{x0:.1f},{y0:.1f} V{y1 - rr:.1f} Q{x0:.1f},{y1:.1f} {x0 + rr:.1f},{y1:.1f} H{x0 + bw - rr:.1f} "
+                    f"Q{x0 + bw:.1f},{y1:.1f} {x0 + bw:.1f},{y1 - rr:.1f} V{y0:.1f} Z")
+            ly = y1 + 14
+        tip = f'Week {wn}: {s["W"]}-{s["L"]}{"-" + str(s["P"]) if s["P"] else ""} | {v:+.2f} units · ROI {fmt_pct(s["roi"], 1, True)}'
+        out.append(f'<g class="col"{tipattr(tip)}><rect class="hit" x="{cx - slot / 2:.1f}" y="{t}" width="{slot:.1f}" height="{h - t - b}"/>'
+                   f'<path class="{"pos" if v >= 0 else "neg"}" d="{path}"/>'
+                   f'<text class="capl" x="{cx:.1f}" y="{ly:.1f}" text-anchor="middle">{v:+.2f}</text>'
+                   f'<text class="tick" x="{cx:.1f}" y="{h - 8}" text-anchor="middle">Wk {wn}</text></g>')
+    out.append("</svg>")
     return "".join(out)
 
 
@@ -381,148 +450,256 @@ def table(head: list[str], rows: list[list[str]], cls: str = "") -> str:
     return f'<div class="tablewrap"><table class="{cls}"><thead><tr>{th}</tr></thead><tbody>{tr}</tbody></table></div>'
 
 
+def winbar(win: float | None, be: float | None) -> str:
+    """Win rate as a bar on a 0-100% track with the break-even marked."""
+    if win is None:
+        return '<span class="muted">–</span>'
+    ok = be is not None and win >= be
+    return (f'<span class="wb" title="Win {fmt_pct(win)}, break-even {fmt_pct(be)}"><span class="track">'
+            f'<i class="{"ok" if ok else "short"}" style="width:{win * 100:.0f}%"></i>'
+            + (f'<b style="left:{be * 100:.0f}%"></b>' if be is not None else "") +
+            f'</span><span class="v">{fmt_pct(win)}</span></span>')
+
+
+def unitbar(u: float | None, span: float) -> str:
+    """Units as a diverging bar from a center line; span = largest |units| in the table."""
+    if u is None:
+        return '<span class="muted">–</span>'
+    wpc = min(abs(u) / span, 1) * 50 if span else 0
+    side = f"left:50%;width:{wpc:.1f}%" if u >= 0 else f"left:{50 - wpc:.1f}%;width:{wpc:.1f}%"
+    return (f'<span class="ub"><span class="track"><i class="{"pos" if u >= 0 else "neg"}" style="{side}"></i></span>'
+            f'<span class="v">{fmt_units(u)}</span></span>')
+
+
 def breakdown(d: pl.DataFrame, by: str | None, groups: list[tuple[str, pl.DataFrame]]) -> str:
-    rows = []
-    for name, x in groups:
-        s = summarize(x)
-        rows.append([esc(name), f'{s["W"]}-{s["L"]}-{s["P"]}', str(s["pending"]), fmt_pct(s["win"]), fmt_pct(s["be"]),
-                     fmt_units(s["units"]) if s["n"] else "–", fmt_pct(s["roi"], 1, True)])
-    return table(["", "W-L-P", "Open", "Win", "BE", "Units", "ROI"], rows, "num")
+    stats = [(name, summarize(x)) for name, x in groups]
+    span = max([abs(s["units"]) for _, s in stats if s["n"]] + [1.0])
+    rows = [[esc(name), f'{s["W"]}-{s["L"]}' + (f'-{s["P"]}' if s["P"] else "") + (f' <span class="muted">· {s["pending"]} open</span>' if s["pending"] else ""),
+             winbar(s["win"], s["be"]), unitbar(s["units"] if s["n"] else None, span), fmt_pct(s["roi"], 1, True)] for name, s in stats]
+    return table(["", "Record", "Win rate vs break-even", "Units", "ROI"], rows, "bd")
 
 
 # ------------------------------------------------------------------------------------------------ page
 
 CSS = """
+/* Layout: a scoreboard band (season record) up top, then the current week game by game for each record, then the
+   charts, then the evidence tables. Labels in Barlow Condensed (stadium-board lettering), body in Barlow, every
+   number in IBM Plex Mono. One accent (field-goal-net blue); win / loss are status colors with icons. */
 :root{
-  /* Layout: a scoreboard header, then the current week game by game, then the evidence tables. Numbers set in a
-     plex mono, labels in barlow condensed (stadium-board lettering), body in barlow. */
-  --bg:#eaeef2;--surface:#fafbfc;--raised:#ffffff;--ink:#121c26;--ink2:#46535f;--muted:#6f7c88;--line:#d6dde4;
-  --accent:#1d5f9e;--accent-soft:#dbe8f5;--good:#0b6b0b;--good-bg:#d9f0d6;--bad:#b02a2a;--bad-bg:#f8dcdc;
-  --warn-bg:#fde7b0;--warn-ink:#4d3500;--idle-bg:#e6ebf0;--shadow:0 1px 0 rgba(18,28,38,.06);
+  --bg:#edf0f3;--surface:#fbfcfd;--raised:#ffffff;--ink:#111b25;--ink2:#46535f;--muted:#6c7884;--line:#d9dfe5;--grid:#e4e8ec;
+  --accent:#2a78d6;--accent-soft:#dde9f8;--neg:#e34948;--good:#0b6b0b;--good-bg:#dcf1d9;--bad:#b42b2b;--bad-bg:#f9e0df;
+  --warn-bg:#fcebbd;--warn-ink:#4d3500;--idle-bg:#e7ebef;--board:#122030;--board-ink:#f2f6fa;--board-muted:#9fb0c1;
+  --shadow:0 1px 2px rgba(17,27,37,.06);
   --display:'Barlow Condensed','Arial Narrow',sans-serif;--body:'Barlow',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0e1318;--surface:#161c23;--raised:#1b222a;--ink:#e9eef3;--ink2:#b3beca;--muted:#8793a0;--line:#27313b;
-  --accent:#5aa4ec;--accent-soft:#1c3550;--good:#5fd35f;--good-bg:#17341a;--bad:#ff8a8a;--bad-bg:#3d1c1c;
-  --warn-bg:#4a3a10;--warn-ink:#ffdf91;--idle-bg:#222b34;--shadow:none;color-scheme:dark}}
+  --bg:#0d1217;--surface:#151c23;--raised:#1a222b;--ink:#e8edf2;--ink2:#b2bdc8;--muted:#86929e;--line:#26303a;--grid:#212a33;
+  --accent:#3987e5;--accent-soft:#1b3452;--neg:#e66767;--good:#5fd35f;--good-bg:#16331a;--bad:#ff8c8c;--bad-bg:#3c1d1d;
+  --warn-bg:#47380f;--warn-ink:#ffdf91;--idle-bg:#212a33;--board:#0a1622;--board-ink:#f2f6fa;--board-muted:#8fa2b6;--shadow:none;color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0e1318;--surface:#161c23;--raised:#1b222a;--ink:#e9eef3;--ink2:#b3beca;--muted:#8793a0;--line:#27313b;
-  --accent:#5aa4ec;--accent-soft:#1c3550;--good:#5fd35f;--good-bg:#17341a;--bad:#ff8a8a;--bad-bg:#3d1c1c;
-  --warn-bg:#4a3a10;--warn-ink:#ffdf91;--idle-bg:#222b34;--shadow:none;color-scheme:dark}
+  --bg:#0d1217;--surface:#151c23;--raised:#1a222b;--ink:#e8edf2;--ink2:#b2bdc8;--muted:#86929e;--line:#26303a;--grid:#212a33;
+  --accent:#3987e5;--accent-soft:#1b3452;--neg:#e66767;--good:#5fd35f;--good-bg:#16331a;--bad:#ff8c8c;--bad-bg:#3c1d1d;
+  --warn-bg:#47380f;--warn-ink:#ffdf91;--idle-bg:#212a33;--board:#0a1622;--board-ink:#f2f6fa;--board-muted:#8fa2b6;--shadow:none;color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--body);margin:0;padding-inline:16px;padding-block:20px 48px}
-.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);margin:0;padding-inline:16px;padding-block:22px 56px}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
 h1,h2,h3{font-family:var(--display);margin:0;font-weight:600;letter-spacing:.01em;text-wrap:balance}
-h1{font-size:34px;line-height:1.05}h2{font-size:22px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2)}
-h3{font-size:21px}
+h1{font-size:30px;line-height:1.05}
+h2{font-size:21px;letter-spacing:.02em}
+h3{font-size:19px}
 a{color:var(--accent)}
-.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px 20px}
-.sub{color:var(--ink2);margin:4px 0 0}.stamp{font:12px var(--mono);color:var(--muted);text-align:right}
-.notice{background:var(--warn-bg);color:var(--warn-ink);padding:10px 14px;border-radius:6px;font-size:14px}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.tile{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 14px;box-shadow:var(--shadow);min-width:0}
-.tile .k{font:600 13px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.tile .v{font:600 34px/1.1 var(--display);font-variant-numeric:tabular-nums}
-.tile .s{font:12px var(--mono);color:var(--ink2)}
-.bar{height:6px;background:var(--idle-bg);border-radius:3px;overflow:hidden;margin-top:6px}
-.bar i{display:block;height:100%;background:var(--accent)}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-width:0}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:14px}
-.cols.charts{grid-template-columns:repeat(auto-fit,minmax(min(100%,560px),1fr))}
-.card h2{margin-bottom:8px}.note{color:var(--muted);font-size:13px;margin:6px 0 0}
-.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12.5px;color:var(--ink2);margin-bottom:6px}
-.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px}
-.legend .k1{border:2px solid var(--ink2)}.legend .k2{background:var(--accent)}.legend .k3{width:3px;border-radius:1px;height:12px;background:var(--muted)}
-.chart{width:100%;height:auto;display:block}
-.chart .grid{stroke:var(--line);stroke-width:1}.chart .zero{stroke:var(--muted);stroke-width:1.2}
-.chart .tick,.chart .rowl{fill:var(--muted);font:11.5px var(--mono)}.chart .rowl{fill:var(--ink2)}
-.chart .gap{stroke:var(--accent);stroke-width:2;opacity:.45}.chart .be{fill:var(--surface);stroke:var(--ink2);stroke-width:2}
-.chart .md{fill:var(--accent)}.chart .mk{fill:var(--muted)}
-.chart .ln{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round}.chart .area{fill:var(--accent);opacity:.12}
-.chart .end{fill:var(--accent);stroke:var(--surface);stroke-width:2}.chart .endl{fill:var(--ink);font:600 12px var(--mono)}
-.empty{color:var(--muted);margin:8px 0}
-.weekhead{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between}
-.filters{display:flex;gap:6px}
+a:focus-visible,button:focus-visible,summary:focus-visible,[data-tip]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.eyebrow{font:600 12px var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 2px}
+.lede{color:var(--ink2);font-size:14px;margin:4px 0 0;max-width:72ch}
+.note{color:var(--muted);font-size:13px;margin:8px 0 0;max-width:80ch}
+.muted{color:var(--muted)}
+.empty{color:var(--muted);margin:6px 0;font-size:14px}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:6px 20px}
+.top .sub{color:var(--ink2);margin:2px 0 0}
+.stamp{font:12px var(--mono);color:var(--muted)}
+.notice{border-left:3px solid var(--warn-ink);background:var(--warn-bg);color:var(--warn-ink);padding:8px 12px;border-radius:0 4px 4px 0;font-size:13.5px}
+
+/* scoreboard */
+.board{background:var(--board);color:var(--board-ink);border-radius:8px;padding:18px 20px;display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px 28px}
+.board .eyebrow{color:var(--board-muted)}
+.hero{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 28px}
+.big{font:600 64px/0.95 var(--mono);letter-spacing:-.02em}
+.stats{display:flex;flex-wrap:wrap;gap:8px 26px}
+.stat .k{font:600 12px var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--board-muted)}
+.stat .v{font:500 22px var(--mono)}
+.stat .s{font:11.5px var(--mono);color:var(--board-muted)}
+.meters{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;margin-top:16px}
+.meter .k{display:flex;justify-content:space-between;font:600 12px var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--board-muted)}
+.meter .k b{font:500 12px var(--mono);letter-spacing:0;color:var(--board-ink)}
+.meter .t{height:6px;border-radius:3px;background:rgba(255,255,255,.12);margin-top:5px;overflow:hidden}
+.meter .t i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.side{border-left:1px solid rgba(255,255,255,.14);padding-left:24px;display:flex;flex-direction:column;gap:14px}
+.side .mid{font:500 30px/1.1 var(--mono)}
+.side .s{font:12px var(--mono);color:var(--board-muted)}
+.side a{color:#9cc5f5}
+
+/* sections and cards */
+.block{display:flex;flex-direction:column;gap:12px;min-width:0}
+.sechead{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:flex-end;justify-content:space-between}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;min-width:0;box-shadow:var(--shadow)}
+.card h2{margin-bottom:2px}
+.stack{display:flex;flex-direction:column;gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:16px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
 .filters button{font:600 13px var(--display);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);
   background:var(--surface);color:var(--ink2);padding:5px 12px;border-radius:5px;cursor:pointer}
+.filters button:hover{border-color:var(--accent);color:var(--accent)}
 .filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
-.filters button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.games{display:flex;flex-direction:column;gap:12px}
-.game{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.game>header{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;padding:10px 14px;background:var(--raised);border-bottom:1px solid var(--line)}
-.game .at{color:var(--muted);font-size:15px;font-weight:500}.ko{font:12px var(--mono);color:var(--ink2);margin-left:auto}
+
+/* games and picks */
+.games{display:flex;flex-direction:column;gap:10px}
+.game{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+.game>header{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;padding:9px 14px;background:var(--raised);border-bottom:1px solid var(--line)}
+.game .at{color:var(--muted);font-size:14px;font-weight:500}
+.ko{font:12px var(--mono);color:var(--ink2);margin-left:auto}
 .picks{list-style:none;margin:0;padding:0}
-.pick{display:grid;grid-template-columns:minmax(150px,1.3fr) minmax(190px,1.4fr) 56px 150px 96px;gap:4px 14px;align-items:center;
-  padding:9px 14px;border-top:1px solid var(--line)}
+.pick,.colhead{display:grid;grid-template-columns:minmax(150px,1.3fr) minmax(190px,1.4fr) 60px 156px 100px;gap:4px 14px;align-items:center}
+.pick{padding:10px 14px;border-top:1px solid var(--line)}
 .pick:first-child{border-top:0}
 .pick .name{font-weight:600}.pick .team{color:var(--muted);font:12px var(--mono);margin-left:8px}
-.side{font:600 13px var(--display);letter-spacing:.06em;text-transform:uppercase;padding:1px 7px;border-radius:3px;border:1px solid var(--line)}
-.side.over{color:var(--accent);border-color:var(--accent)}.side.under{color:var(--ink2)}
+.side-pill{font:600 12.5px var(--display);letter-spacing:.07em;text-transform:uppercase;padding:1px 7px;border-radius:3px;border:1px solid var(--line);color:var(--ink2)}
+.side-pill.over{color:var(--accent);border-color:var(--accent)}
 .line{font:500 15px var(--mono)}.mkt{color:var(--ink2)}
 .price{font:500 14px var(--mono);text-align:right}
-.probs{display:grid;grid-template-columns:repeat(3,1fr);font:12.5px var(--mono);color:var(--ink2);text-align:right}
-.probs span:last-child{color:var(--accent);font-weight:500}
-.res{display:flex;flex-direction:column;align-items:flex-end;gap:2px}.actual{font:11px var(--mono);color:var(--muted)}
+.probs{display:grid;grid-template-columns:repeat(3,1fr);font:12.5px var(--mono);color:var(--ink2);text-align:right;font-variant-numeric:tabular-nums}
+.probs span:last-child{color:var(--accent);font-weight:600}
+.res{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.actual{font:11px var(--mono);color:var(--muted)}
 .news{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
 .detail{color:var(--ink2);font-size:13px}
 .none{padding:12px 14px;color:var(--muted)}
+.colhead{padding:0 14px;font:600 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.colhead .p{display:grid;grid-template-columns:repeat(3,1fr);text-align:right}.colhead .r{text-align:right}
 .game.quiet .nopick{list-style:none;margin:0;padding:8px 14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2px 18px}
-.nopick li{display:flex;justify-content:space-between;gap:8px;color:var(--ink2);font-size:14px}.game.quiet .note{padding:0 14px 10px;margin:0}
-.game.quiet h3{color:var(--ink2)}
+.nopick li{display:flex;justify-content:space-between;gap:8px;color:var(--ink2);font-size:14px}
+.game.quiet .note{padding:0 14px 10px;margin:0}.game.quiet h3{color:var(--ink2)}
 .chip{display:inline-block;font:600 12px var(--display);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:3px;white-space:nowrap}
 .chip.win{background:var(--good-bg);color:var(--good)}.chip.loss{background:var(--bad-bg);color:var(--bad)}
-.chip.idle{background:var(--idle-bg);color:var(--ink2)}.chip.flag,.chip.warn{background:var(--warn-bg);color:var(--warn-ink)}
-.chip.state{background:var(--idle-bg);color:var(--ink2)}.chip.state.open{background:var(--accent-soft);color:var(--accent)}
-.colhead{display:grid;grid-template-columns:minmax(150px,1.3fr) minmax(190px,1.4fr) 56px 150px 96px;gap:14px;padding:0 14px;
-  font:600 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.colhead .p{display:grid;grid-template-columns:repeat(3,1fr);text-align:right}.colhead .r{text-align:right}
+.chip.idle,.chip.state{background:var(--idle-bg);color:var(--ink2)}.chip.flag,.chip.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.chip.state.open{background:var(--accent-soft);color:var(--accent)}.chip.tag{background:var(--accent-soft);color:var(--accent)}
+
+/* charts */
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12.5px;color:var(--ink2);margin:8px 0 4px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.legend .k1{border:2px solid var(--ink2)}.legend .k2{background:var(--accent)}.legend .k3{width:3px;border-radius:2px;height:13px;background:var(--muted)}
+.legend .kp{border-radius:2px;background:var(--accent)}.legend .kn{border-radius:2px;background:var(--neg)}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart.edge{max-width:820px}
+.chart .grid{stroke:var(--grid);stroke-width:1}.chart .zero{stroke:var(--muted);stroke-width:1}.chart .mid{stroke:var(--line);stroke-width:1}
+.chart .tick{fill:var(--muted);font:11.5px var(--mono)}
+.chart .rowl{fill:var(--ink);font:600 13px var(--body)}.chart .rows{fill:var(--muted);font:11px var(--mono)}
+.chart .hit{fill:transparent}
+.chart .gap{stroke:var(--accent);stroke-width:2;opacity:.4;stroke-linecap:round}
+.chart .be{fill:var(--surface);stroke:var(--ink2);stroke-width:2}
+.chart .md{fill:var(--accent);stroke:var(--surface);stroke-width:2}
+.chart .mk{fill:var(--muted)}
+.chart .ln{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.chart .area{fill:var(--accent);opacity:.1}
+.chart .end{fill:var(--accent);stroke:var(--surface);stroke-width:2}
+.chart .endl,.chart .capl{fill:var(--ink);font:600 12px var(--mono)}
+.chart .xh{stroke:var(--ink2);stroke-width:1;opacity:0}
+.chart .dot{stroke:var(--surface);stroke-width:2}.chart .dot.w{fill:var(--accent)}.chart .dot.l{fill:var(--neg)}
+.chart .pos{fill:var(--accent)}.chart .neg{fill:var(--neg)}
+.chart [data-tip]{outline:none;cursor:default}
+.chart .pt:hover .xh,.chart .pt:focus .xh{opacity:.5}
+.chart .row:hover .hit,.chart .row:focus .hit,.chart .col:hover .hit,.chart .col:focus .hit{fill:var(--accent-soft);opacity:.45}
+.tip{position:fixed;z-index:10;pointer-events:none;background:var(--raised);color:var(--ink);border:1px solid var(--line);border-radius:6px;
+  padding:7px 10px;font:12.5px/1.4 var(--body);box-shadow:0 4px 14px rgba(0,0,0,.18);max-width:300px}
+.tip strong{display:block;font:600 13px var(--mono)}
+
+/* tables */
 .tablewrap{overflow-x:auto}
 table{border-collapse:collapse;width:100%;font-size:14px}
 th{font:600 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
-td{padding:6px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-table.num td:not(:first-child),table.num th:not(:first-child){text-align:right;font-family:var(--mono);font-size:13px}
-table td.up{color:var(--ink2)}
-details.old{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 14px}
-summary{cursor:pointer;font:600 18px var(--display);letter-spacing:.04em}
-.foot{color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:6px}
-.foot ul{margin:0;padding-left:18px}
+td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+table.num td{white-space:nowrap}
+table.num td:not(:first-child),table.num th:not(:first-child){text-align:right;font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
+table.bd td:not(:first-child){font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.bd td:first-child{font-weight:500}
+.wb,.ub{display:flex;align-items:center;gap:8px}
+.wb .track,.ub .track{position:relative;width:140px;height:8px;border-radius:4px;background:var(--idle-bg);flex:none}
+.wb i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.wb i.ok{background:var(--accent)}.wb i.short{background:var(--muted)}
+.wb b{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);border-radius:1px}
+.ub .track::after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--muted)}
+.ub i{position:absolute;top:0;bottom:0;border-radius:4px}.ub i.pos{background:var(--accent)}.ub i.neg{background:var(--neg)}
+.wb .v,.ub .v{min-width:48px;text-align:right}
+details.old{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+summary{cursor:pointer;font:600 17px var(--display);letter-spacing:.03em}
+details.old .picks{margin-top:8px}
+.foot{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+.foot ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+@media (max-width:820px){
+  .board{grid-template-columns:1fr}
+  .side{border-left:0;border-top:1px solid rgba(255,255,255,.14);padding-left:0;padding-top:14px}
+}
 @media (max-width:760px){
   .colhead{display:none}
   .pick{grid-template-columns:1fr auto;grid-template-areas:"who price" "bet res" "probs probs"}
-  .pick .who{grid-area:who}.pick .bet{grid-area:bet}.pick .price{grid-area:price}.pick .probs{grid-area:probs;text-align:left}
-  .pick .res{grid-area:res;align-items:flex-end}.probs{max-width:280px}
+  .pick .who{grid-area:who}.pick .bet{grid-area:bet}.pick .price{grid-area:price}.pick .probs{grid-area:probs}
+  .pick .res{grid-area:res}
+  .probs{text-align:left;max-width:280px}
   .probs span:nth-child(1)::before{content:"BE ";color:var(--muted)}.probs span:nth-child(2)::before{content:"Mkt ";color:var(--muted)}
-  .probs span:nth-child(3)::before{content:"Model ";color:var(--muted)}.probs{text-align:left}
-  .ko{margin-left:0}.stamp{text-align:left}
+  .probs span:nth-child(3)::before{content:"Model ";color:var(--muted)}
+  .ko{margin-left:0}.big{font-size:52px}
+  .wb .track,.ub .track{width:70px}
 }
-@media (prefers-reduced-motion:no-preference){.bar i{transition:width .4s}}
+@media (prefers-reduced-motion:no-preference){.meter .t i{transition:width .5s}}
 """
 
 JS = """
 (function(){
   var bs=document.querySelectorAll('.filters button');
   function apply(mode){
-    document.querySelectorAll('.pick').forEach(function(p){
+    document.querySelectorAll('#week .pick').forEach(function(p){
       var a=p.getAttribute('data-against')==='1';
       p.hidden=(mode==='flagged'&&!a)||(mode==='clear'&&a);
     });
-    document.querySelectorAll('.game:not(.quiet)').forEach(function(g){
+    document.querySelectorAll('#week .game:not(.quiet)').forEach(function(g){
       g.hidden=!g.querySelector('.pick:not([hidden])');
     });
-    var q=document.querySelector('.game.quiet');if(q)q.hidden=mode==='flagged';
+    var q=document.querySelector('#week .game.quiet');if(q)q.hidden=mode==='flagged';
     bs.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-mode')===mode?'true':'false')});
     try{localStorage.setItem('s1-filter',mode)}catch(e){}
   }
   bs.forEach(function(b){b.addEventListener('click',function(){apply(b.getAttribute('data-mode'))})});
   var m='all';try{m=localStorage.getItem('s1-filter')||'all'}catch(e){}
   apply(m);
+  // one tooltip for every chart mark: "headline | detail"
+  var tip=document.createElement('div');tip.className='tip';tip.hidden=true;document.body.appendChild(tip);
+  function show(el,x,y){
+    var t=(el.getAttribute('data-tip')||'').split(' | ');
+    tip.textContent='';var s=document.createElement('strong');s.textContent=t[1]||t[0];tip.appendChild(s);
+    if(t[1]){var d=document.createElement('span');d.textContent=t[0];tip.appendChild(d);}
+    tip.hidden=false;
+    var w=tip.offsetWidth,h=tip.offsetHeight,vw=window.innerWidth;
+    tip.style.left=Math.max(8,Math.min(vw-w-8,x+14))+'px';tip.style.top=Math.max(8,y-h-12)+'px';
+  }
+  document.querySelectorAll('[data-tip]').forEach(function(el){
+    el.addEventListener('pointermove',function(e){show(el,e.clientX,e.clientY)});
+    el.addEventListener('pointerleave',function(){tip.hidden=true});
+    el.addEventListener('focus',function(){var r=el.getBoundingClientRect();show(el,r.left+r.width/2,r.top)});
+    el.addEventListener('blur',function(){tip.hidden=true});
+  });
 })();
 """
 
 
-def tile(k: str, v: str, s: str = "", bar: float | None = None) -> str:
-    b = f'<div class="bar"><i style="width:{min(max(bar, 0), 1) * 100:.0f}%"></i></div>' if bar is not None else ""
-    return f'<div class="tile"><div class="k">{esc(k)}</div><div class="v">{v}</div><div class="s">{esc(s)}</div>{b}</div>'
+def meter(k: str, n: int, of: int) -> str:
+    return (f'<div class="meter"><div class="k"><span>{esc(k)}</span><b>{n} of {of}</b></div>'
+            f'<div class="t" role="progressbar" aria-valuemin="0" aria-valuemax="{of}" aria-valuenow="{n}" aria-label="{esc(k)}">'
+            f'<i style="width:{min(n / of, 1) * 100:.0f}%"></i></div></div>')
+
+
+def stat(k: str, v: str, s: str = "") -> str:
+    return f'<div class="stat"><div class="k">{esc(k)}</div><div class="v">{v}</div>' + (f'<div class="s">{esc(s)}</div>' if s else "") + '</div>'
 
 
 def build(data: dict, now: dt.datetime | None = None) -> str:
@@ -534,73 +711,86 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
     weeks_graded = rec.filter(pl.col("result").is_in(["W", "L"])).select(pl.col("week").n_unique()).item() if n_all else 0
     ci = week_ci(rec) if n_all else None
     cur_week = int(runs["week"].cast(pl.Int64).max()) if runs.height else None
-    pa_rec = data.get("pa_rec", pl.DataFrame())
-    if pa_rec.height:                                  # the ParlayAPI record can reach a week before Action Network posts
-        pa_week = int(pa_rec["week"].cast(pl.Int64).max())
-        cur_week = pa_week if cur_week is None else max(cur_week, pa_week)
+    pa_raw = data.get("pa_rec", pl.DataFrame())
+    pa = prep(pa_raw) if pa_raw.height else pa_raw
+    if pa.height:                                  # the ParlayAPI record can reach a week before Action Network posts
+        cur_week = int(pa["week"].max()) if cur_week is None else max(cur_week, int(pa["week"].max()))
     last_run = runs["run_utc"].max() if runs.height else None
 
-    # ---- header / tiles
-    be_txt = f'break-even {fmt_pct(tot["be"])}' if tot["be"] is not None else "no graded picks yet"
-    tiles = "".join([
-        tile("Record", f'{tot["W"]}-{tot["L"]}' + (f'-{tot["P"]}' if tot["P"] else ""),
-             f'{tot["pending"]} open · {tot["void"]} void'),
-        tile("Win rate", fmt_pct(tot["win"]), be_txt),
-        tile("Units", fmt_units(tot["units"]) if tot["n"] else "–", "1 unit per pick at DraftKings price"),
-        tile("ROI", fmt_pct(tot["roi"], 1, True),
-             (f'interim 95% {fmt_pct(ci[0], 0, True)} to {fmt_pct(ci[1], 0, True)}' if ci else "interval after 3 graded weeks")),
-        tile("Bets graded", f'{tot["n"]} <span style="font-size:18px;color:var(--muted)">of {PASS_N}</span>',
-             "needed for the season test", tot["n"] / PASS_N),
-        tile("Weeks with a result", f'{weeks_graded} <span style="font-size:18px;color:var(--muted)">of {PASS_WEEKS}</span>',
-             "needed for the season test", weeks_graded / PASS_WEEKS),
-    ])
+    # ---- scoreboard
+    rec_txt = f'{tot["W"]}-{tot["L"]}' + (f'-{tot["P"]}' if tot["P"] else "")
+    pat = summarize(pa) if pa.height else None
+    board = (
+        '<section class="board" aria-label="Season record">'
+        '<div><p class="eyebrow">Official S1 · 2026 season</p>'
+        f'<div class="hero"><div class="big">{rec_txt}</div><div class="stats">'
+        + stat("Win rate", fmt_pct(tot["win"]), f'break-even {fmt_pct(tot["be"])}' if tot["be"] is not None else "no graded picks")
+        + stat("Units", fmt_units(tot["units"]) if tot["n"] else "–", "1 unit per pick")
+        + stat("ROI", fmt_pct(tot["roi"], 1, True), f'95% {fmt_pct(ci[0], 0, True)} to {fmt_pct(ci[1], 0, True)}' if ci else "interval after 3 weeks")
+        + '</div></div>'
+        f'<div class="meters">{meter("Bets graded", tot["n"], PASS_N)}{meter("Weeks with a result", weeks_graded, PASS_WEEKS)}</div></div>'
+        '<div class="side">'
+        + ('<div><p class="eyebrow">S1 on ParlayAPI lines</p>'
+           f'<div class="mid">{pat["W"]}-{pat["L"]}' + (f'-{pat["P"]}' if pat["P"] else "") + '</div>'
+           f'<div class="s">{fmt_units(pat["units"]) + " units · " if pat["n"] else ""}{pat["pending"]} open · <a href="#parlay">picks</a></div></div>'
+           if pat else "")
+        + f'<div><p class="eyebrow">2025, same rule</p><div class="mid">{REF["w"]}-{REF["l"]}</div>'
+        f'<div class="s">ROI {fmt_pct(REF["roi"], 1, True)} · 95% {fmt_pct(REF["lo"], 0, True)} to {fmt_pct(REF["hi"], 0, True)}</div></div>'
+        '</div></section>')
 
-    # ---- current week
-    cur = rec.filter(pl.col("week") == cur_week) if n_all and cur_week is not None else rec
+    # ---- current week, official
+    cur = rec.filter(pl.col("week") == cur_week) if n_all and cur_week is not None else rec.head(0)
     games = []
     if runs.height and cur_week is not None:
-        gr = runs.filter(pl.col("week") == str(cur_week)).sort("run_utc", descending=True).unique("an_game_id", keep="first") \
-            .sort("start_time")
-        games = gr.to_dicts()
+        games = runs.filter(pl.col("week") == str(cur_week)).sort("run_utc", descending=True).unique("an_game_id", keep="first") \
+            .sort("start_time").to_dicts()
     blocks, quiet = [], []
     for g in games:
         rows = cur.filter(pl.col("an_game_id") == g["an_game_id"]).sort("player").to_dicts() if cur.height else []
-        if rows:
-            blocks.append(game_block(g, rows, now))
-        else:
-            quiet.append(g)
+        (blocks.append(game_block(g, rows, now)) if rows else quiet.append(g))
     if quiet:
         blocks.append('<section class="game quiet"><header><h3>No picks</h3></header><ul class="nopick">' + "".join(
             f'<li><span>{esc(g["away"])} at {esc(g["home"])}</span><span class="ko">{fmt_dt(g["start_time"])} ET</span></li>' for g in quiet) +
             '</ul><p class="note">None of these games had a prop where all four signals agreed at the latest run.</p></section>')
-    if not games:
-        blocks.append('<p class="empty">Action Network has not posted this week\'s player props yet, so official S1 has '
-                      'nothing to score. The ParlayAPI record below already covers this week.</p>')
     n_open = sum(1 for g in games if Lv.parse_ts(g["start_time"]) > now)
     n_flag = sum(1 for r in cur.to_dicts() if r.get("inj_against") == "true" or r.get("depth_against") == "true") if cur.height else 0
-    colhead = ('<div class="colhead"><span>Player</span><span>Bet</span><span class="r">Price</span>'
-               '<span class="p"><span title="Break-even for the price">BE</span><span title="DraftKings, de-vigged">Mkt</span><span title="Simulator">Model</span></span><span class="r">Result</span></div>')
-    week_html = (
-        f'<section><div class="weekhead"><h2>Week {cur_week}, official S1: {cur.height} picks in {len(games) - len(quiet)} of {len(games)} games</h2>'
-        f'<div class="filters" role="group" aria-label="Filter picks">'
-        f'<button type="button" data-mode="all" aria-pressed="true">All</button>'
-        f'<button type="button" data-mode="flagged" aria-pressed="false">News against ({n_flag})</button>'
-        f'<button type="button" data-mode="clear" aria-pressed="false">No news against</button></div></div>'
-        f'<p class="note">{n_open} games have not kicked off; their picks are the latest run and can change. Break-even is the '
-        f'price including vig. Market is DraftKings de-vigged. Model is the simulator, which backtests show is overconfident at the extremes.</p>'
-        f'{colhead}<div class="games">{"".join(blocks)}</div></section>') if cur_week is not None else '<p class="empty">No runs yet.</p>'
+    if cur_week is None:
+        week_html = '<p class="empty">No runs yet.</p>'
+    elif not games:
+        week_html = (f'<section class="block" id="week"><div class="sechead"><div><p class="eyebrow">Official S1 · Action Network lines</p>'
+                     f'<h2>Week {cur_week}: waiting for Action Network</h2></div></div>'
+                     '<p class="lede">Action Network has not posted this week\'s player props yet, so official S1 has nothing to score. '
+                     'The ParlayAPI record below already covers this week.</p></section>')
+    else:
+        week_html = (
+            f'<section class="block" id="week"><div class="sechead"><div><p class="eyebrow">Official S1 · Action Network lines</p>'
+            f'<h2>Week {cur_week}: {cur.height} picks in {len(games) - len(quiet)} of {len(games)} games</h2></div>'
+            f'<div class="filters" role="group" aria-label="Filter picks">'
+            f'<button type="button" data-mode="all" aria-pressed="true">All</button>'
+            f'<button type="button" data-mode="flagged" aria-pressed="false">News against ({n_flag})</button>'
+            f'<button type="button" data-mode="clear" aria-pressed="false">No news against</button></div></div>'
+            f'<p class="lede">{n_open} of {len(games)} games have not kicked off; their picks can change until the last run before kickoff. '
+            'BE is the break-even for the price, Mkt is DraftKings de-vigged, Model is the simulator.</p>'
+            f'{COLHEAD}<div class="games">{"".join(blocks)}</div></section>')
 
     # ---- charts
-    edge_rows = [r for r in cur.to_dicts() if r["result"] == "pending"] if cur.height else []
+    edge_rows = [dict(r, _tag="official S1") for r in cur.to_dicts() if r["result"] == "pending" and Lv.parse_ts(r["start_time"]) > now] if cur.height else []
+    if pa.height:
+        edge_rows += [dict(r, _tag="ParlayAPI") for r in pa.filter(pl.col("week") == cur_week).to_dicts()
+                      if r["result"] == "pending" and Lv.parse_ts(r["start_time"]) > now]
     charts = (
-        '<div class="cols charts"><div class="card"><h2>Season units</h2>' + chart_units(rec) +
-        f'<p class="note">2025 reference for the same rule: {REF["w"]}-{REF["l"]}, ROI {fmt_pct(REF["roi"], 1, True)}, 95% interval '
-        f'{fmt_pct(REF["lo"], 1, True)} to {fmt_pct(REF["hi"], 1, True)} (61 bets). Interim 2026 numbers are descriptive.</p></div>'
-        '<div class="card"><h2>Open picks: model against price</h2>'
-        '<div class="legend"><span><i class="k1"></i>Break-even for the price</span><span><i class="k3"></i>Market (de-vigged)</span>'
-        '<span><i class="k2"></i>Model</span></div>' + chart_edge(edge_rows) +
-        '<p class="note">The filled dot should sit right of the hollow one for the pick to have value by the model\'s own numbers. '
-        'Backtests found the model\'s extreme probabilities land near 50%, so long gaps are weaker than they look.</p></div></div>')
+        '<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Season so far</h2></div></div>'
+        '<div class="grid2"><div class="card"><h3>Cumulative units</h3><p class="note" style="margin-top:2px">One step per graded pick, in kickoff order. Hover a pick for its result.</p>'
+        '<div class="legend"><span><i class="k2"></i>Won</span><span><i style="background:var(--neg)"></i>Lost</span></div>'
+        + chart_units(rec) + '</div>'
+        '<div class="card"><h3>Units by week</h3><p class="note" style="margin-top:2px">Each column is one graded week, at the DraftKings price recorded with the pick.</p>'
+        '<div class="legend"><span><i class="kp"></i>Up</span><span><i class="kn"></i>Down</span></div>'
+        + chart_weeks(rec) + '</div></div></section>'
+        '<section class="card"><p class="eyebrow">Both records · open picks</p><h2>Model against price</h2>'
+        '<p class="note" style="margin-top:2px">A pick has value by the model\'s own numbers when the filled dot sits right of the ring. '
+        'Backtests found the model\'s extreme probabilities land near 50%, so long gaps are weaker than they look.</p>'
+        '<div class="legend"><span><i class="k1"></i>Break-even for the price</span><span><i class="k3"></i>DraftKings, de-vigged</span>'
+        '<span><i class="k2"></i>Model</span></div>' + chart_edge(edge_rows) + '</section>')
 
     # ---- breakdowns
     if n_all:
@@ -613,16 +803,18 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
               ("Flags not recorded (before 2026-10-03)", rec.filter(pl.col("inj_against").is_null()))]
         fl = [(n, x) for n, x in fl if x.height]
         breakdowns = (
-            '<div class="cols"><div class="card"><h2>By week</h2>' + breakdown(rec, None, wk) + '</div>'
-            '<div class="card"><h2>By news flag</h2>' + breakdown(rec, None, fl) +
+            '<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Record by group</h2></div></div>'
+            f'<p class="lede">The black tick on each win bar is the break-even for the prices taken. Fewer than {PASS_N} graded bets in a row is too few to read; '
+            'pushes and voids (player did not play) take no units.</p>'
+            '<div class="stack"><div class="card"><h3>By prop</h3>' + breakdown(rec, None, mk) + '</div>'
+            '<div class="card"><h3>By news flag</h3>' + breakdown(rec, None, fl) +
             '<p class="note">Flags are descriptive. S1 still records flagged picks; dropping them would be a new rule that needs its own pre-registration.</p></div>'
-            '<div class="card"><h2>By prop</h2>' + breakdown(rec, None, mk) + '</div>'
-            '<div class="card"><h2>Over and under</h2>' + breakdown(rec, None, sd) + '</div></div>'
-            f'<p class="note">Fewer than {PASS_N} graded bets in any row is too few to read. Pushes and voids (player did not play) take no units.</p>')
+            '<div class="card"><h3>Over and under</h3>' + breakdown(rec, None, sd) + '</div>'
+            '<div class="card"><h3>By week</h3>' + breakdown(rec, None, wk) + '</div></div></section>')
     else:
         breakdowns = ""
 
-    # ---- changes between runs and run log
+    # ---- changes between runs, run log, second source
     ch = changes(picks, runs, cur_week, now) if cur_week is not None else []
     if ch:
         rows = []
@@ -630,27 +822,31 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
             price = f'{c["odds_first"]:+.0f}' if c["odds_first"] == c["odds_last"] else f'{c["odds_first"]:+.0f} → {c["odds_last"]:+.0f}'
             line = f'{c["line_first"]:g}' if c["line_first"] == c["line_last"] else f'{c["line_first"]} → {c["line_last"]}'
             rows.append([esc(c["game"]), esc(c["player"]), f'{esc(c["side"])} {line} {esc(MARKET.get(c["market"], c["market"]))}', price,
-                         f'{c["n_seen"]} of {c["n_runs"]}', "kept" if c["kept"] else '<span style="color:var(--bad)">dropped</span>'])
-        stab = table(["Game", "Player", "Bet", "Price first → now", "Runs it was in", "Deciding run"], rows)
+                         f'{c["n_seen"]} of {c["n_runs"]}', chip("win", "kept") if c["kept"] else chip("idle", "dropped")])
         kept = sum(1 for c in ch if c["kept"])
-        stab_html = (f'<div class="card"><h2>Pick stability</h2><p class="note" style="margin-top:0">{len(ch)} different picks appeared this week; '
-                     f'{kept} are in the deciding run and {len(ch) - kept} were dropped as lines, prices or injury news moved. '
-                     f'Deciding run is the last run before kickoff.</p>{stab}</div>')
+        stab_html = (f'<div class="card"><h3>Pick stability, week {cur_week}</h3><p class="note" style="margin-top:2px">{len(ch)} different picks appeared; '
+                     f'{kept} are in the deciding run and {len(ch) - kept} dropped out as lines, prices or injury news moved.</p>'
+                     + table(["Game", "Player", "Bet", "Price first → now", "Runs", "Deciding run"], rows) + '</div>')
     else:
         stab_html = ""
     rl = run_log(picks, runs, live)
     if rl:
         rows = []
-        for r in rl[:14]:
+        for r in rl[:12]:
             def ok(b):
                 return "n/a" if not r["flags_era"] else ("✓" if b else '<span style="color:var(--bad)">missing</span>')
             rows.append([esc(fmt_dt(r["run"])), str(r["games"]), str(r["props"]), str(r["picks"]),
                          "–" if r["lead"] is None else f'{r["lead"] / 60:.1f} h' if r["lead"] >= 90 else f'{r["lead"]:.0f} min',
                          ok(r["inj"]), ok(r["depth"])])
-        runs_html = ('<div class="card"><h2>Run log</h2>' + table(["Run (ET)", "Games", "Props scored", "Picks", "To next kickoff", "Injuries saved", "Depth saved"], rows, "num") +
-                     '<p class="note">A run late in the day has fewer games left to score. The injury and depth responses are saved with every run.</p></div>')
+        runs_html = ('<div class="card"><h3>Run log, official S1</h3>' + table(["Run (ET)", "Games", "Props", "Picks", "To kickoff", "Injuries", "Depth"], rows, "num") +
+                     '<p class="note">A late run has fewer games left to score. The injury and depth responses are saved with every run.</p></div>')
     else:
         runs_html = ""
+    pc = parlay_card(data.get("pcmp", pl.DataFrame()))
+    ops = [x for x in (pc, runs_html) if x]
+    ops_html = (('<section class="block"><div class="sechead"><div><p class="eyebrow">Runs and sources</p><h2>How the picks were made</h2></div></div>'
+                 + (stab_html if stab_html else "") + (f'<div class="stack">{"".join(ops)}</div>' if ops else "") + '</section>')
+                if stab_html or ops else "")
 
     # ---- earlier weeks
     old = []
@@ -660,19 +856,19 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
                 continue
             s = summarize(x)
             rows = "".join(pick_row(r, True) for r in x.sort("start_time", "player").to_dicts())
-            old.append(f'<details class="old"><summary>Week {w}: {s["W"]}-{s["L"]}-{s["P"]}, {fmt_units(s["units"])} units</summary>'
-                       f'<ul class="picks">{rows}</ul></details>')
+            old.append(f'<details class="old"><summary>Week {w}: {s["W"]}-{s["L"]}' + (f'-{s["P"]}' if s["P"] else "")
+                       + f', {fmt_units(s["units"])} units</summary><ul class="picks">{rows}</ul></details>')
 
-    stamp = f'Built {fmt_dt(now.strftime("%Y-%m-%dT%H:%M:%SZ"))} ET' + (f' · last run {fmt_dt(last_run)} ET' if last_run else "")
+    stamp = f'Built {fmt_dt(now.strftime("%Y-%m-%dT%H:%M:%SZ"))} ET' + (f' · last official run {fmt_dt(last_run)} ET' if last_run else "")
     foot = (
-        '<div class="foot"><ul>'
+        '<footer class="foot"><ul>'
         f'<li>Rule S1: DraftKings props where the disagree, projection, simulator and price signals all point the same way. Locked before the season; '
         f'<a href="{REPO}docs/s1_live_rules.md">tracker rules</a> · <a href="{REPO}docs/simulator_confirm.md">season test</a>.</li>'
         f'<li>Season test: pass only if at least {PASS_N} bets in at least {PASS_WEEKS} weeks and the week-clustered ROI interval has its lower end above 0. This page does not decide that.</li>'
         f'<li>Weekly recaps (why each pick landed where it did): <a href="{REPO}docs/recaps/">docs/recaps</a>, written after each week is graded.</li>'
         '<li>The official pick for a game is the last run before kickoff. Nothing is edited after kickoff. A player who does not play is void.</li>'
         '<li>Results come from nflverse player stats and snap counts, which can lag a game by hours. Injury news is ESPN at the time of each run, saved in <code>data/live/injuries</code>.</li>'
-        '</ul></div>')
+        '</ul></footer>')
 
     return (
         '<title>S1 Live Tracker</title>'
@@ -680,13 +876,11 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">'
         f'<style>{CSS}</style>'
         '<div class="wrap">'
-        f'<div class="top"><div><h1>S1 Live Tracker</h1><p class="sub">2026 NFL player props, rule S1 (all four signals agree)</p></div>'
-        f'<div class="stamp">{esc(stamp)}</div></div>'
-        '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations. In 2025 it went '
-        f'{REF["w"]}-{REF["l"]} on 61 bets with a 95% interval of {fmt_pct(REF["lo"], 0, True)} to {fmt_pct(REF["hi"], 0, True)} ROI.</div>'
-        f'<div class="tiles">{tiles}</div>'
-        f'{week_html}{pa_section(pa_rec, rec, now)}{charts}{breakdowns}{stab_html}{runs_html}{parlay_card(data.get("pcmp", pl.DataFrame()))}'
-        + ("<section><h2>Earlier weeks</h2><div class=\"games\">" + "".join(old) + "</div></section>" if old else "")
+        f'<header class="top"><div><h1>S1 Live Tracker</h1><p class="sub">2026 NFL player props · rule S1, all four signals agree</p></div>'
+        f'<div class="stamp">{esc(stamp)}</div></header>'
+        '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations.</div>'
+        f'{board}{week_html}{pa_section(pa_raw, rec, now)}{charts}{breakdowns}{ops_html}'
+        + ('<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Earlier weeks</h2></div></div><div class="games">' + "".join(old) + "</div></section>" if old else "")
         + f'{foot}</div><script>{JS}</script>')
 
 

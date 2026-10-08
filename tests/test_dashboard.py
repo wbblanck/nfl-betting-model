@@ -80,7 +80,7 @@ def test_build_with_results_and_empty(tmp_path):
     assert "1-1" in page and "-0.17" in page and "-8.3%" in page   # record, units and ROI recomputed from the files
     assert "+0.83" in page                                         # the winning -120 pick returns 100/120 units
     assert 'data-against="1"' in page and "Injury news against" in page
-    assert "Season units" in page and "polyline" in page          # a graded pick draws the cumulative line
+    assert "Cumulative units" in page and "polyline" in page          # a graded pick draws the cumulative line
     empty = tmp_path / "empty"
     empty.mkdir()
     assert "S1 Live Tracker" in D.build(D.load(empty), NOW)       # no files at all: a page, not a crash
@@ -118,5 +118,5 @@ def test_pa_section_marks_overlap_with_official():
                        dict(base, player="Aaron Jones", player_id="b", market="rec", side="under", away="MIN", home="NO")])
     rec = pl.DataFrame({"player_id": ["a"], "market": ["rec"], "side": ["under"]})
     html = D.pa_section(pa, rec, dt.datetime(2026, 10, 8, tzinfo=dt.timezone.utc))
-    assert "0-0 · 2 open" in html and html.count(">yes<") == 1 and html.count(">no<") == 1 and "Open" in html
+    assert "2 picks" in html and html.count("Also official S1") == 1 and "Open" in html
     assert D.pa_section(pl.DataFrame(), rec, dt.datetime(2026, 10, 8, tzinfo=dt.timezone.utc)) == ""
