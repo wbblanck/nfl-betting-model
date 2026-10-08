@@ -1,0 +1,4251 @@
+{
+ "gameId": 401872980,
+ "gamepackageJSON": {
+  "news": {
+   "link": {
+    "isExternal": false,
+    "shortText": "All News",
+    "rel": [
+     "index",
+     "desktop",
+     "league"
+    ],
+    "language": "en-US",
+    "href": "https://www.espn.com/nfl/",
+    "text": "All NFL News",
+    "isPremium": false
+   },
+   "header": "NFL News",
+   "articles": [
+    {
+     "contentKey": "50128547-1-5-1",
+     "images": [
+      {
+       "dataSourceIdentifier": "80b4271006059",
+       "name": "NCF vs. AFC (AFC wide receiver Tyreek Hill (10) of the Miami Dolphins makes a catch) [600x600]",
+       "width": 600,
+       "id": 39459569,
+       "type": "header",
+       "credit": "Nathan Ray Seebeck/USA TODAY Sports",
+       "url": "https://a.espncdn.com/photo/2024/0204/r1286856_600x600_1-1.jpg",
+       "height": 600
+      }
+     ],
+     "dataSourceIdentifier": "c0d878f3b62ec",
+     "description": "Tyreek Hill's attorneys tried to show discrepancies in the testimony of his wife and police photos of her after a '24 incident to try to discredit abuse claims.",
+     "published": "2026-10-08T00:38:11Z",
+     "type": "HeadlineNews",
+     "nowId": "1-50128547",
+     "premium": false,
+     "links": {
+      "app": {
+       "sportscenter": {
+        "href": "sportscenter://x-callback-url/showStory?uid=50128547"
+       }
+      },
+      "web": {
+       "href": "https://www.espn.com/nfl/story/_/id/50128547/tyreek-hill-wife-cross-examined-day-2-trial"
+      },
+      "mobile": {
+       "href": "http://m.espn.go.com/nfl/story?storyId=50128547"
+      },
+      "api": {
+       "self": {
+        "href": "https://content.core.api.espn.com/v1/sports/news/50128547"
+       }
+      }
+     },
+     "id": 50128547,
+     "lastModified": "2026-10-08T00:38:11Z",
+     "categories": [
+      {
+       "uid": "s:20~l:28~a:3116406",
+       "sportId": 28,
+       "athleteId": 3116406,
+       "athlete": {
+        "description": "Tyreek Hill",
+        "links": "...",
+        "id": 3116406
+       },
+       "guid": "a3ef592c-a48e-d761-be9c-b81819cfe0ea",
+       "description": "Tyreek Hill",
+       "id": 153141,
+       "type": "athlete"
+      },
+      {
+       "uid": "s:20~l:28",
+       "sportId": 28,
+       "leagueId": 28,
+       "league": {
+        "description": "NFL",
+        "links": "...",
+        "id": 28,
+        "abbreviation": "NFL"
+       },
+       "guid": "ad4c3bd2-ddb6-3f8c-8abf-744855a08fa4",
+       "description": "NFL",
+       "id": 9572,
+       "type": "league"
+      },
+      {
+       "sportId": 0,
+       "topicId": 781,
+       "guid": "52313677-19f8-b106-ec91-d8d17e6087fe",
+       "description": "news",
+       "id": 409224,
+       "type": "topic"
+      },
+      "... 1 more"
+     ],
+     "headline": "Tyreek Hill's wife cross-examined during Day 2 of trial",
+     "byline": "Xuan Thai"
+    },
+    {
+     "contentKey": "50128245-1-5-1",
+     "images": [
+      {
+       "dataSourceIdentifier": "57b614e9799e0",
+       "name": "Justin Jefferson  [600x400]",
+       "width": 600,
+       "id": 50128215,
+       "type": "header",
+       "credit": "Ricky Bowden/Icon Sportswire",
+       "url": "https://a.espncdn.com/photo/2026/1007/r1727583_600x400_3-2.jpg",
+       "height": 400
+      }
+     ],
+     "dataSourceIdentifier": "55eddb9dd3f91",
+     "description": "Vikings receiver Justin Jefferson returned to practice Wednesday on a limited basis for the first time since spraining his left ankle 10 days ago and appeared optimistic that he will play Sunday at New Orleans.",
+     "published": "2026-10-07T23:31:55Z",
+     "type": "HeadlineNews",
+     "nowId": "1-50128245",
+     "premium": false,
+     "links": {
+      "app": {
+       "sportscenter": {
+        "href": "sportscenter://x-callback-url/showStory?uid=50128245"
+       }
+      },
+      "web": {
+       "href": "https://www.espn.com/nfl/story/_/id/50128245/vikings-justin-jefferson-says-plan-play-week-5-vs-saints"
+      },
+      "mobile": {
+       "href": "http://m.espn.go.com/nfl/story?storyId=50128245"
+      },
+      "api": {
+       "self": {
+        "href": "https://content.core.api.espn.com/v1/sports/news/50128245"
+       }
+      }
+     },
+     "id": 50128245,
+     "lastModified": "2026-10-07T23:31:55Z",
+     "categories": [
+      {
+       "sportId": 0,
+       "topicId": 781,
+       "guid": "52313677-19f8-b106-ec91-d8d17e6087fe",
+       "description": "news",
+       "id": 409224,
+       "type": "topic"
+      },
+      {
+       "uid": "s:20~l:28~a:4262921",
+       "sportId": 28,
+       "athleteId": 4262921,
+       "athlete": {
+        "description": "Justin Jefferson",
+        "links": "...",
+        "id": 4262921
+       },
+       "guid": "c7fb1996-2530-7f98-9f2f-572debf989f4",
+       "description": "Justin Jefferson",
+       "id": 435021,
+       "type": "athlete"
+      },
+      {
+       "uid": "s:20~l:28",
+       "sportId": 28,
+       "leagueId": 28,
+       "league": {
+        "description": "NFL",
+        "links": "...",
+        "id": 28,
+        "abbreviation": "NFL"
+       },
+       "guid": "ad4c3bd2-ddb6-3f8c-8abf-744855a08fa4",
+       "description": "NFL",
+       "id": 9572,
+       "type": "league"
+      },
+      "... 2 more"
+     ],
+     "headline": "Vikings' Justin Jefferson says plan is to play vs. Saints",
+     "byline": "Kevin Seifert"
+    },
+    {
+     "contentKey": "50128136-1-5-1",
+     "images": [
+      {
+       "dataSourceIdentifier": "04632b22102eb",
+       "name": "Sean Payton and Bo Nix [600x600]",
+       "alt": "Sean Payton and Bo Nix",
+       "width": 600,
+       "caption": "The Broncos won 14 games last season and are attracting a lot of attention from bettors.",
+       "id": 49828947,
+       "type": "header",
+       "credit": "Dustin Bradford/Icon Sportswire",
+       "url": "https://a.espncdn.com/photo/2026/0904/r1711543_600x600_1-1.jpg",
+       "height": 600
+      }
+     ],
+     "dataSourceIdentifier": "ba355e61efe86",
+     "description": "Sean Payton said righting the wrongs of Denver's offense is more about the \"specific and the detail of each play,\" not who is actually calling the plays.",
+     "published": "2026-10-07T22:57:41Z",
+     "type": "HeadlineNews",
+     "nowId": "1-50128136",
+     "premium": false,
+     "links": {
+      "app": {
+       "sportscenter": {
+        "href": "sportscenter://x-callback-url/showStory?uid=50128136"
+       }
+      },
+      "web": {
+       "href": "https://www.espn.com/nfl/story/_/id/50128136/broncos-payton-concerned-details-not-play-calling"
+      },
+      "mobile": {
+       "href": "http://m.espn.go.com/nfl/story?storyId=50128136"
+      },
+      "api": {
+       "self": {
+        "href": "https://content.core.api.espn.com/v1/sports/news/50128136"
+       }
+      }
+     },
+     "id": 50128136,
+     "lastModified": "2026-10-07T22:57:41Z",
+     "categories": [
+      {
+       "uid": "s:20~l:28",
+       "sportId": 28,
+       "leagueId": 28,
+       "league": {
+        "description": "NFL",
+        "links": "...",
+        "id": 28,
+        "abbreviation": "NFL"
+       },
+       "guid": "ad4c3bd2-ddb6-3f8c-8abf-744855a08fa4",
+       "description": "NFL",
+       "id": 9572,
+       "type": "league"
+      },
+      {
+       "uid": "s:20~l:28~t:7",
+       "sportId": 28,
+       "teamId": 7,
+       "guid": "51042145-e3c1-0694-ae0d-f720342ff8fc",
+       "description": "Denver Broncos",
+       "id": 2432,
+       "team": {
+        "shortDisplayName": "Broncos",
+        "description": "Denver Broncos",
+        "links": "...",
+        "id": 7,
+        "abbreviation": "DEN"
+       },
+       "type": "team"
+      },
+      {
+       "sportId": 0,
+       "topicId": 781,
+       "guid": "52313677-19f8-b106-ec91-d8d17e6087fe",
+       "description": "news",
+       "id": 409224,
+       "type": "topic"
+      },
+      "... 1 more"
+     ],
+     "headline": "Broncos' Payton: Concerned about details, not playcalling",
+     "byline": "Jeff Legwold"
+    },
+    "... 3 more"
+   ]
+  },
+  "ticketsInfo": {
+   "tickets": [
+    {
+     "type": "league",
+     "ticketLink": "https://www.vividseats.com/nfl/?wsUser=717",
+     "ticketName": "All NFL Tickets"
+    },
+    {
+     "type": "team",
+     "ticketLink": "https://www.vividseats.com/dallas-cowboys-tickets--sports-nfl-football/performer/214?wsUser=717",
+     "ticketName": "All Cowboys Tickets"
+    },
+    {
+     "type": "event",
+     "ticketLink": "https://www.vividseats.com/dallas-cowboys-tickets-arlington-att-stadium-3-9-2026/production/6489565?wsUser=717",
+     "ticketName": "10/8 vs Buccaneers 5871 tickets left"
+    },
+    "... 12 more"
+   ],
+   "seatSituation": {
+    "venueName": "AT&T Stadium",
+    "summary": "Tickets as low as $21",
+    "date": "2026-10-09T00:15Z",
+    "venueLink": "https://www.vividseats.com/att-stadium-tickets/venue/6409?wsUser=717",
+    "teamLink": "https://www.vividseats.com/dallas-cowboys-tickets--sports-nfl-football/performer/214?wsUser=717",
+    "homeAway": "home",
+    "genericLink": "https://www.vividseats.com/?wsUser=717",
+    "timeValid": true,
+    "dateDay": "Thu",
+    "currentTeamName": "Cowboys",
+    "opponentTeamName": "Buccaneers",
+    "eventLink": "https://www.vividseats.com/dallas-cowboys-tickets-arlington-att-stadium-3-9-2026/production/6489565?wsUser=717"
+   }
+  },
+  "pickcenter": [
+   {
+    "underOdds": -105,
+    "awayTeamOdds": {
+     "spreadOdds": -105,
+     "underdog": true,
+     "teamId": "27",
+     "team": {
+      "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/nfl/seasons/2026/teams/27?lang=en&region=us"
+     },
+     "favorite": false,
+     "moneyLine": 360,
+     "favoriteAtOpen": false
+    },
+    "footer": {
+     "disclaimer": "GAMBLING PROBLEM? CALL 1-800-GAMBLER or 1-800-MY-RESET, (800) 327-5050 or visit gamblinghelplinema.org (MA). Call 877-8-HOPENY/text HOPENY (467369) (NY). Call 888-789-7777/visit ccpg.org (CT), or visit www.mdgamblinghelp.org (MD), 1-800-981-0023 (PR). 21+ and present in most states. (18+ DC/KY/NH/PR/WY). Void in ONT. Eligibility restrictions apply. Terms: draftkings.com/sportsbook. On behalf of Boot Hill Casino (KS). Pass-thru of per wager tax may apply in IL."
+    },
+    "link": {
+     "isExternal": false,
+     "shortText": "Odds",
+     "rel": [
+      "odds",
+      "desktop",
+      "event"
+     ],
+     "language": "en-US",
+     "href": "https://www.espn.com/nfl/odds/_/gameId/401872980",
+     "text": "See More Odds and Props",
+     "isPremium": false
+    },
+    "pointSpread": {
+     "shortDisplayName": "Spread",
+     "away": {
+      "close": {
+       "line": "+8.5",
+       "odds": "-105",
+       "link": {
+        "isExternal": true,
+        "shortText": "Away Point Spread",
+        "rel": [
+         "awaySpread",
+         "desktop",
+         "bets"
+        ],
+        "language": "en-US",
+        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0HC84695570P850_3",
+        "text": "Away Point Spread",
+        "isPremium": false,
+        "tracking": "..."
+       }
+      },
+      "open": {
+       "line": "+3.5",
+       "odds": "-110"
+      }
+     },
+     "displayName": "Spread",
+     "home": {
+      "close": {
+       "line": "-8.5",
+       "odds": "-115",
+       "link": {
+        "isExternal": true,
+        "shortText": "Home Point Spread",
+        "rel": [
+         "homeSpread",
+         "desktop",
+         "bets"
+        ],
+        "language": "en-US",
+        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0HC84695570N850_1",
+        "text": "Home Point Spread",
+        "isPremium": false,
+        "tracking": "..."
+       }
+      },
+      "open": {
+       "line": "-3.5",
+       "odds": "-110"
+      }
+     }
+    },
+    "spread": -8.5,
+    "overUnder": 47.5,
+    "total": {
+     "shortDisplayName": "Total",
+     "over": {
+      "close": {
+       "line": "o47.5",
+       "odds": "-115",
+       "link": {
+        "isExternal": true,
+        "shortText": "Over Odds",
+        "rel": [
+         "over",
+         "desktop",
+         "bets"
+        ],
+        "language": "en-US",
+        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0OU84695570O4750_1",
+        "text": "Over Odds",
+        "isPremium": false,
+        "tracking": "..."
+       }
+      },
+      "open": {
+       "line": "o52.5",
+       "odds": "-110"
+      }
+     },
+     "displayName": "Total",
+     "under": {
+      "close": {
+       "line": "u47.5",
+       "odds": "-105",
+       "link": {
+        "isExternal": true,
+        "shortText": "Under Odds",
+        "rel": [
+         "under",
+         "desktop",
+         "bets"
+        ],
+        "language": "en-US",
+        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0OU84695570U4750_3",
+        "text": "Under Odds",
+        "isPremium": false,
+        "tracking": "..."
+       }
+      },
+      "open": {
+       "line": "u52.5",
+       "odds": "-110"
+      }
+     }
+    },
+    "provider": {
+     "name": "Draft Kings",
+     "id": "100",
+     "priority": 1,
+     "logos": [
+      {
+       "rel": [
+        "light"
+       ],
+       "href": "https://a.espncdn.com/i/betting/Draftkings_Light.svg"
+      },
+      {
+       "rel": [
+        "dark"
+       ],
+       "href": "https://a.espncdn.com/i/betting/Draftkings_Dark.svg"
+      }
+     ]
+    },
+    "header": {
+     "logo": {
+      "exclusivesLogoLight": "https://a.espncdn.com/i/espnbet/espn-bet-square-mint.svg",
+      "light": "https://a.espncdn.com/i/espnbet/espn-bet-square-off.svg",
+      "dark": "https://a.espncdn.com/i/espnbet/dark/espn-bet-square-off.svg",
+      "exclusivesLogoDark": "https://a.espncdn.com/i/espnbet/espn-bet-square-mint.svg"
+     },
+     "text": "Game Odds"
+    },
+    "details": "DAL -8.5",
+    "links": [
+     {
+      "isExternal": true,
+      "shortText": "Home Bet",
+      "rel": [
+       "home",
+       "desktop",
+       "bets",
+       "... 1 more"
+      ],
+      "language": "en-US",
+      "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0ML84695570_1",
+      "text": "Home Bet",
+      "isPremium": false,
+      "tracking": {
+       "campaign": "betting-integrations",
+       "tags": {
+        "gameId": 401872980,
+        "league": "nfl",
+        "sport": "football",
+        "betType": "straight",
+        "betSide": "home"
+       }
+      }
+     },
+     {
+      "isExternal": true,
+      "shortText": "Away Bet",
+      "rel": [
+       "away",
+       "desktop",
+       "bets",
+       "... 1 more"
+      ],
+      "language": "en-US",
+      "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0ML84695570_3",
+      "text": "Away Bet",
+      "isPremium": false,
+      "tracking": {
+       "campaign": "betting-integrations",
+       "tags": {
+        "gameId": 401872980,
+        "league": "nfl",
+        "sport": "football",
+        "betType": "straight",
+        "betSide": "away"
+       }
+      }
+     },
+     {
+      "isExternal": true,
+      "shortText": "Home Point Spread",
+      "rel": [
+       "homeSpread",
+       "desktop",
+       "bets"
+      ],
+      "language": "en-US",
+      "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0HC84695570N850_1",
+      "text": "Home Point Spread",
+      "isPremium": false,
+      "tracking": {
+       "campaign": "betting-integrations",
+       "tags": {
+        "gameId": 401872980,
+        "league": "nfl",
+        "betDetails": "Spread:DAL-8.5",
+        "sport": "football",
+        "betType": "straight",
+        "betSide": "none"
+       }
+      }
+     },
+     "... 4 more"
+    ],
+    "moneyline": {
+     "shortDisplayName": "ML",
+     "away": {
+      "close": {
+       "odds": "+360",
+       "link": {
+        "isExternal": true,
+        "shortText": "Away Bet",
+        "rel": [
+         "away",
+         "desktop",
+         "bets",
+         "... 1 more"
+        ],
+        "language": "en-US",
+        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0ML84695570_3",
+        "text": "Away Bet",
+        "isPremium": false,
+        "tracking": "..."
+       }
+      },
+      "open": {
+       "odds": "+170"
+      }
+     },
+     "displayName": "Moneyline",
+     "home": {
+      "close": {
+       "odds": "-470",
+       "link": {
+        "isExternal": true,
+        "shortText": "Home Bet",
+        "rel": [
+         "home",
+         "desktop",
+         "bets",
+         "... 1 more"
+        ],
+        "language": "en-US",
+        "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118137%3Foutcomes%3D0ML84695570_1",
+        "text": "Home Bet",
+        "isPremium": false,
+        "tracking": "..."
+       }
+      },
+      "open": {
+       "odds": "-205"
+      }
+     }
+    },
+    "homeTeamOdds": {
+     "spreadOdds": -115,
+     "underdog": false,
+     "teamId": "6",
+     "team": {
+      "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "favorite": true,
+     "moneyLine": -470,
+     "favoriteAtOpen": true
+    },
+    "overOdds": -115
+   }
+  ],
+  "lastFiveGames": [
+   {
+    "displayOrder": 2,
+    "team": {
+     "uid": "s:20~l:28~t:6",
+     "displayName": "Dallas Cowboys",
+     "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+     "links": [
+      {
+       "href": "https://www.espn.com/nfl/team/_/name/dal/dallas-cowboys",
+       "text": "Clubhouse"
+      },
+      {
+       "href": "https://www.espn.com/nfl/team/schedule/_/name/dal",
+       "text": "Schedule"
+      }
+     ],
+     "id": "6",
+     "abbreviation": "DAL",
+     "logos": [
+      {
+       "lastUpdated": "2024-06-25T18:47Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "default"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:59Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "dark"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/dal.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:48Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "scoreboard"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/dal.png",
+       "height": 500
+      },
+      "... 1 more"
+     ]
+    },
+    "events": [
+     {
+      "homeShootoutScore": "0",
+      "week": 4,
+      "homeAggregateScore": "0",
+      "leagueAbbreviation": "NFL",
+      "gameDate": "2026-08-29T00:00Z",
+      "gameResult": "L",
+      "awayShootoutScore": "0",
+      "awayAggregateScore": "0",
+      "leagueName": "National Football League",
+      "score": "27-24",
+      "homeTeamScore": "24",
+      "opponent": {
+       "uid": "s:20~l:28~t:18",
+       "displayName": "New Orleans Saints",
+       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
+       "links": [
+        "...",
+        "..."
+       ],
+       "id": "18",
+       "abbreviation": "NO",
+       "logos": [
+        "...",
+        "...",
+        "...",
+        "... 1 more"
+       ]
+      },
+      "awayTeamScore": "27",
+      "links": [
+       {
+        "href": "https://www.espn.com/nfl/game/_/gameId/401874048/saints-cowboys",
+        "text": "Gamecast"
+       }
+      ],
+      "id": "401874048",
+      "homeTeamId": "6",
+      "atVs": "vs",
+      "awayTeamId": "18",
+      "opponentLogo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png"
+     },
+     {
+      "homeShootoutScore": "0",
+      "week": 1,
+      "homeAggregateScore": "0",
+      "leagueAbbreviation": "NFL",
+      "gameDate": "2026-09-14T00:20Z",
+      "gameResult": "L",
+      "awayShootoutScore": "0",
+      "awayAggregateScore": "0",
+      "leagueName": "National Football League",
+      "score": "28-20",
+      "homeTeamScore": "28",
+      "opponent": {
+       "uid": "s:20~l:28~t:19",
+       "displayName": "New York Giants",
+       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
+       "links": [
+        "...",
+        "..."
+       ],
+       "id": "19",
+       "abbreviation": "NYG",
+       "logos": [
+        "...",
+        "...",
+        "...",
+        "... 1 more"
+       ]
+      },
+      "awayTeamScore": "20",
+      "links": [
+       {
+        "href": "https://www.espn.com/nfl/game/_/gameId/401872930/cowboys-giants",
+        "text": "Gamecast"
+       }
+      ],
+      "id": "401872930",
+      "homeTeamId": "19",
+      "atVs": "@",
+      "awayTeamId": "6",
+      "opponentLogo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png"
+     },
+     {
+      "homeShootoutScore": "0",
+      "week": 2,
+      "homeAggregateScore": "0",
+      "leagueAbbreviation": "NFL",
+      "gameDate": "2026-09-20T20:25Z",
+      "gameResult": "W",
+      "awayShootoutScore": "0",
+      "awayAggregateScore": "0",
+      "leagueName": "National Football League",
+      "score": "37-20",
+      "homeTeamScore": "37",
+      "opponent": {
+       "uid": "s:20~l:28~t:28",
+       "displayName": "Washington Commanders",
+       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
+       "links": [
+        "...",
+        "..."
+       ],
+       "id": "28",
+       "abbreviation": "WSH",
+       "logos": [
+        "...",
+        "...",
+        "...",
+        "... 1 more"
+       ]
+      },
+      "awayTeamScore": "20",
+      "links": [
+       {
+        "href": "https://www.espn.com/nfl/game/_/gameId/401872944/commanders-cowboys",
+        "text": "Gamecast"
+       }
+      ],
+      "id": "401872944",
+      "homeTeamId": "6",
+      "atVs": "vs",
+      "awayTeamId": "28",
+      "opponentLogo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png"
+     },
+     "... 2 more"
+    ]
+   },
+   {
+    "displayOrder": 1,
+    "team": {
+     "uid": "s:20~l:28~t:27",
+     "displayName": "Tampa Bay Buccaneers",
+     "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+     "links": [
+      {
+       "href": "https://www.espn.com/nfl/team/_/name/tb/tampa-bay-buccaneers",
+       "text": "Clubhouse"
+      },
+      {
+       "href": "https://www.espn.com/nfl/team/schedule/_/name/tb",
+       "text": "Schedule"
+      }
+     ],
+     "id": "27",
+     "abbreviation": "TB",
+     "logos": [
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "default"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "dark"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/tb.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "scoreboard"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/tb.png",
+       "height": 500
+      },
+      "... 1 more"
+     ]
+    },
+    "events": [
+     {
+      "homeShootoutScore": "0",
+      "week": 4,
+      "homeAggregateScore": "0",
+      "leagueAbbreviation": "NFL",
+      "gameDate": "2026-08-28T23:30Z",
+      "gameResult": "L",
+      "awayShootoutScore": "0",
+      "awayAggregateScore": "0",
+      "leagueName": "National Football League",
+      "score": "19-0",
+      "homeTeamScore": "19",
+      "opponent": {
+       "uid": "s:20~l:28~t:30",
+       "displayName": "Jacksonville Jaguars",
+       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+       "links": [
+        "...",
+        "..."
+       ],
+       "id": "30",
+       "abbreviation": "JAX",
+       "logos": [
+        "...",
+        "...",
+        "...",
+        "... 1 more"
+       ]
+      },
+      "awayTeamScore": "0",
+      "links": [
+       {
+        "href": "https://www.espn.com/nfl/game/_/gameId/401873306/buccaneers-jaguars",
+        "text": "Gamecast"
+       }
+      ],
+      "id": "401873306",
+      "homeTeamId": "30",
+      "atVs": "@",
+      "awayTeamId": "27",
+      "opponentLogo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png"
+     },
+     {
+      "homeShootoutScore": "0",
+      "week": 1,
+      "homeAggregateScore": "0",
+      "leagueAbbreviation": "NFL",
+      "gameDate": "2026-09-13T17:00Z",
+      "gameResult": "L",
+      "awayShootoutScore": "0",
+      "awayAggregateScore": "0",
+      "leagueName": "National Football League",
+      "score": "33-27",
+      "homeTeamScore": "33",
+      "opponent": {
+       "uid": "s:20~l:28~t:4",
+       "displayName": "Cincinnati Bengals",
+       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
+       "links": [
+        "...",
+        "..."
+       ],
+       "id": "4",
+       "abbreviation": "CIN",
+       "logos": [
+        "...",
+        "...",
+        "...",
+        "... 1 more"
+       ]
+      },
+      "awayTeamScore": "27",
+      "links": [
+       {
+        "href": "https://www.espn.com/nfl/game/_/gameId/401872925/buccaneers-bengals",
+        "text": "Gamecast"
+       }
+      ],
+      "id": "401872925",
+      "homeTeamId": "4",
+      "atVs": "@",
+      "awayTeamId": "27",
+      "opponentLogo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png"
+     },
+     {
+      "homeShootoutScore": "0",
+      "week": 2,
+      "homeAggregateScore": "0",
+      "leagueAbbreviation": "NFL",
+      "gameDate": "2026-09-20T17:00Z",
+      "gameResult": "L",
+      "awayShootoutScore": "0",
+      "awayAggregateScore": "0",
+      "leagueName": "National Football League",
+      "score": "23-19",
+      "homeTeamScore": "19",
+      "opponent": {
+       "uid": "s:20~l:28~t:5",
+       "displayName": "Cleveland Browns",
+       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
+       "links": [
+        "...",
+        "..."
+       ],
+       "id": "5",
+       "abbreviation": "CLE",
+       "logos": [
+        "...",
+        "...",
+        "...",
+        "... 1 more"
+       ]
+      },
+      "awayTeamScore": "23",
+      "links": [
+       {
+        "href": "https://www.espn.com/nfl/game/_/gameId/401872935/browns-buccaneers",
+        "text": "Gamecast"
+       }
+      ],
+      "id": "401872935",
+      "homeTeamId": "27",
+      "atVs": "vs",
+      "awayTeamId": "5",
+      "opponentLogo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png"
+     },
+     "... 2 more"
+    ]
+   }
+  ],
+  "injuries": [
+   {
+    "injuries": [
+     {
+      "date": "2026-10-08T00:26Z",
+      "athlete": {
+       "lastName": "Shelton",
+       "displayName": "Drew Shelton",
+       "collegeAthlete": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/athletes/4685554?lang=en&region=us"
+       },
+       "fullName": "Drew Shelton",
+       "uid": "s:20~l:28~a:4685554",
+       "headshot": {
+        "alt": "Drew Shelton",
+        "href": "https://a.espncdn.com/i/headshots/nfl/players/full/4685554.png"
+       },
+       "jersey": "67",
+       "guid": "bf6bb868-5475-34a9-aa65-a84311f258c4",
+       "links": [
+        "..."
+       ],
+       "id": "4685554",
+       "position": {
+        "displayName": "Offensive Tackle",
+        "name": "Offensive Tackle",
+        "abbreviation": "OT"
+       },
+       "shortName": "D. Shelton",
+       "status": {
+        "name": "Active",
+        "id": "1",
+        "type": "active",
+        "abbreviation": "Active"
+       }
+      },
+      "details": {
+       "fantasyStatus": {
+        "displayDescription": "Out",
+        "description": "OUT",
+        "abbreviation": "OUT"
+       },
+       "side": "Not Specified",
+       "returnDate": "2026-10-18",
+       "location": "Leg",
+       "detail": "Not Specified",
+       "type": "Hamstring"
+      },
+      "type": {
+       "name": "INJURY_STATUS_OUT",
+       "description": "out",
+       "id": "4",
+       "abbreviation": "O"
+      },
+      "status": "Out"
+     },
+     {
+      "date": "2026-10-08T00:23Z",
+      "athlete": {
+       "lastName": "Smith",
+       "displayName": "Tyler Smith",
+       "collegeAthlete": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/athletes/4568652?lang=en&region=us"
+       },
+       "fullName": "Tyler Smith",
+       "uid": "s:20~l:28~a:4568652",
+       "headshot": {
+        "alt": "Tyler Smith",
+        "href": "https://a.espncdn.com/i/headshots/nfl/players/full/4568652.png"
+       },
+       "jersey": "73",
+       "guid": "84db0c55-2277-2d48-f164-595a103b4acf",
+       "links": [
+        "..."
+       ],
+       "id": "4568652",
+       "position": {
+        "displayName": "Guard",
+        "name": "Guard",
+        "abbreviation": "G"
+       },
+       "shortName": "T. Smith",
+       "status": {
+        "name": "Active",
+        "id": "1",
+        "type": "active",
+        "abbreviation": "Active"
+       }
+      },
+      "details": {
+       "fantasyStatus": {
+        "displayDescription": "IR-R",
+        "description": "IR-R",
+        "abbreviation": "IR-R"
+       },
+       "side": "Not Specified",
+       "returnDate": "2026-10-08",
+       "location": "Arm",
+       "detail": "Surgery",
+       "type": "Thumb"
+      },
+      "type": {
+       "name": "INJURY_STATUS_IR",
+       "description": "Injured Reserve",
+       "id": "5",
+       "abbreviation": "IR"
+      },
+      "status": "Injured Reserve"
+     },
+     {
+      "date": "2026-10-07T22:39Z",
+      "athlete": {
+       "lastName": "Durant",
+       "displayName": "Cobie Durant",
+       "collegeAthlete": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/athletes/4384549?lang=en&region=us"
+       },
+       "fullName": "Cobie Durant",
+       "uid": "s:20~l:28~a:4384549",
+       "headshot": {
+        "alt": "Cobie Durant",
+        "href": "https://a.espncdn.com/i/headshots/nfl/players/full/4384549.png"
+       },
+       "jersey": "2",
+       "guid": "1d87efb4-eb10-5946-e8ad-06a8d24e66e4",
+       "links": [
+        "..."
+       ],
+       "id": "4384549",
+       "position": {
+        "displayName": "Cornerback",
+        "name": "Cornerback",
+        "abbreviation": "CB"
+       },
+       "shortName": "C. Durant",
+       "status": {
+        "name": "Active",
+        "id": "1",
+        "type": "active",
+        "abbreviation": "Active"
+       }
+      },
+      "details": {
+       "fantasyStatus": {
+        "displayDescription": "Out",
+        "description": "OUT",
+        "abbreviation": "OUT"
+       },
+       "side": "Not Specified",
+       "returnDate": "2026-10-18",
+       "location": "Leg",
+       "detail": "Strain",
+       "type": "Hamstring"
+      },
+      "type": {
+       "name": "INJURY_STATUS_OUT",
+       "description": "out",
+       "id": "4",
+       "abbreviation": "O"
+      },
+      "status": "Out"
+     },
+     "... 2 more"
+    ],
+    "team": {
+     "uid": "s:20~l:28~t:6",
+     "displayName": "Dallas Cowboys",
+     "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+     "links": [
+      {
+       "href": "https://www.espn.com/nfl/team/_/name/dal/dallas-cowboys",
+       "text": "Clubhouse"
+      },
+      {
+       "href": "https://www.espn.com/nfl/team/schedule/_/name/dal",
+       "text": "Schedule"
+      }
+     ],
+     "id": "6",
+     "abbreviation": "DAL",
+     "logos": [
+      {
+       "lastUpdated": "2024-06-25T18:47Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "default"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:59Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "dark"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/dal.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:48Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "scoreboard"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/dal.png",
+       "height": 500
+      },
+      "... 1 more"
+     ]
+    }
+   },
+   {
+    "injuries": [
+     {
+      "date": "2026-10-07T22:26Z",
+      "athlete": {
+       "lastName": "Winfield Jr.",
+       "displayName": "Antoine Winfield Jr.",
+       "collegeAthlete": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/athletes/4034790?lang=en&region=us"
+       },
+       "fullName": "Antoine Winfield Jr.",
+       "uid": "s:20~l:28~a:4034790",
+       "headshot": {
+        "alt": "Antoine Winfield Jr.",
+        "href": "https://a.espncdn.com/i/headshots/nfl/players/full/4034790.png"
+       },
+       "jersey": "31",
+       "guid": "c0e1bd25-df71-5919-32db-6db8a9f6aa8f",
+       "links": [
+        "..."
+       ],
+       "id": "4034790",
+       "position": {
+        "displayName": "Safety",
+        "name": "Safety",
+        "abbreviation": "S"
+       },
+       "shortName": "A. Winfield Jr.",
+       "status": {
+        "name": "Active",
+        "id": "1",
+        "type": "active",
+        "abbreviation": "Active"
+       }
+      },
+      "details": {
+       "fantasyStatus": {
+        "displayDescription": "Out",
+        "description": "OUT",
+        "abbreviation": "OUT"
+       },
+       "side": "Not Specified",
+       "returnDate": "2026-10-18",
+       "location": "Torso",
+       "detail": "Fracture",
+       "type": "Ribs"
+      },
+      "type": {
+       "name": "INJURY_STATUS_OUT",
+       "description": "out",
+       "id": "4",
+       "abbreviation": "O"
+      },
+      "status": "Out"
+     },
+     {
+      "date": "2026-10-07T21:50Z",
+      "athlete": {
+       "lastName": "Dennis",
+       "displayName": "SirVocea Dennis",
+       "collegeAthlete": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/athletes/4429511?lang=en&region=us"
+       },
+       "fullName": "SirVocea Dennis",
+       "uid": "s:20~l:28~a:4429511",
+       "headshot": {
+        "alt": "SirVocea Dennis",
+        "href": "https://a.espncdn.com/i/headshots/nfl/players/full/4429511.png"
+       },
+       "jersey": "8",
+       "guid": "9a5d2015-e843-7dac-1c79-1edf4813ed36",
+       "links": [
+        "..."
+       ],
+       "id": "4429511",
+       "position": {
+        "displayName": "Linebacker",
+        "name": "Linebacker",
+        "abbreviation": "LB"
+       },
+       "shortName": "S. Dennis",
+       "status": {
+        "name": "Active",
+        "id": "1",
+        "type": "active",
+        "abbreviation": "Active"
+       }
+      },
+      "details": {
+       "fantasyStatus": {
+        "displayDescription": "Out",
+        "description": "OUT",
+        "abbreviation": "OUT"
+       },
+       "side": "Not Specified",
+       "returnDate": "2026-10-18",
+       "location": "Leg",
+       "detail": "Not Specified",
+       "type": "Ankle"
+      },
+      "type": {
+       "name": "INJURY_STATUS_OUT",
+       "description": "out",
+       "id": "4",
+       "abbreviation": "O"
+      },
+      "status": "Out"
+     },
+     {
+      "date": "2026-10-07T21:47Z",
+      "athlete": {
+       "lastName": "Morrison",
+       "displayName": "Benjamin Morrison",
+       "collegeAthlete": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/college-football/athletes/4816107?lang=en&region=us"
+       },
+       "fullName": "Benjamin Morrison",
+       "uid": "s:20~l:28~a:4816107",
+       "headshot": {
+        "alt": "Benjamin Morrison",
+        "href": "https://a.espncdn.com/i/headshots/nfl/players/full/4816107.png"
+       },
+       "jersey": "21",
+       "guid": "82d9b18f-1369-3586-9792-5a1e45e3a0f3",
+       "links": [
+        "..."
+       ],
+       "id": "4816107",
+       "position": {
+        "displayName": "Cornerback",
+        "name": "Cornerback",
+        "abbreviation": "CB"
+       },
+       "shortName": "B. Morrison",
+       "status": {
+        "name": "Active",
+        "id": "1",
+        "type": "active",
+        "abbreviation": "Active"
+       }
+      },
+      "details": {
+       "fantasyStatus": {
+        "displayDescription": "Out",
+        "description": "OUT",
+        "abbreviation": "OUT"
+       },
+       "side": "Not Specified",
+       "returnDate": "2026-10-18",
+       "location": "Leg",
+       "detail": "Not Specified",
+       "type": "Quadriceps"
+      },
+      "type": {
+       "name": "INJURY_STATUS_OUT",
+       "description": "out",
+       "id": "4",
+       "abbreviation": "O"
+      },
+      "status": "Out"
+     },
+     "... 2 more"
+    ],
+    "team": {
+     "uid": "s:20~l:28~t:27",
+     "displayName": "Tampa Bay Buccaneers",
+     "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+     "links": [
+      {
+       "href": "https://www.espn.com/nfl/team/_/name/tb/tampa-bay-buccaneers",
+       "text": "Clubhouse"
+      },
+      {
+       "href": "https://www.espn.com/nfl/team/schedule/_/name/tb",
+       "text": "Schedule"
+      }
+     ],
+     "id": "27",
+     "abbreviation": "TB",
+     "logos": [
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "default"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "dark"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/tb.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "scoreboard"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/tb.png",
+       "height": 500
+      },
+      "... 1 more"
+     ]
+    }
+   }
+  ],
+  "zipcodes": {},
+  "winprobability": [],
+  "gameInfo": {
+   "venue": {
+    "images": [
+     {
+      "width": 2000,
+      "alt": "",
+      "rel": [
+       "full",
+       "day"
+      ],
+      "href": "https://a.espncdn.com/i/venues/nfl/day/3687.jpg",
+      "height": 1125
+     },
+     {
+      "width": 2000,
+      "alt": "",
+      "rel": [
+       "full",
+       "day",
+       "interior"
+      ],
+      "href": "https://a.espncdn.com/i/venues/nfl/day/interior/3687.jpg",
+      "height": 1125
+     }
+    ],
+    "address": {
+     "zipCode": "76011",
+     "country": "USA",
+     "city": "Arlington",
+     "state": "TX"
+    },
+    "grass": false,
+    "guid": "a6d02626-ee51-3e35-98f1-2b05c0b9b2b3",
+    "fullName": "AT&T Stadium",
+    "id": "3687"
+   },
+   "weather": {
+    "precipitation": 0,
+    "conditionId": "2",
+    "highTemperature": 84,
+    "temperature": 84,
+    "link": {
+     "isExternal": true,
+     "shortText": "Weather",
+     "rel": [
+      "76011"
+     ],
+     "language": "en-US",
+     "href": "http://www.accuweather.com/en/us/at-t-stadium-tx/76010/hourly-weather-forecast/53644_poi?day=2&hbhhour=19&lang=en-us",
+     "text": "Weather",
+     "isPremium": false
+    },
+    "lowTemperature": 84,
+    "gust": 6
+   }
+  },
+  "boxscore": {
+   "teams": [
+    {
+     "homeAway": "away",
+     "displayOrder": 1,
+     "team": {
+      "shortDisplayName": "Buccaneers",
+      "uid": "s:20~l:28~t:27",
+      "alternateColor": "3e3a35",
+      "color": "bd1c36",
+      "displayName": "Tampa Bay Buccaneers",
+      "name": "Buccaneers",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+      "location": "Tampa Bay",
+      "id": "27",
+      "abbreviation": "TB",
+      "slug": "tampa-bay-buccaneers"
+     },
+     "statistics": [
+      {
+       "displayValue": "19.0",
+       "name": "totalPointsPerGame",
+       "label": "Points Per Game"
+      },
+      {
+       "displayValue": "296.8",
+       "name": "yardsPerGame",
+       "label": "Total Yards"
+      },
+      {
+       "displayValue": "190.8",
+       "name": "passingYardsPerGame",
+       "label": "Yards Passing"
+      },
+      "... 5 more"
+     ]
+    },
+    {
+     "homeAway": "home",
+     "displayOrder": 2,
+     "team": {
+      "shortDisplayName": "Cowboys",
+      "uid": "s:20~l:28~t:6",
+      "alternateColor": "b0b7bc",
+      "color": "002a5c",
+      "displayName": "Dallas Cowboys",
+      "name": "Cowboys",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+      "location": "Dallas",
+      "id": "6",
+      "abbreviation": "DAL",
+      "slug": "dallas-cowboys"
+     },
+     "statistics": [
+      {
+       "displayValue": "30.5",
+       "name": "totalPointsPerGame",
+       "label": "Points Per Game"
+      },
+      {
+       "displayValue": "355.8",
+       "name": "yardsPerGame",
+       "label": "Total Yards"
+      },
+      {
+       "displayValue": "266.3",
+       "name": "passingYardsPerGame",
+       "label": "Yards Passing"
+      },
+      "... 5 more"
+     ]
+    }
+   ]
+  },
+  "broadcasts": [
+   {
+    "market": {
+     "id": "1",
+     "type": "National"
+    },
+    "station": "Prime Video",
+    "media": {
+     "callLetters": "Prime Video",
+     "name": "Prime Video",
+     "shortName": "Prime Video"
+    },
+    "type": {
+     "id": "4",
+     "shortName": "Streaming",
+     "slug": "streaming",
+     "longName": "Streaming"
+    },
+    "lang": "en",
+    "region": "us",
+    "isNational": true
+   }
+  ],
+  "leaders": [
+   {
+    "leaders": [
+     {
+      "displayName": "Passing Yards",
+      "name": "passingYards",
+      "leaders": [
+       {
+        "displayValue": "105/150, 1,065 YDS, 8 TD, 1 INT",
+        "summary": "105/150, 8 TD, 1 INT",
+        "mainStat": "...",
+        "athlete": "...",
+        "value": 1065
+       }
+      ]
+     },
+     {
+      "displayName": "Rushing Yards",
+      "name": "rushingYards",
+      "leaders": [
+       {
+        "displayValue": "62 CAR, 231 YDS, 5 TD",
+        "summary": "62 CAR, 5 TD",
+        "mainStat": "...",
+        "athlete": "...",
+        "value": 231
+       }
+      ]
+     },
+     {
+      "displayName": "Receiving Yards",
+      "name": "receivingYards",
+      "leaders": [
+       {
+        "displayValue": "37 REC, 498 YDS, 4 TD",
+        "summary": "37 REC, 4 TD",
+        "mainStat": "...",
+        "athlete": "...",
+        "value": 498
+       }
+      ]
+     },
+     "... 2 more"
+    ],
+    "team": {
+     "uid": "s:20~l:28~t:6",
+     "displayName": "Dallas Cowboys",
+     "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+     "links": [
+      {
+       "href": "https://www.espn.com/nfl/team/_/name/dal/dallas-cowboys",
+       "text": "Clubhouse"
+      },
+      {
+       "href": "https://www.espn.com/nfl/team/schedule/_/name/dal",
+       "text": "Schedule"
+      }
+     ],
+     "id": "6",
+     "abbreviation": "DAL",
+     "logos": [
+      {
+       "lastUpdated": "2024-06-25T18:47Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "default"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:59Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "dark"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/dal.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:48Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "scoreboard"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/dal.png",
+       "height": 500
+      },
+      "... 1 more"
+     ]
+    }
+   },
+   {
+    "leaders": [
+     {
+      "displayName": "Passing Yards",
+      "name": "passingYards",
+      "leaders": [
+       {
+        "displayValue": "61/96, 615 YDS, 2 TD, 2 INT",
+        "summary": "61/96, 2 TD, 2 INT",
+        "mainStat": "...",
+        "athlete": "...",
+        "value": 615
+       }
+      ]
+     },
+     {
+      "displayName": "Rushing Yards",
+      "name": "rushingYards",
+      "leaders": [
+       {
+        "displayValue": "56 CAR, 241 YDS, 1 TD",
+        "summary": "56 CAR, 1 TD",
+        "mainStat": "...",
+        "athlete": "...",
+        "value": 241
+       }
+      ]
+     },
+     {
+      "displayName": "Receiving Yards",
+      "name": "receivingYards",
+      "leaders": [
+       {
+        "displayValue": "15 REC, 157 YDS",
+        "summary": "15 REC",
+        "mainStat": "...",
+        "athlete": "...",
+        "value": 157
+       }
+      ]
+     },
+     "... 2 more"
+    ],
+    "team": {
+     "uid": "s:20~l:28~t:27",
+     "displayName": "Tampa Bay Buccaneers",
+     "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+     "links": [
+      {
+       "href": "https://www.espn.com/nfl/team/_/name/tb/tampa-bay-buccaneers",
+       "text": "Clubhouse"
+      },
+      {
+       "href": "https://www.espn.com/nfl/team/schedule/_/name/tb",
+       "text": "Schedule"
+      }
+     ],
+     "id": "27",
+     "abbreviation": "TB",
+     "logos": [
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "default"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "dark"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/tb.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "scoreboard"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/tb.png",
+       "height": 500
+      },
+      "... 1 more"
+     ]
+    }
+   }
+  ],
+  "standings": {
+   "fullViewLink": {
+    "text": "Full Standings",
+    "href": "https://www.espn.com/nfl/standings"
+   },
+   "header": "2026 Standings",
+   "groups": [
+    {
+     "divisionHeader": "NFC South",
+     "conferenceHeader": "National Football Conference",
+     "header": "2026 NFC South Standings",
+     "href": "https://www.espn.com/nfl/standings/_/group/11",
+     "standings": {
+      "entries": [
+       {
+        "uid": "s:20~l:28~t:29",
+        "stats": [
+         "...",
+         "...",
+         "...",
+         "... 4 more"
+        ],
+        "link": "https://www.espn.com/nfl/team/_/name/car/carolina-panthers",
+        "logo": [
+         "...",
+         "..."
+        ],
+        "team": "Carolina",
+        "id": "29"
+       },
+       {
+        "uid": "s:20~l:28~t:1",
+        "stats": [
+         "...",
+         "...",
+         "...",
+         "... 4 more"
+        ],
+        "link": "https://www.espn.com/nfl/team/_/name/atl/atlanta-falcons",
+        "logo": [
+         "...",
+         "..."
+        ],
+        "team": "Atlanta",
+        "id": "1"
+       },
+       {
+        "uid": "s:20~l:28~t:18",
+        "stats": [
+         "...",
+         "...",
+         "...",
+         "... 4 more"
+        ],
+        "link": "https://www.espn.com/nfl/team/_/name/no/new-orleans-saints",
+        "logo": [
+         "...",
+         "..."
+        ],
+        "team": "New Orleans",
+        "id": "18"
+       },
+       "... 1 more"
+      ]
+     }
+    },
+    {
+     "divisionHeader": "NFC East",
+     "conferenceHeader": "National Football Conference",
+     "header": "2026 NFC East Standings",
+     "href": "https://www.espn.com/nfl/standings/_/group/1",
+     "standings": {
+      "entries": [
+       {
+        "uid": "s:20~l:28~t:19",
+        "stats": [
+         "...",
+         "...",
+         "...",
+         "... 4 more"
+        ],
+        "link": "https://www.espn.com/nfl/team/_/name/nyg/new-york-giants",
+        "logo": [
+         "...",
+         "..."
+        ],
+        "team": "New York",
+        "id": "19"
+       },
+       {
+        "uid": "s:20~l:28~t:21",
+        "stats": [
+         "...",
+         "...",
+         "...",
+         "... 4 more"
+        ],
+        "link": "https://www.espn.com/nfl/team/_/name/phi/philadelphia-eagles",
+        "logo": [
+         "...",
+         "..."
+        ],
+        "team": "Philadelphia",
+        "id": "21"
+       },
+       {
+        "uid": "s:20~l:28~t:6",
+        "stats": [
+         "...",
+         "...",
+         "...",
+         "... 4 more"
+        ],
+        "link": "https://www.espn.com/nfl/team/_/name/dal/dallas-cowboys",
+        "logo": [
+         "...",
+         "..."
+        ],
+        "team": "Dallas",
+        "id": "6"
+       },
+       "... 1 more"
+      ]
+     }
+    }
+   ],
+   "isSameConference": true
+  },
+  "article": {
+   "dataSourceIdentifier": "c6df8b4c58205",
+   "keywords": [
+    "NFL",
+    "Dallas Cowboys",
+    "Tampa Bay Buccaneers",
+    "... 1 more"
+   ],
+   "publishedkey": "nfl401872980",
+   "description": "\u2014 The Dallas Cowboys are near the end of a hectic two-week itinerary that included 10-hour flights to and from Rio de Janeiro, another trip to Houston and now a quick turn to finish off three games in 11 days.",
+   "categorized": "2026-10-07T20:36:29Z",
+   "section": "NFL",
+   "source": "AP",
+   "video": [],
+   "type": "Preview",
+   "title": "Cowboys close hectic stretch on short week with another winless opponent in the Buccaneers",
+   "nowId": "1-50127437",
+   "premium": false,
+   "root": "nfl",
+   "isLiveBlog": false,
+   "allowSearch": true,
+   "links": {
+    "app": {
+     "sportscenter": {
+      "href": "sportscenter://x-callback-url/showStory?uid=50127437"
+     }
+    },
+    "web": {
+     "href": "http://www.espn.com/nfl/preview?gameId=401872980"
+    },
+    "mobile": {
+     "href": "http://m.espn.go.com/nfl/story?storyId=50127437"
+    },
+    "api": {
+     "self": {
+      "href": "https://content.core.api.espn.com/v1/sports/news/50127437"
+     }
+    }
+   },
+   "id": 50127437,
+   "categories": [
+    {
+     "uid": "s:20~l:28",
+     "sportId": 28,
+     "leagueId": 28,
+     "league": {
+      "description": "NFL",
+      "links": {
+       "web": {
+        "leagues": "..."
+       },
+       "mobile": {
+        "leagues": "..."
+       }
+      },
+      "id": 28,
+      "abbreviation": "NFL"
+     },
+     "guid": "ad4c3bd2-ddb6-3f8c-8abf-744855a08fa4",
+     "description": "NFL",
+     "id": 9572,
+     "type": "league"
+    },
+    {
+     "uid": "s:20~l:28~t:6",
+     "sportId": 28,
+     "teamId": 6,
+     "guid": "b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234",
+     "description": "Dallas Cowboys",
+     "id": 1298,
+     "team": {
+      "shortDisplayName": "Cowboys",
+      "description": "Dallas Cowboys",
+      "links": {
+       "web": {
+        "teams": "..."
+       },
+       "mobile": {
+        "teams": "..."
+       }
+      },
+      "id": 6,
+      "abbreviation": "DAL"
+     },
+     "type": "team"
+    },
+    {
+     "uid": "s:20~l:28~t:27",
+     "sportId": 28,
+     "teamId": 27,
+     "guid": "13e8b157-a75a-ff24-ae91-fa3d52ddf204",
+     "description": "Tampa Bay Buccaneers",
+     "id": 2091,
+     "team": {
+      "shortDisplayName": "Buccaneers",
+      "description": "Tampa Bay Buccaneers",
+      "links": {
+       "web": {
+        "teams": "..."
+       },
+       "mobile": {
+        "teams": "..."
+       }
+      },
+      "id": 27,
+      "abbreviation": "TB"
+     },
+     "type": "team"
+    },
+    "... 1 more"
+   ],
+   "headline": "Cowboys close hectic stretch on short week with another winless opponent in the Buccaneers",
+   "gameId": "401872980",
+   "contentKey": "50127437-1-22-1",
+   "originallyPosted": "2026-10-07T20:27:27Z",
+   "images": [],
+   "linkText": "Cowboys close hectic stretch on short week with another winless opponent in the Buccaneers",
+   "published": "2026-10-07T20:27:27Z",
+   "allowContentReactions": false,
+   "lastModified": "2026-10-07T20:36:29Z",
+   "story": "ARLINGTON, Texas -- \u2014 The <a href=\"http://www.espn.com/nfl/team/_/name/dal/dallas-cowboys\">Dallas Cowboys</a> are near the end of a hectic two-week itinerary that included 10-hour flights to and from Rio de Janeiro, another trip to Houston and now a quick turn to finish off three games in 11 days.\n\n\r\n              After a visit from the <a href=\"http://www.espn.com/nfl/team/_/name/tb/tampa-bay-buccaneers\">Tampa Bay Buccaneers</a> on Thursday night, there just might be a small sigh of relief from some of the Cowboys. Or not.\n\n\r\n              \u201cIt just depends on what people consider busy,\u201d edge rusher <a href=\"http://www.espn.com/nfl/player/_/id/4046523/rashan-gary\">Rashan Gary</a> said. \u201cThis is fun.\u201d\n\n\r\n              It's not December yet, either.\n\n\r\n              \u201cIt's still early in the season, going on Week 5,\u201d Gary said. \u201cRight now, the team's been good, healthy. Me personally, healthy. It's still early in the season.\u201d\n\n\r\n              The Cowboys are set for a second consecutive game against a winless team with a recent history of either making the playoffs or contending for a postseason spot.\n\n\r\n              There is one significant difference.\n\n\r\n              The Buccaneers have an undrafted rookie quarterback making his second start in <a href=\"http://www.espn.com/nfl/player/_/id/4596472/jalon-daniels\">Jalon Daniels</a> with <a href=\"http://www.espn.com/nfl/player/_/id/3052587/baker-mayfield\">Baker Mayfield</a> sidelined by a dislocated thumb on his throwing hand after signing a $165 million, three-year extension before the season. Tampa Bay lost to Green Bay 17-14 in <a href=\"https://apnews.com/article/buccaneers-daniels-packers-edfed700334e946f7b480749853e1136\">Daniels' debut</a>.\n\n\r\n              <a href=\"http://www.espn.com/nfl/player/_/id/2577417/dak-prescott\">Dak Prescott</a> led the drive to his winning touchdown pass to <a href=\"http://www.espn.com/nfl/player/_/id/4241389/ceedee-lamb\">CeeDee Lamb</a> in the final minute of a <a href=\"https://apnews.com/article/texans-cowboys-score-2f874ec2dfdbdda3b5c9fa8195e93733\">34-30 victory over <a href=\"http://www.espn.com/nfl/player/_/id/4432577/cj-stroud\">C.J. Stroud</a> and the <a href=\"http://www.espn.com/nfl/team/_/name/hou/houston-texans\">Houston Texans</a></a>, perhaps taking the edge off the desperation for Dallas. This is where Prescott thinks the short week can actually help.\n\n\r\n              \u201cYou didn\u2019t even really go over the film that much with the coaches,\u201d Prescott said. \u201cYou turn the page, and you\u2019re on to the Bucs. And understanding we got a team coming in here winless, how desperate they\u2019re gonna be and it\u2019s the NFL and the parity of it.\u201d\n\n\r\n              Tampa Bay entered the season as the NFC South favorite, but now faces long odds to make the playoffs. The Bucs have lost 11 of 13 games since their 6-2 start last season.\n\n\r\n              The previous time Tampa Bay was winless this far into the season was 2013, when the Buccaneers started 0-8 and finished 4-12 before then-coach Greg Schiano was fired.\n\n\r\n              \u201cI think it\u2019s a challenge every week \u2014 it\u2019s more of a challenge if you\u2019re winning than it is if you\u2019re losing because you\u2019re desperate if you\u2019re losing,\u201d coach Todd Bowles said. \u201cIf you\u2019re winning, you can get big-headed and off-balance. We know what we have to do to win, so we just have to do it.\u201d\n\n\r\n              <hl2>Need to know</hl2>\r\n              Tampa Bay (0-4) at Dallas (2-2)\n\n\r\n              When/where to watch: Thursday, 8:15 p.m. EDT, Prime Video\n\n\r\n              Latest odds: Cowboys by 8 1/2\n\n\r\n              Against the spread: Cowboys 3-1; Buccaneers 0-4\n\n\r\n              Last week: Cowboys beat Texans 34-30; Buccaneers lost to Packers 17-14.\n\n\r\n              Last meeting: Cowboys beat Buccaneers 26-24 on Dec. 22, 2024, in Arlington, Texas.\n\n\r\n              Series record: Cowboys lead 17-6.\n\n\r\n              <hl2>Matchup to watch</hl2>\r\n              Daniels vs. Dallas defense. The Cowboys are about to face their fifth mobile quarterback in five games. They've had issues, whether running or throwing, with each of the first four. While a beleaguered defense has shown signs of improvement, the reality is Dallas is tied for second worst in the NFL with four sacks and is the only team without an interception this season. If they can't boost those numbers against an undrafted rookie forced into the starting job, the red flags will fly higher. \n\n\r\n              <hl2>Stats and stuff</hl2>\r\n              \u2014 <a href=\"https://apnews.com/article/cowboys-tyler-smith-4e185412edf59d82e17a71f75ddfa1fd\">Dallas LG <a href=\"http://www.espn.com/nfl/player/_/id/2570519/tyler-smith\">Tyler Smith</a></a> is listed as questionable for the first game he is eligible to return from injured reserve. He had surgery just before the season for ligament damage in his left thumb. LB <a href=\"http://www.espn.com/nfl/player/_/id/4362088/demarvion-overshown\">DeMarvion Overshown</a> will miss his fourth consecutive game since injuring a hamstring in the opener.\n\n\r\n              \u2014 The Bucs will be without two defensive starters in S <a href=\"http://www.espn.com/nfl/player/_/id/4034790/antoine-winfield-jr\">Antoine Winfield Jr</a>. (rib) and CB <a href=\"http://www.espn.com/nfl/player/_/id/4816107/benjamin-morrison\">Benjamin Morrison</a> (quadriceps), along with LB <a href=\"http://www.espn.com/nfl/player/_/id/4429511/sirvocea-dennis\">SirVocea Dennis</a> (ankle/foot). Mayfield is expected to miss at least one more game.\n\n\r\n              \u2014 Prescott is tied with two-time Super Bowl winner Roger Staubach for second among Cowboys quarterbacks with 85 regular-season victories. Three-time champ Troy Aikman is the leader at 94.\n\n\r\n              \u2014 Tampa Bay\u2019s past 10 games going back to last season have been decided by one possession. It's the longest streak of one-score games in club history and the longest active streak in the NFL.\n\n\r\n              \u2014 The Buccaneers are on a 13-game losing streak against the spread. That's the longest such skid of the Super Bowl era.\n\n\r\n              \u2014 Lamb is the fourth player in NFL history with at least 17 catches, 185 yards receiving (he had 189) and a touchdown. The others are Pro Football Hall of Famers Tom Fears (1950) and Terrell Owens (2000), along with Brandon Marshall (2009).\n\n\r\n               \u2014 Bucs rookie LB <a href=\"http://www.espn.com/nfl/player/_/id/4870998/josiah-trotter\">Josiah Trotter</a> had at least nine tackles in each of his first four games. Trotter was a second-round pick out of Missouri.\n\n\r\n              \u2014 Since making his NFL-record seventh career field goal of at least 60 yards against Washington in Week 2 (a 60-yarder), Dallas' <a href=\"http://www.espn.com/nfl/player/_/id/3953687/brandon-aubrey\">Brandon Aubrey</a> is 0-2 from that distance. He had a 62-yard attempt blocked against Baltimore and was wide left on a 65-yarder against Houston. \n\n\r\n              ------\n\n\r\n              This story corrects a previous version with 85 regular-season victories for Dak Prescott and Roger Staubach, not 84.\n\n\r\n              ------\n\n\r\n              \r\n                <a href=\"https://apnews.com/hub/nfl\">See AP\u2019s full NFL coverage here</a>"
+  },
+  "againstTheSpread": [
+   {
+    "records": [],
+    "team": {
+     "uid": "s:20~l:28~t:27",
+     "displayName": "Tampa Bay Buccaneers",
+     "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+     "links": [
+      {
+       "href": "https://www.espn.com/nfl/team/_/name/tb/tampa-bay-buccaneers",
+       "text": "Clubhouse"
+      },
+      {
+       "href": "https://www.espn.com/nfl/team/schedule/_/name/tb",
+       "text": "Schedule"
+      }
+     ],
+     "id": "27",
+     "abbreviation": "TB",
+     "logos": [
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "default"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "dark"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/tb.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:57Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "scoreboard"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/tb.png",
+       "height": 500
+      },
+      "... 1 more"
+     ]
+    }
+   },
+   {
+    "records": [],
+    "team": {
+     "uid": "s:20~l:28~t:6",
+     "displayName": "Dallas Cowboys",
+     "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+     "links": [
+      {
+       "href": "https://www.espn.com/nfl/team/_/name/dal/dallas-cowboys",
+       "text": "Clubhouse"
+      },
+      {
+       "href": "https://www.espn.com/nfl/team/schedule/_/name/dal",
+       "text": "Schedule"
+      }
+     ],
+     "id": "6",
+     "abbreviation": "DAL",
+     "logos": [
+      {
+       "lastUpdated": "2024-06-25T18:47Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "default"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:59Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "dark"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/dal.png",
+       "height": 500
+      },
+      {
+       "lastUpdated": "2024-06-25T18:48Z",
+       "width": 500,
+       "alt": "",
+       "rel": [
+        "full",
+        "scoreboard"
+       ],
+       "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/dal.png",
+       "height": 500
+      },
+      "... 1 more"
+     ]
+    }
+   }
+  ],
+  "header": {
+   "uid": "s:20~l:28~e:401872980",
+   "week": 5,
+   "timeValid": true,
+   "league": {
+    "uid": "s:20~l:28",
+    "name": "National Football League",
+    "links": [
+     {
+      "rel": [
+       "index",
+       "desktop",
+       "league"
+      ],
+      "href": "https://www.espn.com/nfl/",
+      "text": "Index"
+     },
+     {
+      "rel": [
+       "index",
+       "sportscenter",
+       "app",
+       "... 1 more"
+      ],
+      "href": "sportscenter://x-callback-url/showClubhouse?uid=s:20~l:28",
+      "text": "Index"
+     },
+     {
+      "rel": [
+       "schedule",
+       "desktop",
+       "league"
+      ],
+      "href": "https://www.espn.com/nfl/schedule",
+      "text": "Schedule"
+     },
+     "... 16 more"
+    ],
+    "id": "28",
+    "abbreviation": "NFL",
+    "shortName": "NFL",
+    "logos": [
+     {
+      "rel": [
+       "full",
+       "default"
+      ],
+      "href": "https://a.espncdn.com/i/teamlogos/leagues/500/nfl.png"
+     },
+     {
+      "rel": [
+       "full",
+       "dark"
+      ],
+      "href": "https://a.espncdn.com/i/teamlogos/leagues/500-dark/nfl.png"
+     }
+    ],
+    "slug": "nfl",
+    "isTournament": false
+   },
+   "competitions": [
+    {
+     "date": "2026-10-09T00:15Z",
+     "commentaryAvailable": false,
+     "conferenceCompetition": false,
+     "liveAvailable": false,
+     "broadcasts": [
+      {
+       "market": {
+        "id": "1",
+        "type": "National"
+       },
+       "media": {
+        "shortName": "Prime Video"
+       },
+       "type": {
+        "id": "4",
+        "shortName": "Streaming"
+       },
+       "lang": "en",
+       "region": "us",
+       "isNational": true
+      }
+     ],
+     "playByPlaySource": "none",
+     "uid": "s:20~l:28~e:401872980~c:401872980",
+     "competitors": [
+      {
+       "uid": "s:20~l:28~t:6",
+       "homeAway": "home",
+       "record": [
+        "...",
+        "...",
+        "..."
+       ],
+       "possession": false,
+       "id": "6",
+       "team": {
+        "uid": "s:20~l:28~t:6",
+        "alternateColor": "b0b7bc",
+        "color": "002a5c",
+        "displayName": "Dallas Cowboys",
+        "name": "Cowboys",
+        "nickname": "Cowboys",
+        "guid": "b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234",
+        "location": "Dallas",
+        "links": [
+         "..."
+        ],
+        "id": "6",
+        "abbreviation": "DAL",
+        "logos": [
+         "...",
+         "...",
+         "...",
+         "... 14 more"
+        ]
+       },
+       "order": 0
+      },
+      {
+       "uid": "s:20~l:28~t:27",
+       "homeAway": "away",
+       "record": [
+        "...",
+        "...",
+        "..."
+       ],
+       "possession": false,
+       "id": "27",
+       "team": {
+        "uid": "s:20~l:28~t:27",
+        "alternateColor": "3e3a35",
+        "color": "bd1c36",
+        "displayName": "Tampa Bay Buccaneers",
+        "name": "Buccaneers",
+        "nickname": "Buccaneers",
+        "guid": "13e8b157-a75a-ff24-ae91-fa3d52ddf204",
+        "location": "Tampa Bay",
+        "links": [
+         "..."
+        ],
+        "id": "27",
+        "abbreviation": "TB",
+        "logos": [
+         "...",
+         "...",
+         "...",
+         "... 14 more"
+        ]
+       },
+       "order": 1
+      }
+     ],
+     "onWatchESPN": false,
+     "wallclockAvailable": false,
+     "boxscoreMinutes": false,
+     "odds": [
+      {
+       "awayTeamOdds": {
+        "spreadOdds": -105,
+        "current": "...",
+        "underdog": true,
+        "team": "...",
+        "favorite": false,
+        "moneyLine": 360,
+        "open": "..."
+       },
+       "current": {
+        "over": "...",
+        "total": "...",
+        "under": "..."
+       },
+       "propBets": [
+        "...",
+        "...",
+        "...",
+        "... 22 more"
+       ],
+       "homeTeamOdds": {
+        "spreadOdds": -115,
+        "current": "...",
+        "underdog": false,
+        "team": "...",
+        "favorite": true,
+        "moneyLine": -470,
+        "open": "..."
+       }
+      }
+     ],
+     "boxscoreAvailable": false,
+     "id": "401872980",
+     "neutralSite": false,
+     "recent": false,
+     "boxscoreSource": "none",
+     "status": {
+      "isTBDFlex": false,
+      "type": {
+       "name": "STATUS_SCHEDULED",
+       "description": "Scheduled",
+       "id": "1",
+       "state": "pre",
+       "completed": false,
+       "detail": "Thu, October 8th at 8:15 PM EDT",
+       "shortDetail": "10/8 - 8:15 PM EDT"
+      }
+     }
+    }
+   ],
+   "season": {
+    "current": true,
+    "year": 2026,
+    "type": 2
+   },
+   "links": [
+    {
+     "isExternal": false,
+     "shortText": "Summary",
+     "rel": [
+      "summary",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/game/_/gameId/401872980/buccaneers-cowboys",
+     "text": "Gamecast",
+     "isPremium": false
+    },
+    {
+     "isExternal": false,
+     "shortText": "Preview",
+     "rel": [
+      "preview",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/preview/_/gameId/401872980",
+     "text": "Preview",
+     "isPremium": false
+    },
+    {
+     "isExternal": false,
+     "shortText": "Odds",
+     "rel": [
+      "odds",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/odds/_/gameId/401872980",
+     "text": "Odds",
+     "isPremium": false
+    },
+    "... 1 more"
+   ],
+   "id": "401872980"
+  },
+  "predictor": {
+   "awayTeam": {
+    "gameProjection": "13.8",
+    "id": "27"
+   },
+   "header": "Matchup Predictor",
+   "homeTeam": {
+    "gameProjection": "86.1",
+    "id": "6"
+   }
+  }
+ },
+ "customStyleSheet": "game-package-football",
+ "type": "game",
+ "content": {
+  "title": "Buccaneers vs. Cowboys - Game Summary - October 8, 2026 - ESPN",
+  "description": "Get a summary of the Tampa Bay Buccaneers vs. Dallas Cowboys football game.",
+  "og_type": "website",
+  "sport": "football",
+  "league": "nfl",
+  "tab": {
+   "layout": "cbc",
+   "pageType": "Summary",
+   "metaDescription": "Get a summary of the {aDisplayName} vs. {hDisplayName} football game.",
+   "columnsModuleTypes": {
+    "default": [
+     [
+      "predictor",
+      "incontentBetting",
+      "pickCenter",
+      "... 2 more"
+     ],
+     [
+      "topStories",
+      "teamLeaders",
+      "injuryReport",
+      "... 4 more"
+     ],
+     [
+      "tuneIn",
+      "gamecastAd",
+      "tickets",
+      "... 5 more"
+     ]
+    ],
+    "tablet": [
+     [],
+     [
+      "topStories",
+      "predictor",
+      "incontentBetting",
+      "... 11 more"
+     ],
+     [
+      "tuneIn",
+      "gamecastAd",
+      "tickets",
+      "... 5 more"
+     ]
+    ],
+    "mobile": [
+     [],
+     [
+      "topStories",
+      "predictor",
+      "gamecastAd",
+      "... 14 more"
+     ],
+     [
+      "bet365",
+      "ad",
+      "shop",
+      "... 2 more"
+     ]
+    ]
+   },
+   "metaTitle": "{aName} vs. {hName} - Game Summary - {date}"
+  },
+  "statusState": "pre",
+  "canonical": "http://www.espn.com/nfl/game/_/gameId/401872980",
+  "tabType": "game"
+ },
+ "__gamepackage__": {
+  "playerHash": {},
+  "awayTeam": {
+   "uid": "s:20~l:28~t:27",
+   "homeAway": "away",
+   "record": [
+    {
+     "summary": "0-4",
+     "displayValue": "0-4",
+     "type": "total"
+    },
+    {
+     "summary": "0-1",
+     "displayValue": "0-1",
+     "type": "road"
+    },
+    {
+     "summary": "0-2",
+     "displayValue": "0-2",
+     "type": "vsconf"
+    }
+   ],
+   "possession": false,
+   "id": "27",
+   "team": {
+    "uid": "s:20~l:28~t:27",
+    "alternateColor": "3e3a35",
+    "color": "bd1c36",
+    "displayName": "Tampa Bay Buccaneers",
+    "name": "Buccaneers",
+    "nickname": "Buccaneers",
+    "guid": "13e8b157-a75a-ff24-ae91-fa3d52ddf204",
+    "location": "Tampa Bay",
+    "links": [
+     {
+      "rel": [
+       "clubhouse",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/_/name/tb/tampa-bay-buccaneers",
+      "text": "Clubhouse"
+     }
+    ],
+    "id": "27",
+    "abbreviation": "TB",
+    "logos": [
+     {
+      "lastUpdated": "2024-06-25T18:57Z",
+      "width": 500,
+      "alt": "",
+      "rel": [
+       "full",
+       "default"
+      ],
+      "href": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+      "height": 500
+     },
+     {
+      "lastUpdated": "2024-06-25T18:57Z",
+      "width": 500,
+      "alt": "",
+      "rel": [
+       "full",
+       "dark"
+      ],
+      "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/tb.png",
+      "height": 500
+     },
+     {
+      "lastUpdated": "2024-06-25T18:57Z",
+      "width": 500,
+      "alt": "",
+      "rel": [
+       "full",
+       "scoreboard"
+      ],
+      "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/tb.png",
+      "height": 500
+     },
+     "... 14 more"
+    ]
+   },
+   "order": 1
+  },
+  "homeTeam": {
+   "uid": "s:20~l:28~t:6",
+   "homeAway": "home",
+   "record": [
+    {
+     "summary": "2-2",
+     "displayValue": "2-2",
+     "type": "total"
+    },
+    {
+     "summary": "1-1",
+     "displayValue": "1-1",
+     "type": "home"
+    },
+    {
+     "summary": "1-1",
+     "displayValue": "1-1",
+     "type": "vsconf"
+    }
+   ],
+   "possession": false,
+   "id": "6",
+   "team": {
+    "uid": "s:20~l:28~t:6",
+    "alternateColor": "b0b7bc",
+    "color": "002a5c",
+    "displayName": "Dallas Cowboys",
+    "name": "Cowboys",
+    "nickname": "Cowboys",
+    "guid": "b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234",
+    "location": "Dallas",
+    "links": [
+     {
+      "rel": [
+       "clubhouse",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/_/name/dal/dallas-cowboys",
+      "text": "Clubhouse"
+     }
+    ],
+    "id": "6",
+    "abbreviation": "DAL",
+    "logos": [
+     {
+      "lastUpdated": "2024-06-25T18:47Z",
+      "width": 500,
+      "alt": "",
+      "rel": [
+       "full",
+       "default"
+      ],
+      "href": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+      "height": 500
+     },
+     {
+      "lastUpdated": "2024-06-25T18:59Z",
+      "width": 500,
+      "alt": "",
+      "rel": [
+       "full",
+       "dark"
+      ],
+      "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/dal.png",
+      "height": 500
+     },
+     {
+      "lastUpdated": "2024-06-25T18:48Z",
+      "width": 500,
+      "alt": "",
+      "rel": [
+       "full",
+       "scoreboard"
+      ],
+      "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/dal.png",
+      "height": 500
+     },
+     "... 14 more"
+    ]
+   },
+   "order": 0
+  },
+  "awayTeamLogo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/tb.png&h=100&w=100",
+  "homeTeamLogo": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/dal.png&h=100&w=100",
+  "highlightPlayers": false,
+  "airingsHash": {
+   "onWatch": false,
+   "onDTC": false,
+   "gameOnEPlus": false,
+   "isOOM": false,
+   "airingsAll": [],
+   "airingsTVE": [],
+   "airingsDTC": [],
+   "networkHashTVE": {},
+   "networkHashDTC": {},
+   "userIsEntitledTVE": false,
+   "userIsEntitledDTC": false
+  }
+ },
+ "analytics": {
+  "metrics": {
+   "page_url": "/nfl/game/_/gameId/401872980",
+   "page_infrastructure": "sCore",
+   "page_type": "game",
+   "league": "nfl",
+   "section": "football",
+   "site": "espn",
+   "game_state": "pre",
+   "content_type": "gamecast",
+   "game_detail": "401872980 Tampa Bay Buccaneers vs Dallas Cowboys:week-5",
+   "page_name": "espn:nfl:game:gamecast",
+   "plethoraTraceId": "not available",
+   "sport": "football"
+  },
+  "omniture": {
+   "gameInfo": "401872980 Tampa Bay Buccaneers vs Dallas Cowboys:week-5",
+   "league": "nfl",
+   "countryRegion": "en-us",
+   "hier1": "nfl:game:gamecast",
+   "section": "football",
+   "pageName": "nfl:game:gamecast",
+   "sections": "football:gamecast",
+   "site": "espn",
+   "premium": "premium-no",
+   "appearance": "light",
+   "convrSport": "football",
+   "pageURL": "www.espn.com/nfl/game/_/gameId/401872980",
+   "lang": "en_us",
+   "prop46": "name=sCoreTc, type=0",
+   "gameState": "pre",
+   "contentType": "gamecast",
+   "sport": "football",
+   "account": "wdgespcom",
+   "siteType": "full",
+   "prop58": "isIndex=false"
+  },
+  "nielsen": {
+   "espnuk": {
+    "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+    "vc": "b01"
+   },
+   "espnau": {
+    "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+    "vc": "b01"
+   },
+   "espn": {
+    "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+    "vc": "b01"
+   },
+   "fantasy": {
+    "apid": "P302B69D5-F1DD-4E7A-BF8D-3E60F0EB5E5A",
+    "vc": "c07"
+   },
+   "espndeportes": {
+    "apid": "P890E2723-EDBC-4CCE-96BA-F35EA3E50650",
+    "vc": "c02"
+   },
+   "espnfc": {
+    "apid": "PE6995AAE-0C49-4372-B5E7-54C61BFE2AA5",
+    "vc": "c03"
+   },
+   "espnww": {
+    "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+    "vc": "b01"
+   },
+   "general": {
+    "ci": "us-600140",
+    "assetid": "N/A",
+    "segB": "N/A",
+    "sfcode": "dcr",
+    "segA": "N/A",
+    "section": "N/A",
+    "segC": "N/A",
+    "apn": "espnCOM"
+   },
+   "espnza": {
+    "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+    "vc": "b01"
+   },
+   "espnin": {
+    "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+    "vc": "b01"
+   },
+   "watchespn": {
+    "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+    "vc": "b01"
+   },
+   "cricinfo": {
+    "apid": "PED8CDAC2-F114-41BE-8B98-AFA06FAEA06E",
+    "vc": "c04"
+   },
+   "espnbr": {
+    "apid": "P07264C85-15CD-4A80-8E56-B5BFA6D93296",
+    "vc": "b01"
+   }
+  },
+  "device": "desktop",
+  "cto": true,
+  "qualtrics": false
+ },
+ "ads": {
+  "page_url": "https://www.espn.com/nfl/game/_/gameId/401872980",
+  "prebidAdConfig": {
+   "usePrebidBids": true,
+   "timeout": 1000
+  },
+  "level": "espn.com/nfl/game",
+  "sizesEspnPlus": {
+   "banner-index": {
+    "excludedSize": [
+     "728,90"
+    ],
+    "mappings": [
+     {
+      "viewport": [
+       1280,
+       0
+      ],
+      "slot": [
+       [
+        1280,
+        100
+       ],
+       [
+        970,
+        250
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        970,
+        66
+       ],
+       [
+        970,
+        250
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       768,
+       0
+      ],
+      "slot": [
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     "... 2 more"
+    ],
+    "defaultSize": [
+     970,
+     66
+    ],
+    "excludedProfile": [
+     "xl"
+    ],
+    "includedCountries": [
+     "us"
+    ],
+    "pbjs": {
+     "s": [
+      [
+       320,
+       50
+      ]
+     ],
+     "xl": [
+      [
+       970,
+       250
+      ]
+     ],
+     "l": [
+      [
+       970,
+       250
+      ]
+     ],
+     "m": [
+      [
+       728,
+       90
+      ]
+     ]
+    }
+   },
+   "gamecast": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       [
+        320,
+        50
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     320,
+     50
+    ]
+   },
+   "banner-scoreboard": {
+    "excludedSize": [
+     "970,250"
+    ],
+    "mappings": [
+     {
+      "viewport": [
+       1280,
+       0
+      ],
+      "slot": [
+       [
+        1280,
+        100
+       ],
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        970,
+        66
+       ],
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       768,
+       0
+      ],
+      "slot": [
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     "... 2 more"
+    ],
+    "defaultSize": [
+     970,
+     66
+    ],
+    "includedCountries": [
+     "us"
+    ],
+    "pbjs": {
+     "s": [
+      [
+       320,
+       50
+      ]
+     ],
+     "xl": [
+      [
+       728,
+       90
+      ]
+     ],
+     "l": [
+      [
+       728,
+       90
+      ]
+     ],
+     "m": [
+      [
+       728,
+       90
+      ]
+     ]
+    }
+   },
+   "banner": {
+    "mappings": [
+     {
+      "viewport": [
+       1280,
+       0
+      ],
+      "slot": [
+       [
+        1280,
+        100
+       ],
+       [
+        970,
+        250
+       ],
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        970,
+        66
+       ],
+       [
+        970,
+        250
+       ],
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       768,
+       0
+      ],
+      "slot": [
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     "... 2 more"
+    ],
+    "defaultSize": [
+     970,
+     66
+    ],
+    "pbjs": {
+     "s": [
+      [
+       320,
+       50
+      ]
+     ],
+     "xl": [
+      [
+       970,
+       250
+      ],
+      [
+       728,
+       90
+      ]
+     ],
+     "l": [
+      [
+       970,
+       250
+      ],
+      [
+       728,
+       90
+      ]
+     ],
+     "m": [
+      [
+       728,
+       90
+      ]
+     ]
+    }
+   },
+   "incontent-betting": {
+    "mappings": [
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        300,
+        251
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       320,
+       0
+      ],
+      "slot": [
+       [
+        300,
+        251
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     300,
+     251
+    ]
+   },
+   "native-betting": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       "fluid"
+      ]
+     }
+    ],
+    "defaultSize": "fluid"
+   },
+   "instream": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       [
+        1,
+        3
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     1,
+     3
+    ]
+   },
+   "incontent": {
+    "mappings": [
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        300,
+        250
+       ],
+       [
+        300,
+        600
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     300,
+     250
+    ]
+   }
+  },
+  "delayInPageAdSlots": true,
+  "incontentPositions": {
+   "defaults": {
+    "favorites": -1,
+    "news": 4,
+    "now": 4
+   },
+   "index": {
+    "top": {
+     "favorites": -1
+    },
+    "nfl": {}
+   }
+  },
+  "showEspnPlusAds": false,
+  "kvpsEspnPlus": [
+   {
+    "name": "ed",
+    "value": "us"
+   },
+   {
+    "name": "eplus",
+    "value": "true"
+   }
+  ],
+  "network": "21783347309",
+  "refreshOnBreakpointChange": true,
+  "webviewOverride": {
+   "banner": {
+    "mlb/stats": "banner-webview",
+    "roster": "banner-webview",
+    "cfb/rankings": "banner-webview",
+    "team/stats": "banner-webview",
+    "nba/stats": "banner-webview",
+    "ncaaw/rankings": "banner-webview",
+    "nfl/stats": "banner-webview",
+    "standings": "banner-webview",
+    "cfb/stats": "banner-webview",
+    "ncb/rankings": "banner-webview"
+   }
+  },
+  "sizes": {
+   "gamecast": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       [
+        320,
+        50
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     320,
+     50
+    ]
+   },
+   "overlay": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       [
+        0,
+        0
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     0,
+     0
+    ]
+   },
+   "wallpaper": {
+    "mappings": [
+     {
+      "viewport": [
+       1280,
+       0
+      ],
+      "slot": [
+       [
+        1680,
+        1050
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        1280,
+        455
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": []
+     }
+    ],
+    "defaultSize": [
+     1280,
+     455
+    ]
+   },
+   "banner-scoreboard": {
+    "excludedSize": [
+     "970,250"
+    ],
+    "mappings": [
+     {
+      "viewport": [
+       1280,
+       0
+      ],
+      "slot": [
+       [
+        1280,
+        100
+       ],
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        970,
+        66
+       ],
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       768,
+       0
+      ],
+      "slot": [
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     "... 2 more"
+    ],
+    "defaultSize": [
+     970,
+     66
+    ],
+    "includedCountries": [
+     "us"
+    ],
+    "pbjs": {
+     "s": [
+      [
+       320,
+       50
+      ]
+     ],
+     "xl": [
+      [
+       728,
+       90
+      ]
+     ],
+     "l": [
+      [
+       728,
+       90
+      ]
+     ],
+     "m": [
+      [
+       728,
+       90
+      ]
+     ]
+    }
+   },
+   "incontent2": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       [
+        300,
+        250
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     300,
+     250
+    ]
+   },
+   "banner": {
+    "mappings": [
+     {
+      "viewport": [
+       1280,
+       0
+      ],
+      "slot": [
+       [
+        1280,
+        100
+       ],
+       [
+        970,
+        250
+       ],
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        970,
+        66
+       ],
+       [
+        970,
+        250
+       ],
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       768,
+       0
+      ],
+      "slot": [
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     "... 2 more"
+    ],
+    "defaultSize": [
+     970,
+     66
+    ],
+    "pbjs": {
+     "s": [
+      [
+       320,
+       50
+      ]
+     ],
+     "xl": [
+      [
+       970,
+       250
+      ],
+      [
+       728,
+       90
+      ]
+     ],
+     "l": [
+      [
+       970,
+       250
+      ],
+      [
+       728,
+       90
+      ]
+     ],
+     "m": [
+      [
+       728,
+       90
+      ]
+     ]
+    }
+   },
+   "exclusions": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       [
+        1,
+        2
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     1,
+     2
+    ]
+   },
+   "native-betting": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       "fluid"
+      ]
+     }
+    ],
+    "defaultSize": "fluid"
+   },
+   "banner-index": {
+    "excludedSize": [
+     "728,90"
+    ],
+    "mappings": [
+     {
+      "viewport": [
+       1280,
+       0
+      ],
+      "slot": [
+       [
+        1280,
+        100
+       ],
+       [
+        970,
+        250
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        970,
+        66
+       ],
+       [
+        970,
+        250
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       768,
+       0
+      ],
+      "slot": [
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     "... 2 more"
+    ],
+    "defaultSize": [
+     970,
+     66
+    ],
+    "excludedProfile": [
+     "xl"
+    ],
+    "includedCountries": [
+     "All"
+    ],
+    "pbjs": {
+     "s": [
+      [
+       320,
+       50
+      ]
+     ],
+     "xl": [
+      [
+       970,
+       250
+      ]
+     ],
+     "l": [
+      [
+       970,
+       250
+      ]
+     ],
+     "m": [
+      [
+       728,
+       90
+      ]
+     ]
+    }
+   },
+   "banner-webview": {
+    "excludedSize": [
+     "970,250"
+    ],
+    "mappings": [
+     {
+      "viewport": [
+       1280,
+       0
+      ],
+      "slot": [
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       768,
+       0
+      ],
+      "slot": [
+       [
+        728,
+        90
+       ]
+      ]
+     },
+     "... 2 more"
+    ],
+    "defaultSize": [
+     728,
+     90
+    ],
+    "includedCountries": [
+     "All"
+    ],
+    "pbjs": {
+     "s": [
+      [
+       320,
+       50
+      ]
+     ],
+     "xl": [
+      [
+       728,
+       90
+      ]
+     ],
+     "l": [
+      [
+       728,
+       90
+      ]
+     ],
+     "m": [
+      [
+       728,
+       90
+      ]
+     ]
+    }
+   },
+   "presby": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       [
+        112,
+        62
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     112,
+     62
+    ]
+   },
+   "presentedbylogo": {
+    "mappings": [
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        128,
+        30
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       [
+        90,
+        20
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     128,
+     30
+    ]
+   },
+   "native": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       "fluid"
+      ]
+     }
+    ],
+    "defaultSize": "fluid"
+   },
+   "incontentstrip": {
+    "mappings": [
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       298,
+       50
+      ]
+     },
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": []
+     }
+    ],
+    "defaultSize": [
+     298,
+     50
+    ]
+   },
+   "nlbettingschedule": {
+    "mappings": [
+     {
+      "viewport": [
+       1280,
+       0
+      ],
+      "slot": [
+       [
+        970,
+        250
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        970,
+        250
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       768,
+       0
+      ],
+      "slot": [
+       [
+        300,
+        250
+       ]
+      ]
+     },
+     "... 1 more"
+    ],
+    "defaultSize": [
+     300,
+     250
+    ]
+   },
+   "incontent-betting": {
+    "mappings": [
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        300,
+        251
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       320,
+       0
+      ],
+      "slot": [
+       [
+        300,
+        251
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     300,
+     251
+    ]
+   },
+   "nlbetting": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       [
+        75,
+        65
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     75,
+     65
+    ]
+   },
+   "instream": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       [
+        1,
+        3
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     1,
+     3
+    ]
+   },
+   "incontentstrip2": {
+    "mappings": [
+     {
+      "viewport": [
+       320,
+       0
+      ],
+      "slot": [
+       [
+        298,
+        50
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     298,
+     50
+    ]
+   },
+   "incontent": {
+    "mappings": [
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        300,
+        250
+       ],
+       [
+        300,
+        600
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     300,
+     250
+    ]
+   },
+   "midpage": {
+    "mappings": [
+     {
+      "viewport": [
+       1280,
+       0
+      ],
+      "slot": [
+       [
+        700,
+        400
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        440,
+        330
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       768,
+       0
+      ],
+      "slot": [
+       [
+        320,
+        250
+       ]
+      ]
+     },
+     "... 1 more"
+    ],
+    "defaultSize": [
+     320,
+     250
+    ]
+   }
+  },
+  "load": {
+   "schedule": {
+    "tablet": "init",
+    "desktop": "init",
+    "mobile": "init"
+   },
+   "frontpage": {
+    "tablet": "init",
+    "desktop": "init",
+    "mobile": "init"
+   },
+   "defaults": {
+    "tablet": "init",
+    "desktop": "init",
+    "mobile": "init"
+   },
+   "index": {
+    "tablet": "init",
+    "desktop": "init",
+    "mobile": "init"
+   },
+   "scoreboard": {
+    "tablet": "init",
+    "desktop": "init",
+    "mobile": "init"
+   },
+   "standings": {
+    "tablet": "init",
+    "desktop": "init",
+    "mobile": "init"
+   },
+   "story": {
+    "tablet": "init",
+    "desktop": "init",
+    "mobile": "init"
+   }
+  },
+  "bettingOnlySizes": {
+   "incontent-betting": {
+    "mappings": [
+     {
+      "viewport": [
+       1024,
+       0
+      ],
+      "slot": [
+       [
+        300,
+        251
+       ]
+      ]
+     },
+     {
+      "viewport": [
+       320,
+       0
+      ],
+      "slot": [
+       [
+        300,
+        251
+       ]
+      ]
+     }
+    ],
+    "defaultSize": [
+     300,
+     251
+    ]
+   },
+   "native-betting": {
+    "mappings": [
+     {
+      "viewport": [
+       0,
+       0
+      ],
+      "slot": [
+       "fluid"
+      ]
+     }
+    ],
+    "defaultSize": "fluid"
+   }
+  },
+  "supportDynamicPageLoad": true,
+  "selector": ".ad-slot",
+  "whitelistEspnPlus": [
+   "boxing",
+   "cbb",
+   "cfb",
+   "... 15 more"
+  ],
+  "disabled": "false",
+  "override": {
+   "banner": {
+    "preview": "banner-scoreboard",
+    "game": "banner-scoreboard",
+    "fightcenter": "banner-scoreboard",
+    "match": "banner-scoreboard",
+    "index": "banner-index",
+    "scoreboard": "banner-scoreboard",
+    "conversation": "banner-scoreboard",
+    "lineups": "banner-scoreboard"
+   }
+  },
+  "breakpoints": {
+   "s": [
+    0,
+    767
+   ],
+   "xl": [
+    1280
+   ],
+   "l": [
+    1024,
+    1279
+   ],
+   "m": [
+    768,
+    1023
+   ]
+  },
+  "dynamicKeyValues": {
+   "profile": {
+    "key": "prof"
+   }
+  },
+  "id": 12129264,
+  "kvps": [
+   {
+    "name": "ed",
+    "value": "us"
+   },
+   {
+    "name": "ajx_url",
+    "value": "https://www.espn.com/nfl/game/_/gameId/401872980"
+   },
+   {
+    "name": "sp",
+    "value": "nfl"
+   },
+   "... 2 more"
+  ],
+  "base": "espn.com"
+ },
+ "targeting": {},
+ "meta": {
+  "imageWidth": 1200,
+  "image": "https://s.espncdn.com/stitcher/sports/football/nfl/events/401872980.png?templateId=espn.com.share.1",
+  "twitter_card": "summary",
+  "og_site_name": "ESPN.com",
+  "twitter_app_id_iphone": "317469184",
+  "description": "Get a summary of the Tampa Bay Buccaneers vs. Dallas Cowboys football game.",
+  "og_type": "website",
+  "twitter_app_name_googleplay": "ESPN",
+  "label": "NFL",
+  "canonical": "https://www.espn.com/nfl/game/_/gameId/401872980",
+  "type": "gamepackage",
+  "title": "Buccaneers vs. Cowboys - Game Summary - October 8, 2026 - ESPN",
+  "imageHeight": 630,
+  "fb_app_id": "116656161708917",
+  "twitter_site": "espn",
+  "root": "nfl",
+  "twitter_app_id_googleplay": "com.espn.score_center",
+  "twitter_app_name_iphone": "ESPN"
+ },
+ "nowFeedSupported": true,
+ "customNav": "<div id=\"gamepackage-header-wrap\" class=\"\"><div id=\"gamepackage-matchup-wrap\"><header class=\"game-strip game-package nfl pre \"><div class=\"competitors\"><div class=\"team away\"><div class=\"team__content\"><div class=\"team__banner\" style=\"background-color: #3e3a35;\"><div class=\"team__banner__wrapper\"><img src=\"https://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/tb.png&h=208&w=208\"/></div></div><div class=\"team-container\"><div class=\"team-info\"><div class=\"team-info-wrapper\"><a  name=\"&lpos=nfl:game:game:clubhouse:team\" class=\"team-name\" href=\"/nfl/team/_/name/tb/tampa-bay-buccaneers\" data-clubhouse-uid=\"s:20~l:28~t:27\"><span class=\"long-name\">Tampa Bay</span><span class=\"short-name\">Buccaneers</span><span class=\"abbrev\" title=\"Tampa Bay\">TB</span></a></div><div class=\"record\">0-4<span class=\"inner-record\">, 0-1 Away</span></div></div><div class=\"team-info-logo\"><div class=\"logo\"><a  name=\"&lpos=nfl:game:game:clubhouse:team\" href=\"/nfl/team/_/name/tb/tampa-bay-buccaneers\" data-clubhouse-uid=\"s:20~l:28~t:27\"><img class=\"team-logo\" src=\"https://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/tb.png&h=100&w=100\"/></a></div></div></div><div class=\"score-container\"><div class=\"score icon-font-after\"></div></div></div></div><div class=\"game-status\"><span class=\"network\">Prime Video</span><span data-date=\"2026-10-09T00:15Z\" data-behavior=\"date_time\"><span class=\"game-date\" data-dateFormat=\"date8\" data-showTimezone=\"false\" data-isTbd=\"false\"></span><span class=\"game-time time status-detail\" data-dateFormat=\"time1\" data-showTimezone=\"true\"></span></span><div id=\"gamepackage-linescore-wrap\"></div></div><div class=\"team home\"><div class=\"team__content\"><div class=\"team__banner\" style=\"background-color: #b0b7bc;\"><div class=\"team__banner__wrapper\"><img src=\"https://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/dal.png&h=208&w=208\"/></div></div><div class=\"score-container\"><div class=\"score icon-font-before\"></div></div><div class=\"team-container\"><div class=\"team-info-logo\"><div class=\"logo\"><a  name=\"&lpos=nfl:game:game:clubhouse:team\" href=\"/nfl/team/_/name/dal/dallas-cowboys\" data-clubhouse-uid=\"s:20~l:28~t:6\"><img class=\"team-logo\" src=\"https://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/dal.png&h=100&w=100\"/></a></div></div><div class=\"team-info\"><div class=\"team-info-wrapper\"><a  name=\"&lpos=nfl:game:game:clubhouse:team\" class=\"team-name\" href=\"/nfl/team/_/name/dal/dallas-cowboys\" data-clubhouse-uid=\"s:20~l:28~t:6\"><span class=\"long-name\">Dallas</span><span class=\"short-name\">Cowboys</span><span class=\"abbrev\" title=\"Dallas\">DAL</span></a></div><div class=\"record\">2-2<span class=\"inner-record\">, 1-1 Home</span></div></div></div></div></div></div></header></div><div id=\"gamepackage-links-wrap\"><div class=\"more-overlay-primary\"></div><nav id=\"global-nav-tertiary\" class=\"game-package-nav nav-wrap\" style=\"display:block\"><div class=\"tertiary-nav-container\"><ul class=\"first-group\"><li class=\"sub summary\"><a  name=\"&lpos=nfl:game:pre:subnav:gamecast\" href=\"/nfl/game/_/gameId/401872980/buccaneers-cowboys\"data-track-nav_layer=\"secondary nav\" data-track-nav_item=\"gamecast\" class=\"webview-internal\"><span>Gamecast</span></a></li><li class=\"sub preview\"><a  name=\"&lpos=nfl:game:pre:subnav:preview\" href=\"/nfl/preview/_/gameId/401872980\"data-track-nav_layer=\"secondary nav\" data-track-nav_item=\"preview\" class=\"webview-internal\"><span>Preview</span></a></li><li class=\"sub odds\"><a  name=\"&lpos=nfl:game:pre:subnav:odds\" href=\"https://www.espn.com/nfl/odds/_/gameId/401872980\"data-track-nav_layer=\"secondary nav\" data-track-nav_item=\"odds\" class=\"webview-internal\"><span>Odds</span></a></li><li class=\"sub external tickets\"><a  name=\"&lpos=nfl:game:pre:subnav:tickets\" href=\"https://www.vividseats.com/dallas-cowboys-tickets-arlington-att-stadium-3-9-2026/production/6489565?wsUser=717&wsVar=us~nfl~gamepackage,desktop,en\" data-track-nav_item=\"tickets\"data-track-nav_layer=\"exit link interaction\" target=\"_blank\" rel=\"nofollow\"><span>Tickets</span></a></li></ul></div></nav></div></div>",
+ "sport": [
+  "nfl"
+ ],
+ "tier2Nav": {
+  "subNavMenu": {
+   "navigation": {
+    "links": [
+     {
+      "isExternal": false,
+      "shortText": "NFL",
+      "rel": [
+       "sports"
+      ],
+      "text": "NFL",
+      "href": "/nfl/",
+      "isPremium": false
+     }
+    ],
+    "attributes": {
+     "sport_id": "28",
+     "root": "nfl"
+    },
+    "id": 12002009,
+    "text": "NFL",
+    "title": "NFL Menu - LIVE",
+    "$ref": "/v2/navigation/12002009",
+    "items": [
+     {
+      "links": [
+       {
+        "isExternal": false,
+        "shortText": "Home",
+        "rel": [
+         "sub"
+        ],
+        "attributes": "...",
+        "text": "Home",
+        "href": "/nfl/",
+        "isPremium": false
+       }
+      ],
+      "id": 12002015,
+      "title": "NFL Home Desktop Only",
+      "$ref": "/v2/navigation/12002015"
+     },
+     {
+      "links": [
+       {
+        "isExternal": false,
+        "shortText": "Scores",
+        "rel": [
+         "sub"
+        ],
+        "attributes": "...",
+        "text": "Scores",
+        "href": "/nfl/scoreboard",
+        "isPremium": false
+       }
+      ],
+      "id": 11452910,
+      "title": "NFL Scoreboard",
+      "$ref": "/v2/navigation/11452910"
+     },
+     {
+      "links": [
+       {
+        "isExternal": false,
+        "shortText": "Schedule",
+        "rel": [
+         "none",
+         "sub"
+        ],
+        "attributes": "...",
+        "text": "Schedule",
+        "href": "/nfl/schedule",
+        "isPremium": false
+       }
+      ],
+      "id": 40164186,
+      "text": "Schedule",
+      "title": "NFL Schedule (Menu)",
+      "$ref": "/v2/navigation/40164186",
+      "items": [
+       {
+        "links": [
+         "..."
+        ],
+        "id": 11586080,
+        "title": "NFL Schedule",
+        "$ref": "/v2/navigation/11586080"
+       },
+       {
+        "links": [
+         "..."
+        ],
+        "id": 40164208,
+        "title": "NFL TNF Schedule",
+        "$ref": "/v2/navigation/40164208"
+       },
+       {
+        "links": [
+         "..."
+        ],
+        "id": 40164211,
+        "title": "NFL SNF Schedule",
+        "$ref": "/v2/navigation/40164211"
+       },
+       "... 1 more"
+      ]
+     },
+     "... 28 more"
+    ]
+   },
+   "navId": 12002009,
+   "fallback": false
+  }
+ }
+}

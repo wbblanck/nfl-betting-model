@@ -1,0 +1,7347 @@
+{
+ "stamp": "20261008T050251Z",
+ "sports": {
+  "url": "https://parlay-api.com/v1/sports?apiKey=REDACTED",
+  "status": 200,
+  "headers": {
+   "ratelimit-limit": "60",
+   "ratelimit-policy": "\"free\"; q=60; w=1",
+   "ratelimit-remaining": "60",
+   "ratelimit-reset": "1",
+   "x-ratelimit-limit": "60",
+   "x-ratelimit-remaining": "60",
+   "x-ratelimit-tier": "free",
+   "x-ratelimit-window-seconds": "1"
+  },
+  "keys": [
+   "baseball_mlb",
+   "americanfootball_nfl",
+   "americanfootball_ncaaf",
+   "basketball_nba",
+   "basketball_wnba",
+   "basketball_ncaab",
+   "basketball_euroleague",
+   "icehockey_nhl",
+   "hockey_usa___american_hockey_league",
+   "mma_mixed_martial_arts",
+   "boxing_boxing",
+   "tennis",
+   "tennis_atp",
+   "tennis_wta",
+   "tennis_atp_french_open",
+   "tennis_wta_french_open",
+   "golf_pga_championship",
+   "motorsports_nascar",
+   "cricket_ipl",
+   "cricket_test_match",
+   "rugbyleague_nrl",
+   "esports",
+   "esports_csgo",
+   "esports_cs2",
+   "esports_lol",
+   "esports_dota_2",
+   "esports_valorant",
+   "esports_cod",
+   "volleyball",
+   "soccer_fifa_world_cup",
+   "soccer_argentina_primera_division",
+   "soccer_australia_aleague",
+   "soccer_austria_bundesliga",
+   "soccer_austria_2_liga",
+   "soccer_belgium_first_div",
+   "soccer_brazil_campeonato",
+   "soccer_brazil_serie_b",
+   "soccer_bulgaria_first_league",
+   "soccer_chile_campeonato",
+   "soccer_china_superleague",
+   "soccer_colombia_primera_a",
+   "soccer_costa_rica_primera_division",
+   "soccer_croatia_prva_liga",
+   "soccer_czech_football_league",
+   "soccer_denmark_superliga",
+   "soccer_ecuador_liga_pro",
+   "soccer_england_championship",
+   "soccer_england_league2",
+   "soccer_epl",
+   "soccer_usa_mls",
+   "soccer_uefa_champs_league",
+   "soccer_finland_veikkausliiga",
+   "soccer_france_ligue_one",
+   "soccer_france_ligue_two",
+   "soccer_germany_bundesliga",
+   "soccer_germany_bundesliga2",
+   "soccer_greece_super_league",
+   "soccer_hungary_nb1",
+   "soccer_ireland_premier_division",
+   "soccer_italy_serie_a",
+   "soccer_italy_serie_b",
+   "soccer_japan_j_league",
+   "soccer_japan_j2_league",
+   "soccer_england_league1",
+   "soccer_mexico_ligamx",
+   "soccer_netherlands_eredivisie",
+   "soccer_netherlands_eerste_divisie",
+   "soccer_norway_eliteserien",
+   "soccer_paraguay_primera_division",
+   "soccer_poland_ekstraklasa",
+   "soccer_portugal_primeira_liga",
+   "soccer_romania_superliga",
+   "soccer_saudi_professional_league",
+   "soccer_scotland_championship",
+   "soccer_scotland_premiership",
+   "soccer_serbia_super_liga",
+   "soccer_south_korea_kleague1",
+   "soccer_spain_la_liga",
+   "soccer_spain_segunda_division",
+   "soccer_sweden_allsvenskan",
+   "soccer_switzerland_superleague",
+   "soccer_turkey_super_league",
+   "soccer_ukraine_premier_league",
+   "soccer_other",
+   "table_tennis",
+   "table_tennis_czech_liga_pro",
+   "table_tennis_tt_elite_series",
+   "table_tennis_tt_cup",
+   "table_tennis_tt_cup_women",
+   "table_tennis_setka_cup",
+   "horse_racing",
+   "disc_golf",
+   "americanfootball_cfl",
+   "americanfootball_other",
+   "baseball_chinese_taipei_professional_league",
+   "baseball_kbo",
+   "baseball_korea_professional_baseball",
+   "baseball_npb",
+   "baseball_other",
+   "basketball_aba_adriatic_league",
+   "basketball_aba_liga_2",
+   "basketball_adriatic_league_women",
+   "basketball_algeria_super_division",
+   "basketball_argentina_la_liga_proximo",
+   "basketball_argentina_liga_nacional",
+   "basketball_australia_nbl",
+   "basketball_austria_superliga",
+   "basketball_austria_superliga_women",
+   "basketball_bahrain_premier_league",
+   "basketball_belgium_top_division_1",
+   "basketball_bosnia_and_herzegovina_prvenstvo_bih",
+   "basketball_brazil_campeonato_fcb",
+   "basketball_brazil_campeonato_paulista",
+   "basketball_brazil_paulista_fpb_u20",
+   "basketball_brazil_paulista_u20_women",
+   "basketball_british_slb",
+   "basketball_chile_lnb",
+   "basketball_chile_lnb_women",
+   "basketball_colombia_baloncesto_profesional_colombiano",
+   "basketball_croatia_a1_liga",
+   "basketball_czech_republic_1_liga",
+   "basketball_czech_republic_zbl_women",
+   "basketball_denmark_basketligaen",
+   "basketball_dominican_republic_torneo_baloncesto_superior",
+   "basketball_el_salvador_liga_mayor_de_baloncesto",
+   "basketball_el_salvador_liga_mayor_women",
+   "basketball_estonia_i_liiga",
+   "basketball_estonian_latvian_basketball_league",
+   "basketball_europe_bnxt_league",
+   "basketball_europe_champions_league",
+   "basketball_europe_enbl",
+   "basketball_europe_eurocup",
+   "basketball_europe_euroleague",
+   "basketball_europe_vtb_united_league",
+   "basketball_europe_wbbl_women",
+   "basketball_fiba_europe_cup",
+   "basketball_fiba_super_cup_women",
+   "basketball_finland_division_1",
+   "basketball_finland_korisliiga",
+   "basketball_finland_korisliiga_women",
+   "basketball_france_championnat_pro_b",
+   "basketball_france_cup",
+   "basketball_france_ligue_f_minine_de_basketball",
+   "basketball_france_nationale_1",
+   "basketball_georgia_super_league",
+   "basketball_germany_bundesliga",
+   "basketball_germany_pro_a",
+   "basketball_greece_elite_league",
+   "basketball_greece_greek_cup_women",
+   "basketball_greek_basket_league",
+   "basketball_hong_kong_bl",
+   "basketball_hong_kong_silver_shield_cup_women",
+   "basketball_hungary_nemzeti_bajnoksag_i_a",
+   "basketball_hungary_nemzeti_bajnoksag_i_a_women",
+   "basketball_iceland_premier_league",
+   "basketball_iceland_premier_league_women",
+   "basketball_israel_league_cup",
+   "basketball_italy_lega_a",
+   "basketball_japan_b_league_premier",
+   "basketball_korea_u_league",
+   "basketball_korean_kbl",
+   "basketball_kosovo_superliga",
+   "basketball_lithuania_cup",
+   "basketball_lithuania_lmkl_women",
+   "basketball_lithuania_national_basketball_league",
+   "basketball_mexico_liga_abe",
+   "basketball_mexico_liga_nacional_de_baloncesto_profesional",
+   "basketball_nba_preseason",
+   "basketball_new_zealand_nbl_women",
+   "basketball_other",
+   "basketball_paraguay_lncf_women",
+   "basketball_paraguay_primera",
+   "basketball_philippines_ncaa",
+   "basketball_philippines_pba_governors_cup",
+   "basketball_philippines_uaap",
+   "basketball_philippines_uaap_w",
+   "basketball_poland_2_liga",
+   "basketball_poland_basket_liga",
+   "basketball_poland_blk_women",
+   "basketball_portugal_liga_feminina_de_basquetebol",
+   "basketball_portugal_nacional_2_division",
+   "basketball_portugal_proliga",
+   "basketball_puerto_rico_superior_nacional_women",
+   "basketball_romania_division_a",
+   "basketball_romania_division_a_women",
+   "basketball_russia_super_league",
+   "basketball_serbia_1_zls_women",
+   "basketball_serbia_nasa_liga",
+   "basketball_slovakia_extraliga",
+   "basketball_slovakia_extraliga_women",
+   "basketball_slovenia_1_skl",
+   "basketball_spain_liga_feb",
+   "basketball_spain_liga_women",
+   "basketball_sweden_basketligan",
+   "basketball_sweden_basketligan_women",
+   "basketball_switzerland_nlb",
+   "basketball_switzerland_sb_league_women",
+   "basketball_turkey_super_league",
+   "basketball_turkey_tbl_first_league",
+   "basketball_world_club_friendlies",
+   "basketball_world_club_friendlies_women",
+   "boxing_boxing_matches",
+   "cricket_cricket_world_cup_league_2",
+   "cricket_icc_cricket_world_cup_league_2",
+   "cricket_icc_men_s_t20_wc_asia_qualifier",
+   "cricket_international_twenty20_matches",
+   "cricket_international_twenty20_matches_women",
+   "cricket_south_africa_csa_t20_challenge",
+   "cricket_south_africa_t20_challenge",
+   "cricket_twenty20_international",
+   "esports_cs2_cct_european_series_10",
+   "esports_cs2_cct_european_series_11_qualifier",
+   "esports_cs2_esl_challenger_league_europe",
+   "esports_cs2_esl_challenger_league_north_america",
+   "esports_cs2_esl_challenger_league_south_america",
+   "esports_cs2_esl_pro_league",
+   "esports_cs2_european_pro_league",
+   "esports_cs2_nodwin_clutch_series",
+   "esports_cs2_private_club_qualifier",
+   "esports_cs2_roman_imperium_cup",
+   "esports_cs2_united21",
+   "esports_dota_2_blast_slam",
+   "esports_dota_2_universe_qualifier",
+   "esports_league_of_legends_cblol",
+   "esports_league_of_legends_cblol_promotion",
+   "esports_league_of_legends_demacia_cup",
+   "esports_league_of_legends_emea_masters",
+   "esports_league_of_legends_lcs_promotion",
+   "esports_mobile_legends_mpl_indonesia",
+   "esports_mobile_legends_mpl_malaysia",
+   "esports_mobile_legends_mpl_philippines",
+   "esports_rainbow_six_china_league",
+   "esports_rainbow_six_europe_mena_league",
+   "esports_rainbow_six_north_america_league",
+   "esports_rainbow_six_siege",
+   "esports_rainbow_six_south_america_league",
+   "esports_valorant_champions",
+   "golf_dp_world_open_de_espana_1st_round",
+   "golf_dp_world_open_de_espana_tournament",
+   "golf_other",
+   "golf_pga_baycurrent_classic_1st_round",
+   "golf_pga_baycurrent_classic_tournament",
+   "hockey_austria_ehl",
+   "hockey_belarus_extraleague",
+   "hockey_british_elite_league",
+   "hockey_canada_ontario_hockey_league",
+   "hockey_canada_quebec_major_junior_hockey_league",
+   "hockey_canada_western_hockey_league",
+   "hockey_czech_republic_1_liga",
+   "hockey_czech_republic_2_liga",
+   "hockey_czech_republic_extraliga",
+   "hockey_czech_republic_extraliga_u20",
+   "hockey_denmark_metal_ligaen",
+   "hockey_europe_alps_hockey_league",
+   "hockey_europe_champions_hockey_league",
+   "hockey_finland_mestis",
+   "hockey_finland_sm_liiga",
+   "hockey_finland_suomi_sarja_u20",
+   "hockey_france_ligue_magnus",
+   "hockey_germany_del",
+   "hockey_germany_del_2",
+   "hockey_latvia_latvian_hockey_league",
+   "hockey_nhl",
+   "hockey_norway_1st_division",
+   "hockey_norway_eliteserien",
+   "hockey_poland_polska_hokey_liga",
+   "hockey_russia_junior_hockey_league_mhl",
+   "hockey_russia_kontinental_hockey_league",
+   "hockey_russia_vysshaya_hokkeinaya_liga",
+   "hockey_slovakia_1_liga",
+   "hockey_slovakia_extraliga",
+   "hockey_sweden_hockey_allsvenskan",
+   "hockey_sweden_hockeyettan",
+   "hockey_sweden_sdhl_women",
+   "hockey_sweden_shl",
+   "hockey_switzerland_nationalliga_a",
+   "hockey_switzerland_swiss_league",
+   "hockey_usa_american_hockey_league",
+   "hockey_world_asian_hockey_league",
+   "icehockey_sweden_shl",
+   "mma",
+   "mma_lfa",
+   "mma_ufc",
+   "motorsports",
+   "other_unknown",
+   "soccer_1st_division",
+   "soccer_afc_champions_league_elite",
+   "soccer_africa_cup_of_nations_qualifiers",
+   "soccer_albania_cup",
+   "soccer_algeria_1st_division",
+   "soccer_algeria_2nd_division",
+   "soccer_algeria_ligue_1",
+   "soccer_algeria_ligue_1_corners",
+   "soccer_algeria_ligue_2",
+   "soccer_arabian_gulf_cup",
+   "soccer_arabian_gulf_cup_corners",
+   "soccer_argentina_liga_pro",
+   "soccer_argentina_liga_pro_corners",
+   "soccer_argentina_liga_pro_reserves",
+   "soccer_argentina_primera_b_metropolitana",
+   "soccer_argentina_primera_b_metropolitana_reserves",
+   "soccer_argentina_primera_c",
+   "soccer_argentina_primera_c_metropolitana",
+   "soccer_argentina_primera_c_metropolitana_reserves",
+   "soccer_argentina_primera_division_reserves",
+   "soccer_argentina_primera_nacional",
+   "soccer_argentina_regional",
+   "soccer_argentina_regional_league",
+   "soccer_argentina_reserve_league",
+   "soccer_argentina_torneo_promocional_amateur",
+   "soccer_argentina_u20",
+   "soccer_argentina_youth_league_u20",
+   "soccer_asean_club_championship",
+   "soccer_asean_cup",
+   "soccer_australia_a_league",
+   "soccer_australia_cup",
+   "soccer_azerbaijan_division_1",
+   "soccer_azerbaijan_first_division",
+   "soccer_azerbaijan_premier_league",
+   "soccer_bahrain_kings_cup",
+   "soccer_bangladesh_federation_cup",
+   "soccer_belarus_premier_league",
+   "soccer_belgium_challenger_pro_league",
+   "soccer_belgium_first_amateur_division",
+   "soccer_belgium_first_division_b",
+   "soccer_belgium_pro_league",
+   "soccer_bhutan_premier_league",
+   "soccer_bolivia_copa_division_profesional",
+   "soccer_bolivia_cup",
+   "soccer_bolivia_liga_nacional_u19",
+   "soccer_bolivia_professional_football_league",
+   "soccer_bosnia_and_herzegovina_u19_league",
+   "soccer_bosnia_herzegovina_premier_liga",
+   "soccer_bosnia_herzegovina_u19_league",
+   "soccer_brazil_baiano_women",
+   "soccer_brazil_campeonato_goiano_2",
+   "soccer_brazil_carioca_a2_u20",
+   "soccer_brazil_carioca_b2",
+   "soccer_brazil_carioca_u20",
+   "soccer_brazil_copa_alagoas_u20",
+   "soccer_brazil_copa_do_brasil",
+   "soccer_brazil_copa_goias_u20",
+   "soccer_brazil_gaucho_serie_b",
+   "soccer_brazil_goiano_2",
+   "soccer_brazil_mineiro_2",
+   "soccer_brazil_paraibano_2",
+   "soccer_brazil_piauiense_serie_b",
+   "soccer_brazil_serie_a",
+   "soccer_brazil_serie_a_bookings",
+   "soccer_brazil_serie_a_corners",
+   "soccer_brazil_serie_b_corners",
+   "soccer_brazil_u20_cup",
+   "soccer_brazil_u20_cups",
+   "soccer_bundesliga",
+   "soccer_bundesliga_2",
+   "soccer_bundesliga_3",
+   "soccer_caf_africa_cup_of_nations_qualifiers",
+   "soccer_caf_africa_cup_of_nations_qualifiers_corners",
+   "soccer_caf_africa_cup_of_nations_u20_qualifiers",
+   "soccer_caf_africa_cup_of_nations_u23_qualifiers",
+   "soccer_caf_olympic_qualifiers_women",
+   "soccer_cambodia_cup",
+   "soccer_campeonato_carioca_2",
+   "soccer_canada_premier_league",
+   "soccer_chile_cup",
+   "soccer_chile_primera_division",
+   "soccer_chile_tercera_division",
+   "soccer_chile_tercera_division_a",
+   "soccer_china_league_one",
+   "soccer_china_league_one_corners",
+   "soccer_china_league_two",
+   "soccer_china_super_league",
+   "soccer_china_u20_league",
+   "soccer_club_friendlies",
+   "soccer_colombia_league_u19",
+   "soccer_colombia_liga_antioquena_de_futbol",
+   "soccer_colombia_primera_b",
+   "soccer_colombia_primera_b_corners",
+   "soccer_colombia_u19_championship",
+   "soccer_concacaf_nations_league_a",
+   "soccer_concacaf_nations_league_a_corners",
+   "soccer_concacaf_nations_league_b",
+   "soccer_concacaf_nations_league_c",
+   "soccer_conmebol_copa_libertadores",
+   "soccer_conmebol_copa_sudamericana",
+   "soccer_croatia_3_nl",
+   "soccer_croatia_hnl",
+   "soccer_cyprus_1st_division",
+   "soccer_cyprus_division_1",
+   "soccer_czech_republic_2_liga",
+   "soccer_czech_republic_3_liga",
+   "soccer_czech_republic_first_league",
+   "soccer_czech_republic_first_liga",
+   "soccer_czech_republic_fnl",
+   "soccer_denmark_1st_division",
+   "soccer_denmark_division_1",
+   "soccer_dfb_pokal",
+   "soccer_ecuador_copa_ecuador",
+   "soccer_ecuador_cup",
+   "soccer_ecuador_serie_a",
+   "soccer_ecuador_serie_b",
+   "soccer_egypt_2nd_division",
+   "soccer_egypt_2nd_division_a",
+   "soccer_egypt_2nd_division_b",
+   "soccer_egypt_league_cup",
+   "soccer_egypt_premier_league",
+   "soccer_el_salvador_primera_division",
+   "soccer_elite_international_friendlies",
+   "soccer_england_central_league_cup_reserves",
+   "soccer_england_development_league",
+   "soccer_england_efl_cup",
+   "soccer_england_efl_trophy",
+   "soccer_england_efl_trophy_corners",
+   "soccer_england_fa_cup_qualification",
+   "soccer_england_fa_cup_qualifiers",
+   "soccer_england_isthmian_division_1_north",
+   "soccer_england_isthmian_division_1_south_central",
+   "soccer_england_isthmian_league",
+   "soccer_england_isthmian_premier_division",
+   "soccer_england_isthmian_premier_league",
+   "soccer_england_league_1",
+   "soccer_england_league_2",
+   "soccer_england_league_one",
+   "soccer_england_league_two",
+   "soccer_england_national_league",
+   "soccer_england_national_league_cup",
+   "soccer_england_national_league_south",
+   "soccer_england_national_league_south_corners",
+   "soccer_england_northern_league_division_1",
+   "soccer_england_northern_league_division_one",
+   "soccer_england_northern_premier_league",
+   "soccer_england_premier_league",
+   "soccer_england_premier_league_corners",
+   "soccer_england_professional_development_league_u21",
+   "soccer_england_reserve_league",
+   "soccer_england_southern_league_division_1",
+   "soccer_england_southern_league_division_one_central",
+   "soccer_england_southern_premier_league_central",
+   "soccer_england_southern_premier_league_south",
+   "soccer_england_southern_south_league",
+   "soccer_english_league_a_2025_26",
+   "soccer_euro_league_2026",
+   "soccer_fifa_asean_cup_division_1",
+   "soccer_fifa_world_cup_qualifiers_europe_women",
+   "soccer_fiji_inter_district_championship",
+   "soccer_finland_veikkausliiga_corners",
+   "soccer_finland_ykkonen",
+   "soccer_finland_ykkonen_corners",
+   "soccer_finland_ykkonen_women",
+   "soccer_finland_ykkosliiga",
+   "soccer_france_ligue_1_corners",
+   "soccer_france_ligue_2",
+   "soccer_france_ligue_3",
+   "soccer_friendlies",
+   "soccer_friendlies_u19",
+   "soccer_friendlies_u20",
+   "soccer_friendlies_u21",
+   "soccer_georgia_league_3",
+   "soccer_germany_3_liga",
+   "soccer_germany_bundesliga_2",
+   "soccer_germany_bundesliga_corners",
+   "soccer_germany_cup",
+   "soccer_ghana_division_1",
+   "soccer_global_cup_2026",
+   "soccer_greece_gamma_ethniki",
+   "soccer_greece_super_league_2",
+   "soccer_guatemala_liga_nacional",
+   "soccer_guatemala_primera_division",
+   "soccer_guatemala_primera_division_de_ascenso",
+   "soccer_guatemala_segunda_division",
+   "soccer_gulf_cup",
+   "soccer_honduras_liga_nacional",
+   "soccer_hong_kong_premier_league_u22",
+   "soccer_hong_kong_u22_league",
+   "soccer_hungary_league_u19",
+   "soccer_hungary_nb_1",
+   "soccer_hungary_u19_league",
+   "soccer_iceland_premier_league",
+   "soccer_india_bangalore_super_division",
+   "soccer_india_calcutta_first_division",
+   "soccer_india_ifa_shield",
+   "soccer_india_shillong_first_division",
+   "soccer_india_shillong_premier_league",
+   "soccer_india_super_league",
+   "soccer_indonesia_liga_1",
+   "soccer_indonesia_super_league",
+   "soccer_international_friendlies",
+   "soccer_international_friendlies_corners",
+   "soccer_international_friendlies_u19",
+   "soccer_international_friendlies_u19_women",
+   "soccer_international_friendlies_u20",
+   "soccer_international_friendlies_u21",
+   "soccer_international_friendlies_u23_women",
+   "soccer_international_friendlies_women",
+   "soccer_iran_azadegan_league",
+   "soccer_iran_pro_league",
+   "soccer_iraq_first_division",
+   "soccer_iraq_iraqi_stars_league",
+   "soccer_iraq_premier_division",
+   "soccer_iraq_stars_league",
+   "soccer_ireland_division_1",
+   "soccer_ireland_national_league",
+   "soccer_ireland_u20_league",
+   "soccer_israel_league_u19",
+   "soccer_israel_liga_alef",
+   "soccer_israel_liga_bet",
+   "soccer_israel_liga_bet_north_south",
+   "soccer_israel_liga_leumit",
+   "soccer_israel_ligat_leumit",
+   "soccer_israel_premier_league",
+   "soccer_israel_u19_elite_division",
+   "soccer_italy_serie_a_corners",
+   "soccer_italy_serie_c_group_a",
+   "soccer_italy_serie_d_cup",
+   "soccer_ivory_coast_ligue_1",
+   "soccer_ivory_coast_ligue_2",
+   "soccer_jamaica_premier_league",
+   "soccer_japan_cup",
+   "soccer_japan_cup_corners",
+   "soccer_japan_emperors_cup",
+   "soccer_japan_j_league_2",
+   "soccer_japan_j_league_3",
+   "soccer_jordan_cup",
+   "soccer_jordan_jordan_cup",
+   "soccer_jordan_premier_league",
+   "soccer_jordan_pro_league",
+   "soccer_jordan_u20_league",
+   "soccer_kenya_premier_league",
+   "soccer_korea_kleague1",
+   "soccer_korea_republic_k3_league",
+   "soccer_korea_republic_k_league_1",
+   "soccer_korea_republic_k_league_2",
+   "soccer_korea_republic_k_league_women",
+   "soccer_kosovo_superliga",
+   "soccer_kosovo_superliga_u19",
+   "soccer_kuwait_1st_division",
+   "soccer_kuwait_division_1",
+   "soccer_kuwait_premier_league",
+   "soccer_kyrgyzstan_premier_league",
+   "soccer_lebanon_premier_league",
+   "soccer_ligue_1",
+   "soccer_ligue_2",
+   "soccer_lithuania_a_lyga",
+   "soccer_malaysia_president_cup_u20",
+   "soccer_mexico_copa_promesas",
+   "soccer_mexico_copa_promesas_mx",
+   "soccer_mexico_liga_de_expansi_n_mx",
+   "soccer_mexico_liga_de_expansion_mx",
+   "soccer_mexico_liga_premier",
+   "soccer_mexico_segunda_division",
+   "soccer_mongolia_premier_league",
+   "soccer_montenegro_druga_liga",
+   "soccer_montenegro_prva_liga",
+   "soccer_morocco_botola_pro",
+   "soccer_mozambique_mocambola",
+   "soccer_myanmar_national_league_u20",
+   "soccer_nations_league_matches",
+   "soccer_nicaragua_primera_division",
+   "soccer_nicaragua_segunda_division",
+   "soccer_nigeria_npfl",
+   "soccer_nigeria_premier_league",
+   "soccer_nir_ifa_premiership",
+   "soccer_northern_ireland_nifl_development_league",
+   "soccer_northern_ireland_premiership",
+   "soccer_northern_ireland_reserve_league",
+   "soccer_norway_1st_division",
+   "soccer_norway_3rd_division",
+   "soccer_norway_cup",
+   "soccer_norway_cup_women",
+   "soccer_norway_division_3",
+   "soccer_norway_league_u19",
+   "soccer_norway_nm_cup",
+   "soccer_norway_u19_league",
+   "soccer_olympics_matches_qualification_women",
+   "soccer_oman_u21_championship",
+   "soccer_panama_liga_panamena",
+   "soccer_panama_liga_prom",
+   "soccer_panama_primera_division",
+   "soccer_paraguay_cup",
+   "soccer_paraguay_division_intermedia",
+   "soccer_paraguay_division_profesional",
+   "soccer_paraguay_division_profesional_corners",
+   "soccer_paraguay_primera_division_reserves",
+   "soccer_paraguay_reserve_league",
+   "soccer_paraguay_segunda_division",
+   "soccer_paraguay_tercera_division",
+   "soccer_peru_copa_de_la_liga",
+   "soccer_peru_league_cup",
+   "soccer_peru_liga_1",
+   "soccer_peru_liga_2",
+   "soccer_peru_primera_division",
+   "soccer_peru_segunda_division",
+   "soccer_poland_1st_liga",
+   "soccer_poland_2nd_liga",
+   "soccer_poland_u19_league",
+   "soccer_portugal_championship_u23",
+   "soccer_portugal_liga_2",
+   "soccer_portugal_segunda_liga",
+   "soccer_portugal_u23_championship",
+   "soccer_premier_division",
+   "soccer_primera_division_rfef",
+   "soccer_qatar_stars_league",
+   "soccer_romania_liga_1",
+   "soccer_romania_liga_2",
+   "soccer_russia_cup",
+   "soccer_russia_first_league",
+   "soccer_russia_premier_league",
+   "soccer_saudi_arabia_division_1",
+   "soccer_saudi_arabia_pro_league",
+   "soccer_saudi_arabia_professional_league",
+   "soccer_scotland_highland_league",
+   "soccer_segunda",
+   "soccer_segunda_division_rfef",
+   "soccer_serbia_prva_liga",
+   "soccer_serbia_u19_league",
+   "soccer_serie_b",
+   "soccer_serie_c",
+   "soccer_serie_d_cup",
+   "soccer_slovakia_2_liga",
+   "soccer_slovakia_league_u19",
+   "soccer_slovakia_super_liga",
+   "soccer_slovakia_u19_league",
+   "soccer_slovenia_2_snl",
+   "soccer_slovenia_division_2",
+   "soccer_slovenia_prva_liga",
+   "soccer_solomon_islands_s_league",
+   "soccer_south_korea_k_league_1",
+   "soccer_south_korea_k_league_2",
+   "soccer_south_korea_k_league_women",
+   "soccer_spain_la_liga_corners",
+   "soccer_spain_primera_federacion",
+   "soccer_spain_segunda_federacion",
+   "soccer_spain_tercera_division",
+   "soccer_sweden_cup",
+   "soccer_sweden_division_1",
+   "soccer_sweden_division_1_norra",
+   "soccer_sweden_division_2",
+   "soccer_sweden_superettan",
+   "soccer_sweden_women_cup",
+   "soccer_switzerland_1_liga_classic",
+   "soccer_switzerland_2_liga_interregional",
+   "soccer_switzerland_challenge_league",
+   "soccer_switzerland_erste_liga",
+   "soccer_switzerland_super_league",
+   "soccer_switzerland_u19_elite",
+   "soccer_tanzania_premier_league",
+   "soccer_thailand_championship_u21",
+   "soccer_thailand_league_cup",
+   "soccer_thailand_u21_league",
+   "soccer_turkey_1st_league",
+   "soccer_turkey_2nd_league",
+   "soccer_turkey_cup",
+   "soccer_turkey_super_lig_u19",
+   "soccer_turkey_tff_first_league",
+   "soccer_turkey_tff_second_league",
+   "soccer_turkey_u19_league",
+   "soccer_u20_leagues",
+   "soccer_uae_league_cup",
+   "soccer_uae_u21_league",
+   "soccer_uefa_conference_league",
+   "soccer_uefa_euro",
+   "soccer_uefa_europa_league",
+   "soccer_uefa_european_championship_qualifiers_u21",
+   "soccer_uefa_nations_league_a",
+   "soccer_uefa_nations_league_a_bookings",
+   "soccer_uefa_nations_league_a_corners",
+   "soccer_uefa_nations_league_b",
+   "soccer_uefa_nations_league_b_bookings",
+   "soccer_uefa_nations_league_b_corners",
+   "soccer_uefa_nations_league_c",
+   "soccer_uefa_nations_league_c_corners",
+   "soccer_uefa_u19_euro_championship_women_qualifiers",
+   "soccer_uefa_u21_euro_championship_qualifiers",
+   "soccer_uefa_u21_euro_championship_qualifiers_corners",
+   "soccer_uganda_premier_league",
+   "soccer_ukraine_cup",
+   "soccer_ukraine_persha_liga",
+   "soccer_uruguay_cup",
+   "soccer_uruguay_primera_division",
+   "soccer_uruguay_primera_division_amateur",
+   "soccer_uruguay_reserve_league",
+   "soccer_usa_major_league_soccer_bookings",
+   "soccer_usa_major_league_soccer_corners",
+   "soccer_usa_usl_championship",
+   "soccer_usa_usl_league_one",
+   "soccer_uzbekistan_first_league",
+   "soccer_uzbekistan_pfl",
+   "soccer_uzbekistan_pro_league",
+   "soccer_uzbekistan_super_league",
+   "soccer_venezuela_copa_venezuela",
+   "soccer_venezuela_cup",
+   "soccer_vietnam_championship",
+   "soccer_vietnam_cup",
+   "soccer_vietnam_v_league",
+   "soccer_vietnam_womens_national_league",
+   "soccer_wales_championship",
+   "soccer_wales_faw_championship",
+   "soccer_wales_premier_league",
+   "soccer_women_international_euro_championship_u19_qualifiers",
+   "soccer_women_international_friendlies",
+   "soccer_women_international_friendlies_u19",
+   "tennis_atp_challenger_antofagasta",
+   "tennis_atp_challenger_antofagasta_2026",
+   "tennis_atp_challenger_antofagasta_qualifiers",
+   "tennis_atp_challenger_braga",
+   "tennis_atp_challenger_braga_2026",
+   "tennis_atp_challenger_braga_qualifiers",
+   "tennis_atp_challenger_palermo",
+   "tennis_atp_challenger_palermo_2026",
+   "tennis_atp_challenger_palermo_qualifiers",
+   "tennis_atp_challenger_villena",
+   "tennis_atp_challenger_villena_2026",
+   "tennis_atp_challenger_villena_qualifiers",
+   "tennis_atp_challenger_wuning",
+   "tennis_atp_challenger_wuning_2026",
+   "tennis_itf_m15_burgas_bul",
+   "tennis_itf_m15_burgas_bul_q",
+   "tennis_itf_m15_heraklion_gre",
+   "tennis_itf_m15_heraklion_gre_q",
+   "tennis_itf_m15_monastir_tun",
+   "tennis_itf_m15_monastir_tun_q",
+   "tennis_itf_m15_pontevedra_esp",
+   "tennis_itf_m15_pontevedra_esp_q",
+   "tennis_itf_m15_quito_ecu",
+   "tennis_itf_m15_quito_ecu_q",
+   "tennis_itf_m15_rodez_fra",
+   "tennis_itf_m15_rodez_fra_q",
+   "tennis_itf_m15_sharm_elsheikh_egy",
+   "tennis_itf_m15_sharm_elsheikh_egy_q",
+   "tennis_itf_m25_darwin_aus",
+   "tennis_itf_m25_darwin_aus_q",
+   "tennis_itf_m25_kigali_rwa",
+   "tennis_itf_m25_kigali_rwa_q",
+   "tennis_itf_m25_luan_chn",
+   "tennis_itf_m25_luan_chn_q",
+   "tennis_itf_m25_santa_margherita_di_pula_ita",
+   "tennis_itf_m25_santa_margherita_di_pula_ita_q",
+   "tennis_itf_men_burgas",
+   "tennis_itf_men_darwin",
+   "tennis_itf_men_heraklion",
+   "tennis_itf_men_kigali",
+   "tennis_itf_men_luan",
+   "tennis_itf_men_monastir",
+   "tennis_itf_men_pontevedra",
+   "tennis_itf_men_quito",
+   "tennis_itf_men_rodez",
+   "tennis_itf_men_santa_margherita_di_pula",
+   "tennis_itf_w15_chisinau_mda",
+   "tennis_itf_w15_chisinau_mda_q",
+   "tennis_itf_w15_cipolletti_arg",
+   "tennis_itf_w15_maanshan_chn",
+   "tennis_itf_w15_maanshan_chn_q",
+   "tennis_itf_w15_sharm_elsheikh_egy",
+   "tennis_itf_w15_sharm_elsheikh_egy_q",
+   "tennis_itf_w15_sz_kesfeh_rv_r_hun",
+   "tennis_itf_w15_sz_kesfeh_rv_r_hun_q",
+   "tennis_itf_w35_henderson_usa",
+   "tennis_itf_w35_henderson_usa_q",
+   "tennis_itf_w35_lagos_por",
+   "tennis_itf_w35_lagos_por_q",
+   "tennis_itf_w35_monastir_tun",
+   "tennis_itf_w35_monastir_tun_q",
+   "tennis_itf_w35_santa_margherita_di_pula_ita",
+   "tennis_itf_w35_santa_margherita_di_pula_ita_q",
+   "tennis_itf_w35_sevilla_esp",
+   "tennis_itf_w35_sevilla_esp_q",
+   "tennis_itf_w35_villeneuve_d_ascq_fra",
+   "tennis_itf_w35_villeneuve_d_ascq_fra_q",
+   "tennis_itf_w35_wagga_wagga_aus",
+   "tennis_itf_w35_wagga_wagga_aus_q",
+   "tennis_itf_w50_burgas_bul",
+   "tennis_itf_w50_burgas_bul_q",
+   "tennis_itf_w50_heraklion_gre",
+   "tennis_itf_w50_heraklion_gre_q",
+   "tennis_itf_w50_lexington_usa",
+   "tennis_itf_w50_lexington_usa_q",
+   "tennis_itf_women_burgas",
+   "tennis_itf_women_chisinau",
+   "tennis_itf_women_cipolletti",
+   "tennis_itf_women_heraklion",
+   "tennis_itf_women_islamabad",
+   "tennis_itf_women_lagos",
+   "tennis_itf_women_las_vegas",
+   "tennis_itf_women_lexington",
+   "tennis_itf_women_maanshan",
+   "tennis_itf_women_monastir",
+   "tennis_itf_women_santa_margherita_di_pula",
+   "tennis_itf_women_seville",
+   "tennis_itf_women_szekesfehervar",
+   "tennis_itf_women_villeneuve_d_ascq",
+   "tennis_itf_women_wagga_wagga",
+   "tennis_other",
+   "tennis_utr",
+   "tennis_wta_125k_samsun",
+   "tennis_wta_125k_samsun_qualifiers",
+   "tennis_wta_125k_suzhou",
+   "volleyball_argentina_division_de_honor_women",
+   "volleyball_argentina_super_primera_women",
+   "volleyball_argentina_superiores_primera",
+   "volleyball_club_friendlies",
+   "volleyball_czech_republic_cup_women",
+   "volleyball_europe_cev_challenge_cup_women",
+   "volleyball_finland_mestaruusliiga_women",
+   "volleyball_poland_liga_1",
+   "volleyball_turkey_cup",
+   "volleyball_uruguay_division_a_women",
+   "volleyball_uruguay_primera"
+  ],
+  "body_head": null
+ },
+ "props": {
+  "sport_key": "americanfootball_nfl",
+  "url": "https://parlay-api.com/v1/sports/americanfootball_nfl/props?apiKey=REDACTED&limit=10000&oddsFormat=american",
+  "status": 200,
+  "headers": {
+   "ratelimit-limit": "60",
+   "ratelimit-policy": "\"free\"; q=60; w=1",
+   "ratelimit-remaining": "60",
+   "ratelimit-reset": "1",
+   "x-ratelimit-limit": "60",
+   "x-ratelimit-remaining": "60",
+   "x-ratelimit-tier": "free",
+   "x-ratelimit-window-seconds": "1",
+   "x-requests-remaining": "997",
+   "x-requests-used": "3",
+   "x-result-limit": "10000"
+  },
+  "n_rows": 10000,
+  "fields": [
+   "age_seconds",
+   "available_sides",
+   "away_team",
+   "bookmaker",
+   "bookmaker_title",
+   "canonical_event_id",
+   "commence_time",
+   "commence_time_reported",
+   "dfs_normalized",
+   "event_id",
+   "game_date",
+   "has_alternates",
+   "home_team",
+   "implied_probability",
+   "injury",
+   "is_dfs_flat_payout",
+   "last_observed",
+   "last_update",
+   "last_update_type",
+   "line",
+   "market",
+   "market_key",
+   "native_identity",
+   "native_identity_scope",
+   "odds_type",
+   "over_price",
+   "payout_multiplier_scope",
+   "period",
+   "player",
+   "player_reference",
+   "product_quotes",
+   "projection_type",
+   "selection_by_side",
+   "sport_key",
+   "under_price"
+  ],
+  "markets": [
+   [
+    "Receiving Yards",
+    955
+   ],
+   [
+    "Receptions",
+    469
+   ],
+   [
+    "Correct Score",
+    455
+   ],
+   [
+    "Rushing Yards",
+    443
+   ],
+   [
+    "Any Time Touchdown Scorer",
+    425
+   ],
+   [
+    "Anytime Touchdowns",
+    289
+   ],
+   [
+    "Passing Yards",
+    257
+   ],
+   [
+    "Longest Reception",
+    226
+   ],
+   [
+    "Alternate Spread",
+    178
+   ],
+   [
+    "Last Touchdown",
+    149
+   ],
+   [
+    "First Touchdown",
+    127
+   ],
+   [
+    "1H Receiving Yards",
+    117
+   ],
+   [
+    "Winning Margin Range",
+    109
+   ],
+   [
+    "Anytime Td",
+    107
+   ],
+   [
+    "TOUCHDOWNS",
+    99
+   ],
+   [
+    "1H Rush + Rec TDs",
+    95
+   ],
+   [
+    "Longest Rush",
+    94
+   ],
+   [
+    "Rush Yards",
+    91
+   ],
+   [
+    "Alternative POINT SPREAD",
+    90
+   ],
+   [
+    "Anytime Tds",
+    86
+   ],
+   [
+    "Fantasy Score",
+    86
+   ],
+   [
+    "Anytime TDs",
+    85
+   ],
+   [
+    "Rush + Rec Yards",
+    84
+   ],
+   [
+    "1Q Receiving Yards",
+    83
+   ],
+   [
+    "Rush + Rec TD",
+    81
+   ],
+   [
+    "Total Points Range",
+    71
+   ],
+   [
+    "First Touchdown Scorer",
+    70
+   ],
+   [
+    "Passing Touchdowns",
+    67
+   ],
+   [
+    "First TD Scorer",
+    66
+   ],
+   [
+    "1Q Rush + Rec TDs",
+    65
+   ],
+   [
+    "First Drive Specials",
+    64
+   ],
+   [
+    "Rushing Attempts",
+    60
+   ],
+   [
+    "Receiving Yards Milestones",
+    57
+   ],
+   [
+    "Rush Attempts",
+    56
+   ],
+   [
+    "Alternate Total",
+    56
+   ],
+   [
+    "Alternative TOTAL SCORE",
+    55
+   ],
+   [
+    "Either Player - Anytime Touchdown Scorer",
+    54
+   ],
+   [
+    "Either Player - First Touchdown Scorer",
+    54
+   ],
+   [
+    "Either Player - To Score 2+ Touchdowns",
+    54
+   ],
+   [
+    "Receiving Yards Milestones - 1st Half",
+    51
+   ],
+   [
+    "Tackles + Assists Milestones",
+    48
+   ],
+   [
+    "Sacks",
+    43
+   ],
+   [
+    "Half And Quarter Game Specials",
+    43
+   ],
+   [
+    "Passing Attempts",
+    43
+   ],
+   [
+    "Pass Attempts",
+    42
+   ],
+   [
+    "Pass Completions",
+    42
+   ],
+   [
+    "Alternate Receiving Yards",
+    41
+   ],
+   [
+    "Total Points Range 1st Half",
+    39
+   ],
+   [
+    "Kicking Points",
+    38
+   ],
+   [
+    "1H Rec Yards",
+    37
+   ],
+   [
+    "1Q Rec Yards",
+    37
+   ],
+   [
+    "Pass Yards",
+    36
+   ],
+   [
+    "Longest Passing Completion",
+    35
+   ],
+   [
+    "1H Receptions",
+    34
+   ],
+   [
+    "1Q Receptions",
+    34
+   ],
+   [
+    "Rushing And Receiving Yards",
+    32
+   ],
+   [
+    "Tackles Milestones",
+    32
+   ],
+   [
+    "Longest Completion",
+    32
+   ],
+   [
+    "Tackles+Ast",
+    31
+   ],
+   [
+    "Anytime 2Nd Half Td Scorer",
+    30
+   ],
+   [
+    "Anytime 2Nd Quarter Td Scorer",
+    30
+   ],
+   [
+    "Anytime 4Th Quarter Td Scorer",
+    30
+   ],
+   [
+    "Passing + Rushing Yards",
+    29
+   ],
+   [
+    "Receiving Yards Milestones - 1st Quarter",
+    29
+   ],
+   [
+    "Fumbles Lost",
+    28
+   ],
+   [
+    "Interceptions",
+    28
+   ],
+   [
+    "Anytime 3Rd Quarter Td Scorer",
+    28
+   ],
+   [
+    "Anytime Touchdown Scorer",
+    27
+   ],
+   [
+    "Pass Tds",
+    27
+   ],
+   [
+    "Passing + Rushing Yards Milestones",
+    27
+   ],
+   [
+    "Passing Yards Milestones - 1st Half",
+    26
+   ],
+   [
+    "Assists Milestones",
+    24
+   ],
+   [
+    "Alternate Rushing Yards",
+    24
+   ],
+   [
+    "Game Specials - Kicking",
+    24
+   ],
+   [
+    "Player Drive Receiving Yards Milestones",
+    23
+   ],
+   [
+    "Passing Yards Milestones",
+    23
+   ],
+   [
+    "1Q Rush Yards",
+    22
+   ],
+   [
+    "Rec Targets",
+    22
+   ],
+   [
+    "Dynamic Winning Margin",
+    22
+   ],
+   [
+    "Rushing Yards Milestones",
+    22
+   ],
+   [
+    "1H Rush Yards",
+    21
+   ],
+   [
+    "Longest Reception Milestones",
+    21
+   ],
+   [
+    "Last Td Scorer",
+    21
+   ],
+   [
+    "Fg Made",
+    20
+   ],
+   [
+    "Passing And Rushing Yards",
+    20
+   ],
+   [
+    "Passing Yards Milestones - 1st Quarter",
+    20
+   ],
+   [
+    "Passing Completions",
+    19
+   ],
+   [
+    "Receptions Milestones",
+    19
+   ],
+   [
+    "Correct Score Range",
+    19
+   ],
+   [
+    "Extra Point Made",
+    18
+   ],
+   [
+    "Player To Record X+ Receiving Yards In Each Half",
+    18
+   ],
+   [
+    "Alternate Passing Yards",
+    18
+   ],
+   [
+    "Field Goals Made",
+    17
+   ],
+   [
+    "First Drive Parlays",
+    16
+   ],
+   [
+    "First Half Moneyline",
+    15
+   ],
+   [
+    "Second Half Spread",
+    15
+   ],
+   [
+    "Second Half Total Points",
+    15
+   ],
+   [
+    "First Half Spread",
+    15
+   ],
+   [
+    "First Half Total Points",
+    15
+   ],
+   [
+    "Pass+Rush Yds",
+    15
+   ],
+   [
+    "Team Total Points",
+    15
+   ],
+   [
+    "Solo Tackles",
+    14
+   ],
+   [
+    "Passing Interceptions",
+    14
+   ],
+   [
+    "Receptions Milestones - 1st Quarter",
+    14
+   ],
+   [
+    "Winning Margin",
+    13
+   ],
+   [
+    "Tackles + Assists",
+    13
+   ],
+   [
+    "Field Goal Made",
+    13
+   ],
+   [
+    "Touchdowns",
+    13
+   ],
+   [
+    "George Pickens - Alt Receiving Yds",
+    13
+   ],
+   [
+    "Fantasy Points",
+    12
+   ],
+   [
+    "Targets",
+    12
+   ],
+   [
+    "Touchdown Passes",
+    12
+   ],
+   [
+    "Player Drive Touchdown",
+    12
+   ],
+   [
+    "Rush+Rec Yds",
+    12
+   ],
+   [
+    "Pass TDs",
+    12
+   ],
+   [
+    "Parker Washington - Alt Receiving Yds",
+    12
+   ],
+   [
+    "Passing Attempts Milestones",
+    12
+   ],
+   [
+    "Rushing + Receiving Yards",
+    11
+   ],
+   [
+    "CeeDee Lamb - Alt Receiving Yds",
+    11
+   ],
+   [
+    "First Touchdown Scorer - Dallas Cowboys",
+    11
+   ],
+   [
+    "Completions",
+    11
+   ],
+   [
+    "Ints Thrown",
+    11
+   ],
+   [
+    "Pass + Rush Yards",
+    11
+   ],
+   [
+    "1H Pass TDs",
+    11
+   ],
+   [
+    "Garrett Wilson - Alt Receiving Yds",
+    11
+   ],
+   [
+    "Assists",
+    10
+   ],
+   [
+    "First Touchdown Scorer - Tampa Bay Buccaneers",
+    10
+   ],
+   [
+    "Dak Prescott - Alt Passing Yds",
+    10
+   ],
+   [
+    "Player Drive Receptions Milestones",
+    10
+   ],
+   [
+    "1Q Pass TDs",
+    10
+   ],
+   [
+    "1H Pass Yards",
+    10
+   ],
+   [
+    "Most Receiving Yards",
+    10
+   ],
+   [
+    "1st Half Moneyline",
+    10
+   ],
+   [
+    "Kirk Cousins - Alt Passing Yds",
+    10
+   ],
+   [
+    "Winning Margin (10-point Bands)",
+    10
+   ],
+   [
+    "Extra Points Made",
+    9
+   ],
+   [
+    "Defensive Ints",
+    9
+   ],
+   [
+    "Bucky Irving - Alt Receiving Yds",
+    9
+   ],
+   [
+    "Jalen Hurts - Alt Passing Yds",
+    9
+   ],
+   [
+    "Int",
+    9
+   ],
+   [
+    "Trevor Lawrence - Alt Passing Yds",
+    9
+   ],
+   [
+    "Drake Maye - Alt Passing Yds",
+    9
+   ],
+   [
+    "Alternate Passing Completions",
+    9
+   ],
+   [
+    "Odd/Even Total Points",
+    9
+   ],
+   [
+    "First Drive Touchdown Scorer - Cowboys",
+    8
+   ],
+   [
+    "Rushing Attempts Milestones",
+    8
+   ],
+   [
+    "1Q Pass Yards",
+    8
+   ],
+   [
+    "Passing Completions Milestones",
+    8
+   ],
+   [
+    "Xp Made",
+    7
+   ],
+   [
+    "Most Receptions",
+    7
+   ],
+   [
+    "Yards On First Reception",
+    7
+   ],
+   [
+    "Total Points Range 1st Quarter",
+    7
+   ],
+   [
+    "Player to Record a 10+ Yard Reception",
+    7
+   ],
+   [
+    "1st Half Point Spread",
+    7
+   ],
+   [
+    "Player to Record a 15+ Yard Reception",
+    7
+   ],
+   [
+    "Player to Record a 20+ Yard Reception",
+    7
+   ],
+   [
+    "1st Half Total Score",
+    7
+   ],
+   [
+    "Player Drive Passing Yards Milestones",
+    7
+   ],
+   [
+    "First Drive Touchdown Scorer - Buccaneers",
+    6
+   ],
+   [
+    "Half Time / Full Time",
+    6
+   ],
+   [
+    "Player To Record X+ Rushing Yards In Each Half",
+    6
+   ],
+   [
+    "Race To X Receiving Yards",
+    6
+   ],
+   [
+    "Race To X Receptions",
+    6
+   ],
+   [
+    "Player To Score 2 Or More Touchdowns",
+    6
+   ],
+   [
+    "First Scoring Play",
+    6
+   ],
+   [
+    "Longest Passing Completion Milestones",
+    6
+   ],
+   [
+    "[Team1] Total Points Bands",
+    5
+   ],
+   [
+    "[Team2] Total Points Bands",
+    5
+   ],
+   [
+    "Assists O/U",
+    5
+   ],
+   [
+    "Tackles O/U",
+    5
+   ],
+   [
+    "Tackles + Assists O/U",
+    5
+   ],
+   [
+    "Longest Reception O/U",
+    5
+   ],
+   [
+    "Player Receiving Yards Ml",
+    5
+   ],
+   [
+    "Player Receiving Yards Spread",
+    5
+   ],
+   [
+    "New England Patriots Points Range",
+    5
+   ],
+   [
+    "Minnesota Vikings Points Range 1st Half",
+    5
+   ],
+   [
+    "Houston Texans Points Range 1st Half",
+    5
+   ],
+   [
+    "Denver Broncos Points Range 1st Half",
+    5
+   ],
+   [
+    "Winning Margin (10-Point Bands)",
+    5
+   ],
+   [
+    "Arizona Cardinals Points Range 1st Half",
+    5
+   ],
+   [
+    "San Francisco 49ers Points Range",
+    5
+   ],
+   [
+    "Baltimore Ravens Points Range 1st Half",
+    5
+   ],
+   [
+    "Passing Touchdowns Milestones",
+    5
+   ],
+   [
+    "Tampa Bay Buccaneers Points Range 1st Quarter",
+    4
+   ],
+   [
+    "Dallas Cowboys Points Range",
+    4
+   ],
+   [
+    "Sacks Milestones",
+    4
+   ],
+   [
+    "Field Goals Made Milestones",
+    4
+   ],
+   [
+    "Most Rushing Yards",
+    4
+   ],
+   [
+    "Halves with 25+ Receiving Yards",
+    4
+   ],
+   [
+    "Philadelphia Eagles Points Range 1st Quarter",
+    4
+   ],
+   [
+    "Philadelphia Eagles Points Range 1st Half",
+    4
+   ],
+   [
+    "Cincinnati Bengals Points Range 1st Quarter",
+    4
+   ],
+   [
+    "Minnesota Vikings Points Range 1st Quarter",
+    4
+   ],
+   [
+    "New York Jets Points Range 1st Quarter",
+    4
+   ],
+   [
+    "Pittsburgh Steelers Points Range 1st Quarter",
+    4
+   ],
+   [
+    "Washington Commanders Points Range 1st Quarter",
+    4
+   ],
+   [
+    "Miami Dolphins Points Range",
+    4
+   ],
+   [
+    "Alternate Receptions",
+    4
+   ],
+   [
+    "Interceptions Thrown",
+    4
+   ],
+   [
+    "Player To Record X+ Receiving Yards In Each Quarter",
+    4
+   ],
+   [
+    "Player to Record a 30+ Yard Reception",
+    4
+   ],
+   [
+    "Extra Points Made Milestones",
+    4
+   ],
+   [
+    "Team Total",
+    4
+   ],
+   [
+    "Los Angeles Chargers Points Range 1st Quarter",
+    4
+   ],
+   [
+    "Point Spread",
+    4
+   ],
+   [
+    "Winning Margin (4-way)",
+    4
+   ],
+   [
+    "Detroit Lions Points Range 1st Quarter",
+    4
+   ],
+   [
+    "San Francisco 49ers Points Range 1st Quarter",
+    4
+   ],
+   [
+    "Player To Score 3 Or More Touchdowns",
+    4
+   ],
+   [
+    "Rushing Yards Milestones - 1st Half",
+    4
+   ],
+   [
+    "Player To Record A Sack",
+    3
+   ],
+   [
+    "FG Made (Combo)",
+    3
+   ],
+   [
+    "Tackles",
+    3
+   ],
+   [
+    "Tackles And Assists",
+    3
+   ],
+   [
+    "Tackle Assists",
+    3
+   ],
+   [
+    "Quarters with 5+ Rush Yards",
+    3
+   ],
+   [
+    "Las Vegas Raiders Points Range 1st Quarter",
+    3
+   ],
+   [
+    "1st Quarter Moneyline",
+    3
+   ],
+   [
+    "Tennessee Titans Points Range 1st Quarter",
+    3
+   ],
+   [
+    "Longest Rushing Attempt",
+    3
+   ],
+   [
+    "Chicago Bears Points Range 1st Quarter",
+    3
+   ],
+   [
+    "New York Jets Points Range 1st Half",
+    3
+   ],
+   [
+    "Pittsburgh Steelers Points Range 1st Half",
+    3
+   ],
+   [
+    "Receiving Yards O/U",
+    3
+   ],
+   [
+    "Pass+Rush+Rec TDs",
+    3
+   ],
+   [
+    "Total Receptions",
+    3
+   ],
+   [
+    "Receiving Yards O/U - 1st Half",
+    3
+   ],
+   [
+    "Receptions O/U",
+    3
+   ],
+   [
+    "Double Chance",
+    3
+   ],
+   [
+    "Total Points Odd/Even",
+    3
+   ],
+   [
+    "Atlanta Falcons Points Range 1st Quarter",
+    3
+   ],
+   [
+    "Passing Touchdown Milestones - 1st Quarter",
+    3
+   ],
+   [
+    "Rushing Yards Milestones - 1st Quarter",
+    3
+   ],
+   [
+    "FG Made",
+    2
+   ],
+   [
+    "Quarters With 1+ Kicking Point",
+    2
+   ],
+   [
+    "Punts",
+    2
+   ],
+   [
+    "Halves with 25+ Rush Yards",
+    2
+   ],
+   [
+    "Dallas Cowboys Points Odd/Even",
+    2
+   ],
+   [
+    "Rush Yards In First 5 Attempts",
+    2
+   ],
+   [
+    "Rush Yards Per Carry",
+    2
+   ],
+   [
+    "Yards On First Rush Attempt",
+    2
+   ],
+   [
+    "Rushing And Receiving Yards Milestones",
+    2
+   ],
+   [
+    "Philadelphia Eagles Points Odd/Even",
+    2
+   ],
+   [
+    "Quarters with 1+ Reception",
+    2
+   ],
+   [
+    "Quarters with 5+ Receiving Yards",
+    2
+   ],
+   [
+    "Receiving Yards (Combo)",
+    2
+   ],
+   [
+    "1st Quarter Spread",
+    2
+   ],
+   [
+    "Cleveland Browns Points Range 1st Half",
+    2
+   ],
+   [
+    "Completion Percentage",
+    2
+   ],
+   [
+    "Green Bay Packers Points Range 1st Half",
+    2
+   ],
+   [
+    "New York Giants Points Range 1st Half",
+    2
+   ],
+   [
+    "Passer Rating",
+    2
+   ],
+   [
+    "Quarters with 20+ Pass Yards",
+    2
+   ],
+   [
+    "Passing Tds",
+    2
+   ],
+   [
+    "Pass Yards (Combo)",
+    2
+   ],
+   [
+    "Receiving Yards O/U - 1st Quarter",
+    2
+   ],
+   [
+    "WR.TE Fantasy Points O/U",
+    2
+   ],
+   [
+    "Chicago Bears Points Odd/Even",
+    2
+   ],
+   [
+    "Miami Dolphins Points Odd/Even 1st Half",
+    2
+   ],
+   [
+    "Total Points Odd/Even 1st Half",
+    2
+   ],
+   [
+    "Minnesota Vikings Points Odd/Even 1st Half",
+    2
+   ],
+   [
+    "Indianapolis Colts Points Odd/Even 1st Half",
+    2
+   ],
+   [
+    "Tennessee Titans Points Odd/Even 1st Half",
+    2
+   ],
+   [
+    "New York Giants Points Odd/Even",
+    2
+   ],
+   [
+    "Rush Yards (Combo)",
+    2
+   ],
+   [
+    "Longest Pass Completion",
+    2
+   ],
+   [
+    "Most Passing Yards",
+    2
+   ],
+   [
+    "Total Passing Touchdowns",
+    2
+   ],
+   [
+    "To Score Every Quarter",
+    2
+   ],
+   [
+    "Los Angeles Chargers Points Odd/Even",
+    2
+   ],
+   [
+    "Winning Margin (4-Way)",
+    2
+   ],
+   [
+    "Detroit Lions Points Odd/Even 1st Half",
+    2
+   ],
+   [
+    "Interceptions Thrown Milestones",
+    2
+   ],
+   [
+    "Baltimore Ravens Points Odd/Even 1st Half",
+    2
+   ],
+   [
+    "Total Receiving Yards",
+    2
+   ],
+   [
+    "Bauer Sharp To Score First Touchdown",
+    1
+   ],
+   [
+    "Tampa Bay Buccaneers Points Range 1st Half",
+    1
+   ],
+   [
+    "Bauer Sharp To Score Last Touchdown",
+    1
+   ],
+   [
+    "Brandon Aubrey Total Field Goals Made",
+    1
+   ],
+   [
+    "Brevyn Spann-Ford To Score First Touchdown",
+    1
+   ],
+   [
+    "Bucky Irving - Receiving Yds",
+    1
+   ],
+   [
+    "Brevyn Spann-Ford To Score Last Touchdown",
+    1
+   ],
+   [
+    "Bucky Irving - Total Receptions",
+    1
+   ],
+   [
+    "Bucky Irving Longest Reception",
+    1
+   ],
+   [
+    "Bucky Irving - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Bucky Irving Longest Rush",
+    1
+   ],
+   [
+    "Bucky Irving - Rushing Yds",
+    1
+   ],
+   [
+    "Bucky Irving To Score First Touchdown",
+    1
+   ],
+   [
+    "Bucky Irving To Score Last Touchdown",
+    1
+   ],
+   [
+    "Bucky Irving Receiving Yards",
+    1
+   ],
+   [
+    "Bucky Irving Total Receptions",
+    1
+   ],
+   [
+    "Bucky Irving Total Rushing Attempts",
+    1
+   ],
+   [
+    "Bucky Irving Total Rushing & Receiving Yards",
+    1
+   ],
+   [
+    "Field Goals",
+    1
+   ],
+   [
+    "Bucky Irving Rushing Yards",
+    1
+   ],
+   [
+    "Sacks O/U",
+    1
+   ],
+   [
+    "Cade Otton Longest Reception",
+    1
+   ],
+   [
+    "Field Goal Yards (Combo)",
+    1
+   ],
+   [
+    "Cade Otton To Score First Touchdown",
+    1
+   ],
+   [
+    "First FG Distance (Combo)",
+    1
+   ],
+   [
+    "Cade Otton To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kicking Points (Combo)",
+    1
+   ],
+   [
+    "Cade Otton Receiving Yards",
+    1
+   ],
+   [
+    "Cade Otton - Receiving Yds",
+    1
+   ],
+   [
+    "Last FG Distance (Combo)",
+    1
+   ],
+   [
+    "Cade Otton Total Receptions",
+    1
+   ],
+   [
+    "Cade Otton - Total Receptions",
+    1
+   ],
+   [
+    "Longest FG Made Yds (Combo)",
+    1
+   ],
+   [
+    "Camden Brown To Score First Touchdown",
+    1
+   ],
+   [
+    "PAT Made (Combo)",
+    1
+   ],
+   [
+    "Camden Brown To Score Last Touchdown",
+    1
+   ],
+   [
+    "Shortest FG Made Yds (Combo)",
+    1
+   ],
+   [
+    "CeeDee Lamb Longest Reception",
+    1
+   ],
+   [
+    "CeeDee Lamb - Receiving Yds",
+    1
+   ],
+   [
+    "CeeDee Lamb To Score First Touchdown",
+    1
+   ],
+   [
+    "CeeDee Lamb - Total Receptions",
+    1
+   ],
+   [
+    "CeeDee Lamb To Score Last Touchdown",
+    1
+   ],
+   [
+    "CeeDee Lamb Receiving Yards",
+    1
+   ],
+   [
+    "CeeDee Lamb Total Receptions",
+    1
+   ],
+   [
+    "Chase McLaughlin Total Field Goals Made",
+    1
+   ],
+   [
+    "Chris Godwin Longest Reception",
+    1
+   ],
+   [
+    "Chris Godwin To Score First Touchdown",
+    1
+   ],
+   [
+    "Chris Godwin To Score Last Touchdown",
+    1
+   ],
+   [
+    "Chris Godwin Receiving Yards",
+    1
+   ],
+   [
+    "Chris Godwin Total Receptions",
+    1
+   ],
+   [
+    "Dak Prescott Interceptions Thrown",
+    1
+   ],
+   [
+    "Dak Prescott Longest Pass",
+    1
+   ],
+   [
+    "Dak Prescott Longest Rush",
+    1
+   ],
+   [
+    "Dak Prescott To Score First Touchdown",
+    1
+   ],
+   [
+    "Chris Godwin - Receiving Yds",
+    1
+   ],
+   [
+    "Dak Prescott To Score Last Touchdown",
+    1
+   ],
+   [
+    "Chris Godwin - Total Receptions",
+    1
+   ],
+   [
+    "Dak Prescott Total Pass Completions",
+    1
+   ],
+   [
+    "Dak Prescott Total Passing Attempts",
+    1
+   ],
+   [
+    "Dak Prescott - Passing TDs",
+    1
+   ],
+   [
+    "Dak Prescott Total Passing & Rushing Yards",
+    1
+   ],
+   [
+    "Dak Prescott - Passing Yds",
+    1
+   ],
+   [
+    "Dak Prescott Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Dak Prescott - Rushing Yds",
+    1
+   ],
+   [
+    "Dak Prescott Passing Yards",
+    1
+   ],
+   [
+    "Dak Prescott Rushing Yards",
+    1
+   ],
+   [
+    "Dallas Cowboys: Team Total Points",
+    1
+   ],
+   [
+    "Emari Demercado To Score First Touchdown",
+    1
+   ],
+   [
+    "Emari Demercado To Score Last Touchdown",
+    1
+   ],
+   [
+    "Emeka Egbuka Longest Reception",
+    1
+   ],
+   [
+    "Emeka Egbuka To Score First Touchdown",
+    1
+   ],
+   [
+    "Emeka Egbuka To Score Last Touchdown",
+    1
+   ],
+   [
+    "Emeka Egbuka Receiving Yards",
+    1
+   ],
+   [
+    "Emeka Egbuka Total Receptions",
+    1
+   ],
+   [
+    "George Pickens Longest Reception",
+    1
+   ],
+   [
+    "George Pickens To Score First Touchdown",
+    1
+   ],
+   [
+    "George Pickens To Score Last Touchdown",
+    1
+   ],
+   [
+    "George Pickens Receiving Yards",
+    1
+   ],
+   [
+    "Emeka Egbuka - Receiving Yds",
+    1
+   ],
+   [
+    "George Pickens Total Receptions",
+    1
+   ],
+   [
+    "Emeka Egbuka - Total Receptions",
+    1
+   ],
+   [
+    "Player Rushing Yards Ml",
+    1
+   ],
+   [
+    "Hunter Luepke To Score First Touchdown",
+    1
+   ],
+   [
+    "Player Rushing Yards Spread",
+    1
+   ],
+   [
+    "Hunter Luepke To Score Last Touchdown",
+    1
+   ],
+   [
+    "George Pickens - Receiving Yds",
+    1
+   ],
+   [
+    "Jake Ferguson Longest Reception",
+    1
+   ],
+   [
+    "George Pickens - Total Receptions",
+    1
+   ],
+   [
+    "Jake Ferguson To Score First Touchdown",
+    1
+   ],
+   [
+    "Jake Ferguson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jake Ferguson Receiving Yards",
+    1
+   ],
+   [
+    "Jake Ferguson Total Receptions",
+    1
+   ],
+   [
+    "Jalon Daniels Interceptions Thrown",
+    1
+   ],
+   [
+    "Jalon Daniels Longest Pass",
+    1
+   ],
+   [
+    "Jalon Daniels Longest Rush",
+    1
+   ],
+   [
+    "Race To X Rushing Yards",
+    1
+   ],
+   [
+    "Jalon Daniels To Score First Touchdown",
+    1
+   ],
+   [
+    "RB Fantasy Points O/U",
+    1
+   ],
+   [
+    "Jalon Daniels To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jalon Daniels Total Pass Completions",
+    1
+   ],
+   [
+    "Jalon Daniels Total Passing Attempts",
+    1
+   ],
+   [
+    "Jalon Daniels Total Passing & Rushing Yards",
+    1
+   ],
+   [
+    "Jalon Daniels Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Jalon Daniels Passing Yards",
+    1
+   ],
+   [
+    "Jalon Daniels Total Rushing Attempts",
+    1
+   ],
+   [
+    "Jalon Daniels Rushing Yards",
+    1
+   ],
+   [
+    "Jake Ferguson - Receiving Yds",
+    1
+   ],
+   [
+    "Javonte Williams Longest Reception",
+    1
+   ],
+   [
+    "Jake Ferguson - Total Receptions",
+    1
+   ],
+   [
+    "Tackles Assists",
+    1
+   ],
+   [
+    "Javonte Williams Longest Rush",
+    1
+   ],
+   [
+    "Javonte Williams To Score First Touchdown",
+    1
+   ],
+   [
+    "Jalon Daniels - Passing TDs",
+    1
+   ],
+   [
+    "Philadelphia Eagles Points Range",
+    1
+   ],
+   [
+    "Javonte Williams To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jalon Daniels - Passing Yds",
+    1
+   ],
+   [
+    "Javonte Williams Receiving Yards",
+    1
+   ],
+   [
+    "Jalon Daniels - Rushing Yds",
+    1
+   ],
+   [
+    "Javonte Williams Total Receptions",
+    1
+   ],
+   [
+    "Javonte Williams Total Rushing Attempts",
+    1
+   ],
+   [
+    "Javonte Williams - Receiving Yds",
+    1
+   ],
+   [
+    "Javonte Williams Total Rushing & Receiving Yards",
+    1
+   ],
+   [
+    "Javonte Williams - Total Receptions",
+    1
+   ],
+   [
+    "Javonte Williams Rushing Yards",
+    1
+   ],
+   [
+    "Javonte Williams - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Jonathan Mingo To Score First Touchdown",
+    1
+   ],
+   [
+    "Javonte Williams - Rushing Yds",
+    1
+   ],
+   [
+    "Jonathan Mingo To Score Last Touchdown",
+    1
+   ],
+   [
+    "KaVontae Turpin To Score First Touchdown",
+    1
+   ],
+   [
+    "KaVontae Turpin To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kameron Johnson To Score First Touchdown",
+    1
+   ],
+   [
+    "Kameron Johnson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kenneth Gainwell - Receiving Yds",
+    1
+   ],
+   [
+    "Kenneth Gainwell Longest Reception",
+    1
+   ],
+   [
+    "Kenneth Gainwell - Total Receptions",
+    1
+   ],
+   [
+    "Kenneth Gainwell Longest Rush",
+    1
+   ],
+   [
+    "Kenneth Gainwell - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Kenneth Gainwell To Score First Touchdown",
+    1
+   ],
+   [
+    "Kenneth Gainwell - Rushing Yds",
+    1
+   ],
+   [
+    "Kenneth Gainwell To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kenneth Gainwell Receiving Yards",
+    1
+   ],
+   [
+    "Kenneth Gainwell Total Receptions",
+    1
+   ],
+   [
+    "Kenneth Gainwell Total Rushing & Receiving Yards",
+    1
+   ],
+   [
+    "Kenneth Gainwell Rushing Yards",
+    1
+   ],
+   [
+    "Ryan Flournoy - Receiving Yds",
+    1
+   ],
+   [
+    "Ko Kieft To Score First Touchdown",
+    1
+   ],
+   [
+    "Ryan Flournoy - Total Receptions",
+    1
+   ],
+   [
+    "Ko Kieft To Score Last Touchdown",
+    1
+   ],
+   [
+    "Luke Schoonmaker To Score First Touchdown",
+    1
+   ],
+   [
+    "Luke Schoonmaker To Score Last Touchdown",
+    1
+   ],
+   [
+    "Payne Durham To Score First Touchdown",
+    1
+   ],
+   [
+    "Ted Hurst III - Receiving Yds",
+    1
+   ],
+   [
+    "Payne Durham To Score Last Touchdown",
+    1
+   ],
+   [
+    "Ted Hurst III - Total Receptions",
+    1
+   ],
+   [
+    "Ryan Flournoy Longest Reception",
+    1
+   ],
+   [
+    "Ryan Flournoy To Score First Touchdown",
+    1
+   ],
+   [
+    "Tez Johnson - Receiving Yds",
+    1
+   ],
+   [
+    "Ryan Flournoy To Score Last Touchdown",
+    1
+   ],
+   [
+    "Tez Johnson - Total Receptions",
+    1
+   ],
+   [
+    "Ryan Flournoy Receiving Yards",
+    1
+   ],
+   [
+    "Ryan Flournoy Total Receptions",
+    1
+   ],
+   [
+    "Tyler Goodson - Rushing Yds",
+    1
+   ],
+   [
+    "Sean Tucker To Score First Touchdown",
+    1
+   ],
+   [
+    "Green Bay Packers Points Range 1st Quarter",
+    1
+   ],
+   [
+    "Sean Tucker To Score Last Touchdown",
+    1
+   ],
+   [
+    "Tampa Bay Buccaneers: Team Total Points",
+    1
+   ],
+   [
+    "Bhayshul Tuten - Receiving Yds",
+    1
+   ],
+   [
+    "Bhayshul Tuten - Total Receptions",
+    1
+   ],
+   [
+    "Bhayshul Tuten - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Bhayshul Tuten - Rushing Yds",
+    1
+   ],
+   [
+    "1st Quarter Total Points",
+    1
+   ],
+   [
+    "Brenton Strange - Receiving Yds",
+    1
+   ],
+   [
+    "Brenton Strange - Total Receptions",
+    1
+   ],
+   [
+    "Emeka Egbuka To Score a Touchdown",
+    1
+   ],
+   [
+    "Brian Thomas Jr. - Receiving Yds",
+    1
+   ],
+   [
+    "Brian Thomas Jr. - Total Receptions",
+    1
+   ],
+   [
+    "Ted Hurst Longest Reception",
+    1
+   ],
+   [
+    "Ted Hurst To Score First Touchdown",
+    1
+   ],
+   [
+    "Ted Hurst To Score Last Touchdown",
+    1
+   ],
+   [
+    "Ted Hurst Receiving Yards",
+    1
+   ],
+   [
+    "Chris Rodriguez Jr. - Rushing Yds",
+    1
+   ],
+   [
+    "Ted Hurst Total Receptions",
+    1
+   ],
+   [
+    "Tez Johnson Longest Reception",
+    1
+   ],
+   [
+    "Tez Johnson To Score First Touchdown",
+    1
+   ],
+   [
+    "Tez Johnson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Tez Johnson Receiving Yards",
+    1
+   ],
+   [
+    "Tez Johnson Total Receptions",
+    1
+   ],
+   [
+    "Tyler Goodson To Score First Touchdown",
+    1
+   ],
+   [
+    "Tyler Goodson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jakobi Meyers - Receiving Yds",
+    1
+   ],
+   [
+    "Tyler Goodson Rushing Yards",
+    1
+   ],
+   [
+    "Jakobi Meyers - Total Receptions",
+    1
+   ],
+   [
+    "Bhayshul Tuten To Score First Touchdown",
+    1
+   ],
+   [
+    "Bhayshul Tuten To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jalen Hurts - Passing TDs",
+    1
+   ],
+   [
+    "Bhayshul Tuten Receiving Yards",
+    1
+   ],
+   [
+    "Jalen Hurts - Passing Yds",
+    1
+   ],
+   [
+    "Bhayshul Tuten Total Receptions",
+    1
+   ],
+   [
+    "Jalen Hurts - Rushing Yds",
+    1
+   ],
+   [
+    "Bhayshul Tuten Rushing Yards",
+    1
+   ],
+   [
+    "Brenton Strange Receiving Yards",
+    1
+   ],
+   [
+    "Brenton Strange Total Receptions",
+    1
+   ],
+   [
+    "Brian Thomas Jr. To Score First Touchdown",
+    1
+   ],
+   [
+    "Cincinnati Bengals Points Range 1st Half",
+    1
+   ],
+   [
+    "Brian Thomas Jr. Receiving Yards",
+    1
+   ],
+   [
+    "Brian Thomas Jr. Total Receptions",
+    1
+   ],
+   [
+    "Britain Covey To Score First Touchdown",
+    1
+   ],
+   [
+    "Britain Covey To Score Last Touchdown",
+    1
+   ],
+   [
+    "Indianapolis Colts Points Range 1st Half",
+    1
+   ],
+   [
+    "C.J. Williams To Score First Touchdown",
+    1
+   ],
+   [
+    "C.J. Williams To Score Last Touchdown",
+    1
+   ],
+   [
+    "Chris Rodriguez Jr. To Score First Touchdown",
+    1
+   ],
+   [
+    "Chris Rodriguez Jr. To Score Last Touchdown",
+    1
+   ],
+   [
+    "Josh Cameron - Receiving Yds",
+    1
+   ],
+   [
+    "Chris Rodriguez Jr. Total Rushing Attempts",
+    1
+   ],
+   [
+    "Josh Cameron - Total Receptions",
+    1
+   ],
+   [
+    "New England Patriots Points Range 1st Quarter",
+    1
+   ],
+   [
+    "Chris Rodriguez Jr. Rushing Yards",
+    1
+   ],
+   [
+    "Dontayvion Wicks To Score First Touchdown",
+    1
+   ],
+   [
+    "Dontayvion Wicks To Score Last Touchdown",
+    1
+   ],
+   [
+    "E.J. Jenkins To Score First Touchdown",
+    1
+   ],
+   [
+    "Houston Texans Points Range 1st Quarter",
+    1
+   ],
+   [
+    "E.J. Jenkins To Score Last Touchdown",
+    1
+   ],
+   [
+    "Elijah Moore To Score First Touchdown",
+    1
+   ],
+   [
+    "Parker Washington - Receiving Yds",
+    1
+   ],
+   [
+    "Elijah Moore To Score Last Touchdown",
+    1
+   ],
+   [
+    "Parker Washington - Total Receptions",
+    1
+   ],
+   [
+    "Jacksonville Jaguars: Team Total Points",
+    1
+   ],
+   [
+    "Jakobi Meyers To Score First Touchdown",
+    1
+   ],
+   [
+    "Jakobi Meyers To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jakobi Meyers Receiving Yards",
+    1
+   ],
+   [
+    "Jakobi Meyers Total Receptions",
+    1
+   ],
+   [
+    "Jalen Hurts Interceptions Thrown",
+    1
+   ],
+   [
+    "Jalen Hurts To Score First Touchdown",
+    1
+   ],
+   [
+    "Jalen Hurts To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jalen Hurts Total Pass Completions",
+    1
+   ],
+   [
+    "Jalen Hurts Total Passing Attempts",
+    1
+   ],
+   [
+    "Jalen Hurts Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Jalen Hurts Passing Yards",
+    1
+   ],
+   [
+    "Jalen Hurts Rushing Yards",
+    1
+   ],
+   [
+    "Josh Cameron Receiving Yards",
+    1
+   ],
+   [
+    "Josh Cameron Total Receptions",
+    1
+   ],
+   [
+    "Josiah Deguara To Score First Touchdown",
+    1
+   ],
+   [
+    "Josiah Deguara To Score Last Touchdown",
+    1
+   ],
+   [
+    "Nate Boerkircher To Score First Touchdown",
+    1
+   ],
+   [
+    "Trevor Lawrence - Passing TDs",
+    1
+   ],
+   [
+    "Nate Boerkircher To Score Last Touchdown",
+    1
+   ],
+   [
+    "Trevor Lawrence - Passing Yds",
+    1
+   ],
+   [
+    "Parker Washington To Score First Touchdown",
+    1
+   ],
+   [
+    "Trevor Lawrence - Rushing Yds",
+    1
+   ],
+   [
+    "Parker Washington To Score Last Touchdown",
+    1
+   ],
+   [
+    "Parker Washington Receiving Yards",
+    1
+   ],
+   [
+    "Sacks Taken",
+    1
+   ],
+   [
+    "Parker Washington Total Receptions",
+    1
+   ],
+   [
+    "Philadelphia Eagles: Team Total Points",
+    1
+   ],
+   [
+    "Chris Rodriguez Jr. To Score a Touchdown",
+    1
+   ],
+   [
+    "Quintin Morris To Score First Touchdown",
+    1
+   ],
+   [
+    "Will Shipley - Rushing Yds",
+    1
+   ],
+   [
+    "Quintin Morris To Score Last Touchdown",
+    1
+   ],
+   [
+    "Tanner Koziol To Score First Touchdown",
+    1
+   ],
+   [
+    "Tanner Koziol To Score Last Touchdown",
+    1
+   ],
+   [
+    "Aaron Jones - Receiving Yds",
+    1
+   ],
+   [
+    "Travis Hunter To Score First Touchdown",
+    1
+   ],
+   [
+    "Aaron Jones - Total Receptions",
+    1
+   ],
+   [
+    "Travis Hunter To Score Last Touchdown",
+    1
+   ],
+   [
+    "Aaron Jones - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Trevor Lawrence Interceptions Thrown",
+    1
+   ],
+   [
+    "Aaron Jones - Rushing Yds",
+    1
+   ],
+   [
+    "Trevor Lawrence To Score First Touchdown",
+    1
+   ],
+   [
+    "Trevor Lawrence To Score Last Touchdown",
+    1
+   ],
+   [
+    "Aaron Rodgers - Passing TDs",
+    1
+   ],
+   [
+    "Trevor Lawrence Total Pass Completions",
+    1
+   ],
+   [
+    "Aaron Rodgers - Passing Yds",
+    1
+   ],
+   [
+    "Trevor Lawrence Total Passing Attempts",
+    1
+   ],
+   [
+    "Trevor Lawrence Passing Yards",
+    1
+   ],
+   [
+    "Trevor Lawrence Rushing Yards",
+    1
+   ],
+   [
+    "Will Shipley To Score First Touchdown",
+    1
+   ],
+   [
+    "Will Shipley To Score Last Touchdown",
+    1
+   ],
+   [
+    "Will Shipley Rushing Yards",
+    1
+   ],
+   [
+    "Ashton Jeanty - Receiving Yds",
+    1
+   ],
+   [
+    "Zach Ertz To Score First Touchdown",
+    1
+   ],
+   [
+    "Ashton Jeanty - Total Receptions",
+    1
+   ],
+   [
+    "Zach Ertz To Score Last Touchdown",
+    1
+   ],
+   [
+    "Ashton Jeanty - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Aaron Jones Receiving Yards",
+    1
+   ],
+   [
+    "Ashton Jeanty - Rushing Yds",
+    1
+   ],
+   [
+    "Aaron Jones Total Receptions",
+    1
+   ],
+   [
+    "Aaron Jones Rushing Yards",
+    1
+   ],
+   [
+    "Aaron Rodgers To Score First Touchdown",
+    1
+   ],
+   [
+    "Aaron Rodgers To Score Last Touchdown",
+    1
+   ],
+   [
+    "Aaron Rodgers Total Passing Attempts",
+    1
+   ],
+   [
+    "Aaron Rodgers Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Aaron Rodgers Passing Yards",
+    1
+   ],
+   [
+    "Adonai Mitchell To Score First Touchdown",
+    1
+   ],
+   [
+    "Braelon Allen - Rushing Yds",
+    1
+   ],
+   [
+    "Anthony Gould To Score First Touchdown",
+    1
+   ],
+   [
+    "Anthony Gould To Score Last Touchdown",
+    1
+   ],
+   [
+    "Ashton Dulin To Score First Touchdown",
+    1
+   ],
+   [
+    "Brock Bowers - Receiving Yds",
+    1
+   ],
+   [
+    "Ashton Dulin To Score Last Touchdown",
+    1
+   ],
+   [
+    "Brock Bowers - Total Receptions",
+    1
+   ],
+   [
+    "Ashton Jeanty To Score First Touchdown",
+    1
+   ],
+   [
+    "Ashton Jeanty To Score Last Touchdown",
+    1
+   ],
+   [
+    "Ashton Jeanty Receiving Yards",
+    1
+   ],
+   [
+    "C.J. Stroud - Passing TDs",
+    1
+   ],
+   [
+    "Ashton Jeanty Total Receptions",
+    1
+   ],
+   [
+    "C.J. Stroud - Passing Yds",
+    1
+   ],
+   [
+    "Ashton Jeanty Rushing Yards",
+    1
+   ],
+   [
+    "C.J. Stroud - Rushing Yds",
+    1
+   ],
+   [
+    "Ben Skowronek To Score First Touchdown",
+    1
+   ],
+   [
+    "Ben Skowronek To Score Last Touchdown",
+    1
+   ],
+   [
+    "Blake Whiteheart To Score First Touchdown",
+    1
+   ],
+   [
+    "Blake Whiteheart To Score Last Touchdown",
+    1
+   ],
+   [
+    "Bo Melton To Score First Touchdown",
+    1
+   ],
+   [
+    "Calvin Ridley - Receiving Yds",
+    1
+   ],
+   [
+    "Braelon Allen To Score First Touchdown",
+    1
+   ],
+   [
+    "Calvin Ridley - Total Receptions",
+    1
+   ],
+   [
+    "Braelon Allen To Score Last Touchdown",
+    1
+   ],
+   [
+    "Braelon Allen Rushing Yards",
+    1
+   ],
+   [
+    "Cam Skattebo - Receiving Yds",
+    1
+   ],
+   [
+    "Brevin Jordan To Score Last Touchdown",
+    1
+   ],
+   [
+    "Cam Skattebo - Total Receptions",
+    1
+   ],
+   [
+    "Brock Bowers To Score First Touchdown",
+    1
+   ],
+   [
+    "Cam Skattebo - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Brock Bowers To Score Last Touchdown",
+    1
+   ],
+   [
+    "Cam Skattebo - Rushing Yds",
+    1
+   ],
+   [
+    "Brock Bowers Receiving Yards",
+    1
+   ],
+   [
+    "Brock Bowers Total Receptions",
+    1
+   ],
+   [
+    "Cam Ward - Passing TDs",
+    1
+   ],
+   [
+    "C.J. Stroud Interceptions Thrown",
+    1
+   ],
+   [
+    "Cam Ward - Passing Yds",
+    1
+   ],
+   [
+    "C.J. Stroud To Score First Touchdown",
+    1
+   ],
+   [
+    "Cam Ward - Rushing Yds",
+    1
+   ],
+   [
+    "C.J. Stroud To Score Last Touchdown",
+    1
+   ],
+   [
+    "C.J. Stroud Total Pass Completions",
+    1
+   ],
+   [
+    "C.J. Stroud Total Passing Attempts",
+    1
+   ],
+   [
+    "Carnell Tate - Receiving Yds",
+    1
+   ],
+   [
+    "C.J. Stroud Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Carnell Tate - Total Receptions",
+    1
+   ],
+   [
+    "Player Prop Specials",
+    1
+   ],
+   [
+    "C.J. Stroud Passing Yards",
+    1
+   ],
+   [
+    "Extra Points Made O/U",
+    1
+   ],
+   [
+    "C.J. Stroud Rushing Yards",
+    1
+   ],
+   [
+    "Cade Stover To Score Last Touchdown",
+    1
+   ],
+   [
+    "Calvin Ridley To Score Last Touchdown",
+    1
+   ],
+   [
+    "Chase Brown - Rushing Yds",
+    1
+   ],
+   [
+    "Calvin Ridley Receiving Yards",
+    1
+   ],
+   [
+    "Calvin Ridley Total Receptions",
+    1
+   ],
+   [
+    "Cam Skattebo Receiving Yards",
+    1
+   ],
+   [
+    "Cam Skattebo Total Receptions",
+    1
+   ],
+   [
+    "Cleveland Browns Points Odd/Even 1st Half",
+    1
+   ],
+   [
+    "Cam Skattebo Total Rushing Attempts",
+    1
+   ],
+   [
+    "Cam Skattebo Rushing Yards",
+    1
+   ],
+   [
+    "Cam Ward Interceptions Thrown",
+    1
+   ],
+   [
+    "Chris Olave - Receiving Yds",
+    1
+   ],
+   [
+    "Cam Ward To Score First Touchdown",
+    1
+   ],
+   [
+    "Chris Olave - Total Receptions",
+    1
+   ],
+   [
+    "Cam Ward To Score Last Touchdown",
+    1
+   ],
+   [
+    "Anytime TDs (Combo)",
+    1
+   ],
+   [
+    "Cam Ward Total Pass Completions",
+    1
+   ],
+   [
+    "Christian Watson - Receiving Yds",
+    1
+   ],
+   [
+    "Cam Ward Total Passing Attempts",
+    1
+   ],
+   [
+    "Christian Watson - Total Receptions",
+    1
+   ],
+   [
+    "Cam Ward Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Cam Ward Passing Yards",
+    1
+   ],
+   [
+    "Cam Ward Rushing Yards",
+    1
+   ],
+   [
+    "Completions In First 10 Pass Attempts",
+    1
+   ],
+   [
+    "Cameron Latu To Score First Touchdown",
+    1
+   ],
+   [
+    "Cameron Latu To Score Last Touchdown",
+    1
+   ],
+   [
+    "Carnell Tate To Score First Touchdown",
+    1
+   ],
+   [
+    "Carnell Tate To Score Last Touchdown",
+    1
+   ],
+   [
+    "Carnell Tate Receiving Yards",
+    1
+   ],
+   [
+    "Colston Loveland - Receiving Yds",
+    1
+   ],
+   [
+    "Carnell Tate Total Receptions",
+    1
+   ],
+   [
+    "Colston Loveland - Total Receptions",
+    1
+   ],
+   [
+    "Halves with 100+ Pass Yards",
+    1
+   ],
+   [
+    "Carsen Ryan To Score First Touchdown",
+    1
+   ],
+   [
+    "Chase Brown Rushing Yards",
+    1
+   ],
+   [
+    "Chicago Bears: Team Total Points",
+    1
+   ],
+   [
+    "D'Andre Swift - Receiving Yds",
+    1
+   ],
+   [
+    "D'Andre Swift - Total Receptions",
+    1
+   ],
+   [
+    "D'Andre Swift - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Bo Melton To Score a Touchdown",
+    1
+   ],
+   [
+    "D'Andre Swift - Rushing Yds",
+    1
+   ],
+   [
+    "Chimere Dike To Score Last Touchdown",
+    1
+   ],
+   [
+    "Chris Brooks To Score First Touchdown",
+    1
+   ],
+   [
+    "DK Metcalf - Receiving Yds",
+    1
+   ],
+   [
+    "Chris Olave Receiving Yards",
+    1
+   ],
+   [
+    "DK Metcalf - Total Receptions",
+    1
+   ],
+   [
+    "Chris Olave Total Receptions",
+    1
+   ],
+   [
+    "Christian Watson To Score First Touchdown",
+    1
+   ],
+   [
+    "Dalton Schultz - Receiving Yds",
+    1
+   ],
+   [
+    "Christian Watson Receiving Yards",
+    1
+   ],
+   [
+    "Dalton Schultz - Total Receptions",
+    1
+   ],
+   [
+    "Christian Watson Total Receptions",
+    1
+   ],
+   [
+    "Cincinnati Bengals: Team Total Points",
+    1
+   ],
+   [
+    "Daniel Jones - Passing TDs",
+    1
+   ],
+   [
+    "Daniel Jones - Passing Yds",
+    1
+   ],
+   [
+    "Daniel Jones - Rushing Yds",
+    1
+   ],
+   [
+    "Chase Brown To Score a Touchdown",
+    1
+   ],
+   [
+    "Cleveland Browns: Team Total Points",
+    1
+   ],
+   [
+    "Darnell Mooney - Receiving Yds",
+    1
+   ],
+   [
+    "Darnell Mooney - Total Receptions",
+    1
+   ],
+   [
+    "Deshaun Watson To Score a Touchdown",
+    1
+   ],
+   [
+    "Darnell Washington - Receiving Yds",
+    1
+   ],
+   [
+    "Darnell Washington - Total Receptions",
+    1
+   ],
+   [
+    "Cody White To Score Last Touchdown",
+    1
+   ],
+   [
+    "Cole Kmet To Score First Touchdown",
+    1
+   ],
+   [
+    "David Montgomery - Receiving Yds",
+    1
+   ],
+   [
+    "Cole Kmet To Score Last Touchdown",
+    1
+   ],
+   [
+    "David Montgomery - Total Receptions",
+    1
+   ],
+   [
+    "Colston Loveland To Score First Touchdown",
+    1
+   ],
+   [
+    "David Montgomery - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Colston Loveland To Score Last Touchdown",
+    1
+   ],
+   [
+    "David Montgomery - Rushing Yds",
+    1
+   ],
+   [
+    "Total Kicking Points",
+    1
+   ],
+   [
+    "Colston Loveland Receiving Yards",
+    1
+   ],
+   [
+    "Colston Loveland Total Receptions",
+    1
+   ],
+   [
+    "Connor Heyward To Score First Touchdown",
+    1
+   ],
+   [
+    "Connor Heyward To Score Last Touchdown",
+    1
+   ],
+   [
+    "Corey Kiner To Score First Touchdown",
+    1
+   ],
+   [
+    "Corey Kiner To Score Last Touchdown",
+    1
+   ],
+   [
+    "Denzel Boston - Receiving Yds",
+    1
+   ],
+   [
+    "D'Andre Swift To Score First Touchdown",
+    1
+   ],
+   [
+    "Denzel Boston - Total Receptions",
+    1
+   ],
+   [
+    "D'Andre Swift To Score Last Touchdown",
+    1
+   ],
+   [
+    "D'Andre Swift Receiving Yards",
+    1
+   ],
+   [
+    "Deshaun Watson - Passing TDs",
+    1
+   ],
+   [
+    "D'Andre Swift Total Receptions",
+    1
+   ],
+   [
+    "Deshaun Watson - Passing Yds",
+    1
+   ],
+   [
+    "D'Andre Swift Rushing Yards",
+    1
+   ],
+   [
+    "Deshaun Watson - Rushing Yds",
+    1
+   ],
+   [
+    "DJ Giddens To Score First Touchdown",
+    1
+   ],
+   [
+    "DJ Giddens To Score Last Touchdown",
+    1
+   ],
+   [
+    "Devaughn Vele - Receiving Yds",
+    1
+   ],
+   [
+    "DK Metcalf To Score First Touchdown",
+    1
+   ],
+   [
+    "Devaughn Vele - Total Receptions",
+    1
+   ],
+   [
+    "DK Metcalf Receiving Yards",
+    1
+   ],
+   [
+    "DK Metcalf Total Receptions",
+    1
+   ],
+   [
+    "Dalton Schultz To Score First Touchdown",
+    1
+   ],
+   [
+    "Dalton Schultz To Score Last Touchdown",
+    1
+   ],
+   [
+    "Drake Maye - Passing TDs",
+    1
+   ],
+   [
+    "Dalton Schultz Receiving Yards",
+    1
+   ],
+   [
+    "Drake Maye - Passing Yds",
+    1
+   ],
+   [
+    "Dalton Schultz Total Receptions",
+    1
+   ],
+   [
+    "Drake Maye - Rushing Yds",
+    1
+   ],
+   [
+    "Daniel Bellinger To Score Last Touchdown",
+    1
+   ],
+   [
+    "Daniel Jones To Score First Touchdown",
+    1
+   ],
+   [
+    "Daniel Jones To Score Last Touchdown",
+    1
+   ],
+   [
+    "Daniel Jones Total Passing Attempts",
+    1
+   ],
+   [
+    "Daniel Jones Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Daniel Jones Passing Yards",
+    1
+   ],
+   [
+    "Daniel Jones Rushing Yards",
+    1
+   ],
+   [
+    "Dare Ogunbowale To Score Last Touchdown",
+    1
+   ],
+   [
+    "Dareke Young To Score First Touchdown",
+    1
+   ],
+   [
+    "Dareke Young To Score Last Touchdown",
+    1
+   ],
+   [
+    "Darnell Mooney Receiving Yards",
+    1
+   ],
+   [
+    "Darnell Mooney Total Receptions",
+    1
+   ],
+   [
+    "Darnell Washington To Score First Touchdown",
+    1
+   ],
+   [
+    "Darnell Washington To Score Last Touchdown",
+    1
+   ],
+   [
+    "Darnell Washington Receiving Yards",
+    1
+   ],
+   [
+    "Darnell Washington Total Receptions",
+    1
+   ],
+   [
+    "David Martin-Robinson To Score Last Touchdown",
+    1
+   ],
+   [
+    "David Montgomery Receiving Yards",
+    1
+   ],
+   [
+    "Elic Ayomanor - Receiving Yds",
+    1
+   ],
+   [
+    "David Montgomery Total Receptions",
+    1
+   ],
+   [
+    "Elic Ayomanor - Total Receptions",
+    1
+   ],
+   [
+    "David Montgomery Rushing Yards",
+    1
+   ],
+   [
+    "DeMario Douglas To Score First Touchdown",
+    1
+   ],
+   [
+    "DeMario Douglas To Score Last Touchdown",
+    1
+   ],
+   [
+    "Deion Burks To Score First Touchdown",
+    1
+   ],
+   [
+    "Garrett Wilson - Receiving Yds",
+    1
+   ],
+   [
+    "Deion Burks To Score Last Touchdown",
+    1
+   ],
+   [
+    "Garrett Wilson - Total Receptions",
+    1
+   ],
+   [
+    "Denzel Boston To Score First Touchdown",
+    1
+   ],
+   [
+    "Denzel Boston Receiving Yards",
+    1
+   ],
+   [
+    "Denzel Boston Total Receptions",
+    1
+   ],
+   [
+    "Deshaun Watson Interceptions Thrown",
+    1
+   ],
+   [
+    "Deshaun Watson To Score First Touchdown",
+    1
+   ],
+   [
+    "Deshaun Watson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Deshaun Watson Total Pass Completions",
+    1
+   ],
+   [
+    "Deshaun Watson Total Passing Attempts",
+    1
+   ],
+   [
+    "Deshaun Watson Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Deshaun Watson Passing Yards",
+    1
+   ],
+   [
+    "Deshaun Watson Total Rushing Attempts",
+    1
+   ],
+   [
+    "Deshaun Watson Rushing Yards",
+    1
+   ],
+   [
+    "Devaughn Vele Receiving Yards",
+    1
+   ],
+   [
+    "Devaughn Vele Total Receptions",
+    1
+   ],
+   [
+    "Geno Smith - Passing TDs",
+    1
+   ],
+   [
+    "Drake Maye Interceptions Thrown",
+    1
+   ],
+   [
+    "Geno Smith - Passing Yds",
+    1
+   ],
+   [
+    "Drake Maye To Score First Touchdown",
+    1
+   ],
+   [
+    "Geno Smith - Rushing Yds",
+    1
+   ],
+   [
+    "Drake Maye To Score Last Touchdown",
+    1
+   ],
+   [
+    "Drake Maye Total Pass Completions",
+    1
+   ],
+   [
+    "Drake Maye Total Passing Attempts",
+    1
+   ],
+   [
+    "Drake Maye Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Drake Maye Passing Yards",
+    1
+   ],
+   [
+    "Gunnar Helm - Receiving Yds",
+    1
+   ],
+   [
+    "Drake Maye Rushing Yards",
+    1
+   ],
+   [
+    "Gunnar Helm - Total Receptions",
+    1
+   ],
+   [
+    "Drew Ogletree To Score Last Touchdown",
+    1
+   ],
+   [
+    "Dylan Laube To Score Last Touchdown",
+    1
+   ],
+   [
+    "Harold Fannin Jr. - Receiving Yds",
+    1
+   ],
+   [
+    "Efton Chism III To Score Last Touchdown",
+    1
+   ],
+   [
+    "Harold Fannin Jr. - Total Receptions",
+    1
+   ],
+   [
+    "Eli Heidenreich To Score First Touchdown",
+    1
+   ],
+   [
+    "Eli Heidenreich To Score Last Touchdown",
+    1
+   ],
+   [
+    "Eli Raridon To Score Last Touchdown",
+    1
+   ],
+   [
+    "Hunter Henry - Receiving Yds",
+    1
+   ],
+   [
+    "Elic Ayomanor To Score First Touchdown",
+    1
+   ],
+   [
+    "Hunter Henry - Total Receptions",
+    1
+   ],
+   [
+    "Elic Ayomanor To Score Last Touchdown",
+    1
+   ],
+   [
+    "Elic Ayomanor Receiving Yards",
+    1
+   ],
+   [
+    "Elic Ayomanor Total Receptions",
+    1
+   ],
+   [
+    "Foster Moreau To Score Last Touchdown",
+    1
+   ],
+   [
+    "Garrett Wilson To Score First Touchdown",
+    1
+   ],
+   [
+    "Isaiah Davis - Rushing Yds",
+    1
+   ],
+   [
+    "Garrett Wilson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Garrett Wilson Receiving Yards",
+    1
+   ],
+   [
+    "Isaiah Likely - Receiving Yds",
+    1
+   ],
+   [
+    "Garrett Wilson Total Receptions",
+    1
+   ],
+   [
+    "Isaiah Likely - Total Receptions",
+    1
+   ],
+   [
+    "Geno Smith Interceptions Thrown",
+    1
+   ],
+   [
+    "Geno Smith To Score First Touchdown",
+    1
+   ],
+   [
+    "Geno Smith To Score Last Touchdown",
+    1
+   ],
+   [
+    "Geno Smith Total Pass Completions",
+    1
+   ],
+   [
+    "Cleveland Browns Points Odd/Even",
+    1
+   ],
+   [
+    "Geno Smith Total Passing Attempts",
+    1
+   ],
+   [
+    "Jacory Croskey-Merritt - Rushing Yds",
+    1
+   ],
+   [
+    "Geno Smith Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Geno Smith Passing Yards",
+    1
+   ],
+   [
+    "Geno Smith Rushing Yards",
+    1
+   ],
+   [
+    "Germie Bernard To Score First Touchdown",
+    1
+   ],
+   [
+    "Punts Inside 20",
+    1
+   ],
+   [
+    "Germie Bernard To Score Last Touchdown",
+    1
+   ],
+   [
+    "Punt Touchbacks (Combo)",
+    1
+   ],
+   [
+    "Green Bay Packers: Team Total Points",
+    1
+   ],
+   [
+    "Jameis Winston - Passing TDs",
+    1
+   ],
+   [
+    "Gunnar Helm To Score First Touchdown",
+    1
+   ],
+   [
+    "Jameis Winston - Passing Yds",
+    1
+   ],
+   [
+    "Gunnar Helm To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jameis Winston - Rushing Yds",
+    1
+   ],
+   [
+    "Gunnar Helm Receiving Yards",
+    1
+   ],
+   [
+    "Gunnar Helm Total Receptions",
+    1
+   ],
+   [
+    "Harold Fannin Jr. To Score First Touchdown",
+    1
+   ],
+   [
+    "Harold Fannin Jr. To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jayden Daniels - Passing TDs",
+    1
+   ],
+   [
+    "Harold Fannin Jr. Receiving Yards",
+    1
+   ],
+   [
+    "Jayden Daniels - Passing Yds",
+    1
+   ],
+   [
+    "Harold Fannin Jr. Total Receptions",
+    1
+   ],
+   [
+    "Jayden Daniels - Rushing Yds",
+    1
+   ],
+   [
+    "Houston Texans: Team Total Points",
+    1
+   ],
+   [
+    "Jaylen Wright - Rushing Yds",
+    1
+   ],
+   [
+    "Kayshon Boutte To Score a Touchdown",
+    1
+   ],
+   [
+    "Jaylin Noel - Receiving Yds",
+    1
+   ],
+   [
+    "Jaylin Noel - Total Receptions",
+    1
+   ],
+   [
+    "Hunter Henry To Score First Touchdown",
+    1
+   ],
+   [
+    "Hunter Henry To Score Last Touchdown",
+    1
+   ],
+   [
+    "Hunter Henry Receiving Yards",
+    1
+   ],
+   [
+    "Hunter Henry Total Receptions",
+    1
+   ],
+   [
+    "Joe Burrow - Passing TDs",
+    1
+   ],
+   [
+    "Ian Thomas To Score First Touchdown",
+    1
+   ],
+   [
+    "Joe Burrow - Passing Yds",
+    1
+   ],
+   [
+    "Ian Thomas To Score Last Touchdown",
+    1
+   ],
+   [
+    "Indianapolis Colts: Team Total Points",
+    1
+   ],
+   [
+    "Jonathan Taylor - Receiving Yds",
+    1
+   ],
+   [
+    "Jonathan Taylor - Total Receptions",
+    1
+   ],
+   [
+    "Jonathan Taylor - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Jonathan Taylor - Rushing Yds",
+    1
+   ],
+   [
+    "Michael Pittman Jr. To Score a Touchdown",
+    1
+   ],
+   [
+    "Jordan Love - Passing TDs",
+    1
+   ],
+   [
+    "Isaiah Bond To Score First Touchdown",
+    1
+   ],
+   [
+    "Jordan Love - Passing Yds",
+    1
+   ],
+   [
+    "Isaiah Davis To Score First Touchdown",
+    1
+   ],
+   [
+    "Jordan Love - Rushing Yds",
+    1
+   ],
+   [
+    "Isaiah Davis To Score Last Touchdown",
+    1
+   ],
+   [
+    "Isaiah Davis Rushing Yards",
+    1
+   ],
+   [
+    "Josh Downs - Receiving Yds",
+    1
+   ],
+   [
+    "Isaiah Likely Receiving Yards",
+    1
+   ],
+   [
+    "Josh Downs - Total Receptions",
+    1
+   ],
+   [
+    "Isaiah Likely Total Receptions",
+    1
+   ],
+   [
+    "Isaiah Williams To Score First Touchdown",
+    1
+   ],
+   [
+    "Isaiah Williams To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jacory Croskey-Merritt Rushing Yards",
+    1
+   ],
+   [
+    "Jahdae Walker To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jaleel McLaughlin To Score First Touchdown",
+    1
+   ],
+   [
+    "Juwan Johnson - Receiving Yds",
+    1
+   ],
+   [
+    "Jamaal Pritchett To Score First Touchdown",
+    1
+   ],
+   [
+    "Juwan Johnson - Total Receptions",
+    1
+   ],
+   [
+    "Jamaal Pritchett To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jameis Winston Interceptions Thrown",
+    1
+   ],
+   [
+    "KC Concepcion - Receiving Yds",
+    1
+   ],
+   [
+    "Jameis Winston Total Pass Completions",
+    1
+   ],
+   [
+    "KC Concepcion - Total Receptions",
+    1
+   ],
+   [
+    "Jameis Winston Total Passing Attempts",
+    1
+   ],
+   [
+    "Jameis Winston Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Jameis Winston Passing Yards",
+    1
+   ],
+   [
+    "Kaleb Johnson - Rushing Yds",
+    1
+   ],
+   [
+    "Jameis Winston Rushing Yards",
+    1
+   ],
+   [
+    "Jared Wayne To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kalif Raymond - Receiving Yds",
+    1
+   ],
+   [
+    "Jayden Daniels Interceptions Thrown",
+    1
+   ],
+   [
+    "Kalif Raymond - Total Receptions",
+    1
+   ],
+   [
+    "Jayden Daniels Total Pass Completions",
+    1
+   ],
+   [
+    "Jayden Daniels Total Passing Attempts",
+    1
+   ],
+   [
+    "Kayshon Boutte - Receiving Yds",
+    1
+   ],
+   [
+    "Jayden Daniels Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Kayshon Boutte - Total Receptions",
+    1
+   ],
+   [
+    "Jayden Daniels Passing Yards",
+    1
+   ],
+   [
+    "Jayden Daniels Rushing Yards",
+    1
+   ],
+   [
+    "Jaylen Wright Rushing Yards",
+    1
+   ],
+   [
+    "Keenan Allen - Receiving Yds",
+    1
+   ],
+   [
+    "Jaylin Noel To Score First Touchdown",
+    1
+   ],
+   [
+    "Keenan Allen - Total Receptions",
+    1
+   ],
+   [
+    "Jaylin Noel To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jaylin Noel Receiving Yards",
+    1
+   ],
+   [
+    "Jaylin Noel Total Receptions",
+    1
+   ],
+   [
+    "Jelani Woods To Score First Touchdown",
+    1
+   ],
+   [
+    "Jelani Woods To Score Last Touchdown",
+    1
+   ],
+   [
+    "Jeremy Ruckert To Score First Touchdown",
+    1
+   ],
+   [
+    "Jerry Jeudy To Score First Touchdown",
+    1
+   ],
+   [
+    "Kirk Cousins - Passing TDs",
+    1
+   ],
+   [
+    "Jerry Jeudy To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kirk Cousins - Passing Yds",
+    1
+   ],
+   [
+    "Joe Burrow Interceptions Thrown",
+    1
+   ],
+   [
+    "Kirk Cousins - Rushing Yds",
+    1
+   ],
+   [
+    "Joe Burrow Total Pass Completions",
+    1
+   ],
+   [
+    "Joe Burrow Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Joe Burrow Passing Yards",
+    1
+   ],
+   [
+    "Jonathan Taylor Receiving Yards",
+    1
+   ],
+   [
+    "Jonathan Taylor Total Receptions",
+    1
+   ],
+   [
+    "Jonathan Taylor Rushing Yards",
+    1
+   ],
+   [
+    "Jonnu Smith To Score First Touchdown",
+    1
+   ],
+   [
+    "Jordan Love Interceptions Thrown",
+    1
+   ],
+   [
+    "Jordan Love To Score First Touchdown",
+    1
+   ],
+   [
+    "Jordan Love Total Pass Completions",
+    1
+   ],
+   [
+    "Jordan Love Total Passing Attempts",
+    1
+   ],
+   [
+    "Jordan Love Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Kyle Monangai - Rushing Yds",
+    1
+   ],
+   [
+    "Spread",
+    1
+   ],
+   [
+    "Jordan Love Passing Yards",
+    1
+   ],
+   [
+    "Moneyline",
+    1
+   ],
+   [
+    "Jordan Love Rushing Yards",
+    1
+   ],
+   [
+    "Josh Downs To Score First Touchdown",
+    1
+   ],
+   [
+    "To Win And Allow 0 Points",
+    1
+   ],
+   [
+    "Josh Downs To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kyler Murray - Passing TDs",
+    1
+   ],
+   [
+    "Josh Downs Receiving Yards",
+    1
+   ],
+   [
+    "Kyler Murray - Passing Yds",
+    1
+   ],
+   [
+    "Josh Downs Total Receptions",
+    1
+   ],
+   [
+    "Kyler Murray - Rushing Yds",
+    1
+   ],
+   [
+    "Josh Whyle To Score Last Touchdown",
+    1
+   ],
+   [
+    "Julius Chestnut To Score Last Touchdown",
+    1
+   ],
+   [
+    "Juwan Johnson Receiving Yards",
+    1
+   ],
+   [
+    "Juwan Johnson Total Receptions",
+    1
+   ],
+   [
+    "Kaden Wetjen To Score First Touchdown",
+    1
+   ],
+   [
+    "Luther Burden III - Receiving Yds",
+    1
+   ],
+   [
+    "Kaden Wetjen To Score Last Touchdown",
+    1
+   ],
+   [
+    "Luther Burden III - Total Receptions",
+    1
+   ],
+   [
+    "Kaleb Johnson To Score First Touchdown",
+    1
+   ],
+   [
+    "Kaleb Johnson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kaleb Johnson Rushing Yards",
+    1
+   ],
+   [
+    "Malachi Fields - Receiving Yds",
+    1
+   ],
+   [
+    "Kalif Raymond To Score First Touchdown",
+    1
+   ],
+   [
+    "Malachi Fields - Total Receptions",
+    1
+   ],
+   [
+    "Kalif Raymond Receiving Yards",
+    1
+   ],
+   [
+    "Kalif Raymond Total Receptions",
+    1
+   ],
+   [
+    "Kayshon Boutte To Score First Touchdown",
+    1
+   ],
+   [
+    "Kayshon Boutte To Score Last Touchdown",
+    1
+   ],
+   [
+    "Malik Nabers - Receiving Yds",
+    1
+   ],
+   [
+    "Kayshon Boutte Receiving Yards",
+    1
+   ],
+   [
+    "Malik Nabers - Total Receptions",
+    1
+   ],
+   [
+    "Kayshon Boutte Total Receptions",
+    1
+   ],
+   [
+    "Keenan Allen To Score First Touchdown",
+    1
+   ],
+   [
+    "Keenan Allen To Score Last Touchdown",
+    1
+   ],
+   [
+    "Malik Willis - Passing TDs",
+    1
+   ],
+   [
+    "Keenan Allen Receiving Yards",
+    1
+   ],
+   [
+    "Malik Willis - Passing Yds",
+    1
+   ],
+   [
+    "Keenan Allen Total Receptions",
+    1
+   ],
+   [
+    "Kene Nwangwu To Score First Touchdown",
+    1
+   ],
+   [
+    "MarShawn Lloyd - Receiving Yds",
+    1
+   ],
+   [
+    "Kene Nwangwu To Score Last Touchdown",
+    1
+   ],
+   [
+    "MarShawn Lloyd - Total Receptions",
+    1
+   ],
+   [
+    "Kenyon Sadiq To Score First Touchdown",
+    1
+   ],
+   [
+    "MarShawn Lloyd - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Kevin Concepcion To Score First Touchdown",
+    1
+   ],
+   [
+    "MarShawn Lloyd - Rushing Yds",
+    1
+   ],
+   [
+    "Kevin Concepcion To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kevin Concepcion Receiving Yards",
+    1
+   ],
+   [
+    "Kevin Concepcion Total Receptions",
+    1
+   ],
+   [
+    "Kirk Cousins Interceptions Thrown",
+    1
+   ],
+   [
+    "Kirk Cousins To Score First Touchdown",
+    1
+   ],
+   [
+    "Matthew Golden - Receiving Yds",
+    1
+   ],
+   [
+    "Kirk Cousins To Score Last Touchdown",
+    1
+   ],
+   [
+    "Matthew Golden - Total Receptions",
+    1
+   ],
+   [
+    "Kirk Cousins Total Pass Completions",
+    1
+   ],
+   [
+    "Kirk Cousins Total Passing Attempts",
+    1
+   ],
+   [
+    "Kirk Cousins Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Kirk Cousins Passing Yards",
+    1
+   ],
+   [
+    "Michael Mayer - Receiving Yds",
+    1
+   ],
+   [
+    "Kirk Cousins Rushing Yards",
+    1
+   ],
+   [
+    "Michael Mayer - Total Receptions",
+    1
+   ],
+   [
+    "Kyle Monangai To Score First Touchdown",
+    1
+   ],
+   [
+    "Kyle Monangai To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kyle Monangai Rushing Yards",
+    1
+   ],
+   [
+    "Kyle Williams To Score First Touchdown",
+    1
+   ],
+   [
+    "Mike Washington Jr. - Rushing Yds",
+    1
+   ],
+   [
+    "Kyle Williams To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kylen Granson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Kyler Murray Interceptions Thrown",
+    1
+   ],
+   [
+    "Kyler Murray Total Pass Completions",
+    1
+   ],
+   [
+    "Kyler Murray Total Passing Attempts",
+    1
+   ],
+   [
+    "Kyler Murray Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Kyler Murray Passing Yards",
+    1
+   ],
+   [
+    "Najee Harris - Rushing Yds",
+    1
+   ],
+   [
+    "Kyler Murray Rushing Yards",
+    1
+   ],
+   [
+    "Laquon Treadwell To Score First Touchdown",
+    1
+   ],
+   [
+    "Laquon Treadwell To Score Last Touchdown",
+    1
+   ],
+   [
+    "Las Vegas Raiders: Team Total Points",
+    1
+   ],
+   [
+    "Nico Collins - Receiving Yds",
+    1
+   ],
+   [
+    "Nico Collins - Total Receptions",
+    1
+   ],
+   [
+    "Tre Tucker To Score a Touchdown",
+    1
+   ],
+   [
+    "Ollie Gordon II - Rushing Yds",
+    1
+   ],
+   [
+    "Luther Burden III To Score First Touchdown",
+    1
+   ],
+   [
+    "Luther Burden III To Score Last Touchdown",
+    1
+   ],
+   [
+    "Luther Burden III Receiving Yards",
+    1
+   ],
+   [
+    "Pat Freiermuth - Receiving Yds",
+    1
+   ],
+   [
+    "Luther Burden III Total Receptions",
+    1
+   ],
+   [
+    "Pat Freiermuth - Total Receptions",
+    1
+   ],
+   [
+    "Malachi Corley To Score First Touchdown",
+    1
+   ],
+   [
+    "Malachi Fields Receiving Yards",
+    1
+   ],
+   [
+    "Malachi Fields Total Receptions",
+    1
+   ],
+   [
+    "Malik Benson To Score First Touchdown",
+    1
+   ],
+   [
+    "Quinshon Judkins - Rushing Yds",
+    1
+   ],
+   [
+    "Malik Benson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Malik McClain To Score First Touchdown",
+    1
+   ],
+   [
+    "Malik McClain To Score Last Touchdown",
+    1
+   ],
+   [
+    "Malik Nabers Receiving Yards",
+    1
+   ],
+   [
+    "Malik Nabers Total Receptions",
+    1
+   ],
+   [
+    "Malik Willis Interceptions Thrown",
+    1
+   ],
+   [
+    "Malik Willis Total Pass Completions",
+    1
+   ],
+   [
+    "Malik Willis Total Passing Attempts",
+    1
+   ],
+   [
+    "Malik Willis Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Rome Odunze - Receiving Yds",
+    1
+   ],
+   [
+    "Malik Willis Passing Yards",
+    1
+   ],
+   [
+    "Rome Odunze - Total Receptions",
+    1
+   ],
+   [
+    "MarShawn Lloyd To Score First Touchdown",
+    1
+   ],
+   [
+    "MarShawn Lloyd To Score Last Touchdown",
+    1
+   ],
+   [
+    "Romeo Doubs - Receiving Yds",
+    1
+   ],
+   [
+    "MarShawn Lloyd Receiving Yards",
+    1
+   ],
+   [
+    "Romeo Doubs - Total Receptions",
+    1
+   ],
+   [
+    "MarShawn Lloyd Total Receptions",
+    1
+   ],
+   [
+    "MarShawn Lloyd Rushing Yards",
+    1
+   ],
+   [
+    "Mark Redman To Score Last Touchdown",
+    1
+   ],
+   [
+    "Marlin Klein To Score Last Touchdown",
+    1
+   ],
+   [
+    "Matthew Golden To Score First Touchdown",
+    1
+   ],
+   [
+    "Matthew Golden Receiving Yards",
+    1
+   ],
+   [
+    "Matthew Golden Total Receptions",
+    1
+   ],
+   [
+    "Miami Dolphins: Team Total Points",
+    1
+   ],
+   [
+    "Skyy Moore - Receiving Yds",
+    1
+   ],
+   [
+    "Michael Burton To Score First Touchdown",
+    1
+   ],
+   [
+    "Skyy Moore - Total Receptions",
+    1
+   ],
+   [
+    "Michael Mayer To Score Last Touchdown",
+    1
+   ],
+   [
+    "Michael Mayer Receiving Yards",
+    1
+   ],
+   [
+    "Michael Mayer Total Receptions",
+    1
+   ],
+   [
+    "Michael Pittman Jr. To Score First Touchdown",
+    1
+   ],
+   [
+    "Michael Pittman Jr. To Score Last Touchdown",
+    1
+   ],
+   [
+    "Michael Pittman Jr. Total Receptions",
+    1
+   ],
+   [
+    "Mike Washington Rushing Yards",
+    1
+   ],
+   [
+    "Minnesota Vikings: Team Total Points",
+    1
+   ],
+   [
+    "Jauan Jennings To Score a Touchdown",
+    1
+   ],
+   [
+    "Tony Pollard - Receiving Yds",
+    1
+   ],
+   [
+    "Tony Pollard - Total Receptions",
+    1
+   ],
+   [
+    "Tony Pollard - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Mo Alie-Cox To Score First Touchdown",
+    1
+   ],
+   [
+    "Tony Pollard - Rushing Yds",
+    1
+   ],
+   [
+    "Mo Alie-Cox To Score Last Touchdown",
+    1
+   ],
+   [
+    "Najee Harris Rushing Yards",
+    1
+   ],
+   [
+    "New England Patriots: Team Total Points",
+    1
+   ],
+   [
+    "Tre Tucker - Receiving Yds",
+    1
+   ],
+   [
+    "New Orleans Saints: Team Total Points",
+    1
+   ],
+   [
+    "Tre Tucker - Total Receptions",
+    1
+   ],
+   [
+    "New York Giants: Team Total Points",
+    1
+   ],
+   [
+    "Tyrone Tracy Jr. To Score a Touchdown",
+    1
+   ],
+   [
+    "Tucker Kraft - Receiving Yds",
+    1
+   ],
+   [
+    "Tucker Kraft - Total Receptions",
+    1
+   ],
+   [
+    "New York Jets: Team Total Points",
+    1
+   ],
+   [
+    "Tyjae Spears - Receiving Yds",
+    1
+   ],
+   [
+    "Nicholas Singleton To Score Last Touchdown",
+    1
+   ],
+   [
+    "Tyjae Spears - Total Receptions",
+    1
+   ],
+   [
+    "Nico Collins Receiving Yards",
+    1
+   ],
+   [
+    "Tyjae Spears - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Nico Collins Total Receptions",
+    1
+   ],
+   [
+    "Tyjae Spears - Rushing Yds",
+    1
+   ],
+   [
+    "Ollie Gordon II Rushing Yards",
+    1
+   ],
+   [
+    "Pat Freiermuth To Score First Touchdown",
+    1
+   ],
+   [
+    "Tyler Shough - Passing TDs",
+    1
+   ],
+   [
+    "Pat Freiermuth To Score Last Touchdown",
+    1
+   ],
+   [
+    "Tyler Shough - Passing Yds",
+    1
+   ],
+   [
+    "Pat Freiermuth Receiving Yards",
+    1
+   ],
+   [
+    "Tyler Shough - Rushing Yds",
+    1
+   ],
+   [
+    "Pat Freiermuth Total Receptions",
+    1
+   ],
+   [
+    "Interceptions Thrown O/U",
+    1
+   ],
+   [
+    "Pittsburgh Steelers: Team Total Points",
+    1
+   ],
+   [
+    "Tyler Warren - Receiving Yds",
+    1
+   ],
+   [
+    "Quinshon Judkins Rushing Yards",
+    1
+   ],
+   [
+    "Tyler Warren - Total Receptions",
+    1
+   ],
+   [
+    "Raheim Sanders To Score First Touchdown",
+    1
+   ],
+   [
+    "Longest Passing Completion O/U",
+    1
+   ],
+   [
+    "Reggie Gilliam To Score Last Touchdown",
+    1
+   ],
+   [
+    "Rhamondre Stevenson To Score First Touchdown",
+    1
+   ],
+   [
+    "Tyson Bagent - Passing TDs",
+    1
+   ],
+   [
+    "Rhamondre Stevenson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Tyson Bagent - Passing Yds",
+    1
+   ],
+   [
+    "Riley Nowakowski To Score First Touchdown",
+    1
+   ],
+   [
+    "Tyson Bagent - Rushing Yds",
+    1
+   ],
+   [
+    "Riley Nowakowski To Score Last Touchdown",
+    1
+   ],
+   [
+    "Robert Tonyan To Score First Touchdown",
+    1
+   ],
+   [
+    "Wan'Dale Robinson - Receiving Yds",
+    1
+   ],
+   [
+    "Robert Tonyan To Score Last Touchdown",
+    1
+   ],
+   [
+    "Wan'Dale Robinson - Total Receptions",
+    1
+   ],
+   [
+    "Longest Rush O/U",
+    1
+   ],
+   [
+    "Roman Wilson To Score First Touchdown",
+    1
+   ],
+   [
+    "Passing + Rushing Yards O/U",
+    1
+   ],
+   [
+    "Roman Wilson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Roman Wilson Receiving Yards",
+    1
+   ],
+   [
+    "Roman Wilson Total Receptions",
+    1
+   ],
+   [
+    "Woody Marks - Receiving Yds",
+    1
+   ],
+   [
+    "Rome Odunze To Score First Touchdown",
+    1
+   ],
+   [
+    "Woody Marks - Total Receptions",
+    1
+   ],
+   [
+    "Rome Odunze To Score Last Touchdown",
+    1
+   ],
+   [
+    "Woody Marks - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Rome Odunze Receiving Yards",
+    1
+   ],
+   [
+    "Woody Marks - Rushing Yds",
+    1
+   ],
+   [
+    "Rome Odunze Total Receptions",
+    1
+   ],
+   [
+    "Romeo Doubs To Score First Touchdown",
+    1
+   ],
+   [
+    "Xavier Hutchinson - Receiving Yds",
+    1
+   ],
+   [
+    "Romeo Doubs To Score Last Touchdown",
+    1
+   ],
+   [
+    "Xavier Hutchinson - Total Receptions",
+    1
+   ],
+   [
+    "Romeo Doubs Receiving Yards",
+    1
+   ],
+   [
+    "Romeo Doubs Total Receptions",
+    1
+   ],
+   [
+    "Roschon Johnson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Sam Roush To Score First Touchdown",
+    1
+   ],
+   [
+    "Seth McGowan To Score First Touchdown",
+    1
+   ],
+   [
+    "Seth McGowan To Score Last Touchdown",
+    1
+   ],
+   [
+    "Bo Nix - Passing TDs",
+    1
+   ],
+   [
+    "Skyy Moore To Score First Touchdown",
+    1
+   ],
+   [
+    "Bo Nix - Passing Yds",
+    1
+   ],
+   [
+    "Skyy Moore Receiving Yards",
+    1
+   ],
+   [
+    "Bo Nix - Rushing Yds",
+    1
+   ],
+   [
+    "Skyy Moore Total Receptions",
+    1
+   ],
+   [
+    "Tanner Arkin To Score First Touchdown",
+    1
+   ],
+   [
+    "Tanner Arkin To Score Last Touchdown",
+    1
+   ],
+   [
+    "Courtland Sutton - Receiving Yds",
+    1
+   ],
+   [
+    "Tennessee Titans: Team Total Points",
+    1
+   ],
+   [
+    "Courtland Sutton - Total Receptions",
+    1
+   ],
+   [
+    "Tony Pollard Receiving Yards",
+    1
+   ],
+   [
+    "Tony Pollard Total Receptions",
+    1
+   ],
+   [
+    "Tony Pollard Rushing Yards",
+    1
+   ],
+   [
+    "Travis Homer To Score First Touchdown",
+    1
+   ],
+   [
+    "Travis Homer To Score Last Touchdown",
+    1
+   ],
+   [
+    "Evan Engram - Receiving Yds",
+    1
+   ],
+   [
+    "Tre Tucker To Score First Touchdown",
+    1
+   ],
+   [
+    "Evan Engram - Total Receptions",
+    1
+   ],
+   [
+    "Tre Tucker Receiving Yards",
+    1
+   ],
+   [
+    "Passing Attempts O/U",
+    1
+   ],
+   [
+    "Tre Tucker Total Receptions",
+    1
+   ],
+   [
+    "TreVeyon Henderson To Score Last Touchdown",
+    1
+   ],
+   [
+    "J.K. Dobbins - Rushing Yds",
+    1
+   ],
+   [
+    "Tucker Kraft To Score First Touchdown",
+    1
+   ],
+   [
+    "Tucker Kraft Receiving Yards",
+    1
+   ],
+   [
+    "Jaylen Waddle - Receiving Yds",
+    1
+   ],
+   [
+    "Tucker Kraft Total Receptions",
+    1
+   ],
+   [
+    "Jaylen Waddle - Total Receptions",
+    1
+   ],
+   [
+    "Baltimore Ravens Points Range 1st Quarter",
+    1
+   ],
+   [
+    "Tyjae Spears To Score First Touchdown",
+    1
+   ],
+   [
+    "Tyjae Spears To Score Last Touchdown",
+    1
+   ],
+   [
+    "Justin Herbert - Passing TDs",
+    1
+   ],
+   [
+    "Tyjae Spears Receiving Yards",
+    1
+   ],
+   [
+    "Justin Herbert - Passing Yds",
+    1
+   ],
+   [
+    "Tyjae Spears Total Receptions",
+    1
+   ],
+   [
+    "Justin Herbert - Rushing Yds",
+    1
+   ],
+   [
+    "Tyjae Spears Rushing Yards",
+    1
+   ],
+   [
+    "Tyler Shough Interceptions Thrown",
+    1
+   ],
+   [
+    "Keaton Mitchell - Rushing Yds",
+    1
+   ],
+   [
+    "Tyler Shough Total Pass Completions",
+    1
+   ],
+   [
+    "Tyler Shough Total Passing Attempts",
+    1
+   ],
+   [
+    "Passing Completions O/U",
+    1
+   ],
+   [
+    "Tyler Shough Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Tyler Shough Passing Yards",
+    1
+   ],
+   [
+    "Tyler Shough Rushing Yards",
+    1
+   ],
+   [
+    "Marvin Mims Jr. - Receiving Yds",
+    1
+   ],
+   [
+    "Tyler Warren Longest Reception",
+    1
+   ],
+   [
+    "Marvin Mims Jr. - Total Receptions",
+    1
+   ],
+   [
+    "Tyler Warren To Score First Touchdown",
+    1
+   ],
+   [
+    "Tyler Warren Receiving Yards",
+    1
+   ],
+   [
+    "Tyler Warren Total Receptions",
+    1
+   ],
+   [
+    "Omarion Hampton - Rushing Yds",
+    1
+   ],
+   [
+    "Tyson Bagent Interceptions Thrown",
+    1
+   ],
+   [
+    "Tyson Bagent To Score First Touchdown",
+    1
+   ],
+   [
+    "Tyson Bagent To Score Last Touchdown",
+    1
+   ],
+   [
+    "Tyson Bagent Total Pass Completions",
+    1
+   ],
+   [
+    "RJ Harvey - Receiving Yds",
+    1
+   ],
+   [
+    "Tyson Bagent Total Passing Attempts",
+    1
+   ],
+   [
+    "RJ Harvey - Total Receptions",
+    1
+   ],
+   [
+    "Passing Touchdowns O/U",
+    1
+   ],
+   [
+    "Tyson Bagent Total Passing Touchdowns",
+    1
+   ],
+   [
+    "RJ Harvey - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Tyson Bagent Passing Yards",
+    1
+   ],
+   [
+    "RJ Harvey - Rushing Yds",
+    1
+   ],
+   [
+    "Tyson Bagent Rushing Yards",
+    1
+   ],
+   [
+    "Wan'Dale Robinson To Score First Touchdown",
+    1
+   ],
+   [
+    "Wan'Dale Robinson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Troy Franklin - Receiving Yds",
+    1
+   ],
+   [
+    "Wan'Dale Robinson Receiving Yards",
+    1
+   ],
+   [
+    "Troy Franklin - Total Receptions",
+    1
+   ],
+   [
+    "Passing Yards O/U",
+    1
+   ],
+   [
+    "Wan'Dale Robinson Total Receptions",
+    1
+   ],
+   [
+    "Washington Commanders: Team Total Points",
+    1
+   ],
+   [
+    "Woody Marks Receiving Yards",
+    1
+   ],
+   [
+    "AJ Barner - Receiving Yds",
+    1
+   ],
+   [
+    "Woody Marks Total Receptions",
+    1
+   ],
+   [
+    "AJ Barner - Total Receptions",
+    1
+   ],
+   [
+    "Woody Marks Rushing Yards",
+    1
+   ],
+   [
+    "Xavier Hutchinson To Score First Touchdown",
+    1
+   ],
+   [
+    "Amon-Ra St. Brown - Receiving Yds",
+    1
+   ],
+   [
+    "Xavier Hutchinson To Score Last Touchdown",
+    1
+   ],
+   [
+    "Amon-Ra St. Brown - Total Receptions",
+    1
+   ],
+   [
+    "Xavier Hutchinson Receiving Yards",
+    1
+   ],
+   [
+    "Xavier Hutchinson Total Receptions",
+    1
+   ],
+   [
+    "Zavion Thomas To Score Last Touchdown",
+    1
+   ],
+   [
+    "Bo Nix Interceptions Thrown",
+    1
+   ],
+   [
+    "Bo Nix Total Pass Completions",
+    1
+   ],
+   [
+    "Bo Nix Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Bo Nix Passing Yards",
+    1
+   ],
+   [
+    "Brock Purdy - Passing TDs",
+    1
+   ],
+   [
+    "Bo Nix Rushing Yards",
+    1
+   ],
+   [
+    "Brock Purdy - Passing Yds",
+    1
+   ],
+   [
+    "Courtland Sutton Receiving Yards",
+    1
+   ],
+   [
+    "Brock Purdy - Rushing Yds",
+    1
+   ],
+   [
+    "Courtland Sutton Total Receptions",
+    1
+   ],
+   [
+    "Denver Broncos: Team Total Points",
+    1
+   ],
+   [
+    "Christian McCaffrey - Receiving Yds",
+    1
+   ],
+   [
+    "Christian McCaffrey - Total Receptions",
+    1
+   ],
+   [
+    "Christian McCaffrey - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "RJ Harvey To Score a Touchdown",
+    1
+   ],
+   [
+    "Christian McCaffrey - Rushing Yds",
+    1
+   ],
+   [
+    "Cooper Kupp - Receiving Yds",
+    1
+   ],
+   [
+    "Evan Engram Receiving Yards",
+    1
+   ],
+   [
+    "Cooper Kupp - Total Receptions",
+    1
+   ],
+   [
+    "Evan Engram Total Receptions",
+    1
+   ],
+   [
+    "J.K. Dobbins Rushing Yards",
+    1
+   ],
+   [
+    "Deebo Samuel - Receiving Yds",
+    1
+   ],
+   [
+    "Jaylen Waddle Receiving Yards",
+    1
+   ],
+   [
+    "Deebo Samuel - Total Receptions",
+    1
+   ],
+   [
+    "Jaylen Waddle Total Receptions",
+    1
+   ],
+   [
+    "Deebo Samuel - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Justin Herbert Interceptions Thrown",
+    1
+   ],
+   [
+    "Deebo Samuel - Rushing Yds",
+    1
+   ],
+   [
+    "Justin Herbert Total Pass Completions",
+    1
+   ],
+   [
+    "Justin Herbert Total Passing Attempts",
+    1
+   ],
+   [
+    "Justin Herbert Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Justin Herbert Passing Yards",
+    1
+   ],
+   [
+    "Justin Herbert Rushing Yards",
+    1
+   ],
+   [
+    "Keaton Mitchell Rushing Yards",
+    1
+   ],
+   [
+    "Emanuel Wilson - Receiving Yds",
+    1
+   ],
+   [
+    "Los Angeles Chargers: Team Total Points",
+    1
+   ],
+   [
+    "Emanuel Wilson - Total Receptions",
+    1
+   ],
+   [
+    "Marvin Mims Jr. Receiving Yards",
+    1
+   ],
+   [
+    "Emanuel Wilson - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Marvin Mims Jr. Total Receptions",
+    1
+   ],
+   [
+    "Emanuel Wilson - Rushing Yds",
+    1
+   ],
+   [
+    "Omarion Hampton Rushing Yards",
+    1
+   ],
+   [
+    "RJ Harvey Receiving Yards",
+    1
+   ],
+   [
+    "RJ Harvey Total Receptions",
+    1
+   ],
+   [
+    "George Holani - Receiving Yds",
+    1
+   ],
+   [
+    "RJ Harvey Rushing Yards",
+    1
+   ],
+   [
+    "George Holani - Total Receptions",
+    1
+   ],
+   [
+    "Troy Franklin Receiving Yards",
+    1
+   ],
+   [
+    "George Holani - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Troy Franklin Total Receptions",
+    1
+   ],
+   [
+    "George Holani - Rushing Yds",
+    1
+   ],
+   [
+    "AJ Barner Receiving Yards",
+    1
+   ],
+   [
+    "AJ Barner Total Receptions",
+    1
+   ],
+   [
+    "George Kittle - Receiving Yds",
+    1
+   ],
+   [
+    "Amon-Ra St. Brown Receiving Yards",
+    1
+   ],
+   [
+    "George Kittle - Total Receptions",
+    1
+   ],
+   [
+    "Amon-Ra St. Brown Total Receptions",
+    1
+   ],
+   [
+    "Arizona Cardinals: Team Total Points",
+    1
+   ],
+   [
+    "Isaac TeSlaa - Receiving Yds",
+    1
+   ],
+   [
+    "Brock Purdy Interceptions Thrown",
+    1
+   ],
+   [
+    "Isaac TeSlaa - Total Receptions",
+    1
+   ],
+   [
+    "Brock Purdy Total Pass Completions",
+    1
+   ],
+   [
+    "Brock Purdy Total Passing Attempts",
+    1
+   ],
+   [
+    "Brock Purdy Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Brock Purdy Passing Yards",
+    1
+   ],
+   [
+    "Brock Purdy Rushing Yards",
+    1
+   ],
+   [
+    "Jacoby Brissett - Passing TDs",
+    1
+   ],
+   [
+    "Christian McCaffrey Receiving Yards",
+    1
+   ],
+   [
+    "Jacoby Brissett - Passing Yds",
+    1
+   ],
+   [
+    "Christian McCaffrey Total Receptions",
+    1
+   ],
+   [
+    "Jacoby Brissett - Rushing Yds",
+    1
+   ],
+   [
+    "Christian McCaffrey Rushing Yards",
+    1
+   ],
+   [
+    "Cooper Kupp Receiving Yards",
+    1
+   ],
+   [
+    "Jahmyr Gibbs - Receiving Yds",
+    1
+   ],
+   [
+    "Cooper Kupp Total Receptions",
+    1
+   ],
+   [
+    "Jahmyr Gibbs - Total Receptions",
+    1
+   ],
+   [
+    "Deebo Samuel Sr. Receiving Yards",
+    1
+   ],
+   [
+    "Jahmyr Gibbs - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Deebo Samuel Sr. Total Receptions",
+    1
+   ],
+   [
+    "Jahmyr Gibbs - Rushing Yds",
+    1
+   ],
+   [
+    "Detroit Lions: Team Total Points",
+    1
+   ],
+   [
+    "Jameson Williams - Receiving Yds",
+    1
+   ],
+   [
+    "Jameson Williams - Total Receptions",
+    1
+   ],
+   [
+    "Jared Goff To Score a Touchdown",
+    1
+   ],
+   [
+    "Jared Goff - Passing TDs",
+    1
+   ],
+   [
+    "Jared Goff - Passing Yds",
+    1
+   ],
+   [
+    "Passing Yards O/U - 1st Half",
+    1
+   ],
+   [
+    "Emanuel Wilson Receiving Yards",
+    1
+   ],
+   [
+    "Jared Goff - Rushing Yds",
+    1
+   ],
+   [
+    "Passing Yards O/U - 1st Quarter",
+    1
+   ],
+   [
+    "Emanuel Wilson Total Receptions",
+    1
+   ],
+   [
+    "Emanuel Wilson Rushing Yards",
+    1
+   ],
+   [
+    "Jaxon Smith-Njigba - Receiving Yds",
+    1
+   ],
+   [
+    "George Holani Receiving Yards",
+    1
+   ],
+   [
+    "Jaxon Smith-Njigba - Total Receptions",
+    1
+   ],
+   [
+    "George Holani Total Receptions",
+    1
+   ],
+   [
+    "George Holani Rushing Yards",
+    1
+   ],
+   [
+    "Jeremiyah Love - Receiving Yds",
+    1
+   ],
+   [
+    "George Kittle Receiving Yards",
+    1
+   ],
+   [
+    "Jeremiyah Love - Total Receptions",
+    1
+   ],
+   [
+    "George Kittle Total Receptions",
+    1
+   ],
+   [
+    "Jeremiyah Love - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Isaac TeSlaa Receiving Yards",
+    1
+   ],
+   [
+    "Jeremiyah Love - Rushing Yds",
+    1
+   ],
+   [
+    "Isaac TeSlaa Total Receptions",
+    1
+   ],
+   [
+    "Rushing Yards O/U",
+    1
+   ],
+   [
+    "Jacoby Brissett Interceptions Thrown",
+    1
+   ],
+   [
+    "Jacoby Brissett Total Pass Completions",
+    1
+   ],
+   [
+    "Jacoby Brissett Total Passing Attempts",
+    1
+   ],
+   [
+    "Kaelon Black - Rushing Yds",
+    1
+   ],
+   [
+    "Jacoby Brissett Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Jacoby Brissett Passing Yards",
+    1
+   ],
+   [
+    "Kendrick Bourne - Receiving Yds",
+    1
+   ],
+   [
+    "Jacoby Brissett Rushing Yards",
+    1
+   ],
+   [
+    "Kendrick Bourne - Total Receptions",
+    1
+   ],
+   [
+    "Jahmyr Gibbs Receiving Yards",
+    1
+   ],
+   [
+    "Jahmyr Gibbs Total Receptions",
+    1
+   ],
+   [
+    "Jahmyr Gibbs Rushing Yards",
+    1
+   ],
+   [
+    "Marvin Harrison Jr. - Receiving Yds",
+    1
+   ],
+   [
+    "Jameson Williams Receiving Yards",
+    1
+   ],
+   [
+    "Marvin Harrison Jr. - Total Receptions",
+    1
+   ],
+   [
+    "Jameson Williams Total Receptions",
+    1
+   ],
+   [
+    "Jared Goff Interceptions Thrown",
+    1
+   ],
+   [
+    "Michael Wilson - Receiving Yds",
+    1
+   ],
+   [
+    "Jared Goff Total Passing Attempts",
+    1
+   ],
+   [
+    "Michael Wilson - Total Receptions",
+    1
+   ],
+   [
+    "Jared Goff Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Jared Goff Passing Yards",
+    1
+   ],
+   [
+    "Mike Evans - Receiving Yds",
+    1
+   ],
+   [
+    "Rushing Yards O/U - 1st Half",
+    1
+   ],
+   [
+    "Jared Goff Rushing Yards",
+    1
+   ],
+   [
+    "Mike Evans - Total Receptions",
+    1
+   ],
+   [
+    "Rushing Yards O/U - 1st Quarter",
+    1
+   ],
+   [
+    "Jaxon Smith-Njigba Receiving Yards",
+    1
+   ],
+   [
+    "Jaxon Smith-Njigba Total Receptions",
+    1
+   ],
+   [
+    "Jeremiyah Love Receiving Yards",
+    1
+   ],
+   [
+    "Jeremiyah Love Total Receptions",
+    1
+   ],
+   [
+    "Rashid Shaheed - Receiving Yds",
+    1
+   ],
+   [
+    "Jeremiyah Love Rushing Yards",
+    1
+   ],
+   [
+    "Rashid Shaheed - Total Receptions",
+    1
+   ],
+   [
+    "Kaelon Black Rushing Yards",
+    1
+   ],
+   [
+    "Kendrick Bourne Receiving Yards",
+    1
+   ],
+   [
+    "Kendrick Bourne Total Receptions",
+    1
+   ],
+   [
+    "Marvin Harrison Jr. Receiving Yards",
+    1
+   ],
+   [
+    "Sam Darnold - Passing TDs",
+    1
+   ],
+   [
+    "Marvin Harrison Jr. Total Receptions",
+    1
+   ],
+   [
+    "Sam Darnold - Passing Yds",
+    1
+   ],
+   [
+    "Michael Wilson Receiving Yards",
+    1
+   ],
+   [
+    "Sam Darnold - Rushing Yds",
+    1
+   ],
+   [
+    "Michael Wilson Total Receptions",
+    1
+   ],
+   [
+    "Mike Evans Receiving Yards",
+    1
+   ],
+   [
+    "Sam LaPorta - Receiving Yds",
+    1
+   ],
+   [
+    "Mike Evans Total Receptions",
+    1
+   ],
+   [
+    "Sam LaPorta - Total Receptions",
+    1
+   ],
+   [
+    "Rashid Shaheed Receiving Yards",
+    1
+   ],
+   [
+    "Rashid Shaheed Total Receptions",
+    1
+   ],
+   [
+    "Sam Darnold Interceptions Thrown",
+    1
+   ],
+   [
+    "Sam Darnold Total Pass Completions",
+    1
+   ],
+   [
+    "Sam Darnold Total Passing Attempts",
+    1
+   ],
+   [
+    "Sam Darnold Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Sam Darnold Passing Yards",
+    1
+   ],
+   [
+    "Sam Darnold Rushing Yards",
+    1
+   ],
+   [
+    "Sam LaPorta Receiving Yards",
+    1
+   ],
+   [
+    "Tory Horton - Receiving Yds",
+    1
+   ],
+   [
+    "Sam LaPorta Total Receptions",
+    1
+   ],
+   [
+    "Tory Horton - Total Receptions",
+    1
+   ],
+   [
+    "San Francisco 49ers: Team Total Points",
+    1
+   ],
+   [
+    "Trey McBride - Receiving Yds",
+    1
+   ],
+   [
+    "Trey McBride - Total Receptions",
+    1
+   ],
+   [
+    "Brock Purdy To Score a Touchdown",
+    1
+   ],
+   [
+    "Tyler Allgeier - Receiving Yds",
+    1
+   ],
+   [
+    "Tyler Allgeier - Total Receptions",
+    1
+   ],
+   [
+    "Tyler Allgeier - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Seattle Seahawks: Team Total Points",
+    1
+   ],
+   [
+    "Tyler Allgeier - Rushing Yds",
+    1
+   ],
+   [
+    "Trey McBride Receiving Yards",
+    1
+   ],
+   [
+    "Trey McBride Total Receptions",
+    1
+   ],
+   [
+    "Tyler Allgeier Receiving Yards",
+    1
+   ],
+   [
+    "Tyler Allgeier Total Receptions",
+    1
+   ],
+   [
+    "Tyler Allgeier Rushing Yards",
+    1
+   ],
+   [
+    "Atlanta Falcons: Team Total Points",
+    1
+   ],
+   [
+    "Baltimore Ravens: Team Total Points",
+    1
+   ],
+   [
+    "Bijan Robinson - Receiving Yds",
+    1
+   ],
+   [
+    "Bijan Robinson - Total Receptions",
+    1
+   ],
+   [
+    "Bijan Robinson - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Bijan Robinson - Rushing Yds",
+    1
+   ],
+   [
+    "Zay Flowers To Score a Touchdown",
+    1
+   ],
+   [
+    "Brian Robinson Jr. - Rushing Yds",
+    1
+   ],
+   [
+    "Bijan Robinson Receiving Yards",
+    1
+   ],
+   [
+    "Bijan Robinson Total Receptions",
+    1
+   ],
+   [
+    "Bijan Robinson Total Rushing & Receiving Yards",
+    1
+   ],
+   [
+    "Bijan Robinson Rushing Yards",
+    1
+   ],
+   [
+    "Derrick Henry - Rushing Yds",
+    1
+   ],
+   [
+    "Brian Robinson Jr. Total Rushing Attempts",
+    1
+   ],
+   [
+    "Brian Robinson Jr. Rushing Yards",
+    1
+   ],
+   [
+    "Derrick Henry Total Rushing Attempts",
+    1
+   ],
+   [
+    "Drake London - Receiving Yds",
+    1
+   ],
+   [
+    "Derrick Henry Rushing Yards",
+    1
+   ],
+   [
+    "Drake London - Total Receptions",
+    1
+   ],
+   [
+    "Drake London Receiving Yards",
+    1
+   ],
+   [
+    "Drake London Total Receptions",
+    1
+   ],
+   [
+    "Jahan Dotson Receiving Yards",
+    1
+   ],
+   [
+    "Jahan Dotson - Receiving Yds",
+    1
+   ],
+   [
+    "Jahan Dotson Total Receptions",
+    1
+   ],
+   [
+    "Jahan Dotson - Total Receptions",
+    1
+   ],
+   [
+    "Justice Hill Rushing Yards",
+    1
+   ],
+   [
+    "Kyle Pitts Receiving Yards",
+    1
+   ],
+   [
+    "Kyle Pitts Total Receptions",
+    1
+   ],
+   [
+    "Justice Hill - Rushing Yds",
+    1
+   ],
+   [
+    "Mark Andrews Receiving Yards",
+    1
+   ],
+   [
+    "Mark Andrews Total Receptions",
+    1
+   ],
+   [
+    "Kyle Pitts - Receiving Yds",
+    1
+   ],
+   [
+    "Michael Penix Jr. Interceptions Thrown",
+    1
+   ],
+   [
+    "Kyle Pitts - Total Receptions",
+    1
+   ],
+   [
+    "Michael Penix Jr. Total Pass Completions",
+    1
+   ],
+   [
+    "Michael Penix Jr. Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Michael Penix Jr. Passing Yards",
+    1
+   ],
+   [
+    "Mark Andrews - Receiving Yds",
+    1
+   ],
+   [
+    "Michael Penix Jr. Rushing Yards",
+    1
+   ],
+   [
+    "Mark Andrews - Total Receptions",
+    1
+   ],
+   [
+    "Rashod Bateman Total Receptions",
+    1
+   ],
+   [
+    "Tyler Huntley Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Tyler Huntley Passing Yards",
+    1
+   ],
+   [
+    "Michael Penix Jr. - Passing TDs",
+    1
+   ],
+   [
+    "Zay Flowers Receiving Yards",
+    1
+   ],
+   [
+    "Michael Penix Jr. - Passing Yds",
+    1
+   ],
+   [
+    "Zay Flowers Total Receptions",
+    1
+   ],
+   [
+    "Michael Penix Jr. - Rushing Yds",
+    1
+   ],
+   [
+    "Blake Corum Rushing Yards",
+    1
+   ],
+   [
+    "Buffalo Bills: Team Total Points",
+    1
+   ],
+   [
+    "First Team to Score",
+    1
+   ],
+   [
+    "Rashod Bateman - Receiving Yds",
+    1
+   ],
+   [
+    "Rashod Bateman - Total Receptions",
+    1
+   ],
+   [
+    "Josh Allen To Score a Touchdown",
+    1
+   ],
+   [
+    "Tyler Huntley - Passing TDs",
+    1
+   ],
+   [
+    "Tyler Huntley - Passing Yds",
+    1
+   ],
+   [
+    "Dalton Kincaid Receiving Yards",
+    1
+   ],
+   [
+    "Dalton Kincaid Total Receptions",
+    1
+   ],
+   [
+    "Zay Flowers - Receiving Yds",
+    1
+   ],
+   [
+    "Davante Adams Receiving Yards",
+    1
+   ],
+   [
+    "Zay Flowers - Total Receptions",
+    1
+   ],
+   [
+    "Davante Adams Total Receptions",
+    1
+   ],
+   [
+    "James Cook Rushing Yards",
+    1
+   ],
+   [
+    "Josh Allen Interceptions Thrown",
+    1
+   ],
+   [
+    "Blake Corum - Rushing Yds",
+    1
+   ],
+   [
+    "Josh Allen Total Pass Completions",
+    1
+   ],
+   [
+    "Josh Allen Total Passing Attempts",
+    1
+   ],
+   [
+    "Josh Allen Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Josh Allen Passing Yards",
+    1
+   ],
+   [
+    "Josh Allen Rushing Yards",
+    1
+   ],
+   [
+    "Dalton Kincaid - Receiving Yds",
+    1
+   ],
+   [
+    "Kyren Williams Receiving Yards",
+    1
+   ],
+   [
+    "Dalton Kincaid - Total Receptions",
+    1
+   ],
+   [
+    "Kyren Williams Total Receptions",
+    1
+   ],
+   [
+    "Kyren Williams Rushing Yards",
+    1
+   ],
+   [
+    "Davante Adams - Receiving Yds",
+    1
+   ],
+   [
+    "Los Angeles Rams: Team Total Points",
+    1
+   ],
+   [
+    "Davante Adams - Total Receptions",
+    1
+   ],
+   [
+    "Team Total Points Odd/Even",
+    1
+   ],
+   [
+    "Matthew Stafford Interceptions Thrown",
+    1
+   ],
+   [
+    "Matthew Stafford Total Pass Completions",
+    1
+   ],
+   [
+    "Matthew Stafford Total Passing Attempts",
+    1
+   ],
+   [
+    "Matthew Stafford Total Passing Touchdowns",
+    1
+   ],
+   [
+    "Matthew Stafford Passing Yards",
+    1
+   ],
+   [
+    "Matthew Stafford Rushing Yards",
+    1
+   ],
+   [
+    "Puka Nacua Receiving Yards",
+    1
+   ],
+   [
+    "James Cook - Rushing Yds",
+    1
+   ],
+   [
+    "Puka Nacua Total Receptions",
+    1
+   ],
+   [
+    "Josh Allen - Passing TDs",
+    1
+   ],
+   [
+    "Josh Allen - Passing Yds",
+    1
+   ],
+   [
+    "Josh Allen - Rushing Yds",
+    1
+   ],
+   [
+    "Kyren Williams - Receiving Yds",
+    1
+   ],
+   [
+    "Kyren Williams - Total Receptions",
+    1
+   ],
+   [
+    "Kyren Williams - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Kyren Williams - Rushing Yds",
+    1
+   ],
+   [
+    "Matthew Stafford - Passing TDs",
+    1
+   ],
+   [
+    "Matthew Stafford - Passing Yds",
+    1
+   ],
+   [
+    "Matthew Stafford - Rushing Yds",
+    1
+   ],
+   [
+    "Puka Nacua - Receiving Yds",
+    1
+   ],
+   [
+    "Puka Nacua - Total Receptions",
+    1
+   ],
+   [
+    "Total Interceptions Thrown",
+    1
+   ],
+   [
+    "Total Passing Attempts",
+    1
+   ],
+   [
+    "Total Rushing Yards",
+    1
+   ],
+   [
+    "Total Completions",
+    1
+   ]
+  ],
+  "books": [
+   [
+    "prizepicks",
+    964
+   ],
+   [
+    "novig",
+    963
+   ],
+   [
+    "draftkings",
+    963
+   ],
+   [
+    "bovada",
+    963
+   ],
+   [
+    "fliff",
+    963
+   ],
+   [
+    "underdog",
+    963
+   ],
+   [
+    "pick6",
+    963
+   ],
+   [
+    "fanduel",
+    899
+   ],
+   [
+    "prophetx",
+    871
+   ],
+   [
+    "sleeper",
+    754
+   ],
+   [
+    "pinnacle",
+    734
+   ]
+  ],
+  "two_sided": 5038,
+  "two_sided_by_book": [
+   [
+    "prizepicks",
+    964
+   ],
+   [
+    "underdog",
+    963
+   ],
+   [
+    "sleeper",
+    754
+   ],
+   [
+    "novig",
+    645
+   ],
+   [
+    "prophetx",
+    529
+   ],
+   [
+    "fliff",
+    519
+   ],
+   [
+    "fanduel",
+    371
+   ],
+   [
+    "pinnacle",
+    209
+   ],
+   [
+    "draftkings",
+    64
+   ],
+   [
+    "bovada",
+    20
+   ]
+  ],
+  "games": [
+   [
+    "Tampa Bay Buccaneers @ Dallas Cowboys 2026-10-09T00:15:00Z",
+    3160
+   ],
+   [
+    "Philadelphia Eagles @ Jacksonville Jaguars 2026-10-11T13:30:00Z",
+    499
+   ],
+   [
+    "Tampa Bay Buccaneers @ Dallas Cowboys 2026-10-09T00:15:00.000+00:00",
+    496
+   ],
+   [
+    "Tampa Bay Buccaneers @ Dallas Cowboys 2026-10-08T20:15:00.000-04:00",
+    454
+   ],
+   [
+    "Indianapolis Colts @ Pittsburgh Steelers 2026-10-11T17:00:00Z",
+    393
+   ],
+   [
+    "Cleveland Browns @ New York Jets 2026-10-11T17:00:00Z",
+    297
+   ],
+   [
+    "Chicago Bears @ Green Bay Packers 2026-10-11T17:00:00Z",
+    288
+   ],
+   [
+    "Philadelphia Eagles @ Jacksonville Jaguars 2026-10-11T13:30:00.000+00:00",
+    277
+   ],
+   [
+    "Minnesota Vikings @ New Orleans Saints 2026-10-11T17:00:00Z",
+    251
+   ],
+   [
+    "Las Vegas Raiders @ New England Patriots 2026-10-11T17:00:00Z",
+    248
+   ],
+   [
+    "Houston Texans @ Tennessee Titans 2026-10-11T17:00:00Z",
+    175
+   ],
+   [
+    "Philadelphia Eagles @ Jacksonville Jaguars 2026-10-11T09:30:00.000-04:00",
+    167
+   ],
+   [
+    "Detroit Lions @ Arizona Cardinals 2026-10-11T20:25:00Z",
+    156
+   ],
+   [
+    "San Francisco 49ers @ Seattle Seahawks 2026-10-11T20:25:00Z",
+    151
+   ],
+   [
+    "Baltimore Ravens @ Atlanta Falcons 2026-10-12T00:20:00Z",
+    146
+   ],
+   [
+    "Las Vegas Raiders @ New England Patriots 2026-10-11T17:00:00.000+00:00",
+    130
+   ],
+   [
+    "New York Giants @ Washington Commanders 2026-10-11T17:00:00Z",
+    121
+   ],
+   [
+    "Buffalo Bills @ Los Angeles Rams 2026-10-13T00:15:00Z",
+    119
+   ],
+   [
+    "Denver Broncos @ Los Angeles Chargers 2026-10-11T20:05:00Z",
+    114
+   ],
+   [
+    "Tampa Bay Buccaneers @ Dallas Cowboys 2026-10-09T00:16:00.000Z",
+    109
+   ],
+   [
+    "Cincinnati Bengals @ Miami Dolphins 2026-10-11T17:00:00Z",
+    104
+   ],
+   [
+    "Cleveland Browns @ New York Jets None",
+    88
+   ],
+   [
+    "Houston Texans @ Tennessee Titans None",
+    86
+   ],
+   [
+    "Philadelphia Eagles @ Jacksonville Jaguars 2026-10-11T13:30:00.000Z",
+    81
+   ],
+   [
+    "Indianapolis Colts @ Pittsburgh Steelers None",
+    81
+   ],
+   [
+    "Chicago Bears @ Green Bay Packers 2026-10-11T17:00:00.000+00:00",
+    80
+   ],
+   [
+    "Houston Texans @ Tennessee Titans 2026-10-11T17:01:00.000Z",
+    72
+   ],
+   [
+    "Detroit Lions @ Arizona Cardinals None",
+    71
+   ],
+   [
+    "Houston Texans @ Tennessee Titans 2026-10-11T13:00:00.000-04:00",
+    70
+   ],
+   [
+    "Buffalo Bills @ Los Angeles Rams None",
+    69
+   ],
+   [
+    "Las Vegas Raiders @ New England Patriots 2026-10-11T17:01:00.000Z",
+    67
+   ],
+   [
+    "San Francisco 49ers @ Seattle Seahawks 2026-10-11T20:26:00.000Z",
+    66
+   ],
+   [
+    "San Francisco 49ers @ Seattle Seahawks None",
+    64
+   ],
+   [
+    "Detroit Lions @ Arizona Cardinals 2026-10-11T20:26:00.000Z",
+    63
+   ],
+   [
+    "New York Giants @ Washington Commanders None",
+    60
+   ],
+   [
+    "Chicago Bears @ Green Bay Packers 2026-10-11T17:01:00.000Z",
+    58
+   ],
+   [
+    "Denver Broncos @ Los Angeles Chargers 2026-10-11T20:05:00.000+00:00",
+    56
+   ],
+   [
+    "Cleveland Browns @ New York Jets 2026-10-11T17:01:00.000Z",
+    55
+   ],
+   [
+    "Denver Broncos @ Los Angeles Chargers None",
+    51
+   ],
+   [
+    "Indianapolis Colts @ Pittsburgh Steelers 2026-10-11T17:01:00.000Z",
+    51
+   ],
+   [
+    "New York Giants @ Washington Commanders 2026-10-11T17:01:00.000Z",
+    51
+   ],
+   [
+    "Baltimore Ravens @ Atlanta Falcons 2026-10-12T00:21:00.000Z",
+    51
+   ],
+   [
+    "Denver Broncos @ Los Angeles Chargers 2026-10-11T20:06:00.000Z",
+    50
+   ],
+   [
+    "Philadelphia Eagles @ Jacksonville Jaguars None",
+    49
+   ],
+   [
+    "Buffalo Bills @ Los Angeles Rams 2026-10-13T00:16:00.000Z",
+    48
+   ],
+   [
+    "Minnesota Vikings @ New Orleans Saints 2026-10-11T13:00:00.000-04:00",
+    46
+   ],
+   [
+    "Minnesota Vikings @ New Orleans Saints None",
+    44
+   ],
+   [
+    "Chicago Bears @ Green Bay Packers None",
+    43
+   ],
+   [
+    "Cincinnati Bengals @ Miami Dolphins None",
+    43
+   ],
+   [
+    "Las Vegas Raiders @ New England Patriots 2026-10-11T13:00:00.000-04:00",
+    43
+   ],
+   [
+    "Baltimore Ravens @ Atlanta Falcons None",
+    42
+   ],
+   [
+    "Minnesota Vikings @ New Orleans Saints 2026-10-11T17:01:00.000Z",
+    42
+   ],
+   [
+    "Indianapolis Colts @ Pittsburgh Steelers 2026-10-11T13:00:00.000-04:00",
+    42
+   ],
+   [
+    "Las Vegas Raiders @ New England Patriots None",
+    41
+   ],
+   [
+    "Cincinnati Bengals @ Miami Dolphins 2026-10-11T17:00:00.000+00:00",
+    40
+   ],
+   [
+    "Cincinnati Bengals @ Miami Dolphins 2026-10-11T17:01:00.000Z",
+    35
+   ],
+   [
+    "New York Giants @ Washington Commanders 2026-10-11T13:00:00.000-04:00",
+    34
+   ],
+   [
+    "Cleveland Browns @ New York Jets 2026-10-11T13:00:00.000-04:00",
+    33
+   ],
+   [
+    "Cincinnati Bengals @ Miami Dolphins 2026-10-11T13:00:00.000-04:00",
+    29
+   ],
+   [
+    "Chicago Bears @ Green Bay Packers 2026-10-11T13:00:00.000-04:00",
+    28
+   ],
+   [
+    " @  2026-10-08T20:15:00.000-04:00",
+    16
+   ],
+   [
+    "Tampa Bay Buccaneers @ Dallas Cowboys 2026-10-09T00:15:00.0000000Z",
+    4
+   ],
+   [
+    " @  2026-10-11T09:30:00.000-04:00",
+    1
+   ],
+   [
+    " @  2026-10-11T13:00:00.000-04:00",
+    1
+   ]
+  ],
+  "age_seconds": [
+   6.4,
+   30.4,
+   60.4,
+   62.4,
+   65.4,
+   66.4,
+   78.4,
+   81.4,
+   99.4,
+   189.4,
+   262.4,
+   325.4,
+   452.4,
+   773.4,
+   1128.4,
+   1545.4,
+   1805.4,
+   2020.4,
+   2367.4,
+   2832.4
+  ],
+  "samples": [
+   {
+    "event_id": "49ddbb8bda8352030a3cf5232329e412",
+    "sport_key": "americanfootball_nfl",
+    "game_date": "2026-10-09",
+    "home_team": "Dallas Cowboys",
+    "away_team": "Tampa Bay Buccaneers",
+    "canonical_event_id": "7d2983204fc25b29",
+    "commence_time": "2026-10-08T20:15:00.000-04:00",
+    "commence_time_reported": true,
+    "bookmaker": "prizepicks",
+    "bookmaker_title": "PrizePicks",
+    "player": "Al-Quadin Muhammad",
+    "market_key": "player_sacks",
+    "period": "FULL",
+    "market": "Sacks",
+    "line": 0.25,
+    "over_price": 100,
+    "under_price": -100,
+    "implied_probability": 50.0,
+    "is_dfs_flat_payout": true,
+    "dfs_normalized": true,
+    "last_update": "2026-10-08T04:03:56Z",
+    "player_reference": null,
+    "odds_type": "demon",
+    "projection_type": "DEMON",
+    "age_seconds": 3544.4
+   },
+   {
+    "event_id": "49ddbb8bda8352030a3cf5232329e412",
+    "sport_key": "americanfootball_nfl",
+    "game_date": "2026-10-09",
+    "home_team": "Dallas Cowboys",
+    "away_team": "Tampa Bay Buccaneers",
+    "canonical_event_id": "7d2983204fc25b29",
+    "commence_time": "2026-10-09T00:15:00.000+00:00",
+    "commence_time_reported": true,
+    "bookmaker": "novig",
+    "bookmaker_title": "Novig",
+    "player": "Bauer Sharp",
+    "market_key": "player_anytime_td",
+    "period": "FULL",
+    "market": "TOUCHDOWNS",
+    "line": 0.5,
+    "over_price": 3233,
+    "under_price": -19900,
+    "implied_probability": 3.0,
+    "is_dfs_flat_payout": false,
+    "dfs_normalized": false,
+    "last_update": "2026-10-08T05:01:42Z",
+    "player_reference": null,
+    "age_seconds": 78.4
+   },
+   {
+    "event_id": "49ddbb8bda8352030a3cf5232329e412",
+    "sport_key": "americanfootball_nfl",
+    "game_date": "2026-10-09",
+    "home_team": "Dallas Cowboys",
+    "away_team": "Tampa Bay Buccaneers",
+    "canonical_event_id": "7d2983204fc25b29",
+    "commence_time": "2026-10-09T00:15:00.0000000Z",
+    "commence_time_reported": true,
+    "bookmaker": "draftkings",
+    "bookmaker_title": "DraftKings",
+    "player": "To Win By 13-18",
+    "market_key": "player_winning_margin",
+    "period": "FULL",
+    "market": "Winning Margin",
+    "line": null,
+    "over_price": 2500,
+    "under_price": null,
+    "implied_probability": 3.8,
+    "is_dfs_flat_payout": false,
+    "dfs_normalized": false,
+    "last_update": "2026-10-08T04:57:09Z",
+    "player_reference": null,
+    "age_seconds": 351.4
+   },
+   {
+    "event_id": "49ddbb8bda8352030a3cf5232329e412",
+    "sport_key": "americanfootball_nfl",
+    "game_date": "2026-10-09",
+    "home_team": "Dallas Cowboys",
+    "away_team": "Tampa Bay Buccaneers",
+    "canonical_event_id": "7d2983204fc25b29",
+    "commence_time": "2026-10-09T00:15:00Z",
+    "commence_time_reported": true,
+    "bookmaker": "pinnacle",
+    "bookmaker_title": "Pinnacle",
+    "player": "0 - 5",
+    "market_key": "player_game_props",
+    "period": "FULL",
+    "market": "Tampa Bay Buccaneers Points Range 1st Quarter",
+    "line": null,
+    "over_price": -200,
+    "under_price": null,
+    "implied_probability": 66.7,
+    "is_dfs_flat_payout": false,
+    "dfs_normalized": false,
+    "last_update": "2026-10-08T04:59:35Z",
+    "player_reference": null,
+    "age_seconds": 205.4
+   },
+   {
+    "event_id": "49ddbb8bda8352030a3cf5232329e412",
+    "sport_key": "americanfootball_nfl",
+    "game_date": "2026-10-09",
+    "home_team": "Dallas Cowboys",
+    "away_team": "Tampa Bay Buccaneers",
+    "canonical_event_id": "7d2983204fc25b29",
+    "commence_time": "2026-10-09T00:15:00Z",
+    "commence_time_reported": true,
+    "bookmaker": "bovada",
+    "bookmaker_title": "Bovada",
+    "player": "1+ Made Field Goal in Each Quarter",
+    "market_key": "player_half_and_quarter_game_specials",
+    "period": "FULL",
+    "market": "Half And Quarter Game Specials",
+    "line": null,
+    "over_price": 600,
+    "under_price": null,
+    "implied_probability": 14.3,
+    "is_dfs_flat_payout": false,
+    "dfs_normalized": false,
+    "last_update": "2026-10-08T04:37:15Z",
+    "player_reference": null,
+    "age_seconds": 1545.4
+   }
+  ]
+ }
+}

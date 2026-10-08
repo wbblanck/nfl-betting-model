@@ -1,0 +1,454 @@
+{
+ "stamp": "20261008T045027Z",
+ "event": "401872980",
+ "events": [
+  "401872980",
+  "401872981",
+  "401872990",
+  "401872984",
+  "401872982",
+  "401872986",
+  "401872987",
+  "401872983",
+  "401872985",
+  "401872988",
+  "401872989",
+  "401872991",
+  "401872992",
+  "401872993",
+  "401872994"
+ ],
+ "results": {
+  "providers": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/providers?limit=200",
+   "status": 200,
+   "bytes": 7534,
+   "count": 71,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "casinos": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos?limit=200",
+   "status": 200,
+   "bytes": 6553,
+   "count": 63,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "odds_list": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds?limit=100",
+   "status": 200,
+   "bytes": 5845,
+   "count": 1,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": true
+  },
+  "odds_list_prio0": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds?limit=100&provider.priority=0",
+   "status": 200,
+   "bytes": 64,
+   "count": 0,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "odds_list_prio2": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds?limit=100&provider.priority=2",
+   "status": 200,
+   "bytes": 64,
+   "count": 0,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "v3_odds": {
+   "url": "https://sports.core.api.espn.com/v3/sports/football/nfl/odds?event=401872980",
+   "status": 200,
+   "bytes": 75377,
+   "count": 43,
+   "top_keys": [
+    "count",
+    "items"
+   ],
+   "price_props": 0,
+   "has_american": true
+  },
+  "v3_odds_plain": {
+   "url": "https://sports.core.api.espn.com/v3/sports/football/nfl/odds",
+   "status": 200,
+   "bytes": 75377,
+   "count": 43,
+   "top_keys": [
+    "count",
+    "items"
+   ],
+   "price_props": 0,
+   "has_american": true
+  },
+  "v3_predictions": {
+   "url": "https://sports.core.api.espn.com/v3/sports/football/nfl/predictions?event=401872980",
+   "status": 404,
+   "bytes": 0
+  },
+  "v3_bets_featured": {
+   "url": "https://sports.core.api.espn.com/v3/bets/featured?sport=football&league=nfl",
+   "status": 200,
+   "bytes": 122131,
+   "count": 132,
+   "top_keys": [
+    "count",
+    "items"
+   ],
+   "price_props": 0,
+   "has_american": true
+  },
+  "v3_bets_trending": {
+   "url": "https://sports.core.api.espn.com/v3/bets/trending?sport=football&league=nfl",
+   "status": 200,
+   "bytes": 1791856,
+   "count": 1167,
+   "top_keys": [
+    "count",
+    "items"
+   ],
+   "price_props": 0,
+   "has_american": true
+  },
+  "v3_bets_market_props": {
+   "url": "https://sports.core.api.espn.com/v3/bets/markets/player-props?sport=football&league=nfl&event=401872980",
+   "status": 404,
+   "bytes": 0
+  },
+  "site_summary": {
+   "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=401872980",
+   "status": 200,
+   "bytes": 112826,
+   "count": null,
+   "top_keys": [
+    "againstTheSpread",
+    "article",
+    "boxscore",
+    "broadcasts",
+    "format",
+    "gameInfo",
+    "header",
+    "injuries",
+    "lastFiveGames",
+    "leaders",
+    "meta",
+    "news",
+    "odds",
+    "pickcenter",
+    "predictor",
+    "standings",
+    "ticketsInfo",
+    "wallclockAvailable",
+    "winprobability"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "cdn_game": {
+   "url": "https://cdn.espn.com/core/nfl/game?xhr=1&gameId=401872980",
+   "status": 200,
+   "bytes": 166684,
+   "count": null,
+   "top_keys": [
+    "__gamepackage__",
+    "ads",
+    "analytics",
+    "content",
+    "customNav",
+    "customStyleSheet",
+    "gameId",
+    "gamepackageJSON",
+    "meta",
+    "nowFeedSupported",
+    "sport",
+    "targeting",
+    "tier2Nav",
+    "type"
+   ],
+   "price_props": 0,
+   "has_american": true
+  },
+  "odds_100": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/100",
+   "status": 200,
+   "bytes": 5780,
+   "count": null,
+   "top_keys": [
+    "$ref",
+    "awayTeamOdds",
+    "current",
+    "details",
+    "homeTeamOdds",
+    "links",
+    "moneylineWinner",
+    "open",
+    "overOdds",
+    "overUnder",
+    "propBets",
+    "provider",
+    "spread",
+    "spreadWinner",
+    "underOdds"
+   ],
+   "price_props": 0,
+   "has_american": true
+  },
+  "props_100": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/100/propBets?limit=1000",
+   "status": 200,
+   "bytes": 572911,
+   "count": 1645,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "odds_41": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/41",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_41": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/41/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_37": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/37",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_37": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/37/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_38": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/38",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_38": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/38/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_58": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/58",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_58": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/58/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_68": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/68",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_68": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/68/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_2000": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/2000",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_2000": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/2000/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_40": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/40",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_40": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/40/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_43": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/43",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_43": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/43/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_1002": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/1002",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_1002": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/1002/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_1004": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/1004",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_1004": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/1004/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_200": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/200",
+   "status": 404,
+   "bytes": 0
+  },
+  "props_200": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/200/propBets?limit=1000",
+   "status": 404,
+   "bytes": 0
+  },
+  "movement_100_bt0": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/100/history/0/movement?limit=100",
+   "status": 200,
+   "bytes": 64,
+   "count": 0,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "movement_100_bt1": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/100/history/1/movement?limit=100",
+   "status": 200,
+   "bytes": 64,
+   "count": 0,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "movement_100_bt2": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/100/history/2/movement?limit=100",
+   "status": 200,
+   "bytes": 64,
+   "count": 0,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "movement_100_bt8": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/100/history/8/movement?limit=100",
+   "status": 200,
+   "bytes": 64,
+   "count": 0,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "movement_100_bt11": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/100/history/11/movement?limit=100",
+   "status": 200,
+   "bytes": 64,
+   "count": 0,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  },
+  "odds_100_predictors": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/100/predictors",
+   "status": 404,
+   "bytes": 0
+  },
+  "odds_100_h2h": {
+   "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980/odds/100/head-to-heads",
+   "status": 200,
+   "bytes": 64,
+   "count": 0,
+   "top_keys": [
+    "count",
+    "items",
+    "pageCount",
+    "pageIndex",
+    "pageSize"
+   ],
+   "price_props": 0,
+   "has_american": false
+  }
+ }
+}

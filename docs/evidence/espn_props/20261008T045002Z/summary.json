@@ -1,0 +1,4502 @@
+{
+ "stamp": "20261008T045002Z",
+ "weeks": [
+  {
+   "season": 2026,
+   "week": 5,
+   "events_status": 200,
+   "n_events": 15,
+   "games": [
+    {
+     "event": "401872980",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 1645,
+     "n_athletes": 49
+    },
+    {
+     "event": "401872981",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 616,
+     "n_athletes": 28
+    },
+    {
+     "event": "401872990",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 567,
+     "n_athletes": 26
+    },
+    {
+     "event": "401872984",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 754,
+     "n_athletes": 30
+    },
+    {
+     "event": "401872982",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 292,
+     "n_athletes": 7
+    },
+    {
+     "event": "401872986",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 497,
+     "n_athletes": 27
+    },
+    {
+     "event": "401872987",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 447,
+     "n_athletes": 23
+    },
+    {
+     "event": "401872983",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 588,
+     "n_athletes": 27
+    },
+    {
+     "event": "401872985",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 607,
+     "n_athletes": 28
+    },
+    {
+     "event": "401872988",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 569,
+     "n_athletes": 30
+    },
+    {
+     "event": "401872989",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 649,
+     "n_athletes": 26
+    },
+    {
+     "event": "401872991",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 709,
+     "n_athletes": 27
+    },
+    {
+     "event": "401872992",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 630,
+     "n_athletes": 27
+    },
+    {
+     "event": "401872993",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 579,
+     "n_athletes": 27
+    },
+    {
+     "event": "401872994",
+     "odds_status": 200,
+     "provider": "100",
+     "provider_name": "Draft Kings",
+     "props_status": 200,
+     "n_items": 583,
+     "n_athletes": 23
+    }
+   ],
+   "types": [
+    [
+     "Team Total Points",
+     1252
+    ],
+    [
+     "Receiving Yards Milestones",
+     1188
+    ],
+    [
+     "Receptions Milestones",
+     764
+    ],
+    [
+     "Rushing Yards Milestones",
+     729
+    ],
+    [
+     "Passing Yards Milestones",
+     707
+    ],
+    [
+     "First Touchdown Scorer",
+     403
+    ],
+    [
+     "Anytime Touchdown Scorer",
+     395
+    ],
+    [
+     "Player to score 2 or more touchdowns",
+     384
+    ],
+    [
+     "Passing + Rushing Yards Milestones",
+     340
+    ],
+    [
+     "Passing Attempts Milestones",
+     300
+    ],
+    [
+     "Rushing + Receiving Yards Milestones",
+     289
+    ],
+    [
+     "Rushing Attempts Milestones",
+     253
+    ],
+    [
+     "Passing Completions Milestones",
+     223
+    ],
+    [
+     "Total Receptions (incl. overtime)",
+     204
+    ],
+    [
+     "Total Receiving Yards (incl. overtime)",
+     203
+    ],
+    [
+     "Receiving Yards Milestones - 1st Half",
+     124
+    ],
+    [
+     "Passing Touchdown Milestones",
+     114
+    ],
+    [
+     "Total Rushing Yards (incl. overtime)",
+     113
+    ],
+    [
+     "Receiving Yards Milestones - 1st Quarter",
+     83
+    ],
+    [
+     "Total Carries (incl. overtime)",
+     72
+    ],
+    [
+     "Tackles + Assists Milestones",
+     67
+    ],
+    [
+     "Team Total Touchdowns",
+     60
+    ],
+    [
+     "Total Passing Yards (incl. overtime)",
+     58
+    ],
+    [
+     "Total Passing Touchdowns (incl. overtime)",
+     58
+    ],
+    [
+     "Total Pass Completions (incl. overtime)",
+     56
+    ],
+    [
+     "Total Passing Attempts (incl. overtime)",
+     56
+    ],
+    [
+     "Total Passing Interceptions (incl. overtime)",
+     54
+    ],
+    [
+     "Tackles Milestones",
+     51
+    ],
+    [
+     "Passing Yards Milestones - 1st Half",
+     50
+    ],
+    [
+     "Team 1st Half Total Points",
+     48
+    ],
+    [
+     "Interceptions Thrown Milestones",
+     41
+    ],
+    [
+     "Rushing Yards Milestones - 1st Half",
+     41
+    ],
+    [
+     "Passing Yards Milestones - 1st Quarter",
+     40
+    ],
+    [
+     "Total Rushing Plus Receiving Yards (incl. overtime)",
+     38
+    ],
+    [
+     "Assists Milestones (Football)",
+     38
+    ],
+    [
+     "Longest Reception (incl. overtime)",
+     36
+    ],
+    [
+     "First Team Touchdown Scorer",
+     31
+    ],
+    [
+     "Last Touchdown Scorer",
+     30
+    ],
+    [
+     "Will There Be Overtime?",
+     30
+    ],
+    [
+     "Rushing Yards Milestones - 1st Quarter",
+     30
+    ],
+    [
+     "1st Half Touchdown Scorer",
+     29
+    ],
+    [
+     "1st Quarter Touchdown Scorer",
+     29
+    ],
+    [
+     "1st Half Total",
+     28
+    ],
+    [
+     "1st Half Moneyline",
+     28
+    ],
+    [
+     "1st Half Spread",
+     28
+    ],
+    [
+     "1st Quarter Total",
+     28
+    ],
+    [
+     "1st Quarter Moneyline",
+     28
+    ],
+    [
+     "1st Quarter Spread",
+     28
+    ],
+    [
+     "Total Passing Plus Rushing Yards (incl. overtime)",
+     24
+    ],
+    [
+     "2nd Quarter Total",
+     24
+    ],
+    [
+     "2nd Quarter Moneyline",
+     24
+    ],
+    [
+     "2nd Quarter Spread",
+     24
+    ],
+    [
+     "3rd Quarter Total",
+     24
+    ],
+    [
+     "3rd Quarter Moneyline",
+     24
+    ],
+    [
+     "3rd Quarter Spread",
+     24
+    ],
+    [
+     "4th Quarter Total",
+     24
+    ],
+    [
+     "4th Quarter Moneyline",
+     24
+    ],
+    [
+     "4th Quarter Spread",
+     24
+    ],
+    [
+     "Player to score 3 or more touchdowns",
+     22
+    ],
+    [
+     "1st Quarter Total Receiving Yards",
+     22
+    ],
+    [
+     "1st Half Total Receiving Yards",
+     20
+    ],
+    [
+     "Total Assists (incl. overtime)",
+     18
+    ],
+    [
+     "Total Tackles (incl. overtime)",
+     18
+    ],
+    [
+     "Total Tackles Plus Assists (incl. overtime)",
+     18
+    ],
+    [
+     "Longest Passing Completion (incl. overtime)",
+     12
+    ],
+    [
+     "Sacks Milestones",
+     12
+    ],
+    [
+     "Longest Rush (incl. overtime)",
+     10
+    ],
+    [
+     "Kicking Points Milestones",
+     10
+    ],
+    [
+     "Total Sacks (incl. overtime)",
+     8
+    ],
+    [
+     "1st Quarter Total Rushing Yards",
+     8
+    ],
+    [
+     "Field Goals Made Milestones",
+     8
+    ],
+    [
+     "1st Half Total Rushing Yards",
+     7
+    ],
+    [
+     "Total Kicking Points (incl. overtime)",
+     4
+    ],
+    [
+     "Total Extra Points Made (incl. overtime)",
+     4
+    ],
+    [
+     "Total Field Goals Made (incl. overtime)",
+     4
+    ],
+    [
+     "1st Half Total Passing Yards",
+     4
+    ],
+    [
+     "1st Quarter Total Passing Yards",
+     4
+    ]
+   ],
+   "key_paths": [
+    [
+     "type.name",
+     9732
+    ],
+    [
+     "competition.$ref",
+     9732
+    ],
+    [
+     "type.id",
+     9732
+    ],
+    [
+     "lastUpdated",
+     9732
+    ],
+    [
+     "provider.$ref",
+     9732
+    ],
+    [
+     "current.target.displayValue",
+     8251
+    ],
+    [
+     "current.target.value",
+     8251
+    ],
+    [
+     "open.target.value",
+     8250
+    ],
+    [
+     "open.target.displayValue",
+     8250
+    ],
+    [
+     "athlete.$ref",
+     7852
+    ],
+    [
+     "team.$ref",
+     1706
+    ]
+   ],
+   "last_updated_min": "2026-08-04T20:02Z",
+   "last_updated_max": "2026-10-08T07:39Z",
+   "last_updated_by_day": [
+    [
+     "2026-08-04",
+     4
+    ],
+    [
+     "2026-08-05",
+     8
+    ],
+    [
+     "2026-10-05",
+     1445
+    ],
+    [
+     "2026-10-06",
+     2560
+    ],
+    [
+     "2026-10-07",
+     4309
+    ],
+    [
+     "2026-10-08",
+     1406
+    ]
+   ],
+   "sample_per_type": {
+    "Total Passing Yards (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "8",
+      "name": "Total Passing Yards (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-08T06:54Z",
+     "current": {
+      "target": {
+       "value": 266.5,
+       "displayValue": "266.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 258.5,
+       "displayValue": "258.5"
+      }
+     }
+    },
+    "Total Pass Completions (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "9",
+      "name": "Total Pass Completions (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-08T06:54Z",
+     "current": {
+      "target": {
+       "value": 23.5,
+       "displayValue": "23.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 23.5,
+       "displayValue": "23.5"
+      }
+     }
+    },
+    "Total Passing Touchdowns (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4596472?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "10",
+      "name": "Total Passing Touchdowns (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-05T07:03Z",
+     "current": {
+      "target": {
+       "value": 0.5,
+       "displayValue": "0.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 0.5,
+       "displayValue": "0.5"
+      }
+     }
+    },
+    "Total Carries (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361579?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "11",
+      "name": "Total Carries (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-05T16:05Z",
+     "current": {
+      "target": {
+       "value": 17.5,
+       "displayValue": "17.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 17.5,
+       "displayValue": "17.5"
+      }
+     }
+    },
+    "Total Rushing Yards (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "12",
+      "name": "Total Rushing Yards (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-05T19:34Z",
+     "current": {
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     }
+    },
+    "Total Receiving Yards (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116165?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "13",
+      "name": "Total Receiving Yards (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-07T22:57Z",
+     "current": {
+      "target": {
+       "value": 29.5,
+       "displayValue": "29.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 26.5,
+       "displayValue": "26.5"
+      }
+     }
+    },
+    "Total Receptions (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116165?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "14",
+      "name": "Total Receptions (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-05T15:27Z",
+     "current": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 2.5,
+       "displayValue": "2.5"
+      }
+     }
+    },
+    "Total Passing Interceptions (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "15",
+      "name": "Total Passing Interceptions (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-05T06:59Z",
+     "current": {
+      "target": {
+       "value": 0.5,
+       "displayValue": "0.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 0.5,
+       "displayValue": "0.5"
+      }
+     }
+    },
+    "Total Passing Attempts (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "16",
+      "name": "Total Passing Attempts (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-08T06:54Z",
+     "current": {
+      "target": {
+       "value": 34.5,
+       "displayValue": "34.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 32.5,
+       "displayValue": "32.5"
+      }
+     }
+    },
+    "Longest Passing Completion (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "17",
+      "name": "Longest Passing Completion (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-06T13:06Z",
+     "current": {
+      "target": {
+       "value": 38.5,
+       "displayValue": "38.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 38.5,
+       "displayValue": "38.5"
+      }
+     }
+    },
+    "Total Passing Plus Rushing Yards (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "18",
+      "name": "Total Passing Plus Rushing Yards (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-08T06:54Z",
+     "current": {
+      "target": {
+       "value": 279.5,
+       "displayValue": "279.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 270.5,
+       "displayValue": "270.5"
+      }
+     }
+    },
+    "Longest Reception (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116165?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "19",
+      "name": "Longest Reception (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-08T06:54Z",
+     "current": {
+      "target": {
+       "value": 14.5,
+       "displayValue": "14.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 15.5,
+       "displayValue": "15.5"
+      }
+     }
+    },
+    "Total Rushing Plus Receiving Yards (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361579?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "20",
+      "name": "Total Rushing Plus Receiving Yards (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-08T06:54Z",
+     "current": {
+      "target": {
+       "value": 89.5,
+       "displayValue": "89.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 94.5,
+       "displayValue": "94.5"
+      }
+     }
+    },
+    "Longest Rush (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "21",
+      "name": "Longest Rush (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-06T15:47Z",
+     "current": {
+      "target": {
+       "value": 8.5,
+       "displayValue": "8.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 7.5,
+       "displayValue": "7.5"
+      }
+     }
+    },
+    "Total Kicking Points (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3150744?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "22",
+      "name": "Total Kicking Points (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-07T22:06Z",
+     "current": {
+      "target": {
+       "value": 5.5,
+       "displayValue": "5.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 6.5,
+       "displayValue": "6.5"
+      }
+     }
+    },
+    "Total Extra Points Made (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3150744?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "23",
+      "name": "Total Extra Points Made (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-07T18:59Z",
+     "current": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     }
+    },
+    "Total Field Goals Made (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3150744?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "24",
+      "name": "Total Field Goals Made (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-07T18:59Z",
+     "current": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     }
+    },
+    "Total Assists (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3043107?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "25",
+      "name": "Total Assists (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-08T04:37Z",
+     "current": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     }
+    },
+    "Total Tackles (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3043107?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "26",
+      "name": "Total Tackles (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-08T04:37Z",
+     "current": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     }
+    },
+    "Total Tackles Plus Assists (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3043107?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "27",
+      "name": "Total Tackles Plus Assists (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-08T04:37Z",
+     "current": {
+      "target": {
+       "value": 6.5,
+       "displayValue": "6.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 6.5,
+       "displayValue": "6.5"
+      }
+     }
+    },
+    "Total Sacks (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3051942?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "28",
+      "name": "Total Sacks (incl. overtime)"
+     },
+     "lastUpdated": "2026-10-08T04:56Z",
+     "current": {
+      "target": {
+       "value": 0.25,
+       "displayValue": "0.25"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 0.25,
+       "displayValue": "0.25"
+      }
+     }
+    },
+    "First Touchdown Scorer": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "29",
+      "name": "First Touchdown Scorer"
+     },
+     "lastUpdated": "2026-10-05T07:30Z",
+     "current": {},
+     "open": {}
+    },
+    "Last Touchdown Scorer": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "30",
+      "name": "Last Touchdown Scorer"
+     },
+     "lastUpdated": "2026-10-06T12:53Z",
+     "current": {},
+     "open": {}
+    },
+    "Anytime Touchdown Scorer": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "31",
+      "name": "Anytime Touchdown Scorer"
+     },
+     "lastUpdated": "2026-10-05T07:30Z",
+     "current": {},
+     "open": {}
+    },
+    "Player to score 2 or more touchdowns": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "32",
+      "name": "Player to score 2 or more touchdowns"
+     },
+     "lastUpdated": "2026-10-05T07:30Z",
+     "current": {},
+     "open": {}
+    },
+    "Player to score 3 or more touchdowns": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116165?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "33",
+      "name": "Player to score 3 or more touchdowns"
+     },
+     "lastUpdated": "2026-10-06T12:53Z",
+     "current": {},
+     "open": {}
+    },
+    "1st Half Touchdown Scorer": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "66",
+      "name": "1st Half Touchdown Scorer"
+     },
+     "lastUpdated": "2026-10-06T12:53Z",
+     "current": {},
+     "open": {}
+    },
+    "1st Quarter Touchdown Scorer": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "67",
+      "name": "1st Quarter Touchdown Scorer"
+     },
+     "lastUpdated": "2026-10-06T12:53Z",
+     "current": {},
+     "open": {}
+    },
+    "1st Half Total": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "72",
+      "name": "1st Half Total"
+     },
+     "lastUpdated": "2026-10-05T04:31Z",
+     "current": {
+      "target": {
+       "value": 23.5,
+       "displayValue": "23.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 23.5,
+       "displayValue": "23.5"
+      }
+     }
+    },
+    "1st Half Moneyline": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "73",
+      "name": "1st Half Moneyline"
+     },
+     "lastUpdated": "2026-10-05T04:31Z",
+     "current": {},
+     "open": {}
+    },
+    "1st Half Spread": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "74",
+      "name": "1st Half Spread"
+     },
+     "lastUpdated": "2026-10-06T18:03Z",
+     "current": {
+      "target": {
+       "value": -5.5,
+       "displayValue": "-5.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": -6.5,
+       "displayValue": "-6.5"
+      }
+     }
+    },
+    "1st Quarter Total": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "75",
+      "name": "1st Quarter Total"
+     },
+     "lastUpdated": "2026-10-05T04:32Z",
+     "current": {
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     }
+    },
+    "1st Quarter Moneyline": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "76",
+      "name": "1st Quarter Moneyline"
+     },
+     "lastUpdated": "2026-10-05T04:31Z",
+     "current": {},
+     "open": {}
+    },
+    "1st Quarter Spread": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "77",
+      "name": "1st Quarter Spread"
+     },
+     "lastUpdated": "2026-10-05T21:35Z",
+     "current": {
+      "target": {
+       "value": -2.5,
+       "displayValue": "-2.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": -2.5,
+       "displayValue": "-2.5"
+      }
+     }
+    },
+    "2nd Quarter Total": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "78",
+      "name": "2nd Quarter Total"
+     },
+     "lastUpdated": "2026-10-06T02:53Z",
+     "current": {
+      "target": {
+       "value": 14.5,
+       "displayValue": "14.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 14.5,
+       "displayValue": "14.5"
+      }
+     }
+    },
+    "2nd Quarter Moneyline": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "79",
+      "name": "2nd Quarter Moneyline"
+     },
+     "lastUpdated": "2026-10-05T17:51Z",
+     "current": {},
+     "open": {}
+    },
+    "2nd Quarter Spread": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "80",
+      "name": "2nd Quarter Spread"
+     },
+     "lastUpdated": "2026-10-06T18:03Z",
+     "current": {
+      "target": {
+       "value": -3.5,
+       "displayValue": "-3.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": -3.5,
+       "displayValue": "-3.5"
+      }
+     }
+    },
+    "3rd Quarter Total": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "81",
+      "name": "3rd Quarter Total"
+     },
+     "lastUpdated": "2026-10-05T17:51Z",
+     "current": {
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     }
+    },
+    "3rd Quarter Moneyline": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "82",
+      "name": "3rd Quarter Moneyline"
+     },
+     "lastUpdated": "2026-10-05T17:51Z",
+     "current": {},
+     "open": {}
+    },
+    "3rd Quarter Spread": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "83",
+      "name": "3rd Quarter Spread"
+     },
+     "lastUpdated": "2026-10-05T17:51Z",
+     "current": {
+      "target": {
+       "value": -2.5,
+       "displayValue": "-2.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": -2.5,
+       "displayValue": "-2.5"
+      }
+     }
+    },
+    "4th Quarter Total": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "84",
+      "name": "4th Quarter Total"
+     },
+     "lastUpdated": "2026-10-05T17:51Z",
+     "current": {
+      "target": {
+       "value": 13.5,
+       "displayValue": "13.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 13.5,
+       "displayValue": "13.5"
+      }
+     }
+    },
+    "4th Quarter Moneyline": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "85",
+      "name": "4th Quarter Moneyline"
+     },
+     "lastUpdated": "2026-10-05T17:51Z",
+     "current": {},
+     "open": {}
+    },
+    "4th Quarter Spread": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "86",
+      "name": "4th Quarter Spread"
+     },
+     "lastUpdated": "2026-10-06T18:03Z",
+     "current": {
+      "target": {
+       "value": -2.5,
+       "displayValue": "-2.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": -2.5,
+       "displayValue": "-2.5"
+      }
+     }
+    },
+    "Team Total Points": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "98",
+      "name": "Team Total Points"
+     },
+     "lastUpdated": "2026-10-05T21:35Z",
+     "current": {
+      "target": {
+       "value": 18.5,
+       "displayValue": "18.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 29.5,
+       "displayValue": "29.5"
+      }
+     }
+    },
+    "Team 1st Half Total Points": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "99",
+      "name": "Team 1st Half Total Points"
+     },
+     "lastUpdated": "2026-10-06T18:03Z",
+     "current": {
+      "target": {
+       "value": 14.5,
+       "displayValue": "14.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 14.5,
+       "displayValue": "14.5"
+      }
+     }
+    },
+    "Team Total Touchdowns": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/6?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "104",
+      "name": "Team Total Touchdowns"
+     },
+     "lastUpdated": "2026-10-05T18:25Z",
+     "current": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     }
+    },
+    "Will There Be Overtime?": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "153",
+      "name": "Will There Be Overtime?"
+     },
+     "lastUpdated": "2026-10-05T18:25Z",
+     "current": {},
+     "open": {}
+    },
+    "First Team Touchdown Scorer": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "181",
+      "name": "First Team Touchdown Scorer"
+     },
+     "lastUpdated": "2026-10-06T12:53Z",
+     "current": {},
+     "open": {}
+    },
+    "1st Half Total Passing Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "186",
+      "name": "1st Half Total Passing Yards"
+     },
+     "lastUpdated": "2026-10-08T06:54Z",
+     "current": {
+      "target": {
+       "value": 141.5,
+       "displayValue": "141.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 138.5,
+       "displayValue": "138.5"
+      }
+     }
+    },
+    "1st Half Total Receiving Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116165?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "187",
+      "name": "1st Half Total Receiving Yards"
+     },
+     "lastUpdated": "2026-10-07T04:03Z",
+     "current": {
+      "target": {
+       "value": 11.5,
+       "displayValue": "11.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 10.5,
+       "displayValue": "10.5"
+      }
+     }
+    },
+    "1st Half Total Rushing Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "189",
+      "name": "1st Half Total Rushing Yards"
+     },
+     "lastUpdated": "2026-10-06T14:14Z",
+     "current": {
+      "target": {
+       "value": 4.5,
+       "displayValue": "4.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 4.5,
+       "displayValue": "4.5"
+      }
+     }
+    },
+    "1st Quarter Total Passing Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "191",
+      "name": "1st Quarter Total Passing Yards"
+     },
+     "lastUpdated": "2026-10-07T04:22Z",
+     "current": {
+      "target": {
+       "value": 60.5,
+       "displayValue": "60.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 59.5,
+       "displayValue": "59.5"
+      }
+     }
+    },
+    "1st Quarter Total Receiving Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116165?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "192",
+      "name": "1st Quarter Total Receiving Yards"
+     },
+     "lastUpdated": "2026-10-06T14:20Z",
+     "current": {
+      "target": {
+       "value": 0.5,
+       "displayValue": "0.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 0.5,
+       "displayValue": "0.5"
+      }
+     }
+    },
+    "1st Quarter Total Rushing Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "193",
+      "name": "1st Quarter Total Rushing Yards"
+     },
+     "lastUpdated": "2026-10-06T14:14Z",
+     "current": {
+      "target": {
+       "value": 0.5,
+       "displayValue": "0.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 0.5,
+       "displayValue": "0.5"
+      }
+     }
+    },
+    "Passing Yards Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "194",
+      "name": "Passing Yards Milestones"
+     },
+     "lastUpdated": "2026-10-05T06:59Z",
+     "current": {
+      "target": {
+       "value": 190.0,
+       "displayValue": "190+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 260.0,
+       "displayValue": "260+"
+      }
+     }
+    },
+    "Receiving Yards Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116165?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "195",
+      "name": "Receiving Yards Milestones"
+     },
+     "lastUpdated": "2026-10-05T07:03Z",
+     "current": {
+      "target": {
+       "value": 15.0,
+       "displayValue": "15+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 27.0,
+       "displayValue": "27+"
+      }
+     }
+    },
+    "Rushing Yards Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "196",
+      "name": "Rushing Yards Milestones"
+     },
+     "lastUpdated": "2026-10-05T06:59Z",
+     "current": {
+      "target": {
+       "value": 10.0,
+       "displayValue": "10+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 10.0,
+       "displayValue": "10+"
+      }
+     }
+    },
+    "Rushing + Receiving Yards Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361579?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "197",
+      "name": "Rushing + Receiving Yards Milestones"
+     },
+     "lastUpdated": "2026-10-05T06:59Z",
+     "current": {
+      "target": {
+       "value": 60.0,
+       "displayValue": "60+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 100.0,
+       "displayValue": "100+"
+      }
+     }
+    },
+    "Passing Touchdown Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "198",
+      "name": "Passing Touchdown Milestones"
+     },
+     "lastUpdated": "2026-10-05T06:59Z",
+     "current": {
+      "target": {
+       "value": 1.0,
+       "displayValue": "1+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 3.0,
+       "displayValue": "3+"
+      }
+     }
+    },
+    "Interceptions Thrown Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "199",
+      "name": "Interceptions Thrown Milestones"
+     },
+     "lastUpdated": "2026-10-05T06:59Z",
+     "current": {
+      "target": {
+       "value": 1.0,
+       "displayValue": "1+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 1.0,
+       "displayValue": "1+"
+      }
+     }
+    },
+    "Passing Attempts Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "200",
+      "name": "Passing Attempts Milestones"
+     },
+     "lastUpdated": "2026-10-05T06:59Z",
+     "current": {
+      "target": {
+       "value": 26.0,
+       "displayValue": "26+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 34.0,
+       "displayValue": "34+"
+      }
+     }
+    },
+    "Rushing Attempts Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4361579?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "201",
+      "name": "Rushing Attempts Milestones"
+     },
+     "lastUpdated": "2026-10-05T06:59Z",
+     "current": {
+      "target": {
+       "value": 16.0,
+       "displayValue": "16+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 18.0,
+       "displayValue": "18+"
+      }
+     }
+    },
+    "Receptions Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116165?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "202",
+      "name": "Receptions Milestones"
+     },
+     "lastUpdated": "2026-10-05T07:03Z",
+     "current": {
+      "target": {
+       "value": 2.0,
+       "displayValue": "2+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 3.0,
+       "displayValue": "3+"
+      }
+     }
+    },
+    "Kicking Points Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3150744?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "203",
+      "name": "Kicking Points Milestones"
+     },
+     "lastUpdated": "2026-10-07T18:59Z",
+     "current": {
+      "target": {
+       "value": 4.0,
+       "displayValue": "4+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 6.0,
+       "displayValue": "6+"
+      }
+     }
+    },
+    "Field Goals Made Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3150744?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "205",
+      "name": "Field Goals Made Milestones"
+     },
+     "lastUpdated": "2026-10-07T18:59Z",
+     "current": {
+      "target": {
+       "value": 1.0,
+       "displayValue": "1+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 2.0,
+       "displayValue": "2+"
+      }
+     }
+    },
+    "Tackles + Assists Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3043107?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "206",
+      "name": "Tackles + Assists Milestones"
+     },
+     "lastUpdated": "2026-10-08T04:37Z",
+     "current": {
+      "target": {
+       "value": 4.0,
+       "displayValue": "4+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 7.0,
+       "displayValue": "7+"
+      }
+     }
+    },
+    "Passing Completions Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "207",
+      "name": "Passing Completions Milestones"
+     },
+     "lastUpdated": "2026-10-05T06:59Z",
+     "current": {
+      "target": {
+       "value": 18.0,
+       "displayValue": "18+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 24.0,
+       "displayValue": "24+"
+      }
+     }
+    },
+    "Tackles Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3043107?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "208",
+      "name": "Tackles Milestones"
+     },
+     "lastUpdated": "2026-10-08T04:37Z",
+     "current": {
+      "target": {
+       "value": 2.0,
+       "displayValue": "2+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 4.0,
+       "displayValue": "4+"
+      }
+     }
+    },
+    "Passing + Rushing Yards Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "209",
+      "name": "Passing + Rushing Yards Milestones"
+     },
+     "lastUpdated": "2026-10-05T06:59Z",
+     "current": {
+      "target": {
+       "value": 190.0,
+       "displayValue": "190+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 280.0,
+       "displayValue": "280+"
+      }
+     }
+    },
+    "Sacks Milestones": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/13976?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "210",
+      "name": "Sacks Milestones"
+     },
+     "lastUpdated": "2026-10-08T05:20Z",
+     "current": {
+      "target": {
+       "value": 1.0,
+       "displayValue": "1+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 1.0,
+       "displayValue": "1+"
+      }
+     }
+    },
+    "Passing Yards Milestones - 1st Quarter": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "211",
+      "name": "Passing Yards Milestones - 1st Quarter"
+     },
+     "lastUpdated": "2026-10-06T14:14Z",
+     "current": {
+      "target": {
+       "value": 15.0,
+       "displayValue": "15+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 65.0,
+       "displayValue": "65+"
+      }
+     }
+    },
+    "Rushing Yards Milestones - 1st Quarter": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "212",
+      "name": "Rushing Yards Milestones - 1st Quarter"
+     },
+     "lastUpdated": "2026-10-06T14:14Z",
+     "current": {
+      "target": {
+       "value": 5.0,
+       "displayValue": "5+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 5.0,
+       "displayValue": "5+"
+      }
+     }
+    },
+    "Receiving Yards Milestones - 1st Quarter": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116165?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "213",
+      "name": "Receiving Yards Milestones - 1st Quarter"
+     },
+     "lastUpdated": "2026-10-06T14:20Z",
+     "current": {
+      "target": {
+       "value": 5.0,
+       "displayValue": "5+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 5.0,
+       "displayValue": "5+"
+      }
+     }
+    },
+    "Passing Yards Milestones - 1st Half": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "214",
+      "name": "Passing Yards Milestones - 1st Half"
+     },
+     "lastUpdated": "2026-10-06T14:14Z",
+     "current": {
+      "target": {
+       "value": 95.0,
+       "displayValue": "95+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 145.0,
+       "displayValue": "145+"
+      }
+     }
+    },
+    "Rushing Yards Milestones - 1st Half": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/2577417?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "215",
+      "name": "Rushing Yards Milestones - 1st Half"
+     },
+     "lastUpdated": "2026-10-06T14:14Z",
+     "current": {
+      "target": {
+       "value": 5.0,
+       "displayValue": "5+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 5.0,
+       "displayValue": "5+"
+      }
+     }
+    },
+    "Receiving Yards Milestones - 1st Half": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3116165?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "216",
+      "name": "Receiving Yards Milestones - 1st Half"
+     },
+     "lastUpdated": "2026-10-06T14:20Z",
+     "current": {
+      "target": {
+       "value": 5.0,
+       "displayValue": "5+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 10.0,
+       "displayValue": "10+"
+      }
+     }
+    },
+    "Assists Milestones (Football)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872980/competitions/401872980?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/3043107?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/100?lang=en&region=us"
+     },
+     "type": {
+      "id": "217",
+      "name": "Assists Milestones (Football)"
+     },
+     "lastUpdated": "2026-10-08T04:37Z",
+     "current": {
+      "target": {
+       "value": 2.0,
+       "displayValue": "2+"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 4.0,
+       "displayValue": "4+"
+      }
+     }
+    }
+   }
+  },
+  {
+   "season": 2025,
+   "week": 6,
+   "events_status": 200,
+   "n_events": 1,
+   "games": [
+    {
+     "event": "401772940",
+     "odds_status": 200,
+     "provider": "58",
+     "provider_name": "ESPN BET",
+     "props_status": 200,
+     "n_items": 1069,
+     "n_athletes": 46
+    },
+    {
+     "event": "401772940",
+     "odds_status": 200,
+     "provider": "59",
+     "provider_name": "ESPN Bet - Live Odds",
+     "props_status": 200,
+     "n_items": 1389,
+     "n_athletes": 46
+    }
+   ],
+   "types": [
+    [
+     "Football Team Prop",
+     422
+    ],
+    [
+     "Total Receiving Yards (incl. overtime)",
+     217
+    ],
+    [
+     "Longest Reception (incl. overtime)",
+     178
+    ],
+    [
+     "Total Rushing Yards (incl. overtime)",
+     169
+    ],
+    [
+     "Total Receptions (incl. overtime)",
+     157
+    ],
+    [
+     "Anytime Touchdown Scorer",
+     138
+    ],
+    [
+     "Longest Rush (incl. overtime)",
+     98
+    ],
+    [
+     "Total Rushing Plus Receiving Yards (incl. overtime)",
+     92
+    ],
+    [
+     "1st Half Total Receiving Yards",
+     84
+    ],
+    [
+     "1st Half Total Rushing Yards",
+     82
+    ],
+    [
+     "Total Carries (incl. overtime)",
+     60
+    ],
+    [
+     "1st Quarter Total Rushing Yards",
+     58
+    ],
+    [
+     "First Touchdown Scorer",
+     48
+    ],
+    [
+     "Football Player Prop",
+     48
+    ],
+    [
+     "Last Touchdown Scorer",
+     46
+    ],
+    [
+     "Total Passing Plus Rushing Yards (incl. overtime)",
+     44
+    ],
+    [
+     "Longest Passing Completion (incl. overtime)",
+     40
+    ],
+    [
+     "Total Passing Yards (incl. overtime)",
+     38
+    ],
+    [
+     "Total Sacks (incl. overtime)",
+     32
+    ],
+    [
+     "1st Half Total Passing Yards",
+     30
+    ],
+    [
+     "Total Pass Completions (incl. overtime)",
+     29
+    ],
+    [
+     "Football Game Prop",
+     28
+    ],
+    [
+     "Total Passing Attempts (incl. overtime)",
+     27
+    ],
+    [
+     "1st Quarter Total Receiving Yards",
+     24
+    ],
+    [
+     "Total Passing Touchdowns (incl. overtime)",
+     23
+    ],
+    [
+     "Total Kicking Points (incl. overtime)",
+     22
+    ],
+    [
+     "Total Field Goals Made (incl. overtime)",
+     22
+    ],
+    [
+     "1st Quarter Total Passing Yards",
+     22
+    ],
+    [
+     "Total Tackles (incl. overtime)",
+     20
+    ],
+    [
+     "Total Tackles Plus Assists (incl. overtime)",
+     20
+    ],
+    [
+     "Total Defensive Interceptions",
+     20
+    ],
+    [
+     "Total Passing Interceptions (incl. overtime)",
+     18
+    ],
+    [
+     "Total Extra Points Made (incl. overtime)",
+     16
+    ],
+    [
+     "Team Total Points",
+     16
+    ],
+    [
+     "Team 1st Half Total Points",
+     8
+    ],
+    [
+     "1st Half Spread",
+     6
+    ],
+    [
+     "1st Half Total",
+     4
+    ],
+    [
+     "1st Half Moneyline",
+     4
+    ],
+    [
+     "1st Quarter Total",
+     4
+    ],
+    [
+     "1st Quarter Moneyline",
+     4
+    ],
+    [
+     "1st Quarter Spread",
+     4
+    ],
+    [
+     "2nd Quarter Total",
+     4
+    ],
+    [
+     "2nd Quarter Moneyline",
+     4
+    ],
+    [
+     "2nd Quarter Spread",
+     4
+    ],
+    [
+     "3rd Quarter Total",
+     4
+    ],
+    [
+     "3rd Quarter Moneyline",
+     4
+    ],
+    [
+     "3rd Quarter Spread",
+     4
+    ],
+    [
+     "4th Quarter Moneyline",
+     4
+    ],
+    [
+     "4th Quarter Spread",
+     4
+    ],
+    [
+     "Will There Be Overtime?",
+     4
+    ]
+   ],
+   "key_paths": [
+    [
+     "type.name",
+     2458
+    ],
+    [
+     "competition.$ref",
+     2458
+    ],
+    [
+     "type.id",
+     2458
+    ],
+    [
+     "lastUpdated",
+     2458
+    ],
+    [
+     "provider.$ref",
+     2458
+    ],
+    [
+     "open.target.value",
+     1956
+    ],
+    [
+     "open.target.displayValue",
+     1956
+    ],
+    [
+     "athlete.$ref",
+     1922
+    ],
+    [
+     "current.target.displayValue",
+     1718
+    ],
+    [
+     "current.target.value",
+     1718
+    ],
+    [
+     "open.over.alternateDisplayValue",
+     538
+    ],
+    [
+     "open.over.american",
+     538
+    ],
+    [
+     "open.over.decimal",
+     538
+    ],
+    [
+     "open.over.fraction",
+     538
+    ],
+    [
+     "open.over.displayValue",
+     538
+    ],
+    [
+     "open.over.value",
+     538
+    ],
+    [
+     "current.over.value",
+     487
+    ],
+    [
+     "current.over.american",
+     487
+    ],
+    [
+     "current.over.fraction",
+     487
+    ],
+    [
+     "current.over.displayValue",
+     487
+    ],
+    [
+     "current.over.decimal",
+     487
+    ],
+    [
+     "current.over.alternateDisplayValue",
+     487
+    ],
+    [
+     "team.$ref",
+     468
+    ],
+    [
+     "open.under.fraction",
+     246
+    ],
+    [
+     "open.under.value",
+     246
+    ],
+    [
+     "open.under.american",
+     246
+    ],
+    [
+     "open.under.decimal",
+     246
+    ],
+    [
+     "open.under.alternateDisplayValue",
+     246
+    ],
+    [
+     "open.under.displayValue",
+     246
+    ],
+    [
+     "current.under.value",
+     207
+    ],
+    [
+     "current.under.alternateDisplayValue",
+     207
+    ],
+    [
+     "current.under.displayValue",
+     207
+    ],
+    [
+     "current.under.american",
+     207
+    ],
+    [
+     "current.under.fraction",
+     207
+    ],
+    [
+     "current.under.decimal",
+     207
+    ]
+   ],
+   "last_updated_min": "2025-10-07T20:00Z",
+   "last_updated_max": "2025-10-10T06:18Z",
+   "last_updated_by_day": [
+    [
+     "2025-10-07",
+     2
+    ],
+    [
+     "2025-10-10",
+     2456
+    ]
+   ],
+   "sample_per_type": {
+    "Total Passing Yards (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4040715?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "8",
+      "name": "Total Passing Yards (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "target": {
+       "value": 149.5,
+       "displayValue": "149.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 149.5,
+       "displayValue": "149.5"
+      }
+     }
+    },
+    "Total Pass Completions (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4040715?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "9",
+      "name": "Total Pass Completions (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "target": {
+       "value": 17.5,
+       "displayValue": "17.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 17.5,
+       "displayValue": "17.5"
+      }
+     }
+    },
+    "Total Passing Touchdowns (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4040715?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "10",
+      "name": "Total Passing Touchdowns (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     }
+    },
+    "Total Carries (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3929630?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "11",
+      "name": "Total Carries (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "target": {
+       "value": 11.5,
+       "displayValue": "11.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 11.5,
+       "displayValue": "11.5"
+      }
+     }
+    },
+    "Total Rushing Yards (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3929630?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "12",
+      "name": "Total Rushing Yards (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "target": {
+       "value": 49.5,
+       "displayValue": "49.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 49.5,
+       "displayValue": "49.5"
+      }
+     }
+    },
+    "Total Receiving Yards (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3121023?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "13",
+      "name": "Total Receiving Yards (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     }
+    },
+    "Total Receptions (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3121023?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "14",
+      "name": "Total Receptions (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:16Z",
+     "current": {
+      "under": {
+       "value": 2.0,
+       "displayValue": "1/1",
+       "alternateDisplayValue": "Even",
+       "decimal": 2.0,
+       "fraction": "1/1",
+       "american": "Even"
+      },
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     },
+     "open": {
+      "under": {
+       "value": 2.25,
+       "displayValue": "5/4",
+       "alternateDisplayValue": "+125",
+       "decimal": 2.25,
+       "fraction": "5/4",
+       "american": "+125"
+      },
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     }
+    },
+    "Total Passing Interceptions (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4040715?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "15",
+      "name": "Total Passing Interceptions (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     }
+    },
+    "Total Passing Attempts (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4040715?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "16",
+      "name": "Total Passing Attempts (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:18Z",
+     "current": {
+      "target": {
+       "value": 29.5,
+       "displayValue": "29.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 29.5,
+       "displayValue": "29.5"
+      }
+     }
+    },
+    "Longest Passing Completion (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4040715?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "17",
+      "name": "Longest Passing Completion (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:16Z",
+     "current": {
+      "target": {
+       "value": 44.5,
+       "displayValue": "44.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 44.5,
+       "displayValue": "44.5"
+      }
+     }
+    },
+    "Total Passing Plus Rushing Yards (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4040715?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "18",
+      "name": "Total Passing Plus Rushing Yards (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "under": {
+       "value": 1.8696,
+       "displayValue": "20/23",
+       "alternateDisplayValue": "-115",
+       "decimal": 1.8696,
+       "fraction": "20/23",
+       "american": "-115"
+      },
+      "target": {
+       "value": 242.5,
+       "displayValue": "242.5"
+      }
+     },
+     "open": {
+      "under": {
+       "value": 1.8696,
+       "displayValue": "20/23",
+       "alternateDisplayValue": "-115",
+       "decimal": 1.8696,
+       "fraction": "20/23",
+       "american": "-115"
+      },
+      "target": {
+       "value": 242.5,
+       "displayValue": "242.5"
+      }
+     }
+    },
+    "Longest Reception (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3121023?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "19",
+      "name": "Longest Reception (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:16Z",
+     "current": {
+      "under": {
+       "value": 1.9524,
+       "displayValue": "20/21",
+       "alternateDisplayValue": "-105",
+       "decimal": 1.9524,
+       "fraction": "20/21",
+       "american": "-105"
+      },
+      "target": {
+       "value": 14.5,
+       "displayValue": "14.5"
+      }
+     },
+     "open": {
+      "under": {
+       "value": 1.7407,
+       "displayValue": "20/27",
+       "alternateDisplayValue": "-135",
+       "decimal": 1.7407,
+       "fraction": "20/27",
+       "american": "-135"
+      },
+      "target": {
+       "value": 16.5,
+       "displayValue": "16.5"
+      }
+     }
+    },
+    "Total Rushing Plus Receiving Yards (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3929630?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "20",
+      "name": "Total Rushing Plus Receiving Yards (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "target": {
+       "value": 124.5,
+       "displayValue": "124.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 124.5,
+       "displayValue": "124.5"
+      }
+     }
+    },
+    "Longest Rush (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3929630?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "21",
+      "name": "Longest Rush (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:16Z",
+     "current": {
+      "under": {
+       "value": 2.0,
+       "displayValue": "1/1",
+       "alternateDisplayValue": "Even",
+       "decimal": 2.0,
+       "fraction": "1/1",
+       "american": "Even"
+      },
+      "target": {
+       "value": 18.5,
+       "displayValue": "18.5"
+      }
+     },
+     "open": {
+      "under": {
+       "value": 1.8333,
+       "displayValue": "5/6",
+       "alternateDisplayValue": "-120",
+       "decimal": 1.8333,
+       "fraction": "5/6",
+       "american": "-120"
+      },
+      "target": {
+       "value": 17.5,
+       "displayValue": "17.5"
+      }
+     }
+    },
+    "Total Kicking Points (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3050478?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "22",
+      "name": "Total Kicking Points (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     }
+    },
+    "Total Extra Points Made (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3050478?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "23",
+      "name": "Total Extra Points Made (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:16Z",
+     "current": {
+      "over": {
+       "value": 1.8333,
+       "displayValue": "5/6",
+       "alternateDisplayValue": "-120",
+       "decimal": 1.8333,
+       "fraction": "5/6",
+       "american": "-120"
+      },
+      "target": {
+       "value": 2.5,
+       "displayValue": "2.5"
+      }
+     },
+     "open": {
+      "over": {
+       "value": 1.8333,
+       "displayValue": "5/6",
+       "alternateDisplayValue": "-120",
+       "decimal": 1.8333,
+       "fraction": "5/6",
+       "american": "-120"
+      },
+      "target": {
+       "value": 2.5,
+       "displayValue": "2.5"
+      }
+     }
+    },
+    "Total Field Goals Made (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3050478?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "24",
+      "name": "Total Field Goals Made (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:16Z",
+     "current": {
+      "target": {
+       "value": 0.5,
+       "displayValue": ".5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 0.5,
+       "displayValue": ".5"
+      }
+     }
+    },
+    "Total Tackles (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3117253?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "26",
+      "name": "Total Tackles (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "over": {
+       "value": 1.7692,
+       "displayValue": "10/13",
+       "alternateDisplayValue": "-130",
+       "decimal": 1.7692,
+       "fraction": "10/13",
+       "american": "-130"
+      },
+      "target": {
+       "value": 4.5,
+       "displayValue": "4.5"
+      }
+     },
+     "open": {
+      "over": {
+       "value": 1.7692,
+       "displayValue": "10/13",
+       "alternateDisplayValue": "-130",
+       "decimal": 1.7692,
+       "fraction": "10/13",
+       "american": "-130"
+      },
+      "target": {
+       "value": 4.5,
+       "displayValue": "4.5"
+      }
+     }
+    },
+    "Total Tackles Plus Assists (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3117253?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "27",
+      "name": "Total Tackles Plus Assists (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "under": {
+       "value": 2.15,
+       "displayValue": "23/20",
+       "alternateDisplayValue": "+115",
+       "decimal": 2.15,
+       "fraction": "23/20",
+       "american": "+115"
+      },
+      "target": {
+       "value": 8.5,
+       "displayValue": "8.5"
+      }
+     },
+     "open": {
+      "under": {
+       "value": 1.6897,
+       "displayValue": "20/29",
+       "alternateDisplayValue": "-145",
+       "decimal": 1.6897,
+       "fraction": "20/29",
+       "american": "-145"
+      },
+      "target": {
+       "value": 9.5,
+       "displayValue": "9.5"
+      }
+     }
+    },
+    "Total Sacks (incl. overtime)": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3043168?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "28",
+      "name": "Total Sacks (incl. overtime)"
+     },
+     "lastUpdated": "2025-10-10T06:16Z",
+     "current": {
+      "under": {
+       "value": 1.2,
+       "displayValue": "1/5",
+       "alternateDisplayValue": "-500",
+       "decimal": 1.2,
+       "fraction": "1/5",
+       "american": "-500"
+      },
+      "target": {
+       "value": 0.5,
+       "displayValue": ".5"
+      }
+     },
+     "open": {
+      "under": {
+       "value": 1.1538,
+       "displayValue": "2/13",
+       "alternateDisplayValue": "-650",
+       "decimal": 1.1538,
+       "fraction": "2/13",
+       "american": "-650"
+      },
+      "target": {
+       "value": 0.5,
+       "displayValue": "0.5"
+      }
+     }
+    },
+    "First Touchdown Scorer": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/2531358?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "29",
+      "name": "First Touchdown Scorer"
+     },
+     "lastUpdated": "2025-10-10T03:29Z",
+     "current": {
+      "over": {
+       "value": 81.0,
+       "displayValue": "80/1",
+       "alternateDisplayValue": "+8000",
+       "decimal": 81.0,
+       "fraction": "80/1",
+       "american": "+8000"
+      }
+     },
+     "open": {
+      "over": {
+       "value": 81.0,
+       "displayValue": "80/1",
+       "alternateDisplayValue": "+8000",
+       "decimal": 81.0,
+       "fraction": "80/1",
+       "american": "+8000"
+      }
+     }
+    },
+    "Last Touchdown Scorer": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/2531358?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "30",
+      "name": "Last Touchdown Scorer"
+     },
+     "lastUpdated": "2025-10-10T06:16Z",
+     "current": {
+      "over": {
+       "value": 61.0,
+       "displayValue": "60/1",
+       "alternateDisplayValue": "+6000",
+       "decimal": 61.0,
+       "fraction": "60/1",
+       "american": "+6000"
+      }
+     },
+     "open": {
+      "over": {
+       "value": 61.0,
+       "displayValue": "60/1",
+       "alternateDisplayValue": "+6000",
+       "decimal": 61.0,
+       "fraction": "60/1",
+       "american": "+6000"
+      }
+     }
+    },
+    "Anytime Touchdown Scorer": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/2531358?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "31",
+      "name": "Anytime Touchdown Scorer"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     }
+    },
+    "Total Defensive Interceptions": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3917657?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "71",
+      "name": "Total Defensive Interceptions"
+     },
+     "lastUpdated": "2025-10-10T06:16Z",
+     "current": {
+      "target": {
+       "value": 0.5,
+       "displayValue": ".5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 0.5,
+       "displayValue": ".5"
+      }
+     }
+    },
+    "1st Half Total": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "72",
+      "name": "1st Half Total"
+     },
+     "lastUpdated": "2025-10-10T04:52Z",
+     "current": {
+      "over": {
+       "value": 1.8696,
+       "displayValue": "20/23",
+       "alternateDisplayValue": "-115",
+       "decimal": 1.8696,
+       "fraction": "20/23",
+       "american": "-115"
+      },
+      "target": {
+       "value": 20.5,
+       "displayValue": "20.5"
+      }
+     },
+     "open": {
+      "over": {
+       "value": 1.8,
+       "displayValue": "4/5",
+       "alternateDisplayValue": "-125",
+       "decimal": 1.8,
+       "fraction": "4/5",
+       "american": "-125"
+      },
+      "target": {
+       "value": 20.5,
+       "displayValue": "20.5"
+      }
+     }
+    },
+    "1st Half Moneyline": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "73",
+      "name": "1st Half Moneyline"
+     },
+     "lastUpdated": "2025-10-10T04:51Z",
+     "current": {},
+     "open": {}
+    },
+    "1st Half Spread": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "74",
+      "name": "1st Half Spread"
+     },
+     "lastUpdated": "2025-10-07T20:00Z",
+     "current": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 5.5,
+       "displayValue": "5.5"
+      }
+     }
+    },
+    "1st Quarter Total": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "75",
+      "name": "1st Quarter Total"
+     },
+     "lastUpdated": "2025-10-10T03:55Z",
+     "current": {
+      "under": {
+       "value": 1.6897,
+       "displayValue": "20/29",
+       "alternateDisplayValue": "-145",
+       "decimal": 1.6897,
+       "fraction": "20/29",
+       "american": "-145"
+      },
+      "target": {
+       "value": 7.5,
+       "displayValue": "7.5"
+      }
+     },
+     "open": {
+      "under": {
+       "value": 1.7143,
+       "displayValue": "5/7",
+       "alternateDisplayValue": "-140",
+       "decimal": 1.7143,
+       "fraction": "5/7",
+       "american": "-140"
+      },
+      "target": {
+       "value": 8.5,
+       "displayValue": "8.5"
+      }
+     }
+    },
+    "1st Quarter Moneyline": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "76",
+      "name": "1st Quarter Moneyline"
+     },
+     "lastUpdated": "2025-10-10T03:53Z",
+     "current": {},
+     "open": {}
+    },
+    "1st Quarter Spread": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "77",
+      "name": "1st Quarter Spread"
+     },
+     "lastUpdated": "2025-10-10T03:54Z",
+     "current": {
+      "target": {
+       "value": 0.5,
+       "displayValue": ".5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     }
+    },
+    "2nd Quarter Total": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "78",
+      "name": "2nd Quarter Total"
+     },
+     "lastUpdated": "2025-10-10T04:26Z",
+     "current": {
+      "under": {
+       "value": 1.7143,
+       "displayValue": "5/7",
+       "alternateDisplayValue": "-140",
+       "decimal": 1.7143,
+       "fraction": "5/7",
+       "american": "-140"
+      },
+      "target": {
+       "value": 13.5,
+       "displayValue": "13.5"
+      }
+     },
+     "open": {
+      "under": {
+       "value": 1.7143,
+       "displayValue": "5/7",
+       "alternateDisplayValue": "-140",
+       "decimal": 1.7143,
+       "fraction": "5/7",
+       "american": "-140"
+      },
+      "target": {
+       "value": 13.5,
+       "displayValue": "13.5"
+      }
+     }
+    },
+    "2nd Quarter Moneyline": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "79",
+      "name": "2nd Quarter Moneyline"
+     },
+     "lastUpdated": "2025-10-10T04:34Z",
+     "current": {},
+     "open": {}
+    },
+    "2nd Quarter Spread": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "80",
+      "name": "2nd Quarter Spread"
+     },
+     "lastUpdated": "2025-10-10T04:34Z",
+     "current": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     }
+    },
+    "3rd Quarter Total": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "81",
+      "name": "3rd Quarter Total"
+     },
+     "lastUpdated": "2025-10-10T05:31Z",
+     "current": {
+      "over": {
+       "value": 2.0,
+       "displayValue": "1/1",
+       "alternateDisplayValue": "Even",
+       "decimal": 2.0,
+       "fraction": "1/1",
+       "american": "Even"
+      },
+      "target": {
+       "value": 7.5,
+       "displayValue": "7.5"
+      }
+     },
+     "open": {
+      "over": {
+       "value": 2.0,
+       "displayValue": "1/1",
+       "alternateDisplayValue": "Even",
+       "decimal": 2.0,
+       "fraction": "1/1",
+       "american": "Even"
+      },
+      "target": {
+       "value": 7.5,
+       "displayValue": "7.5"
+      }
+     }
+    },
+    "3rd Quarter Moneyline": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "82",
+      "name": "3rd Quarter Moneyline"
+     },
+     "lastUpdated": "2025-10-10T05:31Z",
+     "current": {},
+     "open": {}
+    },
+    "3rd Quarter Spread": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "83",
+      "name": "3rd Quarter Spread"
+     },
+     "lastUpdated": "2025-10-10T05:31Z",
+     "current": {
+      "target": {
+       "value": 0.5,
+       "displayValue": ".5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 1.5,
+       "displayValue": "1.5"
+      }
+     }
+    },
+    "4th Quarter Moneyline": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "85",
+      "name": "4th Quarter Moneyline"
+     },
+     "lastUpdated": "2025-10-10T06:15Z",
+     "current": {},
+     "open": {}
+    },
+    "4th Quarter Spread": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "86",
+      "name": "4th Quarter Spread"
+     },
+     "lastUpdated": "2025-10-10T06:15Z",
+     "current": {
+      "target": {
+       "value": 2.5,
+       "displayValue": "2.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 3.5,
+       "displayValue": "3.5"
+      }
+     }
+    },
+    "Team Total Points": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "98",
+      "name": "Team Total Points"
+     },
+     "lastUpdated": "2025-10-10T04:25Z",
+     "current": {
+      "over": {
+       "value": 1.9524,
+       "displayValue": "20/21",
+       "alternateDisplayValue": "-105",
+       "decimal": 1.9524,
+       "fraction": "20/21",
+       "american": "-105"
+      },
+      "target": {
+       "value": 16.5,
+       "displayValue": "16.5"
+      }
+     },
+     "open": {
+      "over": {
+       "value": 1.8,
+       "displayValue": "4/5",
+       "alternateDisplayValue": "-125",
+       "decimal": 1.8,
+       "fraction": "4/5",
+       "american": "-125"
+      },
+      "target": {
+       "value": 15.5,
+       "displayValue": "15.5"
+      }
+     }
+    },
+    "Team 1st Half Total Points": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "99",
+      "name": "Team 1st Half Total Points"
+     },
+     "lastUpdated": "2025-10-10T04:53Z",
+     "current": {
+      "over": {
+       "value": 1.9524,
+       "displayValue": "20/21",
+       "alternateDisplayValue": "-105",
+       "decimal": 1.9524,
+       "fraction": "20/21",
+       "american": "-105"
+      },
+      "target": {
+       "value": 7.5,
+       "displayValue": "7.5"
+      }
+     },
+     "open": {
+      "over": {
+       "value": 1.9524,
+       "displayValue": "20/21",
+       "alternateDisplayValue": "-105",
+       "decimal": 1.9524,
+       "fraction": "20/21",
+       "american": "-105"
+      },
+      "target": {
+       "value": 7.5,
+       "displayValue": "7.5"
+      }
+     }
+    },
+    "Will There Be Overtime?": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "153",
+      "name": "Will There Be Overtime?"
+     },
+     "lastUpdated": "2025-10-10T06:17Z",
+     "current": {},
+     "open": {}
+    },
+    "Football Player Prop": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/2531358?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "161",
+      "name": "Football Player Prop"
+     },
+     "lastUpdated": "2025-10-10T03:28Z",
+     "current": {
+      "over": {
+       "value": 126.0,
+       "displayValue": "125/1",
+       "alternateDisplayValue": "+12500",
+       "decimal": 126.0,
+       "fraction": "125/1",
+       "american": "+12500"
+      }
+     },
+     "open": {
+      "over": {
+       "value": 126.0,
+       "displayValue": "125/1",
+       "alternateDisplayValue": "+12500",
+       "decimal": 126.0,
+       "fraction": "125/1",
+       "american": "+12500"
+      }
+     }
+    },
+    "Football Team Prop": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "team": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/teams/19?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "162",
+      "name": "Football Team Prop"
+     },
+     "lastUpdated": "2025-10-10T03:38Z",
+     "current": {
+      "target": {
+       "value": 0.5,
+       "displayValue": ".5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 0.5,
+       "displayValue": ".5"
+      }
+     }
+    },
+    "Football Game Prop": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "163",
+      "name": "Football Game Prop"
+     },
+     "lastUpdated": "2025-10-10T06:18Z",
+     "current": {
+      "under": {
+       "value": 1.9091,
+       "displayValue": "10/11",
+       "alternateDisplayValue": "-110",
+       "decimal": 1.9091,
+       "fraction": "10/11",
+       "american": "-110"
+      },
+      "target": {
+       "value": 384.5,
+       "displayValue": "384.5"
+      }
+     },
+     "open": {
+      "under": {
+       "value": 1.8696,
+       "displayValue": "20/23",
+       "alternateDisplayValue": "-115",
+       "decimal": 1.8696,
+       "fraction": "20/23",
+       "american": "-115"
+      },
+      "target": {
+       "value": 379.5,
+       "displayValue": "379.5"
+      }
+     }
+    },
+    "1st Half Total Passing Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4040715?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "186",
+      "name": "1st Half Total Passing Yards"
+     },
+     "lastUpdated": "2025-10-10T04:37Z",
+     "current": {
+      "target": {
+       "value": 174.5,
+       "displayValue": "174.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 174.5,
+       "displayValue": "174.5"
+      }
+     }
+    },
+    "1st Half Total Receiving Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3929630?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "187",
+      "name": "1st Half Total Receiving Yards"
+     },
+     "lastUpdated": "2025-10-10T04:38Z",
+     "current": {
+      "target": {
+       "value": 4.5,
+       "displayValue": "4.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 4.5,
+       "displayValue": "4.5"
+      }
+     }
+    },
+    "1st Half Total Rushing Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3929630?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "189",
+      "name": "1st Half Total Rushing Yards"
+     },
+     "lastUpdated": "2025-10-10T04:42Z",
+     "current": {
+      "target": {
+       "value": 14.5,
+       "displayValue": "14.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 14.5,
+       "displayValue": "14.5"
+      }
+     }
+    },
+    "1st Quarter Total Passing Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4040715?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "191",
+      "name": "1st Quarter Total Passing Yards"
+     },
+     "lastUpdated": "2025-10-10T03:56Z",
+     "current": {
+      "target": {
+       "value": 74.5,
+       "displayValue": "74.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 74.5,
+       "displayValue": "74.5"
+      }
+     }
+    },
+    "1st Quarter Total Receiving Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/4047646?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "192",
+      "name": "1st Quarter Total Receiving Yards"
+     },
+     "lastUpdated": "2025-10-10T03:57Z",
+     "current": {
+      "target": {
+       "value": 44.5,
+       "displayValue": "44.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 44.5,
+       "displayValue": "44.5"
+      }
+     }
+    },
+    "1st Quarter Total Rushing Yards": {
+     "competition": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401772940/competitions/401772940?lang=en&region=us"
+     },
+     "athlete": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2025/athletes/3929630?lang=en&region=us"
+     },
+     "provider": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/casinos/58?lang=en&region=us"
+     },
+     "type": {
+      "id": "193",
+      "name": "1st Quarter Total Rushing Yards"
+     },
+     "lastUpdated": "2025-10-10T03:58Z",
+     "current": {
+      "target": {
+       "value": 34.5,
+       "displayValue": "34.5"
+      }
+     },
+     "open": {
+      "target": {
+       "value": 34.5,
+       "displayValue": "34.5"
+      }
+     }
+    }
+   }
+  }
+ ]
+}
