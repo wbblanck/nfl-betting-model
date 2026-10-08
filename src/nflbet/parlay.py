@@ -98,6 +98,38 @@ def an_lines(path) -> pl.DataFrame:
         .unique(["book", "game", "nkey", "market"], keep="first", maintain_order=True)
 
 
+def to_an_csv(pa: pl.DataFrame, season: int, week: int, path) -> int:
+    """Write ParlayAPI's DK and FanDuel rows in Action Network's lines-file format so live.run scores them with
+    rule S1's own code (the "S1 on ParlayAPI" record, docs/s1_live_rules.md). Only games on the nflverse schedule
+    for `week` are kept; home / away and kickoff come from the schedule (ParlayAPI lists some games under two
+    kickoff times), an_game_id is "pa_" + the nflverse game_id. Returns the number of rows written."""
+    import datetime as dt
+    from zoneinfo import ZoneInfo
+
+    import nflreadpy as nfl
+
+    g = nfl.load_schedules(seasons=[season]).filter(pl.col("game_type") == "REG", pl.col("week") == week)
+    games = {}
+    for r in g.iter_rows(named=True):
+        t = dt.datetime.fromisoformat(f"{r['gameday']}T{r['gametime']}").replace(tzinfo=ZoneInfo("America/New_York"))
+        games[game_key(r["home_team"], r["away_team"])] = (f"pa_{r['game_id']}", r["home_team"], r["away_team"],
+                                                           t.astimezone(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"))
+    book = {"dk": ("68", "DK NJ"), "fd": ("69", "FanDuel NJ")}
+    rows = []
+    for r in pa.iter_rows(named=True):
+        if r["game"] not in games:
+            continue
+        gid, h, a, t = games[r["game"]]
+        rows.append({"season": str(season), "week": str(week), "an_game_id": gid, "start_time": t, "home": h, "away": a,
+                     "market": r["market"], "an_player_id": r["nkey"], "player": r["player"], "player_team": "",
+                     "book_id": book[r["book"]][0], "book": book[r["book"]][1], "line": f"{r['line']:g}",
+                     "over_odds": f"{r['over']:g}", "under_odds": f"{r['under']:g}", "yes_odds": ""})
+    cols = ["season", "week", "an_game_id", "start_time", "home", "away", "market", "an_player_id", "player",
+            "player_team", "book_id", "book", "line", "over_odds", "under_odds", "yes_odds"]
+    pl.DataFrame(rows, schema={c: pl.Utf8 for c in cols}).write_csv(path)
+    return len(rows)
+
+
 def _p_over(o: float, u: float) -> float:
     io = -o / (-o + 100) if o < 0 else 100 / (o + 100)
     iu = -u / (-u + 100) if u < 0 else 100 / (u + 100)

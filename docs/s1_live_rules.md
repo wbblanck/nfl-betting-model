@@ -67,3 +67,11 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   BetRivers or Caesars. Using ParlayAPI for picks would be a rule change. Probe: `docs/evidence/parlay/` on branch
   `claude/espn-props-full` (ESPN's own APIs carry 2026 DK prop lines but no prices: `docs/evidence/espn_props/`,
   `docs/evidence/espn_scan/` on the same branch).
+- **S1 on ParlayAPI lines, a separate record (added 2026-10-08, Will's request):** Action Network had no week-5 props on
+  Thursday morning while ParlayAPI already had DraftKings' prices, so each run also scores rule S1 with the same code
+  (`live.run`) on ParlayAPI's DK and FanDuel lines (`parlay.to_an_csv`; games, home / away and kickoff from the nflverse
+  schedule). The projection, simulator and price votes are identical; the books-disagree vote compares DK with FanDuel
+  only (Action Network has four books besides DK). It is a different record: `data/live/s1pa_picks_2026.csv`,
+  `s1pa_runs_2026.csv`, `s1pa_record_2026.csv`, graded the same way (last run before kickoff), never pooled with
+  official S1 and not part of the season test. Unvalidated, like S1.
+

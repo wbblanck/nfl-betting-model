@@ -21,6 +21,11 @@ SEASON = 2026
 PICKS = Lv.LIVE / f"s1_picks_{SEASON}.csv"
 RUNS = Lv.LIVE / f"s1_runs_{SEASON}.csv"
 PARLAY_CMP = Lv.LIVE / f"parlay_compare_{SEASON}.csv"
+# "S1 on ParlayAPI": the same rule scored on ParlayAPI's DK and FanDuel lines (books-disagree vote = DK vs FanDuel
+# only). A separate record, never pooled with the official S1 record above.
+PA_PICKS = Lv.LIVE / f"s1pa_picks_{SEASON}.csv"
+PA_RUNS = Lv.LIVE / f"s1pa_runs_{SEASON}.csv"
+PA_RECORD = Lv.LIVE / f"s1pa_record_{SEASON}.csv"
 
 
 def do_run() -> None:
@@ -35,24 +40,37 @@ def do_run() -> None:
         n_rows = sum(1 for _ in f) - 1                                  # header excluded
     when = Lv.now_utc()
     pa = parlay_record(week, when, tmp if n_rows > 0 else None)
-    if n_rows <= 0:                                                      # books have not posted this week's props yet
-        print(f"week {week}: Action Network has no player props posted yet; nothing to score (not an error)")
+    scored = []                                                          # (label, picks, log, picks file, runs file)
+    if n_rows > 0:
+        arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"   # saved first: a failed run leaves its input
+        arch.parent.mkdir(parents=True, exist_ok=True)
+        with open(tmp, "rb") as f, gzip.open(arch, "wb") as g:
+            shutil.copyfileobj(f, g)
+        picks, log = Lv.run(SEASON, tmp, when)
+        scored.append(("S1 (Action Network)", Pa.attach(picks, pa), log, PICKS, RUNS))
+    else:                                                                # books have not posted this week's props yet
+        print(f"week {week}: Action Network has no player props posted yet; official S1 has nothing to score (not an error)")
+    if pa is not None and pa.height:
+        try:
+            pa_csv = Lv.LIVE / "tmp" / "pa_props_live.csv"
+            n = Pa.to_an_csv(pa, SEASON, week, pa_csv)
+            if n:
+                picks, log = Lv.run(SEASON, pa_csv, when)
+                scored.append(("S1 on ParlayAPI (DK + FanDuel)", picks, log, PA_PICKS, PA_RUNS))
+        except Exception as e:  # noqa: BLE001 - the second record never stops the official one
+            print(f"S1 on ParlayAPI unavailable: {type(e).__name__}: {e}")
+    if not scored:
         return
-    arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"   # saved first: a failed run leaves its input
-    arch.parent.mkdir(parents=True, exist_ok=True)
-    with open(tmp, "rb") as f, gzip.open(arch, "wb") as g:
-        shutil.copyfileobj(f, g)
-    picks, log = Lv.run(SEASON, tmp, when)
-    picks = with_news(picks, week, when)
-    picks = Pa.attach(picks, pa)
-    Lv.append(picks, PICKS)
-    Lv.append(log, RUNS)
-    print(f"week {week}: {log.height} games not yet started, {int(log['props_scored'].sum())} props scored, "
-          f"{picks.height} S1 picks")
-    for r in picks.sort("start_time").iter_rows(named=True):
-        print(f"  {r['away']}@{r['home']}  {r['player']:24s} {r['market']:12s} {r['side']:5s} {r['line']:6} {r['odds']:+.0f}"
-              f"  {'INJURY NEWS AGAINST ' if r['inj_against'] else ''}{r['inj_self'] or ''} {r['inj_teammates'] or ''}"
-              f"  {'DEPTH CHART AGAINST ' if r['depth_against'] else ''}{r['depth_note'] or ''}")
+    flagged = with_news([x[1] for x in scored], week, when)
+    for (label, _, log, pf, rf), picks in zip(scored, flagged):
+        Lv.append(picks, pf)
+        Lv.append(log, rf)
+        print(f"{label}, week {week}: {log.height} games not yet started, {int(log['props_scored'].sum())} props scored, "
+              f"{picks.height} picks")
+        for r in picks.sort("start_time").iter_rows(named=True):
+            print(f"  {r['away']}@{r['home']}  {r['player']:24s} {r['market']:12s} {r['side']:5s} {r['line']:6} {r['odds']:+.0f}"
+                  f"  {'INJURY NEWS AGAINST ' if r['inj_against'] else ''}{r['inj_self'] or ''} {r['inj_teammates'] or ''}"
+                  f"  {'DEPTH CHART AGAINST ' if r['depth_against'] else ''}{r['depth_note'] or ''}")
 
 
 def parlay_record(week: int, when: dt.datetime, an_path) -> pl.DataFrame | None:
@@ -94,19 +112,20 @@ def _archive(body, kind: str, week: int, when: dt.datetime) -> None:
         json.dump(body, f)
 
 
-def with_news(picks: pl.DataFrame, week: int, when: dt.datetime) -> pl.DataFrame:
-    """Descriptive flags (src/nflbet/injuries.py, src/nflbet/depth.py) from ESPN at run time; responses are
-    archived. A failed fetch leaves that flag empty and never stops the run: the picks still count."""
+def with_news(frames: list[pl.DataFrame], week: int, when: dt.datetime) -> list[pl.DataFrame]:
+    """Descriptive flags (src/nflbet/injuries.py, src/nflbet/depth.py) from ESPN at run time, fetched once and applied
+    to every record's picks; responses are archived. A failed fetch leaves that flag empty and never stops the run."""
     inj = None
     try:
         body = Inj.fetch()
         _archive(body, "injuries", week, when)
         inj = Inj.parse(body)
-        picks = Inj.flag(picks, inj, Inj.espn_ids(), Inj.recent_players(SEASON, week))
+        ids, recent = Inj.espn_ids(), Inj.recent_players(SEASON, week)
+        frames = [Inj.flag(f, inj, ids, recent) for f in frames]
     except Exception as e:  # noqa: BLE001
         print(f"injury flag unavailable: {type(e).__name__}: {e}")
-        picks = picks.with_columns(pl.lit("fetch failed").alias("inj_self"), pl.lit(None, pl.Utf8).alias("inj_teammates"),
-                                   pl.lit(None, pl.Boolean).alias("inj_against"))
+        frames = [f.with_columns(pl.lit("fetch failed").alias("inj_self"), pl.lit(None, pl.Utf8).alias("inj_teammates"),
+                                 pl.lit(None, pl.Boolean).alias("inj_against")) for f in frames]
     try:
         if inj is None:
             raise RuntimeError("needs the injury list")
@@ -114,11 +133,12 @@ def with_news(picks: pl.DataFrame, week: int, when: dt.datetime) -> pl.DataFrame
         _archive(charts, "depth", week, when)
         ch = D.changes(D.parse(charts), inj, D.players_table(), D.recent_usage(SEASON, week))
         print("depth-chart changes:", [f"{r['team']} {r['pos']}: {r['starter_name']} over {r['leader_name']}" for r in ch.iter_rows(named=True)])
-        picks = D.flag(picks, ch)
+        frames = [D.flag(f, ch) for f in frames]
     except Exception as e:  # noqa: BLE001
         print(f"depth flag unavailable: {type(e).__name__}: {e}")
-        picks = picks.with_columns(pl.lit("fetch failed").alias("depth_note"), pl.lit(None, pl.Boolean).alias("depth_against"))
-    return picks
+        frames = [f.with_columns(pl.lit("fetch failed").alias("depth_note"), pl.lit(None, pl.Boolean).alias("depth_against"))
+                  for f in frames]
+    return frames
 
 
 def news(r: dict) -> str:
@@ -135,13 +155,14 @@ def news(r: dict) -> str:
     return "; ".join(x for x in (inj, dep) if x)
 
 
-def do_grade() -> None:
+def settle_record(picks_path, runs_path, out_path) -> pl.DataFrame | None:
+    """Official picks (last run before kickoff) settled against nflverse; written to out_path."""
     import nflreadpy as nfl
 
-    if not PICKS.exists():
-        print("no picks yet"); return
-    picks = pl.read_csv(PICKS, infer_schema_length=0)
-    runs = pl.read_csv(RUNS, infer_schema_length=0)
+    if not picks_path.exists() or not picks_path.stat().st_size:
+        return None
+    picks = pl.read_csv(picks_path, infer_schema_length=0)
+    runs = pl.read_csv(runs_path, infer_schema_length=0)
     off = Lv.official(picks, runs)
     sched = nfl.load_schedules(seasons=[SEASON]).filter(pl.col("game_type") == "REG")
     fix = lambda c: pl.col(c).replace(P.TEAM_FIX)  # noqa: E731
@@ -156,7 +177,18 @@ def do_grade() -> None:
     played = {(r["player_id"], int(r["week"])) for r in off.iter_rows(named=True)
               if (int(r["week"]), P.TEAM_FIX.get(r["team"], r["team"]), P.norm_name(r["player"])) in snap_keys}
     d = Lv.settle(off, long, played, final_games).sort("start_time", "player")
-    d.write_csv(Lv.LIVE / f"s1_record_{SEASON}.csv")
+    d.write_csv(out_path)
+    return d
+
+
+def do_grade() -> None:
+    pa = settle_record(PA_PICKS, PA_RUNS, PA_RECORD)
+    if pa is not None:
+        t = Lv.record(pa)
+        print(f"S1 on ParlayAPI: {t['W']}-{t['L']}-{t['P']}, {t['units']:+.2f} units (pending {t['pending']}, void {t['void']})")
+    d = settle_record(PICKS, RUNS, Lv.LIVE / f"s1_record_{SEASON}.csv")
+    if d is None:
+        print("no picks yet"); return
     tot = Lv.record(d)
     lines = [f"# S1 live tracker, {SEASON}", "",
              "Rule S1: bet only props where all four signals agree (docs/simulator_confirm.md). NOT validated: in 2025 it",

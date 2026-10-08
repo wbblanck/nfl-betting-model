@@ -108,3 +108,15 @@ def test_parlay_card_and_second_source():
     assert D.second_source({"line": "82.5"}) == ""
     same = D.second_source({"line": "82.5", "pa_dk_line": "82.5", "pa_dk_odds": "-111"})
     assert "DK 82.5 -111" in same and "differs" not in same
+
+
+def test_pa_section_marks_overlap_with_official():
+    base = {"week": "5", "start_time": "2026-10-11T17:00:00.000Z", "away": "IND", "home": "PIT", "team": "IND",
+            "line": "4.5", "odds": "-151", "p_sim": "0.258", "p_over_dk": "0.43", "units": "0", "result": "pending",
+            "inj_against": "false", "depth_against": "false"}
+    pa = pl.DataFrame([dict(base, player="Josh Downs", player_id="a", market="rec", side="under"),
+                       dict(base, player="Aaron Jones", player_id="b", market="rec", side="under", away="MIN", home="NO")])
+    rec = pl.DataFrame({"player_id": ["a"], "market": ["rec"], "side": ["under"]})
+    html = D.pa_section(pa, rec, dt.datetime(2026, 10, 8, tzinfo=dt.timezone.utc))
+    assert "0-0 · 2 open" in html and html.count(">yes<") == 1 and html.count(">no<") == 1 and "Open" in html
+    assert D.pa_section(pl.DataFrame(), rec, dt.datetime(2026, 10, 8, tzinfo=dt.timezone.utc)) == ""

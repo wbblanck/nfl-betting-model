@@ -50,7 +50,8 @@ def load(live: Path | None = None) -> dict:
         rec = rec.with_columns(pl.col("week").cast(pl.Int64), pl.col("line").cast(pl.Float64), pl.col("odds").cast(pl.Float64),
                                pl.col("p_sim").cast(pl.Float64), pl.col("p_over_dk").cast(pl.Float64),
                                pl.col("proj").cast(pl.Float64), pl.col("units").cast(pl.Float64))
-    return {"rec": rec, "picks": picks, "runs": runs, "live": live, "pcmp": _read(live / f"parlay_compare_{SEASON}.csv")}
+    return {"rec": rec, "picks": picks, "runs": runs, "live": live, "pcmp": _read(live / f"parlay_compare_{SEASON}.csv"),
+            "pa_rec": _read(live / f"s1pa_record_{SEASON}.csv")}
 
 
 # ------------------------------------------------------------------------------------------------ numbers
@@ -265,6 +266,41 @@ def parlay_card(pc: pl.DataFrame) -> str:
             f'<p class="note">Run {esc(fmt_dt(last))} ET. ParlayAPI (DraftKings, FanDuel) is a record next to Action Network; S1 still picks from '
             'Action Network, whose book set the rule was locked on. The gap is the mean absolute difference in de-vigged P(over) where both list the same line.'
             + (f' ParlayAPI requests left this month: {esc(left[-1])}.' if left.len() else "") + '</p></div>')
+
+
+def pa_section(pa: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime) -> str:
+    """S1 on ParlayAPI: the same rule on ParlayAPI's DK and FanDuel lines (books-disagree = DK vs FanDuel only).
+    A separate record from the official one; never pooled."""
+    if not pa.height:
+        return ""
+    pa = pa.with_columns(pl.col("week").cast(pl.Int64), pl.col("line").cast(pl.Float64), pl.col("odds").cast(pl.Float64),
+                         pl.col("p_sim").cast(pl.Float64), pl.col("p_over_dk").cast(pl.Float64), pl.col("units").cast(pl.Float64))
+    pa = with_probs(pa)
+    tot = summarize(pa)
+    wk = int(pa["week"].max())
+    official = {(r["player_id"], r["market"], r["side"]) for r in rec.to_dicts()} if rec.height else set()
+    rows = []
+    for r in pa.filter(pl.col("week") == wk).sort("start_time", "player").to_dicts():
+        res = r["result"]
+        locked = Lv.parse_ts(r["start_time"]) <= now
+        rc = {"W": "win", "L": "loss"}.get(res, "idle")
+        flag = " ".join(x for x in (chip("flag", "Injury news against") if r.get("inj_against") == "true" else "",
+                                    chip("flag", "Depth chart against") if r.get("depth_against") == "true" else "") if x)
+        rows.append([esc(fmt_dt(r["start_time"])), f'{esc(r["away"])} at {esc(r["home"])}',
+                     f'{esc(r["player"])} <span class="team">{esc(r["team"])}</span>',
+                     f'{esc(r["side"])} {r["line"]:g} {esc(MARKET.get(r["market"], r["market"]))}', f'{r["odds"]:+.0f}',
+                     f'{fmt_pct(r["be"])} / {fmt_pct(r["p_mkt"])} / {fmt_pct(r["p_model"])}',
+                     "yes" if (r["player_id"], r["market"], r["side"]) in official else "no",
+                     chip(rc, (RESULT_ICON.get(res, res) + " " + res) if res != "pending" else ("Locked" if locked else "Open")) + (" " + flag if flag else "")])
+    rec_txt = (f'{tot["W"]}-{tot["L"]}' + (f'-{tot["P"]}' if tot["P"] else "") +
+               (f', {fmt_units(tot["units"])} units' if tot["n"] else "") + f' · {tot["pending"]} open')
+    return ('<section class="card"><h2>S1 on ParlayAPI lines (separate record)</h2>'
+            f'<p class="note" style="margin-top:0">Season: <b>{esc(rec_txt)}</b>. Same rule and model, scored on ParlayAPI\'s DraftKings and '
+            'FanDuel lines, so it runs as soon as DraftKings posts (Action Network can lag by days). One difference: the '
+            '"books disagree" vote compares DraftKings with FanDuel only, not four books, so this is a different record from '
+            'official S1 and the two are never added together. Unvalidated, like S1. The official pick per game is the last run before kickoff.</p>'
+            + (table(["Kickoff (ET)", "Game", "Player", "Bet", "Price", "BE / Mkt / Model", "Also official S1", "Result"], rows)
+               if rows else f'<p class="empty">No week {wk} props met all four signals.</p>') + '</section>')
 
 
 def game_block(g: dict, rows: list[dict], now: dt.datetime) -> str:
@@ -642,7 +678,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations. In 2025 it went '
         f'{REF["w"]}-{REF["l"]} on 61 bets with a 95% interval of {fmt_pct(REF["lo"], 0, True)} to {fmt_pct(REF["hi"], 0, True)} ROI.</div>'
         f'<div class="tiles">{tiles}</div>'
-        f'{week_html}{charts}{breakdowns}{stab_html}{runs_html}{parlay_card(data.get("pcmp", pl.DataFrame()))}'
+        f'{week_html}{pa_section(data.get("pa_rec", pl.DataFrame()), rec, now)}{charts}{breakdowns}{stab_html}{runs_html}{parlay_card(data.get("pcmp", pl.DataFrame()))}'
         + ("<section><h2>Earlier weeks</h2><div class=\"games\">" + "".join(old) + "</div></section>" if old else "")
         + f'{foot}</div><script>{JS}</script>')
 
