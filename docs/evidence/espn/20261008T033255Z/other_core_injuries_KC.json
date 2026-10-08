@@ -1,0 +1,18 @@
+{
+ "count": 58,
+ "pageIndex": 1,
+ "pageSize": 100,
+ "pageCount": 1,
+ "items": [
+  {
+   "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4362759/injuries/641138?lang=en&region=us"
+  },
+  {
+   "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4880124/injuries/641132?lang=en&region=us"
+  },
+  {
+   "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/athletes/4569659/injuries/-2029792?lang=en&region=us"
+  },
+  "... 55 more"
+ ]
+}

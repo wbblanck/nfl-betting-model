@@ -1,0 +1,784 @@
+{
+ "categories": [
+  {
+   "name": "passing",
+   "displayName": "Passing",
+   "count": 11
+  },
+  {
+   "name": "rushing",
+   "displayName": "Rushing",
+   "count": 5
+  }
+ ],
+ "filters": [
+  {
+   "displayName": "League",
+   "name": "league",
+   "value": "nfl",
+   "options": [
+    {
+     "value": "college-football",
+     "displayValue": "NCAA - Football",
+     "shortDisplayName": "NCAAF"
+    },
+    {
+     "value": "nfl",
+     "displayValue": "National Football League",
+     "shortDisplayName": "NFL"
+    }
+   ]
+  },
+  {
+   "displayName": "Season",
+   "name": "season",
+   "value": "2026",
+   "options": [
+    {
+     "value": "2026",
+     "displayValue": "2026"
+    },
+    {
+     "value": "2025",
+     "displayValue": "2025"
+    },
+    {
+     "value": "2024",
+     "displayValue": "2024"
+    },
+    "... 7 more"
+   ]
+  }
+ ],
+ "labels": [
+  "CMP",
+  "ATT",
+  "YDS",
+  "... 13 more"
+ ],
+ "names": [
+  "completions",
+  "passingAttempts",
+  "passingYards",
+  "... 13 more"
+ ],
+ "displayNames": [
+  "Completions",
+  "Passing Attempts",
+  "Passing Yards",
+  "... 13 more"
+ ],
+ "events": {
+  "401872976": {
+   "id": "401872976",
+   "links": [
+    {
+     "language": "en",
+     "rel": [
+      "summary",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/game/_/gameId/401872976/chiefs-raiders",
+     "text": "Gamecast",
+     "shortText": "Summary",
+     "isExternal": false,
+     "isPremium": false
+    },
+    {
+     "language": "en",
+     "rel": [
+      "summary",
+      "sportscenter",
+      "app",
+      "... 1 more"
+     ],
+     "href": "sportscenter://x-callback-url/showGame?sportName=football&leagueAbbrev=nfl&gameId=401872976",
+     "text": "Gamecast",
+     "shortText": "Summary",
+     "isExternal": false,
+     "isPremium": false
+    },
+    {
+     "language": "en",
+     "rel": [
+      "now",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/game/_/gameId/401872976",
+     "text": "Now",
+     "shortText": "Now",
+     "isExternal": false,
+     "isPremium": false
+    },
+    "... 11 more"
+   ],
+   "week": 4,
+   "atVs": "@",
+   "gameDate": "2026-10-04T20:25:00.000+00:00",
+   "score": "30-27",
+   "homeTeamId": "13",
+   "awayTeamId": "12",
+   "homeTeamScore": "27",
+   "awayTeamScore": "30",
+   "gameResult": "W",
+   "opponent": {
+    "id": "13",
+    "uid": "s:20~l:28~t:13",
+    "displayName": "Las Vegas Raiders",
+    "abbreviation": "LV",
+    "links": [
+     {
+      "language": "en",
+      "rel": [
+       "clubhouse",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/_/name/lv/las-vegas-raiders",
+      "text": "Clubhouse",
+      "shortText": "Clubhouse",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/roster/_/name/lv/las-vegas-raiders",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "sportscenter",
+       "app",
+       "... 1 more"
+      ],
+      "href": "sportscenter://x-callback-url/showClubhouse?uid=s:20~l:28~t:13&section=roster",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     "... 11 more"
+    ],
+    "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png"
+   },
+   "leagueName": "National Football League",
+   "leagueAbbreviation": "NFL",
+   "leagueShortName": "NFL",
+   "team": {
+    "id": "12",
+    "uid": "s:20~l:28~t:12",
+    "abbreviation": "KC",
+    "links": [
+     {
+      "language": "en",
+      "rel": [
+       "clubhouse",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/_/name/kc/kansas-city-chiefs",
+      "text": "Clubhouse",
+      "shortText": "Clubhouse",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/roster/_/name/kc/kansas-city-chiefs",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "sportscenter",
+       "app",
+       "... 1 more"
+      ],
+      "href": "sportscenter://x-callback-url/showClubhouse?uid=s:20~l:28~t:12&section=roster",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     "... 11 more"
+    ],
+    "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+    "isAllStar": false
+   }
+  },
+  "401872952": {
+   "id": "401872952",
+   "links": [
+    {
+     "language": "en",
+     "rel": [
+      "summary",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/game/_/gameId/401872952/chiefs-dolphins",
+     "text": "Gamecast",
+     "shortText": "Summary",
+     "isExternal": false,
+     "isPremium": false
+    },
+    {
+     "language": "en",
+     "rel": [
+      "summary",
+      "sportscenter",
+      "app",
+      "... 1 more"
+     ],
+     "href": "sportscenter://x-callback-url/showGame?sportName=football&leagueAbbrev=nfl&gameId=401872952",
+     "text": "Gamecast",
+     "shortText": "Summary",
+     "isExternal": false,
+     "isPremium": false
+    },
+    {
+     "language": "en",
+     "rel": [
+      "now",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/game/_/gameId/401872952",
+     "text": "Now",
+     "shortText": "Now",
+     "isExternal": false,
+     "isPremium": false
+    },
+    "... 11 more"
+   ],
+   "week": 3,
+   "atVs": "@",
+   "gameDate": "2026-09-27T17:00:00.000+00:00",
+   "score": "24-10",
+   "homeTeamId": "15",
+   "awayTeamId": "12",
+   "homeTeamScore": "10",
+   "awayTeamScore": "24",
+   "gameResult": "W",
+   "opponent": {
+    "id": "15",
+    "uid": "s:20~l:28~t:15",
+    "displayName": "Miami Dolphins",
+    "abbreviation": "MIA",
+    "links": [
+     {
+      "language": "en",
+      "rel": [
+       "clubhouse",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/_/name/mia/miami-dolphins",
+      "text": "Clubhouse",
+      "shortText": "Clubhouse",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/roster/_/name/mia/miami-dolphins",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "sportscenter",
+       "app",
+       "... 1 more"
+      ],
+      "href": "sportscenter://x-callback-url/showClubhouse?uid=s:20~l:28~t:15&section=roster",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     "... 11 more"
+    ],
+    "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png"
+   },
+   "leagueName": "National Football League",
+   "leagueAbbreviation": "NFL",
+   "leagueShortName": "NFL",
+   "team": {
+    "id": "12",
+    "uid": "s:20~l:28~t:12",
+    "abbreviation": "KC",
+    "links": [
+     {
+      "language": "en",
+      "rel": [
+       "clubhouse",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/_/name/kc/kansas-city-chiefs",
+      "text": "Clubhouse",
+      "shortText": "Clubhouse",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/roster/_/name/kc/kansas-city-chiefs",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "sportscenter",
+       "app",
+       "... 1 more"
+      ],
+      "href": "sportscenter://x-callback-url/showClubhouse?uid=s:20~l:28~t:12&section=roster",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     "... 11 more"
+    ],
+    "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+    "isAllStar": false
+   }
+  },
+  "401872945": {
+   "id": "401872945",
+   "links": [
+    {
+     "language": "en",
+     "rel": [
+      "summary",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/game/_/gameId/401872945/colts-chiefs",
+     "text": "Gamecast",
+     "shortText": "Summary",
+     "isExternal": false,
+     "isPremium": false
+    },
+    {
+     "language": "en",
+     "rel": [
+      "summary",
+      "sportscenter",
+      "app",
+      "... 1 more"
+     ],
+     "href": "sportscenter://x-callback-url/showGame?sportName=football&leagueAbbrev=nfl&gameId=401872945",
+     "text": "Gamecast",
+     "shortText": "Summary",
+     "isExternal": false,
+     "isPremium": false
+    },
+    {
+     "language": "en",
+     "rel": [
+      "now",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/game/_/gameId/401872945",
+     "text": "Now",
+     "shortText": "Now",
+     "isExternal": false,
+     "isPremium": false
+    },
+    "... 11 more"
+   ],
+   "week": 2,
+   "atVs": "vs",
+   "gameDate": "2026-09-21T00:20:00.000+00:00",
+   "score": "33-30 OT",
+   "homeTeamId": "12",
+   "awayTeamId": "11",
+   "homeTeamScore": "33",
+   "awayTeamScore": "30",
+   "gameResult": "W",
+   "opponent": {
+    "id": "11",
+    "uid": "s:20~l:28~t:11",
+    "displayName": "Indianapolis Colts",
+    "abbreviation": "IND",
+    "links": [
+     {
+      "language": "en",
+      "rel": [
+       "clubhouse",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/_/name/ind/indianapolis-colts",
+      "text": "Clubhouse",
+      "shortText": "Clubhouse",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/roster/_/name/ind/indianapolis-colts",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "sportscenter",
+       "app",
+       "... 1 more"
+      ],
+      "href": "sportscenter://x-callback-url/showClubhouse?uid=s:20~l:28~t:11&section=roster",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     "... 11 more"
+    ],
+    "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png"
+   },
+   "leagueName": "National Football League",
+   "leagueAbbreviation": "NFL",
+   "leagueShortName": "NFL",
+   "team": {
+    "id": "12",
+    "uid": "s:20~l:28~t:12",
+    "abbreviation": "KC",
+    "links": [
+     {
+      "language": "en",
+      "rel": [
+       "clubhouse",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/_/name/kc/kansas-city-chiefs",
+      "text": "Clubhouse",
+      "shortText": "Clubhouse",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/roster/_/name/kc/kansas-city-chiefs",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "sportscenter",
+       "app",
+       "... 1 more"
+      ],
+      "href": "sportscenter://x-callback-url/showClubhouse?uid=s:20~l:28~t:12&section=roster",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     "... 11 more"
+    ],
+    "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+    "isAllStar": false
+   }
+  },
+  "401872931": {
+   "id": "401872931",
+   "links": [
+    {
+     "language": "en",
+     "rel": [
+      "summary",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/game/_/gameId/401872931/broncos-chiefs",
+     "text": "Gamecast",
+     "shortText": "Summary",
+     "isExternal": false,
+     "isPremium": false
+    },
+    {
+     "language": "en",
+     "rel": [
+      "summary",
+      "sportscenter",
+      "app",
+      "... 1 more"
+     ],
+     "href": "sportscenter://x-callback-url/showGame?sportName=football&leagueAbbrev=nfl&gameId=401872931",
+     "text": "Gamecast",
+     "shortText": "Summary",
+     "isExternal": false,
+     "isPremium": false
+    },
+    {
+     "language": "en",
+     "rel": [
+      "now",
+      "desktop",
+      "event"
+     ],
+     "href": "https://www.espn.com/nfl/game/_/gameId/401872931",
+     "text": "Now",
+     "shortText": "Now",
+     "isExternal": false,
+     "isPremium": false
+    },
+    "... 13 more"
+   ],
+   "week": 1,
+   "atVs": "vs",
+   "gameDate": "2026-09-15T00:15:00.000+00:00",
+   "score": "31-10",
+   "homeTeamId": "12",
+   "awayTeamId": "7",
+   "homeTeamScore": "31",
+   "awayTeamScore": "10",
+   "gameResult": "W",
+   "opponent": {
+    "id": "7",
+    "uid": "s:20~l:28~t:7",
+    "displayName": "Denver Broncos",
+    "abbreviation": "DEN",
+    "links": [
+     {
+      "language": "en",
+      "rel": [
+       "clubhouse",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/_/name/den/denver-broncos",
+      "text": "Clubhouse",
+      "shortText": "Clubhouse",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/roster/_/name/den/denver-broncos",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "sportscenter",
+       "app",
+       "... 1 more"
+      ],
+      "href": "sportscenter://x-callback-url/showClubhouse?uid=s:20~l:28~t:7&section=roster",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     "... 11 more"
+    ],
+    "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png"
+   },
+   "leagueName": "National Football League",
+   "leagueAbbreviation": "NFL",
+   "leagueShortName": "NFL",
+   "team": {
+    "id": "12",
+    "uid": "s:20~l:28~t:12",
+    "abbreviation": "KC",
+    "links": [
+     {
+      "language": "en",
+      "rel": [
+       "clubhouse",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/_/name/kc/kansas-city-chiefs",
+      "text": "Clubhouse",
+      "shortText": "Clubhouse",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "desktop",
+       "team"
+      ],
+      "href": "https://www.espn.com/nfl/team/roster/_/name/kc/kansas-city-chiefs",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     {
+      "language": "en",
+      "rel": [
+       "roster",
+       "sportscenter",
+       "app",
+       "... 1 more"
+      ],
+      "href": "sportscenter://x-callback-url/showClubhouse?uid=s:20~l:28~t:12&section=roster",
+      "text": "Roster",
+      "shortText": "Roster",
+      "isExternal": false,
+      "isPremium": false
+     },
+     "... 11 more"
+    ],
+    "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+    "isAllStar": false
+   }
+  }
+ },
+ "seasonTypes": [
+  {
+   "displayName": "2026 Regular Season",
+   "displayTeam": "KC",
+   "categories": [
+    {
+     "displayName": "Regular Season Stats",
+     "type": "event",
+     "splitType": "2",
+     "events": [
+      {
+       "eventId": "401872976",
+       "stats": [
+        "15",
+        "30",
+        "225",
+        "... 13 more"
+       ]
+      },
+      {
+       "eventId": "401872952",
+       "stats": [
+        "20",
+        "24",
+        "246",
+        "... 13 more"
+       ]
+      },
+      {
+       "eventId": "401872945",
+       "stats": [
+        "32",
+        "47",
+        "382",
+        "... 13 more"
+       ]
+      },
+      "... 1 more"
+     ],
+     "totals": [
+      "82",
+      "128",
+      "1,037",
+      "... 13 more"
+     ]
+    }
+   ],
+   "summary": {
+    "displayName": "Regular Season Stats",
+    "stats": [
+     {
+      "displayName": "Totals",
+      "stats": [
+       "82",
+       "128",
+       "1,037",
+       "... 13 more"
+      ],
+      "type": "total"
+     }
+    ]
+   }
+  }
+ ],
+ "glossary": [
+  {
+   "abbreviation": "ATT",
+   "displayName": "Passing Attempts"
+  },
+  {
+   "abbreviation": "AVG",
+   "displayName": "Yards Per Pass Attempt"
+  },
+  {
+   "abbreviation": "CAR",
+   "displayName": "Rushing Attempts"
+  },
+  "... 9 more"
+ ]
+}
