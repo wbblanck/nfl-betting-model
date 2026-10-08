@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches-ignore: [main]
-    paths: ['scripts/audit/espn_probe.py', 'scripts/audit/espn_props_full.py', '.github/workflows/espn-probe.yml']
+    paths: ['scripts/audit/espn_probe.py', 'scripts/audit/espn_props_full.py', 'scripts/audit/espn_api_scan.py', '.github/workflows/espn-probe.yml']
 permissions:
   contents: write
 concurrency:
@@ -23,6 +23,9 @@ jobs:
       - name: Full propBets dump
         if: always()
         run: python scripts/audit/espn_props_full.py
+      - name: Endpoint scan (pseudo-r/Public-ESPN-API list)
+        if: always()
+        run: python scripts/audit/espn_api_scan.py
       - name: Commit evidence
         if: always()
         run: |
@@ -30,5 +33,6 @@ jobs:
           git config user.email "nfl-betting-model@users.noreply.github.com"
           git add docs/evidence/espn || exit 0
           git add docs/evidence/espn_props || true
+          git add docs/evidence/espn_scan || true
           git commit -m "evidence: ESPN API probe" || exit 0
           for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
