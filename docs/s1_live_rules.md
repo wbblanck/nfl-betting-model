@@ -74,4 +74,8 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   only (Action Network has four books besides DK). It is a different record: `data/live/s1pa_picks_2026.csv`,
   `s1pa_runs_2026.csv`, `s1pa_record_2026.csv`, graded the same way (last run before kickoff), never pooled with
   official S1 and not part of the season test. Unvalidated, like S1.
+- **Why-this-pick notes (added 2026-10-08):** the dashboard shows, under each pick, the numbers behind its four
+  signals in plain words (DraftKings' price and no-vig probability; where DraftKings' line sat among the books in
+  that run's archived lines; projection vs line; simulator vs market) and the player's games this season before the
+  pick's week in that stat (`src/nflbet/explain.py`). Descriptive; it restates the rule's inputs and adds no signal.
 

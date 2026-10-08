@@ -16,7 +16,7 @@ from zoneinfo import ZoneInfo
 
 import polars as pl
 
-from nflbet import config, live as Lv
+from nflbet import config, explain as Ex, live as Lv
 
 ET = ZoneInfo("America/New_York")
 SEASON = 2026
@@ -232,6 +232,8 @@ def pick_row(r: dict, locked: bool, tag: str = "") -> str:
         + (f'<div class="news">{"".join(flags)}<span class="detail">{esc(detail)}</span></div>' if flags or detail else "")
         + (f'<div class="news"><span class="detail">{esc(cov)}</span></div>' if (cov := coverage_for_pick(r)) else "")
         + second_source(r)
+        + (('<details class="why"><summary>Why this pick</summary><ul>' + "".join(f"<li>{esc(x)}</li>" for x in r["_why"]) + '</ul></details>')
+           if r.get("_why") else "")
         + "</li>")
 
 
@@ -268,7 +270,29 @@ def parlay_card(pc: pl.DataFrame) -> str:
             + (f' ParlayAPI requests left this month: {esc(left[-1])}.' if left.len() else "") + '</p></div>')
 
 
-def pa_section(pa: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime) -> str:
+def with_why(rows: list[dict], live: Path, source: str, stats: pl.DataFrame | None) -> list[dict]:
+    """Attach the plain-language reasons (src/nflbet/explain.py) to each pick row."""
+    out = []
+    for r in rows:
+        try:
+            games = Ex.recent_games(stats, r["player_id"], r["market"], int(r["week"])) if stats is not None else []
+            r = dict(r, _why=Ex.reasons(r, Ex.book_lines(live, r, source), games))
+        except Exception:  # noqa: BLE001 - a missing reason never breaks the page
+            pass
+        out.append(r)
+    return out
+
+
+def load_stats() -> pl.DataFrame | None:
+    try:
+        from nflbet import props as P
+        return P.load_stats(SEASON)
+    except Exception:  # noqa: BLE001 - offline build: picks show without recent games
+        return None
+
+
+def pa_section(pa: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime, live: Path | None = None,
+               stats: pl.DataFrame | None = None) -> str:
     """S1 on ParlayAPI: the same rule on ParlayAPI's DK and FanDuel lines (books-disagree = DK vs FanDuel only).
     A separate record from the official one; never pooled."""
     if not pa.height:
@@ -279,7 +303,7 @@ def pa_section(pa: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime) -> str:
     cur = pa.filter(pl.col("week") == wk).sort("start_time", "player")
     blocks = []
     for _, x in sorted(cur.group_by("away", "home"), key=lambda kv: kv[1]["start_time"].min()):
-        rows = x.sort("player").to_dicts()
+        rows = with_why(x.sort("player").to_dicts(), live, "parlay", stats) if live is not None else x.sort("player").to_dicts()
         g = {"start_time": rows[0]["start_time"], "home": rows[0]["home"], "away": rows[0]["away"]}
         locked = Lv.parse_ts(g["start_time"]) <= now
         body = "".join(pick_row(r, locked, "Also official S1" if (r["player_id"], r["market"], r["side"]) in official else "")
@@ -573,6 +597,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[data-tip]:focus-visi
 .actual{font:11px var(--mono);color:var(--muted)}
 .news{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
 .detail{color:var(--ink2);font-size:13px}
+details.why{grid-column:1/-1;font-size:13.5px;color:var(--ink2)}
+details.why summary{font:600 12.5px var(--display);letter-spacing:.07em;text-transform:uppercase;color:var(--accent);cursor:pointer;width:max-content}
+details.why ul{margin:6px 0 2px;padding-left:18px;display:flex;flex-direction:column;gap:3px;max-width:90ch}
 .none{padding:12px 14px;color:var(--muted)}
 .colhead{padding:0 14px;font:600 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .colhead .p{display:grid;grid-template-columns:repeat(3,1fr);text-align:right}.colhead .r{text-align:right}
@@ -716,6 +743,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
     if pa.height:                                  # the ParlayAPI record can reach a week before Action Network posts
         cur_week = int(pa["week"].max()) if cur_week is None else max(cur_week, int(pa["week"].max()))
     last_run = runs["run_utc"].max() if runs.height else None
+    stats = data["stats"] if "stats" in data else load_stats()
 
     # ---- scoreboard
     rec_txt = f'{tot["W"]}-{tot["L"]}' + (f'-{tot["P"]}' if tot["P"] else "")
@@ -747,6 +775,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
     blocks, quiet = [], []
     for g in games:
         rows = cur.filter(pl.col("an_game_id") == g["an_game_id"]).sort("player").to_dicts() if cur.height else []
+        rows = with_why(rows, live, "an", stats)
         (blocks.append(game_block(g, rows, now)) if rows else quiet.append(g))
     if quiet:
         blocks.append('<section class="game quiet"><header><h3>No picks</h3></header><ul class="nopick">' + "".join(
@@ -855,7 +884,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
             if w == cur_week:
                 continue
             s = summarize(x)
-            rows = "".join(pick_row(r, True) for r in x.sort("start_time", "player").to_dicts())
+            rows = "".join(pick_row(r, True) for r in with_why(x.sort("start_time", "player").to_dicts(), live, "an", stats))
             old.append(f'<details class="old"><summary>Week {w}: {s["W"]}-{s["L"]}' + (f'-{s["P"]}' if s["P"] else "")
                        + f', {fmt_units(s["units"])} units</summary><ul class="picks">{rows}</ul></details>')
 
@@ -879,7 +908,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         f'<header class="top"><div><h1>S1 Live Tracker</h1><p class="sub">2026 NFL player props · rule S1, all four signals agree</p></div>'
         f'<div class="stamp">{esc(stamp)}</div></header>'
         '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations.</div>'
-        f'{board}{week_html}{pa_section(pa_raw, rec, now)}{charts}{breakdowns}{ops_html}'
+        f'{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'
         + ('<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Earlier weeks</h2></div></div><div class="games">' + "".join(old) + "</div></section>" if old else "")
         + f'{foot}</div><script>{JS}</script>')
 
