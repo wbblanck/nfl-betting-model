@@ -1,0 +1,8090 @@
+{
+ "stamp": "20261008T050421Z",
+ "sports": {
+  "url": "https://parlay-api.com/v1/sports?apiKey=REDACTED",
+  "status": 200,
+  "headers": {
+   "ratelimit-limit": "60",
+   "ratelimit-policy": "\"free\"; q=60; w=1",
+   "ratelimit-remaining": "60",
+   "ratelimit-reset": "1",
+   "x-ratelimit-limit": "60",
+   "x-ratelimit-remaining": "60",
+   "x-ratelimit-tier": "free",
+   "x-ratelimit-window-seconds": "1"
+  },
+  "keys": [
+   "baseball_mlb",
+   "americanfootball_nfl",
+   "americanfootball_ncaaf",
+   "basketball_nba",
+   "basketball_wnba",
+   "basketball_ncaab",
+   "basketball_euroleague",
+   "icehockey_nhl",
+   "hockey_usa___american_hockey_league",
+   "mma_mixed_martial_arts",
+   "boxing_boxing",
+   "tennis",
+   "tennis_atp",
+   "tennis_wta",
+   "tennis_atp_french_open",
+   "tennis_wta_french_open",
+   "golf_pga_championship",
+   "motorsports_nascar",
+   "cricket_ipl",
+   "cricket_test_match",
+   "rugbyleague_nrl",
+   "esports",
+   "esports_csgo",
+   "esports_cs2",
+   "esports_lol",
+   "esports_dota_2",
+   "esports_valorant",
+   "esports_cod",
+   "volleyball",
+   "soccer_fifa_world_cup",
+   "soccer_argentina_primera_division",
+   "soccer_australia_aleague",
+   "soccer_austria_bundesliga",
+   "soccer_austria_2_liga",
+   "soccer_belgium_first_div",
+   "soccer_brazil_campeonato",
+   "soccer_brazil_serie_b",
+   "soccer_bulgaria_first_league",
+   "soccer_chile_campeonato",
+   "soccer_china_superleague",
+   "soccer_colombia_primera_a",
+   "soccer_costa_rica_primera_division",
+   "soccer_croatia_prva_liga",
+   "soccer_czech_football_league",
+   "soccer_denmark_superliga",
+   "soccer_ecuador_liga_pro",
+   "soccer_england_championship",
+   "soccer_england_league2",
+   "soccer_epl",
+   "soccer_usa_mls",
+   "soccer_uefa_champs_league",
+   "soccer_finland_veikkausliiga",
+   "soccer_france_ligue_one",
+   "soccer_france_ligue_two",
+   "soccer_germany_bundesliga",
+   "soccer_germany_bundesliga2",
+   "soccer_greece_super_league",
+   "soccer_hungary_nb1",
+   "soccer_ireland_premier_division",
+   "soccer_italy_serie_a",
+   "soccer_italy_serie_b",
+   "soccer_japan_j_league",
+   "soccer_japan_j2_league",
+   "soccer_england_league1",
+   "soccer_mexico_ligamx",
+   "soccer_netherlands_eredivisie",
+   "soccer_netherlands_eerste_divisie",
+   "soccer_norway_eliteserien",
+   "soccer_paraguay_primera_division",
+   "soccer_poland_ekstraklasa",
+   "soccer_portugal_primeira_liga",
+   "soccer_romania_superliga",
+   "soccer_saudi_professional_league",
+   "soccer_scotland_championship",
+   "soccer_scotland_premiership",
+   "soccer_serbia_super_liga",
+   "soccer_south_korea_kleague1",
+   "soccer_spain_la_liga",
+   "soccer_spain_segunda_division",
+   "soccer_sweden_allsvenskan",
+   "soccer_switzerland_superleague",
+   "soccer_turkey_super_league",
+   "soccer_ukraine_premier_league",
+   "soccer_other",
+   "table_tennis",
+   "table_tennis_czech_liga_pro",
+   "table_tennis_tt_elite_series",
+   "table_tennis_tt_cup",
+   "table_tennis_tt_cup_women",
+   "table_tennis_setka_cup",
+   "horse_racing",
+   "disc_golf",
+   "americanfootball_cfl",
+   "americanfootball_other",
+   "baseball_chinese_taipei_professional_league",
+   "baseball_kbo",
+   "baseball_korea_professional_baseball",
+   "baseball_npb",
+   "baseball_other",
+   "basketball_aba_adriatic_league",
+   "basketball_aba_liga_2",
+   "basketball_adriatic_league_women",
+   "basketball_algeria_super_division",
+   "basketball_argentina_la_liga_proximo",
+   "basketball_argentina_liga_nacional",
+   "basketball_australia_nbl",
+   "basketball_austria_superliga",
+   "basketball_bahrain_premier_league",
+   "basketball_bosnia_and_herzegovina_prvenstvo_bih",
+   "basketball_brazil_campeonato_paulista",
+   "basketball_brazil_paulista_fpb_u20",
+   "basketball_brazil_paulista_u20_women",
+   "basketball_british_slb",
+   "basketball_chile_lnb",
+   "basketball_colombia_baloncesto_profesional_colombiano",
+   "basketball_croatia_a1_liga",
+   "basketball_czech_republic_1_liga",
+   "basketball_czech_republic_zbl_women",
+   "basketball_denmark_basketligaen",
+   "basketball_dominican_republic_torneo_baloncesto_superior",
+   "basketball_el_salvador_liga_mayor_de_baloncesto",
+   "basketball_el_salvador_liga_mayor_women",
+   "basketball_estonia_i_liiga",
+   "basketball_estonian_latvian_basketball_league",
+   "basketball_europe_bnxt_league",
+   "basketball_europe_champions_league",
+   "basketball_europe_enbl",
+   "basketball_europe_eurocup",
+   "basketball_europe_euroleague",
+   "basketball_europe_vtb_united_league",
+   "basketball_europe_wbbl_women",
+   "basketball_fiba_americas_league_women",
+   "basketball_fiba_europe_cup",
+   "basketball_fiba_south_american_club_league",
+   "basketball_fiba_super_cup_women",
+   "basketball_finland_division_1",
+   "basketball_finland_korisliiga",
+   "basketball_finland_korisliiga_women",
+   "basketball_france_championnat_pro_b",
+   "basketball_france_cup",
+   "basketball_france_ligue_f_minine_de_basketball",
+   "basketball_france_nationale_1",
+   "basketball_georgia_super_league",
+   "basketball_germany_bundesliga",
+   "basketball_germany_pro_a",
+   "basketball_greece_elite_league",
+   "basketball_greece_greek_cup_women",
+   "basketball_greek_basket_league",
+   "basketball_hong_kong_bl",
+   "basketball_hong_kong_silver_shield_cup_women",
+   "basketball_hungary_nemzeti_bajnoksag_i_a",
+   "basketball_hungary_nemzeti_bajnoksag_i_a_women",
+   "basketball_iceland_premier_league",
+   "basketball_iceland_premier_league_women",
+   "basketball_israel_league_cup",
+   "basketball_italy_lega_a",
+   "basketball_japan_b_league_premier",
+   "basketball_korea_u_league",
+   "basketball_korean_kbl",
+   "basketball_kosovo_superliga",
+   "basketball_lithuania_cup",
+   "basketball_lithuania_lmkl_women",
+   "basketball_lithuania_national_basketball_league",
+   "basketball_mexico_liga_nacional_de_baloncesto_profesional",
+   "basketball_nba_preseason",
+   "basketball_new_zealand_nbl_women",
+   "basketball_other",
+   "basketball_paraguay_primera",
+   "basketball_philippines_ncaa",
+   "basketball_philippines_pba_governors_cup",
+   "basketball_philippines_uaap",
+   "basketball_philippines_uaap_w",
+   "basketball_poland_1_liga",
+   "basketball_poland_2_liga",
+   "basketball_poland_basket_liga",
+   "basketball_poland_blk_women",
+   "basketball_portugal_liga_feminina_de_basquetebol",
+   "basketball_portugal_proliga",
+   "basketball_puerto_rico_superior_nacional_women",
+   "basketball_romania_division_a",
+   "basketball_romania_division_a_women",
+   "basketball_russia_super_league",
+   "basketball_serbia_1_zls_women",
+   "basketball_serbia_nasa_liga",
+   "basketball_slovakia_extraliga",
+   "basketball_slovakia_extraliga_women",
+   "basketball_slovenia_1_skl",
+   "basketball_spain_liga_women",
+   "basketball_sweden_basketligan",
+   "basketball_sweden_basketligan_women",
+   "basketball_switzerland_nlb",
+   "basketball_switzerland_sb_league_women",
+   "basketball_turkey_super_league",
+   "basketball_turkey_tbl_first_league",
+   "basketball_uruguay_tercera_de_ascenso",
+   "basketball_world_club_friendlies",
+   "basketball_world_club_friendlies_women",
+   "boxing_boxing_matches",
+   "cricket_cricket_world_cup_league_2",
+   "cricket_icc_cricket_world_cup_league_2",
+   "cricket_icc_men_s_t20_wc_asia_qualifier",
+   "cricket_international_twenty20_matches",
+   "cricket_international_twenty20_matches_women",
+   "cricket_south_africa_csa_t20_challenge",
+   "cricket_south_africa_t20_challenge",
+   "cricket_twenty20_international",
+   "cricket_twenty20_international_women",
+   "esports_cs2_cct_european_series_10",
+   "esports_cs2_cct_european_series_11_qualifier",
+   "esports_cs2_cct_south_america_series",
+   "esports_cs2_esl_challenger_league_europe",
+   "esports_cs2_esl_challenger_league_north_america",
+   "esports_cs2_esl_challenger_league_south_america",
+   "esports_cs2_esl_pro_league",
+   "esports_cs2_european_pro_league",
+   "esports_cs2_nodwin_clutch_series",
+   "esports_cs2_private_club_qualifier",
+   "esports_cs2_roman_imperium_cup",
+   "esports_cs2_united21",
+   "esports_dota_2_blast_slam",
+   "esports_dota_2_universe_qualifier",
+   "esports_league_of_legends_cblol",
+   "esports_league_of_legends_cblol_promotion",
+   "esports_league_of_legends_demacia_cup",
+   "esports_league_of_legends_emea_masters",
+   "esports_league_of_legends_lcs",
+   "esports_league_of_legends_lcs_promotion",
+   "esports_mobile_legends_mpl_indonesia",
+   "esports_mobile_legends_mpl_malaysia",
+   "esports_mobile_legends_mpl_philippines",
+   "esports_rainbow_six_europe_mena_league",
+   "esports_rainbow_six_siege",
+   "esports_valorant_champions",
+   "golf_dp_world_open_de_espana_1st_round",
+   "golf_dp_world_open_de_espana_tournament",
+   "golf_other",
+   "golf_pga_baycurrent_classic_1st_round",
+   "golf_pga_baycurrent_classic_tournament",
+   "hockey_austria_ehl",
+   "hockey_belarus_extraleague",
+   "hockey_british_elite_league",
+   "hockey_canada_ontario_hockey_league",
+   "hockey_canada_quebec_major_junior_hockey_league",
+   "hockey_canada_western_hockey_league",
+   "hockey_czech_republic_1_liga",
+   "hockey_czech_republic_2_liga",
+   "hockey_czech_republic_extraliga",
+   "hockey_czech_republic_extraliga_u20",
+   "hockey_denmark_metal_ligaen",
+   "hockey_europe_alps_hockey_league",
+   "hockey_europe_champions_hockey_league",
+   "hockey_finland_mestis",
+   "hockey_finland_sm_liiga",
+   "hockey_finland_suomi_sarja_u20",
+   "hockey_france_ligue_magnus",
+   "hockey_germany_del",
+   "hockey_germany_del_2",
+   "hockey_latvia_latvian_hockey_league",
+   "hockey_nhl",
+   "hockey_norway_1st_division",
+   "hockey_norway_eliteserien",
+   "hockey_poland_polska_hokey_liga",
+   "hockey_russia_junior_hockey_league_mhl",
+   "hockey_russia_kontinental_hockey_league",
+   "hockey_russia_vysshaya_hokkeinaya_liga",
+   "hockey_slovakia_1_liga",
+   "hockey_slovakia_extraliga",
+   "hockey_sweden_hockey_allsvenskan",
+   "hockey_sweden_hockeyettan",
+   "hockey_sweden_sdhl_women",
+   "hockey_sweden_shl",
+   "hockey_switzerland_nationalliga_a",
+   "hockey_switzerland_swiss_league",
+   "hockey_usa_american_hockey_league",
+   "hockey_world_asian_hockey_league",
+   "icehockey_sweden_shl",
+   "mma",
+   "mma_lfa",
+   "mma_ufc",
+   "motorsports",
+   "other_unknown",
+   "soccer_1st_division",
+   "soccer_afc_champions_league_elite",
+   "soccer_africa_cup_of_nations_qualifiers",
+   "soccer_albania_cup",
+   "soccer_algeria_1st_division",
+   "soccer_algeria_ligue_1",
+   "soccer_algeria_ligue_1_corners",
+   "soccer_arabian_gulf_cup",
+   "soccer_arabian_gulf_cup_corners",
+   "soccer_argentina_liga_pro",
+   "soccer_argentina_liga_pro_corners",
+   "soccer_argentina_liga_pro_reserves",
+   "soccer_argentina_primera_b_metropolitana",
+   "soccer_argentina_primera_b_metropolitana_reserves",
+   "soccer_argentina_primera_b_nacional_corners",
+   "soccer_argentina_primera_c",
+   "soccer_argentina_primera_c_metropolitana",
+   "soccer_argentina_primera_c_metropolitana_reserves",
+   "soccer_argentina_primera_division_reserves",
+   "soccer_argentina_primera_division_women",
+   "soccer_argentina_primera_nacional",
+   "soccer_argentina_regional",
+   "soccer_argentina_regional_league",
+   "soccer_argentina_reserve_league",
+   "soccer_argentina_torneo_federal_a",
+   "soccer_argentina_torneo_promocional_amateur",
+   "soccer_argentina_torneo_regional_federal_amateur",
+   "soccer_argentina_u20",
+   "soccer_argentina_youth_league_u20",
+   "soccer_asean_club_championship",
+   "soccer_asean_cup",
+   "soccer_australia_a_league",
+   "soccer_australia_cup",
+   "soccer_azerbaijan_division_1",
+   "soccer_azerbaijan_first_division",
+   "soccer_bahrain_kings_cup",
+   "soccer_bangladesh_federation_cup",
+   "soccer_belgium_challenger_pro_league",
+   "soccer_belgium_first_amateur_division",
+   "soccer_belgium_first_division_b",
+   "soccer_belgium_pro_league",
+   "soccer_bolivia_copa_division_profesional",
+   "soccer_bolivia_cup",
+   "soccer_bolivia_liga_nacional_u19",
+   "soccer_bolivia_professional_football_league",
+   "soccer_bosnia_and_herzegovina_u19_league",
+   "soccer_bosnia_herzegovina_premier_liga",
+   "soccer_bosnia_herzegovina_u19_league",
+   "soccer_brazil_baiano_women",
+   "soccer_brazil_campeonato_goiano_2",
+   "soccer_brazil_carioca_a2_u20",
+   "soccer_brazil_carioca_b2",
+   "soccer_brazil_carioca_u20",
+   "soccer_brazil_copa_alagoas_u20",
+   "soccer_brazil_copa_do_brasil",
+   "soccer_brazil_copa_goias_u20",
+   "soccer_brazil_gaucho_serie_b",
+   "soccer_brazil_goiano_2",
+   "soccer_brazil_mineiro_2",
+   "soccer_brazil_paraibano_2",
+   "soccer_brazil_piauiense_serie_b",
+   "soccer_brazil_serie_a",
+   "soccer_brazil_serie_a_bookings",
+   "soccer_brazil_serie_a_corners",
+   "soccer_brazil_serie_b_corners",
+   "soccer_brazil_u20_cup",
+   "soccer_brazil_u20_cups",
+   "soccer_bundesliga",
+   "soccer_bundesliga_2",
+   "soccer_bundesliga_3",
+   "soccer_caf_africa_cup_of_nations_qualifiers",
+   "soccer_caf_africa_cup_of_nations_qualifiers_corners",
+   "soccer_caf_africa_cup_of_nations_u20_qualifiers",
+   "soccer_caf_africa_cup_of_nations_u23_qualifiers",
+   "soccer_caf_olympic_qualifiers_women",
+   "soccer_cambodia_cup",
+   "soccer_campeonato_carioca_2",
+   "soccer_canada_premier_league",
+   "soccer_chile_cup",
+   "soccer_chile_primera_b",
+   "soccer_chile_primera_division",
+   "soccer_chile_segunda_division",
+   "soccer_chile_tercera_division",
+   "soccer_chile_tercera_division_a",
+   "soccer_china_league_one",
+   "soccer_china_league_one_corners",
+   "soccer_china_league_two",
+   "soccer_china_super_league",
+   "soccer_china_u20_league",
+   "soccer_club_friendlies",
+   "soccer_colombia_league_u19",
+   "soccer_colombia_liga_antioquena_de_futbol",
+   "soccer_colombia_primera_a_corners",
+   "soccer_colombia_primera_b",
+   "soccer_colombia_primera_b_corners",
+   "soccer_colombia_u19_championship",
+   "soccer_concacaf_nations_league_a",
+   "soccer_concacaf_nations_league_a_corners",
+   "soccer_concacaf_nations_league_b",
+   "soccer_concacaf_nations_league_c",
+   "soccer_conmebol_copa_libertadores",
+   "soccer_conmebol_copa_sudamericana",
+   "soccer_croatia_3_nl",
+   "soccer_croatia_hnl",
+   "soccer_cyprus_1st_division",
+   "soccer_cyprus_division_1",
+   "soccer_czech_republic_2_liga",
+   "soccer_czech_republic_3_liga",
+   "soccer_czech_republic_first_league",
+   "soccer_czech_republic_first_liga",
+   "soccer_czech_republic_fnl",
+   "soccer_denmark_1st_division",
+   "soccer_denmark_division_1",
+   "soccer_dfb_pokal",
+   "soccer_dominican_republic_liga_mayor",
+   "soccer_ecuador_copa_ecuador",
+   "soccer_ecuador_cup",
+   "soccer_ecuador_serie_a",
+   "soccer_ecuador_serie_b",
+   "soccer_egypt_2nd_division",
+   "soccer_egypt_2nd_division_a",
+   "soccer_egypt_2nd_division_b",
+   "soccer_egypt_league_cup",
+   "soccer_egypt_premier_league",
+   "soccer_el_salvador_primera_division",
+   "soccer_elite_international_friendlies",
+   "soccer_england_central_league_cup_reserves",
+   "soccer_england_development_league",
+   "soccer_england_efl_cup",
+   "soccer_england_efl_trophy",
+   "soccer_england_efl_trophy_corners",
+   "soccer_england_fa_cup_qualification",
+   "soccer_england_fa_cup_qualifiers",
+   "soccer_england_isthmian_division_1_north",
+   "soccer_england_isthmian_division_1_south_central",
+   "soccer_england_isthmian_league",
+   "soccer_england_isthmian_premier_division",
+   "soccer_england_isthmian_premier_league",
+   "soccer_england_league_1",
+   "soccer_england_league_2",
+   "soccer_england_league_one",
+   "soccer_england_league_two",
+   "soccer_england_national_league",
+   "soccer_england_national_league_cup",
+   "soccer_england_national_league_premier_women",
+   "soccer_england_national_league_south",
+   "soccer_england_national_league_south_corners",
+   "soccer_england_northern_league_division_1",
+   "soccer_england_northern_league_division_one",
+   "soccer_england_northern_premier_league",
+   "soccer_england_premier_league",
+   "soccer_england_premier_league_corners",
+   "soccer_england_professional_development_league_u21",
+   "soccer_england_reserve_league",
+   "soccer_england_southern_league_division_1",
+   "soccer_england_southern_league_division_one_central",
+   "soccer_england_southern_premier_league_central",
+   "soccer_england_southern_premier_league_south",
+   "soccer_england_southern_south_league",
+   "soccer_english_league_a_2025_26",
+   "soccer_euro_league_2026",
+   "soccer_fifa_asean_cup_division_1",
+   "soccer_fifa_asean_cup_division_1_corners",
+   "soccer_fiji_inter_district_championship",
+   "soccer_finland_veikkausliiga_corners",
+   "soccer_finland_ykkonen",
+   "soccer_finland_ykkonen_corners",
+   "soccer_finland_ykkonen_women",
+   "soccer_finland_ykkosliiga",
+   "soccer_france_ligue_1_corners",
+   "soccer_france_ligue_2",
+   "soccer_friendlies",
+   "soccer_friendlies_u19",
+   "soccer_friendlies_u20",
+   "soccer_friendlies_u21",
+   "soccer_germany_3_liga",
+   "soccer_germany_bundesliga_2",
+   "soccer_germany_bundesliga_corners",
+   "soccer_germany_cup",
+   "soccer_ghana_division_1",
+   "soccer_global_cup_2026",
+   "soccer_greece_gamma_ethniki",
+   "soccer_greece_super_league_2",
+   "soccer_guatemala_liga_nacional",
+   "soccer_guatemala_primera_division",
+   "soccer_guatemala_primera_division_de_ascenso",
+   "soccer_guatemala_segunda_division",
+   "soccer_gulf_cup",
+   "soccer_hong_kong_premier_league_u22",
+   "soccer_hong_kong_u22_league",
+   "soccer_hungary_league_u19",
+   "soccer_hungary_nb_1",
+   "soccer_hungary_u19_league",
+   "soccer_iceland_premier_league",
+   "soccer_india_bangalore_super_division",
+   "soccer_india_calcutta_first_division",
+   "soccer_india_ifa_shield",
+   "soccer_india_shillong_first_division",
+   "soccer_india_shillong_premier_league",
+   "soccer_india_super_league",
+   "soccer_indonesia_liga_1",
+   "soccer_indonesia_super_league",
+   "soccer_international_friendlies",
+   "soccer_international_friendlies_corners",
+   "soccer_international_friendlies_u19",
+   "soccer_international_friendlies_u19_women",
+   "soccer_international_friendlies_u20",
+   "soccer_international_friendlies_u21",
+   "soccer_international_friendlies_women",
+   "soccer_iran_azadegan_league",
+   "soccer_iran_pro_league",
+   "soccer_iraq_first_division",
+   "soccer_iraq_premier_division",
+   "soccer_iraq_stars_league",
+   "soccer_ireland_division_1",
+   "soccer_ireland_munster_senior_league",
+   "soccer_ireland_national_league",
+   "soccer_ireland_u20_league",
+   "soccer_israel_liga_bet",
+   "soccer_israel_liga_bet_north_south",
+   "soccer_israel_liga_leumit",
+   "soccer_israel_ligat_leumit",
+   "soccer_israel_premier_league",
+   "soccer_italy_serie_a_corners",
+   "soccer_italy_serie_c_group_a",
+   "soccer_italy_serie_c_group_b",
+   "soccer_italy_serie_c_group_c",
+   "soccer_italy_serie_d_cup",
+   "soccer_ivory_coast_ligue_1",
+   "soccer_ivory_coast_ligue_2",
+   "soccer_jamaica_premier_league",
+   "soccer_japan_cup",
+   "soccer_japan_cup_corners",
+   "soccer_japan_emperors_cup",
+   "soccer_japan_j_league_2",
+   "soccer_jordan_cup",
+   "soccer_jordan_jordan_cup",
+   "soccer_jordan_premier_league",
+   "soccer_jordan_pro_league",
+   "soccer_jordan_u20_league",
+   "soccer_kenya_premier_league",
+   "soccer_korea_kleague1",
+   "soccer_korea_republic_k_league_1",
+   "soccer_korea_republic_k_league_2",
+   "soccer_korea_republic_k_league_women",
+   "soccer_kosovo_superliga_u19",
+   "soccer_lebanon_premier_league",
+   "soccer_ligue_1",
+   "soccer_ligue_2",
+   "soccer_lithuania_a_lyga",
+   "soccer_malaysia_president_cup_u20",
+   "soccer_mexico_copa_promesas",
+   "soccer_mexico_copa_promesas_mx",
+   "soccer_mexico_liga_de_expansi_n_mx",
+   "soccer_mexico_liga_de_expansion_mx",
+   "soccer_mexico_liga_mx_femenil",
+   "soccer_mexico_liga_mx_women",
+   "soccer_mexico_liga_premier",
+   "soccer_mexico_liga_tdp",
+   "soccer_mexico_segunda_division",
+   "soccer_mongolia_premier_league",
+   "soccer_montenegro_druga_liga",
+   "soccer_montenegro_prva_liga",
+   "soccer_morocco_botola_pro",
+   "soccer_myanmar_national_league_u20",
+   "soccer_nations_league_matches",
+   "soccer_nicaragua_primera_division",
+   "soccer_nicaragua_segunda_division",
+   "soccer_nigeria_npfl",
+   "soccer_nigeria_premier_league",
+   "soccer_nir_ifa_premiership",
+   "soccer_northern_ireland_nifl_development_league",
+   "soccer_northern_ireland_premiership",
+   "soccer_northern_ireland_reserve_league",
+   "soccer_norway_1st_division",
+   "soccer_norway_3rd_division",
+   "soccer_norway_cup",
+   "soccer_norway_cup_women",
+   "soccer_norway_division_3",
+   "soccer_norway_league_u19",
+   "soccer_norway_nm_cup",
+   "soccer_norway_u19_league",
+   "soccer_olympics_matches_qualification_women",
+   "soccer_panama_liga_panamena",
+   "soccer_panama_liga_prom",
+   "soccer_panama_primera_division",
+   "soccer_paraguay_cup",
+   "soccer_paraguay_division_intermedia",
+   "soccer_paraguay_division_profesional",
+   "soccer_paraguay_division_profesional_corners",
+   "soccer_paraguay_primera_division_reserves",
+   "soccer_paraguay_reserve_league",
+   "soccer_paraguay_segunda_division",
+   "soccer_paraguay_tercera_division",
+   "soccer_peru_copa_de_la_liga",
+   "soccer_peru_league_cup",
+   "soccer_peru_liga_1",
+   "soccer_peru_liga_2",
+   "soccer_peru_primera_division",
+   "soccer_peru_segunda_division",
+   "soccer_poland_1st_liga",
+   "soccer_poland_2nd_liga",
+   "soccer_poland_u19_league",
+   "soccer_portugal_championship_u23",
+   "soccer_portugal_liga_2",
+   "soccer_portugal_segunda_liga",
+   "soccer_portugal_u23_championship",
+   "soccer_premier_division",
+   "soccer_primera_division_rfef",
+   "soccer_qatar_stars_league",
+   "soccer_romania_liga_1",
+   "soccer_romania_liga_2",
+   "soccer_russia_cup",
+   "soccer_russia_first_league",
+   "soccer_russia_premier_league",
+   "soccer_saudi_arabia_division_1",
+   "soccer_saudi_arabia_pro_league",
+   "soccer_saudi_arabia_professional_league",
+   "soccer_scotland_highland_league",
+   "soccer_segunda",
+   "soccer_segunda_division_rfef",
+   "soccer_serbia_prva_liga",
+   "soccer_serbia_u19_league",
+   "soccer_serie_b",
+   "soccer_serie_c",
+   "soccer_serie_d_cup",
+   "soccer_slovakia_2_liga",
+   "soccer_slovakia_league_u19",
+   "soccer_slovakia_super_liga",
+   "soccer_slovakia_u19_league",
+   "soccer_slovenia_2_snl",
+   "soccer_slovenia_division_2",
+   "soccer_slovenia_prva_liga",
+   "soccer_solomon_islands_s_league",
+   "soccer_south_korea_k_league_1",
+   "soccer_south_korea_k_league_2",
+   "soccer_south_korea_k_league_women",
+   "soccer_spain_la_liga_corners",
+   "soccer_spain_primera_federacion",
+   "soccer_spain_segunda_division_corners",
+   "soccer_spain_segunda_federacion",
+   "soccer_spain_tercera_division",
+   "soccer_sweden_cup",
+   "soccer_sweden_division_1",
+   "soccer_sweden_division_1_norra",
+   "soccer_sweden_division_2",
+   "soccer_sweden_superettan",
+   "soccer_sweden_women_cup",
+   "soccer_switzerland_1_liga_classic",
+   "soccer_switzerland_2_liga_interregional",
+   "soccer_switzerland_challenge_league",
+   "soccer_switzerland_erste_liga",
+   "soccer_switzerland_super_league",
+   "soccer_switzerland_u19_elite",
+   "soccer_thailand_championship_u21",
+   "soccer_thailand_league_cup",
+   "soccer_thailand_u21_league",
+   "soccer_turkey_1st_league",
+   "soccer_turkey_2nd_league",
+   "soccer_turkey_cup",
+   "soccer_turkey_super_lig_u19",
+   "soccer_turkey_tff_first_league",
+   "soccer_turkey_tff_second_league",
+   "soccer_turkey_u19_league",
+   "soccer_u20_leagues",
+   "soccer_uae_league_cup",
+   "soccer_uefa_conference_league",
+   "soccer_uefa_euro",
+   "soccer_uefa_europa_league",
+   "soccer_uefa_european_championship_qualifiers_u21",
+   "soccer_uefa_nations_league_a",
+   "soccer_uefa_nations_league_a_bookings",
+   "soccer_uefa_nations_league_a_corners",
+   "soccer_uefa_nations_league_b",
+   "soccer_uefa_nations_league_b_bookings",
+   "soccer_uefa_nations_league_b_corners",
+   "soccer_uefa_nations_league_c",
+   "soccer_uefa_nations_league_c_corners",
+   "soccer_uefa_u19_euro_championship_women_qualifiers",
+   "soccer_uefa_u21_euro_championship_qualifiers",
+   "soccer_uefa_u21_euro_championship_qualifiers_corners",
+   "soccer_uganda_premier_league",
+   "soccer_ukraine_cup",
+   "soccer_ukraine_persha_liga",
+   "soccer_uruguay_cup",
+   "soccer_uruguay_primera_division",
+   "soccer_uruguay_primera_division_amateur",
+   "soccer_uruguay_primera_division_corners",
+   "soccer_uruguay_reserve_league",
+   "soccer_uruguay_segunda_division",
+   "soccer_usa_major_league_soccer_bookings",
+   "soccer_usa_major_league_soccer_corners",
+   "soccer_usa_national_soccer_league",
+   "soccer_usa_national_womens_soccer_league",
+   "soccer_usa_usl_championship",
+   "soccer_usa_usl_cup",
+   "soccer_usa_usl_league_one",
+   "soccer_usa_usl_super_league",
+   "soccer_usa_usl_super_league_women",
+   "soccer_uzbekistan_first_league",
+   "soccer_uzbekistan_pfl",
+   "soccer_uzbekistan_pro_league",
+   "soccer_uzbekistan_super_league",
+   "soccer_venezuela_copa_venezuela",
+   "soccer_venezuela_cup",
+   "soccer_venezuela_segunda_division",
+   "soccer_vietnam_cup",
+   "soccer_vietnam_v_league",
+   "soccer_wales_championship",
+   "soccer_wales_faw_championship",
+   "soccer_wales_premier_league",
+   "soccer_women_international_euro_championship_u19_qualifiers",
+   "soccer_women_international_friendlies",
+   "tennis_atp_challenger_antofagasta",
+   "tennis_atp_challenger_antofagasta_2026",
+   "tennis_atp_challenger_antofagasta_qualifiers",
+   "tennis_atp_challenger_braga",
+   "tennis_atp_challenger_braga_2026",
+   "tennis_atp_challenger_braga_qualifiers",
+   "tennis_atp_challenger_curitiba",
+   "tennis_atp_challenger_palermo",
+   "tennis_atp_challenger_palermo_2026",
+   "tennis_atp_challenger_palermo_qualifiers",
+   "tennis_atp_challenger_villena",
+   "tennis_atp_challenger_villena_2026",
+   "tennis_atp_challenger_villena_qualifiers",
+   "tennis_atp_challenger_wuning",
+   "tennis_atp_challenger_wuning_2026",
+   "tennis_atp_challenger_wuning_qualifiers",
+   "tennis_itf_m15_burgas_bul",
+   "tennis_itf_m15_burgas_bul_q",
+   "tennis_itf_m15_heraklion_gre",
+   "tennis_itf_m15_heraklion_gre_q",
+   "tennis_itf_m15_monastir_tun",
+   "tennis_itf_m15_monastir_tun_q",
+   "tennis_itf_m15_pontevedra_esp",
+   "tennis_itf_m15_pontevedra_esp_q",
+   "tennis_itf_m15_quito_ecu",
+   "tennis_itf_m15_quito_ecu_q",
+   "tennis_itf_m15_rodez_fra",
+   "tennis_itf_m15_rodez_fra_q",
+   "tennis_itf_m15_sharm_elsheikh_egy",
+   "tennis_itf_m15_sharm_elsheikh_egy_q",
+   "tennis_itf_m25_darwin_aus",
+   "tennis_itf_m25_darwin_aus_q",
+   "tennis_itf_m25_kigali_rwa",
+   "tennis_itf_m25_kigali_rwa_q",
+   "tennis_itf_m25_luan_chn",
+   "tennis_itf_m25_luan_chn_q",
+   "tennis_itf_m25_santa_margherita_di_pula_ita",
+   "tennis_itf_m25_santa_margherita_di_pula_ita_q",
+   "tennis_itf_men_burgas",
+   "tennis_itf_men_darwin",
+   "tennis_itf_men_heraklion",
+   "tennis_itf_men_kigali",
+   "tennis_itf_men_luan",
+   "tennis_itf_men_monastir",
+   "tennis_itf_men_pontevedra",
+   "tennis_itf_men_quito",
+   "tennis_itf_men_rodez",
+   "tennis_itf_men_santa_margherita_di_pula",
+   "tennis_itf_w15_chisinau_mda",
+   "tennis_itf_w15_chisinau_mda_q",
+   "tennis_itf_w15_cipolletti_arg",
+   "tennis_itf_w15_maanshan_chn",
+   "tennis_itf_w15_maanshan_chn_q",
+   "tennis_itf_w15_sharm_elsheikh_egy",
+   "tennis_itf_w15_sharm_elsheikh_egy_q",
+   "tennis_itf_w15_sz_kesfeh_rv_r_hun",
+   "tennis_itf_w15_sz_kesfeh_rv_r_hun_q",
+   "tennis_itf_w35_henderson_usa",
+   "tennis_itf_w35_henderson_usa_q",
+   "tennis_itf_w35_lagos_por",
+   "tennis_itf_w35_lagos_por_q",
+   "tennis_itf_w35_monastir_tun",
+   "tennis_itf_w35_monastir_tun_q",
+   "tennis_itf_w35_santa_margherita_di_pula_ita",
+   "tennis_itf_w35_santa_margherita_di_pula_ita_q",
+   "tennis_itf_w35_sevilla_esp",
+   "tennis_itf_w35_sevilla_esp_q",
+   "tennis_itf_w35_villeneuve_d_ascq_fra",
+   "tennis_itf_w35_villeneuve_d_ascq_fra_q",
+   "tennis_itf_w35_wagga_wagga_aus",
+   "tennis_itf_w35_wagga_wagga_aus_q",
+   "tennis_itf_w50_burgas_bul",
+   "tennis_itf_w50_burgas_bul_q",
+   "tennis_itf_w50_heraklion_gre",
+   "tennis_itf_w50_heraklion_gre_q",
+   "tennis_itf_w50_lexington_usa",
+   "tennis_itf_w50_lexington_usa_q",
+   "tennis_itf_women_burgas",
+   "tennis_itf_women_chisinau",
+   "tennis_itf_women_cipolletti",
+   "tennis_itf_women_heraklion",
+   "tennis_itf_women_islamabad",
+   "tennis_itf_women_lagos",
+   "tennis_itf_women_las_vegas",
+   "tennis_itf_women_lexington",
+   "tennis_itf_women_maanshan",
+   "tennis_itf_women_monastir",
+   "tennis_itf_women_santa_margherita_di_pula",
+   "tennis_itf_women_seville",
+   "tennis_itf_women_szekesfehervar",
+   "tennis_itf_women_villeneuve_d_ascq",
+   "tennis_itf_women_wagga_wagga",
+   "tennis_other",
+   "tennis_utr",
+   "tennis_wta_125k_samsun",
+   "tennis_wta_125k_samsun_qualifiers",
+   "tennis_wta_125k_suzhou",
+   "tennis_wta_125k_suzhou_qualifiers",
+   "volleyball_argentina_division_de_honor_women",
+   "volleyball_argentina_superiores_primera",
+   "volleyball_brazil_mineiro",
+   "volleyball_club_friendlies",
+   "volleyball_czech_republic_cup_women",
+   "volleyball_europe_cev_challenge_cup_women",
+   "volleyball_finland_mestaruusliiga_women",
+   "volleyball_poland_liga_1",
+   "volleyball_uruguay_division_a_women",
+   "volleyball_uruguay_primera"
+  ],
+  "body_head": null
+ },
+ "markets_endpoint": {
+  "url": "https://parlay-api.com/v1/sports/americanfootball_nfl/props/markets?apiKey=REDACTED",
+  "status": 200,
+  "headers": {
+   "ratelimit-limit": "60",
+   "ratelimit-policy": "\"free\"; q=60; w=1",
+   "ratelimit-remaining": "60",
+   "ratelimit-reset": "1",
+   "x-ratelimit-limit": "60",
+   "x-ratelimit-remaining": "60",
+   "x-ratelimit-tier": "free",
+   "x-ratelimit-window-seconds": "1"
+  },
+  "body": [
+   {
+    "key": "player_receiving_yds",
+    "label": "Receiving Yards",
+    "bookmakers": [
+     "pick6"
+    ],
+    "total_snapshots": 39636
+   },
+   {
+    "key": "player_anytime_td",
+    "label": "Any Time Touchdown Scorer",
+    "bookmakers": [
+     "bovada",
+     "fanduel",
+     "novig",
+     "underdog"
+    ],
+    "total_snapshots": 49357
+   },
+   {
+    "key": "player_pass_yds",
+    "label": "Passing Yards",
+    "bookmakers": [
+     "bovada",
+     "fanduel",
+     "novig",
+     "pick6",
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 44347
+   },
+   {
+    "key": "player_rush_yds",
+    "label": "Rushing Yards",
+    "bookmakers": [
+     "bovada",
+     "fanduel",
+     "novig",
+     "pick6"
+    ],
+    "total_snapshots": 56148
+   },
+   {
+    "key": "exchange_first_touchdown_scorer",
+    "label": "FIRST_TOUCHDOWN_SCORER",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 17495
+   },
+   {
+    "key": "player_anytime_touchdowns",
+    "label": "anytime_touchdowns",
+    "bookmakers": [
+     "fliff",
+     "sleeper"
+    ],
+    "total_snapshots": 12434
+   },
+   {
+    "key": "player_rush__rec_td",
+    "label": "Rush + Rec TD",
+    "bookmakers": [
+     "pick6"
+    ],
+    "total_snapshots": 10906
+   },
+   {
+    "key": "player_receiving_yards",
+    "label": "receiving_yards",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "pinnacle",
+     "prizepicks",
+     "sleeper"
+    ],
+    "total_snapshots": 11288
+   },
+   {
+    "key": "player_receptions",
+    "label": "receptions",
+    "bookmakers": [
+     "bovada",
+     "draftkings",
+     "fanduel",
+     "fliff",
+     "novig",
+     "pick6",
+     "pinnacle",
+     "prizepicks",
+     "sleeper",
+     "underdog"
+    ],
+    "total_snapshots": 56930
+   },
+   {
+    "key": "player_longest_reception",
+    "label": "longest_reception",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "prizepicks",
+     "sleeper"
+    ],
+    "total_snapshots": 7871
+   },
+   {
+    "key": "player_rushing_yards",
+    "label": "rushing_yards",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "pinnacle",
+     "sleeper"
+    ],
+    "total_snapshots": 6135
+   },
+   {
+    "key": "player_rush__rec_yards",
+    "label": "Rush + Rec Yards",
+    "bookmakers": [
+     "pick6"
+    ],
+    "total_snapshots": 5935
+   },
+   {
+    "key": "player_correct_score",
+    "label": "Correct Score",
+    "bookmakers": [
+     "bovada",
+     "draftkings"
+    ],
+    "total_snapshots": 5583
+   },
+   {
+    "key": "player_touchdowns_scored",
+    "label": "TOUCHDOWNS 1.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 5535
+   },
+   {
+    "key": "player_spread",
+    "label": "Spread",
+    "bookmakers": [
+     "bovada",
+     "draftkings",
+     "fanduel"
+    ],
+    "total_snapshots": 7708
+   },
+   {
+    "key": "player_reception_yds",
+    "label": "RECEIVING_YARDS 49.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 69615
+   },
+   {
+    "key": "player_rush___rec_tds_1st_half",
+    "label": "1H Rush + Rec TDs",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 4267
+   },
+   {
+    "key": "player_1h_receiving_yards",
+    "label": "1H Receiving Yards",
+    "bookmakers": [
+     "pick6"
+    ],
+    "total_snapshots": 4108
+   },
+   {
+    "key": "player_passing_touchdowns",
+    "label": "passing_touchdowns",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "pick6",
+     "sleeper"
+    ],
+    "total_snapshots": 3293
+   },
+   {
+    "key": "player_rush___rec_tds_1st_quarter",
+    "label": "1Q Rush + Rec TDs",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 2990
+   },
+   {
+    "key": "player_rushing_attempts",
+    "label": "rushing_attempts",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "sleeper"
+    ],
+    "total_snapshots": 3050
+   },
+   {
+    "key": "player_passing_yards",
+    "label": "passing_yards",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "pinnacle",
+     "sleeper"
+    ],
+    "total_snapshots": 3031
+   },
+   {
+    "key": "player_1q_receiving_yards",
+    "label": "1Q Receiving Yards",
+    "bookmakers": [
+     "pick6"
+    ],
+    "total_snapshots": 2915
+   },
+   {
+    "key": "player_first_td",
+    "label": "First TD Scorer",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 2914
+   },
+   {
+    "key": "player_interceptions",
+    "label": "interceptions",
+    "bookmakers": [
+     "bovada",
+     "pinnacle",
+     "sleeper"
+    ],
+    "total_snapshots": 2691
+   },
+   {
+    "key": "player_total_points",
+    "label": "Total Points",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2604
+   },
+   {
+    "key": "player_passing_attempts",
+    "label": "passing_attempts",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "sleeper"
+    ],
+    "total_snapshots": 2609
+   },
+   {
+    "key": "player_longest_rush",
+    "label": "longest_rush",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "prizepicks",
+     "sleeper",
+     "underdog"
+    ],
+    "total_snapshots": 3647
+   },
+   {
+    "key": "player_pass_completions",
+    "label": "pass_completions",
+    "bookmakers": [
+     "pinnacle",
+     "prizepicks",
+     "sleeper"
+    ],
+    "total_snapshots": 2734
+   },
+   {
+    "key": "totals",
+    "label": "Total Points",
+    "bookmakers": [
+     "betonline",
+     "bovada",
+     "fanduel",
+     "fliff",
+     "hardrock",
+     "novig",
+     "pinnacle",
+     "prophetx"
+    ],
+    "total_snapshots": 4153
+   },
+   {
+    "key": "player_longest_passing_completion",
+    "label": "longest_passing_completion",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "sleeper"
+    ],
+    "total_snapshots": 2470
+   },
+   {
+    "key": "player_rushing_and_receiving_yards",
+    "label": "rushing_and_receiving_yards",
+    "bookmakers": [
+     "sleeper"
+    ],
+    "total_snapshots": 1967
+   },
+   {
+    "key": "player_rec_yds",
+    "label": "Receiving Yards",
+    "bookmakers": [
+     "bovada",
+     "fanduel",
+     "underdog"
+    ],
+    "total_snapshots": 8235
+   },
+   {
+    "key": "player_rec_yards_1st_quarter",
+    "label": "1Q Rec Yards",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 1915
+   },
+   {
+    "key": "player_longest_rec",
+    "label": "Longest Reception",
+    "bookmakers": [
+     "bovada",
+     "underdog"
+    ],
+    "total_snapshots": 1960
+   },
+   {
+    "key": "player_winning_margin",
+    "label": "Winning Margin",
+    "bookmakers": [
+     "bovada",
+     "draftkings"
+    ],
+    "total_snapshots": 2883
+   },
+   {
+    "key": "player_rec_yards_1st_half",
+    "label": "1H Rec Yards",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 1886
+   },
+   {
+    "key": "player_extra_point_made",
+    "label": "extra_point_made",
+    "bookmakers": [
+     "sleeper"
+    ],
+    "total_snapshots": 1830
+   },
+   {
+    "key": "player_receptions_1st_half",
+    "label": "1H Receptions",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 1729
+   },
+   {
+    "key": "player_receptions_1st_quarter",
+    "label": "1Q Receptions",
+    "bookmakers": [
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 1746
+   },
+   {
+    "key": "player_passing_and_rushing_yards",
+    "label": "passing_and_rushing_yards",
+    "bookmakers": [
+     "sleeper"
+    ],
+    "total_snapshots": 1635
+   },
+   {
+    "key": "player_receiving_yards_milestones",
+    "label": "Receiving Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 1531
+   },
+   {
+    "key": "exchange_passing_touchdowns",
+    "label": "PASSING_TOUCHDOWNS 1.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 4562
+   },
+   {
+    "key": "player_fumbles_lost",
+    "label": "Fumbles Lost",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 1455
+   },
+   {
+    "key": "moneyline",
+    "label": "MONEY",
+    "bookmakers": [
+     "bovada",
+     "fanduel",
+     "fliff",
+     "novig",
+     "pinnacle",
+     "prophetx",
+     "rushbet"
+    ],
+    "total_snapshots": 1833
+   },
+   {
+    "key": "player_field_goal_made",
+    "label": "field_goal_made",
+    "bookmakers": [
+     "sleeper"
+    ],
+    "total_snapshots": 1322
+   },
+   {
+    "key": "player_player_to_score_2_or_more_touchdowns",
+    "label": "Player to Score 2 or More Touchdowns",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1236
+   },
+   {
+    "key": "player_george_pickens___alt_receiving_yds",
+    "label": "George Pickens - Alt Receiving Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 1131
+   },
+   {
+    "key": "player_kicking_points",
+    "label": "kicking_points",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "prizepicks",
+     "sleeper"
+    ],
+    "total_snapshots": 1185
+   },
+   {
+    "key": "player_rush_yards",
+    "label": "Rush Yards",
+    "bookmakers": [
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 1589
+   },
+   {
+    "key": "player_receptions_milestones",
+    "label": "Receptions Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 1072
+   },
+   {
+    "key": "player_combined_receiving_yards_milestones",
+    "label": "Combined Receiving Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 1056
+   },
+   {
+    "key": "player_parker_washington___alt_receiving_yds",
+    "label": "Parker Washington - Alt Receiving Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 1044
+   },
+   {
+    "key": "player_rush_yards_1st_quarter",
+    "label": "1Q Rush Yards",
+    "bookmakers": [
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 1083
+   },
+   {
+    "key": "player_rush_yards_1st_half",
+    "label": "1H Rush Yards",
+    "bookmakers": [
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 1088
+   },
+   {
+    "key": "player_last_td_scorer",
+    "label": "Last TD Scorer",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 968
+   },
+   {
+    "key": "player_ceedee_lamb___alt_receiving_yds",
+    "label": "CeeDee Lamb - Alt Receiving Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 957
+   },
+   {
+    "key": "player_garrett_wilson___alt_receiving_yds",
+    "label": "Garrett Wilson - Alt Receiving Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 957
+   },
+   {
+    "key": "player_passing_yards_milestones",
+    "label": "Passing Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 957
+   },
+   {
+    "key": "exchange_interceptions_thrown",
+    "label": "INTERCEPTIONS_THROWN 0.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 941
+   },
+   {
+    "key": "winning_margin",
+    "label": "Winning Margin",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 927
+   },
+   {
+    "key": "player_rush_attempts",
+    "label": "Rush Attempts",
+    "bookmakers": [
+     "pinnacle",
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 1120
+   },
+   {
+    "key": "player_dak_prescott___alt_passing_yds",
+    "label": "Dak Prescott - Alt Passing Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 870
+   },
+   {
+    "key": "player_kirk_cousins___alt_passing_yds",
+    "label": "Kirk Cousins - Alt Passing Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 870
+   },
+   {
+    "key": "player_first_touchdown_scorer",
+    "label": "First Touchdown Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 850
+   },
+   {
+    "key": "player_rushing_yards_milestones",
+    "label": "Rushing Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 812
+   },
+   {
+    "key": "player_player_first_catch_o/u_9.5_yards",
+    "label": "Player First Catch O/U 9.5 Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 809
+   },
+   {
+    "key": "player_bucky_irving___alt_receiving_yds",
+    "label": "Bucky Irving - Alt Receiving Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 783
+   },
+   {
+    "key": "player_drake_maye___alt_passing_yds",
+    "label": "Drake Maye - Alt Passing Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 783
+   },
+   {
+    "key": "player_jalen_hurts___alt_passing_yds",
+    "label": "Jalen Hurts - Alt Passing Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 783
+   },
+   {
+    "key": "player_trevor_lawrence___alt_passing_yds",
+    "label": "Trevor Lawrence - Alt Passing Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 783
+   },
+   {
+    "key": "team_totals",
+    "label": "Team Total Points",
+    "bookmakers": [
+     "draftkings",
+     "pinnacle",
+     "prophetx"
+    ],
+    "total_snapshots": 814
+   },
+   {
+    "key": "player_combined_rushing_yards_milestones",
+    "label": "Combined Rushing Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 694
+   },
+   {
+    "key": "player_either_player_to_have_x_receiving_yards",
+    "label": "Either Player to have X Receiving Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 694
+   },
+   {
+    "key": "player_passing__rushing_yards",
+    "label": "Passing + Rushing Yards",
+    "bookmakers": [
+     "pick6"
+    ],
+    "total_snapshots": 671
+   },
+   {
+    "key": "alternate_spreads",
+    "label": "Alternative POINT SPREAD",
+    "bookmakers": [
+     "fliff",
+     "pinnacle"
+    ],
+    "total_snapshots": 832
+   },
+   {
+    "key": "dynamic_winning_margin",
+    "label": "Dynamic Winning Margin",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 558
+   },
+   {
+    "key": "player_either_player_to_have_x_rushing_yards",
+    "label": "Either Player to have X Rushing Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 514
+   },
+   {
+    "key": "player_dynamic_winning_margin",
+    "label": "Dynamic Winning Margin",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 495
+   },
+   {
+    "key": "player_rush___rec_yards",
+    "label": "Rush + Rec Yards",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 495
+   },
+   {
+    "key": "player_passing_+_rushing_yards_milestones",
+    "label": "Passing + Rushing Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 478
+   },
+   {
+    "key": "exchange_passing_attempts",
+    "label": "PASSING_ATTEMPTS 31.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 1855
+   },
+   {
+    "key": "player_race_to_x_receptions",
+    "label": "Race to x Receptions",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 463
+   },
+   {
+    "key": "player_pass_attempts",
+    "label": "Pass Attempts",
+    "bookmakers": [
+     "pinnacle",
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 638
+   },
+   {
+    "key": "player_pass_tds",
+    "label": "Pass TDs",
+    "bookmakers": [
+     "bovada",
+     "fanduel",
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 2558
+   },
+   {
+    "key": "player_pass_tds_1st_quarter",
+    "label": "1Q Pass TDs",
+    "bookmakers": [
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 452
+   },
+   {
+    "key": "player_completions",
+    "label": "Completions",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 447
+   },
+   {
+    "key": "player_ints_thrown",
+    "label": "INTs Thrown",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 447
+   },
+   {
+    "key": "player_pass_yds_1st_half",
+    "label": "1H Pass Yards",
+    "bookmakers": [
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 531
+   },
+   {
+    "key": "player_longest_completion",
+    "label": "Longest Completion",
+    "bookmakers": [
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 581
+   },
+   {
+    "key": "player_pass_tds_1st_half",
+    "label": "1H Pass TDs",
+    "bookmakers": [
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 488
+   },
+   {
+    "key": "player_pass___rush_yards",
+    "label": "Pass + Rush Yards",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 436
+   },
+   {
+    "key": "player_correct_score_range",
+    "label": "Correct Score Range",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 433
+   },
+   {
+    "key": "alternate_totals",
+    "label": "Alternative TOTAL SCORE",
+    "bookmakers": [
+     "fliff",
+     "pinnacle"
+    ],
+    "total_snapshots": 527
+   },
+   {
+    "key": "player_pass_yds_1st_quarter",
+    "label": "1Q Pass Yards",
+    "bookmakers": [
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 450
+   },
+   {
+    "key": "player_passing_attempts_milestones",
+    "label": "Passing Attempts Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 418
+   },
+   {
+    "key": "first_touchdown_scorer",
+    "label": "First Touchdown Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 406
+   },
+   {
+    "key": "total_points_range",
+    "label": "Total Points Range",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 403
+   },
+   {
+    "key": "player_anytime_tds",
+    "label": "Anytime TDs",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 398
+   },
+   {
+    "key": "player_rushing_attempts_milestones",
+    "label": "Rushing Attempts Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 396
+   },
+   {
+    "key": "player_rushing_and_receiving_yards_milestones",
+    "label": "Rushing and Receiving Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 378
+   },
+   {
+    "key": "spreads",
+    "label": "Spread",
+    "bookmakers": [
+     "betonline",
+     "bovada",
+     "fliff",
+     "hardrock",
+     "novig",
+     "pinnacle",
+     "prophetx",
+     "tenbet"
+    ],
+    "total_snapshots": 1951
+   },
+   {
+    "key": "player_point_spread",
+    "label": "Point Spread",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 307
+   },
+   {
+    "key": "player_race_to_x_receiving_yards",
+    "label": "Race to x Receiving Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 307
+   },
+   {
+    "key": "player_assists",
+    "label": "assists",
+    "bookmakers": [
+     "draftkings",
+     "sleeper",
+     "underdog"
+    ],
+    "total_snapshots": 655
+   },
+   {
+    "key": "player_first_touchdown",
+    "label": "first_touchdown",
+    "bookmakers": [
+     "fliff",
+     "sleeper"
+    ],
+    "total_snapshots": 518
+   },
+   {
+    "key": "player_sacks",
+    "label": "sacks",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "prizepicks",
+     "sleeper",
+     "underdog"
+    ],
+    "total_snapshots": 541
+   },
+   {
+    "key": "player_tackles",
+    "label": "tackles",
+    "bookmakers": [
+     "draftkings",
+     "sleeper"
+    ],
+    "total_snapshots": 315
+   },
+   {
+    "key": "player_tackles_and_assists",
+    "label": "tackles_and_assists",
+    "bookmakers": [
+     "sleeper"
+    ],
+    "total_snapshots": 306
+   },
+   {
+    "key": "player_passing_completions_milestones",
+    "label": "Passing Completions Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 290
+   },
+   {
+    "key": "player_total_points_range",
+    "label": "Total Points Range",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 288
+   },
+   {
+    "key": "player_fg_made",
+    "label": "FG Made",
+    "bookmakers": [
+     "prizepicks",
+     "underdog"
+    ],
+    "total_snapshots": 330
+   },
+   {
+    "key": "player_points",
+    "label": "Kicking Points",
+    "bookmakers": [
+     "bovada",
+     "underdog"
+    ],
+    "total_snapshots": 1019
+   },
+   {
+    "key": "player_xp_made",
+    "label": "XP Made",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 283
+   },
+   {
+    "key": "player_game_props",
+    "label": "Total Points Range",
+    "bookmakers": [
+     "pinnacle"
+    ],
+    "total_snapshots": 4266
+   },
+   {
+    "key": "player_combined_passing_yards_milestones",
+    "label": "Combined Passing Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 274
+   },
+   {
+    "key": "player_each_player_receiving_yards_in_each_half",
+    "label": "Each Player Receiving Yards in Each Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 267
+   },
+   {
+    "key": "exchange_passing_completions",
+    "label": "PASSING_COMPLETIONS 20.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 1534
+   },
+   {
+    "key": "player_last_touchdown",
+    "label": "Last Touchdown",
+    "bookmakers": [
+     "fliff"
+    ],
+    "total_snapshots": 249
+   },
+   {
+    "key": "player_field_goals_made",
+    "label": "Field Goals Made",
+    "bookmakers": [
+     "draftkings",
+     "fliff",
+     "pick6"
+    ],
+    "total_snapshots": 258
+   },
+   {
+    "key": "player_anytime_tds_1st_half",
+    "label": "Anytime TDs",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 244
+   },
+   {
+    "key": "player_total",
+    "label": "Total",
+    "bookmakers": [
+     "bovada",
+     "draftkings"
+    ],
+    "total_snapshots": 259
+   },
+   {
+    "key": "exchange_rushing_attempts",
+    "label": "RUSHING_ATTEMPTS 14.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 1629
+   },
+   {
+    "key": "player_half_time_/_full_time",
+    "label": "Half Time / Full Time",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 216
+   },
+   {
+    "key": "player_moneyline",
+    "label": "Moneyline",
+    "bookmakers": [
+     "bovada",
+     "draftkings"
+    ],
+    "total_snapshots": 272
+   },
+   {
+    "key": "player_pass_plus_rush_yds",
+    "label": "Pass+Rush Yds",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 188
+   },
+   {
+    "key": "player_targets",
+    "label": "Targets",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 180
+   },
+   {
+    "key": "player_anytime_td_1st_half",
+    "label": "Anytime Touchdown Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 177
+   },
+   {
+    "key": "futures_futures",
+    "label": "Super Bowl Champion",
+    "bookmakers": [
+     "pinnacle"
+    ],
+    "total_snapshots": 586
+   },
+   {
+    "key": "player_solo_tackles",
+    "label": "Solo Tackles",
+    "bookmakers": [
+     "fliff",
+     "underdog"
+    ],
+    "total_snapshots": 175
+   },
+   {
+    "key": "player_fantasy_points",
+    "label": "Fantasy Score",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 170
+   },
+   {
+    "key": "player_receiving_yards_milestones___1st_half",
+    "label": "Receiving Yards Milestones - 1st Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 168
+   },
+   {
+    "key": "player_player_to_score_3_or_more_touchdowns",
+    "label": "Player to Score 3 or More Touchdowns",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 156
+   },
+   {
+    "key": "player_passing_touchdowns_milestones",
+    "label": "Passing Touchdowns Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 152
+   },
+   {
+    "key": "half_time_/_full_time",
+    "label": "Half Time / Full Time",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 147
+   },
+   {
+    "key": "exchange_longest_reception",
+    "label": "LONGEST_RECEPTION 14.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 881
+   },
+   {
+    "key": "player_team_total_points_odd/even",
+    "label": "Team Total Points Odd/Even",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 139
+   },
+   {
+    "key": "to_win_and_allow_0_points",
+    "label": "To Win and Allow 0 Points",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 139
+   },
+   {
+    "key": "player_defensive_ints",
+    "label": "Defensive INTs",
+    "bookmakers": [
+     "underdog"
+    ],
+    "total_snapshots": 138
+   },
+   {
+    "key": "player_alternate_total_touchdowns",
+    "label": "Alternate Total Touchdowns",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 134
+   },
+   {
+    "key": "player_either_player_to_have_x_passing_yards",
+    "label": "Either Player to have X Passing Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 133
+   },
+   {
+    "key": "player_tackles_+_assists_milestones",
+    "label": "Tackles + Assists Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 130
+   },
+   {
+    "key": "player_double_chance",
+    "label": "Double Chance",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 128
+   },
+   {
+    "key": "player_receiving_yards_1st_half",
+    "label": "Receiving Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 127
+   },
+   {
+    "key": "player_anytime_tds_1st_quarter",
+    "label": "Anytime TDs",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 126
+   },
+   {
+    "key": "player_rush_plus_rec_yds",
+    "label": "Rush+Rec Yds",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 122
+   },
+   {
+    "key": "player_anytime_td_1st_quarter",
+    "label": "Anytime Touchdown Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 118
+   },
+   {
+    "key": "player_to_win_and_allow_0_points",
+    "label": "To Win and Allow 0 Points",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 110
+   },
+   {
+    "key": "player_race_to_x_rushing_yards",
+    "label": "Race to x Rushing Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 106
+   },
+   {
+    "key": "player_longest_reception_milestones",
+    "label": "Longest Reception Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 102
+   },
+   {
+    "key": "player_receiving_yards_milestones___1st_quarter",
+    "label": "Receiving Yards Milestones - 1st Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 101
+   },
+   {
+    "key": "player_squares_game_(fixed_odds)",
+    "label": "Squares Game (Fixed Odds)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 100
+   },
+   {
+    "key": "player_total_touchdowns",
+    "label": "Total Touchdowns",
+    "bookmakers": [
+     "bovada",
+     "draftkings"
+    ],
+    "total_snapshots": 118
+   },
+   {
+    "key": "exchange_field_goals_made",
+    "label": "FIELD_GOALS_MADE 1.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 98
+   },
+   {
+    "key": "exchange_rushing_and_receiving_yards",
+    "label": "RUSHING_AND_RECEIVING_YARDS 79.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 787
+   },
+   {
+    "key": "odd/even_total_points",
+    "label": "Odd/Even Total Points",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 98
+   },
+   {
+    "key": "player_both_teams_to_score",
+    "label": "Both Teams To Score",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 94
+   },
+   {
+    "key": "player_both_teams_to_score_10_or_more_points?",
+    "label": "Both teams to score 10 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 92
+   },
+   {
+    "key": "player_passing_yards_milestones___1st_half",
+    "label": "Passing Yards Milestones - 1st Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 92
+   },
+   {
+    "key": "player_odd/even_total_points",
+    "label": "Odd/Even Total Points",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 90
+   },
+   {
+    "key": "player_receiving_yards_1st_quarter",
+    "label": "Receiving Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 86
+   },
+   {
+    "key": "prophetx_player_longest_reception",
+    "label": "Ted Hurst Longest Reception",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 114
+   },
+   {
+    "key": "player_tackles_milestones",
+    "label": "Tackles Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 73
+   },
+   {
+    "key": "player_passing_tds",
+    "label": "Passing TDs",
+    "bookmakers": [
+     "pick6"
+    ],
+    "total_snapshots": 71
+   },
+   {
+    "key": "double_chance",
+    "label": "Double Chance",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 68
+   },
+   {
+    "key": "player_both_teams_to_score_17_or_more_points?",
+    "label": "Both teams to score 17 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 63
+   },
+   {
+    "key": "player_int",
+    "label": "INT",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 63
+   },
+   {
+    "key": "player_both_teams_to_score_14_or_more_points?",
+    "label": "Both teams to score 14 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 62
+   },
+   {
+    "key": "player_both_teams_to_score_7_or_more_points?",
+    "label": "Both teams to score 7 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 62
+   },
+   {
+    "key": "player_assists_milestones",
+    "label": "Assists Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 57
+   },
+   {
+    "key": "player_longest_passing_completion_milestones",
+    "label": "Longest Passing Completion Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 55
+   },
+   {
+    "key": "player_race_to_25_points",
+    "label": "Race to 25 Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 55
+   },
+   {
+    "key": "player_alternate_passing_completions___michael_penix_jr._(atl)",
+    "label": "Alternate Passing Completions - Michael Penix Jr. (ATL)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 54
+   },
+   {
+    "key": "player_fantasy_points_1st_half",
+    "label": "Fantasy Score",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 53
+   },
+   {
+    "key": "player_interceptions_thrown_milestones",
+    "label": "Interceptions Thrown Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 53
+   },
+   {
+    "key": "player_tackles_plus_ast",
+    "label": "Tackles+Ast",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 53
+   },
+   {
+    "key": "player_half_and_quarter_game_specials",
+    "label": "Half and Quarter Game Specials",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 51
+   },
+   {
+    "key": "prophetx_to_score_a_touchdown",
+    "label": "Amon-Ra St. Brown To Score a Touchdown",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 1515
+   },
+   {
+    "key": "player_rush_reception_yds",
+    "label": "Bhayshul Tuten - Rushing + Receiving Yds",
+    "bookmakers": [
+     "fanduel"
+    ],
+    "total_snapshots": 1143
+   },
+   {
+    "key": "exchange_kicking_points",
+    "label": "KICKING_POINTS 5.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 98
+   },
+   {
+    "key": "exchange_longest_completion",
+    "label": "LONGEST_COMPLETION 31.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 98
+   },
+   {
+    "key": "exchange_longest_rush",
+    "label": "LONGEST_RUSH 13.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 244
+   },
+   {
+    "key": "exchange_passing_and_rushing_yards",
+    "label": "PASSING_AND_RUSHING_YARDS 227.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 392
+   },
+   {
+    "key": "exchange_tackles_assists",
+    "label": "TACKLES_ASSISTS 5.5",
+    "bookmakers": [
+     "novig"
+    ],
+    "total_snapshots": 49
+   },
+   {
+    "key": "player_both_teams_to_score_13_or_more_points?",
+    "label": "Both teams to score 13 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 48
+   },
+   {
+    "key": "player_race_to_20_points",
+    "label": "Race to 20 Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 48
+   },
+   {
+    "key": "player_race_to_30_points",
+    "label": "Race to 30 Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 48
+   },
+   {
+    "key": "player_will_the_game_go_to_overtime?",
+    "label": "Will the game go to Overtime?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 48
+   },
+   {
+    "key": "both_teams_to_score_10_or_more_points?",
+    "label": "Both teams to score 10 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 46
+   },
+   {
+    "key": "player_race_to_35_points",
+    "label": "Race to 35 Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 46
+   },
+   {
+    "key": "first_team_to_score",
+    "label": "First Team To Score",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 44
+   },
+   {
+    "key": "player_race_to_5_points",
+    "label": "Race to 5 Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 44
+   },
+   {
+    "key": "player_player_drive_receiving_yards_milestones",
+    "label": "Player Drive Receiving Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 43
+   },
+   {
+    "key": "player_player_to_record_x+_receiving_yards_in_each_half",
+    "label": "Player to Record X+ Receiving Yards in Each Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 43
+   },
+   {
+    "key": "player_rushing_yards_milestones___1st_half",
+    "label": "Rushing Yards Milestones - 1st Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 43
+   },
+   {
+    "key": "player_race_to_10_points",
+    "label": "Race to 10 Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 42
+   },
+   {
+    "key": "player_race_to_15_points",
+    "label": "Race to 15 Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 42
+   },
+   {
+    "key": "player_receptions_milestones___1st_quarter",
+    "label": "Receptions Milestones - 1st Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 41
+   },
+   {
+    "key": "player_passing_yards_milestones___1st_quarter",
+    "label": "Passing Yards Milestones - 1st Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 40
+   },
+   {
+    "key": "player_player_to_record_x+_rushing_yards_in_each_half",
+    "label": "Player to Record X+ Rushing Yards in Each Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 40
+   },
+   {
+    "key": "player_[team1]_to_score_1st_and_lose",
+    "label": "[Team1] to Score 1st and Lose",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 34
+   },
+   {
+    "key": "player_both_teams_to_score_30_or_more_points?",
+    "label": "Both teams to score 30 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 34
+   },
+   {
+    "key": "player_both_teams_to_score_34_or_more_points?",
+    "label": "Both teams to score 34 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 34
+   },
+   {
+    "key": "player_overtime",
+    "label": "Overtime",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 34
+   },
+   {
+    "key": "player_passing_completions",
+    "label": "Passing Completions O/U",
+    "bookmakers": [
+     "draftkings",
+     "fliff"
+    ],
+    "total_snapshots": 53
+   },
+   {
+    "key": "player_player_to_record_x+_passing_yards_in_each_half",
+    "label": "Player to Record X+ Passing Yards in Each Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 34
+   },
+   {
+    "key": "player_team_total_touchdowns",
+    "label": "Team Total Touchdowns",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 34
+   },
+   {
+    "key": "player_fantasy_points_1st_quarter",
+    "label": "Fantasy Score",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 33
+   },
+   {
+    "key": "first_drive_specials",
+    "label": "First Drive Specials",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 32
+   },
+   {
+    "key": "player_both_teams_to_score_20+_points",
+    "label": "Both Teams to Score 20+ Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 32
+   },
+   {
+    "key": "player_both_teams_to_score_21_or_more_points?",
+    "label": "Both teams to score 21 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 32
+   },
+   {
+    "key": "player_both_teams_to_score_24_or_more_points?",
+    "label": "Both teams to score 24 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 32
+   },
+   {
+    "key": "player_both_teams_to_score_27_or_more_points?",
+    "label": "Both teams to score 27 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 32
+   },
+   {
+    "key": "player_first_drive_specials",
+    "label": "First Drive Specials",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 32
+   },
+   {
+    "key": "both_teams_to_score_14_or_more_points?",
+    "label": "Both teams to score 14 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 31
+   },
+   {
+    "key": "both_teams_to_score_17_or_more_points?",
+    "label": "Both teams to score 17 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 31
+   },
+   {
+    "key": "h2h",
+    "label": "Moneyline",
+    "bookmakers": [
+     "hardrock"
+    ],
+    "total_snapshots": 31
+   },
+   {
+    "key": "player_[team1]_1st_to_score_/_moneyline",
+    "label": "[Team1] 1st to Score / Moneyline",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 31
+   },
+   {
+    "key": "player_[team2]_1st_to_score_/_moneyline",
+    "label": "[Team2] 1st to Score / Moneyline",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 31
+   },
+   {
+    "key": "player_[team2]_to_score_1st_and_lose",
+    "label": "[Team2] to Score 1st and Lose",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 31
+   },
+   {
+    "key": "player_both_teams_to_score_30+_points",
+    "label": "Both Teams to Score 30+ Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 31
+   },
+   {
+    "key": "player_safety_to_be_scored",
+    "label": "Safety to Be Scored",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 31
+   },
+   {
+    "key": "both_teams_to_score",
+    "label": "Both Teams To Score",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 30
+   },
+   {
+    "key": "both_teams_to_score_7_or_more_points?",
+    "label": "Both teams to score 7 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 30
+   },
+   {
+    "key": "player_both_teams_to_score_10+_points",
+    "label": "Both Teams to Score 10+ Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 30
+   },
+   {
+    "key": "player_interceptions_thrown",
+    "label": "Interceptions Thrown O/U",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 30
+   },
+   {
+    "key": "player_rushing_yards_milestones___1st_quarter",
+    "label": "Rushing Yards Milestones - 1st Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 30
+   },
+   {
+    "key": "player_successful_2_point_conversion",
+    "label": "Successful 2 Point Conversion",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 30
+   },
+   {
+    "key": "player_total_points_odd/even",
+    "label": "Total Points Odd/Even",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 30
+   },
+   {
+    "key": "anytime_2nd_half_td_scorer",
+    "label": "Anytime 2nd Half TD Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 29
+   },
+   {
+    "key": "anytime_2nd_quarter_td_scorer",
+    "label": "Anytime 2nd Quarter TD Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 29
+   },
+   {
+    "key": "anytime_4th_quarter_td_scorer",
+    "label": "Anytime 4th Quarter TD Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 29
+   },
+   {
+    "key": "player_anytime_2nd_half_td_scorer",
+    "label": "Anytime 2nd Half TD Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 29
+   },
+   {
+    "key": "player_anytime_2nd_quarter_td_scorer",
+    "label": "Anytime 2nd Quarter TD Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 29
+   },
+   {
+    "key": "player_anytime_4th_quarter_td_scorer",
+    "label": "Anytime 4th Quarter TD Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 29
+   },
+   {
+    "key": "player_first_team_to_score",
+    "label": "First Team To Score",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 29
+   },
+   {
+    "key": "total_touchdowns",
+    "label": "Total Touchdowns",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 29
+   },
+   {
+    "key": "player_both_teams_to_score_15+_points",
+    "label": "Both Teams to Score 15+ Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 28
+   },
+   {
+    "key": "player_both_teams_to_score_25+_points",
+    "label": "Both Teams to Score 25+ Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 28
+   },
+   {
+    "key": "player_last_to_score",
+    "label": "Last to Score",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 28
+   },
+   {
+    "key": "anytime_3rd_quarter_td_scorer",
+    "label": "Anytime 3rd Quarter TD Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 27
+   },
+   {
+    "key": "player_anytime_3rd_quarter_td_scorer",
+    "label": "Anytime 3rd Quarter TD Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 27
+   },
+   {
+    "key": "player_player_drive_touchdown",
+    "label": "Player Drive Touchdown",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 27
+   },
+   {
+    "key": "totals_1st_half",
+    "label": "First Half Total Points",
+    "bookmakers": [
+     "fliff",
+     "prophetx"
+    ],
+    "total_snapshots": 38
+   },
+   {
+    "key": "first_touchdown_scorer___dallas_cowboys",
+    "label": "First Touchdown Scorer - Dallas Cowboys",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 26
+   },
+   {
+    "key": "player_each_team_to_score_1+_touchdown_and_1+_field_goal",
+    "label": "Each Team to Score 1+ Touchdown and 1+ Field Goal",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 26
+   },
+   {
+    "key": "player_either_team_to_score_3_unanswered_times",
+    "label": "Either Team to Score 3 Unanswered Times",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 26
+   },
+   {
+    "key": "player_first_touchdown_scorer_-_dallas_cowboys",
+    "label": "First Touchdown Scorer - Dallas Cowboys",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 26
+   },
+   {
+    "key": "player_rushing_+_receiving_yards",
+    "label": "Rushing + Receiving Yards O/U",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 26
+   },
+   {
+    "key": "player_total_points_-_new_orleans_saints",
+    "label": "Total Points - New Orleans Saints",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 26
+   },
+   {
+    "key": "first_touchdown_scorer___tampa_bay_buccaneers",
+    "label": "First Touchdown Scorer - Tampa Bay Buccaneers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 25
+   },
+   {
+    "key": "player_rec_targets",
+    "label": "Rec Targets",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 25
+   },
+   {
+    "key": "player_alternate_passing_completions___dak_prescott_(dal)",
+    "label": "Alternate Passing Completions - Dak Prescott (DAL)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 24
+   },
+   {
+    "key": "player_passing_interceptions",
+    "label": "Passing Interceptions",
+    "bookmakers": [
+     "fliff"
+    ],
+    "total_snapshots": 24
+   },
+   {
+    "key": "player_player_to_record_a_10__yard_reception",
+    "label": "Player to Record a 10+ Yard Reception",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 24
+   },
+   {
+    "key": "player_player_to_record_a_15__yard_reception",
+    "label": "Player to Record a 15+ Yard Reception",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 24
+   },
+   {
+    "key": "player_player_to_record_a_20__yard_reception",
+    "label": "Player to Record a 20+ Yard Reception",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 24
+   },
+   {
+    "key": "prophetx_player_total_passing_attempts",
+    "label": "Jalon Daniels Total Passing Attempts",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 63
+   },
+   {
+    "key": "prophetx_second_half_total",
+    "label": "Second Half Total Points",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 23
+   },
+   {
+    "key": "player_player_to_record_a_sack",
+    "label": "Player to Record a Sack",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 22
+   },
+   {
+    "key": "player_total_touchdowns___exact",
+    "label": "Total Touchdowns - Exact",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 22
+   },
+   {
+    "key": "either_player___anytime_touchdown_scorer",
+    "label": "Either Player - Anytime Touchdown Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 21
+   },
+   {
+    "key": "either_player___first_touchdown_scorer",
+    "label": "Either Player - First Touchdown Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 21
+   },
+   {
+    "key": "either_player___to_score_2__touchdowns",
+    "label": "Either Player - To Score 2+ Touchdowns",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 21
+   },
+   {
+    "key": "player_either_player_-_anytime_touchdown_scorer",
+    "label": "Either Player - Anytime Touchdown Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 21
+   },
+   {
+    "key": "player_either_player_-_first_touchdown_scorer",
+    "label": "Either Player - First Touchdown Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 21
+   },
+   {
+    "key": "player_either_player_-_to_score_2+_touchdowns",
+    "label": "Either Player - To Score 2+ Touchdowns",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 21
+   },
+   {
+    "key": "player_either_player___anytime_touchdown_scorer",
+    "label": "Either Player - Anytime Touchdown Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 21
+   },
+   {
+    "key": "player_either_player___first_touchdown_scorer",
+    "label": "Either Player - First Touchdown Scorer",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 21
+   },
+   {
+    "key": "player_either_player___to_score_2__touchdowns",
+    "label": "Either Player - To Score 2+ Touchdowns",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 21
+   },
+   {
+    "key": "spreads_1st_half",
+    "label": "First Half Spread",
+    "bookmakers": [
+     "fliff",
+     "prophetx"
+    ],
+    "total_snapshots": 31
+   },
+   {
+    "key": "h2h_1st_half",
+    "label": "First Half Moneyline",
+    "bookmakers": [
+     "fliff",
+     "prophetx"
+    ],
+    "total_snapshots": 31
+   },
+   {
+    "key": "player_player_drive_rushing_yards_milestones",
+    "label": "Player Drive Rushing Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 20
+   },
+   {
+    "key": "player_rushing_receiving_yards",
+    "label": "Rushing + Receiving Yards",
+    "bookmakers": [
+     "fliff"
+    ],
+    "total_snapshots": 20
+   },
+   {
+    "key": "player_total_points_-_minnesota_vikings",
+    "label": "Total Points - Minnesota Vikings",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 20
+   },
+   {
+    "key": "player_player_to_record_x+_passing_yards_in_each_quarter",
+    "label": "Player to Record X+ Passing Yards in Each Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 19
+   },
+   {
+    "key": "prophetx_second_half_spread",
+    "label": "Second Half Spread",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 18
+   },
+   {
+    "key": "player_[team2]_win_with_shutout",
+    "label": "[Team2] Win with Shutout",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 17
+   },
+   {
+    "key": "player_both_teams_to_score_35+_points",
+    "label": "Both Teams to Score 35+ Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 17
+   },
+   {
+    "key": "player_most_receptions",
+    "label": "Most Receptions",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 17
+   },
+   {
+    "key": "player_passing_+_rushing_yards",
+    "label": "Passing + Rushing Yards O/U",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 17
+   },
+   {
+    "key": "both_teams_to_score_13_or_more_points?",
+    "label": "Both teams to score 13 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "both_teams_to_score_21_or_more_points?",
+    "label": "Both teams to score 21 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "both_teams_to_score_24_or_more_points?",
+    "label": "Both teams to score 24 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "both_teams_to_score_27_or_more_points?",
+    "label": "Both teams to score 27 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "both_teams_to_score_30_or_more_points?",
+    "label": "Both teams to score 30 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "both_teams_to_score_34_or_more_points?",
+    "label": "Both teams to score 34 or more points?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "game_specials___kicking",
+    "label": "Game Specials - Kicking",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "player_first_drive_parlays",
+    "label": "First Drive Parlays",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "player_game_specials_-_kicking",
+    "label": "Game Specials - Kicking",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "player_game_specials___kicking",
+    "label": "Game Specials - Kicking",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "player_player_drive_receptions_milestones",
+    "label": "Player Drive Receptions Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "player_total_touchdowns_-_baltimore_ravens",
+    "label": "Total Touchdowns - Baltimore Ravens",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "will_the_game_go_to_overtime?",
+    "label": "Will the game go to Overtime?",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "player_longest_rush_milestones",
+    "label": "Longest Rush Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 15
+   },
+   {
+    "key": "prophetx_player_total_receiving_yards",
+    "label": "Cade Otton Receiving Yards",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 177
+   },
+   {
+    "key": "player_[team1]_win_with_shutout",
+    "label": "[Team1] Win with Shutout",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 14
+   },
+   {
+    "key": "player_[team2]_total_points_bands",
+    "label": "[Team2] Total Points Bands",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 14
+   },
+   {
+    "key": "player_extra_points_made",
+    "label": "Extra Points Made",
+    "bookmakers": [
+     "draftkings",
+     "fliff"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "player_first_drive_touchdown_scorer_-_cowboys",
+    "label": "First Drive Touchdown Scorer - Cowboys",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 14
+   },
+   {
+    "key": "player_player_drive_passing_yards_milestones",
+    "label": "Player Drive Passing Yards Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 14
+   },
+   {
+    "key": "player_player_to_record_a_30__yard_reception",
+    "label": "Player to Record a 30+ Yard Reception",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 14
+   },
+   {
+    "key": "player_receiving_yards_o/u___1st_quarter",
+    "label": "Receiving Yards O/U - 1st Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 14
+   },
+   {
+    "key": "player_each_player_pass_yards_in_each_half",
+    "label": "Each Player Pass Yards in Each Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 13
+   },
+   {
+    "key": "player_first_drive_touchdown_scorer_-_buccaneers",
+    "label": "First Drive Touchdown Scorer - Buccaneers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 13
+   },
+   {
+    "key": "player_first_touchdown_scorer_-_tampa_bay_buccaneers",
+    "label": "First Touchdown Scorer - Tampa Bay Buccaneers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 13
+   },
+   {
+    "key": "player_first_touchdown_scorer___dallas_cowboys",
+    "label": "First Touchdown Scorer - Dallas Cowboys",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 13
+   },
+   {
+    "key": "player_first_touchdown_scorer___tampa_bay_buccaneers",
+    "label": "First Touchdown Scorer - Tampa Bay Buccaneers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 13
+   },
+   {
+    "key": "player_passing_rushing_yards",
+    "label": "Passing + Rushing Yards",
+    "bookmakers": [
+     "fliff"
+    ],
+    "total_snapshots": 13
+   },
+   {
+    "key": "player_sacks_milestones",
+    "label": "Sacks Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 13
+   },
+   {
+    "key": "player_total_completions___michael_penix_jr._(atl)",
+    "label": "Total Completions - Michael Penix Jr. (ATL)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 13
+   },
+   {
+    "key": "player_touchdowns",
+    "label": "Player Props",
+    "bookmakers": [
+     "pinnacle",
+     "prizepicks"
+    ],
+    "total_snapshots": 16
+   },
+   {
+    "key": "player_[team1]_total_points_bands",
+    "label": "[Team1] Total Points Bands",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 12
+   },
+   {
+    "key": "player_alternate_passing_completions___brock_purdy_(sf)",
+    "label": "Alternate Passing Completions - Brock Purdy (SF)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 12
+   },
+   {
+    "key": "player_alternate_passing_completions___deshaun_watson_(cle)",
+    "label": "Alternate Passing Completions - Deshaun Watson (CLE)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 12
+   },
+   {
+    "key": "player_alternate_passing_completions___geno_smith_(nyj)",
+    "label": "Alternate Passing Completions - Geno Smith (NYJ)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 12
+   },
+   {
+    "key": "player_alternate_passing_completions___tyson_bagent_(chi)",
+    "label": "Alternate Passing Completions - Tyson Bagent (CHI)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 12
+   },
+   {
+    "key": "player_most_receiving_yards",
+    "label": "Most Receiving Yards",
+    "bookmakers": [
+     "bovada",
+     "draftkings"
+    ],
+    "total_snapshots": 21
+   },
+   {
+    "key": "player_player_receiving_yards_ml",
+    "label": "Player Receiving Yards ML",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 12
+   },
+   {
+    "key": "player_touchdown_passes",
+    "label": "Player Props",
+    "bookmakers": [
+     "pinnacle"
+    ],
+    "total_snapshots": 12
+   },
+   {
+    "key": "polymarket_moneyline",
+    "label": "Will the Houston Texans win the 2027 NFL league championship?",
+    "bookmakers": [
+     "polymarket"
+    ],
+    "total_snapshots": 24
+   },
+   {
+    "key": "player_halves_with_25_plus_receiving_yards",
+    "label": "Halves with 25+ Receiving Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 11
+   },
+   {
+    "key": "player_longest_pass_completion___jameis_winston_(nyg)",
+    "label": "Longest Pass Completion - Jameis Winston (NYG)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 11
+   },
+   {
+    "key": "player_pass_yards_combo",
+    "label": "Pass Yards (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 11
+   },
+   {
+    "key": "player_receiving_yards_o/u___1st_half",
+    "label": "Receiving Yards O/U - 1st Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 11
+   },
+   {
+    "key": "player_alternate_passing_completions___bo_nix_(den)",
+    "label": "Alternate Passing Completions - Bo Nix (DEN)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_alternate_passing_completions___drake_maye_(ne)",
+    "label": "Alternate Passing Completions - Drake Maye (NE)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_alternate_passing_completions___jalen_hurts_(phi)",
+    "label": "Alternate Passing Completions - Jalen Hurts (PHI)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_alternate_passing_completions___jalon_daniels_(tb)",
+    "label": "Alternate Passing Completions - Jalon Daniels (TB)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_alternate_passing_completions___jordan_love_(gb)",
+    "label": "Alternate Passing Completions - Jordan Love (GB)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_alternate_passing_completions___josh_allen_(buf)",
+    "label": "Alternate Passing Completions - Josh Allen (BUF)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_alternate_passing_completions___justin_herbert_(lac)",
+    "label": "Alternate Passing Completions - Justin Herbert (LAC)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_alternate_passing_completions___kirk_cousins_(lv)",
+    "label": "Alternate Passing Completions - Kirk Cousins (LV)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_alternate_passing_completions___trevor_lawrence_(jax)",
+    "label": "Alternate Passing Completions - Trevor Lawrence (JAX)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_kicking_points_milestones",
+    "label": "Kicking Points Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_rushing_+_receiving_yards_milestones___1st_quarter",
+    "label": "Rushing + Receiving Yards Milestones - 1st Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_tackles_+_assists",
+    "label": "Tackles + Assists O/U",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_total_points_-_buffalo_bills",
+    "label": "Total Points - Buffalo Bills",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 10
+   },
+   {
+    "key": "player_each_player_passing_yards_in_each_quarter",
+    "label": "Each Player Passing Yards in Each Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 9
+   },
+   {
+    "key": "player_extra_points_made_milestones",
+    "label": "Extra Points Made Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 9
+   },
+   {
+    "key": "player_halves_with_25_plus_rush_yards",
+    "label": "Halves with 25+ Rush Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 9
+   },
+   {
+    "key": "player_total_points_-_los_angeles_rams",
+    "label": "Total Points - Los Angeles Rams",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 9
+   },
+   {
+    "key": "player_[team1]_1st_scoring_play",
+    "label": "[Team1] 1st Scoring Play",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_[team2]_1st_scoring_play",
+    "label": "[Team2] 1st Scoring Play",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_alternate_passing_completions___sam_darnold_(sea)",
+    "label": "Alternate Passing Completions - Sam Darnold (SEA)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_field_goals_made_milestones",
+    "label": "Field Goals Made Milestones",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_passing_touchdown_milestones___1st_quarter",
+    "label": "Passing Touchdown Milestones - 1st Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_player_rushing_yards_ml",
+    "label": "Player Rushing Yards ML",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_player_rushing_yards_spread",
+    "label": "Player Rushing Yards Spread",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_player_to_record_x+_receiving_yards_in_each_quarter",
+    "label": "Player to Record X+ Receiving Yards in Each Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_quarters_with_5_plus_rush_yards",
+    "label": "Quarters with 5+ Rush Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_total_points_-_houston_texans",
+    "label": "Total Points - Houston Texans",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_total_points_-_jacksonville_jaguars",
+    "label": "Total Points - Jacksonville Jaguars",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_total_points_-_new_york_giants",
+    "label": "Total Points - New York Giants",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_winning_margin_(10-point_bands)",
+    "label": "Winning Margin (10-point Bands)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_winning_margin_(10_point_bands)",
+    "label": "Winning Margin (10-point Bands)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "winning_margin_(10_point_bands)",
+    "label": "Winning Margin (10-point Bands)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 8
+   },
+   {
+    "key": "player_halves_with_100_plus_pass_yards",
+    "label": "Halves with 100+ Pass Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 7
+   },
+   {
+    "key": "player_player_to_record_x+_rushing_yards_in_each_quarter",
+    "label": "Player To Record X+ Rushing Yards In Each Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 7
+   },
+   {
+    "key": "player_receiving_yards_combo",
+    "label": "Receiving Yards (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 7
+   },
+   {
+    "key": "player_rush_yards_combo",
+    "label": "Rush Yards (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 7
+   },
+   {
+    "key": "player_seattle_seahawks_to_win_both_halves",
+    "label": "Seattle Seahawks To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 7
+   },
+   {
+    "key": "prophetx_player_interceptions_thrown",
+    "label": "Dak Prescott Interceptions Thrown",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 36
+   },
+   {
+    "key": "prophetx_player_total_receptions",
+    "label": "Javonte Williams Total Receptions",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 161
+   },
+   {
+    "key": "prophetx_player_total_rushing_yards",
+    "label": "Bucky Irving Rushing Yards",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 110
+   },
+   {
+    "key": "first_scoring_play",
+    "label": "First Scoring Play",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_first_scoring_play",
+    "label": "First Scoring Play",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_longest_field_goal_made",
+    "label": "Longest Field Goal Made",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_longest_touchdown",
+    "label": "Longest Touchdown",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_most_rushing_yards",
+    "label": "Most Rushing Yards",
+    "bookmakers": [
+     "bovada",
+     "draftkings"
+    ],
+    "total_snapshots": 11
+   },
+   {
+    "key": "player_player_receiving_yards_spread",
+    "label": "Player Receiving Yards Spread",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_quarters_with_1_plus_reception",
+    "label": "Quarters with 1+ Reception",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_team_to_record_most_punts",
+    "label": "Team to Record Most Punts",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_to_score_every_quarter",
+    "label": "To Score Every Quarter",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_atlanta_falcons",
+    "label": "Total Points - Atlanta Falcons",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_baltimore_ravens",
+    "label": "Total Points - Baltimore Ravens",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_chicago_bears",
+    "label": "Total Points - Chicago Bears",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_cincinnati_bengals",
+    "label": "Total Points - Cincinnati Bengals",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_cleveland_browns",
+    "label": "Total Points - Cleveland Browns",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_dallas_cowboys",
+    "label": "Total Points - Dallas Cowboys",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_detroit_lions",
+    "label": "Total Points - Detroit Lions",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_green_bay_packers",
+    "label": "Total Points - Green Bay Packers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_las_vegas_raiders",
+    "label": "Total Points - Las Vegas Raiders",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_new_york_jets",
+    "label": "Total Points - New York Jets",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_philadelphia_eagles",
+    "label": "Total Points - Philadelphia Eagles",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_pittsburgh_steelers",
+    "label": "Total Points - Pittsburgh Steelers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_san_francisco_49ers",
+    "label": "Total Points - San Francisco 49ers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_seattle_seahawks",
+    "label": "Total Points - Seattle Seahawks",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_tampa_bay_buccaneers",
+    "label": "Total Points - Tampa Bay Buccaneers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_tennessee_titans",
+    "label": "Total Points - Tennessee Titans",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_points_-_washington_commanders",
+    "label": "Total Points - Washington Commanders",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "player_total_touchdowns_-_tennessee_titans",
+    "label": "Total Touchdowns - Tennessee Titans",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "futures_conference",
+    "label": "Spread: AFC Ajax (-5.5)",
+    "bookmakers": [
+     "polymarket"
+    ],
+    "total_snapshots": 5
+   },
+   {
+    "key": "player_alternate_passing_completions___matthew_stafford_(lar)",
+    "label": "Alternate Passing Completions - Matthew Stafford (LAR)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 5
+   },
+   {
+    "key": "player_each_player_rushing_yards_in_each_half",
+    "label": "Each Player Rushing Yards in Each Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 5
+   },
+   {
+    "key": "player_quarters_with_10_plus_receiving_yards",
+    "label": "Quarters with 10+ Receiving Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 5
+   },
+   {
+    "key": "player_rushing_yards_o/u___1st_half",
+    "label": "Rushing Yards O/U - 1st Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 5
+   },
+   {
+    "key": "player_total_points_-_indianapolis_colts",
+    "label": "Total Points - Indianapolis Colts",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 5
+   },
+   {
+    "key": "player_total_points_-_los_angeles_chargers",
+    "label": "Total Points - Los Angeles Chargers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 5
+   },
+   {
+    "key": "player_total_points_-_miami_dolphins",
+    "label": "Total Points - Miami Dolphins",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 5
+   },
+   {
+    "key": "player_total_points_-_new_england_patriots",
+    "label": "Total Points - New England Patriots",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 5
+   },
+   {
+    "key": "prophetx_player_total_rushing_attempts",
+    "label": "Jalon Daniels Total Rushing Attempts",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 14
+   },
+   {
+    "key": "player_[team1]_to_score_a_safety",
+    "label": "[Team1] to Score a Safety",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_[team1]_to_win_from_behind",
+    "label": "[Team1] to Win from Behind",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_[team2]_to_score_a_safety",
+    "label": "[Team2] to Score a Safety",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_[team2]_to_win_from_behind",
+    "label": "[Team2] to Win from Behind",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_any_team_to_score_30+_points",
+    "label": "Any Team to Score 30+ Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_any_team_to_score_40+_points",
+    "label": "Any Team to Score 40+ Points",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_game_to_be_tied_again_after_0_0?",
+    "label": "Game to Be Tied Again after 0-0?",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_longest_rushing_attempt___jalon_daniels_(tb)",
+    "label": "Longest Rushing Attempt - Jalon Daniels (TB)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_longest_rushing_attempt___kenneth_gainwell_(tb)",
+    "label": "Longest Rushing Attempt - Kenneth Gainwell (TB)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_player_receiving_yards_total",
+    "label": "Player Receiving Yards Total",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_rushing_yards_o/u___1st_quarter",
+    "label": "Rushing Yards O/U - 1st Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_total_points_-_arizona_cardinals",
+    "label": "Total Points - Arizona Cardinals",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_total_touchdowns_-_washington_commanders",
+    "label": "Total Touchdowns - Washington Commanders",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_will_both_teams_make_33_yard_or_longer_field_goal?",
+    "label": "Will Both Teams Make 33 Yard or Longer Field Goal?",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_will_the_team_that_scores_last_win_the_game?",
+    "label": "Will the Team That Scores Last Win the Game?",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_will_there_be_a_2_point_conversion_attempt?",
+    "label": "Will There Be a 2 Point Conversion Attempt?",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_will_there_be_an_octopus?",
+    "label": "Will There Be an Octopus?",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_winning_margin_(4-way)",
+    "label": "Winning Margin (4-way)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "player_winning_margin_(4_way)",
+    "label": "Winning Margin (4-way)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "polymarket_yesno",
+    "label": "Will Fernando Mendoza have 3,500+ passing yards in the 2026-27 NFL regular season?",
+    "bookmakers": [
+     "polymarket"
+    ],
+    "total_snapshots": 6
+   },
+   {
+    "key": "prophetx_player_longest_rush",
+    "label": "Dak Prescott Longest Rush",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 15
+   },
+   {
+    "key": "prophetx_player_total_passing_rushing_yards",
+    "label": "Dak Prescott Total Passing & Rushing Yards",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 7
+   },
+   {
+    "key": "prophetx_player_total_passing_yards",
+    "label": "Dak Prescott Passing Yards",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 35
+   },
+   {
+    "key": "prophetx_player_total_rushing_receiving_yards",
+    "label": "Bucky Irving Total Rushing & Receiving Yards",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 11
+   },
+   {
+    "key": "winning_margin_(4_way)",
+    "label": "Winning Margin (4-way)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 4
+   },
+   {
+    "key": "futures_championship",
+    "label": "Will Minnesota Vikings win the 2027 NFL NFC Championship?",
+    "bookmakers": [
+     "polymarket"
+    ],
+    "total_snapshots": 27
+   },
+   {
+    "key": "player_arizona_cardinals_to_win_both_halves",
+    "label": "Arizona Cardinals To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_atlanta_falcons_to_win_both_halves",
+    "label": "Atlanta Falcons To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_baltimore_ravens_to_win_both_halves",
+    "label": "Baltimore Ravens To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_buffalo_bills_to_win_both_halves",
+    "label": "Buffalo Bills To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_cincinnati_bengals_to_win_both_halves",
+    "label": "Cincinnati Bengals To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_cleveland_browns_to_win_both_halves",
+    "label": "Cleveland Browns To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_dallas_cowboys_to_win_both_halves",
+    "label": "Dallas Cowboys To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_denver_broncos_to_win_both_halves",
+    "label": "Denver Broncos To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_detroit_lions_to_win_both_halves",
+    "label": "Detroit Lions To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_houston_texans_to_win_both_halves",
+    "label": "Houston Texans To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_indianapolis_colts_to_win_both_halves",
+    "label": "Indianapolis Colts To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_jacksonville_jaguars_to_win_both_halves",
+    "label": "Jacksonville Jaguars To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_los_angeles_chargers_to_win_both_halves",
+    "label": "Los Angeles Chargers To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_los_angeles_rams_to_win_both_halves",
+    "label": "Los Angeles Rams To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_miami_dolphins_to_win_both_halves",
+    "label": "Miami Dolphins To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_minnesota_vikings_to_win_both_halves",
+    "label": "Minnesota Vikings To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_new_orleans_saints_to_win_both_halves",
+    "label": "New Orleans Saints To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_new_york_giants_to_win_both_halves",
+    "label": "New York Giants To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_new_york_jets_to_win_both_halves",
+    "label": "New York Jets To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_passing_yards_o/u___1st_half",
+    "label": "Passing Yards O/U - 1st Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_philadelphia_eagles_to_win_both_halves",
+    "label": "Philadelphia Eagles To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_pittsburgh_steelers_to_win_both_halves",
+    "label": "Pittsburgh Steelers To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_player_rushing_yards_total",
+    "label": "Player Rushing Yards Total",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_quarters_with_25_plus_pass_yards",
+    "label": "Quarters with 25+ Pass Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_san_francisco_49ers_to_win_both_halves",
+    "label": "San Francisco 49ers To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_shortest_field_goal_made_yards",
+    "label": "Shortest Field Goal Made Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_tackle_assists",
+    "label": "Tackle Assists",
+    "bookmakers": [
+     "fliff"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_tackles_assists",
+    "label": "Tackles + Assists",
+    "bookmakers": [
+     "fliff"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_tampa_bay_buccaneers_to_win_both_halves",
+    "label": "Tampa Bay Buccaneers To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_tennessee_titans_to_win_both_halves",
+    "label": "Tennessee Titans To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_total_field_goal_yards",
+    "label": "Total Field Goal Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_total_points_-_denver_broncos",
+    "label": "Total Points - Denver Broncos",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_total_touchdown_yards",
+    "label": "Total Touchdown Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_washington_commanders_to_win_both_halves",
+    "label": "Washington Commanders To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "prophetx_1st_quarter_moneyline",
+    "label": "1st Quarter Moneyline",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "prophetx_1st_quarter_spread",
+    "label": "1st Quarter Spread",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "prophetx_player_longest_pass",
+    "label": "Jalon Daniels Longest Pass",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 5
+   },
+   {
+    "key": "prophetx_player_total_passing_touchdowns",
+    "label": "Cam Ward Total Passing Touchdowns",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 37
+   },
+   {
+    "key": "total_touchdowns___dallas_cowboys",
+    "label": "Total Touchdowns - Dallas Cowboys",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "player_both_teams_to_score_1+_td_in_each_half",
+    "label": "Both Teams to Score 1+ TD in Each Half",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_both_teams_to_score_2+_td_in_each_half",
+    "label": "Both Teams to Score 2+ TD in Each Half",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_completion_percentage",
+    "label": "Completion Percentage",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_completions_in_first_10_pass_attempts",
+    "label": "Completions in First 10 Pass Attempts",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_fg_made_1st_half",
+    "label": "FG Made",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_largest_lead_of_the_game",
+    "label": "Largest Lead of the Game",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_longest_field_goal_made_yards",
+    "label": "Longest Field Goal Made Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_longest_pass_completion___dak_prescott_(dal)",
+    "label": "Longest Pass Completion - Dak Prescott (DAL)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_longest_pass_completion___jalon_daniels_(tb)",
+    "label": "Longest Pass Completion - Jalon Daniels (TB)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_longest_rushing_attempt___bucky_irving_(tb)",
+    "label": "Longest Rushing Attempt - Bucky Irving (TB)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_longest_rushing_attempt___dak_prescott_(dal)",
+    "label": "Longest Rushing Attempt - Dak Prescott (DAL)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_longest_touchdown_yards",
+    "label": "Longest Touchdown Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_most_passing_yards",
+    "label": "Most Passing Yards",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_passer_rating",
+    "label": "Passer Rating",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_passing_yards_o/u___1st_quarter",
+    "label": "Passing Yards O/U - 1st Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_player_passing_yards_ml",
+    "label": "Player Passing Yards ML",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_punts",
+    "label": "Punts",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_qb_fantasy_points",
+    "label": "QB Fantasy Points O/U",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_quarters_with_10_plus_rush_yards",
+    "label": "Quarters with 10+ Rush Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_quarters_with_1_plus_kicking_point",
+    "label": "Quarters With 1+ Kicking Point",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_quarters_with_20_plus_pass_yards",
+    "label": "Quarters with 20+ Pass Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_quarters_with_5_plus_receiving_yards",
+    "label": "Quarters with 5+ Receiving Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_rb_fantasy_points",
+    "label": "RB Fantasy Points O/U",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_rush_yards_in_first_5_attempts",
+    "label": "Rush Yards in First 5 Attempts",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_rush_yards_per_carry",
+    "label": "Rush Yards Per Carry",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_shortest_touchdown_yards",
+    "label": "Shortest Touchdown Yards",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_team_to_have_1st_field_goal",
+    "label": "Team to Have 1st Field Goal",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_to_score_first_and_lose",
+    "label": "To Score First And Lose",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_to_score_first_and_win",
+    "label": "To Score First And Win",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___bo_nix_(den)",
+    "label": "Total Completions - Bo Nix (DEN)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___brock_purdy_(sf)",
+    "label": "Total Completions - Brock Purdy (SF)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___deshaun_watson_(cle)",
+    "label": "Total Completions - Deshaun Watson (CLE)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___drake_maye_(ne)",
+    "label": "Total Completions - Drake Maye (NE)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___geno_smith_(nyj)",
+    "label": "Total Completions - Geno Smith (NYJ)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___jalen_hurts_(phi)",
+    "label": "Total Completions - Jalen Hurts (PHI)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___jalon_daniels_(tb)",
+    "label": "Total Completions - Jalon Daniels (TB)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___jameis_winston_(nyg)",
+    "label": "Total Completions - Jameis Winston (NYG)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___jared_goff_(det)",
+    "label": "Total Completions - Jared Goff (DET)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___jordan_love_(gb)",
+    "label": "Total Completions - Jordan Love (GB)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___josh_allen_(buf)",
+    "label": "Total Completions - Josh Allen (BUF)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___justin_herbert_(lac)",
+    "label": "Total Completions - Justin Herbert (LAC)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___kirk_cousins_(lv)",
+    "label": "Total Completions - Kirk Cousins (LV)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___trevor_lawrence_(jax)",
+    "label": "Total Completions - Trevor Lawrence (JAX)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_completions___tyson_bagent_(chi)",
+    "label": "Total Completions - Tyson Bagent (CHI)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_field_goals___1st_half",
+    "label": "Total Field Goals - 1st Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_field_goals___2nd_half",
+    "label": "Total Field Goals - 2nd Half",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_field_goals_made",
+    "label": "Total Field Goals Made",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_punts",
+    "label": "Total Punts",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_arizona_cardinals",
+    "label": "Total Touchdowns - Arizona Cardinals",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_atlanta_falcons",
+    "label": "Total Touchdowns - Atlanta Falcons",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_buffalo_bills",
+    "label": "Total Touchdowns - Buffalo Bills",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_chicago_bears",
+    "label": "Total Touchdowns - Chicago Bears",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_cincinnati_bengals",
+    "label": "Total Touchdowns - Cincinnati Bengals",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_cleveland_browns",
+    "label": "Total Touchdowns - Cleveland Browns",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_denver_broncos",
+    "label": "Total Touchdowns - Denver Broncos",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_green_bay_packers",
+    "label": "Total Touchdowns - Green Bay Packers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_houston_texans",
+    "label": "Total Touchdowns - Houston Texans",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_indianapolis_colts",
+    "label": "Total Touchdowns - Indianapolis Colts",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_jacksonville_jaguars",
+    "label": "Total Touchdowns - Jacksonville Jaguars",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_las_vegas_raiders",
+    "label": "Total Touchdowns - Las Vegas Raiders",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_los_angeles_chargers",
+    "label": "Total Touchdowns - Los Angeles Chargers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_los_angeles_rams",
+    "label": "Total Touchdowns - Los Angeles Rams",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_miami_dolphins",
+    "label": "Total Touchdowns - Miami Dolphins",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_minnesota_vikings",
+    "label": "Total Touchdowns - Minnesota Vikings",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_new_england_patriots",
+    "label": "Total Touchdowns - New England Patriots",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_new_orleans_saints",
+    "label": "Total Touchdowns - New Orleans Saints",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_new_york_giants",
+    "label": "Total Touchdowns - New York Giants",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_new_york_jets",
+    "label": "Total Touchdowns - New York Jets",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_philadelphia_eagles",
+    "label": "Total Touchdowns - Philadelphia Eagles",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_pittsburgh_steelers",
+    "label": "Total Touchdowns - Pittsburgh Steelers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_san_francisco_49ers",
+    "label": "Total Touchdowns - San Francisco 49ers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns_-_tampa_bay_buccaneers",
+    "label": "Total Touchdowns - Tampa Bay Buccaneers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_touchdowns___baltimore_ravens",
+    "label": "Total Touchdowns - Baltimore Ravens",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_total_turnovers",
+    "label": "Total Turnovers",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "player_wr.te_fantasy_points",
+    "label": "WR.TE Fantasy Points O/U",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "prophetx_player_total_field_goals_made",
+    "label": "Chase McLaughlin Total Field Goals Made",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 3
+   },
+   {
+    "key": "prophetx_player_total_pass_completions",
+    "label": "Michael Penix Jr. Total Pass Completions",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 28
+   },
+   {
+    "key": "team_to_have_1st_field_goal",
+    "label": "Team to Have 1st Field Goal",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "to_score_every_quarter",
+    "label": "To Score Every Quarter",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "to_score_first_and_lose",
+    "label": "To Score First And Lose",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "to_score_first_and_win",
+    "label": "To Score First And Win",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "total_touchdowns___baltimore_ravens",
+    "label": "Total Touchdowns - Baltimore Ravens",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 2
+   },
+   {
+    "key": "arizona_cardinals_to_win_both_halves",
+    "label": "Arizona Cardinals To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "atlanta_falcons_to_win_both_halves",
+    "label": "Atlanta Falcons To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "baltimore_ravens_to_win_both_halves",
+    "label": "Baltimore Ravens To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "both_teams_to_score_1__td_in_each_half",
+    "label": "Both Teams to Score 1+ TD in Each Half",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "both_teams_to_score_2__td_in_each_half",
+    "label": "Both Teams to Score 2+ TD in Each Half",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "buffalo_bills_to_win_both_halves",
+    "label": "Buffalo Bills To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "cincinnati_bengals_to_win_both_halves",
+    "label": "Cincinnati Bengals To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "cleveland_browns_to_win_both_halves",
+    "label": "Cleveland Browns To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "dallas_cowboys_to_win_both_halves",
+    "label": "Dallas Cowboys To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "denver_broncos_to_win_both_halves",
+    "label": "Denver Broncos To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "detroit_lions_to_win_both_halves",
+    "label": "Detroit Lions To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "houston_texans_to_win_both_halves",
+    "label": "Houston Texans To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "indianapolis_colts_to_win_both_halves",
+    "label": "Indianapolis Colts To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "jacksonville_jaguars_to_win_both_halves",
+    "label": "Jacksonville Jaguars To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "los_angeles_chargers_to_win_both_halves",
+    "label": "Los Angeles Chargers To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "los_angeles_rams_to_win_both_halves",
+    "label": "Los Angeles Rams To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "miami_dolphins_to_win_both_halves",
+    "label": "Miami Dolphins To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "minnesota_vikings_to_win_both_halves",
+    "label": "Minnesota Vikings To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "new_orleans_saints_to_win_both_halves",
+    "label": "New Orleans Saints To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "new_york_giants_to_win_both_halves",
+    "label": "New York Giants To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "new_york_jets_to_win_both_halves",
+    "label": "New York Jets To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "philadelphia_eagles_to_win_both_halves",
+    "label": "Philadelphia Eagles To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "pittsburgh_steelers_to_win_both_halves",
+    "label": "Pittsburgh Steelers To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_both_teams_to_score_1__td_in_each_half",
+    "label": "Both Teams to Score 1+ TD in Each Half",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_both_teams_to_score_2__td_in_each_half",
+    "label": "Both Teams to Score 2+ TD in Each Half",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_each_player_rushing_yards_in_each_quarter",
+    "label": "Each Player Rushing Yards in Each Quarter",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_fg_made_combo",
+    "label": "FG Made (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_fg_made_combo_1st_half",
+    "label": "FG Made (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_fg_made_combo_1st_quarter",
+    "label": "FG Made (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_field_goal_yards_combo",
+    "label": "Field Goal Yards (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_field_goals",
+    "label": "Player Props",
+    "bookmakers": [
+     "pinnacle"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_first_fg_distance_combo",
+    "label": "First FG Distance (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_halves_with_40_plus_receiving_yards",
+    "label": "Halves with 40+ Receiving Yards",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_kicking_points_combo",
+    "label": "Kicking Points (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_last_fg_distance_combo",
+    "label": "Last FG Distance (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_longest_fg_made_yds_combo",
+    "label": "Longest FG Made Yds (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_pat_made_combo",
+    "label": "PAT Made (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_player_prop_specials",
+    "label": "Player Prop Specials",
+    "bookmakers": [
+     "draftkings"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_punt_touchbacks_combo",
+    "label": "Punt Touchbacks (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_punts_inside_20",
+    "label": "Punts Inside 20",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_requested_specials",
+    "label": "Requested Specials",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_shortest_fg_made_yds_combo",
+    "label": "Shortest FG Made Yds (Combo)",
+    "bookmakers": [
+     "prizepicks"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_completions___jacoby_brissett_(ari)",
+    "label": "Total Completions - Jacoby Brissett (ARI)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_completions___matthew_stafford_(lar)",
+    "label": "Total Completions - Matthew Stafford (LAR)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_completions___sam_darnold_(sea)",
+    "label": "Total Completions - Sam Darnold (SEA)",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns_-_dallas_cowboys",
+    "label": "Total Touchdowns - Dallas Cowboys",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns_-_detroit_lions",
+    "label": "Total Touchdowns - Detroit Lions",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns_-_seattle_seahawks",
+    "label": "Total Touchdowns - Seattle Seahawks",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___arizona_cardinals",
+    "label": "Total Touchdowns - Arizona Cardinals",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___atlanta_falcons",
+    "label": "Total Touchdowns - Atlanta Falcons",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___buffalo_bills",
+    "label": "Total Touchdowns - Buffalo Bills",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___chicago_bears",
+    "label": "Total Touchdowns - Chicago Bears",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___cincinnati_bengals",
+    "label": "Total Touchdowns - Cincinnati Bengals",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___cleveland_browns",
+    "label": "Total Touchdowns - Cleveland Browns",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___dallas_cowboys",
+    "label": "Total Touchdowns - Dallas Cowboys",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___denver_broncos",
+    "label": "Total Touchdowns - Denver Broncos",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___detroit_lions",
+    "label": "Total Touchdowns - Detroit Lions",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___green_bay_packers",
+    "label": "Total Touchdowns - Green Bay Packers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___houston_texans",
+    "label": "Total Touchdowns - Houston Texans",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___indianapolis_colts",
+    "label": "Total Touchdowns - Indianapolis Colts",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___jacksonville_jaguars",
+    "label": "Total Touchdowns - Jacksonville Jaguars",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___las_vegas_raiders",
+    "label": "Total Touchdowns - Las Vegas Raiders",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___los_angeles_chargers",
+    "label": "Total Touchdowns - Los Angeles Chargers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___los_angeles_rams",
+    "label": "Total Touchdowns - Los Angeles Rams",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___miami_dolphins",
+    "label": "Total Touchdowns - Miami Dolphins",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___minnesota_vikings",
+    "label": "Total Touchdowns - Minnesota Vikings",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___new_england_patriots",
+    "label": "Total Touchdowns - New England Patriots",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___new_orleans_saints",
+    "label": "Total Touchdowns - New Orleans Saints",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___new_york_giants",
+    "label": "Total Touchdowns - New York Giants",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___new_york_jets",
+    "label": "Total Touchdowns - New York Jets",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___philadelphia_eagles",
+    "label": "Total Touchdowns - Philadelphia Eagles",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___pittsburgh_steelers",
+    "label": "Total Touchdowns - Pittsburgh Steelers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___san_francisco_49ers",
+    "label": "Total Touchdowns - San Francisco 49ers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___seattle_seahawks",
+    "label": "Total Touchdowns - Seattle Seahawks",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___tampa_bay_buccaneers",
+    "label": "Total Touchdowns - Tampa Bay Buccaneers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___tennessee_titans",
+    "label": "Total Touchdowns - Tennessee Titans",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "player_total_touchdowns___washington_commanders",
+    "label": "Total Touchdowns - Washington Commanders",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "prophetx_1st_quarter_total",
+    "label": "1st Quarter Total Points",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "prophetx_first_team_to_score",
+    "label": "First Team to Score",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "prophetx_player_to_score_first_touchdown",
+    "label": "Aaron Rodgers To Score First Touchdown",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 141
+   },
+   {
+    "key": "prophetx_player_to_score_last_touchdown",
+    "label": "Aaron Rodgers To Score Last Touchdown",
+    "bookmakers": [
+     "prophetx"
+    ],
+    "total_snapshots": 143
+   },
+   {
+    "key": "san_francisco_49ers_to_win_both_halves",
+    "label": "San Francisco 49ers To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "seattle_seahawks_to_win_both_halves",
+    "label": "Seattle Seahawks To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "tampa_bay_buccaneers_to_win_both_halves",
+    "label": "Tampa Bay Buccaneers To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "tennessee_titans_to_win_both_halves",
+    "label": "Tennessee Titans To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___arizona_cardinals",
+    "label": "Total Touchdowns - Arizona Cardinals",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___atlanta_falcons",
+    "label": "Total Touchdowns - Atlanta Falcons",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___buffalo_bills",
+    "label": "Total Touchdowns - Buffalo Bills",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___chicago_bears",
+    "label": "Total Touchdowns - Chicago Bears",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___cincinnati_bengals",
+    "label": "Total Touchdowns - Cincinnati Bengals",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___cleveland_browns",
+    "label": "Total Touchdowns - Cleveland Browns",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___denver_broncos",
+    "label": "Total Touchdowns - Denver Broncos",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___detroit_lions",
+    "label": "Total Touchdowns - Detroit Lions",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___green_bay_packers",
+    "label": "Total Touchdowns - Green Bay Packers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___houston_texans",
+    "label": "Total Touchdowns - Houston Texans",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___indianapolis_colts",
+    "label": "Total Touchdowns - Indianapolis Colts",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___jacksonville_jaguars",
+    "label": "Total Touchdowns - Jacksonville Jaguars",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___las_vegas_raiders",
+    "label": "Total Touchdowns - Las Vegas Raiders",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___los_angeles_chargers",
+    "label": "Total Touchdowns - Los Angeles Chargers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___los_angeles_rams",
+    "label": "Total Touchdowns - Los Angeles Rams",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___miami_dolphins",
+    "label": "Total Touchdowns - Miami Dolphins",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___minnesota_vikings",
+    "label": "Total Touchdowns - Minnesota Vikings",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___new_england_patriots",
+    "label": "Total Touchdowns - New England Patriots",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___new_orleans_saints",
+    "label": "Total Touchdowns - New Orleans Saints",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___new_york_giants",
+    "label": "Total Touchdowns - New York Giants",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___new_york_jets",
+    "label": "Total Touchdowns - New York Jets",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___philadelphia_eagles",
+    "label": "Total Touchdowns - Philadelphia Eagles",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___pittsburgh_steelers",
+    "label": "Total Touchdowns - Pittsburgh Steelers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___san_francisco_49ers",
+    "label": "Total Touchdowns - San Francisco 49ers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___seattle_seahawks",
+    "label": "Total Touchdowns - Seattle Seahawks",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___tampa_bay_buccaneers",
+    "label": "Total Touchdowns - Tampa Bay Buccaneers",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___tennessee_titans",
+    "label": "Total Touchdowns - Tennessee Titans",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "total_touchdowns___washington_commanders",
+    "label": "Total Touchdowns - Washington Commanders",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   },
+   {
+    "key": "washington_commanders_to_win_both_halves",
+    "label": "Washington Commanders To Win Both Halves",
+    "bookmakers": [
+     "bovada"
+    ],
+    "total_snapshots": 1
+   }
+  ]
+ },
+ "params": {
+  "limit": 10000,
+  "oddsFormat": "american",
+  "bookmakers": "draftkings,fanduel",
+  "markets": "player_passing_yards,player_passing_attempts,player_passing_completions,player_rushing_yards,player_rushing_attempts,player_receiving_yards,player_receptions,player_passing_+_rushing_yards,player_rushing_+_receiving_yards,player_pass_yds,player_rec_yds,player_rush_yds,player_rush_reception_yds,player_pass_attempts,player_pass_completions,player_rush_attempts"
+ },
+ "props": {
+  "sport_key": "americanfootball_nfl",
+  "url": "https://parlay-api.com/v1/sports/americanfootball_nfl/props?apiKey=REDACTED&limit=10000&oddsFormat=american&bookmakers=draftkings%2Cfanduel&markets=player_passing_yards%2Cplayer_passing_attempts%2Cplayer_passing_completions%2Cplayer_rushing_yards%2Cplayer_rushing_attempts%2Cplayer_receiving_yards%2Cplayer_receptions%2Cplayer_passing_%2B_rushing_yards%2Cplayer_rushing_%2B_receiving_yards%2Cplayer_pass_yds%2Cplayer_rec_yds%2Cplayer_rush_yds%2Cplayer_rush_reception_yds%2Cplayer_pass_attempts%2Cplayer_pass_completions%2Cplayer_rush_attempts",
+  "status": 200,
+  "headers": {
+   "ratelimit-limit": "60",
+   "ratelimit-policy": "\"free\"; q=60; w=1",
+   "ratelimit-remaining": "60",
+   "ratelimit-reset": "1",
+   "x-ratelimit-limit": "60",
+   "x-ratelimit-remaining": "60",
+   "x-ratelimit-tier": "free",
+   "x-ratelimit-window-seconds": "1",
+   "x-requests-remaining": "994",
+   "x-requests-used": "6",
+   "x-result-limit": "10000"
+  },
+  "n_rows": 751,
+  "fields": [
+   "age_seconds",
+   "away_team",
+   "bookmaker",
+   "bookmaker_title",
+   "canonical_event_id",
+   "commence_time",
+   "commence_time_reported",
+   "dfs_normalized",
+   "event_id",
+   "game_date",
+   "home_team",
+   "implied_probability",
+   "injury",
+   "is_dfs_flat_payout",
+   "last_update",
+   "line",
+   "market",
+   "market_key",
+   "over_price",
+   "period",
+   "player",
+   "player_reference",
+   "sport_key",
+   "under_price"
+  ],
+  "markets": [
+   [
+    "Receiving Yards O/U",
+    101
+   ],
+   [
+    "Receptions O/U",
+    101
+   ],
+   [
+    "Rushing Yards O/U",
+    56
+   ],
+   [
+    "Rushing Attempts O/U",
+    34
+   ],
+   [
+    "Passing Yards O/U",
+    30
+   ],
+   [
+    "Passing Attempts O/U",
+    28
+   ],
+   [
+    "Passing Completions O/U",
+    28
+   ],
+   [
+    "Rushing + Receiving Yards O/U",
+    19
+   ],
+   [
+    "Passing + Rushing Yards O/U",
+    13
+   ],
+   [
+    "Bucky Irving - Receiving Yds",
+    1
+   ],
+   [
+    "Bucky Irving - Total Receptions",
+    1
+   ],
+   [
+    "Bucky Irving - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Bucky Irving - Rushing Yds",
+    1
+   ],
+   [
+    "Cade Otton - Receiving Yds",
+    1
+   ],
+   [
+    "Cade Otton - Total Receptions",
+    1
+   ],
+   [
+    "CeeDee Lamb - Receiving Yds",
+    1
+   ],
+   [
+    "CeeDee Lamb - Total Receptions",
+    1
+   ],
+   [
+    "Chris Godwin - Receiving Yds",
+    1
+   ],
+   [
+    "Chris Godwin - Total Receptions",
+    1
+   ],
+   [
+    "Dak Prescott - Passing Yds",
+    1
+   ],
+   [
+    "Dak Prescott - Rushing Yds",
+    1
+   ],
+   [
+    "Emeka Egbuka - Receiving Yds",
+    1
+   ],
+   [
+    "Emeka Egbuka - Total Receptions",
+    1
+   ],
+   [
+    "George Pickens - Receiving Yds",
+    1
+   ],
+   [
+    "George Pickens - Total Receptions",
+    1
+   ],
+   [
+    "Jake Ferguson - Receiving Yds",
+    1
+   ],
+   [
+    "Jake Ferguson - Total Receptions",
+    1
+   ],
+   [
+    "Jalon Daniels - Passing Yds",
+    1
+   ],
+   [
+    "Jalon Daniels - Rushing Yds",
+    1
+   ],
+   [
+    "Javonte Williams - Receiving Yds",
+    1
+   ],
+   [
+    "Javonte Williams - Total Receptions",
+    1
+   ],
+   [
+    "Javonte Williams - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Javonte Williams - Rushing Yds",
+    1
+   ],
+   [
+    "Kenneth Gainwell - Receiving Yds",
+    1
+   ],
+   [
+    "Kenneth Gainwell - Total Receptions",
+    1
+   ],
+   [
+    "Kenneth Gainwell - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Kenneth Gainwell - Rushing Yds",
+    1
+   ],
+   [
+    "Ryan Flournoy - Receiving Yds",
+    1
+   ],
+   [
+    "Ryan Flournoy - Total Receptions",
+    1
+   ],
+   [
+    "Ted Hurst III - Receiving Yds",
+    1
+   ],
+   [
+    "Ted Hurst III - Total Receptions",
+    1
+   ],
+   [
+    "Tez Johnson - Receiving Yds",
+    1
+   ],
+   [
+    "Tez Johnson - Total Receptions",
+    1
+   ],
+   [
+    "Tyler Goodson - Rushing Yds",
+    1
+   ],
+   [
+    "Bhayshul Tuten - Receiving Yds",
+    1
+   ],
+   [
+    "Bhayshul Tuten - Total Receptions",
+    1
+   ],
+   [
+    "Bhayshul Tuten - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Bhayshul Tuten - Rushing Yds",
+    1
+   ],
+   [
+    "Brenton Strange - Receiving Yds",
+    1
+   ],
+   [
+    "Brenton Strange - Total Receptions",
+    1
+   ],
+   [
+    "Brian Thomas Jr. - Receiving Yds",
+    1
+   ],
+   [
+    "Brian Thomas Jr. - Total Receptions",
+    1
+   ],
+   [
+    "Chris Rodriguez Jr. - Rushing Yds",
+    1
+   ],
+   [
+    "Jakobi Meyers - Receiving Yds",
+    1
+   ],
+   [
+    "Jakobi Meyers - Total Receptions",
+    1
+   ],
+   [
+    "Jalen Hurts - Passing Yds",
+    1
+   ],
+   [
+    "Jalen Hurts - Rushing Yds",
+    1
+   ],
+   [
+    "Josh Cameron - Receiving Yds",
+    1
+   ],
+   [
+    "Josh Cameron - Total Receptions",
+    1
+   ],
+   [
+    "Parker Washington - Receiving Yds",
+    1
+   ],
+   [
+    "Parker Washington - Total Receptions",
+    1
+   ],
+   [
+    "Trevor Lawrence - Passing Yds",
+    1
+   ],
+   [
+    "Trevor Lawrence - Rushing Yds",
+    1
+   ],
+   [
+    "Will Shipley - Rushing Yds",
+    1
+   ],
+   [
+    "Aaron Jones - Receiving Yds",
+    1
+   ],
+   [
+    "Aaron Jones - Total Receptions",
+    1
+   ],
+   [
+    "Aaron Jones - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Aaron Jones - Rushing Yds",
+    1
+   ],
+   [
+    "Aaron Rodgers - Passing Yds",
+    1
+   ],
+   [
+    "Ashton Jeanty - Receiving Yds",
+    1
+   ],
+   [
+    "Ashton Jeanty - Total Receptions",
+    1
+   ],
+   [
+    "Ashton Jeanty - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Ashton Jeanty - Rushing Yds",
+    1
+   ],
+   [
+    "Braelon Allen - Rushing Yds",
+    1
+   ],
+   [
+    "Brock Bowers - Receiving Yds",
+    1
+   ],
+   [
+    "Brock Bowers - Total Receptions",
+    1
+   ],
+   [
+    "C.J. Stroud - Passing Yds",
+    1
+   ],
+   [
+    "C.J. Stroud - Rushing Yds",
+    1
+   ],
+   [
+    "Calvin Ridley - Receiving Yds",
+    1
+   ],
+   [
+    "Calvin Ridley - Total Receptions",
+    1
+   ],
+   [
+    "Cam Skattebo - Receiving Yds",
+    1
+   ],
+   [
+    "Cam Skattebo - Total Receptions",
+    1
+   ],
+   [
+    "Cam Skattebo - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Cam Skattebo - Rushing Yds",
+    1
+   ],
+   [
+    "Cam Ward - Passing Yds",
+    1
+   ],
+   [
+    "Cam Ward - Rushing Yds",
+    1
+   ],
+   [
+    "Carnell Tate - Receiving Yds",
+    1
+   ],
+   [
+    "Carnell Tate - Total Receptions",
+    1
+   ],
+   [
+    "Chase Brown - Rushing Yds",
+    1
+   ],
+   [
+    "Chris Olave - Receiving Yds",
+    1
+   ],
+   [
+    "Chris Olave - Total Receptions",
+    1
+   ],
+   [
+    "Christian Watson - Receiving Yds",
+    1
+   ],
+   [
+    "Christian Watson - Total Receptions",
+    1
+   ],
+   [
+    "Colston Loveland - Receiving Yds",
+    1
+   ],
+   [
+    "Colston Loveland - Total Receptions",
+    1
+   ],
+   [
+    "D'Andre Swift - Receiving Yds",
+    1
+   ],
+   [
+    "D'Andre Swift - Total Receptions",
+    1
+   ],
+   [
+    "D'Andre Swift - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "D'Andre Swift - Rushing Yds",
+    1
+   ],
+   [
+    "DK Metcalf - Receiving Yds",
+    1
+   ],
+   [
+    "DK Metcalf - Total Receptions",
+    1
+   ],
+   [
+    "Dalton Schultz - Receiving Yds",
+    1
+   ],
+   [
+    "Dalton Schultz - Total Receptions",
+    1
+   ],
+   [
+    "Daniel Jones - Passing Yds",
+    1
+   ],
+   [
+    "Daniel Jones - Rushing Yds",
+    1
+   ],
+   [
+    "Darnell Mooney - Receiving Yds",
+    1
+   ],
+   [
+    "Darnell Mooney - Total Receptions",
+    1
+   ],
+   [
+    "Darnell Washington - Receiving Yds",
+    1
+   ],
+   [
+    "Darnell Washington - Total Receptions",
+    1
+   ],
+   [
+    "David Montgomery - Receiving Yds",
+    1
+   ],
+   [
+    "David Montgomery - Total Receptions",
+    1
+   ],
+   [
+    "David Montgomery - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "David Montgomery - Rushing Yds",
+    1
+   ],
+   [
+    "Denzel Boston - Receiving Yds",
+    1
+   ],
+   [
+    "Denzel Boston - Total Receptions",
+    1
+   ],
+   [
+    "Deshaun Watson - Passing Yds",
+    1
+   ],
+   [
+    "Deshaun Watson - Rushing Yds",
+    1
+   ],
+   [
+    "Devaughn Vele - Receiving Yds",
+    1
+   ],
+   [
+    "Devaughn Vele - Total Receptions",
+    1
+   ],
+   [
+    "Drake Maye - Passing Yds",
+    1
+   ],
+   [
+    "Drake Maye - Rushing Yds",
+    1
+   ],
+   [
+    "Elic Ayomanor - Receiving Yds",
+    1
+   ],
+   [
+    "Elic Ayomanor - Total Receptions",
+    1
+   ],
+   [
+    "Garrett Wilson - Receiving Yds",
+    1
+   ],
+   [
+    "Garrett Wilson - Total Receptions",
+    1
+   ],
+   [
+    "Geno Smith - Passing Yds",
+    1
+   ],
+   [
+    "Geno Smith - Rushing Yds",
+    1
+   ],
+   [
+    "Gunnar Helm - Receiving Yds",
+    1
+   ],
+   [
+    "Gunnar Helm - Total Receptions",
+    1
+   ],
+   [
+    "Harold Fannin Jr. - Receiving Yds",
+    1
+   ],
+   [
+    "Harold Fannin Jr. - Total Receptions",
+    1
+   ],
+   [
+    "Hunter Henry - Receiving Yds",
+    1
+   ],
+   [
+    "Hunter Henry - Total Receptions",
+    1
+   ],
+   [
+    "Isaiah Davis - Rushing Yds",
+    1
+   ],
+   [
+    "Isaiah Likely - Receiving Yds",
+    1
+   ],
+   [
+    "Isaiah Likely - Total Receptions",
+    1
+   ],
+   [
+    "Jacory Croskey-Merritt - Rushing Yds",
+    1
+   ],
+   [
+    "Jameis Winston - Passing Yds",
+    1
+   ],
+   [
+    "Jameis Winston - Rushing Yds",
+    1
+   ],
+   [
+    "Jayden Daniels - Passing Yds",
+    1
+   ],
+   [
+    "Jayden Daniels - Rushing Yds",
+    1
+   ],
+   [
+    "Jaylen Wright - Rushing Yds",
+    1
+   ],
+   [
+    "Jaylin Noel - Receiving Yds",
+    1
+   ],
+   [
+    "Jaylin Noel - Total Receptions",
+    1
+   ],
+   [
+    "Joe Burrow - Passing Yds",
+    1
+   ],
+   [
+    "Jonathan Taylor - Receiving Yds",
+    1
+   ],
+   [
+    "Jonathan Taylor - Total Receptions",
+    1
+   ],
+   [
+    "Jonathan Taylor - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Jonathan Taylor - Rushing Yds",
+    1
+   ],
+   [
+    "Jordan Love - Passing Yds",
+    1
+   ],
+   [
+    "Jordan Love - Rushing Yds",
+    1
+   ],
+   [
+    "Josh Downs - Receiving Yds",
+    1
+   ],
+   [
+    "Josh Downs - Total Receptions",
+    1
+   ],
+   [
+    "Juwan Johnson - Receiving Yds",
+    1
+   ],
+   [
+    "Juwan Johnson - Total Receptions",
+    1
+   ],
+   [
+    "KC Concepcion - Receiving Yds",
+    1
+   ],
+   [
+    "KC Concepcion - Total Receptions",
+    1
+   ],
+   [
+    "Kaleb Johnson - Rushing Yds",
+    1
+   ],
+   [
+    "Kalif Raymond - Receiving Yds",
+    1
+   ],
+   [
+    "Kalif Raymond - Total Receptions",
+    1
+   ],
+   [
+    "Kayshon Boutte - Receiving Yds",
+    1
+   ],
+   [
+    "Kayshon Boutte - Total Receptions",
+    1
+   ],
+   [
+    "Keenan Allen - Receiving Yds",
+    1
+   ],
+   [
+    "Keenan Allen - Total Receptions",
+    1
+   ],
+   [
+    "Kirk Cousins - Passing Yds",
+    1
+   ],
+   [
+    "Kirk Cousins - Rushing Yds",
+    1
+   ],
+   [
+    "Kyle Monangai - Rushing Yds",
+    1
+   ],
+   [
+    "Kyler Murray - Passing Yds",
+    1
+   ],
+   [
+    "Kyler Murray - Rushing Yds",
+    1
+   ],
+   [
+    "Luther Burden III - Receiving Yds",
+    1
+   ],
+   [
+    "Luther Burden III - Total Receptions",
+    1
+   ],
+   [
+    "Malachi Fields - Receiving Yds",
+    1
+   ],
+   [
+    "Malachi Fields - Total Receptions",
+    1
+   ],
+   [
+    "Malik Nabers - Receiving Yds",
+    1
+   ],
+   [
+    "Malik Nabers - Total Receptions",
+    1
+   ],
+   [
+    "Malik Willis - Passing Yds",
+    1
+   ],
+   [
+    "MarShawn Lloyd - Receiving Yds",
+    1
+   ],
+   [
+    "MarShawn Lloyd - Total Receptions",
+    1
+   ],
+   [
+    "MarShawn Lloyd - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "MarShawn Lloyd - Rushing Yds",
+    1
+   ],
+   [
+    "Matthew Golden - Receiving Yds",
+    1
+   ],
+   [
+    "Matthew Golden - Total Receptions",
+    1
+   ],
+   [
+    "Michael Mayer - Receiving Yds",
+    1
+   ],
+   [
+    "Michael Mayer - Total Receptions",
+    1
+   ],
+   [
+    "Mike Washington Jr. - Rushing Yds",
+    1
+   ],
+   [
+    "Najee Harris - Rushing Yds",
+    1
+   ],
+   [
+    "Nico Collins - Receiving Yds",
+    1
+   ],
+   [
+    "Nico Collins - Total Receptions",
+    1
+   ],
+   [
+    "Ollie Gordon II - Rushing Yds",
+    1
+   ],
+   [
+    "Pat Freiermuth - Receiving Yds",
+    1
+   ],
+   [
+    "Pat Freiermuth - Total Receptions",
+    1
+   ],
+   [
+    "Quinshon Judkins - Rushing Yds",
+    1
+   ],
+   [
+    "Rome Odunze - Receiving Yds",
+    1
+   ],
+   [
+    "Rome Odunze - Total Receptions",
+    1
+   ],
+   [
+    "Romeo Doubs - Receiving Yds",
+    1
+   ],
+   [
+    "Romeo Doubs - Total Receptions",
+    1
+   ],
+   [
+    "Skyy Moore - Receiving Yds",
+    1
+   ],
+   [
+    "Skyy Moore - Total Receptions",
+    1
+   ],
+   [
+    "Tony Pollard - Receiving Yds",
+    1
+   ],
+   [
+    "Tony Pollard - Total Receptions",
+    1
+   ],
+   [
+    "Tony Pollard - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Tony Pollard - Rushing Yds",
+    1
+   ],
+   [
+    "Tre Tucker - Receiving Yds",
+    1
+   ],
+   [
+    "Tre Tucker - Total Receptions",
+    1
+   ],
+   [
+    "Tucker Kraft - Receiving Yds",
+    1
+   ],
+   [
+    "Tucker Kraft - Total Receptions",
+    1
+   ],
+   [
+    "Tyjae Spears - Receiving Yds",
+    1
+   ],
+   [
+    "Tyjae Spears - Total Receptions",
+    1
+   ],
+   [
+    "Tyjae Spears - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Tyjae Spears - Rushing Yds",
+    1
+   ],
+   [
+    "Tyler Shough - Passing Yds",
+    1
+   ],
+   [
+    "Tyler Shough - Rushing Yds",
+    1
+   ],
+   [
+    "Tyler Warren - Receiving Yds",
+    1
+   ],
+   [
+    "Tyler Warren - Total Receptions",
+    1
+   ],
+   [
+    "Tyson Bagent - Passing Yds",
+    1
+   ],
+   [
+    "Tyson Bagent - Rushing Yds",
+    1
+   ],
+   [
+    "Wan'Dale Robinson - Receiving Yds",
+    1
+   ],
+   [
+    "Wan'Dale Robinson - Total Receptions",
+    1
+   ],
+   [
+    "Woody Marks - Receiving Yds",
+    1
+   ],
+   [
+    "Woody Marks - Total Receptions",
+    1
+   ],
+   [
+    "Woody Marks - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Woody Marks - Rushing Yds",
+    1
+   ],
+   [
+    "Xavier Hutchinson - Receiving Yds",
+    1
+   ],
+   [
+    "Xavier Hutchinson - Total Receptions",
+    1
+   ],
+   [
+    "Bo Nix - Passing Yds",
+    1
+   ],
+   [
+    "Bo Nix - Rushing Yds",
+    1
+   ],
+   [
+    "Courtland Sutton - Receiving Yds",
+    1
+   ],
+   [
+    "Courtland Sutton - Total Receptions",
+    1
+   ],
+   [
+    "Evan Engram - Receiving Yds",
+    1
+   ],
+   [
+    "Evan Engram - Total Receptions",
+    1
+   ],
+   [
+    "J.K. Dobbins - Rushing Yds",
+    1
+   ],
+   [
+    "Jaylen Waddle - Receiving Yds",
+    1
+   ],
+   [
+    "Jaylen Waddle - Total Receptions",
+    1
+   ],
+   [
+    "Justin Herbert - Passing Yds",
+    1
+   ],
+   [
+    "Justin Herbert - Rushing Yds",
+    1
+   ],
+   [
+    "Keaton Mitchell - Rushing Yds",
+    1
+   ],
+   [
+    "Marvin Mims Jr. - Receiving Yds",
+    1
+   ],
+   [
+    "Marvin Mims Jr. - Total Receptions",
+    1
+   ],
+   [
+    "Omarion Hampton - Rushing Yds",
+    1
+   ],
+   [
+    "RJ Harvey - Receiving Yds",
+    1
+   ],
+   [
+    "RJ Harvey - Total Receptions",
+    1
+   ],
+   [
+    "RJ Harvey - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "RJ Harvey - Rushing Yds",
+    1
+   ],
+   [
+    "Troy Franklin - Receiving Yds",
+    1
+   ],
+   [
+    "Troy Franklin - Total Receptions",
+    1
+   ],
+   [
+    "AJ Barner - Receiving Yds",
+    1
+   ],
+   [
+    "AJ Barner - Total Receptions",
+    1
+   ],
+   [
+    "Amon-Ra St. Brown - Receiving Yds",
+    1
+   ],
+   [
+    "Amon-Ra St. Brown - Total Receptions",
+    1
+   ],
+   [
+    "Brock Purdy - Passing Yds",
+    1
+   ],
+   [
+    "Brock Purdy - Rushing Yds",
+    1
+   ],
+   [
+    "Christian McCaffrey - Receiving Yds",
+    1
+   ],
+   [
+    "Christian McCaffrey - Total Receptions",
+    1
+   ],
+   [
+    "Christian McCaffrey - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Christian McCaffrey - Rushing Yds",
+    1
+   ],
+   [
+    "Cooper Kupp - Receiving Yds",
+    1
+   ],
+   [
+    "Cooper Kupp - Total Receptions",
+    1
+   ],
+   [
+    "Deebo Samuel - Receiving Yds",
+    1
+   ],
+   [
+    "Deebo Samuel - Total Receptions",
+    1
+   ],
+   [
+    "Deebo Samuel - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Deebo Samuel - Rushing Yds",
+    1
+   ],
+   [
+    "Emanuel Wilson - Receiving Yds",
+    1
+   ],
+   [
+    "Emanuel Wilson - Total Receptions",
+    1
+   ],
+   [
+    "Emanuel Wilson - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Emanuel Wilson - Rushing Yds",
+    1
+   ],
+   [
+    "George Holani - Receiving Yds",
+    1
+   ],
+   [
+    "George Holani - Total Receptions",
+    1
+   ],
+   [
+    "George Holani - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "George Holani - Rushing Yds",
+    1
+   ],
+   [
+    "George Kittle - Receiving Yds",
+    1
+   ],
+   [
+    "George Kittle - Total Receptions",
+    1
+   ],
+   [
+    "Isaac TeSlaa - Receiving Yds",
+    1
+   ],
+   [
+    "Isaac TeSlaa - Total Receptions",
+    1
+   ],
+   [
+    "Jacoby Brissett - Passing Yds",
+    1
+   ],
+   [
+    "Jacoby Brissett - Rushing Yds",
+    1
+   ],
+   [
+    "Jahmyr Gibbs - Receiving Yds",
+    1
+   ],
+   [
+    "Jahmyr Gibbs - Total Receptions",
+    1
+   ],
+   [
+    "Jahmyr Gibbs - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Jahmyr Gibbs - Rushing Yds",
+    1
+   ],
+   [
+    "Jameson Williams - Receiving Yds",
+    1
+   ],
+   [
+    "Jameson Williams - Total Receptions",
+    1
+   ],
+   [
+    "Jared Goff - Passing Yds",
+    1
+   ],
+   [
+    "Jared Goff - Rushing Yds",
+    1
+   ],
+   [
+    "Jaxon Smith-Njigba - Receiving Yds",
+    1
+   ],
+   [
+    "Jaxon Smith-Njigba - Total Receptions",
+    1
+   ],
+   [
+    "Jeremiyah Love - Receiving Yds",
+    1
+   ],
+   [
+    "Jeremiyah Love - Total Receptions",
+    1
+   ],
+   [
+    "Jeremiyah Love - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Jeremiyah Love - Rushing Yds",
+    1
+   ],
+   [
+    "Kaelon Black - Rushing Yds",
+    1
+   ],
+   [
+    "Kendrick Bourne - Receiving Yds",
+    1
+   ],
+   [
+    "Kendrick Bourne - Total Receptions",
+    1
+   ],
+   [
+    "Marvin Harrison Jr. - Receiving Yds",
+    1
+   ],
+   [
+    "Marvin Harrison Jr. - Total Receptions",
+    1
+   ],
+   [
+    "Michael Wilson - Receiving Yds",
+    1
+   ],
+   [
+    "Michael Wilson - Total Receptions",
+    1
+   ],
+   [
+    "Mike Evans - Receiving Yds",
+    1
+   ],
+   [
+    "Mike Evans - Total Receptions",
+    1
+   ],
+   [
+    "Rashid Shaheed - Receiving Yds",
+    1
+   ],
+   [
+    "Rashid Shaheed - Total Receptions",
+    1
+   ],
+   [
+    "Sam Darnold - Passing Yds",
+    1
+   ],
+   [
+    "Sam Darnold - Rushing Yds",
+    1
+   ],
+   [
+    "Sam LaPorta - Receiving Yds",
+    1
+   ],
+   [
+    "Sam LaPorta - Total Receptions",
+    1
+   ],
+   [
+    "Tory Horton - Receiving Yds",
+    1
+   ],
+   [
+    "Tory Horton - Total Receptions",
+    1
+   ],
+   [
+    "Trey McBride - Receiving Yds",
+    1
+   ],
+   [
+    "Trey McBride - Total Receptions",
+    1
+   ],
+   [
+    "Tyler Allgeier - Receiving Yds",
+    1
+   ],
+   [
+    "Tyler Allgeier - Total Receptions",
+    1
+   ],
+   [
+    "Tyler Allgeier - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Tyler Allgeier - Rushing Yds",
+    1
+   ],
+   [
+    "Bijan Robinson - Receiving Yds",
+    1
+   ],
+   [
+    "Bijan Robinson - Total Receptions",
+    1
+   ],
+   [
+    "Bijan Robinson - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Bijan Robinson - Rushing Yds",
+    1
+   ],
+   [
+    "Brian Robinson Jr. - Rushing Yds",
+    1
+   ],
+   [
+    "Derrick Henry - Rushing Yds",
+    1
+   ],
+   [
+    "Drake London - Receiving Yds",
+    1
+   ],
+   [
+    "Drake London - Total Receptions",
+    1
+   ],
+   [
+    "Jahan Dotson - Receiving Yds",
+    1
+   ],
+   [
+    "Jahan Dotson - Total Receptions",
+    1
+   ],
+   [
+    "Justice Hill - Rushing Yds",
+    1
+   ],
+   [
+    "Kyle Pitts - Receiving Yds",
+    1
+   ],
+   [
+    "Kyle Pitts - Total Receptions",
+    1
+   ],
+   [
+    "Mark Andrews - Receiving Yds",
+    1
+   ],
+   [
+    "Mark Andrews - Total Receptions",
+    1
+   ],
+   [
+    "Michael Penix Jr. - Passing Yds",
+    1
+   ],
+   [
+    "Michael Penix Jr. - Rushing Yds",
+    1
+   ],
+   [
+    "Rashod Bateman - Receiving Yds",
+    1
+   ],
+   [
+    "Rashod Bateman - Total Receptions",
+    1
+   ],
+   [
+    "Tyler Huntley - Passing Yds",
+    1
+   ],
+   [
+    "Zay Flowers - Receiving Yds",
+    1
+   ],
+   [
+    "Zay Flowers - Total Receptions",
+    1
+   ],
+   [
+    "Blake Corum - Rushing Yds",
+    1
+   ],
+   [
+    "Dalton Kincaid - Receiving Yds",
+    1
+   ],
+   [
+    "Dalton Kincaid - Total Receptions",
+    1
+   ],
+   [
+    "Davante Adams - Receiving Yds",
+    1
+   ],
+   [
+    "Davante Adams - Total Receptions",
+    1
+   ],
+   [
+    "James Cook - Rushing Yds",
+    1
+   ],
+   [
+    "Josh Allen - Passing Yds",
+    1
+   ],
+   [
+    "Josh Allen - Rushing Yds",
+    1
+   ],
+   [
+    "Kyren Williams - Receiving Yds",
+    1
+   ],
+   [
+    "Kyren Williams - Total Receptions",
+    1
+   ],
+   [
+    "Kyren Williams - Rushing + Receiving Yds",
+    1
+   ],
+   [
+    "Kyren Williams - Rushing Yds",
+    1
+   ],
+   [
+    "Matthew Stafford - Passing Yds",
+    1
+   ],
+   [
+    "Matthew Stafford - Rushing Yds",
+    1
+   ],
+   [
+    "Puka Nacua - Receiving Yds",
+    1
+   ],
+   [
+    "Puka Nacua - Total Receptions",
+    1
+   ]
+  ],
+  "books": [
+   [
+    "draftkings",
+    410
+   ],
+   [
+    "fanduel",
+    341
+   ]
+  ],
+  "two_sided": 751,
+  "two_sided_by_book": [
+   [
+    "draftkings",
+    410
+   ],
+   [
+    "fanduel",
+    341
+   ]
+  ],
+  "games": [
+   [
+    "Tampa Bay Buccaneers @ Dallas Cowboys 2026-10-09T00:15:00Z",
+    44
+   ],
+   [
+    "Houston Texans @ Tennessee Titans 2026-10-11T17:00:00Z",
+    42
+   ],
+   [
+    "Houston Texans @ Tennessee Titans 2026-10-11T17:01:00.000Z",
+    40
+   ],
+   [
+    "Tampa Bay Buccaneers @ Dallas Cowboys 2026-10-09T00:16:00.000Z",
+    35
+   ],
+   [
+    "Detroit Lions @ Arizona Cardinals 2026-10-11T20:25:00Z",
+    35
+   ],
+   [
+    "San Francisco 49ers @ Seattle Seahawks 2026-10-11T20:26:00.000Z",
+    35
+   ],
+   [
+    "Detroit Lions @ Arizona Cardinals 2026-10-11T20:26:00.000Z",
+    32
+   ],
+   [
+    "Denver Broncos @ Los Angeles Chargers 2026-10-11T20:05:00Z",
+    31
+   ],
+   [
+    "Chicago Bears @ Green Bay Packers 2026-10-11T17:01:00.000Z",
+    30
+   ],
+   [
+    "Philadelphia Eagles @ Jacksonville Jaguars 2026-10-11T13:30:00Z",
+    29
+   ],
+   [
+    "San Francisco 49ers @ Seattle Seahawks 2026-10-11T20:25:00Z",
+    29
+   ],
+   [
+    "Chicago Bears @ Green Bay Packers 2026-10-11T17:00:00Z",
+    27
+   ],
+   [
+    "New York Giants @ Washington Commanders 2026-10-11T17:00:00Z",
+    25
+   ],
+   [
+    "Cleveland Browns @ New York Jets 2026-10-11T17:00:00Z",
+    24
+   ],
+   [
+    "Baltimore Ravens @ Atlanta Falcons 2026-10-12T00:20:00Z",
+    23
+   ],
+   [
+    "Buffalo Bills @ Los Angeles Rams 2026-10-13T00:15:00Z",
+    23
+   ],
+   [
+    "Baltimore Ravens @ Atlanta Falcons 2026-10-12T00:21:00.000Z",
+    22
+   ],
+   [
+    "Las Vegas Raiders @ New England Patriots 2026-10-11T17:00:00Z",
+    21
+   ],
+   [
+    "Denver Broncos @ Los Angeles Chargers 2026-10-11T20:06:00.000Z",
+    21
+   ],
+   [
+    "Philadelphia Eagles @ Jacksonville Jaguars 2026-10-11T13:30:00.000Z",
+    20
+   ],
+   [
+    "Indianapolis Colts @ Pittsburgh Steelers 2026-10-11T17:01:00.000Z",
+    19
+   ],
+   [
+    "Las Vegas Raiders @ New England Patriots 2026-10-11T17:01:00.000Z",
+    19
+   ],
+   [
+    "Minnesota Vikings @ New Orleans Saints 2026-10-11T17:00:00Z",
+    18
+   ],
+   [
+    "Indianapolis Colts @ Pittsburgh Steelers 2026-10-11T17:00:00Z",
+    18
+   ],
+   [
+    "New York Giants @ Washington Commanders 2026-10-11T17:01:00.000Z",
+    18
+   ],
+   [
+    "Buffalo Bills @ Los Angeles Rams 2026-10-13T00:16:00.000Z",
+    16
+   ],
+   [
+    "Cleveland Browns @ New York Jets 2026-10-11T17:01:00.000Z",
+    15
+   ],
+   [
+    "Minnesota Vikings @ New Orleans Saints 2026-10-11T17:01:00.000Z",
+    14
+   ],
+   [
+    "Indianapolis Colts @ Pittsburgh Steelers 2026-10-11T17:00:00.0000000Z",
+    7
+   ],
+   [
+    "Cincinnati Bengals @ Miami Dolphins 2026-10-11T17:00:00Z",
+    7
+   ],
+   [
+    "Cincinnati Bengals @ Miami Dolphins 2026-10-11T17:01:00.000Z",
+    5
+   ],
+   [
+    "Cincinnati Bengals @ Miami Dolphins 2026-10-11T17:00:00.0000000Z",
+    4
+   ],
+   [
+    "Houston Texans @ Tennessee Titans 2026-10-11T17:00:00.0000000Z",
+    3
+   ]
+  ],
+  "age_seconds": [
+   25.6,
+   25.6,
+   54.6,
+   54.6,
+   55.6,
+   55.6,
+   55.6,
+   84.6,
+   85.6,
+   85.6,
+   158.6,
+   406.6,
+   980.6,
+   1613.6,
+   1668.6,
+   1794.6,
+   1890.6,
+   2443.6,
+   3045.6,
+   3175.6,
+   3377.6
+  ],
+  "samples": [
+   {
+    "event_id": "49ddbb8bda8352030a3cf5232329e412",
+    "sport_key": "americanfootball_nfl",
+    "game_date": "2026-10-09",
+    "home_team": "Dallas Cowboys",
+    "away_team": "Tampa Bay Buccaneers",
+    "canonical_event_id": "7d2983204fc25b29",
+    "commence_time": "2026-10-09T00:15:00Z",
+    "commence_time_reported": true,
+    "bookmaker": "draftkings",
+    "bookmaker_title": "DraftKings",
+    "player": "Bucky Irving",
+    "market_key": "player_receiving_yards",
+    "period": "FULL",
+    "market": "Receiving Yards O/U",
+    "line": 12.5,
+    "over_price": -111,
+    "under_price": -113,
+    "implied_probability": 52.6,
+    "is_dfs_flat_payout": false,
+    "dfs_normalized": false,
+    "last_update": "2026-10-08T04:08:08Z",
+    "player_reference": null,
+    "injury": {
+     "status": "Active",
+     "description": "Irving rushed 16 times for 61 yards in the Buccaneers' 17-14 loss to the Packers on Sunday.",
+     "date": "2026-10-04T20:45Z",
+     "team": "Tampa Bay Buccaneers",
+     "team_abbr": "TB",
+     "il_category": "A",
+     "body_part": null,
+     "side": null,
+     "position": "RB",
+     "expected_return": null,
+     "updated_at": "2026-10-08T05:00:04.670206Z"
+    },
+    "age_seconds": 3377.6
+   },
+   {
+    "event_id": "49ddbb8bda8352030a3cf5232329e412",
+    "sport_key": "americanfootball_nfl",
+    "game_date": "2026-10-09",
+    "home_team": "Dallas Cowboys",
+    "away_team": "Tampa Bay Buccaneers",
+    "canonical_event_id": "7d2983204fc25b29",
+    "commence_time": "2026-10-09T00:15:00Z",
+    "commence_time_reported": true,
+    "bookmaker": "draftkings",
+    "bookmaker_title": "DraftKings",
+    "player": "Bucky Irving",
+    "market_key": "player_receptions",
+    "period": "FULL",
+    "market": "Receptions O/U",
+    "line": 2.5,
+    "over_price": 123,
+    "under_price": -157,
+    "implied_probability": 44.8,
+    "is_dfs_flat_payout": false,
+    "dfs_normalized": false,
+    "last_update": "2026-10-08T04:08:08Z",
+    "player_reference": null,
+    "injury": {
+     "status": "Active",
+     "description": "Irving rushed 16 times for 61 yards in the Buccaneers' 17-14 loss to the Packers on Sunday.",
+     "date": "2026-10-04T20:45Z",
+     "team": "Tampa Bay Buccaneers",
+     "team_abbr": "TB",
+     "il_category": "A",
+     "body_part": null,
+     "side": null,
+     "position": "RB",
+     "expected_return": null,
+     "updated_at": "2026-10-08T05:00:04.670206Z"
+    },
+    "age_seconds": 3377.6
+   },
+   {
+    "event_id": "49ddbb8bda8352030a3cf5232329e412",
+    "sport_key": "americanfootball_nfl",
+    "game_date": "2026-10-09",
+    "home_team": "Dallas Cowboys",
+    "away_team": "Tampa Bay Buccaneers",
+    "canonical_event_id": "7d2983204fc25b29",
+    "commence_time": "2026-10-09T00:15:00Z",
+    "commence_time_reported": true,
+    "bookmaker": "draftkings",
+    "bookmaker_title": "DraftKings",
+    "player": "Bucky Irving",
+    "market_key": "player_rushing_+_receiving_yards",
+    "period": "FULL",
+    "market": "Rushing + Receiving Yards O/U",
+    "line": 67.5,
+    "over_price": -116,
+    "under_price": -110,
+    "implied_probability": 53.7,
+    "is_dfs_flat_payout": false,
+    "dfs_normalized": false,
+    "last_update": "2026-10-08T04:08:14Z",
+    "player_reference": null,
+    "injury": {
+     "status": "Active",
+     "description": "Irving rushed 16 times for 61 yards in the Buccaneers' 17-14 loss to the Packers on Sunday.",
+     "date": "2026-10-04T20:45Z",
+     "team": "Tampa Bay Buccaneers",
+     "team_abbr": "TB",
+     "il_category": "A",
+     "body_part": null,
+     "side": null,
+     "position": "RB",
+     "expected_return": null,
+     "updated_at": "2026-10-08T05:00:04.670206Z"
+    },
+    "age_seconds": 3371.6
+   },
+   {
+    "event_id": "49ddbb8bda8352030a3cf5232329e412",
+    "sport_key": "americanfootball_nfl",
+    "game_date": "2026-10-09",
+    "home_team": "Dallas Cowboys",
+    "away_team": "Tampa Bay Buccaneers",
+    "canonical_event_id": "7d2983204fc25b29",
+    "commence_time": "2026-10-09T00:15:00Z",
+    "commence_time_reported": true,
+    "bookmaker": "draftkings",
+    "bookmaker_title": "DraftKings",
+    "player": "Bucky Irving",
+    "market_key": "player_rushing_attempts",
+    "period": "FULL",
+    "market": "Rushing Attempts O/U",
+    "line": 13.5,
+    "over_price": -107,
+    "under_price": -120,
+    "implied_probability": 51.7,
+    "is_dfs_flat_payout": false,
+    "dfs_normalized": false,
+    "last_update": "2026-10-08T04:08:14Z",
+    "player_reference": null,
+    "injury": {
+     "status": "Active",
+     "description": "Irving rushed 16 times for 61 yards in the Buccaneers' 17-14 loss to the Packers on Sunday.",
+     "date": "2026-10-04T20:45Z",
+     "team": "Tampa Bay Buccaneers",
+     "team_abbr": "TB",
+     "il_category": "A",
+     "body_part": null,
+     "side": null,
+     "position": "RB",
+     "expected_return": null,
+     "updated_at": "2026-10-08T05:00:04.670206Z"
+    },
+    "age_seconds": 3371.6
+   },
+   {
+    "event_id": "49ddbb8bda8352030a3cf5232329e412",
+    "sport_key": "americanfootball_nfl",
+    "game_date": "2026-10-09",
+    "home_team": "Dallas Cowboys",
+    "away_team": "Tampa Bay Buccaneers",
+    "canonical_event_id": "7d2983204fc25b29",
+    "commence_time": "2026-10-09T00:15:00Z",
+    "commence_time_reported": true,
+    "bookmaker": "draftkings",
+    "bookmaker_title": "DraftKings",
+    "player": "Bucky Irving",
+    "market_key": "player_rushing_yards",
+    "period": "FULL",
+    "market": "Rushing Yards O/U",
+    "line": 51.5,
+    "over_price": -115,
+    "under_price": -109,
+    "implied_probability": 53.5,
+    "is_dfs_flat_payout": false,
+    "dfs_normalized": false,
+    "last_update": "2026-10-08T04:08:14Z",
+    "player_reference": null,
+    "injury": {
+     "status": "Active",
+     "description": "Irving rushed 16 times for 61 yards in the Buccaneers' 17-14 loss to the Packers on Sunday.",
+     "date": "2026-10-04T20:45Z",
+     "team": "Tampa Bay Buccaneers",
+     "team_abbr": "TB",
+     "il_category": "A",
+     "body_part": null,
+     "side": null,
+     "position": "RB",
+     "expected_return": null,
+     "updated_at": "2026-10-08T05:00:04.670206Z"
+    },
+    "age_seconds": 3371.6
+   }
+  ]
+ }
+}
