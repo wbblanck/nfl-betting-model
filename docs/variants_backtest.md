@@ -43,3 +43,21 @@ Descriptive notes (not tests): every looser rule (V2, V3, V4, V7, V11-V13) wins 
 ends near break-even; the rules with positive point estimates (V1, V5, V6, V10) have 33-61 bets in 2025 and almost
 none in 2024, so their intervals span roughly −35% to +50%. V9 (DraftKings vs FanDuel only, as the ParlayAPI
 record) had 33 bets at −2.4% in 2025.
+
+## Out-of-sample look: 2026 weeks 1-4 (descriptive, addendum)
+
+2682 DraftKings props scored.
+
+| ID | Bets | Weeks | Win | Break-even | ROI | Units |
+|---|---|---|---|---|---|---|
+| V1 | 36 | 4 | 61.1% | 60.2% | +2.3% | +0.82 |
+| V5 | 33 | 4 | 60.6% | 60.2% | +1.0% | +0.34 |
+| V6 | 30 | 4 | 63.3% | 60.2% | +6.4% | +1.91 |
+| V7 | 185 | 4 | 55.7% | 54.7% | +1.9% | +3.60 |
+| V10 | 26 | 4 | 61.5% | 60.3% | +2.5% | +0.65 |
+| V11 | 331 | 4 | 57.7% | 56.4% | +2.6% | +8.73 |
+| V13 | 280 | 4 | 56.4% | 53.9% | +4.8% | +13.41 |
+
+Known-answer check: V1 here (36 bets, 61.1%, +2.3%) equals S1's interim 2026 grade on final lines
+(data/backtests/grade_2026.json: 36 bets, +2.27%). The variants overlap heavily (every V1 bet is also in V7, V11
+and V13), so these rows are not independent evidence. Four weeks; descriptive only.
