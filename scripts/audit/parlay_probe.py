@@ -43,6 +43,13 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     summary = {"stamp": stamp}
 
+    try:
+        with urllib.request.urlopen(urllib.request.Request("https://parlay-api.com/openapi.json",
+                                    headers={"User-Agent": "nfl-betting-model/1.0"}), timeout=60) as r:
+            (out / "openapi.json").write_bytes(r.read())
+    except Exception as e:  # noqa: BLE001
+        summary["openapi_error"] = str(e)[:120]
+
     url, st, hdr, body = get("/sports")
     keys = [s.get("key") for s in body if isinstance(s, dict)] if isinstance(body, list) else []
     summary["sports"] = {"url": url, "status": st, "headers": hdr, "keys": keys,
@@ -50,7 +57,7 @@ def main() -> None:
     print("sports", st, hdr, keys, flush=True)
     nfl = next((k for k in keys if k and "nfl" in k.lower() and "preseason" not in k.lower()), "americanfootball_nfl")
 
-    url, st, hdr, rows = get(f"/sports/{nfl}/props", limit=20000, oddsFormat="american")
+    url, st, hdr, rows = get(f"/sports/{nfl}/props", limit=10000, oddsFormat="american")
     s = {"sport_key": nfl, "url": url, "status": st, "headers": hdr}
     if isinstance(rows, list):
         s["n_rows"] = len(rows)
