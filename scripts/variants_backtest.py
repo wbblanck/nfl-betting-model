@@ -15,9 +15,12 @@ FAMILY = 12
 LEVEL = 0.025 / FAMILY
 
 
-def scored_full(season: int, sim: Simulator) -> pl.DataFrame:
+def scored_full(season: int, sim: Simulator, weeks: tuple[int, int] | None = None) -> pl.DataFrame:
     """screener.scored plus FanDuel's line per prop (for V9) and raw gaps for threshold variants."""
-    g = P.graded(P.join(P.load_lines(season), P.load_stats(season), P.load_snaps(season)))
+    lines = P.load_lines(season)
+    if weeks:
+        lines = lines.filter(pl.col("week").is_between(*weeks))
+    g = P.graded(P.join(lines, P.load_stats(season), P.load_snaps(season)))
     s = C.screened(g).filter(pl.col("result") != "push", pl.col("market").is_in(Sc.MARKETS))
     out = sim.run(season, keep=set(zip(s["player_id"].to_list(), s["week"].to_list())))
     d = Sc.score(s, R.projections(season), out)
@@ -77,7 +80,37 @@ def grade(x: pl.DataFrame) -> dict:
     return {**r, "win": r["under_rate"], "break_even": float(be)}
 
 
+OOS = ["V1", "V5", "V6", "V7", "V10", "V11", "V13"]
+
+
+def oos(season: int, weeks: tuple[int, int]) -> None:
+    """Addendum: descriptive out-of-sample look (docs/variants_preregistration.md)."""
+    sim = Simulator(fit_season=2024, seasons=[2023, 2024, season - 1, season])
+    d = scored_full(season, sim, weeks)
+    v = variants(d)
+    res = {k: grade(v[k].with_columns(pl.lit(season).alias("season"))) for k in OOS}
+    L = [f"\n## Out-of-sample look: {season} weeks {weeks[0]}-{weeks[1]} (descriptive, addendum)", "",
+         f"{d.height} DraftKings props scored.", "",
+         "| ID | Bets | Weeks | Win | Break-even | ROI | Units |", "|---|---|---|---|---|---|---|"]
+    for k, r in res.items():
+        if not r.get("n"):
+            L.append(f"| {k} | 0 | | | | | |")
+            continue
+        L.append(f"| {k} | {r['n']} | {r['weeks']} | {r['win']:.1%} | {r['break_even']:.1%} | {r['roi']:+.1%} | {r['roi'] * r['n']:+.2f} |")
+    with open(config.ROOT / "docs" / "variants_backtest.md", "a") as f:
+        f.write("\n".join(L) + "\n")
+    j = config.ROOT / "data" / "backtests" / "variants_backtest.json"
+    out = json.loads(j.read_text())
+    out[f"oos_{season}_w{weeks[0]}-{weeks[1]}"] = res
+    j.write_text(json.dumps(out, indent=1, default=str))
+    print("\n".join(L))
+
+
 def main() -> None:
+    import sys
+    if "--season" in sys.argv:
+        a, b = sys.argv[sys.argv.index("--weeks") + 1].split("-")
+        return oos(int(sys.argv[sys.argv.index("--season") + 1]), (int(a), int(b)))
     sim = Simulator(fit_season=2024, seasons=[2023, 2024, 2025])
     res = {}
     for season in (2024, 2025):

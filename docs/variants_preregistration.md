@@ -47,3 +47,15 @@ A variant passes if, on **2025**: n >= 30 bets in >= 10 weeks, and the week-clus
 >= 30 bets there (fewer than 30 in 2024 does not count against it). "Nothing passes" is a valid result.
 
 All 13 rows are reported with n, weeks, win rate, mean break-even, ROI and interval for each season.
+
+## Addendum (2026-10-08, before computing): out-of-sample look at 2026 weeks 1-4
+Will asked to check the positive-ROI variants on other seasons. No NFL prop lines exist before 2024
+(docs/props_data_audit.md: 2021-2023 probes returned 0 markets), so the only unused data is **2026 weeks 1-4**
+(final Action Network lines in `data/props/an_props_2026.csv`, all games final). These weeks were never used to build
+or choose any variant.
+- Variants: the seven with a positive 2025 point estimate: V1, V5, V6, V7, V10, V11, V13. Same code
+  (`scripts/variants_backtest.py --season 2026 --weeks 1-4`), simulator fitted on 2024 with 2026 games as history,
+  as `scripts/grade_2026.py` does.
+- **Descriptive only.** Four weeks give too few bets for a test; no variant passes or fails here. Any variant
+  later tracked live on 2026 would be judged on weeks it has not been looked at (6 onward), not these.
+- S1's own 2026 test is unchanged; these are the same final-line S1 bets `grade_2026.py` already reports as interim.
