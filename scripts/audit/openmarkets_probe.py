@@ -64,6 +64,19 @@ def main() -> None:
                 paths.update(PATHRX.findall(text))
             if st != 200 and p == "/":
                 break                                   # host does not answer: skip its other paths
+    # second pass: full text of the pages that matter, and the one documented no-key endpoint
+    for u in ["https://openmarkets.ai/odds/nfl", "https://openmarkets.ai/odds", "https://app.openmarkets.ai/developers/historical",
+              "https://app.openmarkets.ai/developers/history", "https://app.openmarkets.ai/developers/rate-limits",
+              "https://app.openmarkets.ai/developers/reference", "https://app.openmarkets.ai/developers/quickstart",
+              "https://openmarkets.ai/pricing", "https://app.openmarkets.ai/pricing",
+              "https://api.openmarkets.ai/flow/v1/public/live-sample", "https://api.openmarkets.ai/flow/v1/leagues"]:
+        st, ct, final, body = get(u)
+        text = body.decode("utf-8", "replace")
+        summary["pages"].append({"url": u, "status": st, "final_url": final, "content_type": ct, "bytes": len(body), "pass": 2})
+        print("pass2", u, st, len(body), flush=True)
+        if body:
+            name = "full_" + re.sub(r"[^A-Za-z0-9]+", "_", u.split("//")[1]).strip("_")
+            (out / f"{name}.txt").write_text(text[:400000])
     for s in sorted(scripts)[:40]:
         st, ct, final, body = get(s)
         text = body.decode("utf-8", "replace")
