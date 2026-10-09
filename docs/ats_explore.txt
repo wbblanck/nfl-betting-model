@@ -1,0 +1,46 @@
+grid (weeks 2-18, 2016-2021): h k r -> MAE fair vs margin
+  h  4.0 k 2.0 r 0.3: c   24.0 hfa 1.50 MAE 10.675
+  h  4.0 k 2.0 r 0.5: c   23.7 hfa 1.50 MAE 10.653
+  h  4.0 k 2.0 r 0.7: c   23.2 hfa 1.50 MAE 10.633
+  h  4.0 k 4.0 r 0.3: c   32.8 hfa 1.51 MAE 10.617
+  h  4.0 k 4.0 r 0.5: c   31.8 hfa 1.51 MAE 10.583
+  h  4.0 k 4.0 r 0.7: c   30.1 hfa 1.51 MAE 10.559
+  h  4.0 k 8.0 r 0.3: c   48.5 hfa 1.51 MAE 10.573
+  h  4.0 k 8.0 r 0.5: c   45.4 hfa 1.51 MAE 10.536
+  h  4.0 k 8.0 r 0.7: c   41.0 hfa 1.51 MAE 10.516
+  h  8.0 k 2.0 r 0.3: c   23.9 hfa 1.49 MAE 10.645
+  h  8.0 k 2.0 r 0.5: c   23.7 hfa 1.49 MAE 10.622
+  h  8.0 k 2.0 r 0.7: c   23.3 hfa 1.49 MAE 10.604
+  h  8.0 k 4.0 r 0.3: c   31.5 hfa 1.50 MAE 10.575
+  h  8.0 k 4.0 r 0.5: c   30.6 hfa 1.50 MAE 10.541
+  h  8.0 k 4.0 r 0.7: c   29.2 hfa 1.50 MAE 10.514
+  h  8.0 k 8.0 r 0.3: c   44.4 hfa 1.51 MAE 10.522
+  h  8.0 k 8.0 r 0.5: c   41.7 hfa 1.50 MAE 10.478
+  h  8.0 k 8.0 r 0.7: c   38.0 hfa 1.50 MAE 10.457
+  h  inf k 2.0 r 0.3: c   23.2 hfa 1.48 MAE 10.622
+  h  inf k 2.0 r 0.5: c   23.0 hfa 1.48 MAE 10.601
+  h  inf k 2.0 r 0.7: c   22.7 hfa 1.48 MAE 10.584
+  h  inf k 4.0 r 0.3: c   29.3 hfa 1.49 MAE 10.547
+  h  inf k 4.0 r 0.5: c   28.6 hfa 1.49 MAE 10.514
+  h  inf k 4.0 r 0.7: c   27.6 hfa 1.49 MAE 10.490
+  h  inf k 8.0 r 0.3: c   39.0 hfa 1.49 MAE 10.483
+  h  inf k 8.0 r 0.5: c   36.9 hfa 1.49 MAE 10.441
+  h  inf k 8.0 r 0.7: c   34.1 hfa 1.49 MAE 10.424
+
+chosen: h inf, k 8.0, r 0.7, c 34.08, hfa 1.49
+MAE vs actual margin, weeks 2-18: fair 10.424 | closing spread 9.983
+MAE week 1 (prior only): fair 10.718 | close 10.872
+corr(fair, close) 0.837; mean |fair - close| 2.73
+
+disagreements at the closing price, 2016-2021 (explore, descriptive):
+  |fair - close| >= 0.5: n 1222, covers 0.497 of 1196 decided
+  |fair - close| >= 1.0: n 1071, covers 0.498 of 1048 decided
+  |fair - close| >= 1.5: n 906, covers 0.505 of 886 decided
+  |fair - close| >= 2.0: n 749, covers 0.501 of 733 decided
+  |fair - close| >= 3.0: n 506, covers 0.493 of 495 decided
+
+key numbers 1999-2021 (5880 games): share of games decided by exactly N points
+  1: 4.0%  2: 3.9%  3: 15.1%  4: 4.8%  5: 3.3%  6: 5.8%  7: 9.3%  8: 3.7%  9: 1.6%  10: 5.8%  11: 2.5%  12: 1.6%  13: 2.8%  14: 4.8%  15: 1.5%  16: 2.2%  17: 3.3%  18: 2.3%  19: 1.2%  20: 2.2%  21: 2.8%
+
+Note: the chosen constants (h infinite, k 8, r 0.7) sit at the edge of the pre-registered grid. The grid is kept as
+committed; a wider grid (more prior weight) is a candidate for a later version, to be tested on its own.
