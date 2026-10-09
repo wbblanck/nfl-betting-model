@@ -54,8 +54,21 @@ def main():
         if b:
             (out / (re.sub(r"[^A-Za-z0-9]+", "_", u.split("//")[1])[:80] + ".html")).write_text(t[:60000])
         print(u, st, len(b), found[:10], flush=True)
+    # SBRO links each season to an HTML page (/scoresoddsarchives/nfl-odds-YYYY-YY); follow two and look for tables / files
+    for season_page in ["https://www.sportsbookreviewsonline.com/scoresoddsarchives/nfl-odds-2021-22",
+                        "https://www.sportsbookreviewsonline.com/scoresoddsarchives/nfl-odds-2016-17"]:
+        st, ct, b = get(season_page)
+        t = b.decode("utf-8", "replace")
+        files = [urllib.parse.urljoin(season_page, h) for h in re.findall(r'href="([^"]+\.(?:xlsx?|csv))"', t, re.I)]
+        tables = re.findall(r"<table.*?</table>", t, re.S | re.I)
+        rows = [re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " | ", r)).strip() for r in re.findall(r"<tr.*?</tr>", tables[0], re.S | re.I)[:8]] if tables else []
+        s["pages"].append({"url": season_page, "status": st, "bytes": len(b), "spreadsheet_links": files[:20],
+                           "n_tables": len(tables), "first_rows": rows, "n_rows_table0": len(re.findall(r"<tr", tables[0], re.I)) if tables else 0})
+        (out / ("sbro_" + season_page.rsplit("/", 1)[1] + ".html")).write_text(t[:200000])
+        print(season_page, st, len(b), files[:5], len(tables), rows[:4], flush=True)
+        links += files
     sbro = [l for l in links if "sportsbookreviewsonline" in l]
-    for u in FILES + sbro[:1] + sbro[-1:] + [l for l in sbro if "2021" in l or "2022" in l][:2]:
+    for u in FILES + sbro[:2]:
         st, ct, b = get(u)
         rec = {"url": u, "status": st, "content_type": ct, "bytes": len(b)}
         try:
