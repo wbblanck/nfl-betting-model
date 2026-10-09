@@ -52,8 +52,8 @@ def main() -> None:
     s["nfl_league"] = nfl
     lid = (nfl or {}).get("league_id") or (nfl or {}).get("id")
     contests, cursor = [], None
-    for _ in range(5):
-        q = {"league_id": lid, "limit": 100} if lid else {"limit": 100}
+    for _ in range(10):
+        q = {"league_id": lid, "limit": 200} if lid else {"limit": 200}
         if cursor:
             q["cursor"] = cursor
         st, hdr, c = get("/contests", **q)
@@ -67,7 +67,15 @@ def main() -> None:
         if not pg.get("has_more"):
             break
     now = dt.datetime.now(dt.timezone.utc)
-    up = [x for x in contests if "nfl" in json.dumps(x).lower() and (x.get("status") in ("upcoming", "live", None))]
+    def soon(x):   # games (not season-long "tournament" contests) starting within the next 8 days
+        try:
+            t = dt.datetime.fromisoformat(x["starts_at"].replace("Z", "+00:00"))
+        except (KeyError, ValueError, AttributeError):
+            return False
+        return x.get("type") != "tournament" and now - dt.timedelta(hours=4) <= t <= now + dt.timedelta(days=8)
+    up = sorted([x for x in contests if soon(x)], key=lambda x: x["starts_at"])
+    s["contest_types"] = collections.Counter(x.get("type") for x in contests).most_common()
+    s["contest_statuses"] = collections.Counter(x.get("status") for x in contests).most_common()
     s["n_contests"], s["n_nfl_upcoming"] = len(contests), len(up)
     s["contest_sample"] = contests[:3]
     mk, venues_by_mk, act_by_mk, avail_by_mk, players = (collections.Counter(), collections.defaultdict(collections.Counter),
@@ -92,9 +100,9 @@ def main() -> None:
                         venues_by_mk[k][v.get("partner_name")] += 1
                         act_by_mk[k] += 1
                         avail_by_mk[k] += float(v.get("available") or 0)
-            per_game.append({"contest_id": cid, "label": x.get("contest_label") or x.get("label"), "starts_at": x.get("starts_at"),
+            per_game.append({"contest_id": cid, "label": x.get("title") or x.get("contest_label"), "starts_at": x.get("starts_at"),
                              "status": st, "positions": len(pos), "non_game_positions": n_prop, "headers": hdr})
-            print(cid, x.get("contest_label"), st, len(pos), n_prop, flush=True)
+            print(cid, x.get("title"), st, len(pos), n_prop, flush=True)
     s["per_game"] = per_game
     s["market_keys"] = mk.most_common()
     s["venues_by_market"] = {k: v.most_common() for k, v in venues_by_mk.items()}
