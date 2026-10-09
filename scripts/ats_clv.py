@@ -43,7 +43,9 @@ def evaluate(x, alpha):
         clv = np.where(home, cc - oo, oo - cc)
         won_o = np.where(home, mm > oo, mm < oo)
         push_o = mm == oo
-        pnl_o = np.where(push_o, 0.0, P.profit(np.full(len(mm), -110.0), won_o.astype(float)))
+        px = (np.where(home, x["home_open_odds"].to_numpy()[sel], x["away_open_odds"].to_numpy()[sel]).astype(float)
+              if "home_open_odds" in x.columns else np.full(len(mm), -110.0))
+        pnl_o = np.where(push_o, 0.0, P.profit(px, won_o.astype(float)))
         won_c = np.where(home, mm > cc, mm < cc)
         push_c = mm == cc
         r = {"n": int(sel.sum()), "weeks": int(len(np.unique(cls))), "mean_clv": float(clv.mean()) if len(clv) else None,

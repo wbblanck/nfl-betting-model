@@ -7,7 +7,8 @@ name = "nfl-betting-model"
 version = "0.1.0"
 description = "NFL player-prop research: pre-registered tests against Action Network lines."
 requires-python = ">=3.11"
-dependencies = ["polars>=1.0", "pyarrow>=15", "numpy>=1.26", "nflreadpy>=0.1.5"]
+dependencies = [
+    "openpyxl","polars>=1.0", "pyarrow>=15", "numpy>=1.26", "nflreadpy>=0.1.5"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
