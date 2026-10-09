@@ -52,7 +52,8 @@ def load(live: Path | None = None) -> dict:
                                pl.col("proj").cast(pl.Float64), pl.col("units").cast(pl.Float64))
     return {"rec": rec, "picks": picks, "runs": runs, "live": live, "pcmp": _read(live / f"parlay_compare_{SEASON}.csv"),
             "pa_rec": _read(live / f"s1pa_record_{SEASON}.csv"),
-            "ocmp": _read(live / f"openmarkets_compare_{SEASON}.csv")}
+            "ocmp": _read(live / f"openmarkets_compare_{SEASON}.csv"),
+            "ats_runs": _read(live / f"ats_runs_{SEASON}.csv"), "ats_rec": _read(live / f"ats_record_{SEASON}.csv")}
 
 
 # ------------------------------------------------------------------------------------------------ numbers
@@ -341,6 +342,62 @@ def load_stats() -> pl.DataFrame | None:
         return None
 
 
+def hcp(team: str, home_line, side_is_home: bool) -> str:
+    """'PIT -2.5' from a home margin line (positive = home favored), seen from the side's team."""
+    if home_line in (None, ""):
+        return "–"
+    v = -float(home_line) if side_is_home else float(home_line)
+    return f"{team} {'PK' if v == 0 else f'{v:+g}'}"
+
+
+LABEL_CHIP = {"Bet Now": "win", "Wait": "flag", "Monitor": "state open", "No Value": "idle"}
+
+
+def ats_section(runs: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime) -> str:
+    """Live ATS tab (docs/ats_live_rules.md)."""
+    head = ('<section class="block"><div class="sechead"><div><p class="eyebrow">NFL against the spread · unvalidated tracker</p>'
+            '<h2>Line value and expected CLV</h2></div></div>'
+            '<p class="lede">Each run compares the rating\'s fair line with every book\'s spread and the exchanges\' price. The rating does not beat '
+            'closing spreads (2022-2025 backtest), but its side gained about half a point of closing-line value from opening lines (2008-2024). '
+            'Labels follow the pre-registered rules; they are tracker records, not recommendations.</p>')
+    if not runs.height:
+        return head + '<p class="empty">No ATS runs yet. The first scheduled S1 run records this week\'s games.</p></section>'
+    wk = int(runs["week"].cast(pl.Int64).max())
+    cur = runs.filter(pl.col("week").cast(pl.Int64) == wk)
+    latest = cur.sort("run_utc", descending=True).unique("game_id", keep="first").sort("start_time")
+    rows = []
+    for r in latest.to_dicts():
+        h = r["side_is_home"] in (True, "true")
+        locked = Lv.parse_ts(r["start_time"]) <= now
+        rows.append([esc(fmt_dt(r["start_time"])), f'{esc(r["away"])} at {esc(r["home"])}',
+                     esc(hcp(r["home"], r["fair"], True)),
+                     esc(hcp(r["home"], r["consensus"], True)), esc(hcp(r["home"], r["exchange"], True)) if r.get("exchange") not in (None, "") else "–",
+                     f'<b>{esc(hcp(r["side"], r["best_line"], h))}</b> <span class="muted">{esc(r["best_book"])} {float(r["best_odds"]):+.0f}</span>',
+                     f'{float(r["gap"]):+.1f}', f'{float(r["exp_clv"]):+.2f}', "3/7" if r["key"] in (True, "true") else "",
+                     chip(LABEL_CHIP.get(r["label"], "idle"), ("Kicked off · " if locked else "") + r["label"], r.get("qb_note") or "")])
+    table_html = table(["Kickoff (ET)", "Game", "Fair (home)", "Consensus", "Exchanges", "Rating's side at best number", "Gap", "Exp. CLV", "Key", "Label"], rows)
+    last = latest["run_utc"].max()
+    graded = rec.filter(pl.col("result_ats").is_in(["W", "L", "P"])) if rec.height else rec
+    def summ(x):
+        if not x.height:
+            return "none graded yet"
+        w, l, pu = (int((x["result_ats"] == k).sum()) for k in ("W", "L", "P"))
+        u = float(x["units"].cast(pl.Float64).sum())
+        c = x["clv"].cast(pl.Float64).drop_nulls()
+        return f"{w}-{l}" + (f"-{pu}" if pu else "") + f", {u:+.2f} units, mean CLV {float(c.mean()):+.2f} pts" if c.len() else f"{w}-{l}, {u:+.2f} units"
+    rec_html = ""
+    if graded.height:
+        lines = []
+        for lab in ("Bet Now", "Wait", "Monitor", "No Value"):
+            x = graded.filter(pl.col("label") == lab)
+            if x.height:
+                lines.append(f'<li><b>{esc(lab)}</b>: {esc(summ(x))}</li>')
+        rec_html = '<div class="card"><h3>Season record by label</h3><ul>' + "".join(lines) + '</ul><p class="note">CLV against the nflverse closing spread. No Value rows are graded for reference only.</p></div>'
+    return (head + f'<p class="note">Week {wk}, latest run {esc(fmt_dt(last))} ET. Lines are each team\'s handicap; "Fair (home)" is the rating\'s line for the home team.</p>'
+            + f'<div class="card">{table_html}</div>' + rec_html
+            + '<p class="note">Rules: docs/ats_live_rules.md. Expected CLV = 0.235 × gap, the share of the gap bet365 openers moved by the close in 2022-2024.</p></section>')
+
+
 def pa_section(pa: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime, live: Path | None = None,
                stats: pl.DataFrame | None = None) -> str:
     """S1 on ParlayAPI: the same rule on ParlayAPI's DK and FanDuel lines (books-disagree = DK vs FanDuel only).
@@ -625,6 +682,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[data-tip]:focus-visi
   background:var(--surface);color:var(--ink2);padding:5px 12px;border-radius:5px;cursor:pointer}
 .filters button:hover{border-color:var(--accent);color:var(--accent)}
 .filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tabs button{font:600 15px var(--display);letter-spacing:.06em;text-transform:uppercase;background:none;border:0;border-bottom:3px solid transparent;
+  color:var(--muted);padding:8px 14px;cursor:pointer;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tabs button:hover{color:var(--ink)}
+.tabpane{display:flex;flex-direction:column;gap:28px}
 
 /* games and picks */
 .games{display:flex;flex-direction:column;gap:10px}
@@ -749,6 +812,16 @@ JS = """
   bs.forEach(function(b){b.addEventListener('click',function(){apply(b.getAttribute('data-mode'))})});
   var m='all';try{m=localStorage.getItem('s1-filter')||'all'}catch(e){}
   apply(m);
+  // tabs (remembered per viewer; #ats deep-links)
+  var tabs=document.querySelectorAll('.tabs button');
+  function show(t){
+    tabs.forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-tab')===t?'true':'false')});
+    document.querySelectorAll('.tabpane').forEach(function(p){p.hidden=p.id!=='tab-'+t});
+    try{localStorage.setItem('tab',t)}catch(e){}
+  }
+  tabs.forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-tab'))})});
+  var t0=(location.hash==='#ats')?'ats':'s1';try{if(location.hash!=='#ats'){t0=localStorage.getItem('tab')||'s1'}}catch(e){}
+  show(t0);
   // one tooltip for every chart mark: "headline | detail"
   var tip=document.createElement('div');tip.className='tip';tip.hidden=true;document.body.appendChild(tip);
   function show(el,x,y){
@@ -958,8 +1031,12 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         f'<header class="top"><div><h1>S1 Live Tracker</h1><p class="sub">2026 NFL player props · rule S1, all four signals agree</p></div>'
         f'<div class="stamp">{esc(stamp)}</div></header>'
         '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations.</div>'
-        f'{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'
+        '<nav class="tabs" role="tablist"><button type="button" role="tab" data-tab="s1" aria-selected="true">Player props (S1)</button>'
+        '<button type="button" role="tab" data-tab="ats" aria-selected="false">Spreads (ATS)</button></nav>'
+        f'<div class="tabpane" id="tab-ats" hidden>{ats_section(data.get("ats_runs", pl.DataFrame()), data.get("ats_rec", pl.DataFrame()), now)}</div>'
+        f'<div class="tabpane" id="tab-s1">{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'
         + ('<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Earlier weeks</h2></div></div><div class="games">' + "".join(old) + "</div></section>" if old else "")
+        + '</div>'
         + f'{foot}</div><script>{JS}</script>')
 
 

@@ -87,3 +87,29 @@ def fit_line(x: pl.DataFrame) -> tuple[float, float]:
 
 def fair(x: pl.DataFrame, c: float, hfa: float) -> pl.DataFrame:
     return x.with_columns((c * pl.col("diff") + hfa * (~pl.col("neutral")).cast(pl.Float64)).alias("fair"))
+
+
+def current_state(tg: pl.DataFrame, h: float, k: float, r: float) -> dict[str, float]:
+    """Each team's net rating after every game in `tg` (the rating going into its next game), for the live tracker.
+    Same arithmetic as `ratings`: a probe week after the last one gets one row per team (teams on bye included)."""
+    last = max(tg["season"].unique().to_list())
+    s = tg.filter(pl.col("season") == last)
+    nxt = int(s["week"].max()) + 1
+    teams = sorted(set(s["team"].to_list()))
+    probe = pl.DataFrame({"season": [last] * len(teams), "week": [nxt] * len(teams), "game_id": [f"probe_{t}" for t in teams],
+                          "team": teams, "opp": teams, "off_epa": [0.0] * len(teams), "plays": [0] * len(teams),
+                          "def_epa": [0.0] * len(teams)}).cast({c: tg.schema[c] for c in tg.columns})
+    rt = ratings(pl.concat([tg, probe.select(tg.columns)]), h, k, r).filter(pl.col("season") == last, pl.col("week") == nxt)
+    return dict(zip(rt["team"].to_list(), rt["net"].to_list()))
+
+
+def crosses_key(line: float, fair: float, home: bool) -> bool:
+    """True if the bet side's number is on the better side of 3 or 7 relative to the fair line
+    (line, fair: home margin, positive = home favored; home: the bet is on the home team)."""
+    s, fs = (-line, -fair) if home else (line, fair)
+    for k_ in (3, 7):
+        for sign in (1, -1):
+            kk = sign * k_
+            if s > kk > fs or (s > kk and fs == kk):
+                return True
+    return False

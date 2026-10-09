@@ -15,7 +15,7 @@ import sys
 
 import polars as pl
 
-from nflbet import config, depth as D, injuries as Inj, live as Lv, openmarkets as Om, parlay as Pa, props as P
+from nflbet import ats_live as AL, config, depth as D, injuries as Inj, live as Lv, openmarkets as Om, parlay as Pa, props as P
 
 SEASON = 2026
 PICKS = Lv.LIVE / f"s1_picks_{SEASON}.csv"
@@ -27,6 +27,7 @@ PA_PICKS = Lv.LIVE / f"s1pa_picks_{SEASON}.csv"
 PA_RUNS = Lv.LIVE / f"s1pa_runs_{SEASON}.csv"
 PA_RECORD = Lv.LIVE / f"s1pa_record_{SEASON}.csv"
 OM_CMP = Lv.LIVE / f"openmarkets_compare_{SEASON}.csv"
+_OM_ROWS: list = []
 
 
 def do_run() -> None:
@@ -61,6 +62,7 @@ def do_run() -> None:
                 scored.append(("S1 on ParlayAPI (DK + FanDuel)", Om.attach(picks, om), log, PA_PICKS, PA_RUNS))
         except Exception as e:  # noqa: BLE001 - the second record never stops the official one
             print(f"S1 on ParlayAPI unavailable: {type(e).__name__}: {e}")
+    ats_record(week, when)
     if not scored:
         return
     flagged = with_news([x[1] for x in scored], week, when)
@@ -75,6 +77,32 @@ def do_run() -> None:
                   f"  {'DEPTH CHART AGAINST ' if r['depth_against'] else ''}{r['depth_note'] or ''}")
 
 
+def ats_record(week: int, when: dt.datetime) -> None:
+    """Live ATS tracker (src/nflbet/ats_live.py, docs/ats_live_rules.md): every game not yet started, appended to
+    data/live/ats_runs_2026.csv. Descriptive; a failure never stops the S1 run."""
+    try:
+        books = AL.parse_an(AL.fetch_an(SEASON, week))
+        fair = AL.fair_lines(SEASON, week)
+        exch = Om.spreads(_OM_ROWS) if _OM_ROWS else None
+        try:
+            qb = AL.qb_flags(SEASON, week)
+        except Exception as e:  # noqa: BLE001
+            print(f"ATS QB check unavailable: {type(e).__name__}: {e}")
+            qb = {}
+        ev = AL.evaluate(fair, books, exch, qb)
+        if not ev.height:
+            print("ATS: no game spreads posted"); return
+        ev = ev.filter(pl.col("start_time").map_elements(lambda t: Lv.parse_ts(t) > when, return_dtype=pl.Boolean))
+        ev = ev.with_columns(pl.lit(when.strftime("%Y-%m-%dT%H:%M:%SZ")).alias("run_utc"), pl.lit(week).alias("week"))
+        Lv.append(ev, AL.RUNS)
+        for r in ev.sort("start_time").iter_rows(named=True):
+            print(f"ATS {r['away']}@{r['home']}: fair {r['fair']:+.1f}, consensus {r['consensus']:+.1f}, exchange {r['exchange']}, "
+                  f"{r['side']} at {r['best_book']} {r['best_line']:+.1f} ({r['best_odds']:+.0f}), gap {r['gap']:+.2f}, "
+                  f"key {r['key']}, exp CLV {r['exp_clv']:+.2f}: {r['label']} {r['qb_note']}")
+    except Exception as e:  # noqa: BLE001
+        print(f"ATS tracker unavailable: {type(e).__name__}: {e}")
+
+
 def openmarkets_record(week: int, when: dt.datetime, pa: pl.DataFrame | None, an_path) -> pl.DataFrame | None:
     """Third price record (src/nflbet/openmarkets.py): Kalshi, ProphetX and BettorEdge player-prop quotes, archived in
     data/live/openmarkets/, compared per venue with DraftKings at DraftKings' line (ParlayAPI's DK if available, else
@@ -84,7 +112,9 @@ def openmarkets_record(week: int, when: dt.datetime, pa: pl.DataFrame | None, an
         print("OpenMarkets record skipped: OPENMARKETS_API_KEY not set")
         return None
     try:
-        om = Om.parse(Om.fetch(now=when))
+        rows = Om.fetch(now=when)
+        _OM_ROWS[:] = rows                                              # game spreads, reused by the ATS tracker
+        om = Om.parse(rows)
         arch = Lv.LIVE / "openmarkets" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"   # parsed quotes only (raw ~1 MB/run)
         arch.parent.mkdir(parents=True, exist_ok=True)
         with gzip.open(arch, "wb") as f:
@@ -211,6 +241,14 @@ def settle_record(picks_path, runs_path, out_path, coverage_guard: float | None 
 
 
 def do_grade() -> None:
+    if AL.RUNS.exists() and AL.RUNS.stat().st_size:
+        try:
+            g = AL.grade(pl.read_csv(AL.RUNS, infer_schema_length=0), SEASON)
+            g.write_csv(AL.RECORD)
+            bn = g.filter(pl.col("label") == "Bet Now", pl.col("result_ats").is_in(["W", "L", "P"]))
+            print(f"ATS tracker: {g.height} official games; Bet Now graded {bn.height}")
+        except Exception as e:  # noqa: BLE001
+            print(f"ATS grading unavailable: {type(e).__name__}: {e}")
     pa = settle_record(PA_PICKS, PA_RUNS, PA_RECORD, coverage_guard=0.5)   # ParlayAPI's DK feed thins out overnight
     if pa is not None:
         t = Lv.record(pa)

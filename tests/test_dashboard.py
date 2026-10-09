@@ -120,3 +120,14 @@ def test_pa_section_marks_overlap_with_official():
     html = D.pa_section(pa, rec, dt.datetime(2026, 10, 8, tzinfo=dt.timezone.utc))
     assert "2 picks" in html and html.count("Also official S1") == 1 and "Open" in html
     assert D.pa_section(pl.DataFrame(), rec, dt.datetime(2026, 10, 8, tzinfo=dt.timezone.utc)) == ""
+
+
+def test_ats_section():
+    runs = pl.DataFrame({"run_utc": ["2026-10-10T16:00:00Z"], "week": ["5"], "game_id": ["2026_05_IND_PIT"], "start_time": ["2026-10-11T17:00:00.000Z"],
+                         "home": ["PIT"], "away": ["IND"], "fair": ["4.0"], "consensus": ["2.5"], "exchange": [""], "side": ["PIT"],
+                         "side_is_home": ["true"], "best_book": ["DraftKings"], "best_line": ["2.5"], "best_odds": ["-115"], "gap": ["1.5"],
+                         "key": ["true"], "exp_clv": ["0.35"], "label": ["Bet Now"], "qb_note": [""]})
+    html = D.ats_section(runs, pl.DataFrame(), dt.datetime(2026, 10, 9, tzinfo=dt.timezone.utc))
+    assert "PIT -2.5" in html and "PIT -4" in html and "Bet Now" in html and "DraftKings -115" in html
+    assert "No ATS runs yet" in D.ats_section(pl.DataFrame(), pl.DataFrame(), dt.datetime(2026, 10, 9, tzinfo=dt.timezone.utc))
+    assert D.hcp("IND", 3.0, False) == "IND +3" and D.hcp("PIT", 0.0, True) == "PIT PK"

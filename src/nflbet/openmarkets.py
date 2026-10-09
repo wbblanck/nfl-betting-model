@@ -42,8 +42,9 @@ def _get(path: str, key: str, **q):
         return json.loads(r.read())
 
 
-def fetch(key: str | None = None, now: dt.datetime | None = None, days: int = 8) -> list[dict]:
-    """S1-market player-prop positions of NFL games starting within `days`, each tagged with its contest title."""
+def fetch(key: str | None = None, now: dt.datetime | None = None, days: int = 8, spreads: bool = True) -> list[dict]:
+    """S1-market player-prop positions (and, with `spreads`, game spread positions for the ATS tracker) of NFL games
+    starting within `days`, each tagged with its contest title."""
     key = key or os.environ["OPENMARKETS_API_KEY"]
     now = now or dt.datetime.now(dt.timezone.utc)
     nfl = next(x for x in _get("/leagues", key)["data"] if x.get("name") == "NFL")
@@ -67,7 +68,7 @@ def fetch(key: str | None = None, now: dt.datetime | None = None, days: int = 8)
         if x.get("type") == "tournament" or not (now <= t <= now + dt.timedelta(days=days)):
             continue
         for p in _get(f"/contests/{x['id']}/liquidity", key).get("data", []):
-            if p.get("market_key") in MARKETS:
+            if p.get("market_key") in MARKETS or (spreads and p.get("market_key") == "spread"):
                 out.append({"contest_title": x.get("title"), "starts_at": x["starts_at"], **p})
     return out
 
@@ -142,3 +143,29 @@ def attach(picks: pl.DataFrame, om: pl.DataFrame | None) -> pl.DataFrame:
             cols[f"om_{ven}_odds"].append(american(r[f"p_{side}"]) if r else None)
             cols[f"om_{ven}_avail"].append(r[f"avail_{side}"] if r else None)
     return picks.with_columns(*(pl.Series(c, v, dtype=pl.Float64) for c, v in cols.items()))
+
+
+SPREAD_VENUES = {"Kalshi", "Polymarket", "PolymarketUS", "ProphetX", "4Casters", "BettorEdge", "SX Bet", "BetOpenly"}
+
+
+def spreads(rows: list[dict]) -> pl.DataFrame:
+    """Each exchange's main game spread: game, venue, home_line (nflverse sign: positive = home favored), home and
+    away price (probabilities). Main line = the two-sided line whose prices are closest to even."""
+    sides: dict = {}
+    for r in rows:
+        g = _teams(r.get("contest_title"))
+        if r.get("market_key") != "spread" or not g or r.get("side_key") not in ("home", "away") or r.get("variable") in (None, ""):
+            continue
+        v = float(r["variable"])
+        home_line = -v if r["side_key"] == "home" else v          # the home side's handicap -3.5 = home favored by 3.5
+        for q in r.get("partner_liquidities") or []:
+            if q.get("actionable") and q.get("price") and q.get("partner_name") in SPREAD_VENUES:
+                sides.setdefault((g, q["partner_name"], home_line), {})[r["side_key"]] = float(q["price"])
+    best: dict = {}
+    for (g, ven, hl), sd in sides.items():
+        if "home" in sd and "away" in sd:
+            dev = abs(sd["home"] / (sd["home"] + sd["away"]) - 0.5)
+            if (g, ven) not in best or dev < best[(g, ven)][0]:
+                best[(g, ven)] = (dev, hl, sd["home"], sd["away"])
+    out = [{"game": g, "venue": ven, "home_line": hl, "p_home": ph, "p_away": pa} for (g, ven), (_, hl, ph, pa) in best.items()]
+    return pl.DataFrame(out, schema={"game": pl.Utf8, "venue": pl.Utf8, "home_line": pl.Float64, "p_home": pl.Float64, "p_away": pl.Float64})
