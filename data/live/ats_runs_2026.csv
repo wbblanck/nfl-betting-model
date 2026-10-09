@@ -1,0 +1,15 @@
+game_id,game,start_time,home,away,fair,consensus,exchange,n_exchanges,side,side_is_home,best_book,best_line,best_odds,gap,key,exp_clv,beats_ref,qb_note,label,draftkings_line,fanduel_line,betrivers_line,betmgm_line,caesars_line,run_utc,week
+2026_05_PHI_JAX,JAX|PHI,2026-10-11T13:30:00.000Z,JAX,PHI,9.41,7.5,7.5,6,JAX,true,Caesars,7.5,-108.0,1.91,false,0.45,true,"",Monitor,7.5,7.5,7.5,7.5,7.5,2026-10-09T21:03:29Z,5
+2026_05_CHI_GB,CHI|GB,2026-10-11T17:00:00.000Z,GB,CHI,-2.97,-1.5,-1.5,6,CHI,false,Caesars,-1.0,-110.0,1.97,false,0.46,true,"",Monitor,-1.5,-1.5,-1.0,-1.5,-1.0,2026-10-09T21:03:29Z,5
+2026_05_CIN_MIA,CIN|MIA,2026-10-11T17:00:00.000Z,MIA,CIN,-3.43,-7.0,-6.5,6,MIA,true,DraftKings,-7.0,-110.0,3.57,false,0.84,true,"",Monitor,-7.0,-6.5,-7.0,-7.0,-7.0,2026-10-09T21:03:29Z,5
+2026_05_LV_NE,LV|NE,2026-10-11T17:00:00.000Z,NE,LV,6.56,3.5,3.5,6,NE,true,BetRivers,3.5,-109.0,3.06,false,0.72,true,"",Monitor,3.5,3.5,3.5,3.5,3.5,2026-10-09T21:03:29Z,5
+2026_05_MIN_NO,MIN|NO,2026-10-11T17:00:00.000Z,NO,MIN,-2.33,-2.5,-2.5,6,NO,true,BetMGM,-2.5,-108.0,0.17,false,0.04,true,"",No Value,-2.5,-1.5,-2.5,-2.5,-2.5,2026-10-09T21:03:29Z,5
+2026_05_CLE_NYJ,CLE|NYJ,2026-10-11T17:00:00.000Z,NYJ,CLE,1.78,2.5,2.5,6,CLE,false,DraftKings,2.5,-110.0,0.72,false,0.17,true,"",No Value,2.5,1.5,2.5,2.0,2.5,2026-10-09T21:03:29Z,5
+2026_05_IND_PIT,IND|PIT,2026-10-11T17:00:00.000Z,PIT,IND,1.08,2.5,2.5,6,IND,false,DraftKings,3.0,-115.0,1.92,false,0.45,true,"",Monitor,3.0,2.5,2.5,2.5,2.5,2026-10-09T21:03:29Z,5
+2026_05_HOU_TEN,HOU|TEN,2026-10-11T17:00:00.000Z,TEN,HOU,-6.05,-7.0,-7.5,6,TEN,true,BetRivers,-7.5,-118.0,1.45,true,0.34,true,"",Bet Now,-7.0,-7.0,-7.5,-7.0,-7.0,2026-10-09T21:03:29Z,5
+2026_05_NYG_WAS,NYG|WAS,2026-10-11T17:00:00.000Z,WAS,NYG,2.04,4.5,3.5,6,NYG,false,DraftKings,4.5,-115.0,2.46,true,0.58,true,WAS QB Marcus Mariota: Out,Wait,4.5,3.5,4.0,4.0,4.0,2026-10-09T21:03:29Z,5
+2026_05_DEN_LAC,DEN|LAC,2026-10-11T20:05:00.000Z,LAC,DEN,-2.96,-3.5,-3.5,6,LAC,true,BetMGM,-3.5,-112.0,0.54,true,0.13,true,"",No Value,-3.5,-3.5,-3.0,-3.5,-3.5,2026-10-09T21:03:29Z,5
+2026_05_DET_ARI,ARI|DET,2026-10-11T20:25:00.000Z,ARI,DET,-0.69,-5.5,-5.5,6,ARI,true,DraftKings,-5.5,-110.0,4.81,true,1.13,true,"",Bet Now,-5.5,-5.5,-5.5,-5.5,-5.5,2026-10-09T21:03:29Z,5
+2026_05_SF_SEA,SEA|SF,2026-10-11T20:25:00.000Z,SEA,SF,4.81,3.0,3.5,6,SEA,true,DraftKings,3.0,-110.0,1.81,false,0.42,true,"",Monitor,3.0,3.0,3.0,3.0,3.0,2026-10-09T21:03:29Z,5
+2026_05_BAL_ATL,ATL|BAL,2026-10-12T00:20:00.000Z,ATL,BAL,-1.62,3.5,3.5,6,BAL,false,Caesars,3.5,-117.0,5.12,true,1.2,true,BAL QB Lamar Jackson: Out,Wait,3.5,3.5,3.0,3.0,3.5,2026-10-09T21:03:29Z,5
+2026_05_BUF_LA,BUF|LA,2026-10-13T00:15:00.000Z,LA,BUF,2.74,3.5,3.5,6,BUF,false,Caesars,3.5,-118.0,0.76,true,0.18,true,"",No Value,3.0,3.5,3.5,3.0,3.5,2026-10-09T21:03:29Z,5
