@@ -1,0 +1,31 @@
+{
+ "stamp": "20261009T081247Z",
+ "pages": [
+  {
+   "url": "https://www.sportsbookreviewsonline.com/scoresoddsarchives/nfl/nfloddsarchives.htm",
+   "status": 200,
+   "bytes": 43817,
+   "spreadsheet_links": []
+  },
+  {
+   "url": "https://sportsbookreviewsonline.com/scoresoddsarchives/nfl/nfloddsarchives.htm",
+   "status": 200,
+   "bytes": 43811,
+   "spreadsheet_links": []
+  },
+  {
+   "url": "https://www.aussportsbetting.com/data/historical-nfl-results-and-odds-data/",
+   "status": "HTTP Error 403: Forbidden",
+   "bytes": 0,
+   "spreadsheet_links": []
+  }
+ ],
+ "files": [
+  {
+   "url": "https://www.aussportsbetting.com/historical_data/nfl.xlsx",
+   "status": "HTTP Error 403: Forbidden",
+   "content_type": "",
+   "bytes": 0
+  }
+ ]
+}
