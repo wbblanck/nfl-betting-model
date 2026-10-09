@@ -90,4 +90,7 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   varies through the day (410 props at 22:51 UTC on 2026-10-08, 97 at 08:00 UTC on 2026-10-09), and a run that
   misses a pick's prop would erase it under "last run before kickoff". For this record only, a run counts for a game
   if it scored at least half as many props for that game as the best earlier run that week. Official S1 is unchanged.
+- **Opponent defense context (added 2026-10-09):** each pick's why-note adds the opposing defense's season-to-date
+  FTN charting numbers from weeks before the pick (blitz rate and pass rushers for passing / receiving props, box
+  count for rushing props), against the league rate. Context only, not a signal.
 

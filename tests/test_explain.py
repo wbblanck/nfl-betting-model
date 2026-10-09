@@ -40,3 +40,12 @@ def test_book_lines_from_parlay_archive(tmp_path):
     r = {"player": "Josh Downs", "market": "rec", "run_utc": "2026-10-08T05:42:48Z", "week": "5"}
     assert Ex.book_lines(tmp_path, r, "parlay") == {"DraftKings": 5.5, "FanDuel": 4.5}
     assert Ex.book_lines(tmp_path, dict(r, run_utc="2026-10-09T00:00:00Z"), "parlay") == {}   # no archive: no claim
+
+
+def test_opponent_context():
+    ctx = {"week": 5, "teams": {"NO": {"def_blitz_rate": 0.31, "def_pass_rushers": 4.6, "def_box": 6.4}},
+           "league": {"def_blitz_rate": 0.24, "def_pass_rushers": 4.25, "def_box": 6.1}}
+    s = Ex.opponent_context({"market": "rec"}, "NO", ctx)
+    assert s == "Opponent defense (NO, weeks 1-4, FTN charting): blitzes on 31% of dropbacks (league 24%), 4.6 pass rushers on average (league 4.2)."
+    assert "box" in Ex.opponent_context({"market": "rush_yds"}, "NO", ctx)
+    assert Ex.opponent_context({"market": "rec"}, "DAL", ctx) is None and Ex.opponent_context({"market": "rec"}, "NO", None) is None

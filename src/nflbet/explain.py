@@ -68,7 +68,20 @@ def recent_games(stats: pl.DataFrame, player_id: str, market: str, week: int, n:
     return out
 
 
-def reasons(r: dict, books: dict[str, float], games: list[tuple[int, str, float]]) -> list[str]:
+def opponent_context(r: dict, opp: str, ctx: dict | None) -> str | None:
+    """One sentence on the opposing defense this season to date (FTN charting via nflverse), or None.
+    ctx: {"week": first week not included, "teams": {team: row}, "league": row} from teamstats.season_to_date."""
+    if not ctx or opp not in ctx["teams"]:
+        return None
+    t, lg, w = ctx["teams"][opp], ctx["league"], ctx["week"]
+    span = f"weeks 1-{w - 1}" if w > 2 else "week 1"
+    if r["market"] in ("rush_att", "rush_yds"):
+        return f"Opponent defense ({opp}, {span}, FTN charting): {t['def_box']:.1f} defenders in the box on dropbacks (league {lg['def_box']:.1f})."
+    return (f"Opponent defense ({opp}, {span}, FTN charting): blitzes on {t['def_blitz_rate']:.0%} of dropbacks (league "
+            f"{lg['def_blitz_rate']:.0%}), {t['def_pass_rushers']:.1f} pass rushers on average (league {lg['def_pass_rushers']:.1f}).")
+
+
+def reasons(r: dict, books: dict[str, float], games: list[tuple[int, str, float]], opp_line: str | None = None) -> list[str]:
     """Sentences for one pick. r: a pick row with side, line, odds, market, p_mkt, p_model, proj (as floats or strings)."""
     side, line, odds = r["side"], float(r["line"]), float(r["odds"])
     under = side == "under"
@@ -99,4 +112,6 @@ def reasons(r: dict, books: dict[str, float], games: list[tuple[int, str, float]
                    f"average {avg:.1f} {unit}.")
     else:
         out.append("Recent games: none this season before this week.")
+    if opp_line:
+        out.append(opp_line)
     return out

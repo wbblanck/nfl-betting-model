@@ -295,13 +295,38 @@ def parlay_card(pc: pl.DataFrame) -> str:
             + (f' ParlayAPI requests left this month: {esc(left[-1])}.' if left.len() else "") + '</p></div>')
 
 
+_FTN: dict = {}
+
+
+def ftn_context(week: int) -> dict | None:
+    """Season-to-date FTN team stats before `week` (cached per build); None when unavailable offline."""
+    if "tg" not in _FTN:
+        try:
+            from nflbet import teamstats as T
+            _FTN["tg"] = T.ftn([SEASON])
+        except Exception:  # noqa: BLE001
+            _FTN["tg"] = None
+    if _FTN["tg"] is None or not _FTN["tg"].height:
+        return None
+    from nflbet import teamstats as T
+    s = T.season_to_date(_FTN["tg"], SEASON, week)
+    if not s.height:
+        return None
+    lg = {c: float(s[c].mean()) for c in s.columns if c.startswith(("def_", "off_"))}
+    return {"week": week, "teams": {r["team"]: r for r in s.iter_rows(named=True)}, "league": lg}
+
+
 def with_why(rows: list[dict], live: Path, source: str, stats: pl.DataFrame | None) -> list[dict]:
     """Attach the plain-language reasons (src/nflbet/explain.py) to each pick row."""
     out = []
     for r in rows:
         try:
             games = Ex.recent_games(stats, r["player_id"], r["market"], int(r["week"])) if stats is not None else []
-            r = dict(r, _why=Ex.reasons(r, Ex.book_lines(live, r, source), games))
+            team, home, away = r.get("team"), r.get("home"), r.get("away")
+            fix = {"JAC": "JAX", "LAR": "LA", "WSH": "WAS"}
+            opp = fix.get(away, away) if fix.get(team, team) == fix.get(home, home) else fix.get(home, home)
+            ctx = ftn_context(int(r["week"])) if stats is not None else None
+            r = dict(r, _why=Ex.reasons(r, Ex.book_lines(live, r, source), games, Ex.opponent_context(r, opp, ctx)))
         except Exception:  # noqa: BLE001 - a missing reason never breaks the page
             pass
         out.append(r)
