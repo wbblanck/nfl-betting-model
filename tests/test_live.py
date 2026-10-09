@@ -105,3 +105,14 @@ def test_run_exits_cleanly_when_no_props_are_posted(tmp_path, monkeypatch, capsy
     mod.do_run()
     assert "no player props posted yet" in capsys.readouterr().out
     assert not (tmp_path / "lines").exists()                              # nothing archived, nothing recorded
+
+
+def test_coverage_guard_ignores_thin_runs():
+    picks = pl.DataFrame([{"run_utc": "2026-10-08T22:51:23Z", "an_game_id": "g", "player": "Aaron Jones"}])
+    runs = pl.DataFrame({"run_utc": ["2026-10-08T05:42:48Z", "2026-10-08T22:51:23Z", "2026-10-09T08:00:35Z"],
+                         "an_game_id": ["g"] * 3, "start_time": ["2026-10-11T17:00:00.000Z"] * 3,
+                         "props_scored": ["18", "20", "7"]})
+    assert Lv.official(picks, runs).height == 0                          # plain rule: the thin 08:00 run (no picks) wins
+    assert Lv.official(picks, runs, 0.5)["player"].to_list() == ["Aaron Jones"]   # 7 < 0.5 * 20: 08:00 does not count
+    runs2 = runs.with_columns(pl.Series("props_scored", ["18", "20", "15"]))
+    assert Lv.official(picks, runs2, 0.5).height == 0                    # a full run with no pick still drops it

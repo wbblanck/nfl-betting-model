@@ -124,10 +124,16 @@ def append(df: pl.DataFrame, path: Path) -> None:
 
 # --------------------------------------------------------------------------------------------- grading
 
-def official(picks: pl.DataFrame, runs: pl.DataFrame) -> pl.DataFrame:
-    """Picks from the last run that evaluated each game before its kickoff."""
+def official(picks: pl.DataFrame, runs: pl.DataFrame, coverage_guard: float | None = None) -> pl.DataFrame:
+    """Picks from the last run that evaluated each game before its kickoff.
+    coverage_guard (the ParlayAPI record only, docs/s1_live_rules.md): a run counts for a game only if it scored at
+    least this share of the most props any earlier run that week scored for that game, so a thin feed snapshot does
+    not erase a pick."""
     r = runs.filter(pl.col("run_utc").map_elements(parse_ts, return_dtype=pl.Datetime("us", "UTC"))
                     < pl.col("start_time").map_elements(parse_ts, return_dtype=pl.Datetime("us", "UTC")))
+    if coverage_guard is not None and "props_scored" in r.columns:
+        r = r.with_columns(pl.col("props_scored").cast(pl.Float64)).sort("run_utc")
+        r = r.filter(pl.col("props_scored") >= coverage_guard * pl.col("props_scored").cum_max().over("an_game_id"))
     last = r.group_by("an_game_id").agg(pl.col("run_utc").max())
     return picks.join(last, on=["an_game_id", "run_utc"], how="inner")
 

@@ -86,4 +86,8 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   stores every venue's price and fillable amount on its side (`om_*`). Descriptive; S1 does not use these prices.
   Probe: `docs/evidence/openmarkets*/` (2026-10-09: no sportsbooks; Kalshi / BettorEdge full ladders; at DK's line a
   mean gap of 1.3-1.7 no-vig points; median $76-$200 fillable).
+- **ParlayAPI record, thin-feed guard (added 2026-10-09, before any week-5 game):** ParlayAPI's DraftKings coverage
+  varies through the day (410 props at 22:51 UTC on 2026-10-08, 97 at 08:00 UTC on 2026-10-09), and a run that
+  misses a pick's prop would erase it under "last run before kickoff". For this record only, a run counts for a game
+  if it scored at least half as many props for that game as the best earlier run that week. Official S1 is unchanged.
 

@@ -184,7 +184,7 @@ def news(r: dict) -> str:
     return "; ".join(x for x in (inj, dep) if x)
 
 
-def settle_record(picks_path, runs_path, out_path) -> pl.DataFrame | None:
+def settle_record(picks_path, runs_path, out_path, coverage_guard: float | None = None) -> pl.DataFrame | None:
     """Official picks (last run before kickoff) settled against nflverse; written to out_path."""
     import nflreadpy as nfl
 
@@ -192,7 +192,7 @@ def settle_record(picks_path, runs_path, out_path) -> pl.DataFrame | None:
         return None
     picks = pl.read_csv(picks_path, infer_schema_length=0)
     runs = pl.read_csv(runs_path, infer_schema_length=0)
-    off = Lv.official(picks, runs)
+    off = Lv.official(picks, runs, coverage_guard)
     sched = nfl.load_schedules(seasons=[SEASON]).filter(pl.col("game_type") == "REG")
     fix = lambda c: pl.col(c).replace(P.TEAM_FIX)  # noqa: E731
     final = sched.filter(pl.col("result").is_not_null()).select("week", "home_team", "away_team")
@@ -211,7 +211,7 @@ def settle_record(picks_path, runs_path, out_path) -> pl.DataFrame | None:
 
 
 def do_grade() -> None:
-    pa = settle_record(PA_PICKS, PA_RUNS, PA_RECORD)
+    pa = settle_record(PA_PICKS, PA_RUNS, PA_RECORD, coverage_guard=0.5)   # ParlayAPI's DK feed thins out overnight
     if pa is not None:
         t = Lv.record(pa)
         print(f"S1 on ParlayAPI: {t['W']}-{t['L']}-{t['P']}, {t['units']:+.2f} units (pending {t['pending']}, void {t['void']})")
