@@ -1,0 +1,96 @@
+# OpenMarkets
+
+> One API for prediction markets: live prices from every venue (Kalshi, Polymarket, ProphetX and more), one market model across them, sign-in for your users, and practice or real-money trading.
+
+API base: https://api.openmarkets.ai/flow/v1
+Docs: https://app.openmarkets.ai/developers
+
+## Essentials
+
+- Auth: send your key as the header `X-API-Key: om_…`. Keys are minted in the console (https://app.openmarkets.ai/dashboard/keys). A key carries only what your plan grants.
+- Responses are `{ "data": …, "meta": … }`; lists add `"pagination": { "next_cursor", "has_more", "limit" }` — pass `cursor=` to page. Errors are `{ "error": { "code", "message", "details"? } }` with a matching HTTP status.
+- A 403 `entitlement_required` means the plan lacks a capability; `scope_not_granted` means the key (or the user, for an app) did not grant it.
+- Prices are probabilities from 0 to 1 — the cost of one share that pays 1. Lower is better for a buyer.
+
+## Market data
+
+- `GET /public/live-sample` — no key. One upcoming or live game with its best price per outcome: `data.contest_id`, `data.contest_label`, `data.outcomes[]`.
+- `GET /leagues`, `GET /contests?league_id=&status=&limit=&cursor=`, `GET /markets` — the catalog.
+- `GET /contests/{contest_id}/liquidity` — every position in a game, each venue's price for it. `data` is an array of positions:
+  - `position_hash`, `contest_id`, `title` (rendered: participant, side and line), `market_key` (e.g. moneyline, spread, total, player_points), `market_label`, `variable` (the line), `side_key`, `participant_id`, `participant_name`, `consensus_price`, `paper_bettable`
+  - `partner_liquidities[]`: `partner_id`, `partner_name`, `price`, `american_odds`, `available` (USD fillable at that price — not the whole book), `actionable`
+  - A game can return well over a thousand positions (every spread and total rung, player props). Show game lines (moneyline, spread, total) first and group by `market_key`.
+  - `actionable: false` means the venue is connected but has nothing quotable (`price` and `available` are 0). Show "no price", never 0.
+- `GET /depth` — the order book for a position (plan permitting).
+- WebSocket `wss://api.openmarkets.ai/flow/v1/stream?api_key=…` — live prices as they move. See https://app.openmarkets.ai/developers/streaming.
+
+## Laying out a game (the market model)
+
+The liquidity array is FLAT: moneylines, every spread and total rung, and player props interleaved, the two sides of a line far apart. Never render it as a list. Build markets → lines → sides (the console's own board does exactly this; full write-up: https://app.openmarkets.ai/developers/market-model):
+
+1. `variable` arrives as a STRING ("-1.5"). Convert it with Number() before comparing.
+2. Group positions by `market_key`. Order: moneyline, spread, total, then other game markets, then player props (a market whose participants are not the two teams).
+3. Within a market, group positions into LINES and pair the sides of each line:
+   - total (Over/Under): same `variable` → one line, e.g. Over 47.5 / Under 47.5.
+   - spread: the two sides carry OPPOSITE signs. Key the line on the home side's number — for `side_key: 'away'` use -variable — so home −1.5 pairs with away +1.5.
+   - moneyline: one line, home and away, `variable` 0.
+   - player props (Over/Under or Yes/No of a named player): group per player as well — each player gets their own lines.
+   - Within a line, order sides home → away, over → under, yes → no.
+4. The MAIN line of a market (per player, for props) is the one with the most actionable venue quotes across its sides. Show only main lines by default; put the rest behind "N more lines". A spread or total ladder has dozens of rungs, most quoted by one venue.
+5. For each side, the price to show is its lowest actionable `price` across `partner_liquidities`, with that venue and its `available`.
+
+## Trading
+
+- `POST /auth/orders/buy` — place an order. Each leg sets `mode: 'paper'` (practice money) or real; real money needs a plan with trading and a linked venue account.
+- `GET /auth/orders`, `GET /auth/account/positions` — your orders and positions.
+- Details: https://app.openmarkets.ai/developers/execution and https://app.openmarkets.ai/developers/practice.
+
+## Sign in with OpenMarkets (apps for other people)
+
+- npm `@openmarketsai/app-sdk`: `createOpenMarketsAuth({ clientId, redirectUri })`; `auth.signIn()` (popup; result `status` is success | denied | error); on the redirect page, if `hasCallbackParams()`, `await auth.handleCallback()`; `auth.getUser()`, `auth.signOut()`.
+- Every API call from the app: `X-API-Key: await auth.getApiKey()` — never cache it, it rotates.
+- `clientId` is your app's slug; `redirectUri` must exactly match one registered on the app (https://app.openmarkets.ai/dashboard/apps).
+- An app is private (only you) or a draft (practice money) until it is submitted for review and listed.
+- Details: https://app.openmarkets.ai/developers/marketplace.
+
+## Docs
+
+### Start
+
+- [Overview](https://app.openmarkets.ai/developers)
+- [Quickstart](https://app.openmarkets.ai/developers/quickstart)
+- [Authentication](https://app.openmarkets.ai/developers/authentication)
+- [Test mode](https://app.openmarkets.ai/developers/test-mode)
+- [Rate limits](https://app.openmarkets.ai/developers/rate-limits)
+- [Errors](https://app.openmarkets.ai/developers/errors)
+
+### Identity
+
+- [Sign in with OpenMarkets](https://app.openmarkets.ai/developers/marketplace)
+- [Connect](https://app.openmarkets.ai/developers/connect)
+- [Connect · integration guide](https://app.openmarkets.ai/developers/connect/guide)
+- [Venues & balances](https://app.openmarkets.ai/developers/partners-and-balances)
+- [Verified record](https://app.openmarkets.ai/developers/marketplace#record)
+
+### Markets & execution
+
+- [REST reference](https://app.openmarkets.ai/developers/reference)
+- [Market model & books](https://app.openmarkets.ai/developers/market-model)
+- [Streaming](https://app.openmarkets.ai/developers/streaming)
+- [Signals](https://app.openmarkets.ai/developers/signals)
+- [MCP server](https://app.openmarkets.ai/developers/mcp)
+- [Placing orders](https://app.openmarkets.ai/developers/execution)
+- [Models & attribution](https://app.openmarkets.ai/developers/models)
+
+### Money
+
+- [Practice wallet](https://app.openmarkets.ai/developers/practice)
+
+### AI
+
+- [AI Connect](https://app.openmarkets.ai/developers/ai-connect)
+
+### Reach
+
+- [Notifications](https://app.openmarkets.ai/developers/marketplace#notifications)
+- [App marketplace](https://app.openmarkets.ai/developers/marketplace#listing)

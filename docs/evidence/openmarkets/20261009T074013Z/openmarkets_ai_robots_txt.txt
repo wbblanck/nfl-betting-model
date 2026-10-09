@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://openmarkets.ai/sitemap.xml

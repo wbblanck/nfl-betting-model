@@ -1,0 +1,160 @@
+{
+ "stamp": "20261009T075344Z",
+ "leagues": {
+  "status": 200,
+  "headers": {
+   "X-Ratelimit-Limit-Day": "20000",
+   "X-Ratelimit-Limit-Minute": "120",
+   "X-Ratelimit-Remaining-Day": "19990",
+   "X-Ratelimit-Remaining-Minute": "119",
+   "X-Ratelimit-Reset-Day": "1791590400",
+   "X-Ratelimit-Reset-Minute": "1791532440"
+  },
+  "body": [
+   {
+    "id": "pg-1761793536021-lgz5cy5-36",
+    "name": "MLE",
+    "participant_type": "athlete",
+    "status": "active",
+    "image_url": null
+   },
+   {
+    "id": "pg-1761793536018-5irpfsr-31",
+    "name": "EPL",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536018-5irpfsr-31.webp?v=1780505423247"
+   },
+   {
+    "id": "pg-1761793536011-93jtzi4-21",
+    "name": "MLS",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": null
+   },
+   {
+    "id": "pg-1761793536011-lekpqzq-20",
+    "name": "ATP",
+    "participant_type": "athlete",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536011-lekpqzq-20.webp?v=1780505448263"
+   },
+   {
+    "id": "pg-1761793536008-y60rp64-15",
+    "name": "PGA",
+    "participant_type": "athlete",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536008-y60rp64-15.jpg?v=1780505453307"
+   },
+   {
+    "id": "pg-1761793536006-l47v8fw-13",
+    "name": "UFC",
+    "participant_type": "athlete",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536006-l47v8fw-13.webp?v=1780505463794"
+   },
+   {
+    "id": "pg-1761793536003-mfud26y-9",
+    "name": "NHL",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536003-mfud26y-9.webp?v=1780505473337"
+   },
+   {
+    "id": "pg-1761793536002-y57ulvd-8",
+    "name": "WNBA",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536002-y57ulvd-8.webp?v=1780505475519"
+   },
+   {
+    "id": "pg-1761793536000-k9w3tnj-5",
+    "name": "NBA",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536000-k9w3tnj-5.webp?v=1780505483574"
+   },
+   {
+    "id": "pg-1761793535999-k4hpoiu-4",
+    "name": "MLB",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793535999-k4hpoiu-4.webp?v=1780505524122"
+   },
+   {
+    "id": "pg-1761793535997-iwzj0jc-3",
+    "name": "NCAAF",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793535997-iwzj0jc-3.webp?v=1780505601123"
+   },
+   {
+    "id": "pg-1761793535993-5swfsy3-1",
+    "name": "NFL",
+    "participant_type": null,
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793535993-5swfsy3-1.webp?v=1780505616257"
+   }
+  ]
+ },
+ "nfl_league": {
+  "id": "pg-1761793535993-5swfsy3-1",
+  "name": "NFL",
+  "participant_type": null,
+  "status": "active",
+  "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793535993-5swfsy3-1.webp?v=1780505616257"
+ },
+ "n_contests": 238,
+ "n_nfl_upcoming": 0,
+ "contest_sample": [
+  {
+   "id": "pg-1787626186613-r6lia78-376",
+   "league_id": "pg-1761793535993-5swfsy3-1",
+   "parent_contest_id": null,
+   "title": "2026 NFL Win Totals (Reg Season)",
+   "type": "tournament",
+   "starts_at": "2026-09-10T00:00:00.000Z",
+   "status": "open",
+   "has_markets": true,
+   "tags": {},
+   "created_at": "2026-08-25T02:49:46.613Z",
+   "updated_at": "2026-08-25T02:49:47.205Z"
+  },
+  {
+   "id": "pg-1787626432919-pzep37e-986",
+   "league_id": "pg-1761793535993-5swfsy3-1",
+   "parent_contest_id": null,
+   "title": "2027 NFL - AFC Champion - Winner",
+   "type": "tournament",
+   "starts_at": "2026-09-10T00:20:00.000Z",
+   "status": "open",
+   "has_markets": true,
+   "tags": {},
+   "created_at": "2026-08-25T02:53:52.919Z",
+   "updated_at": "2026-08-25T02:53:53.489Z"
+  },
+  {
+   "id": "pg-1787626434965-02doe6u-989",
+   "league_id": "pg-1761793535993-5swfsy3-1",
+   "parent_contest_id": null,
+   "title": "2026 NFL - NFC West - Division Winner",
+   "type": "tournament",
+   "starts_at": "2026-09-10T00:20:00.000Z",
+   "status": "open",
+   "has_markets": true,
+   "tags": {},
+   "created_at": "2026-08-25T02:53:54.965Z",
+   "updated_at": "2026-08-25T02:53:55.164Z"
+  }
+ ],
+ "per_game": [],
+ "market_keys": [],
+ "venues_by_market": {},
+ "actionable_quotes_by_market": [],
+ "available_usd_by_market": {},
+ "top_participants": [],
+ "markets_catalog": {
+  "status": 404,
+  "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /flow/v1/markets</pre>\n</body>\n</html>\n"
+ }
+}

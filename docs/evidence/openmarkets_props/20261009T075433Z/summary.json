@@ -1,0 +1,1360 @@
+{
+ "stamp": "20261009T075433Z",
+ "leagues": {
+  "status": 200,
+  "headers": {
+   "X-Ratelimit-Limit-Day": "20000",
+   "X-Ratelimit-Limit-Minute": "120",
+   "X-Ratelimit-Remaining-Day": "19985",
+   "X-Ratelimit-Remaining-Minute": "119",
+   "X-Ratelimit-Reset-Day": "1791590400",
+   "X-Ratelimit-Reset-Minute": "1791532500"
+  },
+  "body": [
+   {
+    "id": "pg-1761793536021-lgz5cy5-36",
+    "name": "MLE",
+    "participant_type": "athlete",
+    "status": "active",
+    "image_url": null
+   },
+   {
+    "id": "pg-1761793536018-5irpfsr-31",
+    "name": "EPL",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536018-5irpfsr-31.webp?v=1780505423247"
+   },
+   {
+    "id": "pg-1761793536011-93jtzi4-21",
+    "name": "MLS",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": null
+   },
+   {
+    "id": "pg-1761793536011-lekpqzq-20",
+    "name": "ATP",
+    "participant_type": "athlete",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536011-lekpqzq-20.webp?v=1780505448263"
+   },
+   {
+    "id": "pg-1761793536008-y60rp64-15",
+    "name": "PGA",
+    "participant_type": "athlete",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536008-y60rp64-15.jpg?v=1780505453307"
+   },
+   {
+    "id": "pg-1761793536006-l47v8fw-13",
+    "name": "UFC",
+    "participant_type": "athlete",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536006-l47v8fw-13.webp?v=1780505463794"
+   },
+   {
+    "id": "pg-1761793536003-mfud26y-9",
+    "name": "NHL",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536003-mfud26y-9.webp?v=1780505473337"
+   },
+   {
+    "id": "pg-1761793536002-y57ulvd-8",
+    "name": "WNBA",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536002-y57ulvd-8.webp?v=1780505475519"
+   },
+   {
+    "id": "pg-1761793536000-k9w3tnj-5",
+    "name": "NBA",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793536000-k9w3tnj-5.webp?v=1780505483574"
+   },
+   {
+    "id": "pg-1761793535999-k4hpoiu-4",
+    "name": "MLB",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793535999-k4hpoiu-4.webp?v=1780505524122"
+   },
+   {
+    "id": "pg-1761793535997-iwzj0jc-3",
+    "name": "NCAAF",
+    "participant_type": "team",
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793535997-iwzj0jc-3.webp?v=1780505601123"
+   },
+   {
+    "id": "pg-1761793535993-5swfsy3-1",
+    "name": "NFL",
+    "participant_type": null,
+    "status": "active",
+    "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793535993-5swfsy3-1.webp?v=1780505616257"
+   }
+  ]
+ },
+ "nfl_league": {
+  "id": "pg-1761793535993-5swfsy3-1",
+  "name": "NFL",
+  "participant_type": null,
+  "status": "active",
+  "image_url": "https://pub-f2f45de8e8324d2b8038a07863934f30.r2.dev/leagues/pg-1761793535993-5swfsy3-1.webp?v=1780505616257"
+ },
+ "contest_types": [
+  [
+   "team",
+   220
+  ],
+  [
+   "tournament",
+   18
+  ]
+ ],
+ "contest_statuses": [
+  [
+   "open",
+   238
+  ]
+ ],
+ "n_contests": 238,
+ "n_nfl_upcoming": 15,
+ "contest_sample": [
+  {
+   "id": "pg-1787626186613-r6lia78-376",
+   "league_id": "pg-1761793535993-5swfsy3-1",
+   "parent_contest_id": null,
+   "title": "2026 NFL Win Totals (Reg Season)",
+   "type": "tournament",
+   "starts_at": "2026-09-10T00:00:00.000Z",
+   "status": "open",
+   "has_markets": true,
+   "tags": {},
+   "created_at": "2026-08-25T02:49:46.613Z",
+   "updated_at": "2026-08-25T02:49:47.205Z"
+  },
+  {
+   "id": "pg-1787626432919-pzep37e-986",
+   "league_id": "pg-1761793535993-5swfsy3-1",
+   "parent_contest_id": null,
+   "title": "2027 NFL - AFC Champion - Winner",
+   "type": "tournament",
+   "starts_at": "2026-09-10T00:20:00.000Z",
+   "status": "open",
+   "has_markets": true,
+   "tags": {},
+   "created_at": "2026-08-25T02:53:52.919Z",
+   "updated_at": "2026-08-25T02:53:53.489Z"
+  },
+  {
+   "id": "pg-1787626434965-02doe6u-989",
+   "league_id": "pg-1761793535993-5swfsy3-1",
+   "parent_contest_id": null,
+   "title": "2026 NFL - NFC West - Division Winner",
+   "type": "tournament",
+   "starts_at": "2026-09-10T00:20:00.000Z",
+   "status": "open",
+   "has_markets": true,
+   "tags": {},
+   "created_at": "2026-08-25T02:53:54.965Z",
+   "updated_at": "2026-08-25T02:53:55.164Z"
+  }
+ ],
+ "per_game": [
+  {
+   "contest_id": "pg-1781888973801-xw6ktsp-121",
+   "label": "NFL: Philadelphia Eagles vs Jacksonville Jaguars",
+   "starts_at": "2026-10-11T13:30:00.000Z",
+   "status": 200,
+   "positions": 1450,
+   "non_game_positions": 1216,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19982",
+    "X-Ratelimit-Remaining-Minute": "116",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-gr5uqbc-124",
+   "label": "NFL: Las Vegas Raiders vs New England Patriots",
+   "starts_at": "2026-10-11T17:00:00.000Z",
+   "status": 200,
+   "positions": 1415,
+   "non_game_positions": 1173,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19981",
+    "X-Ratelimit-Remaining-Minute": "115",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-hfklft0-128",
+   "label": "NFL: Indianapolis Colts vs Pittsburgh Steelers",
+   "starts_at": "2026-10-11T17:00:00.000Z",
+   "status": 200,
+   "positions": 1425,
+   "non_game_positions": 1203,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19980",
+    "X-Ratelimit-Remaining-Minute": "114",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-q7dnb2s-125",
+   "label": "NFL: Minnesota Vikings vs New Orleans Saints",
+   "starts_at": "2026-10-11T17:00:00.000Z",
+   "status": 200,
+   "positions": 1344,
+   "non_game_positions": 1116,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19979",
+    "X-Ratelimit-Remaining-Minute": "113",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-s6rp3e8-130",
+   "label": "NFL: Chicago Bears vs Green Bay Packers",
+   "starts_at": "2026-10-11T17:00:00.000Z",
+   "status": 200,
+   "positions": 1450,
+   "non_game_positions": 1217,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19978",
+    "X-Ratelimit-Remaining-Minute": "112",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-uy5jw2d-122",
+   "label": "NFL: Cleveland Browns vs New York Jets",
+   "starts_at": "2026-10-11T17:00:00.000Z",
+   "status": 200,
+   "positions": 1529,
+   "non_game_positions": 1299,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19977",
+    "X-Ratelimit-Remaining-Minute": "111",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-xuy3bhg-127",
+   "label": "NFL: New York Giants vs Washington Commanders",
+   "starts_at": "2026-10-11T17:00:00.000Z",
+   "status": 200,
+   "positions": 1288,
+   "non_game_positions": 1050,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19976",
+    "X-Ratelimit-Remaining-Minute": "110",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-y00urgk-123",
+   "label": "NFL: Cincinnati Bengals vs Miami Dolphins",
+   "starts_at": "2026-10-11T17:00:00.000Z",
+   "status": 200,
+   "positions": 1319,
+   "non_game_positions": 1073,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19975",
+    "X-Ratelimit-Remaining-Minute": "109",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-ykz0t72-126",
+   "label": "NFL: Houston Texans vs Tennessee Titans",
+   "starts_at": "2026-10-11T17:00:00.000Z",
+   "status": 200,
+   "positions": 1557,
+   "non_game_positions": 1309,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19974",
+    "X-Ratelimit-Remaining-Minute": "108",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-bfa4ya8-129",
+   "label": "NFL: Denver Broncos vs Los Angeles Chargers",
+   "starts_at": "2026-10-11T20:05:00.000Z",
+   "status": 200,
+   "positions": 1311,
+   "non_game_positions": 1091,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19973",
+    "X-Ratelimit-Remaining-Minute": "107",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-av12qu4-131",
+   "label": "NFL: Detroit Lions vs Arizona Cardinals",
+   "starts_at": "2026-10-11T20:25:00.000Z",
+   "status": 200,
+   "positions": 1542,
+   "non_game_positions": 1321,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19972",
+    "X-Ratelimit-Remaining-Minute": "106",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-dikq7y5-132",
+   "label": "NFL: San Francisco 49ers vs Seattle Seahawks",
+   "starts_at": "2026-10-11T20:25:00.000Z",
+   "status": 200,
+   "positions": 1581,
+   "non_game_positions": 1339,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19971",
+    "X-Ratelimit-Remaining-Minute": "105",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-x6omnq7-133",
+   "label": "NFL: Baltimore Ravens vs Atlanta Falcons",
+   "starts_at": "2026-10-12T00:20:00.000Z",
+   "status": 200,
+   "positions": 1415,
+   "non_game_positions": 1189,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19970",
+    "X-Ratelimit-Remaining-Minute": "104",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-fap0jos-134",
+   "label": "NFL: Buffalo Bills vs Los Angeles Rams",
+   "starts_at": "2026-10-13T00:15:00.000Z",
+   "status": 200,
+   "positions": 1512,
+   "non_game_positions": 1274,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19969",
+    "X-Ratelimit-Remaining-Minute": "103",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532500"
+   }
+  },
+  {
+   "contest_id": "pg-1781888973801-wz7cgeg-135",
+   "label": "NFL: Seattle Seahawks vs Denver Broncos",
+   "starts_at": "2026-10-16T00:15:00.000Z",
+   "status": 200,
+   "positions": 390,
+   "non_game_positions": 216,
+   "headers": {
+    "X-Ratelimit-Limit-Day": "20000",
+    "X-Ratelimit-Limit-Minute": "120",
+    "X-Ratelimit-Remaining-Day": "19968",
+    "X-Ratelimit-Remaining-Minute": "119",
+    "X-Ratelimit-Reset-Day": "1791590400",
+    "X-Ratelimit-Reset-Minute": "1791532560"
+   }
+  }
+ ],
+ "market_keys": [
+  [
+   "player_receiving_yards",
+   2417
+  ],
+  [
+   "spread",
+   1725
+  ],
+  [
+   "total",
+   1687
+  ],
+  [
+   "player_receptions",
+   1499
+  ],
+  [
+   "player_rushing_yards",
+   1346
+  ],
+  [
+   "team_total",
+   1242
+  ],
+  [
+   "first_half_spread",
+   982
+  ],
+  [
+   "second_half_spread",
+   926
+  ],
+  [
+   "player_touchdowns",
+   890
+  ],
+  [
+   "first_half_total",
+   791
+  ],
+  [
+   "player_first_touchdown",
+   678
+  ],
+  [
+   "second_half_total",
+   657
+  ],
+  [
+   "player_passing_yards",
+   563
+  ],
+  [
+   "q1_total",
+   552
+  ],
+  [
+   "q3_total",
+   550
+  ],
+  [
+   "q4_total",
+   546
+  ],
+  [
+   "q2_total",
+   546
+  ],
+  [
+   "q3_spread",
+   368
+  ],
+  [
+   "q1_spread",
+   367
+  ],
+  [
+   "q4_spread",
+   366
+  ],
+  [
+   "q2_spread",
+   366
+  ],
+  [
+   "player_passing_touchdowns",
+   212
+  ],
+  [
+   "player_passing_attempts",
+   159
+  ],
+  [
+   "player_passing_completions",
+   157
+  ],
+  [
+   "player_rushing_attempts",
+   153
+  ],
+  [
+   "player_passing_interceptions",
+   126
+  ],
+  [
+   "first_half_3way",
+   90
+  ],
+  [
+   "second_half_3way",
+   90
+  ],
+  [
+   "q3_3way",
+   90
+  ],
+  [
+   "q2_3way",
+   90
+  ],
+  [
+   "q4_3way",
+   90
+  ],
+  [
+   "q1_3way",
+   90
+  ],
+  [
+   "player_longest_reception",
+   87
+  ],
+  [
+   "moneyline",
+   30
+  ]
+ ],
+ "venues_by_market": {
+  "moneyline": [
+   [
+    "Kalshi",
+    30
+   ],
+   [
+    "PolymarketUS",
+    30
+   ],
+   [
+    "Polymarket",
+    30
+   ],
+   [
+    "ProphetX",
+    28
+   ],
+   [
+    "4Casters",
+    28
+   ],
+   [
+    "BettorEdge",
+    28
+   ],
+   [
+    "BetOpenly",
+    5
+   ]
+  ],
+  "team_total": [
+   [
+    "PolymarketUS",
+    973
+   ],
+   [
+    "Kalshi",
+    694
+   ]
+  ],
+  "total": [
+   [
+    "Polymarket",
+    871
+   ],
+   [
+    "PolymarketUS",
+    870
+   ],
+   [
+    "ProphetX",
+    775
+   ],
+   [
+    "4Casters",
+    612
+   ],
+   [
+    "Kalshi",
+    570
+   ],
+   [
+    "BettorEdge",
+    532
+   ]
+  ],
+  "player_receiving_yards": [
+   [
+    "ProphetX",
+    1596
+   ],
+   [
+    "Kalshi",
+    1470
+   ],
+   [
+    "BettorEdge",
+    1302
+   ]
+  ],
+  "second_half_spread": [
+   [
+    "PolymarketUS",
+    914
+   ],
+   [
+    "ProphetX",
+    499
+   ],
+   [
+    "Kalshi",
+    426
+   ]
+  ],
+  "q1_total": [
+   [
+    "PolymarketUS",
+    436
+   ],
+   [
+    "Kalshi",
+    280
+   ],
+   [
+    "BettorEdge",
+    241
+   ],
+   [
+    "ProphetX",
+    2
+   ]
+  ],
+  "q1_spread": [
+   [
+    "Kalshi",
+    282
+   ],
+   [
+    "BettorEdge",
+    264
+   ],
+   [
+    "PolymarketUS",
+    142
+   ],
+   [
+    "ProphetX",
+    5
+   ]
+  ],
+  "player_passing_interceptions": [
+   [
+    "Kalshi",
+    115
+   ],
+   [
+    "BettorEdge",
+    106
+   ]
+  ],
+  "player_passing_touchdowns": [
+   [
+    "Kalshi",
+    193
+   ],
+   [
+    "BettorEdge",
+    190
+   ],
+   [
+    "ProphetX",
+    128
+   ]
+  ],
+  "player_touchdowns": [
+   [
+    "Kalshi",
+    705
+   ],
+   [
+    "ProphetX",
+    372
+   ]
+  ],
+  "q4_spread": [
+   [
+    "Kalshi",
+    308
+   ],
+   [
+    "PolymarketUS",
+    142
+   ]
+  ],
+  "q3_total": [
+   [
+    "PolymarketUS",
+    434
+   ],
+   [
+    "Kalshi",
+    280
+   ],
+   [
+    "BettorEdge",
+    248
+   ]
+  ],
+  "q4_total": [
+   [
+    "PolymarketUS",
+    430
+   ],
+   [
+    "Kalshi",
+    280
+   ]
+  ],
+  "player_receptions": [
+   [
+    "Kalshi",
+    1032
+   ],
+   [
+    "ProphetX",
+    948
+   ],
+   [
+    "BettorEdge",
+    878
+   ]
+  ],
+  "player_passing_yards": [
+   [
+    "Kalshi",
+    456
+   ],
+   [
+    "BettorEdge",
+    452
+   ],
+   [
+    "ProphetX",
+    294
+   ]
+  ],
+  "spread": [
+   [
+    "PolymarketUS",
+    1230
+   ],
+   [
+    "ProphetX",
+    830
+   ],
+   [
+    "Kalshi",
+    752
+   ],
+   [
+    "BettorEdge",
+    711
+   ],
+   [
+    "4Casters",
+    690
+   ],
+   [
+    "Polymarket",
+    624
+   ],
+   [
+    "BetOpenly",
+    2
+   ]
+  ],
+  "q3_spread": [
+   [
+    "Kalshi",
+    286
+   ],
+   [
+    "BettorEdge",
+    264
+   ],
+   [
+    "PolymarketUS",
+    144
+   ]
+  ],
+  "first_half_total": [
+   [
+    "ProphetX",
+    672
+   ],
+   [
+    "Kalshi",
+    378
+   ],
+   [
+    "BettorEdge",
+    328
+   ],
+   [
+    "PolymarketUS",
+    314
+   ]
+  ],
+  "player_rushing_yards": [
+   [
+    "Kalshi",
+    874
+   ],
+   [
+    "ProphetX",
+    845
+   ],
+   [
+    "BettorEdge",
+    798
+   ]
+  ],
+  "first_half_3way": [
+   [
+    "PolymarketUS",
+    90
+   ],
+   [
+    "Kalshi",
+    84
+   ]
+  ],
+  "player_passing_completions": [
+   [
+    "Kalshi",
+    123
+   ],
+   [
+    "BettorEdge",
+    123
+   ],
+   [
+    "ProphetX",
+    59
+   ]
+  ],
+  "q2_spread": [
+   [
+    "Kalshi",
+    288
+   ],
+   [
+    "PolymarketUS",
+    142
+   ]
+  ],
+  "player_passing_attempts": [
+   [
+    "Kalshi",
+    123
+   ],
+   [
+    "ProphetX",
+    69
+   ]
+  ],
+  "q2_total": [
+   [
+    "PolymarketUS",
+    428
+   ],
+   [
+    "Kalshi",
+    280
+   ]
+  ],
+  "second_half_3way": [
+   [
+    "PolymarketUS",
+    90
+   ],
+   [
+    "Kalshi",
+    84
+   ]
+  ],
+  "second_half_total": [
+   [
+    "ProphetX",
+    472
+   ],
+   [
+    "Kalshi",
+    378
+   ],
+   [
+    "PolymarketUS",
+    308
+   ]
+  ],
+  "player_first_touchdown": [
+   [
+    "PolymarketUS",
+    564
+   ],
+   [
+    "Kalshi",
+    384
+   ],
+   [
+    "ProphetX",
+    331
+   ]
+  ],
+  "first_half_spread": [
+   [
+    "PolymarketUS",
+    912
+   ],
+   [
+    "ProphetX",
+    574
+   ],
+   [
+    "Kalshi",
+    426
+   ],
+   [
+    "BettorEdge",
+    426
+   ]
+  ],
+  "q3_3way": [
+   [
+    "PolymarketUS",
+    90
+   ],
+   [
+    "Kalshi",
+    84
+   ]
+  ],
+  "player_rushing_attempts": [
+   [
+    "Kalshi",
+    100
+   ],
+   [
+    "BettorEdge",
+    100
+   ],
+   [
+    "ProphetX",
+    74
+   ]
+  ],
+  "q2_3way": [
+   [
+    "PolymarketUS",
+    90
+   ],
+   [
+    "Kalshi",
+    84
+   ]
+  ],
+  "q4_3way": [
+   [
+    "PolymarketUS",
+    90
+   ],
+   [
+    "Kalshi",
+    84
+   ]
+  ],
+  "q1_3way": [
+   [
+    "PolymarketUS",
+    90
+   ],
+   [
+    "Kalshi",
+    84
+   ]
+  ],
+  "player_longest_reception": [
+   [
+    "ProphetX",
+    87
+   ]
+  ]
+ },
+ "actionable_quotes_by_market": [
+  [
+   "spread",
+   4839
+  ],
+  [
+   "player_receiving_yards",
+   4368
+  ],
+  [
+   "total",
+   4230
+  ],
+  [
+   "player_receptions",
+   2858
+  ],
+  [
+   "player_rushing_yards",
+   2517
+  ],
+  [
+   "first_half_spread",
+   2338
+  ],
+  [
+   "second_half_spread",
+   1839
+  ],
+  [
+   "first_half_total",
+   1692
+  ],
+  [
+   "team_total",
+   1667
+  ],
+  [
+   "player_first_touchdown",
+   1279
+  ],
+  [
+   "player_passing_yards",
+   1202
+  ],
+  [
+   "second_half_total",
+   1158
+  ],
+  [
+   "player_touchdowns",
+   1077
+  ],
+  [
+   "q3_total",
+   962
+  ],
+  [
+   "q1_total",
+   959
+  ],
+  [
+   "q4_total",
+   710
+  ],
+  [
+   "q2_total",
+   708
+  ],
+  [
+   "q3_spread",
+   694
+  ],
+  [
+   "q1_spread",
+   693
+  ],
+  [
+   "player_passing_touchdowns",
+   511
+  ],
+  [
+   "q4_spread",
+   450
+  ],
+  [
+   "q2_spread",
+   430
+  ],
+  [
+   "player_passing_completions",
+   305
+  ],
+  [
+   "player_rushing_attempts",
+   274
+  ],
+  [
+   "player_passing_interceptions",
+   221
+  ],
+  [
+   "player_passing_attempts",
+   192
+  ],
+  [
+   "moneyline",
+   179
+  ],
+  [
+   "first_half_3way",
+   174
+  ],
+  [
+   "second_half_3way",
+   174
+  ],
+  [
+   "q3_3way",
+   174
+  ],
+  [
+   "q2_3way",
+   174
+  ],
+  [
+   "q4_3way",
+   174
+  ],
+  [
+   "q1_3way",
+   174
+  ],
+  [
+   "player_longest_reception",
+   87
+  ]
+ ],
+ "available_usd_by_market": {
+  "moneyline": 63253807.44526796,
+  "spread": 33068354.105311923,
+  "total": 14673287.852060977,
+  "player_first_touchdown": 4238403.6606,
+  "player_touchdowns": 3751240.0700000003,
+  "team_total": 1511274.6222000003,
+  "player_receiving_yards": 1217054.5000000005,
+  "second_half_spread": 1131365.5042999978,
+  "first_half_spread": 1065531.447999998,
+  "first_half_total": 870232.6191999996,
+  "player_receptions": 862725.6799999997,
+  "q3_spread": 824221.8899999999,
+  "q1_total": 764523.3950999993,
+  "q3_total": 755929.2017999995,
+  "second_half_total": 745212.1050000008,
+  "q2_total": 720102.9799999997,
+  "player_rushing_yards": 711419.6100000008,
+  "q2_spread": 696742.3100000002,
+  "q1_spread": 554205.0800000002,
+  "player_passing_yards": 427735.8600000001,
+  "q4_spread": 331544.3999999999,
+  "q4_total": 279804.66620000004,
+  "player_passing_touchdowns": 196292.48000000004,
+  "first_half_3way": 146938.90120000002,
+  "q1_3way": 127132.92999999993,
+  "player_passing_interceptions": 122711.78,
+  "second_half_3way": 112807.054,
+  "q2_3way": 94874.74000000002,
+  "q3_3way": 88818.29599999997,
+  "player_passing_completions": 62198.17999999999,
+  "player_passing_attempts": 55055.06,
+  "q4_3way": 53346.47999999999,
+  "player_rushing_attempts": 40545.16,
+  "player_longest_reception": 9185.1
+ },
+ "top_participants": [
+  [
+   "Over",
+   1822
+  ],
+  [
+   "Under",
+   1820
+  ],
+  [
+   "Seattle Seahawks",
+   249
+  ],
+  [
+   "Denver Broncos",
+   245
+  ],
+  [
+   "Draw",
+   180
+  ],
+  [
+   "Cincinnati Bengals",
+   178
+  ],
+  [
+   "Detroit Lions",
+   178
+  ],
+  [
+   "Buffalo Bills",
+   176
+  ],
+  [
+   "Philadelphia Eagles",
+   175
+  ],
+  [
+   "Los Angeles Rams",
+   175
+  ],
+  [
+   "Cleveland Browns",
+   174
+  ],
+  [
+   "Houston Texans",
+   174
+  ],
+  [
+   "Baltimore Ravens",
+   174
+  ],
+  [
+   "Jacksonville Jaguars",
+   173
+  ],
+  [
+   "Chicago Bears",
+   173
+  ],
+  [
+   "Miami Dolphins",
+   173
+  ],
+  [
+   "Tennessee Titans",
+   173
+  ],
+  [
+   "Arizona Cardinals",
+   173
+  ],
+  [
+   "Green Bay Packers",
+   172
+  ],
+  [
+   "San Francisco 49ers",
+   172
+  ],
+  [
+   "Atlanta Falcons",
+   172
+  ],
+  [
+   "Las Vegas Raiders",
+   171
+  ],
+  [
+   "New England Patriots",
+   171
+  ],
+  [
+   "Pittsburgh Steelers",
+   171
+  ],
+  [
+   "New York Jets",
+   171
+  ],
+  [
+   "Washington Commanders",
+   171
+  ],
+  [
+   "New York Giants",
+   171
+  ],
+  [
+   "Indianapolis Colts",
+   170
+  ],
+  [
+   "New Orleans Saints",
+   170
+  ],
+  [
+   "Minnesota Vikings",
+   170
+  ],
+  [
+   "Los Angeles Chargers",
+   162
+  ],
+  [
+   "Jahmyr Gibbs",
+   88
+  ],
+  [
+   "Christian McCaffrey",
+   83
+  ],
+  [
+   "Jalen Hurts",
+   81
+  ],
+  [
+   "Deshaun Watson",
+   80
+  ],
+  [
+   "Trevor Lawrence",
+   79
+  ],
+  [
+   "Bijan Robinson",
+   79
+  ],
+  [
+   "Jayden Daniels",
+   78
+  ],
+  [
+   "Drake Maye",
+   76
+  ],
+  [
+   "Kyler Murray",
+   76
+  ]
+ ],
+ "markets_catalog": {
+  "status": 404,
+  "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /flow/v1/markets</pre>\n</body>\n</html>\n"
+ }
+}

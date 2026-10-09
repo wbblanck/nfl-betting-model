@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap><loc>https://openmarkets.ai/sitemap-apex.xml</loc></sitemap>
+  <sitemap><loc>https://openmarkets.ai/blog/sitemap.xml</loc></sitemap>
+  <sitemap><loc>https://openmarkets.ai/odds/sitemap.xml</loc></sitemap>
+  <sitemap><loc>https://openmarkets.ai/tools/sitemap.xml</loc></sitemap>
+</sitemapindex>
