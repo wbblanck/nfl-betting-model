@@ -2,7 +2,9 @@
 
 Owner: Will. Analysis only: ROI, CLV and log loss in backtests are fine; no pick lists or "bet this", with one
 exception Will asked for (2026-10-02): the S1 live tracker (docs/s1_live_rules.md) records rule S1's picks before
-kickoff and grades them, labeled as unvalidated. No other pick list.
+kickoff and grades them, labeled as unvalidated. Second exception (Will, 2026-10-09): an NFL against-the-spread
+tracker (docs/ats_declaration.md) may label games Bet Now / Wait / Monitor / No Value, labeled unvalidated and graded
+on closing-line value and ATS result. It goes live only after its pre-registered backtest. No other pick list.
 
 ## Standing rules
 - Never state a number that was not computed or looked up in the same session; recompute from committed files.
@@ -11,7 +13,8 @@ kickoff and grades them, labeled as unvalidated. No other pick list.
   once on a held-out season, with Bonferroni over the rules taken forward. "Nothing survives" is a valid result.
 - Never add a hypothesis because a held-out result looked interesting. Interim looks are descriptive.
 - Validate new analysis code on known answers first (hand cases; planted signal found, noise not).
-- Season roles so far: 2024 and 2025 explored; 2026 is the test season for R1-R3 and P1 (README).
+- Season roles so far: 2024 and 2025 explored; 2026 is the test season for R1-R3 and P1 (README). ATS power rating:
+  2016-2021 explored, 2022-2025 confirm (docs/ats_declaration.md).
 
 ## Data traps (each already caused a bug)
 - **Partial-game props:** from 2025 week 13 Action Network files first-half/quarter props under the same market
