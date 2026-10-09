@@ -51,7 +51,8 @@ def load(live: Path | None = None) -> dict:
                                pl.col("p_sim").cast(pl.Float64), pl.col("p_over_dk").cast(pl.Float64),
                                pl.col("proj").cast(pl.Float64), pl.col("units").cast(pl.Float64))
     return {"rec": rec, "picks": picks, "runs": runs, "live": live, "pcmp": _read(live / f"parlay_compare_{SEASON}.csv"),
-            "pa_rec": _read(live / f"s1pa_record_{SEASON}.csv")}
+            "pa_rec": _read(live / f"s1pa_record_{SEASON}.csv"),
+            "ocmp": _read(live / f"openmarkets_compare_{SEASON}.csv")}
 
 
 # ------------------------------------------------------------------------------------------------ numbers
@@ -246,10 +247,34 @@ def second_source(r: dict) -> str:
             continue
         parts.append(f"{lab} {float(ln):g} {float(od):+.0f}")
         differs |= b == "dk" and float(ln) != float(r["line"])
-    if not parts:
+    om = []
+    for v, lab in (("kalshi", "Kalshi"), ("prophetx", "ProphetX"), ("bettoredge", "BettorEdge")):
+        o, a = r.get(f"om_{v}_odds"), r.get(f"om_{v}_avail")
+        if o not in (None, ""):
+            om.append(f"{lab} {float(o):+.0f}" + (f" (${float(a):,.0f})" if a not in (None, "") else ""))
+    html_ = ""
+    if parts:
+        html_ += ('<div class="news">' + (chip("warn", "ParlayAPI DK line differs") if differs else "")
+                  + f'<span class="detail">ParlayAPI at this run: {esc(", ".join(parts))}</span></div>')
+    if om:
+        html_ += f'<div class="news"><span class="detail">Prediction markets at this line: {esc(", ".join(om))}</span></div>'
+    return html_
+
+
+def openmarkets_card(oc: pl.DataFrame) -> str:
+    """Latest run's comparison of the prediction-market venues with DraftKings at DraftKings' line."""
+    if not oc.height:
         return ""
-    return ('<div class="news">' + (chip("warn", "ParlayAPI DK line differs") if differs else "")
-            + f'<span class="detail">ParlayAPI at this run: {esc(", ".join(parts))}</span></div>')
+    last = oc["run_utc"].max()
+    x = oc.filter(pl.col("run_utc") == last)
+    rows = [[esc({"kalshi": "Kalshi", "prophetx": "ProphetX", "bettoredge": "BettorEdge"}.get(r["venue"], r["venue"])),
+             f'{r["n_both"]} of {r["n_dk"]}',
+             f'{float(r["mean_gap_pts"]):.1f} pts' if r["mean_gap_pts"] not in (None, "") else "–",
+             f'${float(r["median_avail"]):,.0f}' if r["median_avail"] not in (None, "") else "–"] for r in x.to_dicts()]
+    return ('<div class="card"><h3>Prediction markets vs DraftKings</h3>' +
+            table(["Venue", "DK props quoted at DK's line", "Mean no-vig gap", "Median $ available"], rows, "num") +
+            f'<p class="note">Run {esc(fmt_dt(last))} ET, from OpenMarkets (read-only). A record next to Action Network and ParlayAPI; '
+            'S1 does not use these prices. The gap is the mean absolute difference in no-vig P(over) at the same line.</p></div>')
 
 
 def parlay_card(pc: pl.DataFrame) -> str:
@@ -872,7 +897,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
     else:
         runs_html = ""
     pc = parlay_card(data.get("pcmp", pl.DataFrame()))
-    ops = [x for x in (pc, runs_html) if x]
+    ops = [x for x in (pc, openmarkets_card(data.get("ocmp", pl.DataFrame())), runs_html) if x]
     ops_html = (('<section class="block"><div class="sechead"><div><p class="eyebrow">Runs and sources</p><h2>How the picks were made</h2></div></div>'
                  + (stab_html if stab_html else "") + (f'<div class="stack">{"".join(ops)}</div>' if ops else "") + '</section>')
                 if stab_html or ops else "")

@@ -47,6 +47,7 @@ jobs:
       - name: Pick or grade
         env:
           PARLAY_API_KEY: ${{ secrets.PARLAY_API_KEY }}   # second price record only; S1 runs on Action Network
+          OPENMARKETS_API_KEY: ${{ secrets.OPENMARKETS_API_KEY }}   # third price record (prediction markets); read-only
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then STEP="${{ github.event.inputs.step }}";
           else case "${{ github.event.schedule }}" in "7 14 * * 1"|"33 15 * * 2"|"7 14 * * 3") STEP=grade;; *) STEP=run;; esac; fi
@@ -72,6 +73,8 @@ jobs:
           [ -d data/live/injuries ] && git add data/live/injuries
           [ -d data/live/depth ] && git add data/live/depth
           [ -d data/live/parlay ] && git add data/live/parlay
+          [ -d data/live/openmarkets ] && git add data/live/openmarkets
+          [ -f data/live/openmarkets_compare_2026.csv ] && git add data/live/openmarkets_compare_2026.csv
           [ -f data/live/parlay_compare_2026.csv ] && git add data/live/parlay_compare_2026.csv
           [ -d docs/recaps ] && git add docs/recaps
           [ -f data/live/recap_ledger_2026.csv ] && git add data/live/recap_ledger_2026.csv

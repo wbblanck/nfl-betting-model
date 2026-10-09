@@ -78,4 +78,12 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   signals in plain words (DraftKings' price and no-vig probability; where DraftKings' line sat among the books in
   that run's archived lines; projection vs line; simulator vs market) and the player's games this season before the
   pick's week in that stat (`src/nflbet/explain.py`). Descriptive; it restates the rule's inputs and adds no signal.
+- **Prediction-market prices, OpenMarkets (added 2026-10-09):** each run also reads Kalshi, ProphetX and BettorEdge
+  player-prop quotes for the week's games through OpenMarkets (`src/nflbet/openmarkets.py`; read-only API calls, no
+  orders or account linking; secret `OPENMARKETS_API_KEY`; about 17 calls per run). The parsed two-sided quotes are
+  archived in `data/live/openmarkets/`, each venue is compared with DraftKings at DraftKings' exact line
+  (`data/live/openmarkets_compare_2026.csv`: props quoted, mean no-vig gap, median fillable dollars), and each pick
+  stores every venue's price and fillable amount on its side (`om_*`). Descriptive; S1 does not use these prices.
+  Probe: `docs/evidence/openmarkets*/` (2026-10-09: no sportsbooks; Kalshi / BettorEdge full ladders; at DK's line a
+  mean gap of 1.3-1.7 no-vig points; median $76-$200 fillable).
 

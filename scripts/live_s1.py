@@ -15,7 +15,7 @@ import sys
 
 import polars as pl
 
-from nflbet import config, depth as D, injuries as Inj, live as Lv, parlay as Pa, props as P
+from nflbet import config, depth as D, injuries as Inj, live as Lv, openmarkets as Om, parlay as Pa, props as P
 
 SEASON = 2026
 PICKS = Lv.LIVE / f"s1_picks_{SEASON}.csv"
@@ -26,6 +26,7 @@ PARLAY_CMP = Lv.LIVE / f"parlay_compare_{SEASON}.csv"
 PA_PICKS = Lv.LIVE / f"s1pa_picks_{SEASON}.csv"
 PA_RUNS = Lv.LIVE / f"s1pa_runs_{SEASON}.csv"
 PA_RECORD = Lv.LIVE / f"s1pa_record_{SEASON}.csv"
+OM_CMP = Lv.LIVE / f"openmarkets_compare_{SEASON}.csv"
 
 
 def do_run() -> None:
@@ -40,6 +41,7 @@ def do_run() -> None:
         n_rows = sum(1 for _ in f) - 1                                  # header excluded
     when = Lv.now_utc()
     pa = parlay_record(week, when, tmp if n_rows > 0 else None)
+    om = openmarkets_record(week, when, pa, tmp if n_rows > 0 else None)
     scored = []                                                          # (label, picks, log, picks file, runs file)
     if n_rows > 0:
         arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"   # saved first: a failed run leaves its input
@@ -47,7 +49,7 @@ def do_run() -> None:
         with open(tmp, "rb") as f, gzip.open(arch, "wb") as g:
             shutil.copyfileobj(f, g)
         picks, log = Lv.run(SEASON, tmp, when)
-        scored.append(("S1 (Action Network)", Pa.attach(picks, pa), log, PICKS, RUNS))
+        scored.append(("S1 (Action Network)", Om.attach(Pa.attach(picks, pa), om), log, PICKS, RUNS))
     else:                                                                # books have not posted this week's props yet
         print(f"week {week}: Action Network has no player props posted yet; official S1 has nothing to score (not an error)")
     if pa is not None and pa.height:
@@ -56,7 +58,7 @@ def do_run() -> None:
             n = Pa.to_an_csv(pa, SEASON, week, pa_csv)
             if n:
                 picks, log = Lv.run(SEASON, pa_csv, when)
-                scored.append(("S1 on ParlayAPI (DK + FanDuel)", picks, log, PA_PICKS, PA_RUNS))
+                scored.append(("S1 on ParlayAPI (DK + FanDuel)", Om.attach(picks, om), log, PA_PICKS, PA_RUNS))
         except Exception as e:  # noqa: BLE001 - the second record never stops the official one
             print(f"S1 on ParlayAPI unavailable: {type(e).__name__}: {e}")
     if not scored:
@@ -71,6 +73,33 @@ def do_run() -> None:
             print(f"  {r['away']}@{r['home']}  {r['player']:24s} {r['market']:12s} {r['side']:5s} {r['line']:6} {r['odds']:+.0f}"
                   f"  {'INJURY NEWS AGAINST ' if r['inj_against'] else ''}{r['inj_self'] or ''} {r['inj_teammates'] or ''}"
                   f"  {'DEPTH CHART AGAINST ' if r['depth_against'] else ''}{r['depth_note'] or ''}")
+
+
+def openmarkets_record(week: int, when: dt.datetime, pa: pl.DataFrame | None, an_path) -> pl.DataFrame | None:
+    """Third price record (src/nflbet/openmarkets.py): Kalshi, ProphetX and BettorEdge player-prop quotes, archived in
+    data/live/openmarkets/, compared per venue with DraftKings at DraftKings' line (ParlayAPI's DK if available, else
+    Action Network's) in data/live/openmarkets_compare_2026.csv. Skipped without OPENMARKETS_API_KEY; a failure
+    never stops the run."""
+    if not os.environ.get("OPENMARKETS_API_KEY"):
+        print("OpenMarkets record skipped: OPENMARKETS_API_KEY not set")
+        return None
+    try:
+        om = Om.parse(Om.fetch(now=when))
+        arch = Lv.LIVE / "openmarkets" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"   # parsed quotes only (raw ~1 MB/run)
+        arch.parent.mkdir(parents=True, exist_ok=True)
+        with gzip.open(arch, "wb") as f:
+            om.write_csv(f)
+        dk = pa.filter(pl.col("book") == "dk") if pa is not None and pa.height else (
+            Pa.an_lines(an_path).filter(pl.col("book") == "dk") if an_path is not None else Pa.parse([]))
+        cmp = pl.DataFrame([{"run_utc": when.strftime("%Y-%m-%dT%H:%M:%SZ"), "week": week, **c} for c in Om.compare(om, dk)])
+        Lv.append(cmp, OM_CMP)
+        for c in cmp.iter_rows(named=True):
+            print(f"OpenMarkets {c['venue']}: {c['n_both']} of {c['n_dk']} DK props quoted two-sided at DK's line, "
+                  f"mean no-vig gap {c['mean_gap_pts']} pts, median ${c['median_avail']} on the thinner side")
+        return om
+    except Exception as e:  # noqa: BLE001
+        print(f"OpenMarkets record unavailable: {type(e).__name__}: {e}")
+        return None
 
 
 def parlay_record(week: int, when: dt.datetime, an_path) -> pl.DataFrame | None:
