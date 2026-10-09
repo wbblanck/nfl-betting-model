@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T4277HZ8');</script>
+<!-- End Google Tag Manager -->
+<title>OpenMarkets · The best price across every prediction market</title>
+<meta name="description" content="OpenMarkets reads prices across sportsbooks, exchanges and prediction markets, normalizes them, and routes every order to the best available price after each platform's own fees.">
+<link rel="canonical" href="https://openmarkets.ai/">
+<meta property="og:site_name" content="OpenMarkets">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OpenMarkets · The best price across every prediction market">
+<meta property="og:description" content="OpenMarkets reads prices across sportsbooks, exchanges and prediction markets, normalizes them, and routes every order to the best available price after each platform's own fees.">
+<meta property="og:url" content="https://openmarkets.ai/">
+<meta property="og:image" content="https://openmarkets.ai/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="OpenMarkets · The best price across every prediction market">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@OpenMarketsAI">
+<meta name="turnstile-key" content="">
+<link rel="icon" type="image/svg+xml" href="/img/06c48b9b5b.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/img/e849e39325.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --om-ground:#09090b; --om-surface:#101015; --om-raised:#17171d;
+  --om-border:#26262e; --om-border-soft:#1d1d24;
+  --om-text:#ededf2; --om-dim:#a1a1aa; --om-faint:#6f6f7a;
+  --om-indigo:#6366f1; --om-indigo-l:#818cf8;
+  --om-cyan:#22d3ee; --om-emerald:#34d399; --om-amber:#fbbf24;
+  --om-sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --om-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --om-grad:linear-gradient(100deg,#818cf8,#22d3ee,#34d399);
+}
+.om-wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.om-grad{background:var(--om-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---- header ----
+   One header on every page: the marketing site, the static pages and the Next
+   surfaces (/odds, /tools). It is the marketing site's dropdown header, moved
+   here from site.html so it has exactly one definition. */
+.om-nav{position:sticky;top:0;z-index:50;background:rgba(9,9,11,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--om-border-soft);font-family:var(--om-sans);line-height:1.5}
+.om-nav.scrolled{background:rgba(9,9,11,.72);border-bottom-color:var(--om-border)}
+/* The marketing site's .wrap, so the bar sits in the same place on every page. */
+.om-nav-w{max-width:1120px;margin:0 auto;padding:0 26px;box-sizing:border-box}
+.om-nav-in{display:flex;align-items:center;gap:8px;min-height:60px}
+.om-brand{display:inline-flex;align-items:center;gap:8px;color:var(--om-text);text-decoration:none;margin-right:16px}
+.om-brand:hover{text-decoration:none}
+.om-mark{width:21px;height:21px;flex:none;display:block}
+.om-wm{font-weight:800;letter-spacing:-.035em;font-size:1.08rem;white-space:nowrap}
+.om-chip{font-family:var(--om-mono);font-size:.57rem;letter-spacing:.11em;text-transform:uppercase;
+  padding:2px 6px;border-radius:4px;font-weight:500;
+  border:1px solid color-mix(in srgb,var(--om-emerald) 45%,transparent);color:var(--om-emerald)}
+.om-links{display:flex;align-items:center;gap:2px}
+.om-navbtn{appearance:none;background:none;border:0;cursor:pointer;margin:0;
+  font:inherit;font-size:.88rem;color:var(--om-dim);padding:8px 11px;border-radius:8px;
+  display:inline-flex;align-items:center;gap:5px}
+.om-navbtn:hover,.om-navbtn[aria-expanded=true],.om-navbtn.om-on{color:var(--om-text)}
+.om-navbtn:hover,.om-navbtn[aria-expanded=true]{background:var(--om-raised)}
+.om-navbtn .om-cv{width:8px;height:8px;transition:transform .18s}
+.om-navbtn[aria-expanded=true] .om-cv{transform:rotate(180deg)}
+.om-nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.om-status{display:none;align-items:center;gap:7px;font-family:var(--om-mono);font-size:.68rem;color:var(--om-faint);white-space:nowrap}
+@media(min-width:980px){.om-status{display:inline-flex}}
+.om-dot{width:6px;height:6px;border-radius:50%;background:var(--om-emerald)}
+.om-status .om-dot{animation:om-pulse 2.4s infinite}
+@keyframes om-pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.55)}70%{box-shadow:0 0 0 7px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+@media(prefers-reduced-motion:reduce){.om-status .om-dot{animation:none}}
+.om-cta{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:.87rem;font-weight:500;
+  padding:8px 15px;border-radius:9px;border:1px solid var(--om-indigo);
+  background:var(--om-indigo);color:#fff;cursor:pointer;text-decoration:none;white-space:nowrap}
+.om-cta:hover{background:var(--om-indigo-l);border-color:var(--om-indigo-l);color:#fff;text-decoration:none}
+
+/* mega menus */
+.om-mega{display:none;position:absolute;left:0;right:0;top:100%;background:var(--om-surface);
+  border-top:1px solid var(--om-border);border-bottom:1px solid var(--om-border);box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.om-mega.open{display:block}
+.om-mega-in{display:grid;grid-template-columns:repeat(auto-fit,minmax(184px,1fr));gap:26px 24px;padding:26px 26px 28px;align-items:start}
+@media(max-width:900px){.om-mega-in{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.om-mega-in{grid-template-columns:1fr;gap:20px}}
+.om-mcol{display:flex;flex-direction:column;gap:9px}
+.om-mhead{font-family:var(--om-mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;
+  padding-bottom:7px;border-bottom:1px solid var(--om-border);color:var(--om-faint)}
+.om-mitem{display:flex;flex-direction:column;gap:1px;padding:5px 7px;margin:0 -7px;border-radius:7px;color:var(--om-text);text-decoration:none}
+.om-mitem:hover{background:var(--om-raised);text-decoration:none;color:var(--om-text)}
+.om-mitem b{font-size:.86rem;font-weight:600}
+.om-mitem span{font-size:.76rem;color:var(--om-faint);line-height:1.4}
+
+/* Mobile header. Keep this block BELOW the base rules above: on equal
+   specificity the later rule wins, and when it sat above them the drawer was
+   stuck open on every phone. Below 900px the four menus plus the CTA cannot
+   share a 60px row, so they move into a disclosure drawer, and a menu opened on
+   a phone is moved into the drawer under the row that was tapped. */
+.om-burger{display:none;appearance:none;background:none;border:1px solid var(--om-border);
+  border-radius:9px;padding:7px 9px;cursor:pointer;color:var(--om-dim);line-height:0}
+.om-burger:hover{color:var(--om-text);border-color:var(--om-faint)}
+.om-burger svg{width:18px;height:18px;display:block}
+@media(max-width:899px){
+  .om-burger{display:inline-flex;margin-left:0;order:3;flex:none}
+  .om-nav-in{flex-wrap:nowrap}
+  .om-brand{margin-right:auto;flex:0 1 auto;min-width:0}
+  .om-nav-right{margin-left:0;order:2;flex:none}
+  .om-links{display:none;position:absolute;left:0;right:0;top:100%;z-index:55;
+    flex-direction:column;align-items:stretch;gap:0;
+    background:var(--om-surface);border-top:1px solid var(--om-border);border-bottom:1px solid var(--om-border);
+    padding:6px 0;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+  .om-links.open{display:flex;max-height:calc(100dvh - 60px);overflow-y:auto;overscroll-behavior:contain}
+  .om-navbtn{justify-content:space-between;width:100%;border-radius:0;padding:13px 20px;font-size:.95rem}
+  .om-links .om-navbtn[aria-expanded=true]{position:sticky;top:0;z-index:2;background:var(--om-raised)}
+  .om-links .om-mega{position:static;border:0;box-shadow:none;background:var(--om-ground)}
+  .om-links .om-mega .om-mega-in{grid-template-columns:1fr;gap:16px;padding:4px 20px 18px;max-width:none}
+}
+@media(max-width:420px){
+  .om-cta{padding:7px 11px;font-size:.78rem}
+  .om-brand .om-chip{display:none}
+  .om-wm{font-size:1rem}
+}
+
+/* ---- footer ---- */
+.om-foot{margin-top:60px;border-top:1px solid var(--om-border-soft);padding:40px 0 60px;
+  font-family:var(--om-sans);background:var(--om-ground)}
+.om-fgrid{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:26px}
+@media(max-width:900px){.om-fgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.om-fgrid{grid-template-columns:1fr}}
+.om-fcol{display:flex;flex-direction:column;gap:7px}
+.om-fcol h4{font-size:.79rem;color:var(--om-text);margin:0 0 3px}
+.om-fcol a{font-size:.83rem;color:var(--om-faint);text-decoration:none}
+.om-fcol a:hover{color:var(--om-text)}
+.om-fbrand p{font-size:.85rem;color:var(--om-faint);max-width:34ch;margin-top:8px}
+.om-fbot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:30px;padding-top:18px;
+  border-top:1px solid var(--om-border-soft);font-family:var(--om-mono);font-size:.7rem;color:var(--om-faint)}
+</style>
+<link rel="stylesheet" href="/site.91349de17c.css">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "OpenMarkets",
+  "legalName": "OpenMarkets Network Inc.",
+  "url": "https://openmarkets.ai/",
+  "logo": "https://openmarkets.ai/openmarkets-logo.svg",
+  "description": "The infrastructure layer connecting prediction markets, exchanges, peer-to-peer platforms and sportsbooks. OpenMarkets doesn’t run a market or take the other side of a position.",
+  "email": "support@openmarkets.ai",
+  "sameAs": [
+    "https://x.com/OpenMarketsAI",
+    "https://www.linkedin.com/company/open-markets1",
+    "https://www.instagram.com/OpenMarketsAI"
+  ]
+}</script>
+
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4277HZ8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs>
+<linearGradient id="omMark" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#818cf8"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#34d399"/>
+</linearGradient></defs></svg>
+<div class="bg" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
+
+<header class="om-nav" id="nav">
+  <div class="om-nav-w om-nav-in">
+    <a class="om-brand" href="/"><svg class="om-mark" viewBox="0 0 24 24" aria-hidden="true">
+  <defs><linearGradient id="omChromeMark" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#818cf8"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#34d399"/>
+  </linearGradient></defs>
+  <g stroke="url(#omChromeMark)" stroke-width="1.05" opacity=".45" fill="none">
+    <path d="M12 12V4.3M12 12l6.7-3.85M12 12l6.7 3.85M12 12v7.7M12 12l-6.7 3.85M12 12L5.3 8.15"/>
+  </g>
+  <g fill="url(#omChromeMark)">
+    <circle cx="12" cy="4.3" r="1.7"/><circle cx="18.7" cy="8.15" r="1.7"/>
+    <circle cx="18.7" cy="15.85" r="1.7"/><circle cx="12" cy="19.7" r="1.7"/>
+    <circle cx="5.3" cy="15.85" r="1.7"/><circle cx="5.3" cy="8.15" r="1.7"/>
+    <circle cx="12" cy="12" r="3.5"/>
+  </g>
+</svg><span class="om-wm">Open<span class="om-grad">Markets</span></span><span class="om-chip">Beta</span></a>
+    <button class="om-burger" type="button" aria-expanded="false" aria-controls="om-links" aria-label="Menu">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"/></svg>
+    </button>
+    <nav class="om-links" id="om-links">
+      <button class="om-navbtn" type="button" data-menu="products" aria-expanded="false" aria-controls="om-m-products">Products
+        <svg class="om-cv" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+      </button>
+      <button class="om-navbtn" type="button" data-menu="who" aria-expanded="false" aria-controls="om-m-who">Who it's for
+        <svg class="om-cv" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+      </button>
+      <button class="om-navbtn" type="button" data-menu="devs" aria-expanded="false" aria-controls="om-m-devs">Developers
+        <svg class="om-cv" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+      </button>
+      <button class="om-navbtn" type="button" data-menu="learn" aria-expanded="false" aria-controls="om-m-learn">Learn
+        <svg class="om-cv" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+      </button>
+    </nav>
+    <div class="om-nav-right">
+      <span class="om-status"><span class="om-dot"></span>In Beta Now</span>
+      <a class="om-cta" href="/" data-beta>Join the waitlist</a>
+    </div>
+  </div>
+  <div class="om-megas">
+    <div class="om-mega" id="om-m-products"><div class="om-nav-w om-mega-in"><div class="om-mcol"><span class="om-mhead">Our apps</span><a class="om-mitem" href="/greenbook"><b>GreenBook</b><span>Trade desk for serious traders</span></a><a class="om-mitem" href="/odds-screen"><b>Free Odds Screen</b><span>OMOdds · every venue, fees in</span></a><a class="om-mitem" href="/tailed"><b>Tailed</b><span>Follow cappers, tail the bet</span></a><a class="om-mitem" href="/arena"><b>Arena</b><span>AI models head to head</span></a></div><div class="om-mcol"><span class="om-mhead">Marketplace</span><a class="om-mitem" href="/marketplace"><b>Browse apps</b><span>Every app on the network</span></a><a class="om-mitem" href="/marketplace/build"><b>Build and publish</b><span>Ship your app to OM users</span></a></div><div class="om-mcol"><span class="om-mhead">Build on it</span><a class="om-mitem" href="/flow"><b>Flow</b><span>Read and execute · REST · WS · MCP</span></a><a class="om-mitem" href="/connect"><b>Connect</b><span>Your users link their platforms</span></a><a class="om-mitem" href="/identity"><b>Identity</b><span>Sign in with OpenMarkets</span></a></div><div class="om-mcol"><span class="om-mhead">Free to try</span><a class="om-mitem" href="/paper-trading"><b>Paper trading</b><span>Real prices, no risk</span></a><a class="om-mitem" href="/odds"><b>Best price finder</b><span>All-in price, no account</span></a><a class="om-mitem" href="/tools"><b>Calculators</b><span>EV, hedge, payout, implied</span></a></div><div class="om-mcol"><span class="om-mhead">Everything</span><a class="om-mitem" href="/products"><b>All products</b><span>Both lines on one page</span></a></div></div></div>
+    <div class="om-mega" id="om-m-who"><div class="om-nav-w om-mega-in"><div class="om-mcol"><span class="om-mhead">People</span><a class="om-mitem" href="/for/bettors"><b>Bettors</b><span>Stop tab-hopping between platforms</span></a><a class="om-mitem" href="/for/traders"><b>Traders</b><span>Depth, routing, execution</span></a></div><div class="om-mcol"><span class="om-mhead">Companies</span><a class="om-mitem" href="/for/business"><b>Business</b><span>Put markets inside your product</span></a><a class="om-mitem" href="/for/developers"><b>Developers</b><span>Build on the API, publish an app</span></a></div><div class="om-mcol"><span class="om-mhead">Supply</span><a class="om-mitem" href="/for/venues"><b>Venues</b><span>Order flow and liquidity</span></a></div></div></div>
+    <div class="om-mega" id="om-m-devs"><div class="om-nav-w om-mega-in"><div class="om-mcol"><span class="om-mhead">Start</span><a class="om-mitem" href="https://app.openmarkets.ai/developers/quickstart" target="_blank" rel="noreferrer"><b>Quickstart</b><span>First authenticated request in a minute</span></a><a class="om-mitem" href="https://app.openmarkets.ai/developers" target="_blank" rel="noreferrer"><b>Developer portal</b><span>Everything below, in one place</span></a></div><div class="om-mcol"><span class="om-mhead">Transports</span><a class="om-mitem" href="https://app.openmarkets.ai/developers/reference" target="_blank" rel="noreferrer"><b>REST reference</b><span>Every endpoint, with a Try it console</span></a><a class="om-mitem" href="https://app.openmarkets.ai/developers/streaming" target="_blank" rel="noreferrer"><b>Streaming</b><span>WebSocket, subscribe to contest IDs</span></a><a class="om-mitem" href="https://app.openmarkets.ai/developers/mcp" target="_blank" rel="noreferrer"><b>MCP</b><span>21 tools, zero SDKs</span></a></div><div class="om-mcol"><span class="om-mhead">Operate</span><a class="om-mitem" href="https://app.openmarkets.ai/developers/authentication" target="_blank" rel="noreferrer"><b>Authentication</b><span>Keys, rotation, handling 401s</span></a><a class="om-mitem" href="https://app.openmarkets.ai/developers/rate-limits" target="_blank" rel="noreferrer"><b>Rate limits</b><span>Budgets, headers, 429 handling</span></a><a class="om-mitem" href="https://app.openmarkets.ai/developers/errors" target="_blank" rel="noreferrer"><b>Errors</b><span>Every code and how to recover</span></a></div><div class="om-mcol"><span class="om-mhead">Build on it</span><a class="om-mitem" href="https://app.openmarkets.ai/developers/connect" target="_blank" rel="noreferrer"><b>Connect docs</b><span>Hosted linking, trade on behalf</span></a><a class="om-mitem" href="https://app.openmarkets.ai/developers/historical" target="_blank" rel="noreferrer"><b>Historical data</b><span>Tick-level archive</span></a></div><div class="om-mcol"><span class="om-mhead">On this site</span><a class="om-mitem" href="/developers"><b>Developers overview</b><span>What Flow is and who it is for</span></a></div></div></div>
+    <div class="om-mega" id="om-m-learn"><div class="om-nav-w om-mega-in"><div class="om-mcol"><span class="om-mhead">Read</span><a class="om-mitem" href="/blog"><b>Blog</b><span>The latest action and news in prediction markets</span></a></div><div class="om-mcol"><span class="om-mhead">Help</span><a class="om-mitem" href="/support"><b>Support</b><span>Guides and contact</span></a><a class="om-mitem" href="/support#connect"><b>Linked accounts</b><span>Connect a platform to your account</span></a></div><div class="om-mcol"><span class="om-mhead">Company</span><a class="om-mitem" href="/about"><b>About</b><span>Why the company exists</span></a><a class="om-mitem" href="/press"><b>Press</b><span>Kit, claim and contact</span></a></div></div></div>
+  </div>
+</header>
+<script>(function chromeNavInit() {
+  var nav = document.getElementById("nav");
+  if (!nav || nav.getAttribute("data-om-init")) return;
+  nav.setAttribute("data-om-init", "1");
+  var mobile = window.matchMedia("(max-width:899px)");
+  var burger = nav.querySelector(".om-burger");
+  var links = nav.querySelector(".om-links");
+  var home = nav.querySelector(".om-megas");
+  var btns = [].slice.call(nav.querySelectorAll(".om-navbtn[data-menu]"));
+  var panel = function (b) { return document.getElementById("om-m-" + b.getAttribute("data-menu")); };
+
+  // On a phone an open panel is moved into the drawer, under its row, so the
+  // row visibly expands. Closing puts every panel back at the end of <header>.
+  function closeMenus() {
+    btns.forEach(function (b) {
+      b.setAttribute("aria-expanded", "false");
+      var p = 

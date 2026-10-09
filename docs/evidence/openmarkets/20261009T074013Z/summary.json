@@ -1,0 +1,1241 @@
+{
+ "stamp": "20261009T074013Z",
+ "pages": [
+  {
+   "url": "https://openmarkets.ai/",
+   "status": 200,
+   "final_url": "https://openmarkets.ai/",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 28777,
+   "title": "OpenMarkets \u00b7 The best price across every prediction market",
+   "words": {
+    "api": 3,
+    "developer": 22,
+    "historical": 2,
+    "websocket": 2,
+    "free": 7,
+    "beta": 13
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/robots.txt",
+   "status": 200,
+   "final_url": "https://openmarkets.ai/robots.txt",
+   "content_type": "text/plain; charset=utf-8",
+   "bytes": 68,
+   "title": null,
+   "words": {}
+  },
+  {
+   "url": "https://openmarkets.ai/sitemap.xml",
+   "status": 200,
+   "final_url": "https://openmarkets.ai/sitemap.xml",
+   "content_type": "application/xml; charset=utf-8",
+   "bytes": 411,
+   "title": null,
+   "words": {
+    "api": 2
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/api",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/api",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/api/",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/api/",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/docs",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/docs",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/api/docs",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/api/docs",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/openapi.json",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/openapi.json",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/api/openapi.json",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/api/openapi.json",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/developers",
+   "status": 200,
+   "final_url": "https://openmarkets.ai/developers",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 29435,
+   "title": "Developers \u00b7 Every market, one API, for humans and agents \u00b7 OpenMarkets",
+   "words": {
+    "api": 8,
+    "api key": 1,
+    "developer": 37,
+    "nfl": 1,
+    "historical": 4,
+    "websocket": 6,
+    "free": 4,
+    "beta": 20
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/developer",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/developer",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/pricing",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/pricing",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/odds",
+   "status": 200,
+   "final_url": "https://openmarkets.ai/odds",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 60982,
+   "title": "Prediction Market Odds: Compare Kalshi, Polymarket &amp; More | OpenMarkets",
+   "words": {
+    "api": 2,
+    "developer": 36,
+    "nfl": 10,
+    "historical": 4,
+    "kalshi": 24,
+    "polymarket": 24,
+    "prophetx": 14,
+    "websocket": 2,
+    "free": 8,
+    "beta": 10
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/nfl",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/nfl",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/sports/nfl",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/sports/nfl",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/props",
+   "status": 404,
+   "final_url": "https://openmarkets.ai/props",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/llms.txt",
+   "status": 200,
+   "final_url": "https://app.openmarkets.ai/llms.txt",
+   "content_type": "text/plain; charset=utf-8",
+   "bytes": 6642,
+   "title": null,
+   "words": {
+    "api": 9,
+    "apikey": 1,
+    "developer": 28,
+    "player prop": 4,
+    "props": 5,
+    "kalshi": 1,
+    "polymarket": 1,
+    "prophetx": 1,
+    "websocket": 1
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/",
+   "status": 200,
+   "final_url": "https://app.openmarkets.ai/",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 42937,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 10,
+    "apikey": 1,
+    "developer": 2,
+    "kalshi": 3,
+    "polymarket": 4,
+    "prophetx": 3,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/robots.txt",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/robots.txt",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/sitemap.xml",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/sitemap.xml",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/api",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/api",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/api/",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/api/",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/docs",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/docs",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/api/docs",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/api/docs",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/openapi.json",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/openapi.json",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/api/openapi.json",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/api/openapi.json",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/developers",
+   "status": 200,
+   "final_url": "https://app.openmarkets.ai/developers",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 50806,
+   "title": "Developer docs \u00b7 OpenMarkets",
+   "words": {
+    "api": 19,
+    "apikey": 1,
+    "developer": 74,
+    "historical": 2,
+    "history": 10,
+    "websocket": 5,
+    "free": 4
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/developer",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/developer",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/pricing",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/pricing",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/odds",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/odds",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/nfl",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/nfl",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/sports/nfl",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/sports/nfl",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/props",
+   "status": 404,
+   "final_url": "https://app.openmarkets.ai/props",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/llms.txt",
+   "status": 200,
+   "final_url": "https://app.openmarkets.ai/llms.txt",
+   "content_type": "text/plain; charset=utf-8",
+   "bytes": 6642,
+   "title": null,
+   "words": {
+    "api": 9,
+    "apikey": 1,
+    "developer": 28,
+    "player prop": 4,
+    "props": 5,
+    "kalshi": 1,
+    "polymarket": 1,
+    "prophetx": 1,
+    "websocket": 1
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/",
+   "status": 200,
+   "final_url": "https://openmarkets.ai/",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 28777,
+   "title": "OpenMarkets \u00b7 The best price across every prediction market",
+   "words": {
+    "api": 3,
+    "developer": 22,
+    "historical": 2,
+    "websocket": 2,
+    "free": 7,
+    "beta": 13
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/robots.txt",
+   "status": 200,
+   "final_url": "https://openmarkets.ai/robots.txt",
+   "content_type": "text/plain; charset=utf-8",
+   "bytes": 68,
+   "title": null,
+   "words": {}
+  },
+  {
+   "url": "https://www.openmarkets.ai/sitemap.xml",
+   "status": 200,
+   "final_url": "https://openmarkets.ai/sitemap.xml",
+   "content_type": "application/xml; charset=utf-8",
+   "bytes": 411,
+   "title": null,
+   "words": {
+    "api": 2
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/api",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/api",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/api/",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/api/",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/docs",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/docs",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/api/docs",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/api/docs",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/openapi.json",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/openapi.json",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/api/openapi.json",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/api/openapi.json",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/developers",
+   "status": 200,
+   "final_url": "https://openmarkets.ai/developers",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 29435,
+   "title": "Developers \u00b7 Every market, one API, for humans and agents \u00b7 OpenMarkets",
+   "words": {
+    "api": 8,
+    "api key": 1,
+    "developer": 37,
+    "nfl": 1,
+    "historical": 4,
+    "websocket": 6,
+    "free": 4,
+    "beta": 20
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/developer",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/developer",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/pricing",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/pricing",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/odds",
+   "status": 200,
+   "final_url": "https://openmarkets.ai/odds",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 60982,
+   "title": "Prediction Market Odds: Compare Kalshi, Polymarket &amp; More | OpenMarkets",
+   "words": {
+    "api": 2,
+    "developer": 36,
+    "nfl": 10,
+    "historical": 4,
+    "kalshi": 24,
+    "polymarket": 24,
+    "prophetx": 14,
+    "websocket": 2,
+    "free": 8,
+    "beta": 10
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/nfl",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/nfl",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/sports/nfl",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/sports/nfl",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/props",
+   "status": 404,
+   "final_url": "https://www.openmarkets.ai/props",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 12932,
+   "title": "OpenMarkets \u2014 build on every prediction market",
+   "words": {
+    "api": 7,
+    "apikey": 1,
+    "free": 6
+   }
+  },
+  {
+   "url": "https://www.openmarkets.ai/llms.txt",
+   "status": 200,
+   "final_url": "https://app.openmarkets.ai/llms.txt",
+   "content_type": "text/plain; charset=utf-8",
+   "bytes": 6642,
+   "title": null,
+   "words": {
+    "api": 9,
+    "apikey": 1,
+    "developer": 28,
+    "player prop": 4,
+    "props": 5,
+    "kalshi": 1,
+    "polymarket": 1,
+    "prophetx": 1,
+    "websocket": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/",
+   "status": 200,
+   "final_url": "https://api.openmarkets.ai/",
+   "content_type": "application/json; charset=utf-8",
+   "bytes": 39,
+   "title": null,
+   "words": {
+    "api": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/robots.txt",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/robots.txt",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 149,
+   "title": "Error",
+   "words": {}
+  },
+  {
+   "url": "https://api.openmarkets.ai/sitemap.xml",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/sitemap.xml",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 150,
+   "title": "Error",
+   "words": {}
+  },
+  {
+   "url": "https://api.openmarkets.ai/api",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/api",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 142,
+   "title": "Error",
+   "words": {
+    "api": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/api/",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/api/",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 143,
+   "title": "Error",
+   "words": {
+    "api": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/docs",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/docs",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 143,
+   "title": "Error",
+   "words": {}
+  },
+  {
+   "url": "https://api.openmarkets.ai/api/docs",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/api/docs",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 147,
+   "title": "Error",
+   "words": {
+    "api": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/openapi.json",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/openapi.json",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 151,
+   "title": "Error",
+   "words": {
+    "api": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/api/openapi.json",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/api/openapi.json",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 155,
+   "title": "Error",
+   "words": {
+    "api": 2
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/developers",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/developers",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 149,
+   "title": "Error",
+   "words": {
+    "developer": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/developer",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/developer",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 148,
+   "title": "Error",
+   "words": {
+    "developer": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/pricing",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/pricing",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 146,
+   "title": "Error",
+   "words": {
+    "pricing": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/odds",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/odds",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 143,
+   "title": "Error",
+   "words": {}
+  },
+  {
+   "url": "https://api.openmarkets.ai/nfl",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/nfl",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 142,
+   "title": "Error",
+   "words": {
+    "nfl": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/sports/nfl",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/sports/nfl",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 149,
+   "title": "Error",
+   "words": {
+    "nfl": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/props",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/props",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 144,
+   "title": "Error",
+   "words": {
+    "props": 1
+   }
+  },
+  {
+   "url": "https://api.openmarkets.ai/llms.txt",
+   "status": 404,
+   "final_url": "https://api.openmarkets.ai/llms.txt",
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 147,
+   "title": "Error",
+   "words": {}
+  },
+  {
+   "url": "https://docs.openmarkets.ai/",
+   "status": "<urlopen error [Errno -2] Name or service not known>",
+   "final_url": "https://docs.openmarkets.ai/",
+   "content_type": "",
+   "bytes": 0,
+   "title": null,
+   "words": {}
+  }
+ ],
+ "scripts": [
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/2787-1ee93acce7f33691.js",
+   "status": 200,
+   "bytes": 8715,
+   "hosts": [],
+   "api_paths": [],
+   "words": {}
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/2855-b5529041d355c84b.js",
+   "status": 200,
+   "bytes": 201377,
+   "hosts": [
+    "n",
+    "nextjs.org",
+    "react.dev"
+   ],
+   "api_paths": [],
+   "words": {
+    "api": 22,
+    "nfl": 5,
+    "props": 23,
+    "history": 28
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/5019-f13224e12abe7e1f.js",
+   "status": 200,
+   "bytes": 32390,
+   "hosts": [
+    "api.openmarkets.ai"
+   ],
+   "api_paths": [],
+   "words": {
+    "api": 12,
+    "api key": 2,
+    "developer": 1,
+    "history": 5,
+    "kalshi": 1,
+    "polymarket": 1,
+    "prophetx": 1,
+    "free": 2
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/5114-8c6e74ca1af9ccca.js",
+   "status": 200,
+   "bytes": 9816,
+   "hosts": [
+    "api.openmarkets.ai",
+    "app.openmarkets.ai",
+    "connect.openmarkets.ai",
+    "partner.openmarkets.ai"
+   ],
+   "api_paths": [],
+   "words": {
+    "api": 16,
+    "apikey": 5,
+    "developer": 1,
+    "nfl": 1
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/5770-873ada797e93d850.js",
+   "status": 200,
+   "bytes": 9797,
+   "hosts": [],
+   "api_paths": [],
+   "words": {
+    "props": 15
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/7329-8a28f27a5a0e623d.js",
+   "status": 200,
+   "bytes": 235993,
+   "hosts": [
+    "radix-ui.com",
+    "www.w3.org"
+   ],
+   "api_paths": [],
+   "words": {
+    "api": 1,
+    "nfl": 6,
+    "props": 128,
+    "history": 5,
+    "free": 1
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/87c73c54-331560e1d98d4262.js",
+   "status": 200,
+   "bytes": 167094,
+   "hosts": [
+    "react.dev",
+    "www.w3.org"
+   ],
+   "api_paths": [],
+   "words": {
+    "props": 127
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/app/developers/layout-3fa321c92726c4b8.js",
+   "status": 200,
+   "bytes": 7882,
+   "hosts": [],
+   "api_paths": [],
+   "words": {
+    "api": 9,
+    "api key": 2,
+    "apikey": 2,
+    "developer": 29,
+    "historical": 2
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/app/developers/page-23153295053d7538.js",
+   "status": 200,
+   "bytes": 579,
+   "hosts": [],
+   "api_paths": [],
+   "words": {}
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/app/layout-f67a2fa41c36150a.js",
+   "status": 200,
+   "bytes": 1024,
+   "hosts": [],
+   "api_paths": [],
+   "words": {}
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/app/not-found-3a00625b98522b67.js",
+   "status": 200,
+   "bytes": 579,
+   "hosts": [],
+   "api_paths": [],
+   "words": {}
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/app/page-186a9e4543e82b19.js",
+   "status": 200,
+   "bytes": 25272,
+   "hosts": [
+    "api.openmarkets.ai",
+    "status.openmarkets.ai"
+   ],
+   "api_paths": [],
+   "words": {
+    "api": 6,
+    "apikey": 1,
+    "developer": 4,
+    "history": 1,
+    "kalshi": 5,
+    "polymarket": 6,
+    "prophetx": 5
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/main-app-9a65adf2d8a5e6a0.js",
+   "status": 200,
+   "bytes": 699,
+   "hosts": [],
+   "api_paths": [],
+   "words": {}
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/polyfills-42372ed130431b0a.js",
+   "status": 200,
+   "bytes": 112594,
+   "hosts": [
+    "a",
+    "github.com",
+    "x"
+   ],
+   "api_paths": [],
+   "words": {
+    "free": 2
+   }
+  },
+  {
+   "url": "https://app.openmarkets.ai/_next/static/chunks/webpack-091d3dfbdc8c3fad.js",
+   "status": 200,
+   "bytes": 3481,
+   "hosts": [],
+   "api_paths": [],
+   "words": {}
+  },
+  {
+   "url": "https://openmarkets.ai/_next/static/chunks/0cz1d0mv5g_q7.js",
+   "status": 200,
+   "bytes": 112594,
+   "hosts": [
+    "a",
+    "github.com",
+    "x"
+   ],
+   "api_paths": [],
+   "words": {
+    "free": 2
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/_next/static/chunks/19mx3mg6lkumu.js",
+   "status": 200,
+   "bytes": 28907,
+   "hosts": [
+    "nextjs.org"
+   ],
+   "api_paths": [],
+   "words": {
+    "api": 1,
+    "props": 15
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/_next/static/chunks/2gefo9ja1l2mo.js",
+   "status": 200,
+   "bytes": 165901,
+   "hosts": [
+    "nextjs.org",
+    "react.dev"
+   ],
+   "api_paths": [],
+   "words": {
+    "api": 24,
+    "nfl": 14,
+    "props": 24,
+    "history": 12
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/_next/static/chunks/2tf9aomi3w-ck.js",
+   "status": 200,
+   "bytes": 10521,
+   "hosts": [],
+   "api_paths": [],
+   "words": {
+    "props": 15
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/_next/static/chunks/310vm2bl3xxpt.js",
+   "status": 200,
+   "bytes": 5364,
+   "hosts": [],
+   "api_paths": [],
+   "words": {
+    "history": 2
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/_next/static/chunks/3e4keds9ktjdu.js",
+   "status": 200,
+   "bytes": 229156,
+   "hosts": [
+    "n",
+    "react.dev",
+    "www.w3.org"
+   ],
+   "api_paths": [],
+   "words": {
+    "props": 160,
+    "history": 20,
+    "websocket": 6
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/_next/static/chunks/3fntmmi971322.js",
+   "status": 200,
+   "bytes": 14377,
+   "hosts": [],
+   "api_paths": [],
+   "words": {
+    "props": 2
+   }
+  },
+  {
+   "url": "https://openmarkets.ai/_next/static/chunks/turbopack-3lq5uc0g1mljf.js",
+   "status": 200,
+   "bytes": 10877,
+   "hosts": [],
+   "api_paths": [],
+   "words": {}
+  },
+  {
+   "url": "https://openmarkets.ai/site.c416d87db3.js",
+   "status": 200,
+   "bytes": 10206,
+   "hosts": [
+    "challenges.cloudflare.com"
+   ],
+   "api_paths": [
+    "/api/beta"
+   ],
+   "words": {
+    "api": 2,
+    "developer": 1,
+    "beta": 16
+   }
+  }
+ ],
+ "hosts_seen": [
+  "a",
+  "api.openmarkets.ai",
+  "app.openmarkets.ai",
+  "challenges.cloudflare.com",
+  "connect.openmarkets.ai",
+  "fonts.googleapis.com",
+  "fonts.gstatic.com",
+  "github.com",
+  "n",
+  "nextjs.org",
+  "openmarkets.ai",
+  "partner.openmarkets.ai",
+  "radix-ui.com",
+  "react.dev",
+  "schema.org",
+  "status.openmarkets.ai",
+  "www.googletagmanager.com",
+  "www.instagram.com",
+  "www.linkedin.com",
+  "www.sitemaps.org",
+  "www.w3.org",
+  "x",
+  "x.com"
+ ],
+ "api_paths_seen": [
+  "/api/beta",
+  "/odds",
+  "/odds-screen",
+  "/odds/epl",
+  "/odds/kalshi-vs-polymarket",
+  "/odds/mlb",
+  "/odds/mls",
+  "/odds/nba",
+  "/odds/ncaaf",
+  "/odds/nfl",
+  "/odds/nhl",
+  "/odds/wnba"
+ ]
+}
