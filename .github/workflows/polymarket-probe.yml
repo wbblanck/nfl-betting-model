@@ -16,6 +16,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: python scripts/audit/polymarket_probe.py
+      - run: pip install -e .
       - name: Compare Polymarket US with DraftKings and FanDuel (same moment)
         if: always()
         run: python scripts/polymarket_compare.py --fetch
