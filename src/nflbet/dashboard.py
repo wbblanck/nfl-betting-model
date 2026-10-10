@@ -814,14 +814,14 @@ JS = """
   apply(m);
   // tabs (remembered per viewer; #ats deep-links)
   var tabs=document.querySelectorAll('.tabs button');
-  function show(t){
+  function showTab(t){
     tabs.forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-tab')===t?'true':'false')});
     document.querySelectorAll('.tabpane').forEach(function(p){p.hidden=p.id!=='tab-'+t});
     try{localStorage.setItem('tab',t)}catch(e){}
   }
-  tabs.forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-tab'))})});
+  tabs.forEach(function(b){b.addEventListener('click',function(){showTab(b.getAttribute('data-tab'))})});
   var t0=(location.hash==='#ats')?'ats':'s1';try{if(location.hash!=='#ats'){t0=localStorage.getItem('tab')||'s1'}}catch(e){}
-  show(t0);
+  showTab(t0);
   // one tooltip for every chart mark: "headline | detail"
   var tip=document.createElement('div');tip.className='tip';tip.hidden=true;document.body.appendChild(tip);
   function show(el,x,y){
