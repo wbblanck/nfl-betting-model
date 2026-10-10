@@ -30,7 +30,7 @@ def get(url: str):
         headers["Authorization"] = f"Bearer {key}"
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=45) as r:
-            return r.status, dict(r.headers.items()), r.read(200_000)
+            return r.status, dict(r.headers.items()), r.read(60_000_000)
     except urllib.error.HTTPError as e:
         return e.code, dict(e.headers.items()) if e.headers else {}, e.read(20_000)
     except Exception as e:  # noqa: BLE001
@@ -56,12 +56,14 @@ def nfl_markets(out, s):
     kept, offset, seen = [], 0, 0
     while offset < 60000:
         st, hdr, body = get(f"{BASE}/v1/markets?limit=500&offset={offset}")
+        s.setdefault("pages", []).append({"offset": offset, "status": st, "bytes": len(body)})
         if st != 200:
             s["markets_paging_error"] = {"offset": offset, "status": st}
             break
         try:
             page = json.loads(body).get("markets", [])
-        except ValueError:
+        except ValueError as e:
+            s["markets_paging_error"] = {"offset": offset, "parse": str(e)[:120], "bytes": len(body)}
             break
         if not page:
             break
@@ -97,7 +99,7 @@ def main():
                "www_auth": hdr.get("WWW-Authenticate", hdr.get("www-authenticate")), **shape(body)}
         s["results"].append(rec)
         name = p.strip("/").replace("/", "_").replace("?", "_").replace("=", "_").replace("&", "_") or "root"
-        (out / f"{name[:80]}.txt").write_bytes(body[:30000])
+        (out / f"{name[:80]}.txt").write_bytes(body[:30000])   # full bodies are parsed in memory above
         print(p, st, len(body), rec.get("keys", rec.get("first", rec.get("text_head", "")))[:200] if rec.get("keys") or rec.get("first") else rec.get("text_head", "")[:120], flush=True)
     nfl_markets(out, s)
     (out / "summary.json").write_text(json.dumps(s, indent=1, default=str))
