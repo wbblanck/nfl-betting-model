@@ -140,6 +140,37 @@ def nfl_events(out, s):
     (out / "nfl_events_this_week.json").write_text(json.dumps(kept, indent=1)[:3_000_000])
 
 
+def series_and_search(out, s):
+    """The docs list Series (e.g. 'NFL 2025-26 Season'), Sports (schedules) and Search. Save the NFL series, then search
+    for this week's games and props and record what each returns."""
+    st, hdr, body = get(f"{BASE}/v1/series?limit=500")
+    try:
+        ser = json.loads(body).get("series", [])
+    except ValueError:
+        ser = []
+    nfl = [x for x in ser if "nfl" in json.dumps(x).lower()]
+    s["nfl_series"] = [{k: x.get(k) for k in ("id", "slug", "title", "ticker", "startDate", "endDate", "active", "closed", "recurrence")} for x in nfl][:40]
+    s["nfl_series_status"] = st
+    for q in ("Bears Packers", "Eagles Jaguars", "Josh Downs receptions", "Jalen Hurts passing yards", "NFL Week 5"):
+        st2, _, b2 = get(f"{BASE}/v1/search?query={urllib.parse.quote(q)}&limit=20")
+        try:
+            j = json.loads(b2)
+            keys = sorted(j.keys())
+            evs = j.get("events") or j.get("results") or []
+            s[f"search_{q}"] = {"status": st2, "keys": keys, "n": len(evs),
+                                "titles": [e.get("title") for e in evs[:10]]}
+        except ValueError:
+            s[f"search_{q}"] = {"status": st2, "text": b2[:200].decode("utf-8", "replace")}
+    for sid in [x.get("id") for x in nfl if x.get("id")][:3]:
+        st3, _, b3 = get(f"{BASE}/v1/events?limit=100&seriesId={sid}")
+        try:
+            evs = json.loads(b3).get("events", [])
+            s[f"series_{sid}_events"] = {"status": st3, "n": len(evs),
+                                         "titles": [(e.get("title"), e.get("startDate")) for e in evs[:15]]}
+        except ValueError:
+            s[f"series_{sid}_events"] = {"status": st3}
+
+
 def main():
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = Path("docs/evidence/polymarket_us") / stamp
@@ -155,6 +186,7 @@ def main():
         print(p, st, len(body), rec.get("keys", rec.get("first", rec.get("text_head", "")))[:200] if rec.get("keys") or rec.get("first") else rec.get("text_head", "")[:120], flush=True)
     nfl_markets(out, s)
     nfl_events(out, s)
+    series_and_search(out, s)
     (out / "summary.json").write_text(json.dumps(s, indent=1, default=str))
 
 
