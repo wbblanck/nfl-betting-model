@@ -103,6 +103,43 @@ def nfl_markets(out, s):
     (out / "nfl_this_week_markets.json").write_text(json.dumps(kept, indent=1)[:3_000_000])
 
 
+def nfl_events(out, s):
+    """Page through /v1/events and keep NFL events whose start is in the next 8 days, with their market questions."""
+    import collections
+    now = dt.datetime.now(dt.timezone.utc)
+    kept, offset, seen, nfl_all = [], 0, 0, collections.Counter()
+    while offset < 40000:
+        st, hdr, body = get(f"{BASE}/v1/events?limit=500&offset={offset}")
+        if st != 200:
+            s["events_paging_error"] = {"offset": offset, "status": st}
+            break
+        try:
+            page = json.loads(body).get("events", [])
+        except ValueError as e:
+            s["events_paging_error"] = {"offset": offset, "parse": str(e)[:120]}
+            break
+        if not page:
+            break
+        seen += len(page)
+        for e in page:
+            blob = json.dumps(e).lower()
+            if '"nfl"' in blob or " nfl" in blob or "-nfl-" in (e.get("slug") or ""):
+                st_ = (e.get("startDate") or e.get("gameStartTime") or "")[:7]
+                nfl_all[st_] += 1
+                try:
+                    t = dt.datetime.fromisoformat((e.get("startDate") or e.get("gameStartTime") or "").replace("Z", "+00:00"))
+                except ValueError:
+                    t = None
+                if t and now - dt.timedelta(hours=4) <= t <= now + dt.timedelta(days=8):
+                    kept.append({"title": e.get("title"), "slug": e.get("slug"), "start": e.get("startDate"),
+                                 "markets": [m.get("question") for m in (e.get("markets") or [])][:40]})
+        offset += len(page)
+    s["events_scanned"] = seen
+    s["nfl_events_by_month"] = sorted(nfl_all.items())
+    s["nfl_events_this_week"] = kept[:60]
+    (out / "nfl_events_this_week.json").write_text(json.dumps(kept, indent=1)[:3_000_000])
+
+
 def main():
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = Path("docs/evidence/polymarket_us") / stamp
@@ -117,6 +154,7 @@ def main():
         (out / f"{name[:80]}.txt").write_bytes(body[:30000])   # full bodies are parsed in memory above
         print(p, st, len(body), rec.get("keys", rec.get("first", rec.get("text_head", "")))[:200] if rec.get("keys") or rec.get("first") else rec.get("text_head", "")[:120], flush=True)
     nfl_markets(out, s)
+    nfl_events(out, s)
     (out / "summary.json").write_text(json.dumps(s, indent=1, default=str))
 
 
