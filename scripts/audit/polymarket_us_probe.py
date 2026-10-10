@@ -49,6 +49,9 @@ def shape(body: bytes):
     return {"value": str(j)[:300]}
 
 
+ALL_NFL: list = []
+
+
 def nfl_markets(out, s):
     """Page through /v1/markets, keep NFL markets with a game start in the next 8 days, count their types."""
     import collections
@@ -71,6 +74,7 @@ def nfl_markets(out, s):
         for m in page:
             blob = json.dumps(m).lower()
             if '"nfl"' in blob or " nfl" in blob or "-nfl-" in (m.get("slug") or ""):
+                ALL_NFL.append(m)
                 try:
                     t = dt.datetime.fromisoformat((m.get("gameStartTime") or m.get("startDate") or "").replace("Z", "+00:00"))
                 except ValueError:
@@ -79,6 +83,17 @@ def nfl_markets(out, s):
                     kept.append(m)
         offset += len(page)
     s["markets_scanned"] = seen
+    import collections as _c
+    nfl_any = _c.Counter()
+    nfl_sample = []
+    now2 = now
+    for m in ALL_NFL:
+        t = (m.get("gameStartTime") or m.get("startDate") or "")[:7]
+        nfl_any[t] += 1
+        if t.startswith("2026-1") and len(nfl_sample) < 40:
+            nfl_sample.append({k: m.get(k) for k in ("slug", "question", "marketType", "sportsMarketType", "gameStartTime", "active", "closed")})
+    s["nfl_markets_any_date_by_month"] = sorted(nfl_any.items())
+    s["nfl_2026_10_sample"] = nfl_sample
     s["nfl_this_week_markets"] = len(kept)
     s["types"] = collections.Counter(m.get("sportsMarketType") or m.get("marketType") for m in kept).most_common()
     s["examples"] = [{k: m.get(k) for k in ("id", "slug", "question", "marketType", "sportsMarketType", "gameStartTime", "active", "closed")}
