@@ -161,7 +161,7 @@ def series_and_search(out, s):
                                 "titles": [e.get("title") for e in evs[:10]]}
         except ValueError:
             s[f"search_{q}"] = {"status": st2, "text": b2[:200].decode("utf-8", "replace")}
-    st4, _, b4 = get(f"{BASE}/v1/search?query={urllib.parse.quote('NFL Week 5')}&limit=50")
+    st4, _, b4 = get(f"{BASE}/v1/search?query={urllib.parse.quote('NFL Week 5')}&limit=20")
     try:
         evs = json.loads(b4).get("events", [])
     except ValueError:
