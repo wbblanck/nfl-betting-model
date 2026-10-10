@@ -43,9 +43,13 @@ def main():
                 events += ev
             if not ev:
                 break
-    for q in ("passing yards", "receiving yards", "rushing yards", "receptions"):
+    for q in ("Jalen Hurts passing yards", "Josh Downs receptions", "Aaron Jones receptions", "Bears Packers",
+              "Eagles Jaguars", "NFL player props week 5", "Lamar Jackson"):
         st3, sr = get("https://gamma-api.polymarket.com/public-search?" + urllib.parse.urlencode({"q": q, "limit_per_type": 20}))
-        s[f"search_{q}"] = {"status": st3, "sample": json.dumps(sr)[:1500] if sr else None}
+        evs = (sr or {}).get("events", []) if isinstance(sr, dict) else []
+        s[f"search_{q}"] = {"status": st3, "n_events": len(evs),
+                            "events": [{"title": e.get("title"), "end": e.get("endDate"), "closed": e.get("closed"),
+                                        "markets": [m.get("question") for m in (e.get("markets") or [])][:12]} for e in evs[:8]]}
     seen, titles = set(), []
     markets = collections.Counter()
     for e in events:
