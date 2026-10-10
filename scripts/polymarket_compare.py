@@ -57,7 +57,10 @@ def fetch_polymarket(now_utc) -> list[dict]:
             for m in e.get("markets") or []:
                 if "record" in (m.get("question") or "") or "score the first" in (m.get("question") or ""):
                     out.append({"event": e["title"], "question": m.get("question"), "marketSides": m.get("marketSides") or [],
-                                "feeCoefficient": m.get("feeCoefficient")})
+                                "feeCoefficient": m.get("feeCoefficient") or e.get("feeCoefficient"),
+                                "bestBid": m.get("bestBid"), "bestAsk": m.get("bestAsk"),
+                                "lastTradePrice": m.get("lastTradePrice"), "liquidityNum": m.get("liquidityNum"),
+                                "minimumTradeQty": m.get("minimumTradeQty")})
     return out
 
 
@@ -72,7 +75,8 @@ def main():
         book_now = Pa2.parse(raw)
         stamp = now.strftime("%Y%m%dT%H%M%SZ")
         Path(f"docs/evidence/polymarket_compare/{stamp}").mkdir(parents=True, exist_ok=True)
-        Path(f"docs/evidence/polymarket_compare/{stamp}/polymarket_props.json").write_text(json.dumps(poly)[:4_000_000])
+        with gzip.open(f"docs/evidence/polymarket_compare/{stamp}/polymarket_props.json.gz", "wt") as fh:
+            json.dump(poly, fh)                       # full file: a 4 MB text cut made the saved JSON unparseable
         book = book_now
         poly_src = poly
     else:
@@ -82,20 +86,30 @@ def main():
         book = Pa.parse(json.load(gzip.open(st, "rt")))
     poly = poly_src
     rows = []
+    n_unquoted, n_thr = 0, 0
     for x in poly:
         m = PAT.match(x["question"] or "")
         if not m or m.group(3) not in MAP:
             continue
+        n_thr += 1
         sides = {s["description"]: s for s in x["marketSides"]}
-        yes = float(sides["Yes"]["price"]) if sides.get("Yes", {}).get("price") else None
-        no = float(sides["No"]["price"]) if sides.get("No", {}).get("price") else None
+        # cost of Yes = best ask; cost of No = 1 - best bid (binary market). Markets with no bid/ask are indicative
+        # only (the saved sample had none quoted) and are counted, not compared.
+        ask = float(x["bestAsk"]) if x.get("bestAsk") is not None else None
+        bid = float(x["bestBid"]) if x.get("bestBid") is not None else None
+        if ask is None or bid is None:
+            n_unquoted += 1
+            continue
+        yes, no = ask, 1 - bid
         head = x["event"].split(" vs. ")
         game = " ".join(head[0].split()[:1]) + "|" + " ".join(head[1].split()[:1])
         game = "|".join(sorted(game.split("|")))
         rows.append({"game": game, "nkey": P.norm_name(m.group(1)), "market": MAP[m.group(3)], "line": float(m.group(2)) - 0.5,
-                     "poly_over": yes, "poly_under": no, "fee_coef": x.get("feeCoefficient") or FEE})
+                     "poly_over": yes, "poly_under": no, "fee_coef": x.get("feeCoefficient") or FEE,
+                     "poly_spread": ask - bid})
     poly_df = pl.DataFrame(rows, schema={"game": pl.Utf8, "nkey": pl.Utf8, "market": pl.Utf8, "line": pl.Float64,
-                                         "poly_over": pl.Float64, "poly_under": pl.Float64, "fee_coef": pl.Float64})
+                                         "poly_over": pl.Float64, "poly_under": pl.Float64, "fee_coef": pl.Float64,
+                                         "poly_spread": pl.Float64})
     rows2 = []
     for r in poly_df.iter_rows(named=True):
         for bk in ("dk", "fd"):
@@ -111,7 +125,8 @@ def main():
                 fee = r["fee_coef"] * pc * (1 - pc)
                 rows2.append({"book": bk, "player": r["nkey"], "market": r["market"], "line": r["line"], "side": side,
                               "poly_cost": pc, "book_odds": bc, "book_cost": book_cost,
-                              "gross_diff": book_cost - pc, "net_diff": book_cost - (pc + fee)})
+                              "gross_diff": book_cost - pc, "net_diff": book_cost - (pc + fee),
+                              "book_hold": imp(bo) + imp(bu) - 1, "poly_spread": r["poly_spread"]})
     d = pl.DataFrame(rows2) if rows2 else pl.DataFrame(schema={"book": pl.Utf8, "player": pl.Utf8, "market": pl.Utf8, "line": pl.Float64,
                                                               "side": pl.Utf8, "poly_cost": pl.Float64, "book_odds": pl.Float64,
                                                               "book_cost": pl.Float64, "gross_diff": pl.Float64, "net_diff": pl.Float64})
@@ -127,7 +142,18 @@ def main():
         L.append(f"- vs {bk.upper()}: {x.height} sides; Polymarket cheaper gross {(x['gross_diff'] > 0).mean():.0%}, "
                  f"mean {x['gross_diff'].mean()*100:+.2f} cents per $1; cheaper after assumed fee {(x['net_diff'] > 0).mean():.0%}, "
                  f"mean {x['net_diff'].mean()*100:+.2f} cents.")
-    L += ["", "Assumed fee: feeCoefficient x p x (1-p) per share. Confirm the formula before using the net column.", ""]
+    L += [f"Polymarket threshold markets with no bid/ask (not compared): {n_unquoted} of {n_thr}; "
+          f"threshold markets quoted and compared: {poly_df.height}."]
+    if d.height:
+        ps = d.unique(subset=["player", "market", "line", "side"])["poly_spread"]
+        bh = d.unique(subset=["book", "player", "market", "line"])
+        for bk in ("dk", "fd"):
+            hb = bh.filter(pl.col("book") == bk)["book_hold"]
+            if hb.len():
+                L.append(f"- {bk.upper()} hold on matched lines: median {hb.median()*100:.1f}% (over+under implied minus 1).")
+        L.append(f"- Polymarket spread (best ask minus best bid, binary market): median {ps.median()*100:.1f} cents per $1.")
+    L += ["", f"Assumed fee: feeCoefficient x p x (1-p) per share, coefficient {FEE} unless the market carries one. "
+          "Not yet confirmed for props; confirm before using the net column.", ""]
     out.write_text("\n".join(L) + "\n")
     print("\n".join(L))
     print(d.sort("gross_diff", descending=True).head(8))

@@ -1,9 +1,8 @@
 # Polymarket US vs DraftKings and FanDuel, week 5 player props
 
-Props matched: 418 side-quotes across 121 player-lines, source: live ParlayAPI and Polymarket US pulled together. Positive diff = Polymarket is cheaper.
+Props matched: 0 side-quotes across 0 player-lines, source: ParlayAPI 2026-10-09 21:03 UTC (stored), Polymarket US snapshot 2026-10-10 05:02 UTC (stored). Positive diff = Polymarket is cheaper.
 
-- vs DK: 214 sides; Polymarket cheaper gross 81%, mean +4.58 cents per $1; cheaper after assumed fee 77%, mean +2.87 cents.
-- vs FD: 204 sides; Polymarket cheaper gross 78%, mean +3.96 cents per $1; cheaper after assumed fee 75%, mean +2.25 cents.
+Polymarket threshold markets with no bid/ask (not compared): 245 of 245; threshold markets quoted and compared: 0.
 
-Assumed fee: feeCoefficient x p x (1-p) per share. Confirm the formula before using the net column.
+Assumed fee: feeCoefficient x p x (1-p) per share, coefficient 0.0695 unless the market carries one. Not yet confirmed for props; confirm before using the net column.
 
