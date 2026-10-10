@@ -1,0 +1,1146 @@
+{
+ "stamp": "20261010T044146Z",
+ "key_sent": false,
+ "results": [
+  {
+   "path": "/",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/openapi.json",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/swagger.json",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/docs",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/api-docs",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/sports",
+   "status": 200,
+   "content_type": "application/json",
+   "bytes": 61899,
+   "www_auth": null,
+   "keys": [
+    "sports"
+   ],
+   "sample": "{\"sports\": [{\"sport\": \"nba\", \"image\": \"https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/nba-new.png\", \"resolution\": \"https://www.nba.com/\", \"ordering\": \"away\", \"tags\": \"5\", \"series\": \"4\", \"isOperational\": true, \"automaticResolution\": false}, {\"sport\": \"cbb\", \"image\": \"https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/NCAAMB.png\", \"resolution\": \"https://www.ncaa.com/\", \"ordering\": \"away\", \"tags\": \"8\", \"series\": \"7\", \"isOperational\": true, \"automaticResolution\": false}, {\"sport\": \"nhl\", \"image\": \"https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/nhl-new.png\", \"resolution\": \"https://www.nhl.com/\", \"ordering\": \"away\", \"tags\": \"7\", \"series\": \"6\", \"isOperational\": true, \"automaticResolution\": false}, {\"sport\": \"epl\", \"image\": \"https://polymarke"
+  },
+  {
+   "path": "/v1/leagues",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/markets?limit=3",
+   "status": 200,
+   "content_type": "application/json",
+   "bytes": 13146,
+   "www_auth": null,
+   "keys": [
+    "markets"
+   ],
+   "sample": "{\"markets\": [{\"id\": \"1\", \"question\": \"Los Angeles vs. Tennessee\", \"slug\": \"aec-nfl-lac-ten-2025-11-02\", \"endDate\": \"2025-11-03T18:00:00Z\", \"category\": \"sports\", \"startDate\": \"2025-10-29T22:00:01Z\", \"description\": \"In the upcoming american football game, scheduled for November 2 at 1:00PM ET:\\nIf Los Angeles wins, the market will resolve to \\u201cLos Angeles\\u201d.\\nIf Tennessee wins, the market will resolve to \\u201cTennessee\\u201d.\\nIf the game is postponed, this market will remain open until the game has been completed.\\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\", \"active\": false, \"marketType\": \"moneyline\", \"closed\": true, \"createdAt\": \"2026-03-07T02:30:00Z\", \"updatedAt\": \"2026-09-25T18:39:25Z\", \"archived\": false, \"orderPriceMinTickSize\": 0.0"
+  },
+  {
+   "path": "/v1/events?limit=3",
+   "status": 200,
+   "content_type": "application/json",
+   "bytes": 28081,
+   "www_auth": null,
+   "keys": [
+    "events"
+   ],
+   "sample": "{\"events\": [{\"id\": \"2\", \"chatChannel\": {\"id\": \"aec-nfl-car-gb-2025-11-02\", \"type\": \"CHAT_CHANNEL_TYPE_MESSAGING\", \"chatMemberCount\": 3}, \"ticker\": \"aec-nfl-car-gb-2025-11-02\", \"slug\": \"aec-nfl-car-gb-2025-11-02\", \"title\": \"Carolina vs. Green Bay\", \"description\": \"Carolina vs. Green Bay\", \"startDate\": \"2025-11-02T18:00:00Z\", \"endDate\": \"2025-11-02T23:59:00Z\", \"active\": false, \"closed\": true, \"archived\": false, \"category\": \"sports\", \"createdAt\": \"2025-10-30T00:23:45Z\", \"updatedAt\": \"2026-07-03T20:10:02Z\", \"startTime\": \"2025-11-02T18:00:00Z\", \"seriesSlug\": \"nfl-2025\", \"elapsed\": \"\", \"period\": \"NS\", \"markets\": [{\"id\": \"2\", \"question\": \"Carolina vs. Green Bay\", \"slug\": \"aec-nfl-car-gb-2025-11-02\", \"endDate\": \"2025-11-03T18:00:00Z\", \"category\": \"sports\", \"startDate\": \"2025-10-29T22:00:01Z\", \"des"
+  },
+  {
+   "path": "/v1/markets/search?query=NFL",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/sports/nfl",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/nfl/markets?limit=3",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/series",
+   "status": 200,
+   "content_type": "application/json",
+   "bytes": 13659,
+   "www_auth": null,
+   "keys": [
+    "series"
+   ],
+   "sample": "{\"series\": [{\"id\": \"29\", \"slug\": \"rbcheri\", \"title\": \"RBC Heritage\", \"createdAt\": \"2026-04-08T00:00:01Z\", \"updatedAt\": \"2026-04-08T00:00:01Z\"}, {\"id\": \"30\", \"slug\": \"ipl-2026\", \"title\": \"IPL 2026\", \"createdAt\": \"2026-04-10T17:07:06Z\", \"updatedAt\": \"2026-04-10T17:07:06Z\"}, {\"id\": \"31\", \"slug\": \"weather\", \"title\": \"Weather\", \"active\": false, \"createdAt\": \"2026-04-11T00:47:54Z\", \"updatedAt\": \"2026-04-11T00:47:54Z\"}, {\"id\": \"32\", \"slug\": \"cs2\", \"title\": \"CS2\", \"createdAt\": \"2026-04-13T23:21:28Z\", \"updatedAt\": \"2026-04-13T23:21:28Z\"}, {\"id\": \"1\", \"slug\": \"nfl\", \"title\": \"NFL\", \"subtitle\": \"\", \"recurrence\": \"daily\", \"image\": \"\", \"active\": true, \"createdAt\": \"2022-10-13T00:34:06Z\", \"updatedAt\": \"2025-08-14T15:03:39Z\"}, {\"id\": \"2\", \"slug\": \"nfl-2025\", \"title\": \"NFL 2025\", \"subtitle\": \"\", \"recurren"
+  },
+  {
+   "path": "/v1/tags",
+   "status": 200,
+   "content_type": "application/json",
+   "bytes": 21049,
+   "www_auth": null,
+   "keys": [
+    "tags"
+   ],
+   "sample": "{\"tags\": [{\"id\": \"1648\", \"label\": \"Adriatic ABA League\", \"slug\": \"aba\", \"updatedAt\": \"2026-10-05T20:40:41Z\", \"league\": {\"id\": 374, \"name\": \"Adriatic ABA League\", \"sportId\": 1, \"tagId\": 1648, \"ordering\": \"home\", \"activeSeriesId\": 555, \"isOperational\": true, \"automaticResolution\": false, \"createdAt\": \"2026-10-05T16:05:18Z\", \"slug\": \"aba\"}, \"subtags\": [], \"hub\": null, \"featuredEventIds\": []}, {\"id\": \"1171\", \"label\": \"Gulf Coast Athletic Conference\", \"slug\": \"gcac\", \"updatedAt\": \"2026-09-06T04:41:18Z\", \"subtags\": [], \"hub\": null, \"featuredEventIds\": []}, {\"id\": \"1240\", \"label\": \"US Open Juniors, Girls\", \"slug\": \"tennis-us-open-juniors-girls\", \"parentId\": 24, \"subtags\": [], \"hub\": null, \"featuredEventIds\": []}, {\"id\": \"1317\", \"label\": \"India Championship\", \"slug\": \"indicham\", \"league\": {\"id\": 2"
+  },
+  {
+   "path": "/v1/markets/active?limit=3",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/public/markets?limit=3",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/markets?limit=3",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/events?limit=3",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  }
+ ],
+ "pages": [
+  {
+   "offset": 0,
+   "status": 200,
+   "bytes": 2090477
+  },
+  {
+   "offset": 500,
+   "status": 200,
+   "bytes": 1935427
+  },
+  {
+   "offset": 1000,
+   "status": 200,
+   "bytes": 1973926
+  },
+  {
+   "offset": 1500,
+   "status": 200,
+   "bytes": 1922310
+  },
+  {
+   "offset": 2000,
+   "status": 200,
+   "bytes": 1915268
+  },
+  {
+   "offset": 2499,
+   "status": 200,
+   "bytes": 1919249
+  },
+  {
+   "offset": 2999,
+   "status": 200,
+   "bytes": 1913431
+  },
+  {
+   "offset": 3499,
+   "status": 200,
+   "bytes": 1924693
+  },
+  {
+   "offset": 3999,
+   "status": 200,
+   "bytes": 1875572
+  },
+  {
+   "offset": 4499,
+   "status": 200,
+   "bytes": 2103955
+  },
+  {
+   "offset": 4999,
+   "status": 200,
+   "bytes": 2112541
+  },
+  {
+   "offset": 5499,
+   "status": 200,
+   "bytes": 2390448
+  },
+  {
+   "offset": 5999,
+   "status": 200,
+   "bytes": 2295231
+  },
+  {
+   "offset": 6499,
+   "status": 200,
+   "bytes": 1981043
+  },
+  {
+   "offset": 6999,
+   "status": 200,
+   "bytes": 1830839
+  },
+  {
+   "offset": 7499,
+   "status": 200,
+   "bytes": 2056311
+  },
+  {
+   "offset": 7999,
+   "status": 200,
+   "bytes": 2189523
+  },
+  {
+   "offset": 8499,
+   "status": 200,
+   "bytes": 2187256
+  },
+  {
+   "offset": 8999,
+   "status": 200,
+   "bytes": 2137545
+  },
+  {
+   "offset": 9499,
+   "status": 200,
+   "bytes": 2066811
+  },
+  {
+   "offset": 9999,
+   "status": 200,
+   "bytes": 2019971
+  },
+  {
+   "offset": 10499,
+   "status": 200,
+   "bytes": 2019414
+  },
+  {
+   "offset": 10999,
+   "status": 200,
+   "bytes": 1913034
+  },
+  {
+   "offset": 11499,
+   "status": 200,
+   "bytes": 1538240
+  },
+  {
+   "offset": 11999,
+   "status": 200,
+   "bytes": 1959415
+  },
+  {
+   "offset": 12499,
+   "status": 200,
+   "bytes": 1913738
+  },
+  {
+   "offset": 12999,
+   "status": 200,
+   "bytes": 1575284
+  },
+  {
+   "offset": 13499,
+   "status": 200,
+   "bytes": 1904647
+  },
+  {
+   "offset": 13999,
+   "status": 200,
+   "bytes": 1860292
+  },
+  {
+   "offset": 14499,
+   "status": 200,
+   "bytes": 1931527
+  },
+  {
+   "offset": 14999,
+   "status": 200,
+   "bytes": 1763752
+  },
+  {
+   "offset": 15499,
+   "status": 200,
+   "bytes": 1839838
+  },
+  {
+   "offset": 15999,
+   "status": 200,
+   "bytes": 1880338
+  },
+  {
+   "offset": 16499,
+   "status": 200,
+   "bytes": 1781469
+  },
+  {
+   "offset": 16999,
+   "status": 200,
+   "bytes": 1893969
+  },
+  {
+   "offset": 17499,
+   "status": 200,
+   "bytes": 1866868
+  },
+  {
+   "offset": 17999,
+   "status": 200,
+   "bytes": 1782506
+  },
+  {
+   "offset": 18499,
+   "status": 200,
+   "bytes": 1632114
+  },
+  {
+   "offset": 18999,
+   "status": 200,
+   "bytes": 1641663
+  },
+  {
+   "offset": 19499,
+   "status": 200,
+   "bytes": 1747936
+  },
+  {
+   "offset": 19999,
+   "status": 200,
+   "bytes": 1912511
+  },
+  {
+   "offset": 20499,
+   "status": 200,
+   "bytes": 1593548
+  },
+  {
+   "offset": 20999,
+   "status": 200,
+   "bytes": 1768944
+  },
+  {
+   "offset": 21499,
+   "status": 200,
+   "bytes": 1420390
+  },
+  {
+   "offset": 21999,
+   "status": 200,
+   "bytes": 1485181
+  },
+  {
+   "offset": 22499,
+   "status": 200,
+   "bytes": 1734512
+  },
+  {
+   "offset": 22999,
+   "status": 200,
+   "bytes": 1813118
+  },
+  {
+   "offset": 23499,
+   "status": 200,
+   "bytes": 1825508
+  },
+  {
+   "offset": 23999,
+   "status": 200,
+   "bytes": 1366430
+  },
+  {
+   "offset": 24499,
+   "status": 200,
+   "bytes": 1500719
+  },
+  {
+   "offset": 24999,
+   "status": 200,
+   "bytes": 1725939
+  },
+  {
+   "offset": 25499,
+   "status": 200,
+   "bytes": 1450590
+  },
+  {
+   "offset": 25999,
+   "status": 200,
+   "bytes": 1326337
+  },
+  {
+   "offset": 26499,
+   "status": 200,
+   "bytes": 1465785
+  },
+  {
+   "offset": 26999,
+   "status": 200,
+   "bytes": 1498781
+  },
+  {
+   "offset": 27499,
+   "status": 200,
+   "bytes": 1375072
+  },
+  {
+   "offset": 27999,
+   "status": 200,
+   "bytes": 1530134
+  },
+  {
+   "offset": 28499,
+   "status": 200,
+   "bytes": 1342818
+  },
+  {
+   "offset": 28999,
+   "status": 200,
+   "bytes": 1327445
+  },
+  {
+   "offset": 29499,
+   "status": 200,
+   "bytes": 1409569
+  },
+  {
+   "offset": 29999,
+   "status": 200,
+   "bytes": 1561544
+  },
+  {
+   "offset": 30499,
+   "status": 200,
+   "bytes": 1356221
+  },
+  {
+   "offset": 30999,
+   "status": 200,
+   "bytes": 1902929
+  },
+  {
+   "offset": 31499,
+   "status": 200,
+   "bytes": 1485710
+  },
+  {
+   "offset": 31999,
+   "status": 200,
+   "bytes": 1449250
+  },
+  {
+   "offset": 32499,
+   "status": 200,
+   "bytes": 1664877
+  },
+  {
+   "offset": 32999,
+   "status": 200,
+   "bytes": 1465660
+  },
+  {
+   "offset": 33499,
+   "status": 200,
+   "bytes": 1565121
+  },
+  {
+   "offset": 33999,
+   "status": 200,
+   "bytes": 1160262
+  },
+  {
+   "offset": 34499,
+   "status": 200,
+   "bytes": 1599406
+  },
+  {
+   "offset": 34999,
+   "status": 200,
+   "bytes": 1199543
+  },
+  {
+   "offset": 35499,
+   "status": 200,
+   "bytes": 1563732
+  },
+  {
+   "offset": 35999,
+   "status": 200,
+   "bytes": 1277757
+  },
+  {
+   "offset": 36499,
+   "status": 200,
+   "bytes": 1803893
+  },
+  {
+   "offset": 36999,
+   "status": 200,
+   "bytes": 1380466
+  },
+  {
+   "offset": 37499,
+   "status": 200,
+   "bytes": 1806829
+  },
+  {
+   "offset": 37999,
+   "status": 200,
+   "bytes": 1403429
+  },
+  {
+   "offset": 38499,
+   "status": 200,
+   "bytes": 1667261
+  },
+  {
+   "offset": 38999,
+   "status": 200,
+   "bytes": 1568431
+  },
+  {
+   "offset": 39499,
+   "status": 200,
+   "bytes": 1289834
+  },
+  {
+   "offset": 39999,
+   "status": 200,
+   "bytes": 1568955
+  },
+  {
+   "offset": 40499,
+   "status": 200,
+   "bytes": 1359431
+  },
+  {
+   "offset": 40999,
+   "status": 200,
+   "bytes": 1702098
+  },
+  {
+   "offset": 41499,
+   "status": 200,
+   "bytes": 1398918
+  },
+  {
+   "offset": 41999,
+   "status": 200,
+   "bytes": 1687329
+  },
+  {
+   "offset": 42499,
+   "status": 200,
+   "bytes": 1332831
+  },
+  {
+   "offset": 42999,
+   "status": 200,
+   "bytes": 1693124
+  },
+  {
+   "offset": 43499,
+   "status": 200,
+   "bytes": 1129285
+  },
+  {
+   "offset": 43999,
+   "status": 200,
+   "bytes": 1694748
+  },
+  {
+   "offset": 44499,
+   "status": 200,
+   "bytes": 1509253
+  },
+  {
+   "offset": 44999,
+   "status": 200,
+   "bytes": 1436939
+  },
+  {
+   "offset": 45499,
+   "status": 200,
+   "bytes": 1566219
+  },
+  {
+   "offset": 45999,
+   "status": 200,
+   "bytes": 1301357
+  },
+  {
+   "offset": 46499,
+   "status": 200,
+   "bytes": 1372711
+  },
+  {
+   "offset": 46999,
+   "status": 200,
+   "bytes": 1785776
+  },
+  {
+   "offset": 47499,
+   "status": 200,
+   "bytes": 1544188
+  },
+  {
+   "offset": 47999,
+   "status": 200,
+   "bytes": 1466869
+  },
+  {
+   "offset": 48499,
+   "status": 200,
+   "bytes": 1424746
+  },
+  {
+   "offset": 48999,
+   "status": 200,
+   "bytes": 1358608
+  },
+  {
+   "offset": 49499,
+   "status": 200,
+   "bytes": 1532290
+  },
+  {
+   "offset": 49999,
+   "status": 200,
+   "bytes": 1676627
+  },
+  {
+   "offset": 50499,
+   "status": 200,
+   "bytes": 1334476
+  },
+  {
+   "offset": 50999,
+   "status": 200,
+   "bytes": 1219143
+  },
+  {
+   "offset": 51499,
+   "status": 200,
+   "bytes": 1117553
+  },
+  {
+   "offset": 51999,
+   "status": 200,
+   "bytes": 1598683
+  },
+  {
+   "offset": 52499,
+   "status": 200,
+   "bytes": 1398708
+  },
+  {
+   "offset": 52999,
+   "status": 200,
+   "bytes": 1647904
+  },
+  {
+   "offset": 53499,
+   "status": 200,
+   "bytes": 1075256
+  },
+  {
+   "offset": 53999,
+   "status": 200,
+   "bytes": 1040846
+  },
+  {
+   "offset": 54499,
+   "status": 200,
+   "bytes": 1469631
+  },
+  {
+   "offset": 54999,
+   "status": 200,
+   "bytes": 1456213
+  },
+  {
+   "offset": 55499,
+   "status": 200,
+   "bytes": 1799421
+  },
+  {
+   "offset": 55999,
+   "status": 200,
+   "bytes": 1465297
+  },
+  {
+   "offset": 56499,
+   "status": 200,
+   "bytes": 1423166
+  },
+  {
+   "offset": 56999,
+   "status": 200,
+   "bytes": 1387826
+  },
+  {
+   "offset": 57499,
+   "status": 200,
+   "bytes": 1412558
+  },
+  {
+   "offset": 57999,
+   "status": 200,
+   "bytes": 1398204
+  },
+  {
+   "offset": 58499,
+   "status": 200,
+   "bytes": 1500367
+  },
+  {
+   "offset": 58999,
+   "status": 200,
+   "bytes": 1503536
+  },
+  {
+   "offset": 59499,
+   "status": 200,
+   "bytes": 1408114
+  },
+  {
+   "offset": 59999,
+   "status": 200,
+   "bytes": 1412601
+  }
+ ],
+ "markets_scanned": 60499,
+ "nfl_markets_any_date_by_month": [
+  [
+   "2025-10",
+   1
+  ],
+  [
+   "2025-11",
+   70
+  ],
+  [
+   "2025-12",
+   69
+  ],
+  [
+   "2026-01",
+   40
+  ],
+  [
+   "2026-02",
+   9
+  ],
+  [
+   "2026-03",
+   1
+  ],
+  [
+   "2026-09",
+   80
+  ]
+ ],
+ "nfl_2026_10_sample": [],
+ "nfl_this_week_markets": 0,
+ "types": [],
+ "examples": [],
+ "events_paging_error": {
+  "offset": 15999,
+  "parse": "Unterminated string starting at: line 1 column 59986531 (char 59986530)"
+ },
+ "events_scanned": 15999,
+ "nfl_events_by_month": [
+  [
+   "2025-10",
+   1
+  ],
+  [
+   "2025-11",
+   70
+  ],
+  [
+   "2025-12",
+   69
+  ],
+  [
+   "2026-01",
+   40
+  ],
+  [
+   "2026-02",
+   9
+  ],
+  [
+   "2026-03",
+   1
+  ]
+ ],
+ "nfl_events_this_week": [],
+ "nfl_series": [
+  {
+   "id": "1",
+   "slug": "nfl",
+   "title": "NFL",
+   "ticker": null,
+   "startDate": null,
+   "endDate": null,
+   "active": true,
+   "closed": null,
+   "recurrence": "daily"
+  },
+  {
+   "id": "2",
+   "slug": "nfl-2025",
+   "title": "NFL 2025",
+   "ticker": null,
+   "startDate": null,
+   "endDate": null,
+   "active": true,
+   "closed": null,
+   "recurrence": "daily"
+  },
+  {
+   "id": "76",
+   "slug": "nfl-2026",
+   "title": "NFL 2026",
+   "ticker": null,
+   "startDate": null,
+   "endDate": null,
+   "active": false,
+   "closed": null,
+   "recurrence": null
+  }
+ ],
+ "nfl_series_status": 200,
+ "search_Bears Packers": {
+  "status": 200,
+  "keys": [
+   "events"
+  ],
+  "n": 1,
+  "titles": [
+   "CHI Bears vs. GB Packers"
+  ]
+ },
+ "search_Eagles Jaguars": {
+  "status": 200,
+  "keys": [
+   "events"
+  ],
+  "n": 2,
+  "titles": [
+   "PHI Eagles vs. JAC Jaguars",
+   "South Alabama Jaguars vs. Georgia Southern Eagles"
+  ]
+ },
+ "search_Josh Downs receptions": {
+  "status": 200,
+  "keys": [
+   "events"
+  ],
+  "n": 1,
+  "titles": [
+   "IND Colts vs. PIT Steelers"
+  ]
+ },
+ "search_Jalen Hurts passing yards": {
+  "status": 200,
+  "keys": [
+   "events"
+  ],
+  "n": 5,
+  "titles": [
+   "Jalen Hurts Regular Season Passing Yards",
+   "PHI Eagles vs. JAC Jaguars",
+   "Players to Record 4,000+ Regular Season Passing Yards",
+   "Players to Record 3,000+ Regular Season Passing Yards",
+   "Week 5 Passing Yards Leader"
+  ]
+ },
+ "search_NFL Week 5": {
+  "status": 200,
+  "keys": [
+   "events"
+  ],
+  "n": 20,
+  "titles": [
+   "BUF Bills vs. LA Rams",
+   "BAL Ravens vs. ATL Falcons",
+   "SF 49ers vs. SEA Seahawks",
+   "DET Lions vs. ARI Cardinals",
+   "CHI Bears vs. GB Packers",
+   "DEN Broncos vs. LA Chargers",
+   "IND Colts vs. PIT Steelers",
+   "NY Giants vs. WAS Commanders",
+   "HOU Texans vs. TEN Titans",
+   "MIN Vikings vs. NO Saints"
+  ]
+ },
+ "series_1_events": {
+  "status": 200,
+  "n": 13,
+  "titles": [
+   [
+    "Los Angeles R vs. Carolina",
+    "2026-01-10T21:30:00Z"
+   ],
+   [
+    "Green Bay vs. Chicago",
+    "2026-01-11T01:00:00Z"
+   ],
+   [
+    "Buffalo vs. Jacksonville",
+    "2026-01-11T18:00:00Z"
+   ],
+   [
+    "San Francisco vs. Philadelphia",
+    "2026-01-11T21:30:00Z"
+   ],
+   [
+    "Los Angeles C vs. New England",
+    "2026-01-12T01:00:00Z"
+   ],
+   [
+    "Houston vs. Pittsburgh",
+    "2026-01-13T01:15:00Z"
+   ],
+   [
+    "Los Angeles R vs. Chicago",
+    "2026-01-18T23:30:00Z"
+   ],
+   [
+    "Buffalo vs. Denver",
+    "2026-01-17T21:30:00Z"
+   ],
+   [
+    "San Francisco vs. Seattle",
+    "2026-01-18T01:00:00Z"
+   ],
+   [
+    "Houston vs. New England",
+    "2026-01-18T20:00:00Z"
+   ],
+   [
+    "New England vs. Denver",
+    "2026-01-25T20:00:00Z"
+   ],
+   [
+    "Los Angeles R vs. Seattle",
+    "2026-01-25T23:30:00Z"
+   ],
+   [
+    "Seattle vs. New England",
+    "2026-02-08T23:30:00Z"
+   ]
+  ]
+ },
+ "series_2_events": {
+  "status": 200,
+  "n": 100,
+  "titles": [
+   [
+    "Carolina vs. Green Bay",
+    "2025-11-02T18:00:00Z"
+   ],
+   [
+    "Los Angeles vs. Tennessee",
+    "2025-11-02T18:00:00Z"
+   ],
+   [
+    "Minnesota vs. Detroit",
+    "2025-11-02T18:00:00Z"
+   ],
+   [
+    "Atlanta vs. New England",
+    "2025-11-02T18:00:00Z"
+   ],
+   [
+    "Baltimore vs. Miami",
+    "2025-10-31T00:15:00Z"
+   ],
+   [
+    "Chicago vs. Cincinnati",
+    "2025-11-02T18:00:00Z"
+   ],
+   [
+    "New Orleans vs. Los Angeles",
+    "2025-11-02T21:05:00Z"
+   ],
+   [
+    "San Francisco vs. New York",
+    "2025-11-02T18:00:00Z"
+   ],
+   [
+    "Indianapolis vs. Pittsburgh",
+    "2025-11-02T18:00:00Z"
+   ],
+   [
+    "Denver vs. Houston",
+    "2025-11-02T18:00:00Z"
+   ],
+   [
+    "Jacksonville vs. Las Vegas",
+    "2025-11-02T21:05:00Z"
+   ],
+   [
+    "Kansas City vs. Buffalo",
+    "2025-11-02T21:25:00Z"
+   ],
+   [
+    "Seattle vs. Washington",
+    "2025-11-03T01:20:00Z"
+   ],
+   [
+    "Arizona vs. Dallas",
+    "2025-11-04T01:15:00Z"
+   ],
+   [
+    "Las Vegas vs. Denver",
+    "2025-11-07T01:15:00Z"
+   ]
+  ]
+ },
+ "series_76_events": {
+  "status": 200,
+  "n": 0,
+  "titles": []
+ }
+}
