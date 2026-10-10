@@ -161,6 +161,16 @@ def series_and_search(out, s):
                                 "titles": [e.get("title") for e in evs[:10]]}
         except ValueError:
             s[f"search_{q}"] = {"status": st2, "text": b2[:200].decode("utf-8", "replace")}
+    st4, _, b4 = get(f"{BASE}/v1/search?query={urllib.parse.quote('NFL Week 5')}&limit=50")
+    try:
+        evs = json.loads(b4).get("events", [])
+    except ValueError:
+        evs = []
+    games = [e for e in evs if " vs. " in (e.get("title") or "")]
+    (out / "week5_search_events.json").write_text(json.dumps(games, indent=1)[:4_000_000])
+    s["week5_games"] = [{"title": e.get("title"), "slug": e.get("slug"), "start": e.get("startDate") or e.get("gameStartTime"),
+                         "n_markets": len(e.get("markets") or []), "keys": sorted(e.keys())[:40],
+                         "market_questions": [m.get("question") for m in (e.get("markets") or [])][:25]} for e in games[:15]]
     for sid in [x.get("id") for x in nfl if x.get("id")][:3]:
         st3, _, b3 = get(f"{BASE}/v1/events?limit=100&seriesId={sid}")
         try:
