@@ -1,0 +1,243 @@
+{
+ "stamp": "20261010T042029Z",
+ "key_sent": false,
+ "results": [
+  {
+   "path": "/",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/openapi.json",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/swagger.json",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/docs",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/api-docs",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/sports",
+   "status": 200,
+   "content_type": "application/json",
+   "bytes": 61899,
+   "www_auth": null,
+   "keys": [
+    "sports"
+   ],
+   "sample": "{\"sports\": [{\"sport\": \"nba\", \"image\": \"https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/nba-new.png\", \"resolution\": \"https://www.nba.com/\", \"ordering\": \"away\", \"tags\": \"5\", \"series\": \"4\", \"isOperational\": true, \"automaticResolution\": false}, {\"sport\": \"cbb\", \"image\": \"https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/NCAAMB.png\", \"resolution\": \"https://www.ncaa.com/\", \"ordering\": \"away\", \"tags\": \"8\", \"series\": \"7\", \"isOperational\": true, \"automaticResolution\": false}, {\"sport\": \"nhl\", \"image\": \"https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/nhl-new.png\", \"resolution\": \"https://www.nhl.com/\", \"ordering\": \"away\", \"tags\": \"7\", \"series\": \"6\", \"isOperational\": true, \"automaticResolution\": false}, {\"sport\": \"epl\", \"image\": \"https://polymarke"
+  },
+  {
+   "path": "/v1/leagues",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/markets?limit=3",
+   "status": 200,
+   "content_type": "application/json",
+   "bytes": 13146,
+   "www_auth": null,
+   "keys": [
+    "markets"
+   ],
+   "sample": "{\"markets\": [{\"id\": \"1\", \"question\": \"Los Angeles vs. Tennessee\", \"slug\": \"aec-nfl-lac-ten-2025-11-02\", \"endDate\": \"2025-11-03T18:00:00Z\", \"category\": \"sports\", \"startDate\": \"2025-10-29T22:00:01Z\", \"description\": \"In the upcoming american football game, scheduled for November 2 at 1:00PM ET:\\nIf Los Angeles wins, the market will resolve to \\u201cLos Angeles\\u201d.\\nIf Tennessee wins, the market will resolve to \\u201cTennessee\\u201d.\\nIf the game is postponed, this market will remain open until the game has been completed.\\nIf the game is canceled entirely, with no make-up game, this market will resolve 50-50.\", \"active\": false, \"marketType\": \"moneyline\", \"closed\": true, \"createdAt\": \"2026-03-07T02:30:00Z\", \"updatedAt\": \"2026-09-25T18:39:25Z\", \"archived\": false, \"orderPriceMinTickSize\": 0.0"
+  },
+  {
+   "path": "/v1/events?limit=3",
+   "status": 200,
+   "content_type": "application/json",
+   "bytes": 28081,
+   "www_auth": null,
+   "keys": [
+    "events"
+   ],
+   "sample": "{\"events\": [{\"id\": \"2\", \"chatChannel\": {\"id\": \"aec-nfl-car-gb-2025-11-02\", \"type\": \"CHAT_CHANNEL_TYPE_MESSAGING\", \"chatMemberCount\": 3}, \"ticker\": \"aec-nfl-car-gb-2025-11-02\", \"slug\": \"aec-nfl-car-gb-2025-11-02\", \"title\": \"Carolina vs. Green Bay\", \"description\": \"Carolina vs. Green Bay\", \"startDate\": \"2025-11-02T18:00:00Z\", \"endDate\": \"2025-11-02T23:59:00Z\", \"active\": false, \"closed\": true, \"archived\": false, \"category\": \"sports\", \"createdAt\": \"2025-10-30T00:23:45Z\", \"updatedAt\": \"2026-07-03T20:10:02Z\", \"startTime\": \"2025-11-02T18:00:00Z\", \"seriesSlug\": \"nfl-2025\", \"elapsed\": \"\", \"period\": \"NS\", \"markets\": [{\"id\": \"2\", \"question\": \"Carolina vs. Green Bay\", \"slug\": \"aec-nfl-car-gb-2025-11-02\", \"endDate\": \"2025-11-03T18:00:00Z\", \"category\": \"sports\", \"startDate\": \"2025-10-29T22:00:01Z\", \"des"
+  },
+  {
+   "path": "/v1/markets/search?query=NFL",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/sports/nfl",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/nfl/markets?limit=3",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/series",
+   "status": 200,
+   "content_type": "application/json",
+   "bytes": 13659,
+   "www_auth": null,
+   "keys": [
+    "series"
+   ],
+   "sample": "{\"series\": [{\"id\": \"29\", \"slug\": \"rbcheri\", \"title\": \"RBC Heritage\", \"createdAt\": \"2026-04-08T00:00:01Z\", \"updatedAt\": \"2026-04-08T00:00:01Z\"}, {\"id\": \"30\", \"slug\": \"ipl-2026\", \"title\": \"IPL 2026\", \"createdAt\": \"2026-04-10T17:07:06Z\", \"updatedAt\": \"2026-04-10T17:07:06Z\"}, {\"id\": \"31\", \"slug\": \"weather\", \"title\": \"Weather\", \"active\": false, \"createdAt\": \"2026-04-11T00:47:54Z\", \"updatedAt\": \"2026-04-11T00:47:54Z\"}, {\"id\": \"32\", \"slug\": \"cs2\", \"title\": \"CS2\", \"createdAt\": \"2026-04-13T23:21:28Z\", \"updatedAt\": \"2026-04-13T23:21:28Z\"}, {\"id\": \"1\", \"slug\": \"nfl\", \"title\": \"NFL\", \"subtitle\": \"\", \"recurrence\": \"daily\", \"image\": \"\", \"active\": true, \"createdAt\": \"2022-10-13T00:34:06Z\", \"updatedAt\": \"2025-08-14T15:03:39Z\"}, {\"id\": \"2\", \"slug\": \"nfl-2025\", \"title\": \"NFL 2025\", \"subtitle\": \"\", \"recurren"
+  },
+  {
+   "path": "/v1/tags",
+   "status": 200,
+   "content_type": "application/json",
+   "bytes": 21385,
+   "www_auth": null,
+   "keys": [
+    "tags"
+   ],
+   "sample": "{\"tags\": [{\"id\": \"1648\", \"label\": \"Adriatic ABA League\", \"slug\": \"aba\", \"updatedAt\": \"2026-10-05T20:40:41Z\", \"league\": {\"id\": 374, \"name\": \"Adriatic ABA League\", \"sportId\": 1, \"tagId\": 1648, \"ordering\": \"home\", \"activeSeriesId\": 555, \"isOperational\": true, \"automaticResolution\": false, \"createdAt\": \"2026-10-05T16:05:18Z\", \"slug\": \"aba\"}, \"subtags\": [], \"hub\": null, \"featuredEventIds\": []}, {\"id\": \"1171\", \"label\": \"Gulf Coast Athletic Conference\", \"slug\": \"gcac\", \"updatedAt\": \"2026-09-06T04:41:18Z\", \"subtags\": [], \"hub\": null, \"featuredEventIds\": []}, {\"id\": \"1240\", \"label\": \"US Open Juniors, Girls\", \"slug\": \"tennis-us-open-juniors-girls\", \"parentId\": 24, \"subtags\": [], \"hub\": null, \"featuredEventIds\": []}, {\"id\": \"1317\", \"label\": \"India Championship\", \"slug\": \"indicham\", \"league\": {\"id\": 2"
+  },
+  {
+   "path": "/v1/markets/active?limit=3",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/v1/public/markets?limit=3",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/markets?limit=3",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  },
+  {
+   "path": "/events?limit=3",
+   "status": 404,
+   "content_type": "application/json",
+   "bytes": 82,
+   "www_auth": null,
+   "keys": [
+    "code",
+    "details",
+    "message"
+   ],
+   "sample": "{\"code\": 5, \"message\": \"The server was unable to process your request.\", \"details\": []}"
+  }
+ ]
+}
