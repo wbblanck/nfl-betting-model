@@ -49,6 +49,43 @@ def shape(body: bytes):
     return {"value": str(j)[:300]}
 
 
+def nfl_markets(out, s):
+    """Page through /v1/markets, keep NFL markets with a game start in the next 8 days, count their types."""
+    import collections
+    now = dt.datetime.now(dt.timezone.utc)
+    kept, offset, seen = [], 0, 0
+    while offset < 60000:
+        st, hdr, body = get(f"{BASE}/v1/markets?limit=500&offset={offset}")
+        if st != 200:
+            s["markets_paging_error"] = {"offset": offset, "status": st}
+            break
+        try:
+            page = json.loads(body).get("markets", [])
+        except ValueError:
+            break
+        if not page:
+            break
+        seen += len(page)
+        for m in page:
+            blob = json.dumps(m).lower()
+            if '"nfl"' in blob or " nfl" in blob or "-nfl-" in (m.get("slug") or ""):
+                try:
+                    t = dt.datetime.fromisoformat((m.get("gameStartTime") or m.get("startDate") or "").replace("Z", "+00:00"))
+                except ValueError:
+                    t = None
+                if t and now - dt.timedelta(hours=4) <= t <= now + dt.timedelta(days=8):
+                    kept.append(m)
+        offset += len(page)
+    s["markets_scanned"] = seen
+    s["nfl_this_week_markets"] = len(kept)
+    s["types"] = collections.Counter(m.get("sportsMarketType") or m.get("marketType") for m in kept).most_common()
+    s["examples"] = [{k: m.get(k) for k in ("id", "slug", "question", "marketType", "sportsMarketType", "gameStartTime", "active", "closed")}
+                     | {"sides": [{"d": x.get("description"), "price": x.get("price"), "long": x.get("long"),
+                                   "line": x.get("line"), "team": (x.get("team") or {}).get("abbreviation")}
+                                  for x in (m.get("marketSides") or [])][:4]} for m in kept[:12]]
+    (out / "nfl_this_week_markets.json").write_text(json.dumps(kept, indent=1)[:3_000_000])
+
+
 def main():
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = Path("docs/evidence/polymarket_us") / stamp
@@ -62,6 +99,7 @@ def main():
         name = p.strip("/").replace("/", "_").replace("?", "_").replace("=", "_").replace("&", "_") or "root"
         (out / f"{name[:80]}.txt").write_bytes(body[:30000])
         print(p, st, len(body), rec.get("keys", rec.get("first", rec.get("text_head", "")))[:200] if rec.get("keys") or rec.get("first") else rec.get("text_head", "")[:120], flush=True)
+    nfl_markets(out, s)
     (out / "summary.json").write_text(json.dumps(s, indent=1, default=str))
 
 
