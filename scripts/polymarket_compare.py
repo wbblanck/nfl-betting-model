@@ -93,20 +93,22 @@ def main():
             continue
         n_thr += 1
         sides = {s["description"]: s for s in x["marketSides"]}
-        # cost of Yes = best ask; cost of No = 1 - best bid (binary market). Markets with no bid/ask are indicative
-        # only (the saved sample had none quoted) and are counted, not compared.
-        ask = float(x["bestAsk"]) if x.get("bestAsk") is not None else None
-        bid = float(x["bestBid"]) if x.get("bestBid") is not None else None
-        if ask is None or bid is None:
+        # cost of each side = its `quote` value (marketSides[].quote.value). Live 2026-10-10 run: Yes+No quotes sum
+        # to a median 1.03 on 2,578 threshold markets, while `price` sums to 0.81 and bestBid/bestAsk are absent.
+        # Sides without a quote are counted, not compared.
+        def q(side):
+            v = (sides.get(side, {}).get("quote") or {}).get("value")
+            return float(v) if v not in (None, "") else None
+        yes, no = q("Yes"), q("No")
+        if yes is None or no is None:
             n_unquoted += 1
             continue
-        yes, no = ask, 1 - bid
         head = x["event"].split(" vs. ")
         game = " ".join(head[0].split()[:1]) + "|" + " ".join(head[1].split()[:1])
         game = "|".join(sorted(game.split("|")))
         rows.append({"game": game, "nkey": P.norm_name(m.group(1)), "market": MAP[m.group(3)], "line": float(m.group(2)) - 0.5,
                      "poly_over": yes, "poly_under": no, "fee_coef": x.get("feeCoefficient") or FEE,
-                     "poly_spread": ask - bid})
+                     "poly_spread": yes + no - 1})
     poly_df = pl.DataFrame(rows, schema={"game": pl.Utf8, "nkey": pl.Utf8, "market": pl.Utf8, "line": pl.Float64,
                                          "poly_over": pl.Float64, "poly_under": pl.Float64, "fee_coef": pl.Float64,
                                          "poly_spread": pl.Float64})
@@ -151,7 +153,7 @@ def main():
             hb = bh.filter(pl.col("book") == bk)["book_hold"]
             if hb.len():
                 L.append(f"- {bk.upper()} hold on matched lines: median {hb.median()*100:.1f}% (over+under implied minus 1).")
-        L.append(f"- Polymarket spread (best ask minus best bid, binary market): median {ps.median()*100:.1f} cents per $1.")
+        L.append(f"- Polymarket hold (quoted Yes + No minus 1, per binary market): median {ps.median()*100:.1f}% of $1.")
     L += ["", f"Assumed fee: feeCoefficient x p x (1-p) per share, coefficient {FEE} unless the market carries one. "
           "Not yet confirmed for props; confirm before using the net column.", ""]
     out.write_text("\n".join(L) + "\n")
