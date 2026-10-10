@@ -171,6 +171,21 @@ def series_and_search(out, s):
     s["week5_games"] = [{"title": e.get("title"), "slug": e.get("slug"), "start": e.get("startDate") or e.get("gameStartTime"),
                          "n_markets": len(e.get("markets") or []), "keys": sorted(e.keys())[:40],
                          "market_questions": [m.get("question") for m in (e.get("markets") or [])][:25]} for e in games[:15]]
+    trimmed = []
+    for e in games[:4]:
+        for m in (e.get("markets") or [])[:400]:
+            q = m.get("question") or ""
+            if " record " in q or "score the first" in q or "Total" in q or "Halftime" in q:
+                trimmed.append({"event": e.get("title"), "question": q, "slug": m.get("slug"),
+                                "sportsMarketType": m.get("sportsMarketType"), "marketType": m.get("marketType"),
+                                "active": m.get("active"), "closed": m.get("closed"), "line": m.get("line"),
+                                "lastTradePrice": m.get("lastTradePrice"), "bestBid": m.get("bestBid"), "bestAsk": m.get("bestAsk"),
+                                "liquidityNum": m.get("liquidityNum"), "volumeNum": m.get("volumeNum"),
+                                "marketSides": [{k: x.get(k) for k in ("description", "price", "long", "marketSideType", "team")}
+                                                for x in (m.get("marketSides") or [])][:4],
+                                "keys": sorted(m.keys())[:60] if len(trimmed) == 0 else None})
+    (out / "week5_props_trimmed.json").write_text(json.dumps(trimmed, indent=1)[:3_000_000])
+    s["week5_props_count"] = len(trimmed)
     for sid in [x.get("id") for x in nfl if x.get("id")][:3]:
         st3, _, b3 = get(f"{BASE}/v1/events?limit=100&seriesId={sid}")
         try:
