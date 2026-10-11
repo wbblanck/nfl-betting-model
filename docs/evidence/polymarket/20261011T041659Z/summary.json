@@ -1,0 +1,865 @@
+{
+ "tags": {
+  "status": 200,
+  "nfl": [
+   {
+    "id": "103357",
+    "label": "Influenza",
+    "slug": "influenza",
+    "createdAt": "2026-01-30T13:40:35.374347Z",
+    "updatedAt": "2026-04-17T20:15:31.325558Z"
+   }
+  ]
+ },
+ "search_Jalen Hurts passing yards": {
+  "status": 200,
+  "n_events": 12,
+  "events": [
+   {
+    "title": "Pro Football: 2026-27 3,500+ Passing Yards",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Jared Goff have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will Dak Prescott have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will Joe Burrow have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will Matthew Stafford have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will Brock Purdy have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will Drake Maye have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will Trevor Lawrence have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will Sam Darnold have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will Tyler Shough have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will Caleb Williams have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will C.J. Stroud have 3,500+ passing yards in the 2026-27 NFL regular season?",
+     "Will Justin Herbert have 3,500+ passing yards in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Jalen Hurts O/U 212.5 passing yards? ",
+    "end": "2025-09-05T00:00:00Z",
+    "closed": true,
+    "markets": [
+     "Jalen Hurts O/U 212.5 passing yards? "
+    ]
+   },
+   {
+    "title": "Pro Football: Jalen Hurts 2026-27 Regular Season Passing Yards",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Jalen Hurts have 2,749.5+ passing yards in the 2026-27 NFL regular season?",
+     "Will Jalen Hurts have 2,999.5+ passing yards in the 2026-27 NFL regular season?",
+     "Will Jalen Hurts have 3,249.5+ passing yards in the 2026-27 NFL regular season?",
+     "Will Jalen Hurts have 3,499.5+ passing yards in the 2026-27 NFL regular season?",
+     "Will Jalen Hurts have 3,749.5+ passing yards in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Passing Props",
+    "end": "2025-02-09T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will Patrick Mahomes record 253 or more passing yards in Super Bowl LIX?",
+     "Will Jalen Hurts record 211 or more passing yards in Super Bowl LIX?",
+     "Will Patrick Mahomes record 25 or more completions in Super Bowl LIX?",
+     "Will Jalen Hurts record 19 or more completions in Super Bowl LIX?",
+     "Will Patrick Mahomes throw an interception in Super Bowl LIX?",
+     "Will Jalen Hurts throw an interception in Super Bowl LIX?",
+     "Will Patrick Mahomes record 2 or more Passing TDs in Super Bowl LIX?",
+     "Will Jalen Hurts record 2 or more Passing TDs in Super Bowl LIX?"
+    ]
+   },
+   {
+    "title": "NFL Passing Yards Leader ",
+    "end": "2026-01-18T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will Josh Allen lead the NFL in passing yards this season?",
+     "Will Joe Burrow lead the NFL in passing yards this season?",
+     "Will Patrick Mahomes lead the NFL in passing yards this season?",
+     "Will Lamar Jackson lead the NFL in passing yards this season?",
+     "Will Jayden Daniels lead the NFL in passing yards this season?",
+     "Will Jordan Love lead the NFL in passing yards this season?",
+     "Will Jared Goff lead the NFL in passing yards this season?",
+     "Will Baker Mayfield lead the NFL in passing yards this season?",
+     "Will Matthew Stafford lead the NFL in passing yards this season?",
+     "Will Jalen Hurts lead the NFL in passing yards this season?",
+     "Will Any Other Player lead the NFL in passing yards this season?",
+     "Will Sam Darnold lead the NFL in passing yards this season?"
+    ]
+   },
+   {
+    "title": "Pro Football: First QB to 2,000 Passing Yards",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Jared Goff be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will Dak Prescott be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will Joe Burrow be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will Matthew Stafford be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will Brock Purdy be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will Drake Maye be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will Trevor Lawrence be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will Sam Darnold be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will Tyler Shough be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will Caleb Williams be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will C.J. Stroud be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?",
+     "Will Justin Herbert be the first QB to 2,000 passing yards in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Pro Football: 2026-27 400+ Passing Yards in a Game",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Josh Allen have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will Malik Willis have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will Drake Maye have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will Geno Smith have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will Joe Burrow have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will Deshaun Watson have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will Aaron Rodgers have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will C.J. Stroud have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will Daniel Jones have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will Trevor Lawrence have a 400+ passing yard game in the 2026-27 NFL regular season?",
+     "Will Cameron Ward have a 400+ passing yard game in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Pro Football: 2026-27 Passing Yards Leader",
+    "end": "2026-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Joe Burrow finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Matthew Stafford finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Jared Goff finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Dak Prescott finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Brock Purdy finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Trevor Lawrence finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Patrick Mahomes finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Justin Herbert finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Drake Maye finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Josh Allen finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Trevor Lawrence finish the 2026-27 NFL regular season with the most passing yards?",
+     "Will Sam Darnold finish the 2026-27 NFL regular season with the most passing yards?"
+    ]
+   }
+  ]
+ },
+ "search_Josh Downs receptions": {
+  "status": 200,
+  "n_events": 4,
+  "events": [
+   {
+    "title": "Pro Football: 2026-27 Week 1 Receptions Leader",
+    "end": "2026-09-15T04:59:00Z",
+    "closed": true,
+    "markets": [
+     "Will DJ Moore finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Khalil Shakir finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Dalton Kincaid finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Malik Washington finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Caleb Douglas finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Greg Dulcich finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will A.J. Brown finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Romeo Doubs finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Hunter Henry finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Garrett Wilson finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Adonai Mitchell finish Week 1 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Mason Taylor finish Week 1 of the 2026-27 NFL regular season with the most receptions?"
+    ]
+   },
+   {
+    "title": "Pro Football: 2026-27 Week 2 Receptions Leader",
+    "end": "2026-09-22T04:59:00Z",
+    "closed": true,
+    "markets": [
+     "Will DJ Moore finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Khalil Shakir finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Dalton Kincaid finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Malik Washington finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Caleb Douglas finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Greg Dulcich finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Romeo Doubs finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will DeMario Douglas finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Hunter Henry finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Garrett Wilson finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Adonai Mitchell finish Week 2 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Mason Taylor finish Week 2 of the 2026-27 NFL regular season with the most receptions?"
+    ]
+   },
+   {
+    "title": "Pro Football: 2026-27 Week 4 Receptions Leader",
+    "end": "2026-10-06T04:59:00Z",
+    "closed": true,
+    "markets": [
+     "Will DJ Moore finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Khalil Shakir finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Dalton Kincaid finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Malik Washington finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Caleb Douglas finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Greg Dulcich finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Romeo Doubs finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will DeMario Douglas finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Hunter Henry finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Garrett Wilson finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Adonai Mitchell finish Week 4 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Kenyon Sadiq finish Week 4 of the 2026-27 NFL regular season with the most receptions?"
+    ]
+   },
+   {
+    "title": "Pro Football: 2026-27 Week 5 Receptions Leader",
+    "end": "2026-10-13T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will DJ Moore finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Khalil Shakir finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Dalton Kincaid finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Malik Washington finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Caleb Douglas finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Greg Dulcich finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Romeo Doubs finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will DeMario Douglas finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Hunter Henry finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Garrett Wilson finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Adonai Mitchell finish Week 5 of the 2026-27 NFL regular season with the most receptions?",
+     "Will Kenyon Sadiq finish Week 5 of the 2026-27 NFL regular season with the most receptions?"
+    ]
+   }
+  ]
+ },
+ "search_Aaron Jones receptions": {
+  "status": 200,
+  "n_events": 20,
+  "events": [
+   {
+    "title": "Pro Football: Aaron Jones 2026-27 Regular Season Rushing Yards",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Aaron Jones have 224.5+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Aaron Jones have 424.5+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Aaron Jones have 624.5+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Aaron Jones have 824.5+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Aaron Jones have 1,024.5+ rushing yards in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Pro Football: 2026-27 1,000+ Rushing Yards",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will James Cook have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Derrick Henry have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Jonathan Taylor have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Jahmyr Gibbs have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Bijan Robinson have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Saquon Barkley have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will De'Von Achane have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Kyren Williams have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Christian McCaffrey have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Ashton Jeanty have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Javonte Williams have 1,000+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Omarion Hampton have 1,000+ rushing yards in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Fantasy Football: 2026-27 Top 5 Scoring RBs",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Jahmyr Gibbs finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will Bijan Robinson finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will Christian McCaffrey finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will Jonathan Taylor finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will De'Von Achane finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will James Cook III finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will Jeremiyah Love finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will Ashton Jeanty finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will Omarion Hampton finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will Saquon Barkley finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will Derrick Henry finish as a top-5 RB in the 2026-27 NFL season?",
+     "Will Chase Brown finish as a top-5 RB in the 2026-27 NFL season?"
+    ]
+   },
+   {
+    "title": "Fantasy Football: 2026-27 Top 12 Scoring RBs",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Jahmyr Gibbs finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will Bijan Robinson finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will Christian McCaffrey finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will Jonathan Taylor finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will De'Von Achane finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will James Cook III finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will Jeremiyah Love finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will Ashton Jeanty finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will Omarion Hampton finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will Saquon Barkley finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will Derrick Henry finish as a top-12 RB in the 2026-27 NFL season?",
+     "Will Chase Brown finish as a top-12 RB in the 2026-27 NFL season?"
+    ]
+   },
+   {
+    "title": "Pro Football: First RB to 1,000 Rushing Yards",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will James Cook be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will Derrick Henry be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will Jonathan Taylor be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will Jahmyr Gibbs be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will Bijan Robinson be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will Saquon Barkley be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will De'Von Achane be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will Kyren Williams be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will Christian McCaffrey be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will Ashton Jeanty be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will Javonte Williams be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?",
+     "Will Omarion Hampton be the first RB to 1,000 rushing yards in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Fantasy Football: 2026-27 RB Points Leader",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Jahmyr Gibbs be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will Bijan Robinson be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will Christian McCaffrey be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will Jonathan Taylor be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will De'Von Achane be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will James Cook III be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will Jeremiyah Love be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will Ashton Jeanty be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will Omarion Hampton be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will Saquon Barkley be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will Derrick Henry be the highest-scoring RB of the 2026-27 NFL season?",
+     "Will Chase Brown be the highest-scoring RB of the 2026-27 NFL season?"
+    ]
+   },
+   {
+    "title": "Lions vs. Vikings",
+    "end": "2025-12-25T16:30:00Z",
+    "closed": true,
+    "markets": [
+     "Lions vs. Vikings",
+     "Spread: Lions (-2.5)",
+     "Lions vs. Vikings: O/U 47.5",
+     "Spread: Lions (-5.5)",
+     "Lions vs. Vikings: O/U 46.5",
+     "Lions vs. Vikings: O/U 44.5",
+     "Vikings Team Total: O/U 10.5",
+     "Lions Team Total: O/U 15.5",
+     "1H Spread: Lions (-3.5)",
+     "Lions vs. Vikings: 1H O/U 23.5",
+     "Lions vs. Vikings: 1H Moneyline",
+     "Jahmyr Gibbs: Anytime Touchdown"
+    ]
+   },
+   {
+    "title": "Vikings vs. Seahawks",
+    "end": "2025-11-30T21:05:00Z",
+    "closed": true,
+    "markets": [
+     "Vikings vs. Seahawks",
+     "Spread: Seahawks (-9.5)",
+     "Vikings vs. Seahawks: O/U 41.5",
+     "Seahawks Team Total: O/U 26.5",
+     "Vikings Team Total: O/U 16.5",
+     "1H Spread: Seahawks (-5.5)",
+     "Vikings vs. Seahawks: 1H O/U 21.5",
+     "Vikings vs. Seahawks: 1H Moneyline",
+     "1H Spread: Seahawks (-6.5)",
+     "Spread: Seahawks (-10.5)",
+     "Seahawks Team Total: O/U 17.5",
+     "Vikings Team Total: O/U 18.5"
+    ]
+   }
+  ]
+ },
+ "search_Bears Packers": {
+  "status": 200,
+  "n_events": 20,
+  "events": [
+   {
+    "title": "Bears vs. Packers",
+    "end": "2026-10-11T20:25:00Z",
+    "closed": false,
+    "markets": [
+     "Bears vs. Packers",
+     "Spread: Packers (-1.5)",
+     "Spread: Packers (-2.5)",
+     "Spread: Packers (-3.5)",
+     "Spread: Packers (-4.5)",
+     "Spread: Packers (-6.5)",
+     "Bears vs. Packers: O/U 28.5",
+     "Bears vs. Packers: O/U 30.5",
+     "Bears vs. Packers: O/U 32.5",
+     "Bears vs. Packers: O/U 34.5",
+     "Bears vs. Packers: O/U 36.5",
+     "Bears vs. Packers: O/U 38.5"
+    ]
+   },
+   {
+    "title": "Packers vs. Bears",
+    "end": "2026-01-11T01:00:00Z",
+    "closed": true,
+    "markets": [
+     "Packers vs. Bears",
+     "Spread: Bears (-1.5)",
+     "Spread: Bears (-2.5)",
+     "Spread: Bears (-3.5)",
+     "Spread: Bears (-4.5)",
+     "Packers vs. Bears: O/U 42.5",
+     "Packers vs. Bears: O/U 44.5",
+     "Packers vs. Bears: O/U 45.5",
+     "Packers vs. Bears: O/U 47.5",
+     "Packers vs. Bears: O/U 49.5",
+     "Spread: Packers (-1.5)",
+     "Spread: Packers (-2.5)"
+    ]
+   },
+   {
+    "title": "Packers vs. Bears",
+    "end": "2025-12-20T20:20:00Z",
+    "closed": true,
+    "markets": [
+     "Packers vs. Bears",
+     "Spread: Packers (-3.5)",
+     "Packers vs. Bears: O/U 46.5",
+     "Spread: Packers (-2.5)",
+     "Packers vs. Bears: O/U 45.5",
+     "Bears Team Total: O/U 22.5",
+     "Packers Team Total: O/U 23.5",
+     "Spread: Packers (-1.5)",
+     "Bears Team Total: O/U 23.5",
+     "1H Spread: Bears (-1.5)",
+     "Packers vs. Bears: 1H O/U 23.5",
+     "Packers vs. Bears: 1H Moneyline"
+    ]
+   },
+   {
+    "title": "Bears vs. Packers",
+    "end": "2025-12-07T21:25:00Z",
+    "closed": true,
+    "markets": [
+     "Bears vs. Packers",
+     "Spread: Packers (-6.5)",
+     "Bears vs. Packers: O/U 46.5",
+     "Spread: Packers (-7.5)",
+     "Packers Team Total: O/U 24.5",
+     "Bears Team Total: O/U 20.5",
+     "Bears vs. Packers: O/U 45.5",
+     "Spread: Packers (-5.5)",
+     "Bears vs. Packers: O/U 44.5",
+     "Packers Team Total: O/U 26.5",
+     "Bears Team Total: O/U 19.5",
+     "Bears vs. Packers: 1H O/U 23.5"
+    ]
+   },
+   {
+    "title": "Packers vs. Bears",
+    "end": "2024-11-17T18:00:00Z",
+    "closed": true,
+    "markets": [
+     "Packers vs. Bears"
+    ]
+   },
+   {
+    "title": "Bears vs. Packers",
+    "end": "2025-01-05T05:00:00Z",
+    "closed": true,
+    "markets": [
+     "Bears vs. Packers"
+    ]
+   },
+   {
+    "title": "Pro Football: Bears vs. Packers Season Series Winner",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will the Bears win the season series against the Packers during the 2026-27 NFL regular season?",
+     "Will the Packers win the season series against the Bears during the 2026-27 NFL regular season?",
+     "Will the season series between the Bears and Packers end in a tie during the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "NFL: Week 2",
+    "end": "2022-09-19T00:00:00Z",
+    "closed": true,
+    "markets": [
+     "NFL Thursday: Chargers vs. Chiefs",
+     "NFL Sunday: Dolphins vs. Ravens",
+     "NFL Sunday: Raiders vs. Cardinals",
+     "NFL Sunday: Bears vs. Packers",
+     "NFL Monday: Vikings vs. Eagles",
+     "NFL Monday: Titans vs. Bills"
+    ]
+   }
+  ]
+ },
+ "search_Eagles Jaguars": {
+  "status": 200,
+  "n_events": 20,
+  "events": [
+   {
+    "title": "Eagles vs. Jaguars",
+    "end": "2026-10-11T13:30:00Z",
+    "closed": false,
+    "markets": [
+     "Eagles vs. Jaguars",
+     "Spread: Eagles (-0.5)",
+     "Spread: Eagles (-1.5)",
+     "Spread: Eagles (-2.5)",
+     "Spread: Eagles (-3.5)",
+     "Spread: Eagles (-4.5)",
+     "Eagles vs. Jaguars: O/U 24.5",
+     "Eagles vs. Jaguars: O/U 26.5",
+     "Eagles vs. Jaguars: O/U 28.5",
+     "Eagles vs. Jaguars: O/U 30.5",
+     "Eagles vs. Jaguars: O/U 32.5",
+     "Eagles vs. Jaguars: O/U 34.5"
+    ]
+   },
+   {
+    "title": "Jaguars vs. Eagles",
+    "end": "2024-11-03T21:05:00Z",
+    "closed": true,
+    "markets": [
+     "Jaguars vs. Eagles"
+    ]
+   },
+   {
+    "title": "NFL Week 9: Totals",
+    "end": "2024-11-03T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will the Ravens and Broncos combine for 47 or more points?",
+     "Will the Bengals and Raiders combine for 46 or more points?",
+     "Will the Titans and Patriots combine for 39 or more points?",
+     "Will the Saints and Panthers combine for 44 or more points?",
+     "Will the Cowboys and Falcons combine for 52 or more points?",
+     "Will the Bills and Dolphins combine for 50 or more points?",
+     "Will the Browns and Chargers combine for 43 or more points?",
+     "Will the Commanders and Giants combine for 45 or more points?",
+     "Will the Eagles and Jaguars combine for 46 or more points?",
+     "Will the Cardinals and Bears combine for 44 or more points?",
+     "Will the Rams and Seahawks combine for 48 or more points?",
+     "Will the Packers and Lions combine for 48 or more points?"
+    ]
+   },
+   {
+    "title": "NFL Week 9: Spreads",
+    "end": "2024-11-03T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will the Ravens beat the Broncos by 10 or more points?",
+     "Will the Bengals beat the Raiders by 7 or more points?",
+     "Will the Titans beat the Patriots by 4 or more points?",
+     "Will the Falcons beat the Cowboys by 4 or more points?",
+     "Will the Bills beat the Dolphins by 6 or more points?",
+     " Will the Chargers beat the Browns by 3 or more points?",
+     "Will the Commanders beat the Giants by 4 or more points?",
+     "Will the Saints beat the Panthers by 7 or more points?",
+     "Will the Eagles beat the Jaguars by 8 or more points?",
+     "Will the Cardinals beat the Bears by 2 or more points?",
+     "Will the Rams beat the Seahawks by 2 or more points?",
+     "Will the Packers beat the Lions by 3 or more points?"
+    ]
+   },
+   {
+    "title": "Coppin State Eagles vs. South Alabama Jaguars",
+    "end": "2025-11-15T16:00:00Z",
+    "closed": true,
+    "markets": [
+     "Coppin State Eagles vs. South Alabama Jaguars",
+     "Spread: South Alabama Jaguars (-17.5)",
+     "Coppin State Eagles vs. South Alabama Jaguars: O/U 144.5",
+     "Coppin State Eagles vs. South Alabama Jaguars: O/U 143.5",
+     "Spread: South Alabama Jaguars (-18.5)",
+     "Coppin State Eagles vs. South Alabama Jaguars: O/U 142.5",
+     "Coppin State Eagles vs. South Alabama Jaguars: O/U 138.5",
+     "Coppin State Eagles vs. South Alabama Jaguars: O/U 139.5",
+     "Coppin State Eagles vs. South Alabama Jaguars: O/U 136.5",
+     "Coppin State Eagles vs. South Alabama Jaguars: O/U 137.5",
+     "Spread: South Alabama Jaguars (-16.5)",
+     "Coppin State Eagles vs. South Alabama Jaguars: O/U 134.5"
+    ]
+   },
+   {
+    "title": "IU Indy Jaguars vs. Eastern Michigan Eagles",
+    "end": "2025-11-14T23:30:00Z",
+    "closed": true,
+    "markets": [
+     "IU Indy Jaguars vs. Eastern Michigan Eagles",
+     "Spread: Eastern Michigan Eagles (-8.5)",
+     "IU Indy Jaguars vs. Eastern Michigan Eagles: O/U 185.5",
+     "Spread: Eastern Michigan Eagles (-7.5)",
+     "IU Indy Jaguars vs. Eastern Michigan Eagles: O/U 186.5",
+     "Spread: Eastern Michigan Eagles (-6.5)",
+     "Spread: Eastern Michigan Eagles (-5.5)",
+     "IU Indy Jaguars vs. Eastern Michigan Eagles: O/U 187.5",
+     "Spread: Eastern Michigan Eagles (-4.5)",
+     "IU Indy Jaguars vs. Eastern Michigan Eagles: O/U 188.5"
+    ]
+   },
+   {
+    "title": "Southern Miss Golden Eagles vs. South Alabama Jaguars",
+    "end": "2026-02-28T01:30:00Z",
+    "closed": true,
+    "markets": [
+     "Southern Miss Golden Eagles vs. South Alabama Jaguars",
+     "Spread: South Alabama Jaguars (-5.5)",
+     "Southern Miss Golden Eagles vs. South Alabama Jaguars: O/U 143.5",
+     "Southern Miss Golden Eagles vs. South Alabama Jaguars: O/U 142.5",
+     "Spread: South Alabama Jaguars (-4.5)",
+     "Southern Miss Golden Eagles vs. South Alabama Jaguars: O/U 141.5"
+    ]
+   },
+   {
+    "title": "Georgia Southern Eagles vs. South Alabama Jaguars",
+    "end": "2026-01-10T19:00:00Z",
+    "closed": true,
+    "markets": [
+     "Georgia Southern Eagles vs. South Alabama Jaguars",
+     "Spread: South Alabama Jaguars (-2.5)",
+     "Georgia Southern Eagles vs. South Alabama Jaguars: O/U 149.5",
+     "Georgia Southern Eagles vs. South Alabama Jaguars: O/U 148.5",
+     "Spread: South Alabama Jaguars (-3.5)",
+     "Georgia Southern Eagles vs. South Alabama Jaguars: O/U 150.5",
+     "Spread: South Alabama Jaguars (-1.5)"
+    ]
+   }
+  ]
+ },
+ "search_NFL player props week 5": {
+  "status": 200,
+  "n_events": 7,
+  "events": [
+   {
+    "title": "Receiving Yardage Props",
+    "end": "2025-02-09T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will A.J. Brown record 71 or more receiving yards in Super Bowl LIX?",
+     "Will Travis Kelce record 64 or more receiving yards in Super Bowl LIX?",
+     "Will Xavier Worthy record 58 or more receiving yards in Super Bowl LIX?",
+     "Will Dallas Goedert record 52 or more receiving yards in Super Bowl LIX?",
+     "Will DeVonta Smith record 51 or more receiving yards in Super Bowl LIX?",
+     "Will Marquise Brown record 41 or more receiving yards in Super Bowl LIX?",
+     "Will JuJu Smith-Schuster record 16 or more receiving yards in Super Bowl LIX?",
+     "Will Saquon Barkley record 14 or more receiving yards in Super Bowl LIX?",
+     "Will DeAndre Hopkins record 14 or more receiving yards in Super Bowl LIX?",
+     "Will Noah Gray record 12 or more receiving yards in Super Bowl LIX?",
+     "Will Kareem Hunt record 8 or more receiving yards in Super Bowl LIX?",
+     "Will Samaje Perine record 8 or more receiving yards in Super Bowl LIX?"
+    ]
+   },
+   {
+    "title": "Reception Props",
+    "end": "2025-02-09T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will Travis Kelce record 7 or more receptions in Super Bowl LIX?",
+     "Will Xavier Worthy record 6 or more receptions in Super Bowl LIX?",
+     "Will A.J. Brown record 6 or more receptions in Super Bowl LIX?",
+     "Will Dallas Goedert record 5 or more receptions in Super Bowl LIX?",
+     "Will DeVonta Smith record 5 or more receptions in Super Bowl LIX?",
+     "Will Marquise Brown record 4 or more receptions in Super Bowl LIX?",
+     "Will Saquon Barkley record 3 or more receptions in Super Bowl LIX?",
+     "Will JuJu Smith-Schuster record 2 or more receptions in Super Bowl LIX?",
+     "Will Noah Gray record 2 or more receptions in Super Bowl LIX?",
+     "Will DeAndre Hopkins record 2 or more receptions in Super Bowl LIX?",
+     "Will Kareem Hunt record 2 or more receptions in Super Bowl LIX?",
+     "Will Isiah Pacheco record 2 or more receptions in Super Bowl LIX?"
+    ]
+   },
+   {
+    "title": "Kicking Props",
+    "end": "2025-02-09T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will Jake Elliot make 2 or more field goals in Super Bowl LIX?",
+     "Will Harrison Butker make 2 or more field goals in Super Bowl LIX?",
+     "Will there be 4 or more field goals made in Super Bowl LIX?",
+     "Will there be a missed extra point attempt in Super Bowl LIX?",
+     "Will there be a doink in Super Bowl LIX?",
+     "Will there be a blocked kick in Super Bowl LIX?"
+    ]
+   },
+   {
+    "title": "Passing Props",
+    "end": "2025-02-09T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will Patrick Mahomes record 253 or more passing yards in Super Bowl LIX?",
+     "Will Jalen Hurts record 211 or more passing yards in Super Bowl LIX?",
+     "Will Patrick Mahomes record 25 or more completions in Super Bowl LIX?",
+     "Will Jalen Hurts record 19 or more completions in Super Bowl LIX?",
+     "Will Patrick Mahomes throw an interception in Super Bowl LIX?",
+     "Will Jalen Hurts throw an interception in Super Bowl LIX?",
+     "Will Patrick Mahomes record 2 or more Passing TDs in Super Bowl LIX?",
+     "Will Jalen Hurts record 2 or more Passing TDs in Super Bowl LIX?"
+    ]
+   },
+   {
+    "title": "National Anthem Props",
+    "end": "2025-02-09T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will a player cry during the national anthem at Super Bowl LIX?",
+     "Who will be shown first during national anthem- Chiefs or Eagles?"
+    ]
+   },
+   {
+    "title": "Penalty Props",
+    "end": "2025-02-09T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Which team will commit more penalties in Super Bowl LIX?",
+     "Will the Eagles commit a roughing the passer penalty in Super Bowl LIX?",
+     "Will the Chiefs commit a roughing the passer penalty in Super Bowl LIX?",
+     "WIll there be a penalty for exessive celebration called in Super Bowl LIX?",
+     "Will a player be ejected from Super Bowl LIX?",
+     "Which team will be penalized for more yards?"
+    ]
+   },
+   {
+    "title": "First Touchdown Scorer?",
+    "end": "2025-02-09T12:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will Saquon Barkley score the first touchdown of Super Bowl LIX?",
+     "Will Jalen Hurts score the first touchdown of Super Bowl LIX?",
+     "Will Travis Kelce score the first touchdown of Super Bowl LIX?",
+     "Will Kareem Hunt score the first touchdown of Super Bowl LIX?",
+     "Will Xavier Worthy score the first touchdown of Super Bowl LIX?",
+     "Will A.J. Brown score the first touchdown of Super Bowl LIX?",
+     "Will Isiah Pacheco score the first touchdown of Super Bowl LIX?",
+     "Will Marquise Brown score the first touchdown of Super Bowl LIX?",
+     "Will DeVonta Smith score the first touchdown of Super Bowl LIX?",
+     "Will Dallas Goedert score the first touchdown of Super Bowl LIX?",
+     "Will Patrick Mahomes score the first touchdown of Super Bowl LIX?",
+     "Will Noah Gray score the first touchdown of Super Bowl LIX?"
+    ]
+   }
+  ]
+ },
+ "search_Lamar Jackson": {
+  "status": 200,
+  "n_events": 20,
+  "events": [
+   {
+    "title": "Pro Football: Lamar Jackson 2026-27 Regular Season Passing Yards",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Lamar Jackson have 2,749.5+ passing yards in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 2,999.5+ passing yards in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 3,249.5+ passing yards in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 3,499.5+ passing yards in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 3,749.5+ passing yards in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Pro Football: Lamar Jackson 2026-27 Regular Season Passing Touchdowns",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Lamar Jackson have 18.5+ passing touchdowns in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 21.5+ passing touchdowns in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 24.5+ passing touchdowns in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 27.5+ passing touchdowns in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 30.5+ passing touchdowns in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Pro Football: Lamar Jackson 2026-27 Regular Season Rushing Yards",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Lamar Jackson have 174.5+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 374.5+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 574.5+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 774.5+ rushing yards in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 974.5+ rushing yards in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Pro Football: Lamar Jackson 2026-27 Regular Season Rushing Touchdowns",
+    "end": "2027-01-27T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Lamar Jackson have 1.5+ rushing touchdowns in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 3.5+ rushing touchdowns in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 5.5+ rushing touchdowns in the 2026-27 NFL regular season?",
+     "Will Lamar Jackson have 7.5+ rushing touchdowns in the 2026-27 NFL regular season?"
+    ]
+   },
+   {
+    "title": "Lamar Jackson O/U 234.5 passing yards",
+    "end": "2025-09-08T00:00:00Z",
+    "closed": true,
+    "markets": [
+     "Lamar Jackson O/U 234.5 passing yards"
+    ]
+   },
+   {
+    "title": "Will Lamar Jackson play in Week 5 for the Ravens?",
+    "end": "2025-10-05T00:00:00Z",
+    "closed": true,
+    "markets": [
+     "Will Lamar Jackson play in Week 5 for the Ravens?"
+    ]
+   },
+   {
+    "title": "Lamar Jackson traded by next season?",
+    "end": "2026-09-10T00:00:00Z",
+    "closed": true,
+    "markets": [
+     "Lamar Jackson traded by next season?"
+    ]
+   },
+   {
+    "title": "Pro Football: 2026 MVP Winner",
+    "end": "2027-03-01T04:59:00Z",
+    "closed": false,
+    "markets": [
+     "Will Josh Allen win the 2026 NFL MVP?",
+     "Will Joe Burrow win the 2026 NFL MVP?",
+     "Will Lamar Jackson win the 2026 NFL MVP?",
+     "Will Drake Maye win the 2026 NFL MVP?",
+     "Will Matthew Stafford win the 2026 NFL MVP?",
+     "Will Justin Herbert win the 2026 NFL MVP?",
+     "Will Dak Prescott win the 2026 NFL MVP?",
+     "Will Jahmyr Gibbs win the 2026 NFL MVP?",
+     "Will Patrick Mahomes win the 2026 NFL MVP?",
+     "Will Christian McCaffrey win the 2026 NFL MVP?",
+     "Will Saquon Barkley win the 2026 NFL MVP?",
+     "Will Derrick Henry win the 2026 NFL MVP?"
+    ]
+   }
+  ]
+ },
+ "events": {
+  "n": 0,
+  "titles_sample": [],
+  "market_kinds": {},
+  "prop_questions_sample": []
+ },
+ "https://polymarket.us": {
+  "status": 200,
+  "head": "<!DOCTYPE html><html data-dpl-id=\"dpl_Dcfu1VJHrZzQa4Hnjaeevs12sqVz\" lang=\"en-US\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0_c68vq5h3t6u.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0_n1f_q5cfjif.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0508wd6o90ri-.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/3nftg_jht-37a.css\" data-precedence=\"next\"/><style data-precedence=\"base-ui:low\" data-href=\"base-ui-disable-scrollbar\">.base-ui-disable-scrollbar{scrollbar-width:none}.base-ui-disable-scrollbar::-webkit-scrollbar{display:none}</style"
+ },
+ "https://www.polymarket.us": {
+  "status": 200,
+  "head": "<!DOCTYPE html><html data-dpl-id=\"dpl_Dcfu1VJHrZzQa4Hnjaeevs12sqVz\" lang=\"en-US\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0_c68vq5h3t6u.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0_n1f_q5cfjif.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0508wd6o90ri-.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/3nftg_jht-37a.css\" data-precedence=\"next\"/><style data-precedence=\"base-ui:low\" data-href=\"base-ui-disable-scrollbar\">.base-ui-disable-scrollbar{scrollbar-width:none}.base-ui-disable-scrollbar::-webkit-scrollbar{display:none}</style"
+ },
+ "https://api.polymarket.us/v1/markets?limit=5": {
+  "status": "HTTP Error 401: Unauthorized",
+  "head": ""
+ }
+}
