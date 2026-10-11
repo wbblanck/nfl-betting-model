@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import datetime as dt
 import html
+import json
 import math
 import re
 from pathlib import Path
@@ -53,7 +54,16 @@ def load(live: Path | None = None) -> dict:
     return {"rec": rec, "picks": picks, "runs": runs, "live": live, "pcmp": _read(live / f"parlay_compare_{SEASON}.csv"),
             "pa_rec": _read(live / f"s1pa_record_{SEASON}.csv"),
             "ocmp": _read(live / f"openmarkets_compare_{SEASON}.csv"),
-            "ats_runs": _read(live / f"ats_runs_{SEASON}.csv"), "ats_rec": _read(live / f"ats_record_{SEASON}.csv")}
+            "ats_runs": _read(live / f"ats_runs_{SEASON}.csv"), "ats_rec": _read(live / f"ats_record_{SEASON}.csv"),
+            "polymarket": _json(Path(__file__).resolve().parents[2] / "docs" / "polymarket_compare.json")}
+
+
+def _json(path: Path) -> dict | None:
+    """The Polymarket comparison summary written by scripts/polymarket_compare.py; None if absent or unreadable."""
+    try:
+        return json.loads(path.read_text())
+    except (OSError, ValueError):
+        return None
 
 
 # ------------------------------------------------------------------------------------------------ numbers
@@ -276,6 +286,27 @@ def openmarkets_card(oc: pl.DataFrame) -> str:
             table(["Venue", "DK props quoted at DK's line", "Mean no-vig gap", "Median $ available"], rows, "num") +
             f'<p class="note">Run {esc(fmt_dt(last))} ET, from OpenMarkets (read-only). A record next to Action Network and ParlayAPI; '
             'S1 does not use these prices. The gap is the mean absolute difference in no-vig P(over) at the same line.</p></div>')
+
+
+def polymarket_card(pm: dict | None) -> str:
+    """Latest Polymarket US vs DraftKings / FanDuel cost comparison (scripts/polymarket_compare.py, one run).
+    Descriptive and unvalidated: one snapshot, the fee formula is Polymarket's published taker formula."""
+    if not pm or not pm.get("side_quotes"):
+        return ""
+    pct = lambda x: "–" if x is None else f"{x * 100:.1f}%"
+    rows = []
+    for bk in ("DK", "FD"):
+        b = pm.get("books", {}).get(bk)
+        if not b:
+            continue
+        rows.append([bk, str(b["sides"]), f'{b["gross_cheaper"]:.0%}', f'{b["gross_mean_cents"]:+.2f}¢',
+                     f'{b["net_cheaper"]:.0%}', f'{b["net_mean_cents"]:+.2f}¢', pct(pm.get("book_hold_median", {}).get(bk))])
+    rows.append(["Polymarket US", "–", "–", "–", "–", "–", pct(pm.get("polymarket_hold_median"))])
+    return ('<div class="card"><h3>Polymarket US vs DraftKings and FanDuel</h3>' +
+            table(["Book", "Sides", "Polymarket cheaper, gross", "Mean, gross", "Cheaper after fee", "Mean, after fee", "Hold (median)"], rows, "num") +
+            f'<p class="note">{esc(pm.get("player_lines", 0))} player-lines, {esc(pm.get("quoted_compared", 0))} threshold markets quoted and compared; '
+            f'{esc(pm.get("not_compared", 0))} unquoted and left out. Price = each side\'s quoted price. Fee: Polymarket\'s taker formula '
+            f'fee = C × feeRate × p × (1 − p), feeRate {esc(pm.get("fee_rate"))}. One snapshot, unvalidated; Kalshi is not in this comparison yet.</p></div>')
 
 
 def parlay_card(pc: pl.DataFrame) -> str:
@@ -995,7 +1026,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
     else:
         runs_html = ""
     pc = parlay_card(data.get("pcmp", pl.DataFrame()))
-    ops = [x for x in (pc, openmarkets_card(data.get("ocmp", pl.DataFrame())), runs_html) if x]
+    ops = [x for x in (pc, openmarkets_card(data.get("ocmp", pl.DataFrame())), polymarket_card(data.get("polymarket")), runs_html) if x]
     ops_html = (('<section class="block"><div class="sechead"><div><p class="eyebrow">Runs and sources</p><h2>How the picks were made</h2></div></div>'
                  + (stab_html if stab_html else "") + (f'<div class="stack">{"".join(ops)}</div>' if ops else "") + '</section>')
                 if stab_html or ops else "")

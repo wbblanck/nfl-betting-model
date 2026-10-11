@@ -157,6 +157,24 @@ def main():
     L += ["", f"Fee (Polymarket docs, taker only): fee = C x feeRate x p x (1-p), applied per share at the side's price p. "
           f"feeRate = the market's feeCoefficient ({FEE} on every market in this run; fallback {FEE}). The public fee table lists "
           "0.05 for Sports, which does not match the market field; unresolved, and it would raise the net figures.", ""]
+    summ = {"run_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if "--fetch" in sys.argv else None,
+            "source": book_src, "threshold_markets": n_thr, "quoted_compared": poly_df.height, "not_compared": n_unquoted,
+            "side_quotes": d.height, "player_lines": d.select(pl.struct("player", "market", "line")).n_unique() if d.height else 0,
+            "fee_rate": FEE, "books": {}, "polymarket_hold_median": None, "book_hold_median": {}}
+    for bk in ("dk", "fd"):
+        x = d.filter(pl.col("book") == bk)
+        if not x.height:
+            continue
+        summ["books"][bk.upper()] = {"sides": x.height, "gross_cheaper": float((x["gross_diff"] > 0).mean()),
+                                     "gross_mean_cents": float(x["gross_diff"].mean() * 100),
+                                     "net_cheaper": float((x["net_diff"] > 0).mean()),
+                                     "net_mean_cents": float(x["net_diff"].mean() * 100)}
+    if d.height:
+        summ["polymarket_hold_median"] = float(d.unique(subset=["player", "market", "line", "side"])["poly_spread"].median())
+        bh = d.unique(subset=["book", "player", "market", "line"])
+        summ["book_hold_median"] = {bk.upper(): float(bh.filter(pl.col("book") == bk)["book_hold"].median())
+                                    for bk in ("dk", "fd") if bh.filter(pl.col("book") == bk).height}
+    Path("docs/polymarket_compare.json").write_text(json.dumps(summ, indent=1) + "\n")
     out.write_text("\n".join(L) + "\n")
     print("\n".join(L))
     print(d.sort("gross_diff", descending=True).head(8))
