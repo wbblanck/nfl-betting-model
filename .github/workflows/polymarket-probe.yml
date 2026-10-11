@@ -27,6 +27,6 @@ jobs:
         run: |
           git config user.name "nfl-betting-model"
           git config user.email "nfl-betting-model@users.noreply.github.com"
-          git add docs/evidence/polymarket docs/evidence/polymarket_compare docs/polymarket_compare.md || true
+          git add docs/evidence/polymarket docs/evidence/polymarket_compare docs/polymarket_compare.md docs/polymarket_compare.json || true
           git commit -m "evidence: Polymarket NFL props probe" || exit 0
           for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
