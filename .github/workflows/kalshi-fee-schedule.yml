@@ -1,0 +1,53 @@
+name: Kalshi fee schedule
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/kalshi-fee-schedule.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/polymarket-probe
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download the Kalshi fee schedule and extract its text
+        run: |
+          set -euo pipefail
+          pip install -q pypdf
+          STAMP=$(date -u +%Y%m%dT%H%M%SZ)
+          OUT=docs/evidence/kalshi_fee_schedule/$STAMP
+          mkdir -p "$OUT"
+          curl -sSfL -A "Mozilla/5.0 (X11; Linux x86_64)" -o "$OUT/kalshi-fee-schedule.pdf" https://kalshi.com/docs/kalshi-fee-schedule.pdf
+          python - "$OUT" <<'PY'
+          import sys, pathlib
+          from pypdf import PdfReader
+          out = pathlib.Path(sys.argv[1])
+          raw = (out / "kalshi-fee-schedule.pdf").read_bytes()
+          assert raw[:4] == b"%PDF", "download is not a PDF"
+          r = PdfReader(str(out / "kalshi-fee-schedule.pdf"))
+          text = "\n\n".join(f"--- page {i + 1} ---\n{p.extract_text() or ''}" for i, p in enumerate(r.pages))
+          (out / "kalshi-fee-schedule.txt").write_text(text)
+          print(f"pages={len(r.pages)} chars={len(text)}")
+          PY
+          echo "OUT=$OUT" >> "$GITHUB_ENV"
+      - name: Commit the extracted schedule
+        run: |
+          set -uo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUT/kalshi-fee-schedule.pdf" && git add "$OUT/kalshi-fee-schedule.txt"
+          git commit -m "evidence: Kalshi fee schedule $(basename $OUT)" || { echo "nothing to commit"; exit 0; }
+          for i in 1 2 3 4; do
+            git pull -q --rebase origin claude/polymarket-probe && git push -q origin HEAD:claude/polymarket-probe && echo PUSHED && exit 0
+            sleep $((2**i))
+          done
+          exit 1
