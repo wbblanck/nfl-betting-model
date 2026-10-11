@@ -154,8 +154,9 @@ def main():
             if hb.len():
                 L.append(f"- {bk.upper()} hold on matched lines: median {hb.median()*100:.1f}% (over+under implied minus 1).")
         L.append(f"- Polymarket hold (quoted Yes + No minus 1, per binary market): median {ps.median()*100:.1f}% of $1.")
-    L += ["", f"Assumed fee: feeCoefficient x p x (1-p) per share, coefficient {FEE} unless the market carries one. "
-          "Not yet confirmed for props; confirm before using the net column.", ""]
+    L += ["", f"Fee (Polymarket docs, taker only): fee = C x feeRate x p x (1-p), applied per share at the side's price p. "
+          f"feeRate = the market's feeCoefficient ({FEE} on every market in this run; fallback {FEE}). The public fee table lists "
+          "0.05 for Sports, which does not match the market field; unresolved, and it would raise the net figures.", ""]
     out.write_text("\n".join(L) + "\n")
     print("\n".join(L))
     print(d.sort("gross_diff", descending=True).head(8))

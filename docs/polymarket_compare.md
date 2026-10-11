@@ -9,5 +9,5 @@ Polymarket threshold markets with no bid/ask (not compared): 243 of 2052; thresh
 - FD hold on matched lines: median 7.0% (over+under implied minus 1).
 - Polymarket hold (quoted Yes + No minus 1, per binary market): median 2.0% of $1.
 
-Assumed fee: feeCoefficient x p x (1-p) per share, coefficient 0.0695 unless the market carries one. Not yet confirmed for props; confirm before using the net column.
+Fee (Polymarket docs, taker only): fee = C x feeRate x p x (1-p), applied per share at the side's price p. feeRate = the market's feeCoefficient (0.0695 on every market in this run). The public fee table lists 0.05 for Sports, which does not match the market field; unresolved, and it would raise the net figures.
 
