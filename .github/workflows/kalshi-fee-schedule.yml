@@ -26,7 +26,14 @@ jobs:
           STAMP=$(date -u +%Y%m%dT%H%M%SZ)
           OUT=docs/evidence/kalshi_fee_schedule/$STAMP
           mkdir -p "$OUT"
-          curl -sSfL -A "Mozilla/5.0 (X11; Linux x86_64)" -o "$OUT/kalshi-fee-schedule.pdf" https://kalshi.com/docs/kalshi-fee-schedule.pdf
+          # Kalshi returned HTTP 429 to the first request on 2026-10-11; retry with backoff (waits 15, 30, 60, 120 s).
+          for i in 1 2 3 4 5; do
+            if curl -sSfL --retry 0 -A "Mozilla/5.0 (X11; Linux x86_64)" -o "$OUT/kalshi-fee-schedule.pdf" https://kalshi.com/docs/kalshi-fee-schedule.pdf; then
+              echo "downloaded on attempt $i"; break
+            fi
+            [ "$i" -eq 5 ] && { echo "giving up after 5 attempts"; exit 1; }
+            sleep $((15 * 2 ** (i - 1)))
+          done
           python - "$OUT" <<'PY'
           import sys, pathlib
           from pypdf import PdfReader
