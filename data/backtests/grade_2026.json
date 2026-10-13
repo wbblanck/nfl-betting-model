@@ -1,62 +1,27 @@
 {
- "generated_utc": "2026-10-06T20:31:13.977891+00:00",
+ "generated_utc": "2026-10-13T20:49:06.831434+00:00",
  "season": 2026,
  "status": "INTERIM (descriptive only)",
- "games_final": "64/272",
+ "games_final": "79/272",
  "rules": {
   "R1_three_plus_books": {
-   "n": 1025,
-   "weeks": 4,
-   "under_rate": 0.5385365853658537,
-   "roi": 0.0075914297948242926,
-   "roi_ci": [
-    -0.05285049047384735,
-    0.06273678896695113
-   ],
+   "n": 0,
    "pass": false
   },
   "R2_under_priced_below_-120": {
-   "n": 145,
-   "weeks": 4,
-   "under_rate": 0.5517241379310345,
-   "roi": -0.045648371069065614,
-   "roi_ci": [
-    -0.11437504165299103,
-    0.0021959274092798425
-   ],
+   "n": 0,
    "pass": false
   },
   "R3_high_line_at_BetRivers_or_BetMGM": {
-   "n": 531,
-   "weeks": 4,
-   "under_rate": 0.5028248587570622,
-   "roi": -0.06902179476058556,
-   "roi_ci": [
-    -0.10657197120446363,
-    -0.0203809352368146
-   ],
+   "n": 0,
    "pass": false
   },
   "P1_projection_under_dk_high_line": {
-   "n": 216,
-   "weeks": 4,
-   "under_rate": 0.5833333333333334,
-   "roi": 0.07459057544573768,
-   "roi_ci": [
-    -0.12595279413983632,
-    0.26296654836187455
-   ],
+   "n": 0,
    "pass": false
   },
   "S1_all_four_signals_agree": {
-   "n": 36,
-   "weeks": 4,
-   "under_rate": 0.6111111111111112,
-   "roi": 0.022742825838207564,
-   "roi_ci": [
-    -0.25141944290500895,
-    0.18580847270436252
-   ],
+   "n": 0,
    "pass": false
   }
  }
