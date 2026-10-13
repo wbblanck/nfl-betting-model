@@ -12,4 +12,4 @@ game_id,game,start_time,home,away,fair,consensus,exchange,n_exchanges,side,side_
 2026_05_DET_ARI,ARI|DET,2026-10-11T20:25:00.000Z,ARI,DET,-0.69,-5.5,-5.5,6,ARI,true,BetRivers,-5.5,-109.0,4.81,true,1.13,true,"",Bet Now,-5.5,-5.5,-5.5,-5.5,-5.5,2026-10-11T15:55:00Z,5,true,-24,-5.5,L,-1.0,0.0
 2026_05_SF_SEA,SEA|SF,2026-10-11T20:25:00.000Z,SEA,SF,4.81,3.0,3.25,6,SEA,true,Caesars,3.0,-115.0,1.81,false,0.42,true,"",Monitor,3.0,3.0,3.0,3.0,3.0,2026-10-11T15:55:00Z,5,true,-3,3.0,L,-1.0,0.0
 2026_05_BAL_ATL,ATL|BAL,2026-10-12T00:20:00.000Z,ATL,BAL,-1.62,3.5,3.5,6,BAL,false,Caesars,3.5,-117.0,5.12,true,1.2,true,BAL QB Lamar Jackson: Out,Wait,3.0,3.5,3.0,3.0,3.5,2026-10-11T15:55:00Z,5,false,-7,3.5,W,0.8547008547008548,0.0
-2026_05_BUF_LA,BUF|LA,2026-10-13T00:15:00.000Z,LA,BUF,2.74,3.5,3.5,6,BUF,false,BetMGM,3.5,-110.0,0.76,true,0.18,true,"",No Value,3.5,3.5,3.5,3.5,3.5,2026-10-12T23:23:16Z,5,false,,3.5,pending,0.0,
+2026_05_BUF_LA,BUF|LA,2026-10-13T00:15:00.000Z,LA,BUF,2.74,3.5,3.5,6,BUF,false,BetMGM,3.5,-110.0,0.76,true,0.18,true,"",No Value,3.5,3.5,3.5,3.5,3.5,2026-10-12T23:23:16Z,5,false,-3,3.5,W,0.9090909090909092,0.0

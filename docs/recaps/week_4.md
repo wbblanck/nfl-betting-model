@@ -156,7 +156,7 @@ Largest part by pick: role 9, volume 4, efficiency 2.
 - Line 16.5; model projected 14.3; usage baseline 13.7 (from 3 prior games); actual 14, -2.5 against the line
 - Largest part: **role** (-0.33 toward the pick, in rush attempts)
 - Game: team lost by 12; led on 26% of its plays; pass rate 62% (-3.6 pts vs expected); outdoors, 63°F, wind 9 mph
-- Next Gen Stats: carries against 8+ defenders 50% (weeks 1-3: 24%), rush yards over expected +0.11 per carry
+- Next Gen Stats: carries against 8+ defenders 50% (weeks 1-3: 16%), rush yards over expected +0.11 per carry
 - Opponent defense, weeks 1-4 (includes this game): man 32% of plays, Cover 3 27%, EPA per DB +0.08
 
 ### Kenneth Gainwell (TB): receptions over 1.5 at -176, W, actual 2
