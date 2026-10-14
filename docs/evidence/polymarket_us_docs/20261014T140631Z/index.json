@@ -1,0 +1,937 @@
+{
+ "base": "https://docs.polymarket.us",
+ "fetched_utc": "20261014T140631Z",
+ "pages_listed": 323,
+ "results": [
+  {
+   "url": "https://docs.polymarket.us/llms.txt",
+   "status": 200,
+   "bytes": 51659,
+   "file": "llms.txt"
+  },
+  {
+   "url": "https://docs.polymarket.us/llms-full.txt",
+   "status": 200,
+   "bytes": 1343423,
+   "file": "llms-full.txt"
+  },
+  {
+   "url": "https://docs.polymarket.us/.md",
+   "status": 200,
+   "bytes": 5628,
+   "file": "root.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/spec-files/openapi-v3.json",
+   "status": 404,
+   "bytes": 15,
+   "file": null
+  },
+  {
+   "url": "https://docs.polymarket.us/openapi.json",
+   "status": 404,
+   "bytes": 15,
+   "file": null
+  },
+  {
+   "url": "https://docs.polymarket.us/getting-started/welcome.md",
+   "status": 200,
+   "bytes": 5628,
+   "file": "getting-started_welcome.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/getting-started/what-is-polymarket-us.md",
+   "status": 200,
+   "bytes": 3762,
+   "file": "getting-started_what-is-polymarket-us.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/getting-started/glossary.md",
+   "status": 200,
+   "bytes": 4863,
+   "file": "getting-started_glossary.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/getting-started/quickstart.md",
+   "status": 200,
+   "bytes": 6365,
+   "file": "getting-started_quickstart.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/concepts/market-data.md",
+   "status": 200,
+   "bytes": 2868,
+   "file": "concepts_market-data.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/concepts/events-and-markets.md",
+   "status": 200,
+   "bytes": 3337,
+   "file": "concepts_events-and-markets.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/concepts/orders.md",
+   "status": 200,
+   "bytes": 3373,
+   "file": "concepts_orders.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/market-structure/collateral-and-margin.md",
+   "status": 200,
+   "bytes": 9938,
+   "file": "market-structure_collateral-and-margin.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/market-structure/mutually-exclusive-collateral-return.md",
+   "status": 200,
+   "bytes": 4021,
+   "file": "market-structure_mutually-exclusive-collateral-return.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/market-structure/directional-collateral-return.md",
+   "status": 200,
+   "bytes": 6499,
+   "file": "market-structure_directional-collateral-return.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/faqs/general-faqs.md",
+   "status": 200,
+   "bytes": 3192,
+   "file": "faqs_general-faqs.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/faqs/combos-faqs.md",
+   "status": 200,
+   "bytes": 3480,
+   "file": "faqs_combos-faqs.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/faqs/market-integrity-faqs.md",
+   "status": 200,
+   "bytes": 554,
+   "file": "faqs_market-integrity-faqs.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/faqs/sports-faqs.md",
+   "status": 200,
+   "bytes": 18020,
+   "file": "faqs_sports-faqs.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/faqs/weather-faqs.md",
+   "status": 200,
+   "bytes": 2400,
+   "file": "faqs_weather-faqs.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/faqs/crypto-faqs.md",
+   "status": 200,
+   "bytes": 8415,
+   "file": "faqs_crypto-faqs.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/faqs/refer-a-friend-faqs.md",
+   "status": 200,
+   "bytes": 2992,
+   "file": "faqs_refer-a-friend-faqs.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/home.md",
+   "status": 200,
+   "bytes": 1629,
+   "file": "learn_home.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/get-started/signup.md",
+   "status": 200,
+   "bytes": 2147,
+   "file": "learn_get-started_signup.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/get-started/fund-account.md",
+   "status": 200,
+   "bytes": 1882,
+   "file": "learn_get-started_fund-account.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/get-started/browse.md",
+   "status": 200,
+   "bytes": 766,
+   "file": "learn_get-started_browse.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/get-started/place-order.md",
+   "status": 200,
+   "bytes": 1197,
+   "file": "learn_get-started_place-order.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/get-started/portfolio.md",
+   "status": 200,
+   "bytes": 855,
+   "file": "learn_get-started_portfolio.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/get-started/cash.md",
+   "status": 200,
+   "bytes": 994,
+   "file": "learn_get-started_cash.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/deposits/deposit-methods/overview.md",
+   "status": 200,
+   "bytes": 1836,
+   "file": "learn_deposits_deposit-methods_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/deposits/deposit-methods/debit-card.md",
+   "status": 200,
+   "bytes": 1274,
+   "file": "learn_deposits_deposit-methods_debit-card.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/deposits/deposit-methods/bank-transfer.md",
+   "status": 200,
+   "bytes": 1297,
+   "file": "learn_deposits_deposit-methods_bank-transfer.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/deposits/deposit-methods/wire-transfer.md",
+   "status": 200,
+   "bytes": 3420,
+   "file": "learn_deposits_deposit-methods_wire-transfer.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/deposits/deposit-methods/troubleshooting.md",
+   "status": 200,
+   "bytes": 1881,
+   "file": "learn_deposits_deposit-methods_troubleshooting.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/deposits/withdraw-funds/overview.md",
+   "status": 200,
+   "bytes": 2075,
+   "file": "learn_deposits_withdraw-funds_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/deposits/withdraw-funds/rules.md",
+   "status": 200,
+   "bytes": 1831,
+   "file": "learn_deposits_withdraw-funds_rules.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/deposits/withdraw-funds/troubleshooting.md",
+   "status": 200,
+   "bytes": 1153,
+   "file": "learn_deposits_withdraw-funds_troubleshooting.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/markets/how-markets-are-created.md",
+   "status": 200,
+   "bytes": 1143,
+   "file": "learn_markets_how-markets-are-created.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/basics/buying-yes-vs-selling-no.md",
+   "status": 200,
+   "bytes": 2316,
+   "file": "learn_trading_basics_buying-yes-vs-selling-no.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/advanced/rule-structure.md",
+   "status": 200,
+   "bytes": 2481,
+   "file": "learn_advanced_rule-structure.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/markets/clarifications.md",
+   "status": 200,
+   "bytes": 2898,
+   "file": "learn_markets_clarifications.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/markets/market-resolution.md",
+   "status": 200,
+   "bytes": 3167,
+   "file": "learn_markets_market-resolution.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/markets/contract-settlement.md",
+   "status": 200,
+   "bytes": 1281,
+   "file": "learn_markets_contract-settlement.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/advanced/liquidity.md",
+   "status": 200,
+   "bytes": 5230,
+   "file": "learn_advanced_liquidity.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/advanced/price-impact.md",
+   "status": 200,
+   "bytes": 2492,
+   "file": "learn_advanced_price-impact.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/basics/place-order.md",
+   "status": 200,
+   "bytes": 1191,
+   "file": "learn_trading_basics_place-order.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/basics/order-types.md",
+   "status": 200,
+   "bytes": 2978,
+   "file": "learn_trading_basics_order-types.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/basics/spread.md",
+   "status": 200,
+   "bytes": 1489,
+   "file": "learn_trading_basics_spread.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/basics/fractional-shares.md",
+   "status": 200,
+   "bytes": 1890,
+   "file": "learn_trading_basics_fractional-shares.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/prices-and-fees/odds-display.md",
+   "status": 200,
+   "bytes": 1013,
+   "file": "learn_trading_prices-and-fees_odds-display.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/prices-and-fees/price-slippage.md",
+   "status": 200,
+   "bytes": 1798,
+   "file": "learn_trading_prices-and-fees_price-slippage.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/fees.md",
+   "status": 200,
+   "bytes": 18629,
+   "file": "fees.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/access-and-limits/trading-hours.md",
+   "status": 200,
+   "bytes": 1458,
+   "file": "learn_trading_access-and-limits_trading-hours.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/access-and-limits/trading-limits.md",
+   "status": 200,
+   "bytes": 757,
+   "file": "learn_trading_access-and-limits_trading-limits.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/access-and-limits/trading-restrictions.md",
+   "status": 200,
+   "bytes": 1938,
+   "file": "learn_trading_access-and-limits_trading-restrictions.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/account/protect.md",
+   "status": 200,
+   "bytes": 872,
+   "file": "learn_account_protect.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/get-started/account-under-review.md",
+   "status": 200,
+   "bytes": 849,
+   "file": "learn_get-started_account-under-review.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/trading/basics/sell-early.md",
+   "status": 200,
+   "bytes": 662,
+   "file": "learn_trading_basics_sell-early.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/faq/withdraw-funds.md",
+   "status": 200,
+   "bytes": 919,
+   "file": "learn_faq_withdraw-funds.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/faq/withdraw-promo.md",
+   "status": 200,
+   "bytes": 1539,
+   "file": "learn_faq_withdraw-promo.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/faq/prediction-market.md",
+   "status": 200,
+   "bytes": 557,
+   "file": "learn_faq_prediction-market.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/faq/odds.md",
+   "status": 200,
+   "bytes": 719,
+   "file": "learn_faq_odds.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/faq/money-safety.md",
+   "status": 200,
+   "bytes": 602,
+   "file": "learn_faq_money-safety.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/faq/whole-contracts.md",
+   "status": 200,
+   "bytes": 762,
+   "file": "learn_faq_whole-contracts.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/faq/polling.md",
+   "status": 200,
+   "bytes": 632,
+   "file": "learn_faq_polling.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/faq/social-good.md",
+   "status": 200,
+   "bytes": 631,
+   "file": "learn_faq_social-good.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/faq/api.md",
+   "status": 200,
+   "bytes": 560,
+   "file": "learn_faq_api.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/learn/faq/contact-support.md",
+   "status": 200,
+   "bytes": 698,
+   "file": "learn_faq_contact-support.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/introduction.md",
+   "status": 200,
+   "bytes": 1993,
+   "file": "api-reference_introduction.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/authentication.md",
+   "status": 200,
+   "bytes": 4049,
+   "file": "api-reference_authentication.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rate-limits.md",
+   "status": 200,
+   "bytes": 4308,
+   "file": "api-reference_rate-limits.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/overview.md",
+   "status": 200,
+   "bytes": 14727,
+   "file": "api-reference_orders_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/get-open-orders.md",
+   "status": 200,
+   "bytes": 10977,
+   "file": "api-reference_orders_get-open-orders.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/get-order.md",
+   "status": 200,
+   "bytes": 10869,
+   "file": "api-reference_orders_get-order.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/create-order.md",
+   "status": 200,
+   "bytes": 18973,
+   "file": "api-reference_orders_create-order.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/cancel-all-open-orders.md",
+   "status": 200,
+   "bytes": 3032,
+   "file": "api-reference_orders_cancel-all-open-orders.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/cancel-order.md",
+   "status": 200,
+   "bytes": 2946,
+   "file": "api-reference_orders_cancel-order.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/modify-order.md",
+   "status": 200,
+   "bytes": 4893,
+   "file": "api-reference_orders_modify-order.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/preview-order.md",
+   "status": 200,
+   "bytes": 14839,
+   "file": "api-reference_orders_preview-order.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/close-position-order.md",
+   "status": 200,
+   "bytes": 17581,
+   "file": "api-reference_orders_close-position-order.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/create-multiple-orders.md",
+   "status": 200,
+   "bytes": 9413,
+   "file": "api-reference_orders_create-multiple-orders.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/cancel-multiple-orders.md",
+   "status": 200,
+   "bytes": 4314,
+   "file": "api-reference_orders_cancel-multiple-orders.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/orders/modify-multiple-orders.md",
+   "status": 200,
+   "bytes": 6251,
+   "file": "api-reference_orders_modify-multiple-orders.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/combos/overview.md",
+   "status": 200,
+   "bytes": 3104,
+   "file": "api-reference_combos_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/combos/get-combos.md",
+   "status": 200,
+   "bytes": 2760,
+   "file": "api-reference_combos_get-combos.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/combos/create-combo.md",
+   "status": 200,
+   "bytes": 3522,
+   "file": "api-reference_combos_create-combo.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/overview.md",
+   "status": 200,
+   "bytes": 6589,
+   "file": "api-reference_rfqs_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/get-rfqs.md",
+   "status": 200,
+   "bytes": 4700,
+   "file": "api-reference_rfqs_get-rfqs.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/create-rfq.md",
+   "status": 200,
+   "bytes": 2633,
+   "file": "api-reference_rfqs_create-rfq.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/get-quotes.md",
+   "status": 200,
+   "bytes": 5899,
+   "file": "api-reference_rfqs_get-quotes.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/create-quote.md",
+   "status": 200,
+   "bytes": 3302,
+   "file": "api-reference_rfqs_create-quote.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/get-rfq-trades.md",
+   "status": 200,
+   "bytes": 5084,
+   "file": "api-reference_rfqs_get-rfq-trades.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/get-rfq-user-id.md",
+   "status": 200,
+   "bytes": 2116,
+   "file": "api-reference_rfqs_get-rfq-user-id.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/delete-rfq.md",
+   "status": 200,
+   "bytes": 2078,
+   "file": "api-reference_rfqs_delete-rfq.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/delete-quote.md",
+   "status": 200,
+   "bytes": 2291,
+   "file": "api-reference_rfqs_delete-quote.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/accept-quote.md",
+   "status": 200,
+   "bytes": 2740,
+   "file": "api-reference_rfqs_accept-quote.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/rfqs/confirm-quote.md",
+   "status": 200,
+   "bytes": 2518,
+   "file": "api-reference_rfqs_confirm-quote.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/portfolio/overview.md",
+   "status": 200,
+   "bytes": 9507,
+   "file": "api-reference_portfolio_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/portfolio/get-user-positions.md",
+   "status": 200,
+   "bytes": 7253,
+   "file": "api-reference_portfolio_get-user-positions.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/portfolio/get-activities.md",
+   "status": 200,
+   "bytes": 12321,
+   "file": "api-reference_portfolio_get-activities.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/account/get-account-balances.md",
+   "status": 200,
+   "bytes": 5462,
+   "file": "api-reference_account_get-account-balances.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/events/overview.md",
+   "status": 200,
+   "bytes": 3820,
+   "file": "api-reference_events_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/events/get-events.md",
+   "status": 200,
+   "bytes": 57570,
+   "file": "api-reference_events_get-events.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/events/get-event-by-slug.md",
+   "status": 200,
+   "bytes": 48987,
+   "file": "api-reference_events_get-event-by-slug.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/events/get-event-by-id.md",
+   "status": 200,
+   "bytes": 49001,
+   "file": "api-reference_events_get-event-by-id.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/partners/get-event-by-partner-external-id.md",
+   "status": 200,
+   "bytes": 49644,
+   "file": "api-reference_partners_get-event-by-partner-external-id.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/market/overview.md",
+   "status": 200,
+   "bytes": 16094,
+   "file": "api-reference_market_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/price-history/get-price-history.md",
+   "status": 200,
+   "bytes": 7096,
+   "file": "api-reference_price-history_get-price-history.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/markets/get-market-by-id.md",
+   "status": 200,
+   "bytes": 25424,
+   "file": "api-reference_markets_get-market-by-id.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/markets/get-market-by-slug.md",
+   "status": 200,
+   "bytes": 25420,
+   "file": "api-reference_markets_get-market-by-slug.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/markets/get-markets.md",
+   "status": 200,
+   "bytes": 29699,
+   "file": "api-reference_markets_get-markets.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/markets/get-market-bbo.md",
+   "status": 200,
+   "bytes": 4800,
+   "file": "api-reference_markets_get-market-bbo.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/markets/get-market-book.md",
+   "status": 200,
+   "bytes": 11336,
+   "file": "api-reference_markets_get-market-book.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/markets/get-market-settlement.md",
+   "status": 200,
+   "bytes": 2017,
+   "file": "api-reference_markets_get-market-settlement.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/asset-prices/overview.md",
+   "status": 200,
+   "bytes": 4726,
+   "file": "api-reference_asset-prices_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/asset-prices/get-a-bucketed-ohlc-price-series-for-one-or-more-assets.md",
+   "status": 200,
+   "bytes": 9246,
+   "file": "api-reference_asset-prices_get-a-bucketed-ohlc-price-series-for-one-or-more-assets.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/series/overview.md",
+   "status": 200,
+   "bytes": 1957,
+   "file": "api-reference_series_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/series/get-series.md",
+   "status": 200,
+   "bytes": 5777,
+   "file": "api-reference_series_get-series.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/series/get-series-by-id.md",
+   "status": 200,
+   "bytes": 2846,
+   "file": "api-reference_series_get-series-by-id.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/overview.md",
+   "status": 200,
+   "bytes": 2500,
+   "file": "api-reference_sports_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-all-leagues.md",
+   "status": 200,
+   "bytes": 3324,
+   "file": "api-reference_sports_get-all-leagues.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-league-by-slug.md",
+   "status": 200,
+   "bytes": 3108,
+   "file": "api-reference_sports_get-league-by-slug.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-events-by-league-slug.md",
+   "status": 200,
+   "bytes": 36725,
+   "file": "api-reference_sports_get-events-by-league-slug.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-all-sports.md",
+   "status": 200,
+   "bytes": 3810,
+   "file": "api-reference_sports_get-all-sports.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-sport-by-slug.md",
+   "status": 200,
+   "bytes": 4129,
+   "file": "api-reference_sports_get-sport-by-slug.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-events-by-sport-slug.md",
+   "status": 200,
+   "bytes": 36267,
+   "file": "api-reference_sports_get-events-by-sport-slug.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports-legacy/overview.md",
+   "status": 200,
+   "bytes": 3590,
+   "file": "api-reference_sports-legacy_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-sports.md",
+   "status": 200,
+   "bytes": 2314,
+   "file": "api-reference_sports_get-sports.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-sports-players.md",
+   "status": 200,
+   "bytes": 6074,
+   "file": "api-reference_sports_get-sports-players.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-sports-teams.md",
+   "status": 200,
+   "bytes": 7111,
+   "file": "api-reference_sports_get-sports-teams.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-sports-teams-for-provider.md",
+   "status": 200,
+   "bytes": 6125,
+   "file": "api-reference_sports_get-sports-teams-for-provider.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sports/get-sports-events.md",
+   "status": 200,
+   "bytes": 36316,
+   "file": "api-reference_sports_get-sports-events.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/tags/overview.md",
+   "status": 200,
+   "bytes": 756,
+   "file": "api-reference_tags_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/tags/get-tags.md",
+   "status": 200,
+   "bytes": 6221,
+   "file": "api-reference_tags_get-tags.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/tags/get-tag-by-slug.md",
+   "status": 200,
+   "bytes": 3994,
+   "file": "api-reference_tags_get-tag-by-slug.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/tags/get-tag-by-id.md",
+   "status": 200,
+   "bytes": 4424,
+   "file": "api-reference_tags_get-tag-by-id.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/tags/get-events-for-a-tag.md",
+   "status": 200,
+   "bytes": 34723,
+   "file": "api-reference_tags_get-events-for-a-tag.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/search/overview.md",
+   "status": 200,
+   "bytes": 1560,
+   "file": "api-reference_search_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/search/search.md",
+   "status": 200,
+   "bytes": 35974,
+   "file": "api-reference_search_search.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/incentives/overview.md",
+   "status": 200,
+   "bytes": 10012,
+   "file": "api-reference_incentives_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/incentives/get-incentive-programs.md",
+   "status": 200,
+   "bytes": 9182,
+   "file": "api-reference_incentives_get-incentive-programs.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/incentives/get-your-incentive-earnings.md",
+   "status": 200,
+   "bytes": 2770,
+   "file": "api-reference_incentives_get-your-incentive-earnings.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/websocket/overview.md",
+   "status": 200,
+   "bytes": 3196,
+   "file": "api-reference_websocket_overview.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/websocket/private.md",
+   "status": 200,
+   "bytes": 9720,
+   "file": "api-reference_websocket_private.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/websocket/markets.md",
+   "status": 200,
+   "bytes": 5448,
+   "file": "api-reference_websocket_markets.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sdks/introduction.md",
+   "status": 200,
+   "bytes": 3483,
+   "file": "api-reference_sdks_introduction.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sdks/python/quickstart.md",
+   "status": 200,
+   "bytes": 3877,
+   "file": "api-reference_sdks_python_quickstart.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sdks/python/events.md",
+   "status": 200,
+   "bytes": 3500,
+   "file": "api-reference_sdks_python_events.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sdks/python/markets.md",
+   "status": 200,
+   "bytes": 4469,
+   "file": "api-reference_sdks_python_markets.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sdks/python/orders.md",
+   "status": 200,
+   "bytes": 5229,
+   "file": "api-reference_sdks_python_orders.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sdks/python/portfolio.md",
+   "status": 200,
+   "bytes": 4174,
+   "file": "api-reference_sdks_python_portfolio.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sdks/python/account.md",
+   "status": 200,
+   "bytes": 1885,
+   "file": "api-reference_sdks_python_account.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sdks/python/series.md",
+   "status": 200,
+   "bytes": 2020,
+   "file": "api-reference_sdks_python_series.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sdks/python/sports.md",
+   "status": 200,
+   "bytes": 2285,
+   "file": "api-reference_sdks_python_sports.md"
+  },
+  {
+   "url": "https://docs.polymarket.us/api-reference/sdks/python/search.md",
+   "status": 200,
+   "bytes": 1678,
+   "file": "api-reference_sdks_python_search.md"
+  }
+ ]
+}

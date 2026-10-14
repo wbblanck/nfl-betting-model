@@ -1,0 +1,4809 @@
+{
+ "run_utc": "2026-10-14T14:06:30.583007+00:00",
+ "sports_status": 200,
+ "sports_raw": {
+  "sports": [
+   {
+    "sport": "nba",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/nba-new.png",
+    "resolution": "https://www.nba.com/",
+    "ordering": "away",
+    "tags": "5",
+    "series": "4",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cbb",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/NCAAMB.png",
+    "resolution": "https://www.ncaa.com/",
+    "ordering": "away",
+    "tags": "8",
+    "series": "7",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nhl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/nhl-new.png",
+    "resolution": "https://www.nhl.com/",
+    "ordering": "away",
+    "tags": "7",
+    "series": "6",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "epl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/EPL.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "17",
+    "series": "11",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ucl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/UCL.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "18",
+    "series": "12",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "mls",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/mls-new.png",
+    "resolution": "https://www.mlssoccer.com/",
+    "ordering": "home",
+    "tags": "10",
+    "series": "10",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ufc",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/UFC-0de60b108f.png",
+    "resolution": "https://www.ufc.com/",
+    "ordering": "home",
+    "tags": "9",
+    "series": "8",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "uefa",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/UCL.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "",
+    "series": "",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "mlb",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/MLB.png",
+    "resolution": "https://www.mlb.com/",
+    "ordering": "away",
+    "tags": "4",
+    "series": "15",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "f1",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/f1 app-dc77b6f2ff.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "263",
+    "series": "184",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "boxing",
+    "image": "https://static.polymarket.us/images/new-category-icons/Icon-Boxing.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "418",
+    "series": "75",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "poly-open",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "192",
+    "series": "58",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "itfm",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "143",
+    "series": "55",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "itfw",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "144",
+    "series": "56",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "fwc",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us world cup-4b29d0b648.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "326",
+    "series": "69",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "masters",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "21",
+    "series": "14",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cjcupbyr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "134",
+    "series": "52",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nbasl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/NCAAMB.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "628",
+    "series": "100",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "wnba",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/wcbb.png",
+    "resolution": "",
+    "ordering": "away",
+    "tags": "94",
+    "series": "49",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cham",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "469",
+    "series": "77",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cycling",
+    "image": "",
+    "resolution": "",
+    "ordering": "",
+    "tags": "",
+    "series": "",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nfl",
+    "image": "https://static.polymarket.us/images/new-category-icons/Icon-Rugby.png",
+    "resolution": "https://www.nfl.com/",
+    "ordering": "away",
+    "tags": "1",
+    "series": "2",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lal",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/laliga-us-22e2965558.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "27",
+    "series": "20",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cws",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/bbasdc-03b19b5d04.png",
+    "resolution": "",
+    "ordering": "away",
+    "tags": "329",
+    "series": "71",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bun",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/bundesliga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "25",
+    "series": "18",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "wcbb",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/wcbb.png",
+    "resolution": "",
+    "ordering": "away",
+    "tags": "28",
+    "series": "21",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cadi",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "70",
+    "series": "45",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lol",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us%20league%20of%20legends-73bb5ebf0a.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "41",
+    "series": "33",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "onefmyrtbeac",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "82",
+    "series": "46",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "trui",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "83",
+    "series": "47",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "atpcq",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "744",
+    "series": "156",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ipl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/us sport ipl-fc037e170f.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "37",
+    "series": "30",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "rbcheri",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "35",
+    "series": "29",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "flc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "676",
+    "series": "122",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cs2",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/cs2 us-0c4f3d1f74.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "40",
+    "series": "32",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "charschw",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "133",
+    "series": "51",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cod",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "42",
+    "series": "34",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "twc",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/worstcupfr-cbead287b5.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "328",
+    "series": "70",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "valetexa",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "29",
+    "series": "24",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "test",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "254",
+    "series": "96",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "indy500",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/indy 500 us-bbb1562ba4.png",
+    "resolution": "",
+    "ordering": "",
+    "tags": "216",
+    "series": "59",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "pgacham",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "135",
+    "series": "53",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nb1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1309",
+    "series": "308",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "memotour",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "132",
+    "series": "50",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20blast",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "557",
+    "series": "87",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "mlsas",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "828",
+    "series": "209",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "sea",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/serie-a-42eb8585b1.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "26",
+    "series": "19",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "blw",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "937",
+    "series": "215",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "mlc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "556",
+    "series": "86",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "valorant",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "257",
+    "series": "63",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "dota2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "258",
+    "series": "64",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "etpl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1313",
+    "series": "312",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ncaams",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1326",
+    "series": "319",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "icaa",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "938",
+    "series": "215",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "rbccana",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "136",
+    "series": "54",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "intf",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/soccer-09b0ec7b0a.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "337",
+    "series": "72",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ittf",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "656",
+    "series": "103",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ttelite",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "657",
+    "series": "104",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20blastw",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "558",
+    "series": "88",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "itfme",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "484",
+    "series": "79",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "itfwo",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "485",
+    "series": "80",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "rockclas",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "571",
+    "series": "93",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lmx",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/ligamxlogo-7d04701894.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "666",
+    "series": "111",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "us",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "152",
+    "series": "57",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "mlp",
+    "image": "https://static.polymarket.us/images/pickleball.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "870",
+    "series": "214",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20i",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "560",
+    "series": "90",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20iw",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "561",
+    "series": "91",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "kbo",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/kbo3-e54d75ea82.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "543",
+    "series": "81",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "3m",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "546",
+    "series": "84",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "pdcdarts",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "830",
+    "series": "210",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ligpor",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "968",
+    "series": "223",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "npb",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/nbp-3b344cdd65.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "544",
+    "series": "82",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "wtt",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "859",
+    "series": "212",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "travcham",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "240",
+    "series": "60",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20worldcupw",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "559",
+    "series": "89",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "dodgeball",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "939",
+    "series": "215",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cfb",
+    "image": "https://static.polymarket.us/images/new-category-icons/Icon-Football.png",
+    "resolution": "https://www.ncaa.com/",
+    "ordering": "away",
+    "tags": "6",
+    "series": "225",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cpl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "562",
+    "series": "92",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "spl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/spl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "980",
+    "series": "228",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "motogp",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "948",
+    "series": "216",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "corapunt",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "470",
+    "series": "78",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "fibawcq",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fiba-ae426b2793.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "615",
+    "series": "98",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "usc",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/usc.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "992",
+    "series": "240",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "egpl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1281",
+    "series": "300",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "czechligapro",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "658",
+    "series": "105",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "russialigapro",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "659",
+    "series": "106",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "genescot",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "393",
+    "series": "73",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ttcup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "660",
+    "series": "107",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "setkacup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "661",
+    "series": "108",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ttchallenger",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "662",
+    "series": "109",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "wincup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "663",
+    "series": "110",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "tsl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/tsl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "982",
+    "series": "230",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "iscocham",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "394",
+    "series": "74",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "misc",
+    "image": "",
+    "resolution": "",
+    "ordering": "",
+    "tags": "590",
+    "series": "94",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "sclc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "745",
+    "series": "157",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "johndeer",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "316",
+    "series": "66",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ekst",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "747",
+    "series": "159",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "theopen",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "596",
+    "series": "95",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "svnp",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "749",
+    "series": "161",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "atbl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "751",
+    "series": "163",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "uslc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "752",
+    "series": "164",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "alsv",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "754",
+    "series": "166",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bra",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "667",
+    "series": "113",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "brb",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "668",
+    "series": "114",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "kl1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "669",
+    "series": "115",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cpbl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "635",
+    "series": "102",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "els",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "670",
+    "series": "116",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "csl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "671",
+    "series": "117",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nor1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "755",
+    "series": "167",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lpa",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "672",
+    "series": "118",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "pl1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "673",
+    "series": "119",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "slr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "674",
+    "series": "120",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lco",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "675",
+    "series": "121",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "rpl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "677",
+    "series": "123",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "pdc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "678",
+    "series": "124",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nls",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "679",
+    "series": "125",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "sld",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "680",
+    "series": "126",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lng",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "681",
+    "series": "127",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lpc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "682",
+    "series": "128",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ecu1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "756",
+    "series": "168",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "den1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "757",
+    "series": "169",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "irlp",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "758",
+    "series": "170",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "irl1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "759",
+    "series": "171",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "vkl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "760",
+    "series": "172",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "dfb",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dfb.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "984",
+    "series": "233",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "danigolf",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1002",
+    "series": "245",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cshield",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/cshield.jpg",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "994",
+    "series": "242",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "wsl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/wsl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "993",
+    "series": "241",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "dflsc",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dflsc.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1001",
+    "series": "244",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "scp",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "683",
+    "series": "129",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "uel",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "684",
+    "series": "130",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "uecl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "685",
+    "series": "131",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "sud",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "686",
+    "series": "132",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "auc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "687",
+    "series": "133",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ofb",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "688",
+    "series": "134",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nwsl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "689",
+    "series": "135",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "uwcl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "690",
+    "series": "136",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "iplcr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "691",
+    "series": "137",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "mlccr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "692",
+    "series": "138",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "womessco",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "811",
+    "series": "205",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "portclas",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "807",
+    "series": "201",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20worldcupwcr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "695",
+    "series": "141",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "espnocho",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/red-eight-acc4e8b4e4.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "882",
+    "series": "215",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "polyclas",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "",
+    "series": "",
+    "isOperational": false,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cplcr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "698",
+    "series": "144",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "swsl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "746",
+    "series": "158",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "pvl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "748",
+    "series": "160",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cfac",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "750",
+    "series": "162",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "clbf",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "753",
+    "series": "165",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ykk",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "761",
+    "series": "173",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "uzb1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "762",
+    "series": "174",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "swe2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "763",
+    "series": "175",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "testcr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "701",
+    "series": "147",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "swcl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "764",
+    "series": "176",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "uru1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "765",
+    "series": "177",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lexp",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "766",
+    "series": "178",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "arg2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "767",
+    "series": "179",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20blastwcr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "694",
+    "series": "140",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20iwcr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "697",
+    "series": "143",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20blastcr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "693",
+    "series": "139",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "odiwcr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "700",
+    "series": "146",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20icr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "696",
+    "series": "142",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "odicr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "699",
+    "series": "145",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "setkameua",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "719",
+    "series": "149",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "setkamemd",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "720",
+    "series": "150",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "setkamecz",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "721",
+    "series": "151",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "setkawoua",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "722",
+    "series": "152",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "rl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "723",
+    "series": "153",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ow",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "724",
+    "series": "154",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "r6",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "725",
+    "series": "155",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "isl1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "768",
+    "series": "180",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "par2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "769",
+    "series": "181",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "btla",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "770",
+    "series": "182",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nascar",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "325",
+    "series": "67",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "hundred",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "777",
+    "series": "185",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "hundredw",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "778",
+    "series": "186",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "t20gsl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "779",
+    "series": "187",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "odcup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "780",
+    "series": "188",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "acle",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1310",
+    "series": "309",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cop",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "950",
+    "series": "217",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "usoc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1314",
+    "series": "313",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ere",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1282",
+    "series": "301",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lig2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "952",
+    "series": "219",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "womes",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "805",
+    "series": "199",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cdb",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "825",
+    "series": "206",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "eflc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "969",
+    "series": "224",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lgscup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "868",
+    "series": "213",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "wyndcham",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "617",
+    "series": "99",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ncaaws",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1327",
+    "series": "320",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bmwcham",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "771",
+    "series": "183",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "unitking",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "810",
+    "series": "204",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lpb",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "826",
+    "series": "207",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "newyorki",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "806",
+    "series": "200",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "tdc",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/tdc.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "995",
+    "series": "243",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lg1",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lg.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "951",
+    "series": "218",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lib",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lib.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "953",
+    "series": "220",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "eflch",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/eflch.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "981",
+    "series": "229",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lal2",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lal.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "983",
+    "series": "232",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "srb",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/srb.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "985",
+    "series": "235",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "tdp",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/tdp.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "987",
+    "series": "238",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "fedestju",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "702",
+    "series": "148",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "prescup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1068",
+    "series": "267",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bmwpgach",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1040",
+    "series": "261",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "uaepl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1078",
+    "series": "274",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "euromast",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1005",
+    "series": "248",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "wtadb",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1079",
+    "series": "275",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "fmcham",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "831",
+    "series": "211",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "atpdb",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1066",
+    "series": "266",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "iris",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1006",
+    "series": "249",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "britmast",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1004",
+    "series": "247",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "utr",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1346",
+    "series": "330",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bbl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1347",
+    "series": "331",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "county",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1208",
+    "series": "282",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "dwcs",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1209",
+    "series": "283",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "indiindi",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/liv.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "808",
+    "series": "202",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cpkcwome",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "809",
+    "series": "203",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "modus",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1027",
+    "series": "254",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "fibawwc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1294",
+    "series": "307",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "baycclas",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1254",
+    "series": "289",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nexocham",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1003",
+    "series": "246",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bankutah",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1210",
+    "series": "284",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cmpcup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1328",
+    "series": "321",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nbl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/nbl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1341",
+    "series": "329",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nwarkach",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1187",
+    "series": "277",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "defran",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1069",
+    "series": "268",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "polandmasters",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1076",
+    "series": "270",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "liv",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/liv.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "897",
+    "series": "271",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lpga",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "896",
+    "series": "272",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "dpwt",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1077",
+    "series": "273",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "natichil",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1333",
+    "series": "322",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "pureinsu",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1334",
+    "series": "323",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "biltcham",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1039",
+    "series": "260",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "acb",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/acb.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "614",
+    "series": "345",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "wta",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/random-team-images/tennis/WTA-NEW.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "24",
+    "series": "17",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "atp",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/random-team-images/tennis/APT-NEW.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "23",
+    "series": "16",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "alfrdunh",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1211",
+    "series": "285",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lnbp",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1353",
+    "series": "336",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bcl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1354",
+    "series": "337",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ahl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/ahl.png",
+    "resolution": "",
+    "ordering": "away",
+    "tags": "1454",
+    "series": "383",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lnb",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lnb.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1384",
+    "series": "357",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "eurolg",
+    "image": "https://static.polymarket.us/images/euroleague.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1359",
+    "series": "340",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "pll",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1362",
+    "series": "343",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ppa",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1363",
+    "series": "344",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "khl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/khl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1357",
+    "series": "338",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "compsolu",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1335",
+    "series": "324",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "del",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/del.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1456",
+    "series": "386",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "indicham",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1317",
+    "series": "314",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "buiclpga",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1318",
+    "series": "315",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "sascham",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1339",
+    "series": "328",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "deespa",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1255",
+    "series": "290",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "kornferr",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1337",
+    "series": "326",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "consfury",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1338",
+    "series": "327",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ebattlesefia",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1368",
+    "series": "346",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ebattlesefib",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1369",
+    "series": "347",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ebattlesefcwc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1370",
+    "series": "348",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ebattlesefwca",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1371",
+    "series": "349",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ebattlesefwcb",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1372",
+    "series": "350",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ebattlesefpl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1373",
+    "series": "351",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ebattlesefsa",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1374",
+    "series": "352",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "vtb",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1382",
+    "series": "356",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "daviscup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1379",
+    "series": "354",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lavercup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1380",
+    "series": "355",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "gbl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/gbl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1405",
+    "series": "361",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "denbl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/denbl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1411",
+    "series": "362",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "slnbl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/slnbl.jpg",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1413",
+    "series": "363",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "svkbl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/svkbl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1415",
+    "series": "364",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "hunbl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/hunbl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1417",
+    "series": "365",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "fra2",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/fra.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1418",
+    "series": "366",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "unl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1420",
+    "series": "367",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "grcup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1421",
+    "series": "368",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bsl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/bsl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1386",
+    "series": "358",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lba",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lba.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1388",
+    "series": "359",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lkl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lkl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1390",
+    "series": "360",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lottcham",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1212",
+    "series": "286",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "lehivall",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1336",
+    "series": "325",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cnl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1422",
+    "series": "369",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "buttberm",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1429",
+    "series": "371",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "shl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/shl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1463",
+    "series": "390",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "snhl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/snhl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1465",
+    "series": "391",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cehl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/cehl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1468",
+    "series": "392",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "j1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1470",
+    "series": "393",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "j2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1471",
+    "series": "394",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "par1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1472",
+    "series": "395",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bun2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1473",
+    "series": "396",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "tff1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1474",
+    "series": "397",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bel1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1475",
+    "series": "398",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "fnl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1476",
+    "series": "399",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "grsl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1477",
+    "series": "400",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "idnsl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1478",
+    "series": "401",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "hnl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1479",
+    "series": "402",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "efl1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1480",
+    "series": "403",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "efl2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1481",
+    "series": "404",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "engnl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1482",
+    "series": "405",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "thai1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1483",
+    "series": "406",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "mysl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1484",
+    "series": "407",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "serca",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1485",
+    "series": "408",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "sercb",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1486",
+    "series": "409",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "sercc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1487",
+    "series": "410",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "brc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1488",
+    "series": "411",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ligaf",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1489",
+    "series": "412",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "sapl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1490",
+    "series": "413",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cyp1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1491",
+    "series": "414",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "fbl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1492",
+    "series": "415",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cba",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/cba.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1495",
+    "series": "416",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "eurocup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1536",
+    "series": "437",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "kbl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1537",
+    "series": "438",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bjkcup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1539",
+    "series": "443",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "jpbl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/jpbl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1497",
+    "series": "417",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "slb",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/slb.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1499",
+    "series": "418",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ita2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1500",
+    "series": "419",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "autbl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1501",
+    "series": "420",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "sixkings",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1540",
+    "series": "444",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "uslcp",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1541",
+    "series": "445",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "afcq",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1507",
+    "series": "428",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "czcup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1591",
+    "series": "468",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nrl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/nrl.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1544",
+    "series": "447",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nrlw",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1545",
+    "series": "448",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "superleague",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/superleague.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1546",
+    "series": "449",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "urc",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/urc.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1547",
+    "series": "450",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bolcup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1574",
+    "series": "460",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "vidamexi",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1560",
+    "series": "454",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "svk2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1521",
+    "series": "436",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "prem",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/prem.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1548",
+    "series": "451",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "top14",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/top.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1549",
+    "series": "452",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "liiga",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/liiga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1551",
+    "series": "453",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "arfa",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1575",
+    "series": "461",
+    "isOperational": false,
+    "automaticResolution": false
+   },
+   {
+    "sport": "urupda",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1576",
+    "series": "462",
+    "isOperational": false,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nscup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1577",
+    "series": "463",
+    "isOperational": false,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bmwladic",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1431",
+    "series": "373",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "genecham",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1430",
+    "series": "372",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "stifchar",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1459",
+    "series": "389",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "asgames",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1588",
+    "series": "465",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "aseanc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1589",
+    "series": "466",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "maybcham",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1561",
+    "series": "455",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "u19f",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1590",
+    "series": "467",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ilaln",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1599",
+    "series": "474",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ilals",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1600",
+    "series": "475",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "caru20",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1601",
+    "series": "476",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "mne2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1602",
+    "series": "477",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "nmcup",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1592",
+    "series": "469",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "wecq",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1593",
+    "series": "470",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "norw1",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1603",
+    "series": "478",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ngnpfl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1604",
+    "series": "479",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ghpl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1605",
+    "series": "480",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cpreina",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1606",
+    "series": "481",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "u21eq",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1594",
+    "series": "471",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "svn3e",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1607",
+    "series": "482",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cpafed",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1608",
+    "series": "483",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "be1acff",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1609",
+    "series": "484",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "be1vv",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1610",
+    "series": "485",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "fawlc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1611",
+    "series": "486",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "minw",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1612",
+    "series": "487",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "peu20",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1613",
+    "series": "488",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "gaub",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1614",
+    "series": "489",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ch1cl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1615",
+    "series": "490",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cpauy",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1616",
+    "series": "491",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "slps",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1617",
+    "series": "492",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "isthp",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1618",
+    "series": "493",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "ven2",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1619",
+    "series": "494",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cpapy",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1595",
+    "series": "472",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "gtasc",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1620",
+    "series": "495",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cpach",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1596",
+    "series": "473",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "one",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/one-93caf9f06a6e.png",
+    "resolution": "https://www.onefc.com/",
+    "ordering": "home",
+    "tags": "1542",
+    "series": "446",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "pfl",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/pfl-4392d83bde57.png",
+    "resolution": "https://pflmma.com/",
+    "ordering": "home",
+    "tags": "1637",
+    "series": "498",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bledisloe",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1651",
+    "series": "558",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "uwwcq",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1652",
+    "series": "559",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "powerslap",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/powerslap-b919053a1fff.png",
+    "resolution": "https://www.powerslap.com/",
+    "ordering": "home",
+    "tags": "1661",
+    "series": "563",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "aba",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1648",
+    "series": "555",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "cznbl",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1649",
+    "series": "556",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "koris",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1650",
+    "series": "557",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "abudhabc",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1654",
+    "series": "561",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "totojapa",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1655",
+    "series": "562",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bsktcua",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1679",
+    "series": "566",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bsktcin",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1680",
+    "series": "567",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "dpworlch",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/dpwt.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1759",
+    "series": "574",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "anni",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/lpga.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1760",
+    "series": "575",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "bskt3x3",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1702",
+    "series": "568",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "acw",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1765",
+    "series": "581",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "austcham",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1758",
+    "series": "573",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "worlwide",
+    "image": "",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1653",
+    "series": "560",
+    "isOperational": true,
+    "automaticResolution": false
+   },
+   {
+    "sport": "simmbank",
+    "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/league-images/golf.png",
+    "resolution": "",
+    "ordering": "home",
+    "tags": "1580",
+    "series": "464",
+    "isOperational": true,
+    "automaticResolution": false
+   }
+  ]
+ },
+ "queried": [
+  "NFL",
+  "NBA",
+  "WNBA",
+  "MLB",
+  "NHL",
+  "college football",
+  "college basketball",
+  "soccer",
+  "tennis",
+  "golf",
+  "UFC"
+ ],
+ "by_sport": {
+  "NFL": {
+   "search_status": 200,
+   "search_events": 20,
+   "games_found": 7,
+   "games": [
+    {
+     "slug": "nfl-dal-phi-2026-10-26",
+     "title": "DAL Cowboys vs. PHI Eagles",
+     "start": "2026-10-27T00:15:00Z",
+     "series": "nfl-2025",
+     "status": 200,
+     "n_markets": 397
+    },
+    {
+     "slug": "nfl-kc-sea-2026-10-25",
+     "title": "KC Chiefs vs. SEA Seahawks",
+     "start": "2026-10-26T00:20:00Z",
+     "series": "nfl-2025",
+     "status": 200,
+     "n_markets": 397
+    },
+    {
+     "slug": "nfl-gb-det-2026-10-25",
+     "title": "GB Packers vs. DET Lions",
+     "start": "2026-10-25T20:25:00Z",
+     "series": "nfl-2025",
+     "status": 200,
+     "n_markets": 401
+    }
+   ],
+   "markets": 1195,
+   "both_sides_quoted": 233,
+   "with_best_bid_ask": 233,
+   "fee_coefficients": {
+    "0.0695": 1195
+   },
+   "market_types": {
+    "football_team_full_game_spread": 123,
+    "football_team_points_full_game_total": 102,
+    "football_team_first_half_spread": 93,
+    "football_team_second_half_spread": 93,
+    "football_team_full_game_total": 87,
+    "football_team_first_half_total": 48,
+    "football_team_second_half_total": 48,
+    "football_game_race_to_points": 45,
+    "football_game_first_quarter_total": 40,
+    "football_game_second_quarter_total": 40,
+    "football_game_third_quarter_total": 40,
+    "football_game_fourth_quarter_total": 40,
+    "football_game_first_half_total": 33,
+    "football_game_second_half_total": 33,
+    "football_game_double_result": 27,
+    "football_game_total_pass_touchdowns": 24,
+    "football_game_total_touchdowns": 24,
+    "football_game_exact_margin": 21,
+    "football_team_total_field_goals_made": 18,
+    "football_team_total_offensive_yards": 18,
+    "football_team_total_touchdowns": 18,
+    "football_team_first_quarter_spread": 15,
+    "football_team_second_quarter_spread": 15,
+    "football_team_third_quarter_spread": 15,
+    "football_team_fourth_quarter_spread": 15,
+    "football_game_total_rush_touchdowns": 12,
+    "football_game_first_score": 9,
+    "football_game_first_touchdown": 9,
+    "football_team_first_half_winner": 9,
+    "football_team_first_quarter_winner": 9,
+    "football_team_second_half_winner": 9,
+    "football_team_second_quarter_winner": 9,
+    "football_team_third_quarter_winner": 9,
+    "football_team_fourth_quarter_winner": 9,
+    "football_team_total_defensive_special_teams_touchdowns": 6,
+    "football_team_full_game_winner": 3,
+    "football_game_total_two_point_conversions": 3,
+    "football_game_first_quarter_both_teams_score_points": 3,
+    "football_game_second_quarter_both_teams_score_points": 3,
+    "football_game_third_quarter_both_teams_score_points": 3,
+    "football_game_fourth_quarter_both_teams_score_points": 3,
+    "football_game_total_defensive_special_teams_touchdowns": 3,
+    "football_game_overtime": 3,
+    "football_game_safety": 3,
+    "football_game_tie": 3
+   },
+   "samples": {
+    "football_game_first_score": [
+     "First Team to Score Points: Dallas Cowboys",
+     "First Team to Score Points: Philadelphia Eagles",
+     "First Team to Score Points: Neither Team"
+    ],
+    "football_game_first_touchdown": [
+     "First Team to Score a Touchdown: Dallas Cowboys",
+     "First Team to Score a Touchdown: Philadelphia Eagles",
+     "First Team to Score a Touchdown: Neither Team"
+    ],
+    "football_game_double_result": [
+     "Halftime / Full Time: DAL 1H / DAL Game",
+     "Halftime / Full Time: DAL 1H / Tie",
+     "Halftime / Full Time: DAL 1H / PHI Game"
+    ],
+    "football_game_exact_margin": [
+     "Exact Margin of Victory: DAL Cowboys by 15+",
+     "Exact Margin of Victory: DAL Cowboys by 7-14",
+     "Exact Margin of Victory: DAL Cowboys by 1-6"
+    ],
+    "football_game_race_to_points": [
+     "Race to 14 Points: Dallas Cowboys",
+     "Race to 21 Points: Dallas Cowboys",
+     "Race to 28 Points: Dallas Cowboys"
+    ],
+    "football_team_first_half_winner": [
+     "Will Dallas Cowboys win the first half?",
+     "Will the first half end tied?",
+     "Will Philadelphia Eagles win the first half?"
+    ],
+    "football_team_first_quarter_winner": [
+     "Will Dallas Cowboys win the first quarter?",
+     "Will the first quarter end tied?",
+     "Will Philadelphia Eagles win the first quarter?"
+    ],
+    "football_team_second_half_winner": [
+     "Will Dallas Cowboys win the second half?",
+     "Will the second half end tied?",
+     "Will Philadelphia Eagles win the second half?"
+    ],
+    "football_team_second_quarter_winner": [
+     "Will Dallas Cowboys win the second quarter?",
+     "Will the second quarter end tied?",
+     "Will Philadelphia Eagles win the second quarter?"
+    ],
+    "football_team_third_quarter_winner": [
+     "Will Dallas Cowboys win the third quarter?",
+     "Will the third quarter end tied?",
+     "Will Philadelphia Eagles win the third quarter?"
+    ],
+    "football_team_fourth_quarter_winner": [
+     "Will Dallas Cowboys win the fourth quarter?",
+     "Will the fourth quarter end tied?",
+     "Will Philadelphia Eagles win the fourth quarter?"
+    ],
+    "football_team_full_game_winner": [
+     "Who will win in the upcoming football event Dallas Cowboys vs Philadelphia Eagles scheduled for October 27, 2026 at 12:15 AM UTC?",
+     "Who will win in the upcoming football event Kansas City Chiefs vs Seattle Seahawks scheduled for October 26, 2026 at 12:20 AM UTC?",
+     "Who will win in the upcoming football event Green Bay Packers vs Detroit Lions scheduled for October 25, 2026 at 8:25 PM UTC?"
+    ],
+    "football_team_first_half_spread": [
+     "Will the Dallas Cowboys cover -0.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -10.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -13.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?"
+    ],
+    "football_team_first_quarter_spread": [
+     "Will the Dallas Cowboys cover -0.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -1.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -2.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?"
+    ],
+    "football_team_second_half_spread": [
+     "Will the Dallas Cowboys cover -0.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -10.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -13.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?"
+    ],
+    "football_team_second_quarter_spread": [
+     "Will the Dallas Cowboys cover -0.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -1.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -2.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?"
+    ],
+    "football_team_third_quarter_spread": [
+     "Will the Dallas Cowboys cover -0.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -1.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -2.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?"
+    ],
+    "football_team_fourth_quarter_spread": [
+     "Will the Dallas Cowboys cover -0.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -1.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -2.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?"
+    ],
+    "football_team_full_game_spread": [
+     "Will the Dallas Cowboys cover -10.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -13.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?",
+     "Will the Dallas Cowboys cover -14.5 vs the Philadelphia Eagles in DAL Cowboys vs. PHI Eagles?"
+    ],
+    "football_game_total_two_point_conversions": [
+     "Total Successful Two-Point Conversions: Over 0.5",
+     "Total Successful Two-Point Conversions: Over 0.5",
+     "Total Successful Two-Point Conversions: Over 0.5"
+    ],
+    "football_game_first_quarter_both_teams_score_points": [
+     "Both Teams to Score Points - 1st Quarter: Over 0.5",
+     "Both Teams to Score Points - 1st Quarter: Over 0.5",
+     "Both Teams to Score Points - 1st Quarter: Over 0.5"
+    ],
+    "football_game_second_quarter_both_teams_score_points": [
+     "Both Teams to Score Points - 2nd Quarter: Over 0.5",
+     "Both Teams to Score Points - 2nd Quarter: Over 0.5",
+     "Both Teams to Score Points - 2nd Quarter: Over 0.5"
+    ],
+    "football_game_third_quarter_both_teams_score_points": [
+     "Both Teams to Score Points - 3rd Quarter: Over 0.5",
+     "Both Teams to Score Points - 3rd Quarter: Over 0.5",
+     "Both Teams to Score Points - 3rd Quarter: Over 0.5"
+    ],
+    "football_game_fourth_quarter_both_teams_score_points": [
+     "Both Teams to Score Points - 4th Quarter: Over 0.5",
+     "Both Teams to Score Points - 4th Quarter: Over 0.5",
+     "Both Teams to Score Points - 4th Quarter: Over 0.5"
+    ],
+    "football_game_total_defensive_special_teams_touchdowns": [
+     "Total Defensive/Special Teams Touchdowns: Over 0.5",
+     "Total Defensive/Special Teams Touchdowns: Over 0.5",
+     "Total Defensive/Special Teams Touchdowns: Over 0.5"
+    ],
+    "football_game_overtime": [
+     "Overtime?: Over 0.5",
+     "Overtime?: Over 0.5",
+     "Overtime?: Over 0.5"
+    ],
+    "football_game_total_pass_touchdowns": [
+     "Total Passing Touchdowns: Over 0.5",
+     "Total Passing Touchdowns: Over 1.5",
+     "Total Passing Touchdowns: Over 2.5"
+    ],
+    "football_game_total_rush_touchdowns": [
+     "Total Rushing Touchdowns: Over 0.5",
+     "Total Rushing Touchdowns: Over 1.5",
+     "Total Rushing Touchdowns: Over 2.5"
+    ],
+    "football_game_safety": [
+     "Will there be a Safety?: Over 0.5",
+     "Will there be a Safety?: Over 0.5",
+     "Will there be a Safety?: Over 0.5"
+    ],
+    "football_game_total_touchdowns": [
+     "Total Touchdowns: Over 0.5",
+     "Total Touchdowns: Over 1.5",
+     "Total Touchdowns: Over 2.5"
+    ],
+    "football_team_total_defensive_special_teams_touchdowns": [
+     "Team Total Defensive/Special Teams Touchdowns: Over 0.5",
+     "Team Total Defensive/Special Teams Touchdowns: Over 0.5",
+     "Team Total Defensive/Special Teams Touchdowns: Over 0.5"
+    ],
+    "football_team_total_field_goals_made": [
+     "Team Total Field Goals Made: Over 0.5",
+     "Team Total Field Goals Made: Over 1.5",
+     "Team Total Field Goals Made: Over 2.5"
+    ],
+    "football_game_tie": [
+     "Game Ends in a Tie (Including Overtime)?: Over 0.5",
+     "Game Ends in a Tie (Including Overtime)?: Over 0.5",
+     "Game Ends in a Tie (Including Overtime)?: Over 0.5"
+    ],
+    "football_team_total_offensive_yards": [
+     "Team Total Offensive Yards: Over 250.5",
+     "Team Total Offensive Yards: Over 350.5",
+     "Team Total Offensive Yards: Over 450.5"
+    ],
+    "football_team_total_touchdowns": [
+     "Team Total Touchdowns: Over 2.5",
+     "Team Total Touchdowns: Over 3.5",
+     "Team Total Touchdowns: Over 4.5"
+    ],
+    "football_game_first_half_total": [
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 15.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 17.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 19.5?"
+    ],
+    "football_game_first_quarter_total": [
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 10.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 11.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 12.5?"
+    ],
+    "football_game_second_half_total": [
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 15.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 17.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 19.5?"
+    ],
+    "football_game_second_quarter_total": [
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 10.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 11.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 12.5?"
+    ],
+    "football_game_third_quarter_total": [
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 10.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 11.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 12.5?"
+    ],
+    "football_game_fourth_quarter_total": [
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 10.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 11.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 12.5?"
+    ],
+    "football_team_full_game_total": [
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 20.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 23.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 26.5?"
+    ],
+    "football_team_points_full_game_total": [
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 13.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 14.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 16.5?"
+    ],
+    "football_team_first_half_total": [
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 10.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 12.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 13.5?"
+    ],
+    "football_team_second_half_total": [
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 10.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 12.5?",
+     "Will the total in DAL Cowboys vs. PHI Eagles be more than 13.5?"
+    ]
+   }
+  },
+  "NBA": {
+   "search_status": 200,
+   "search_events": 20,
+   "games_found": 0,
+   "games": [],
+   "markets": 0,
+   "both_sides_quoted": 0,
+   "with_best_bid_ask": 0,
+   "fee_coefficients": {},
+   "market_types": {},
+   "samples": {}
+  },
+  "WNBA": {
+   "search_status": 200,
+   "search_events": 4,
+   "games_found": 1,
+   "games": [
+    {
+     "slug": "wnba-atl-gsv-2026-10-17",
+     "title": "Game 1: Atlanta vs. Golden State",
+     "start": "2026-10-17T19:30:00Z",
+     "series": "wnba-2026",
+     "status": 200,
+     "n_markets": 18
+    }
+   ],
+   "markets": 18,
+   "both_sides_quoted": 18,
+   "with_best_bid_ask": 18,
+   "fee_coefficients": {
+    "0.0695": 18
+   },
+   "market_types": {
+    "basketball_team_full_game_total": 9,
+    "basketball_team_full_game_spread": 8,
+    "basketball_team_full_game_winner": 1
+   },
+   "samples": {
+    "basketball_team_full_game_spread": [
+     "Will the Atlanta cover +10.5 vs the Golden State in Game 1: ATL vs GSV?",
+     "Will the Atlanta cover +7.5 vs the Golden State in Game 1: ATL vs GSV?",
+     "Will the Atlanta cover +4.5 vs the Golden State in Game 1: ATL vs GSV?"
+    ],
+    "basketball_team_full_game_total": [
+     "Will the total in Game 1: ATL vs GSV be more than 142.5?",
+     "Will the total in Game 1: ATL vs GSV be more than 145.5?",
+     "Will the total in Game 1: ATL vs GSV be more than 148.5?"
+    ],
+    "basketball_team_full_game_winner": [
+     "Who will win in the upcoming basketball event Atlanta vs Golden State scheduled for October 17, 2026 at 7:30 PM UTC?"
+    ]
+   }
+  },
+  "MLB": {
+   "search_status": 200,
+   "search_events": 20,
+   "games_found": 5,
+   "games": [
+    {
+     "slug": "mlb-tb-cle-2026-10-17",
+     "title": "Game 5: TB Rays vs. CLE Guardians",
+     "start": "2026-10-18T00:00:00Z",
+     "series": "mlb-2026",
+     "status": 200,
+     "n_markets": 9
+    },
+    {
+     "slug": "mlb-tb-cle-2026-10-16",
+     "title": "Game 4: TB Rays vs. CLE Guardians",
+     "start": "2026-10-16T22:00:00Z",
+     "series": "mlb-2026",
+     "status": 200,
+     "n_markets": 9
+    },
+    {
+     "slug": "mlb-mil-lad-2026-10-15",
+     "title": "Game 4: MIL Brewers vs. LA Dodgers",
+     "start": "2026-10-16T01:00:00Z",
+     "series": "mlb-2026",
+     "status": 200,
+     "n_markets": 65
+    }
+   ],
+   "markets": 83,
+   "both_sides_quoted": 76,
+   "with_best_bid_ask": 76,
+   "fee_coefficients": {
+    "0.0695": 83
+   },
+   "market_types": {
+    "baseball_team_full_game_spread": 24,
+    "baseball_team_first_five_total": 5,
+    "baseball_team_full_game_winner": 3,
+    "baseball_team_inning9_winner": 3,
+    "baseball_team_inning6_winner": 3,
+    "baseball_team_inning5_winner": 3,
+    "baseball_team_inning1_winner": 3,
+    "baseball_team_inning2_winner": 3,
+    "baseball_team_inning3_winner": 3,
+    "baseball_team_inning4_winner": 3,
+    "baseball_team_inning7_winner": 3,
+    "baseball_team_inning8_winner": 3,
+    "baseball_team_first_five_winner": 3,
+    "baseball_team_inning2_total": 2,
+    "baseball_team_inning3_total": 2,
+    "baseball_team_inning4_total": 2,
+    "baseball_team_inning5_total": 2,
+    "baseball_team_inning7_total": 2,
+    "baseball_team_inning8_total": 2,
+    "baseball_team_inning9_total": 2,
+    "baseball_team_inning6_total": 2,
+    "baseball_team_first_five_spread": 2,
+    "baseball_team_inning1_total": 1,
+    "baseball_team_first_inning_run": 1,
+    "baseball_game_extra_innings": 1
+   },
+   "samples": {
+    "baseball_team_full_game_spread": [
+     "Will the Tampa Bay Rays cover 3.5 vs the Cleveland Guardians in Game 5: TB Rays vs. CLE Guardians?",
+     "Will the Tampa Bay Rays cover 4.5 vs the Cleveland Guardians in Game 5: TB Rays vs. CLE Guardians?",
+     "Will the Tampa Bay Rays cover 1.5 vs the Cleveland Guardians in Game 5: TB Rays vs. CLE Guardians?"
+    ],
+    "baseball_team_full_game_winner": [
+     "Who will win in the upcoming baseball event Tampa Bay Rays vs Cleveland Guardians scheduled for October 18, 2026 at 12:00 AM UTC?",
+     "Who will win in the upcoming baseball event Tampa Bay Rays vs Cleveland Guardians scheduled for October 16, 2026 at 10:00 PM UTC?",
+     "Who will win in the upcoming baseball event Milwaukee Brewers vs Los Angeles Dodgers scheduled for October 16, 2026 at 1:00 AM UTC?"
+    ],
+    "baseball_team_inning9_winner": [
+     "Will the 9th inning of Los Angeles Dodgers vs Milwaukee Brewers end in a tie?",
+     "Will the Los Angeles Dodgers win the 9th inning vs the Milwaukee Brewers?",
+     "Will the Milwaukee Brewers win the 9th inning vs the Los Angeles Dodgers?"
+    ],
+    "baseball_team_inning6_winner": [
+     "Will the 6th inning of Los Angeles Dodgers vs Milwaukee Brewers end in a tie?",
+     "Will the Los Angeles Dodgers win the 6th inning vs the Milwaukee Brewers?",
+     "Will the Milwaukee Brewers win the 6th inning vs the Los Angeles Dodgers?"
+    ],
+    "baseball_team_inning5_winner": [
+     "Will the 5th inning of Los Angeles Dodgers vs Milwaukee Brewers end in a tie?",
+     "Will the Milwaukee Brewers win the 5th inning vs the Los Angeles Dodgers?",
+     "Will the Los Angeles Dodgers win the 5th inning vs the Milwaukee Brewers?"
+    ],
+    "baseball_team_inning1_winner": [
+     "Will the 1st inning of Los Angeles Dodgers vs Milwaukee Brewers end in a tie?",
+     "Will the Los Angeles Dodgers win the 1st inning vs the Milwaukee Brewers?",
+     "Will the Milwaukee Brewers win the 1st inning vs the Los Angeles Dodgers?"
+    ],
+    "baseball_team_inning2_winner": [
+     "Will the 2nd inning of Los Angeles Dodgers vs Milwaukee Brewers end in a tie?",
+     "Will the Los Angeles Dodgers win the 2nd inning vs the Milwaukee Brewers?",
+     "Will the Milwaukee Brewers win the 2nd inning vs the Los Angeles Dodgers?"
+    ],
+    "baseball_team_inning3_winner": [
+     "Will the 3rd inning of Los Angeles Dodgers vs Milwaukee Brewers end in a tie?",
+     "Will the Los Angeles Dodgers win the 3rd inning vs the Milwaukee Brewers?",
+     "Will the Milwaukee Brewers win the 3rd inning vs the Los Angeles Dodgers?"
+    ],
+    "baseball_team_inning4_winner": [
+     "Will the 4th inning of Los Angeles Dodgers vs Milwaukee Brewers end in a tie?",
+     "Will the Los Angeles Dodgers win the 4th inning vs the Milwaukee Brewers?",
+     "Will the Milwaukee Brewers win the 4th inning vs the Los Angeles Dodgers?"
+    ],
+    "baseball_team_inning7_winner": [
+     "Will the 7th inning of Los Angeles Dodgers vs Milwaukee Brewers end in a tie?",
+     "Will the Los Angeles Dodgers win the 7th inning vs the Milwaukee Brewers?",
+     "Will the Milwaukee Brewers win the 7th inning vs the Los Angeles Dodgers?"
+    ],
+    "baseball_team_inning8_winner": [
+     "Will the 8th inning of Los Angeles Dodgers vs Milwaukee Brewers end in a tie?",
+     "Will the Los Angeles Dodgers win the 8th inning vs the Milwaukee Brewers?",
+     "Will the Milwaukee Brewers win the 8th inning vs the Los Angeles Dodgers?"
+    ],
+    "baseball_team_inning1_total": [
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 1.5 runs in the 1st inning?"
+    ],
+    "baseball_team_first_inning_run": [
+     "Will any run be scored in the 1st inning of Game 4: MIL Brewers vs. LA Dodgers?"
+    ],
+    "baseball_team_first_five_total": [
+     "Will the total in Game 4: MIL Brewers vs. LA Dodgers be more than 3.5?",
+     "Will the total in Game 4: MIL Brewers vs. LA Dodgers be more than 4.5?",
+     "Will the total in Game 4: MIL Brewers vs. LA Dodgers be more than 5.5?"
+    ],
+    "baseball_team_first_five_winner": [
+     "Will the first 5 innings of Los Angeles Dodgers vs Milwaukee Brewers end in a tie?",
+     "Will the Los Angeles Dodgers win the first 5 innings vs the Milwaukee Brewers?",
+     "Will the Milwaukee Brewers win the first 5 innings vs the Los Angeles Dodgers?"
+    ],
+    "baseball_team_inning2_total": [
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 0.5 runs in the 2nd inning?",
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 1.5 runs in the 2nd inning?"
+    ],
+    "baseball_team_inning3_total": [
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 0.5 runs in the 3rd inning?",
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 1.5 runs in the 3rd inning?"
+    ],
+    "baseball_team_inning4_total": [
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 0.5 runs in the 4th inning?",
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 1.5 runs in the 4th inning?"
+    ],
+    "baseball_team_inning5_total": [
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 0.5 runs in the 5th inning?",
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 1.5 runs in the 5th inning?"
+    ],
+    "baseball_team_inning7_total": [
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 0.5 runs in the 7th inning?",
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 1.5 runs in the 7th inning?"
+    ],
+    "baseball_team_inning8_total": [
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 0.5 runs in the 8th inning?",
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 1.5 runs in the 8th inning?"
+    ],
+    "baseball_team_inning9_total": [
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 0.5 runs in the 9th inning?",
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 1.5 runs in the 9th inning?"
+    ],
+    "baseball_team_inning6_total": [
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 0.5 runs in the 6th inning?",
+     "Will the Milwaukee Brewers and Los Angeles Dodgers combine for more than 1.5 runs in the 6th inning?"
+    ],
+    "baseball_game_extra_innings": [
+     "Will Game 4: MIL Brewers vs. LA Dodgers go to extra innings?"
+    ],
+    "baseball_team_first_five_spread": [
+     "Will the Milwaukee Brewers cover -1.5 vs the Los Angeles Dodgers in Game 4: MIL Brewers vs. LA Dodgers in the first 5 innings?",
+     "Will the Milwaukee Brewers cover +1.5 vs the Los Angeles Dodgers in Game 4: MIL Brewers vs. LA Dodgers in the first 5 innings?"
+    ]
+   }
+  },
+  "NHL": {
+   "search_status": 200,
+   "search_events": 20,
+   "games_found": 0,
+   "games": [],
+   "markets": 0,
+   "both_sides_quoted": 0,
+   "with_best_bid_ask": 0,
+   "fee_coefficients": {},
+   "market_types": {},
+   "samples": {}
+  },
+  "college football": {
+   "search_status": 200,
+   "search_events": 20,
+   "games_found": 2,
+   "games": [
+    {
+     "slug": "cfb-boscol-gtech-2026-10-24",
+     "title": "Boston College vs. Georgia Tech",
+     "start": "2026-10-24T19:30:00Z",
+     "series": "cfb-2026",
+     "status": 200,
+     "n_markets": 82
+    },
+    {
+     "slug": "cfb-pitt-boscol-2026-10-17",
+     "title": "Pittsburgh vs. Boston College",
+     "start": "2026-10-17T16:00:00Z",
+     "series": "cfb-2026",
+     "status": 200,
+     "n_markets": 280
+    }
+   ],
+   "markets": 362,
+   "both_sides_quoted": 216,
+   "with_best_bid_ask": 216,
+   "fee_coefficients": {
+    "0.0695": 362
+   },
+   "market_types": {
+    "football_team_full_game_spread": 41,
+    "football_team_full_game_total": 25,
+    "football_team_points_full_game_total": 22,
+    "football_game_exact_margin": 20,
+    "football_team_first_half_total": 14,
+    "football_team_total_first_downs": 12,
+    "football_team_total_field_goals_made": 12,
+    "football_team_total_receptions": 12,
+    "football_team_total_pass_touchdowns": 12,
+    "football_team_total_pass_yards": 12,
+    "football_team_total_rush_touchdowns": 12,
+    "football_game_first_half_total": 11,
+    "football_game_first_score": 6,
+    "football_game_first_touchdown": 6,
+    "football_team_first_half_winner": 6,
+    "football_team_first_quarter_winner": 6,
+    "football_team_second_half_winner": 6,
+    "football_team_second_quarter_winner": 6,
+    "football_team_third_quarter_winner": 6,
+    "football_team_fourth_quarter_winner": 6,
+    "football_game_total_touchdowns": 6,
+    "football_team_first_half_spread": 6,
+    "football_team_first_quarter_spread": 6,
+    "football_team_second_half_spread": 6,
+    "football_team_second_quarter_spread": 6,
+    "football_team_third_quarter_spread": 6,
+    "football_team_fourth_quarter_spread": 6,
+    "football_team_total_rush_yards": 6,
+    "football_team_total_offensive_yards": 6,
+    "football_team_total_touchdowns": 6,
+    "football_team_second_half_total": 6,
+    "football_game_first_quarter_total": 5,
+    "football_game_second_half_total": 5,
+    "football_game_second_quarter_total": 5,
+    "football_game_third_quarter_total": 5,
+    "football_game_fourth_quarter_total": 5,
+    "football_team_full_game_winner": 2,
+    "football_game_total_two_point_conversions": 2,
+    "football_game_total_fourth_down_conversions": 2,
+    "football_game_first_quarter_both_teams_score_points": 2,
+    "football_game_second_quarter_both_teams_score_points": 2,
+    "football_game_third_quarter_both_teams_score_points": 2,
+    "football_game_fourth_quarter_both_teams_score_points": 2,
+    "football_game_total_defensive_special_teams_touchdowns": 2,
+    "football_game_overtime": 2
+   },
+   "samples": {
+    "football_game_first_score": [
+     "First Team to Score Points: Boston College",
+     "First Team to Score Points: Georgia Tech",
+     "First Team to Score Points: Neither Team"
+    ],
+    "football_game_first_touchdown": [
+     "First Team to Score a Touchdown: Boston College",
+     "First Team to Score a Touchdown: Georgia Tech",
+     "First Team to Score a Touchdown: Neither Team"
+    ],
+    "football_game_exact_margin": [
+     "Exact Margin of Victory: Boston College by 25+",
+     "Exact Margin of Victory: Boston College by 19-24",
+     "Exact Margin of Victory: Boston College by 13-18"
+    ],
+    "football_team_first_half_winner": [
+     "Will Boston College win the first half?",
+     "Will the first half end tied?",
+     "Will Georgia Tech win the first half?"
+    ],
+    "football_team_first_quarter_winner": [
+     "Will Boston College win the first quarter?",
+     "Will the first quarter end tied?",
+     "Will Georgia Tech win the first quarter?"
+    ],
+    "football_team_second_half_winner": [
+     "Will Boston College win the second half?",
+     "Will the second half end tied?",
+     "Will Georgia Tech win the second half?"
+    ],
+    "football_team_second_quarter_winner": [
+     "Will Boston College win the second quarter?",
+     "Will the second quarter end tied?",
+     "Will Georgia Tech win the second quarter?"
+    ],
+    "football_team_third_quarter_winner": [
+     "Will Boston College win the third quarter?",
+     "Will the third quarter end tied?",
+     "Will Georgia Tech win the third quarter?"
+    ],
+    "football_team_fourth_quarter_winner": [
+     "Will Boston College win the fourth quarter?",
+     "Will the fourth quarter end tied?",
+     "Will Georgia Tech win the fourth quarter?"
+    ],
+    "football_team_full_game_winner": [
+     "Who will win in the upcoming football event Boston College vs Georgia Tech scheduled for October 24, 2026 at 7:30 PM UTC?",
+     "Who will win in the upcoming football event Pittsburgh vs Boston College scheduled for October 17, 2026 at 4:00 PM UTC?"
+    ],
+    "football_game_total_two_point_conversions": [
+     "Total Successful Two-Point Conversions: Over 0.5",
+     "Total Successful Two-Point Conversions: Over 0.5"
+    ],
+    "football_game_total_fourth_down_conversions": [
+     "Total 4th Down Conversions: Over 0.5",
+     "Total 4th Down Conversions: Over 0.5"
+    ],
+    "football_game_first_quarter_both_teams_score_points": [
+     "Both Teams to Score Points - 1st Quarter: Over 0.5",
+     "Both Teams to Score Points - 1st Quarter: Over 0.5"
+    ],
+    "football_game_second_quarter_both_teams_score_points": [
+     "Both Teams to Score Points - 2nd Quarter: Over 0.5",
+     "Both Teams to Score Points - 2nd Quarter: Over 0.5"
+    ],
+    "football_game_third_quarter_both_teams_score_points": [
+     "Both Teams to Score Points - 3rd Quarter: Over 0.5",
+     "Both Teams to Score Points - 3rd Quarter: Over 0.5"
+    ],
+    "football_game_fourth_quarter_both_teams_score_points": [
+     "Both Teams to Score Points - 4th Quarter: Over 0.5",
+     "Both Teams to Score Points - 4th Quarter: Over 0.5"
+    ],
+    "football_game_total_defensive_special_teams_touchdowns": [
+     "Total Defensive/Special Teams Touchdowns: Over 0.5",
+     "Total Defensive/Special Teams Touchdowns: Over 0.5"
+    ],
+    "football_team_total_first_downs": [
+     "Team Total First Downs: Over 19.5",
+     "Team Total First Downs: Over 21.5",
+     "Team Total First Downs: Over 23.5"
+    ],
+    "football_team_total_field_goals_made": [
+     "Team Total Field Goals Made: Over 0.5",
+     "Team Total Field Goals Made: Over 1.5",
+     "Team Total Field Goals Made: Over 2.5"
+    ],
+    "football_game_overtime": [
+     "Overtime?: Over 0.5",
+     "Overtime?: Over 0.5"
+    ],
+    "football_team_total_receptions": [
+     "Team Total Receptions: Over 14.5",
+     "Team Total Receptions: Over 19.5",
+     "Team Total Receptions: Over 24.5"
+    ],
+    "football_team_total_pass_touchdowns": [
+     "Team Total Passing Touchdowns: Over 0.5",
+     "Team Total Passing Touchdowns: Over 1.5",
+     "Team Total Passing Touchdowns: Over 2.5"
+    ],
+    "football_team_total_pass_yards": [
+     "Team Total Passing Yards: Over 200.5",
+     "Team Total Passing Yards: Over 225.5",
+     "Team Total Passing Yards: Over 250.5"
+    ],
+    "football_team_total_rush_touchdowns": [
+     "Team Total Rushing Touchdowns: Over 0.5",
+     "Team Total Rushing Touchdowns: Over 1.5",
+     "Team Total Rushing Touchdowns: Over 2.5"
+    ],
+    "football_game_total_touchdowns": [
+     "Total Touchdowns: Over 5.5",
+     "Total Touchdowns: Over 6.5",
+     "Total Touchdowns: Over 7.5"
+    ],
+    "football_team_first_half_spread": [
+     "Will the Pittsburgh cover -1.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -2.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -3.5 vs the Boston College in Pittsburgh vs. Boston College?"
+    ],
+    "football_team_first_quarter_spread": [
+     "Will the Pittsburgh cover -1.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -2.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -3.5 vs the Boston College in Pittsburgh vs. Boston College?"
+    ],
+    "football_team_second_half_spread": [
+     "Will the Pittsburgh cover -1.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -2.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -3.5 vs the Boston College in Pittsburgh vs. Boston College?"
+    ],
+    "football_team_second_quarter_spread": [
+     "Will the Pittsburgh cover -1.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -2.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -3.5 vs the Boston College in Pittsburgh vs. Boston College?"
+    ],
+    "football_team_third_quarter_spread": [
+     "Will the Pittsburgh cover -1.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -2.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -3.5 vs the Boston College in Pittsburgh vs. Boston College?"
+    ],
+    "football_team_fourth_quarter_spread": [
+     "Will the Pittsburgh cover -1.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -2.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -3.5 vs the Boston College in Pittsburgh vs. Boston College?"
+    ],
+    "football_team_full_game_spread": [
+     "Will the Pittsburgh cover -10.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -13.5 vs the Boston College in Pittsburgh vs. Boston College?",
+     "Will the Pittsburgh cover -14.5 vs the Boston College in Pittsburgh vs. Boston College?"
+    ],
+    "football_team_total_rush_yards": [
+     "Team Total Rushing Yards: Over 124.5",
+     "Team Total Rushing Yards: Over 149.5",
+     "Team Total Rushing Yards: Over 199.5"
+    ],
+    "football_team_total_offensive_yards": [
+     "Team Total Offensive Yards: Over 299.5",
+     "Team Total Offensive Yards: Over 349.5",
+     "Team Total Offensive Yards: Over 424.5"
+    ],
+    "football_team_total_touchdowns": [
+     "Team Total Touchdowns: Over 1.5",
+     "Team Total Touchdowns: Over 2.5",
+     "Team Total Touchdowns: Over 3.5"
+    ],
+    "football_game_first_half_total": [
+     "Will the total in Pittsburgh vs. Boston College be more than 13.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 17.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 20.5?"
+    ],
+    "football_game_first_quarter_total": [
+     "Will the total in Pittsburgh vs. Boston College be more than 10.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 11.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 12.5?"
+    ],
+    "football_game_second_half_total": [
+     "Will the total in Pittsburgh vs. Boston College be more than 20.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 21.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 22.5?"
+    ],
+    "football_game_second_quarter_total": [
+     "Will the total in Pittsburgh vs. Boston College be more than 10.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 11.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 12.5?"
+    ],
+    "football_game_third_quarter_total": [
+     "Will the total in Pittsburgh vs. Boston College be more than 10.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 11.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 12.5?"
+    ],
+    "football_game_fourth_quarter_total": [
+     "Will the total in Pittsburgh vs. Boston College be more than 10.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 11.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 12.5?"
+    ],
+    "football_team_full_game_total": [
+     "Will the total in Pittsburgh vs. Boston College be more than 17.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 24.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 28.5?"
+    ],
+    "football_team_points_full_game_total": [
+     "Will the total in Pittsburgh vs. Boston College be more than 13.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 16.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 17.5?"
+    ],
+    "football_team_first_half_total": [
+     "Will the total in Pittsburgh vs. Boston College be more than 10.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 13.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 16.5?"
+    ],
+    "football_team_second_half_total": [
+     "Will the total in Pittsburgh vs. Boston College be more than 10.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 8.5?",
+     "Will the total in Pittsburgh vs. Boston College be more than 9.5?"
+    ]
+   }
+  },
+  "college basketball": {
+   "search_status": 200,
+   "search_events": 1,
+   "games_found": 0,
+   "games": [],
+   "markets": 0,
+   "both_sides_quoted": 0,
+   "with_best_bid_ask": 0,
+   "fee_coefficients": {},
+   "market_types": {},
+   "samples": {}
+  },
+  "soccer": {
+   "search_status": 200,
+   "search_events": 20,
+   "games_found": 20,
+   "games": [
+    {
+     "slug": "ncaaws-usdt-ssh-2026-10-14",
+     "title": "UC San Diego Tritons vs. Sacramento State Hornets",
+     "start": "2026-10-15T02:00:00Z",
+     "series": "ncaaws",
+     "status": 200,
+     "n_markets": 3
+    },
+    {
+     "slug": "ncaaws-lbsu-csft-2026-10-14",
+     "title": "Long Beach State Beach vs. Cal State Fullerton Titans",
+     "start": "2026-10-15T02:00:00Z",
+     "series": "ncaaws",
+     "status": 200,
+     "n_markets": 3
+    },
+    {
+     "slug": "ncaaws-csnm-cal-2026-10-14",
+     "title": "Cal State Northridge Matadors vs. Cal Poly Mustangs",
+     "start": "2026-10-15T02:00:00Z",
+     "series": "ncaaws",
+     "status": 200,
+     "n_markets": 3
+    }
+   ],
+   "markets": 9,
+   "both_sides_quoted": 0,
+   "with_best_bid_ask": 0,
+   "fee_coefficients": {
+    "0.0695": 9
+   },
+   "market_types": {
+    "soccer_team_full_time_winner": 9
+   },
+   "samples": {
+    "soccer_team_full_time_winner": [
+     "Will UC San Diego Tritons win against Sacramento State Hornets in the NCAA Women's Soccer match scheduled for Oct 14, 2026?",
+     "Will the NCAA Women's Soccer match UC San Diego Tritons vs Sacramento State Hornets scheduled for Oct 14, 2026 end in a draw?",
+     "Will Sacramento State Hornets win against UC San Diego Tritons in the NCAA Women's Soccer match scheduled for Oct 14, 2026?"
+    ]
+   }
+  },
+  "tennis": {
+   "search_status": 200,
+   "search_events": 20,
+   "games_found": 18,
+   "games": [
+    {
+     "slug": "itfwo-nicmolmarpie-lavlucmatmar-2026-10-15",
+     "title": "Molaro - Pieragostini vs. Luciano - Mariani",
+     "start": "2026-10-15T11:00:00Z",
+     "series": "itf-womens-2026",
+     "status": 200,
+     "n_markets": 1
+    },
+    {
+     "slug": "itfwo-natsenlaivla-valgraalemaz-2026-10-15",
+     "title": "Senic - Vladson vs. Grammatikopoulou - Mazzola",
+     "start": "2026-10-15T11:00:00Z",
+     "series": "itf-womens-2026",
+     "status": 200,
+     "n_markets": 1
+    },
+    {
+     "slug": "itfwo-lauboefraszi-carmaryasezz-2026-10-15",
+     "title": "Boehner - Sziedat vs. Martins - Ezzat",
+     "start": "2026-10-15T11:00:00Z",
+     "series": "itf-womens-2026",
+     "status": 200,
+     "n_markets": 1
+    }
+   ],
+   "markets": 3,
+   "both_sides_quoted": 0,
+   "with_best_bid_ask": 0,
+   "fee_coefficients": {
+    "0.0695": 3
+   },
+   "market_types": {
+    "tennis_match_winner": 3
+   },
+   "samples": {
+    "tennis_match_winner": [
+     "Who will win in the upcoming tennis event Molaro - Pieragostini vs Luciano - Mariani scheduled for October 15, 2026 at 11:00 AM UTC?",
+     "Who will win in the upcoming tennis event Senic - Vladson vs Grammatikopoulou - Mazzola scheduled for October 15, 2026 at 11:00 AM UTC?",
+     "Who will win in the upcoming tennis event Boehner - Sziedat vs Martins - Ezzat scheduled for October 15, 2026 at 11:00 AM UTC?"
+    ]
+   }
+  },
+  "golf": {
+   "search_status": 200,
+   "search_events": 12,
+   "games_found": 0,
+   "games": [],
+   "markets": 0,
+   "both_sides_quoted": 0,
+   "with_best_bid_ask": 0,
+   "fee_coefficients": {},
+   "market_types": {},
+   "samples": {}
+  },
+  "UFC": {
+   "search_status": 200,
+   "search_events": 20,
+   "games_found": 0,
+   "games": [],
+   "markets": 0,
+   "both_sides_quoted": 0,
+   "with_best_bid_ask": 0,
+   "fee_coefficients": {},
+   "market_types": {},
+   "samples": {}
+  }
+ }
+}
