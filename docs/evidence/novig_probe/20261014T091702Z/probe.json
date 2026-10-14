@@ -1,0 +1,2747 @@
+{
+ "run_utc": "2026-10-14T09:17:02.613372+00:00",
+ "hosts": {
+  "production": {
+   "host": "https://api.novig.com",
+   "types": {
+    "sports": {
+     "status": 200,
+     "body": [
+      "FOOTBALL",
+      "BASKETBALL",
+      "BASEBALL",
+      "ICE_HOCKEY",
+      "SOCCER",
+      "TENNIS",
+      "BOXING",
+      "MIXED_MARTIAL_ARTS",
+      "GOLF",
+      "ENTERTAINMENT",
+      "ESPORTS"
+     ]
+    },
+    "leagues": {
+     "status": 200,
+     "body": [
+      "NFL",
+      "NBA",
+      "MLB",
+      "NHL",
+      "NCAAF",
+      "NCAAB",
+      "NCAAWB",
+      "NCAABSB",
+      "WNBA",
+      "UFC",
+      "Boxing",
+      "CFL",
+      "MLS",
+      "FIFA Club World Cup",
+      "EPL",
+      "Bundesliga",
+      "Serie A",
+      "La Liga",
+      "Liga MX",
+      "Ligue 1",
+      "Champions League",
+      "Europa League",
+      "WTA",
+      "ATP",
+      "PGA",
+      "TGL",
+      "League of Legends",
+      "Counter Strike 2",
+      "Dota 2",
+      "WBC",
+      "FIFA World Cup",
+      "Olympics Hockey Men",
+      "KBO",
+      "NPB",
+      "UEFA Nations League",
+      "ENTERTAINMENT"
+     ]
+    },
+    "markets": {
+     "status": 200,
+     "body": [
+      "CUSTOM",
+      "MONEY",
+      "SPREAD",
+      "TOTAL",
+      "1X2",
+      "MONEYLINE_3_WAY_WIN",
+      "MONEYLINE_3_WAY_DRAW",
+      "TO_ADVANCE",
+      "TEAM_TOTAL",
+      "MONEY_1H",
+      "SPREAD_1H",
+      "TOTAL_1H",
+      "TOUCHDOWNS",
+      "SAVES",
+      "PASSING_TOUCHDOWNS",
+      "PASSING_AND_RUSHING_YARDS",
+      "KICKING_POINTS",
+      "INTERCEPTIONS_THROWN",
+      "TACKLES_ASSISTS",
+      "FIELD_GOALS_MADE",
+      "RUSHING_ATTEMPTS",
+      "RUSHING_YARDS",
+      "PASSING_COMPLETIONS",
+      "PASSING_YARDS",
+      "PASSING_ATTEMPTS",
+      "RECEPTIONS",
+      "RECEIVING_YARDS",
+      "LONGEST_RECEPTION",
+      "LONGEST_RUSH",
+      "LONGEST_COMPLETION",
+      "RUSHING_AND_RECEIVING_YARDS",
+      "ANYTIME_TOUCHDOWN_SCORER",
+      "FIRST_TOUCHDOWN_SCORER",
+      "OPOTY",
+      "DPOTY",
+      "OROTY",
+      "DROTY",
+      "SHOTS_ON_GOAL",
+      "SHOTS_ON_TARGET",
+      "GOALS_ASSISTS",
+      "FOULS",
+      "TOTAL_CORNERS",
+      "TEAM_TOTAL_CORNERS",
+      "BOTH_TEAMS_TO_SCORE",
+      "TOTAL_HOME_RUNS",
+      "PITCHER_STRIKEOUTS",
+      "HOME_RUNS",
+      "TOTAL_BASES",
+      "RBIS",
+      "HITS",
+      "HITS_RUNS_RBIS",
+      "PITCHER_OUTS",
+      "RUNS",
+      "WALKS",
+      "EARNED_RUNS",
+      "HITS_ALLOWED",
+      "BATTING_STRIKEOUTS",
+      "BATTING_WALKS",
+      "STOLEN_BASES",
+      "FIRST_INNING_TOTAL",
+      "THREE_POINTERS_MADE",
+      "BLOCKS",
+      "DOUBLE_DOUBLE",
+      "POINTS",
+      "REBOUNDS",
+      "POINTS_REBOUNDS_ASSISTS",
+      "POINTS_ASSISTS",
+      "POINTS_REBOUNDS",
+      "REBOUNDS_ASSISTS",
+      "STEALS",
+      "STEALS_BLOCKS",
+      "TRIPLE_DOUBLE",
+      "FIRST_BASKET",
+      "PLAYER_ACES",
+      "PLAYER_GAMES_WON",
+      "TURNOVERS",
+      "SET_SPREAD",
+      "TOTAL_SETS",
+      "FIRST_SET_MONEYLINE",
+      "FIRST_GOAL_SCORER",
+      "PLAYER_GOALS",
+      "POWER_PLAY_POINTS",
+      "ASSISTS",
+      "GO_THE_DISTANCE",
+      "VICTORY_BY_KO_KTO_OR_DQ",
+      "VICTORY_BY_DECISION",
+      "VICTORY_BY_SUBMISSION",
+      "DRAW",
+      "PLAYER_BIRDIES_OR_BETTER",
+      "FIRST_ROUND_MONEYLINE",
+      "SECOND_ROUND_MONEYLINE",
+      "THIRD_ROUND_MONEYLINE",
+      "FOURTH_ROUND_MONEYLINE",
+      "TO_MAKE_THE_PLAYOFFS",
+      "SERIES_WINNER",
+      "CHAMPIONSHIP_WINNING_DIVISION",
+      "CHAMPIONSHIP_WINNER",
+      "REGULAR_SEASON_WINS",
+      "MVP_WINNER",
+      "EASTERN_CONFERENCE_WINNER",
+      "WESTERN_CONFERENCE_WINNER",
+      "FINALS_MVP",
+      "WINNER",
+      "TOP_FIVE_FINISH",
+      "TOP_TEN_FINISH",
+      "TOP_TWENTY_FINISH",
+      "TO_MAKE_THE_CUT",
+      "END_OF_ROUND_1_LEADER",
+      "END_OF_ROUND_2_LEADER",
+      "END_OF_ROUND_3_LEADER",
+      "END_OF_ROUND_4_LEADER",
+      "AL_CENTRAL_DIVISION_WINNER",
+      "NL_CENTRAL_DIVISION_WINNER",
+      "AL_EAST_DIVISION_WINNER",
+      "NL_EAST_DIVISION_WINNER",
+      "AL_WEST_DIVISION_WINNER",
+      "NL_WEST_DIVISION_WINNER",
+      "AL_CY_YOUNG_WINNER",
+      "NL_CY_YOUNG_WINNER",
+      "AL_MVP",
+      "NL_MVP",
+      "AL_ROTY",
+      "NL_ROTY",
+      "AL_WINNER",
+      "NL_WINNER",
+      "WORLD_SERIES_WINNER",
+      "STANLEY_CUP_WINNER",
+      "HART_TROPHY_WINNER",
+      "MARCH_MADNESS_WINNER",
+      "AFC_WEST_WINNER",
+      "AFC_NORTH_WINNER",
+      "AFC_SOUTH_WINNER",
+      "AFC_EAST_WINNER",
+      "AFC_CONFERENCE_WINNER",
+      "NFC_WEST_WINNER",
+      "NFC_NORTH_WINNER",
+      "NFC_SOUTH_WINNER",
+      "NFC_EAST_WINNER",
+      "NFC_CONFERENCE_WINNER",
+      "SUPER_BOWL_WINNER",
+      "TOP_GOALSCORER",
+      "TO_MAKE_THE_FINALS",
+      "TO_MAKE_THE_SEMIFINALS",
+      "TO_MAKE_THE_QUARTERFINALS",
+      "TO_MAKE_THE_ROUND_OF_16",
+      "GROUP_A_WINNER",
+      "GROUP_B_WINNER",
+      "GROUP_C_WINNER",
+      "GROUP_D_WINNER",
+      "GROUP_E_WINNER",
+      "GROUP_F_WINNER",
+      "GROUP_G_WINNER",
+      "GROUP_H_WINNER",
+      "GROUP_I_WINNER",
+      "GROUP_J_WINNER",
+      "GROUP_K_WINNER",
+      "GROUP_L_WINNER",
+      "GROUP_A_TO_QUALIFY",
+      "GROUP_B_TO_QUALIFY",
+      "GROUP_C_TO_QUALIFY",
+      "GROUP_D_TO_QUALIFY",
+      "GROUP_E_TO_QUALIFY",
+      "GROUP_F_TO_QUALIFY",
+      "GROUP_G_TO_QUALIFY",
+      "GROUP_H_TO_QUALIFY",
+      "GROUP_I_TO_QUALIFY",
+      "GROUP_J_TO_QUALIFY",
+      "GROUP_K_TO_QUALIFY",
+      "GROUP_L_TO_QUALIFY",
+      "GROUP_A_TO_FINISH_BOTTOM",
+      "GROUP_B_TO_FINISH_BOTTOM",
+      "GROUP_C_TO_FINISH_BOTTOM",
+      "GROUP_D_TO_FINISH_BOTTOM",
+      "GROUP_E_TO_FINISH_BOTTOM",
+      "GROUP_F_TO_FINISH_BOTTOM",
+      "GROUP_G_TO_FINISH_BOTTOM",
+      "GROUP_H_TO_FINISH_BOTTOM",
+      "GROUP_I_TO_FINISH_BOTTOM",
+      "GROUP_J_TO_FINISH_BOTTOM",
+      "GROUP_K_TO_FINISH_BOTTOM",
+      "GROUP_L_TO_FINISH_BOTTOM"
+     ]
+    },
+    "event-statuses": {
+     "status": 200,
+     "body": [
+      "OPEN_PREGAME",
+      "CLOSED_PREGAME",
+      "OPEN_INGAME",
+      "SETTLED",
+      "FINAL",
+      "DELAYED",
+      "CANCELED"
+     ]
+    }
+   },
+   "nfl_league": "NFL",
+   "events": {
+    "status": 200,
+    "items": [
+     {
+      "eventId": "01a112eb-5439-7743-96e1-9e00db6695ca",
+      "description": "Washington Commanders @ San Francisco 49ers",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792455300000
+     },
+     {
+      "eventId": "01a112eb-53dd-72c2-98ee-5deae6b657f0",
+      "description": "Dallas Cowboys @ Green Bay Packers",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792369200000
+     },
+     {
+      "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+      "description": "Buffalo Bills @ Las Vegas Raiders",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792355100000
+     },
+     {
+      "eventId": "01a112eb-5312-7482-937b-f8b9611898f8",
+      "description": "Los Angeles Chargers @ Kansas City Chiefs",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792355100000
+     },
+     {
+      "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+      "description": "Arizona Cardinals @ Los Angeles Rams",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792353900000
+     },
+     {
+      "eventId": "01a112eb-522f-7523-a1cc-e0fd1f3a80c6",
+      "description": "Pittsburgh Steelers @ Tampa Bay Buccaneers",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792342800000
+     },
+     {
+      "eventId": "01a112eb-51d1-7733-89cd-f05c85473888",
+      "description": "Baltimore Ravens @ Cleveland Browns",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792342800000
+     },
+     {
+      "eventId": "01a112eb-516c-7992-be22-b1f91ee6227c",
+      "description": "Tennessee Titans @ Indianapolis Colts",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792342800000
+     },
+     {
+      "eventId": "01a112eb-510b-7713-b75c-84ae7106cf52",
+      "description": "Carolina Panthers @ Philadelphia Eagles",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792342800000
+     },
+     {
+      "eventId": "01a112eb-506a-7071-b79c-5f2d85436ff9",
+      "description": "Chicago Bears @ Atlanta Falcons",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792342800000
+     },
+     {
+      "eventId": "01a112eb-5010-78a2-8817-2b23827974e3",
+      "description": "New Orleans Saints @ New York Giants",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792342800000
+     },
+     {
+      "eventId": "01a112eb-4f65-7cc2-a047-3fe334cf9956",
+      "description": "New York Jets @ New England Patriots",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792342800000
+     },
+     {
+      "eventId": "01a112eb-4eeb-75a1-bc3e-71a01ce210d5",
+      "description": "Houston Texans @ Jacksonville Jaguars",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792330200000
+     },
+     {
+      "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+      "description": "Seattle Seahawks @ Denver Broncos",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792109700000
+     },
+     {
+      "eventId": "019fcbf2-0d5e-7821-a3e3-1352ebe40143",
+      "description": "Offensive Rookie Of The Year Winner",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792342860000
+     },
+     {
+      "eventId": "019fcbf2-0a86-7a73-b55b-cb164a9a118e",
+      "description": "NFC Conference Winner",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792109699000
+     },
+     {
+      "eventId": "019fcbf2-0856-7553-bfb1-c7f7db11f420",
+      "description": "Defensive Player Of The Year Winner",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792342860000
+     },
+     {
+      "eventId": "019fcbf2-058c-71d1-8c4d-034c2c60adbf",
+      "description": "Super Bowl Winner",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792109700000
+     },
+     {
+      "eventId": "019fcbf2-04f7-7c60-b4f7-35b6d5657ffa",
+      "description": "AFC South Winner",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792330200000
+     },
+     {
+      "eventId": "019fcbf2-030b-77a3-b454-91dcbb7b1f39",
+      "description": "Offensive Player Of The Year Winner",
+      "sport": "FOOTBALL",
+      "league": "NFL",
+      "status": "OPEN_PREGAME",
+      "startsTs": 1792342860000
+     }
+    ]
+   },
+   "n_markets": 4853,
+   "by_type": {
+    "RECEIVING_YARDS": {
+     "n": 1045,
+     "n_with_strike": 1045,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a139ac-e407-7d41-bc50-ac4683c919c4",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Brock Bowers 119.5 RECEIVING_YARDS",
+       "strike": "119.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 119.5",
+        "Under 119.5"
+       ]
+      },
+      {
+       "marketId": "01a139ac-e407-7d41-bc50-a9a5378863b4",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Brock Bowers 139.5 RECEIVING_YARDS",
+       "strike": "139.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 139.5",
+        "Under 139.5"
+       ]
+      },
+      {
+       "marketId": "01a139ac-e406-7f73-b355-35e0cbbfbfb3",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Brock Bowers 129.5 RECEIVING_YARDS",
+       "strike": "129.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 129.5",
+        "Under 129.5"
+       ]
+      },
+      {
+       "marketId": "01a139ac-dbf4-7173-9fe2-fc3350983d62",
+       "eventId": "01a112eb-4eeb-75a1-bc3e-71a01ce210d5",
+       "description": "Marvin Harrison Jr. 109.5 RECEIVING_YARDS",
+       "strike": "109.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 109.5",
+        "Under 109.5"
+       ]
+      }
+     ],
+     "book": {
+      "Under 119.5": [
+       {
+        "orderId": "01a139ae-2899-70d2-86a4-2f412a6e480c",
+        "price": "0.69",
+        "qty": 72400
+       }
+      ]
+     }
+    },
+    "RECEPTIONS": {
+     "n": 519,
+     "n_with_strike": 519,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13991-68e6-7683-a54d-24fcf8ad63fa",
+       "eventId": "01a112eb-5010-78a2-8817-2b23827974e3",
+       "description": "Isaiah Likely 6.5 RECEPTIONS",
+       "strike": "6.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 6.5",
+        "Under 6.5"
+       ]
+      },
+      {
+       "marketId": "01a13991-68e6-7683-a54d-23dbd97ac346",
+       "eventId": "01a112eb-5010-78a2-8817-2b23827974e3",
+       "description": "Chris Olave 10.5 RECEPTIONS",
+       "strike": "10.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 10.5",
+        "Under 10.5"
+       ]
+      },
+      {
+       "marketId": "01a13991-68e6-7683-a54d-225ede8f8f3b",
+       "eventId": "01a112eb-5010-78a2-8817-2b23827974e3",
+       "description": "Malik Nabers 10.5 RECEPTIONS",
+       "strike": "10.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 10.5",
+        "Under 10.5"
+       ]
+      },
+      {
+       "marketId": "01a13991-68e6-7683-a54d-1feacfed3433",
+       "eventId": "01a112eb-5010-78a2-8817-2b23827974e3",
+       "description": "Cam Skattebo 0.5 RECEPTIONS",
+       "strike": "0.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 0.5",
+        "Under 0.5"
+       ]
+      }
+     ],
+     "book": {
+      "Under 6.5": [
+       {
+        "orderId": "01a139b2-e997-77f1-9f1f-ad245c9eae18",
+        "price": "0.685",
+        "qty": 100000
+       },
+       {
+        "orderId": "01a139b1-5f26-7381-af8b-f8933e229363",
+        "price": "0.68",
+        "qty": 145000
+       },
+       {
+        "orderId": "01a13992-a983-71b1-9653-07205c187d95",
+        "price": "0.06",
+        "qty": 250000
+       }
+      ]
+     }
+    },
+    "RUSHING_YARDS": {
+     "n": 468,
+     "n_with_strike": 468,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a139ac-e406-7f73-b355-484eb593c61f",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Kirk Cousins 14.5 RUSHING_YARDS",
+       "strike": "14.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 14.5",
+        "Under 14.5"
+       ]
+      },
+      {
+       "marketId": "01a139ac-e406-7f73-b355-3e8bab20813a",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Kirk Cousins 9.5 RUSHING_YARDS",
+       "strike": "9.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 9.5",
+        "Under 9.5"
+       ]
+      },
+      {
+       "marketId": "01a139ac-e405-7022-8fb3-035745d88425",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Kirk Cousins 1.5 RUSHING_YARDS",
+       "strike": "1.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 1.5",
+        "Under 1.5"
+       ]
+      },
+      {
+       "marketId": "01a13991-6d20-75f1-959e-0cb4ec2855b9",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Blake Corum 40.5 RUSHING_YARDS",
+       "strike": "40.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 40.5",
+        "Under 40.5"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "TOUCHDOWNS": {
+     "n": 377,
+     "n_with_strike": 377,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13991-6e4a-7940-a803-7a9062ef420d",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Michael Mayer 1.5 TOUCHDOWNS",
+       "strike": "1.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 1.5",
+        "Under 1.5"
+       ]
+      },
+      {
+       "marketId": "01a13991-6e4a-7940-a803-75baf0f1a144",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Tre Tucker 1.5 TOUCHDOWNS",
+       "strike": "1.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 1.5",
+        "Under 1.5"
+       ]
+      },
+      {
+       "marketId": "01a13991-684e-7493-9d15-16f13fb37e7a",
+       "eventId": "01a112eb-4f65-7cc2-a047-3fe334cf9956",
+       "description": "DeMario Douglas 1.5 TOUCHDOWNS",
+       "strike": "1.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 1.5",
+        "Under 1.5"
+       ]
+      },
+      {
+       "marketId": "01a13908-2c4e-7362-9b6b-82fd70951ec4",
+       "eventId": "01a112eb-516c-7992-be22-b1f91ee6227c",
+       "description": "Jonathan Taylor 2.5 TOUCHDOWNS",
+       "strike": "2.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 2.5",
+        "Under 2.5"
+       ]
+      }
+     ],
+     "book": {
+      "Under 1.5": [
+       {
+        "orderId": "01a139a4-1230-73c2-bc88-e0ab62dc9a31",
+        "price": "0.965",
+        "qty": 185000
+       },
+       {
+        "orderId": "01a13992-a986-7f21-baaa-56d03592c17f",
+        "price": "0.70",
+        "qty": 71400
+       }
+      ]
+     }
+    },
+    "SPREAD": {
+     "n": 372,
+     "n_with_strike": 372,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a133aa-ea2c-7341-95da-adae0df6eb22",
+       "eventId": "01a112eb-5439-7743-96e1-9e00db6695ca",
+       "description": "SF +7.5",
+       "strike": "7.5",
+       "status": "OPEN",
+       "outcomes": [
+        "SF +7.5",
+        "WSH -7.5"
+       ]
+      },
+      {
+       "marketId": "01a132cf-2e7c-74c0-a5d6-9bbca0367b77",
+       "eventId": "01a112eb-5439-7743-96e1-9e00db6695ca",
+       "description": "SF -23.5",
+       "strike": "-23.5",
+       "status": "OPEN",
+       "outcomes": [
+        "SF -23.5",
+        "WSH +23.5"
+       ]
+      },
+      {
+       "marketId": "01a132cf-2e7c-74c0-a5d6-9b56005d4dca",
+       "eventId": "01a112eb-5439-7743-96e1-9e00db6695ca",
+       "description": "SF +2.5",
+       "strike": "2.5",
+       "status": "OPEN",
+       "outcomes": [
+        "SF +2.5",
+        "WSH -2.5"
+       ]
+      },
+      {
+       "marketId": "01a132cf-2e7c-74c0-a5d6-9ac124940294",
+       "eventId": "01a112eb-5439-7743-96e1-9e00db6695ca",
+       "description": "SF -20.5",
+       "strike": "-20.5",
+       "status": "OPEN",
+       "outcomes": [
+        "SF -20.5",
+        "WSH +20.5"
+       ]
+      }
+     ],
+     "book": {
+      "SF +7.5": [
+       {
+        "orderId": "01a139a5-bec6-7150-844a-db357e9cc775",
+        "price": "0.915",
+        "qty": 70000
+       },
+       {
+        "orderId": "01a139a5-c683-7bf0-ac51-e31a98f162c2",
+        "price": "0.915",
+        "qty": 25000
+       },
+       {
+        "orderId": "01a13659-4802-7af0-81d7-9478e2a47c1b",
+        "price": "0.91",
+        "qty": 25000
+       }
+      ],
+      "WSH -7.5": [
+       {
+        "orderId": "01a13996-2059-7d62-8618-2c23845e3dbd",
+        "price": "0.022",
+        "qty": 25000
+       },
+       {
+        "orderId": "01a13999-115f-7162-bba9-16f56c426363",
+        "price": "0.021",
+        "qty": 80000
+       },
+       {
+        "orderId": "01a13659-4802-7af0-81d7-9460b7608fa4",
+        "price": "0.02",
+        "qty": 25000
+       },
+       {
+        "orderId": "01a1398c-c5d8-7de1-b8e1-fad7bfb911bf",
+        "price": "0.02",
+        "qty": 100000
+       }
+      ]
+     }
+    },
+    "TOTAL": {
+     "n": 371,
+     "n_with_strike": 371,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a136da-9f2a-7fe0-9a1b-e09d9f96b68d",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "SEA @ DEN t32.5",
+       "strike": "32.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 32.5",
+        "Under 32.5"
+       ]
+      },
+      {
+       "marketId": "01a133c1-5bde-7741-9804-dc8014abe964",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "ARI @ LAR t60.5",
+       "strike": "60.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 60.5",
+        "Under 60.5"
+       ]
+      },
+      {
+       "marketId": "01a13321-8038-7ab1-8d0b-00eacfe63f3e",
+       "eventId": "01a112eb-5439-7743-96e1-9e00db6695ca",
+       "description": "WSH @ SF t32.5",
+       "strike": "32.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 32.5",
+        "Under 32.5"
+       ]
+      },
+      {
+       "marketId": "01a132cf-2e7c-74c0-a5d6-9afe75d529c6",
+       "eventId": "01a112eb-5439-7743-96e1-9e00db6695ca",
+       "description": "WSH @ SF t62.5",
+       "strike": "62.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 62.5",
+        "Under 62.5"
+       ]
+      }
+     ],
+     "book": {
+      "Over 32.5": [
+       {
+        "orderId": "01a13935-3654-7ec0-8c85-3d8db34c6d94",
+        "price": "0.75",
+        "qty": 25000
+       },
+       {
+        "orderId": "01a13975-e4dd-7853-82dc-d44e9584377f",
+        "price": "0.75",
+        "qty": 61900
+       },
+       {
+        "orderId": "01a13989-3b49-7561-b983-70cccb2a7e11",
+        "price": "0.745",
+        "qty": 120000
+       },
+       {
+        "orderId": "01a13754-d312-78e3-9322-a4857ef5f23a",
+        "price": "0.74",
+        "qty": 1
+       }
+      ],
+      "Under 32.5": [
+       {
+        "orderId": "01a13754-d335-70c2-9ec3-04b722a1dd49",
+        "price": "0.215",
+        "qty": 1
+       },
+       {
+        "orderId": "01a13975-ecb0-7c90-979b-d747ce7f82b4",
+        "price": "0.215",
+        "qty": 61900
+       },
+       {
+        "orderId": "01a13937-25ce-7cd0-bd91-930dd8bea090",
+        "price": "0.205",
+        "qty": 120000
+       },
+       {
+        "orderId": "01a13935-3654-7ec0-8c85-3d737e7a3c50",
+        "price": "0.18",
+        "qty": 25000
+       }
+      ]
+     }
+    },
+    "PASSING_YARDS": {
+     "n": 318,
+     "n_with_strike": 318,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13991-6d20-75f1-959e-152eef6805ac",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Matthew Stafford 282.5 PASSING_YARDS",
+       "strike": "282.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 282.5",
+        "Under 282.5"
+       ]
+      },
+      {
+       "marketId": "01a13991-6d20-75f1-959d-fb1655427db4",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Jacoby Brissett 242.5 PASSING_YARDS",
+       "strike": "242.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 242.5",
+        "Under 242.5"
+       ]
+      },
+      {
+       "marketId": "01a13991-68e6-7683-a54d-2491a0bdaf3e",
+       "eventId": "01a112eb-5010-78a2-8817-2b23827974e3",
+       "description": "Tyler Shough 299.5 PASSING_YARDS",
+       "strike": "299.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 299.5",
+        "Under 299.5"
+       ]
+      },
+      {
+       "marketId": "01a13991-68e6-7683-a54d-234b792284e3",
+       "eventId": "01a112eb-5010-78a2-8817-2b23827974e3",
+       "description": "Tyler Shough 199.5 PASSING_YARDS",
+       "strike": "199.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 199.5",
+        "Under 199.5"
+       ]
+      }
+     ],
+     "book": {
+      "Under 282.5": [
+       {
+        "orderId": "01a139a4-11cb-7c70-9b56-e6cedd21d021",
+        "price": "0.425",
+        "qty": 80000
+       },
+       {
+        "orderId": "01a13992-a983-7982-9ed5-9c93c7536f15",
+        "price": "0.38",
+        "qty": 131500
+       }
+      ]
+     }
+    },
+    "FIRST_TOUCHDOWN_SCORER": {
+     "n": 261,
+     "n_with_strike": 261,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a138ec-d89d-7461-ad18-e9d8bdbe0b2a",
+       "eventId": "01a112eb-516c-7992-be22-b1f91ee6227c",
+       "description": "Daniel Bellinger FIRST_TOUCHDOWN_SCORER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "01a138ec-d89d-7461-ad18-e795308b241c",
+       "eventId": "01a112eb-516c-7992-be22-b1f91ee6227c",
+       "description": "Kylen Granson FIRST_TOUCHDOWN_SCORER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "01a138ec-d89d-7461-ad18-e5285c518cd5",
+       "eventId": "01a112eb-516c-7992-be22-b1f91ee6227c",
+       "description": "Tyjae Spears FIRST_TOUCHDOWN_SCORER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "01a138ec-d89d-7461-ad18-e40b321da4c6",
+       "eventId": "01a112eb-516c-7992-be22-b1f91ee6227c",
+       "description": "Wan'Dale Robinson FIRST_TOUCHDOWN_SCORER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      }
+     ],
+     "book": {
+      "No": [
+       {
+        "orderId": "01a1394d-8b5d-77f2-ad41-de8f812510b4",
+        "price": "0.982",
+        "qty": 130000
+       },
+       {
+        "orderId": "01a13987-e4d1-7eb3-a2d5-564f75e97d0a",
+        "price": "0.979",
+        "qty": 100000
+       }
+      ]
+     }
+    },
+    "DPOTY": {
+     "n": 246,
+     "n_with_strike": 246,
+     "fee": {
+      "coefficient": "0.06",
+      "makerCredit": "0.7",
+      "charged": "ALWAYS"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a0c430-de11-76d0-8866-614b467436a6",
+       "eventId": "019fcbf2-0856-7553-bfb1-c7f7db11f420",
+       "description": "Lukas Van Ness DPOTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "01a08b1c-a1e1-7940-a5b4-f5b63d3ba2be",
+       "eventId": "019fcbf2-0856-7553-bfb1-c7f7db11f420",
+       "description": "Josh Jobe DPOTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "01a08a25-6652-7f70-b821-975e4f46bf01",
+       "eventId": "019fcbf2-0856-7553-bfb1-c7f7db11f420",
+       "description": "Byron Murphy II DPOTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "01a06db8-88c6-74e1-ac48-d121b6849ffb",
+       "eventId": "019fcbf2-0856-7553-bfb1-c7f7db11f420",
+       "description": "Nohl Williams DPOTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "OPOTY": {
+     "n": 173,
+     "n_with_strike": 173,
+     "fee": {
+      "coefficient": "0.06",
+      "makerCredit": "0.7",
+      "charged": "ALWAYS"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a0cfab-c7bc-7a90-a2ed-22477e966e3d",
+       "eventId": "019fcbf2-030b-77a3-b454-91dcbb7b1f39",
+       "description": "Jalen Coker OPOTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "01a09f82-86e2-7352-97fd-93c8c2ea4c27",
+       "eventId": "019fcbf2-030b-77a3-b454-91dcbb7b1f39",
+       "description": "Kalif Raymond OPOTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "01a06416-8d10-7b23-bb0a-7e270db6706a",
+       "eventId": "019fcbf2-030b-77a3-b454-91dcbb7b1f39",
+       "description": "Jordan James OPOTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019ff073-4ec1-7923-a1d1-d8fb914f6a11",
+       "eventId": "019fcbf2-030b-77a3-b454-91dcbb7b1f39",
+       "description": "Treylon Burks OPOTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "PASSING_TOUCHDOWNS": {
+     "n": 99,
+     "n_with_strike": 99,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13908-2bb8-7f73-96d2-2f75b81213ca",
+       "eventId": "01a112eb-510b-7713-b75c-84ae7106cf52",
+       "description": "Bryce Young 3.5 PASSING_TOUCHDOWNS",
+       "strike": "3.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 3.5",
+        "Under 3.5"
+       ]
+      },
+      {
+       "marketId": "01a13908-2bb8-7f73-96d2-2f4e0019cda5",
+       "eventId": "01a112eb-510b-7713-b75c-84ae7106cf52",
+       "description": "Bryce Young 2.5 PASSING_TOUCHDOWNS",
+       "strike": "2.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 2.5",
+        "Under 2.5"
+       ]
+      },
+      {
+       "marketId": "01a13908-2bb8-7f73-96d2-2ee41e42954e",
+       "eventId": "01a112eb-510b-7713-b75c-84ae7106cf52",
+       "description": "Jalen Hurts 2.5 PASSING_TOUCHDOWNS",
+       "strike": "2.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 2.5",
+        "Under 2.5"
+       ]
+      },
+      {
+       "marketId": "01a138ec-db88-7da2-87c8-a64b994e9671",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Kirk Cousins 4.5 PASSING_TOUCHDOWNS",
+       "strike": "4.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 4.5",
+        "Under 4.5"
+       ]
+      }
+     ],
+     "book": {
+      "Under 3.5": [
+       {
+        "orderId": "01a1391a-c3b2-7ef2-8105-07475919305f",
+        "price": "0.945",
+        "qty": 15000
+       },
+       {
+        "orderId": "01a139a6-181c-7092-9b5f-e1e117f7e493",
+        "price": "0.92",
+        "qty": 1000
+       }
+      ]
+     }
+    },
+    "OROTY": {
+     "n": 97,
+     "n_with_strike": 97,
+     "fee": {
+      "coefficient": "0.06",
+      "makerCredit": "0.7",
+      "charged": "ALWAYS"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a0e619-15bd-78b1-90f9-952d116b00d9",
+       "eventId": "019fcbf2-0d5e-7821-a3e3-1352ebe40143",
+       "description": "Jalon Daniels OROTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "01a03556-e0bb-7a22-a5f4-3143c94ece00",
+       "eventId": "019fcbf2-0d5e-7821-a3e3-1352ebe40143",
+       "description": "Jack Strand OROTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019ff073-50cb-7ac3-8a30-7d34c77971d6",
+       "eventId": "019fcbf2-0d5e-7821-a3e3-1352ebe40143",
+       "description": "Seydou Traore OROTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019ff073-50cb-7ac3-8a30-707cb9a933bb",
+       "eventId": "019fcbf2-0d5e-7821-a3e3-1352ebe40143",
+       "description": "Athan Kaliakmanis OROTY",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "RUSHING_AND_RECEIVING_YARDS": {
+     "n": 56,
+     "n_with_strike": 56,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a1390c-92ca-72c2-b9e9-4c4884f98d69",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "James Cook 104.5 RUSHING_AND_RECEIVING_YARDS",
+       "strike": "104.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 104.5",
+        "Under 104.5"
+       ]
+      },
+      {
+       "marketId": "01a13908-e371-7f42-826b-6dfbf75a2a45",
+       "eventId": "01a112eb-4f65-7cc2-a047-3fe334cf9956",
+       "description": "Rhamondre Stevenson 94.5 RUSHING_AND_RECEIVING_YARDS",
+       "strike": "94.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 94.5",
+        "Under 94.5"
+       ]
+      },
+      {
+       "marketId": "01a13908-daa5-77d1-8f5b-c47a64318e94",
+       "eventId": "01a112eb-4f65-7cc2-a047-3fe334cf9956",
+       "description": "Rhamondre Stevenson 99.5 RUSHING_AND_RECEIVING_YARDS",
+       "strike": "99.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 99.5",
+        "Under 99.5"
+       ]
+      },
+      {
+       "marketId": "01a138fa-4373-78b2-96b1-d6918dd145d1",
+       "eventId": "01a112eb-516c-7992-be22-b1f91ee6227c",
+       "description": "Tyjae Spears 30.5 RUSHING_AND_RECEIVING_YARDS",
+       "strike": "30.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 30.5",
+        "Under 30.5"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "PASSING_AND_RUSHING_YARDS": {
+     "n": 50,
+     "n_with_strike": 50,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13996-9dc3-7732-91d9-923b888d361b",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Kirk Cousins 245.5 PASSING_AND_RUSHING_YARDS",
+       "strike": "245.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 245.5",
+        "Under 245.5"
+       ]
+      },
+      {
+       "marketId": "01a138ba-e45e-7d91-95f2-81a89d31b2cf",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Josh Allen 270.5 PASSING_AND_RUSHING_YARDS",
+       "strike": "270.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 270.5",
+        "Under 270.5"
+       ]
+      },
+      {
+       "marketId": "01a137bb-a26d-7393-b8f2-41c27ad147d3",
+       "eventId": "01a112eb-4f65-7cc2-a047-3fe334cf9956",
+       "description": "Drake Maye 268.5 PASSING_AND_RUSHING_YARDS",
+       "strike": "268.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 268.5",
+        "Under 268.5"
+       ]
+      },
+      {
+       "marketId": "01a13728-dad4-75a1-8ec1-4bb06494ad47",
+       "eventId": "01a112eb-5439-7743-96e1-9e00db6695ca",
+       "description": "Jayden Daniels 240.5 PASSING_AND_RUSHING_YARDS",
+       "strike": "240.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 240.5",
+        "Under 240.5"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "LONGEST_RECEPTION": {
+     "n": 47,
+     "n_with_strike": 47,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13990-4623-7163-b48a-4c804863b662",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Puka Nacua 25.5 LONGEST_RECEPTION",
+       "strike": "25.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 25.5",
+        "Under 25.5"
+       ]
+      },
+      {
+       "marketId": "01a13990-0932-7fd3-a64b-dbe65d6d035f",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Puka Nacua 29.5 LONGEST_RECEPTION",
+       "strike": "29.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 29.5",
+        "Under 29.5"
+       ]
+      },
+      {
+       "marketId": "01a13990-0931-7c10-a379-f68e1e1eb920",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Trey McBride 19.5 LONGEST_RECEPTION",
+       "strike": "19.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 19.5",
+        "Under 19.5"
+       ]
+      },
+      {
+       "marketId": "01a1397e-2874-7e61-bf9d-edfd388cc0ff",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Jeremiyah Love 8.5 LONGEST_RECEPTION",
+       "strike": "8.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 8.5",
+        "Under 8.5"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "TEAM_TOTAL": {
+     "n": 45,
+     "n_with_strike": 45,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13923-a88a-7703-9412-3a86c3040905",
+       "eventId": "01a112eb-53dd-72c2-98ee-5deae6b657f0",
+       "description": "Green Bay Packers 27.5 TEAM_TOTAL",
+       "strike": "27.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 27.5",
+        "Under 27.5"
+       ]
+      },
+      {
+       "marketId": "01a138d1-5aa6-7212-b7eb-20718c21512c",
+       "eventId": "01a112eb-516c-7992-be22-b1f91ee6227c",
+       "description": "Tennessee Titans 17.5 TEAM_TOTAL",
+       "strike": "17.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 17.5",
+        "Under 17.5"
+       ]
+      },
+      {
+       "marketId": "01a136e2-de7b-7692-80ba-648c4b5cda45",
+       "eventId": "01a112eb-5010-78a2-8817-2b23827974e3",
+       "description": "New York Giants 23.5 TEAM_TOTAL",
+       "strike": "23.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 23.5",
+        "Under 23.5"
+       ]
+      },
+      {
+       "marketId": "01a13674-f613-7242-9361-2c4e650aeaf3",
+       "eventId": "01a112eb-510b-7713-b75c-84ae7106cf52",
+       "description": "Philadelphia Eagles 20.5 TEAM_TOTAL",
+       "strike": "20.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 20.5",
+        "Under 20.5"
+       ]
+      }
+     ],
+     "book": {
+      "Over 27.5": [
+       {
+        "orderId": "01a13926-10a2-7e61-884d-de8600ea20ad",
+        "price": "0.43",
+        "qty": 25000
+       },
+       {
+        "orderId": "01a1399f-0dfe-7a83-8661-204ece25c724",
+        "price": "0.43",
+        "qty": 2500
+       }
+      ],
+      "Under 27.5": [
+       {
+        "orderId": "01a13926-10a2-7e61-884d-de70b8ef5dd7",
+        "price": "0.50",
+        "qty": 25000
+       },
+       {
+        "orderId": "01a1399f-2d6a-7881-bc7f-43a9dfcd1d05",
+        "price": "0.50",
+        "qty": 2500
+       }
+      ]
+     }
+    },
+    "PASSING_ATTEMPTS": {
+     "n": 45,
+     "n_with_strike": 45,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a138d1-586c-7783-af30-4094a509371e",
+       "eventId": "01a112eb-5010-78a2-8817-2b23827974e3",
+       "description": "Jameis Winston 31.5 PASSING_ATTEMPTS",
+       "strike": "31.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 31.5",
+        "Under 31.5"
+       ]
+      },
+      {
+       "marketId": "01a138c1-8d19-7c40-8fdf-4a43ba55ed20",
+       "eventId": "01a112eb-506a-7071-b79c-5f2d85436ff9",
+       "description": "Michael Penix Jr. 30.5 PASSING_ATTEMPTS",
+       "strike": "30.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 30.5",
+        "Under 30.5"
+       ]
+      },
+      {
+       "marketId": "01a138c1-8af2-72f1-8c93-78fa59a52452",
+       "eventId": "01a112eb-506a-7071-b79c-5f2d85436ff9",
+       "description": "Caleb Williams 32.5 PASSING_ATTEMPTS",
+       "strike": "32.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 32.5",
+        "Under 32.5"
+       ]
+      },
+      {
+       "marketId": "01a138c1-8a8e-7402-bcfc-59b52204a9e8",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Kirk Cousins 36.5 PASSING_ATTEMPTS",
+       "strike": "36.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 36.5",
+        "Under 36.5"
+       ]
+      }
+     ],
+     "book": {
+      "Over 31.5": [
+       {
+        "orderId": "01a138d3-2120-7a70-82f0-c42738bcbf27",
+        "price": "0.48",
+        "qty": 25000
+       }
+      ],
+      "Under 31.5": [
+       {
+        "orderId": "01a138d3-2120-7a70-82f0-c4188b466375",
+        "price": "0.45",
+        "qty": 25000
+       },
+       {
+        "orderId": "01a138ff-49b1-7f23-acfd-ee6f88528a8c",
+        "price": "0.425",
+        "qty": 20000
+       }
+      ]
+     }
+    },
+    "PASSING_COMPLETIONS": {
+     "n": 38,
+     "n_with_strike": 38,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a139ac-e405-7022-8fb3-08f989ccd178",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Josh Allen 21.5 PASSING_COMPLETIONS",
+       "strike": "21.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 21.5",
+        "Under 21.5"
+       ]
+      },
+      {
+       "marketId": "01a138d1-5c56-7883-81e0-9a068aa0bd18",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Matthew Stafford 23.5 PASSING_COMPLETIONS",
+       "strike": "23.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 23.5",
+        "Under 23.5"
+       ]
+      },
+      {
+       "marketId": "01a138c1-8cb4-7271-bd4f-d97d20fd2ba5",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Josh Allen 20.5 PASSING_COMPLETIONS",
+       "strike": "20.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 20.5",
+        "Under 20.5"
+       ]
+      },
+      {
+       "marketId": "01a138c1-8c50-7113-833a-6e3f3db483e5",
+       "eventId": "01a112eb-506a-7071-b79c-5f2d85436ff9",
+       "description": "Caleb Williams 19.5 PASSING_COMPLETIONS",
+       "strike": "19.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 19.5",
+        "Under 19.5"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "RUSHING_ATTEMPTS": {
+     "n": 37,
+     "n_with_strike": 37,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a138b8-b9e0-72a3-9655-19250fed0836",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Blake Corum 9.5 RUSHING_ATTEMPTS",
+       "strike": "9.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 9.5",
+        "Under 9.5"
+       ]
+      },
+      {
+       "marketId": "01a138b8-b9e0-72a3-9655-18f74e164d96",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Kyren Williams 14.5 RUSHING_ATTEMPTS",
+       "strike": "14.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 14.5",
+        "Under 14.5"
+       ]
+      },
+      {
+       "marketId": "01a138b6-533b-7932-9445-43090271abda",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Tyler Allgeier 6.5 RUSHING_ATTEMPTS",
+       "strike": "6.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 6.5",
+        "Under 6.5"
+       ]
+      },
+      {
+       "marketId": "01a138b6-533a-75e3-8fd2-4c3379e8d373",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "Jeremiyah Love 11.5 RUSHING_ATTEMPTS",
+       "strike": "11.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 11.5",
+        "Under 11.5"
+       ]
+      }
+     ],
+     "book": {
+      "Over 9.5": [
+       {
+        "orderId": "01a138bc-5885-73d0-ab6a-31bcb3f06785",
+        "price": "0.47",
+        "qty": 25000
+       }
+      ],
+      "Under 9.5": [
+       {
+        "orderId": "01a138bc-5885-73d0-ab6a-3196c01a45a8",
+        "price": "0.47",
+        "qty": 25000
+       }
+      ]
+     }
+    },
+    "SUPER_BOWL_WINNER": {
+     "n": 32,
+     "n_with_strike": 32,
+     "fee": {
+      "coefficient": "0.06",
+      "makerCredit": "0.7",
+      "charged": "ALWAYS"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "019fcbf2-05c6-70b2-bf77-3c82a36fbafb",
+       "eventId": "019fcbf2-058c-71d1-8c4d-034c2c60adbf",
+       "description": "Atlanta Falcons SUPER_BOWL_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019fcbf2-05c6-70b2-bf77-3a1c0d3ea510",
+       "eventId": "019fcbf2-058c-71d1-8c4d-034c2c60adbf",
+       "description": "Philadelphia Eagles SUPER_BOWL_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019fcbf2-05c6-70b2-bf77-39bbec416806",
+       "eventId": "019fcbf2-058c-71d1-8c4d-034c2c60adbf",
+       "description": "Miami Dolphins SUPER_BOWL_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019fcbf2-05c6-70b2-bf77-398ac57b5737",
+       "eventId": "019fcbf2-058c-71d1-8c4d-034c2c60adbf",
+       "description": "Carolina Panthers SUPER_BOWL_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      }
+     ],
+     "book": {
+      "Yes": [
+       {
+        "orderId": "01a12e74-a0d2-7c70-83b1-48cc92b6e02d",
+        "price": "0.011",
+        "qty": 909090
+       },
+       {
+        "orderId": "01a113b1-d12d-7e90-a2e2-35d4ef927590",
+        "price": "0.01",
+        "qty": 200000
+       },
+       {
+        "orderId": "01a10f4a-af62-7720-8a9e-bd33020889e1",
+        "price": "0.009",
+        "qty": 2221214
+       }
+      ],
+      "No": [
+       {
+        "orderId": "01a13830-d6e3-7b03-a3ce-b0d3f99e705d",
+        "price": "0.957",
+        "qty": 73964
+       },
+       {
+        "orderId": "01a13816-887e-7790-95ae-0537269ef0ff",
+        "price": "0.956",
+        "qty": 523011
+       },
+       {
+        "orderId": "01a13335-acbf-7d60-ab6d-3995add9f617",
+        "price": "0.95",
+        "qty": 1052630
+       }
+      ]
+     }
+    },
+    "TOTAL_1H": {
+     "n": 29,
+     "n_with_strike": 29,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13690-c075-7940-8323-a8d485d8f54d",
+       "eventId": "01a112eb-522f-7523-a1cc-e0fd1f3a80c6",
+       "description": "PIT @ TB t19.5 1H",
+       "strike": "19.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 19.5",
+        "Under 19.5"
+       ]
+      },
+      {
+       "marketId": "01a135fc-25ee-75a1-b6bb-850534032996",
+       "eventId": "01a112eb-5010-78a2-8817-2b23827974e3",
+       "description": "NO @ NYG t23.5 1H",
+       "strike": "23.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 23.5",
+        "Under 23.5"
+       ]
+      },
+      {
+       "marketId": "01a1352b-b371-71d1-b164-3ef4b631fc66",
+       "eventId": "01a112eb-5312-7482-937b-f8b9611898f8",
+       "description": "LAC @ KC t20.5 1H",
+       "strike": "20.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 20.5",
+        "Under 20.5"
+       ]
+      },
+      {
+       "marketId": "01a13377-b7aa-7c01-bc51-0ac222b01681",
+       "eventId": "01a112eb-506a-7071-b79c-5f2d85436ff9",
+       "description": "CHI @ ATL t23.5 1H",
+       "strike": "23.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 23.5",
+        "Under 23.5"
+       ]
+      }
+     ],
+     "book": {
+      "Over 19.5": [
+       {
+        "orderId": "01a13738-cf65-7491-8a76-2e0ee97069dc",
+        "price": "0.50",
+        "qty": 25000
+       },
+       {
+        "orderId": "01a139b3-0df0-7981-986c-daa9ed6d2248",
+        "price": "0.50",
+        "qty": 1000
+       },
+       {
+        "orderId": "01a13938-c54f-7d63-b954-4f1bdacfc1f2",
+        "price": "0.49",
+        "qty": 90000
+       }
+      ],
+      "Under 19.5": [
+       {
+        "orderId": "01a1385a-849c-7e31-babf-6a481c859419",
+        "price": "0.445",
+        "qty": 95000
+       },
+       {
+        "orderId": "01a138cf-0388-74d1-ba94-bd457affc484",
+        "price": "0.445",
+        "qty": 1000
+       },
+       {
+        "orderId": "01a13738-cf72-7953-8d15-67e97b4a807b",
+        "price": "0.43",
+        "qty": 25000
+       }
+      ]
+     }
+    },
+    "SPREAD_1H": {
+     "n": 20,
+     "n_with_strike": 20,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a1352b-b022-78a0-be1e-1b24ac257039",
+       "eventId": "01a112eb-506a-7071-b79c-5f2d85436ff9",
+       "description": "ATL +1.5 1H",
+       "strike": "1.5",
+       "status": "OPEN",
+       "outcomes": [
+        "ATL +1.5",
+        "CHI -1.5"
+       ]
+      },
+      {
+       "marketId": "01a134d9-2bed-7103-9c9d-1312249f94ec",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "LAR -6.5 1H",
+       "strike": "-6.5",
+       "status": "OPEN",
+       "outcomes": [
+        "LAR -6.5",
+        "ARI +6.5"
+       ]
+      },
+      {
+       "marketId": "01a1313b-e9cf-7a01-adb5-b7a8e2eb1896",
+       "eventId": "01a112eb-5312-7482-937b-f8b9611898f8",
+       "description": "KC -5.5 1H",
+       "strike": "-5.5",
+       "status": "OPEN",
+       "outcomes": [
+        "KC -5.5",
+        "LAC +5.5"
+       ]
+      },
+      {
+       "marketId": "01a1313b-e99c-7541-91e1-28e92026e834",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "LAR -7.5 1H",
+       "strike": "-7.5",
+       "status": "OPEN",
+       "outcomes": [
+        "LAR -7.5",
+        "ARI +7.5"
+       ]
+      }
+     ],
+     "book": {
+      "ATL +1.5": [
+       {
+        "orderId": "01a1396e-a8ab-7ab3-9a14-83746505efa5",
+        "price": "0.465",
+        "qty": 175000
+       },
+       {
+        "orderId": "01a1396e-b067-76c1-aaaa-719348f2c71c",
+        "price": "0.465",
+        "qty": 1000
+       },
+       {
+        "orderId": "01a13659-4688-7390-9f04-9fead769ef02",
+        "price": "0.45",
+        "qty": 25000
+       }
+      ],
+      "CHI -1.5": [
+       {
+        "orderId": "01a13659-4688-7390-9f04-a0286610ed1b",
+        "price": "0.48",
+        "qty": 25000
+       },
+       {
+        "orderId": "01a1375e-16b1-70b2-a5dc-4db111e28a38",
+        "price": "0.48",
+        "qty": 1000
+       },
+       {
+        "orderId": "01a13930-22c4-7791-b425-47421d4a69a2",
+        "price": "0.475",
+        "qty": 175000
+       }
+      ]
+     }
+    },
+    "INTERCEPTIONS_THROWN": {
+     "n": 19,
+     "n_with_strike": 19,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a139ae-a1f1-7a32-b9af-26c5f74859bb",
+       "eventId": "01a112eb-506a-7071-b79c-5f2d85436ff9",
+       "description": "Caleb Williams 0.5 INTERCEPTIONS_THROWN",
+       "strike": "0.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 0.5",
+        "Under 0.5"
+       ]
+      },
+      {
+       "marketId": "01a139a8-3181-71f3-8861-7e2f081d1eaa",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Kirk Cousins 0.5 INTERCEPTIONS_THROWN",
+       "strike": "0.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 0.5",
+        "Under 0.5"
+       ]
+      },
+      {
+       "marketId": "01a139a8-3180-7ee2-bb1a-d42759f8db3d",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "Josh Allen 0.5 INTERCEPTIONS_THROWN",
+       "strike": "0.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 0.5",
+        "Under 0.5"
+       ]
+      },
+      {
+       "marketId": "01a139a5-a27c-7691-8934-bfa22da98fd3",
+       "eventId": "01a112eb-53dd-72c2-98ee-5deae6b657f0",
+       "description": "Jordan Love 0.5 INTERCEPTIONS_THROWN",
+       "strike": "0.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 0.5",
+        "Under 0.5"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "LONGEST_RUSH": {
+     "n": 19,
+     "n_with_strike": 19,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13669-5a96-77a0-968a-70227e61342a",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "RJ Harvey 5.5 LONGEST_RUSH",
+       "strike": "5.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 5.5",
+        "Under 5.5"
+       ]
+      },
+      {
+       "marketId": "01a1360c-b7c8-74b2-b82f-da999e2930fb",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "Bo Nix 9.5 LONGEST_RUSH",
+       "strike": "9.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 9.5",
+        "Under 9.5"
+       ]
+      },
+      {
+       "marketId": "01a1360c-b2b5-7eb0-a5c2-a7cb59917a0b",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "Sam Darnold 7.5 LONGEST_RUSH",
+       "strike": "7.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 7.5",
+        "Under 7.5"
+       ]
+      },
+      {
+       "marketId": "01a1360c-5652-78a3-ab91-6ec7ed9b6e27",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "Sam Darnold 6.5 LONGEST_RUSH",
+       "strike": "6.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 6.5",
+        "Under 6.5"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "NFC_CONFERENCE_WINNER": {
+     "n": 16,
+     "n_with_strike": 16,
+     "fee": {
+      "coefficient": "0.06",
+      "makerCredit": "0.7",
+      "charged": "ALWAYS"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "019fcbf2-0ac1-7a62-a5af-83838bcce70e",
+       "eventId": "019fcbf2-0a86-7a73-b55b-cb164a9a118e",
+       "description": "Green Bay Packers NFC_CONFERENCE_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019fcbf2-0ac1-7a62-a5af-82c946233350",
+       "eventId": "019fcbf2-0a86-7a73-b55b-cb164a9a118e",
+       "description": "Atlanta Falcons NFC_CONFERENCE_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019fcbf2-0ac1-7a62-a5af-82954be53ffb",
+       "eventId": "019fcbf2-0a86-7a73-b55b-cb164a9a118e",
+       "description": "Washington Commanders NFC_CONFERENCE_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019fcbf2-0ac1-7a62-a5af-823bc2e4ee0a",
+       "eventId": "019fcbf2-0a86-7a73-b55b-cb164a9a118e",
+       "description": "New York Giants NFC_CONFERENCE_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "LONGEST_COMPLETION": {
+     "n": 15,
+     "n_with_strike": 15,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a1376c-3fa1-7a40-991e-041c694230e1",
+       "eventId": "01a112eb-53dd-72c2-98ee-5deae6b657f0",
+       "description": "Jordan Love 39.5 LONGEST_COMPLETION",
+       "strike": "39.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 39.5",
+        "Under 39.5"
+       ]
+      },
+      {
+       "marketId": "01a13659-8a32-7970-8dd7-6bbe79025465",
+       "eventId": "01a112eb-53dd-72c2-98ee-5deae6b657f0",
+       "description": "Jordan Love 40.5 LONGEST_COMPLETION",
+       "strike": "40.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 40.5",
+        "Under 40.5"
+       ]
+      },
+      {
+       "marketId": "01a13659-8a32-7970-8dd7-61f29d2715a4",
+       "eventId": "01a112eb-53dd-72c2-98ee-5deae6b657f0",
+       "description": "Dak Prescott 39.5 LONGEST_COMPLETION",
+       "strike": "39.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 39.5",
+        "Under 39.5"
+       ]
+      },
+      {
+       "marketId": "01a13659-8467-7a63-98e2-453f9c62e55f",
+       "eventId": "01a112eb-4eeb-75a1-bc3e-71a01ce210d5",
+       "description": "Trevor Lawrence 38.5 LONGEST_COMPLETION",
+       "strike": "38.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 38.5",
+        "Under 38.5"
+       ]
+      }
+     ],
+     "book": {}
+    },
+    "MONEY_1H": {
+     "n": 14,
+     "n_with_strike": 14,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a1314e-96a6-7df0-a0b2-7d4f23e4df02",
+       "eventId": "01a112eb-5293-7c41-83a5-f9d43c604759",
+       "description": "LAR 1H",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "LAR",
+        "ARI"
+       ]
+      },
+      {
+       "marketId": "01a1314e-95bf-7800-9ef9-84308519074d",
+       "eventId": "01a112eb-51d1-7733-89cd-f05c85473888",
+       "description": "CLE 1H",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "CLE",
+        "BAL"
+       ]
+      },
+      {
+       "marketId": "01a1314e-93ec-7a43-8f3f-7ec4190036ef",
+       "eventId": "01a112eb-506a-7071-b79c-5f2d85436ff9",
+       "description": "ATL 1H",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "ATL",
+        "CHI"
+       ]
+      },
+      {
+       "marketId": "01a1308e-cb45-7223-8eca-d276d4986571",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "LV 1H",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "LV",
+        "BUF"
+       ]
+      }
+     ],
+     "book": {
+      "LAR": [
+       {
+        "orderId": "01a1385e-3c24-7e10-9bd4-573c0820d916",
+        "price": "0.755",
+        "qty": 110000
+       },
+       {
+        "orderId": "01a13990-58b2-7a83-abcc-0f8f012c5c41",
+        "price": "0.715",
+        "qty": 1000
+       },
+       {
+        "orderId": "01a1371e-559c-7953-b00f-4543e8710e30",
+        "price": "0.61",
+        "qty": 4000
+       }
+      ],
+      "ARI": [
+       {
+        "orderId": "01a13884-32bd-7b42-9b5f-7833a24dab27",
+        "price": "0.175",
+        "qty": 110000
+       },
+       {
+        "orderId": "01a138cf-0376-7ab1-ba6d-4898a2dc9953",
+        "price": "0.175",
+        "qty": 1000
+       },
+       {
+        "orderId": "01a1371e-559c-7953-b00f-4557799027d6",
+        "price": "0.17",
+        "qty": 4000
+       },
+       {
+        "orderId": "01a1371e-559c-7953-b00f-4577d1a8df34",
+        "price": "0.16",
+        "qty": 4000
+       }
+      ]
+     }
+    },
+    "MONEY": {
+     "n": 14,
+     "n_with_strike": 14,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a112eb-54e7-7963-8beb-344308c4e05b",
+       "eventId": "01a112eb-5439-7743-96e1-9e00db6695ca",
+       "description": "SF",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "SF",
+        "WSH"
+       ]
+      },
+      {
+       "marketId": "01a112eb-5434-7bb2-b73f-479a341a3e64",
+       "eventId": "01a112eb-53dd-72c2-98ee-5deae6b657f0",
+       "description": "GB",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "GB",
+        "DAL"
+       ]
+      },
+      {
+       "marketId": "01a112eb-53d7-7d40-a6da-6faebbad9a39",
+       "eventId": "01a112eb-5374-7323-9b0e-1d2c7569288a",
+       "description": "LV",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "LV",
+        "BUF"
+       ]
+      },
+      {
+       "marketId": "01a112eb-536f-7d91-a84e-98224610df2c",
+       "eventId": "01a112eb-5312-7482-937b-f8b9611898f8",
+       "description": "KC",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "KC",
+        "LAC"
+       ]
+      }
+     ],
+     "book": {
+      "SF": [
+       {
+        "orderId": "01a13680-cf7d-7eb1-baeb-a37c46a6402f",
+        "price": "0.775",
+        "qty": 1935
+       },
+       {
+        "orderId": "01a1369f-fcaa-71a0-8ea2-c94f576275cb",
+        "price": "0.775",
+        "qty": 10265
+       },
+       {
+        "orderId": "01a137af-7f2d-7451-8f06-de015a02c999",
+        "price": "0.775",
+        "qty": 645161
+       },
+       {
+        "orderId": "01a1388a-941e-7691-a12f-205c70dc308e",
+        "price": "0.775",
+        "qty": 14141
+       },
+       {
+        "orderId": "01a138d6-20ea-7992-bcc8-43ee91a1aed5",
+        "price": "0.77",
+        "qty": 40000
+       },
+       {
+        "orderId": "01a13943-10cb-7b12-98bd-7ba4f3d659dc",
+        "price": "0.77",
+        "qty": 8000
+       },
+       {
+        "orderId": "01a1395b-1f2f-76d0-bef2-1182f4fb565e",
+        "price": "0.77",
+        "qty": 4153
+       },
+       {
+        "orderId": "01a1395b-1f2f-76d0-bef2-11c5c39eac6e",
+        "price": "0.77",
+        "qty": 4025
+       },
+       {
+        "orderId": "01a13971-8761-7d60-adcd-15789a2c6715",
+        "price": "0.77",
+        "qty": 5150
+       },
+       {
+        "orderId": "01a1397f-daf5-7fd2-a0a8-6b2e5181002b",
+        "price": "0.77",
+        "qty": 221716
+       },
+       {
+        "orderId": "01a1397f-daf5-7fd2-a0a8-6b30fb4fa379",
+        "price": "0.77",
+        "qty": 216155
+       },
+       {
+        "orderId": "01a13996-6ee0-7923-a795-c5f258faebf5",
+        "price": "0.77",
+        "qty": 2131
+       },
+       {
+        "orderId": "01a1383d-8be6-74d2-87cc-c226b8e8745d",
+        "price": "0.765",
+        "qty": 7800
+       }
+      ],
+      "WSH": [
+       {
+        "orderId": "01a1364a-7d7e-7750-9780-a42f85da691b",
+        "price": "0.22",
+        "qty": 6575
+       },
+       {
+        "orderId": "01a1366e-6a66-7650-969b-9310c66d73be",
+        "price": "0.22",
+        "qty": 40000
+       },
+       {
+        "orderId": "01a137a9-42ca-7d10-a9cc-581a192ca3ae",
+        "price": "0.22",
+        "qty": 1363
+       },
+       {
+        "orderId": "01a137ec-7526-7430-abb8-9f1fff4c051e",
+        "price": "0.22",
+        "qty": 8636
+       },
+       {
+        "orderId": "01a138a2-f42a-71f2-9452-6bc7f839cc12",
+        "price": "0.22",
+        "qty": 2272
+       },
+       {
+        "orderId": "01a1395b-1f2f-76d0-bef2-11dd38f2fec8",
+        "price": "0.22",
+        "qty": 2349
+       },
+       {
+        "orderId": "01a1397e-c980-7093-8145-bd1fdb10ed80",
+        "price": "0.22",
+        "qty": 400000
+       },
+       {
+        "orderId": "01a1397f-d328-7190-9832-7872fa509edf",
+        "price": "0.22",
+        "qty": 44079
+       },
+       {
+        "orderId": "01a13996-6f69-7ff1-9b32-78ee0f180193",
+        "price": "0.22",
+        "qty": 2131
+       },
+       {
+        "orderId": "01a13726-92c3-7622-a37c-8ac72ee6643e",
+        "price": "0.21",
+        "qty": 1428571
+       },
+       {
+        "orderId": "01a1383d-4aa5-7bb0-86f7-912e1d6ac3b3",
+        "price": "0.21",
+        "qty": 10000
+       },
+       {
+        "orderId": "01a13943-118e-7ca3-9391-c0a450e6ea02",
+        "price": "0.21",
+        "qty": 8000
+       },
+       {
+        "orderId": "01a1395b-1f2f-76d0-bef2-119b181e82ef",
+        "price": "0.21",
+        "qty": 241351
+       },
+       {
+        "orderId": "01a1395b-1f2f-76d0-bef2-11f416d3dcc5",
+        "price": "0.21",
+        "qty": 242141
+       },
+       {
+        "orderId": "01a13970-bafe-70a3-b95f-2132b60f100a",
+        "price": "0.21",
+        "qty": 100000
+       },
+       {
+        "orderId": "01a13970-c942-7180-b2bc-4746dd187e2a",
+        "price": "0.21",
+        "qty": 109127
+       },
+       {
+        "orderId": "01a139b0-b80d-7c70-94dc-19f7300802b0",
+        "price": "0.21",
+        "qty": 2196
+       },
+       {
+        "orderId": "01a135d0-a8c0-7d03-aca1-40d6336123ff",
+        "price": "0.205",
+        "qty": 1463414
+       }
+      ]
+     }
+    },
+    "KICKING_POINTS": {
+     "n": 4,
+     "n_with_strike": 4,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13817-b71b-7d12-af93-84ce71120652",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "Jason Myers 6.5 KICKING_POINTS",
+       "strike": "6.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 6.5",
+        "Under 6.5"
+       ]
+      },
+      {
+       "marketId": "01a13816-9735-7703-b147-6059f69b1a2b",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "Wil Lutz 6.5 KICKING_POINTS",
+       "strike": "6.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 6.5",
+        "Under 6.5"
+       ]
+      },
+      {
+       "marketId": "01a13584-536c-7403-9618-729158144427",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "Jason Myers 8.5 KICKING_POINTS",
+       "strike": "8.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 8.5",
+        "Under 8.5"
+       ]
+      },
+      {
+       "marketId": "01a13477-b4bd-76f2-aef8-bfcb3e854b22",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "Jason Myers 7.5 KICKING_POINTS",
+       "strike": "7.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 7.5",
+        "Under 7.5"
+       ]
+      }
+     ],
+     "book": {
+      "Under 6.5": [
+       {
+        "orderId": "01a1397b-b5b4-74b3-9a37-0f38fa98ea07",
+        "price": "0.39",
+        "qty": 10000
+       }
+      ]
+     }
+    },
+    "AFC_SOUTH_WINNER": {
+     "n": 4,
+     "n_with_strike": 4,
+     "fee": {
+      "coefficient": "0.06",
+      "makerCredit": "0.7",
+      "charged": "ALWAYS"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "019fcbf2-0511-7450-976b-392ac79506ce",
+       "eventId": "019fcbf2-04f7-7c60-b4f7-35b6d5657ffa",
+       "description": "Houston Texans AFC_SOUTH_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019fcbf2-0511-7450-976b-38f22fc86e2d",
+       "eventId": "019fcbf2-04f7-7c60-b4f7-35b6d5657ffa",
+       "description": "Tennessee Titans AFC_SOUTH_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019fcbf2-0511-7450-976b-38c9811e0647",
+       "eventId": "019fcbf2-04f7-7c60-b4f7-35b6d5657ffa",
+       "description": "Indianapolis Colts AFC_SOUTH_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      },
+      {
+       "marketId": "019fcbf2-0511-7450-976b-38622bca5f87",
+       "eventId": "019fcbf2-04f7-7c60-b4f7-35b6d5657ffa",
+       "description": "Jacksonville Jaguars AFC_SOUTH_WINNER",
+       "strike": "0",
+       "status": "OPEN",
+       "outcomes": [
+        "Yes",
+        "No"
+       ]
+      }
+     ],
+     "book": {
+      "Yes": [
+       {
+        "orderId": "01a1383c-db7b-7fa1-92dc-bc4521743f15",
+        "price": "0.13",
+        "qty": 9615
+       },
+       {
+        "orderId": "01a13949-8d9d-7352-8a6e-2f1d895de5da",
+        "price": "0.105",
+        "qty": 9523
+       }
+      ]
+     }
+    },
+    "FIELD_GOALS_MADE": {
+     "n": 3,
+     "n_with_strike": 3,
+     "fee": {
+      "coefficient": "0.03",
+      "makerCredit": "0.5",
+      "charged": "WHEN_LIVE"
+     },
+     "voids": "FMV",
+     "examples": [
+      {
+       "marketId": "01a13816-9735-7703-b147-60281abc022b",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "Wil Lutz 1.5 FIELD_GOALS_MADE",
+       "strike": "1.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 1.5",
+        "Under 1.5"
+       ]
+      },
+      {
+       "marketId": "01a1360c-5122-7610-b794-0c4629866224",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "Jason Myers 2.5 FIELD_GOALS_MADE",
+       "strike": "2.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 2.5",
+        "Under 2.5"
+       ]
+      },
+      {
+       "marketId": "01a13477-b4be-7e22-bc16-a0bcc1c4f8bb",
+       "eventId": "01a112eb-4e8a-72a2-a445-cc3b6f3184fb",
+       "description": "Jason Myers 1.5 FIELD_GOALS_MADE",
+       "strike": "1.5",
+       "status": "OPEN",
+       "outcomes": [
+        "Over 1.5",
+        "Under 1.5"
+       ]
+      }
+     ],
+     "book": {
+      "Under 1.5": [
+       {
+        "orderId": "01a13943-2648-7b73-869d-5569c20084f8",
+        "price": "0.38",
+        "qty": 10000
+       }
+      ]
+     }
+    }
+   }
+  }
+ }
+}
