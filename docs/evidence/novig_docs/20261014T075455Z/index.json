@@ -1,0 +1,847 @@
+{
+ "base": "https://docs.novig.com",
+ "fetched_utc": "20261014T075455Z",
+ "pages_listed": 135,
+ "results": [
+  {
+   "url": "https://docs.novig.com/llms.txt",
+   "status": 200,
+   "bytes": 33360,
+   "file": "llms.txt"
+  },
+  {
+   "url": "https://docs.novig.com/llms-full.txt",
+   "status": 200,
+   "bytes": 384495,
+   "file": "llms-full.txt"
+  },
+  {
+   "url": "https://docs.novig.com/.md",
+   "status": 200,
+   "bytes": 1991,
+   "file": "root.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/spec-files/openapi-v3.json",
+   "status": 200,
+   "bytes": 777996,
+   "file": "api-reference_spec-files_openapi-v3.json"
+  },
+  {
+   "url": "https://docs.novig.com/openapi.json",
+   "status": 404,
+   "bytes": 15,
+   "file": null
+  },
+  {
+   "url": "https://docs.novig.com/index.md",
+   "status": 200,
+   "bytes": 1991,
+   "file": "index.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/quickstart.md",
+   "status": 200,
+   "bytes": 8548,
+   "file": "api_quickstart.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/environments.md",
+   "status": 200,
+   "bytes": 2602,
+   "file": "api_environments.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/concepts/account-model.md",
+   "status": 200,
+   "bytes": 5701,
+   "file": "api_concepts_account-model.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/concepts/universe-model.md",
+   "status": 200,
+   "bytes": 4647,
+   "file": "api_concepts_universe-model.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/concepts/event-lifecycle.md",
+   "status": 200,
+   "bytes": 8521,
+   "file": "api_concepts_event-lifecycle.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/concepts/order-lifecycle.md",
+   "status": 200,
+   "bytes": 4638,
+   "file": "api_concepts_order-lifecycle.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/concepts/money.md",
+   "status": 200,
+   "bytes": 2140,
+   "file": "api_concepts_money.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/api-keys.md",
+   "status": 200,
+   "bytes": 11124,
+   "file": "api_api-keys.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/signing.md",
+   "status": 200,
+   "bytes": 10648,
+   "file": "api_signing.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/subaccounts/manage.md",
+   "status": 200,
+   "bytes": 4777,
+   "file": "api_subaccounts_manage.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/subaccounts/funding.md",
+   "status": 200,
+   "bytes": 3776,
+   "file": "api_subaccounts_funding.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/streaming/connection.md",
+   "status": 200,
+   "bytes": 10367,
+   "file": "api_streaming_connection.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/streaming/book.md",
+   "status": 200,
+   "bytes": 3394,
+   "file": "api_streaming_book.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/streaming/lifecycle.md",
+   "status": 200,
+   "bytes": 1886,
+   "file": "api_streaming_lifecycle.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/streaming/tape.md",
+   "status": 200,
+   "bytes": 1629,
+   "file": "api_streaming_tape.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/streaming/private.md",
+   "status": 200,
+   "bytes": 10017,
+   "file": "api_streaming_private.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/throttling.md",
+   "status": 200,
+   "bytes": 6499,
+   "file": "api_throttling.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/errors.md",
+   "status": 200,
+   "bytes": 15589,
+   "file": "api_errors.md"
+  },
+  {
+   "url": "https://docs.novig.com/api/concepts/fees.md",
+   "status": 200,
+   "bytes": 4494,
+   "file": "api_concepts_fees.md"
+  },
+  {
+   "url": "https://docs.novig.com/maker-credit-program.md",
+   "status": 200,
+   "bytes": 16267,
+   "file": "maker-credit-program.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/rfq/overview.md",
+   "status": 200,
+   "bytes": 4291,
+   "file": "api-reference_rfq_overview.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/rfq/eligibility.md",
+   "status": 200,
+   "bytes": 1842,
+   "file": "api-reference_rfq_eligibility.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/rfq/registration.md",
+   "status": 200,
+   "bytes": 7509,
+   "file": "api-reference_rfq_registration.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/rfq/signing.md",
+   "status": 200,
+   "bytes": 3190,
+   "file": "api-reference_rfq_signing.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/rfq/websocket.md",
+   "status": 200,
+   "bytes": 30689,
+   "file": "api-reference_rfq_websocket.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/rfq/webhooks.md",
+   "status": 200,
+   "bytes": 7134,
+   "file": "api-reference_rfq_webhooks.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/rfq/executions.md",
+   "status": 200,
+   "bytes": 9939,
+   "file": "api-reference_rfq_executions.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/rfq/settlement.md",
+   "status": 200,
+   "bytes": 2458,
+   "file": "api-reference_rfq_settlement.md"
+  },
+  {
+   "url": "https://docs.novig.com/fees.md",
+   "status": 200,
+   "bytes": 8656,
+   "file": "fees.md"
+  },
+  {
+   "url": "https://docs.novig.com/public-data/overview.md",
+   "status": 200,
+   "bytes": 2151,
+   "file": "public-data_overview.md"
+  },
+  {
+   "url": "https://docs.novig.com/public-data/trades.md",
+   "status": 200,
+   "bytes": 3315,
+   "file": "public-data_trades.md"
+  },
+  {
+   "url": "https://docs.novig.com/public-data/markets.md",
+   "status": 200,
+   "bytes": 4250,
+   "file": "public-data_markets.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/get-the-account-balance.md",
+   "status": 200,
+   "bytes": 17303,
+   "file": "api-reference_accounts_get-the-account-balance.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/list-subaccounts.md",
+   "status": 200,
+   "bytes": 16935,
+   "file": "api-reference_accounts_list-subaccounts.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/open-a-subaccount.md",
+   "status": 200,
+   "bytes": 19844,
+   "file": "api-reference_accounts_open-a-subaccount.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/label-a-subaccount.md",
+   "status": 200,
+   "bytes": 19121,
+   "file": "api-reference_accounts_label-a-subaccount.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/get-a-balance.md",
+   "status": 200,
+   "bytes": 17924,
+   "file": "api-reference_accounts_get-a-balance.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/issue-a-subaccount-key.md",
+   "status": 200,
+   "bytes": 21634,
+   "file": "api-reference_accounts_issue-a-subaccount-key.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/list-transactions.md",
+   "status": 200,
+   "bytes": 21315,
+   "file": "api-reference_accounts_list-transactions.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/fund-a-subaccount.md",
+   "status": 200,
+   "bytes": 21266,
+   "file": "api-reference_accounts_fund-a-subaccount.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/get-a-transfer.md",
+   "status": 200,
+   "bytes": 19328,
+   "file": "api-reference_accounts_get-a-transfer.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/list-account-transactions.md",
+   "status": 200,
+   "bytes": 20676,
+   "file": "api-reference_accounts_list-account-transactions.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/list-account-transfers.md",
+   "status": 200,
+   "bytes": 20808,
+   "file": "api-reference_accounts_list-account-transfers.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/accounts/get-an-account-transfer.md",
+   "status": 200,
+   "bytes": 19145,
+   "file": "api-reference_accounts_get-an-account-transfer.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/get-your-resting-orders.md",
+   "status": 200,
+   "bytes": 20373,
+   "file": "api-reference_execution_get-your-resting-orders.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/get-your-positions.md",
+   "status": 200,
+   "bytes": 19650,
+   "file": "api-reference_execution_get-your-positions.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/list-orders.md",
+   "status": 200,
+   "bytes": 25407,
+   "file": "api-reference_execution_list-orders.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/place-an-order.md",
+   "status": 200,
+   "bytes": 23212,
+   "file": "api-reference_execution_place-an-order.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/cancel-all-orders.md",
+   "status": 200,
+   "bytes": 16836,
+   "file": "api-reference_execution_cancel-all-orders.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/batch-place-orders.md",
+   "status": 200,
+   "bytes": 24550,
+   "file": "api-reference_execution_batch-place-orders.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/batch-cancel-orders.md",
+   "status": 200,
+   "bytes": 20229,
+   "file": "api-reference_execution_batch-cancel-orders.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/get-an-order.md",
+   "status": 200,
+   "bytes": 21931,
+   "file": "api-reference_execution_get-an-order.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/cancel-an-order.md",
+   "status": 200,
+   "bytes": 17013,
+   "file": "api-reference_execution_cancel-an-order.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/list-fills.md",
+   "status": 200,
+   "bytes": 24564,
+   "file": "api-reference_execution_list-fills.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/execution/list-positions.md",
+   "status": 200,
+   "bytes": 19714,
+   "file": "api-reference_execution_list-positions.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/catalog/list-events.md",
+   "status": 200,
+   "bytes": 21190,
+   "file": "api-reference_catalog_list-events.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/catalog/get-an-event.md",
+   "status": 200,
+   "bytes": 18960,
+   "file": "api-reference_catalog_get-an-event.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/catalog/list-markets.md",
+   "status": 200,
+   "bytes": 24320,
+   "file": "api-reference_catalog_list-markets.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/catalog/get-a-market.md",
+   "status": 200,
+   "bytes": 21441,
+   "file": "api-reference_catalog_get-a-market.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/catalog/get-the-order-book.md",
+   "status": 200,
+   "bytes": 20474,
+   "file": "api-reference_catalog_get-the-order-book.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/catalog/list-trades.md",
+   "status": 200,
+   "bytes": 20368,
+   "file": "api-reference_catalog_list-trades.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/catalog/list-event-statuses.md",
+   "status": 200,
+   "bytes": 16917,
+   "file": "api-reference_catalog_list-event-statuses.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/catalog/list-leagues.md",
+   "status": 200,
+   "bytes": 16487,
+   "file": "api-reference_catalog_list-leagues.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/catalog/list-market-types.md",
+   "status": 200,
+   "bytes": 16530,
+   "file": "api-reference_catalog_list-market-types.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/catalog/list-sports.md",
+   "status": 200,
+   "bytes": 16487,
+   "file": "api-reference_catalog_list-sports.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/authentication/echo.md",
+   "status": 200,
+   "bytes": 17446,
+   "file": "api-reference_authentication_echo.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/authentication/list-keys.md",
+   "status": 200,
+   "bytes": 18034,
+   "file": "api-reference_authentication_list-keys.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/authentication/create-a-key.md",
+   "status": 200,
+   "bytes": 20200,
+   "file": "api-reference_authentication_create-a-key.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/authentication/get-a-key.md",
+   "status": 200,
+   "bytes": 18831,
+   "file": "api-reference_authentication_get-a-key.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/authentication/revoke-a-key.md",
+   "status": 200,
+   "bytes": 17004,
+   "file": "api-reference_authentication_revoke-a-key.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/history/list-event-history.md",
+   "status": 200,
+   "bytes": 20123,
+   "file": "api-reference_history_list-event-history.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/history/get-an-event-from-history.md",
+   "status": 200,
+   "bytes": 18762,
+   "file": "api-reference_history_get-an-event-from-history.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/history/list-market-history.md",
+   "status": 200,
+   "bytes": 23421,
+   "file": "api-reference_history_list-market-history.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/history/get-a-market-from-history.md",
+   "status": 200,
+   "bytes": 21445,
+   "file": "api-reference_history_get-a-market-from-history.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/history/list-position-history.md",
+   "status": 200,
+   "bytes": 25790,
+   "file": "api-reference_history_list-position-history.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/history/get-a-position-from-history.md",
+   "status": 200,
+   "bytes": 21987,
+   "file": "api-reference_history_get-a-position-from-history.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/throttle/get-your-throttle-schedule.md",
+   "status": 200,
+   "bytes": 19057,
+   "file": "api-reference_throttle_get-your-throttle-schedule.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/streaming/open-the-websocket.md",
+   "status": 200,
+   "bytes": 7160,
+   "file": "api-reference_streaming_open-the-websocket.md"
+  },
+  {
+   "url": "https://docs.novig.com/affiliates/overview.md",
+   "status": 200,
+   "bytes": 2286,
+   "file": "affiliates_overview.md"
+  },
+  {
+   "url": "https://docs.novig.com/affiliates/deeplinking.md",
+   "status": 200,
+   "bytes": 2753,
+   "file": "affiliates_deeplinking.md"
+  },
+  {
+   "url": "https://docs.novig.com/affiliates/odds-screens.md",
+   "status": 200,
+   "bytes": 6843,
+   "file": "affiliates_odds-screens.md"
+  },
+  {
+   "url": "https://docs.novig.com/affiliates/parlay-pricing.md",
+   "status": 200,
+   "bytes": 2756,
+   "file": "affiliates_parlay-pricing.md"
+  },
+  {
+   "url": "https://docs.novig.com/affiliates/futures.md",
+   "status": 200,
+   "bytes": 5207,
+   "file": "affiliates_futures.md"
+  },
+  {
+   "url": "https://docs.novig.com/api-reference/changelog.md",
+   "status": 200,
+   "bytes": 1207,
+   "file": "api-reference_changelog.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/index.md",
+   "status": 200,
+   "bytes": 3376,
+   "file": "deprecated_index.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/authentication.md",
+   "status": 200,
+   "bytes": 1430,
+   "file": "deprecated_api-reference_authentication.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/data-model.md",
+   "status": 200,
+   "bytes": 4358,
+   "file": "deprecated_api-reference_data-model.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/outcome-ids.md",
+   "status": 200,
+   "bytes": 3512,
+   "file": "deprecated_api-reference_outcome-ids.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/ticks.md",
+   "status": 200,
+   "bytes": 1854,
+   "file": "deprecated_api-reference_ticks.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/fees.md",
+   "status": 200,
+   "bytes": 9595,
+   "file": "deprecated_fees.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/maker-credit-program.md",
+   "status": 200,
+   "bytes": 14608,
+   "file": "deprecated_maker-credit-program.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/rest-api.md",
+   "status": 200,
+   "bytes": 2726,
+   "file": "deprecated_api-reference_rest-api.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/orders/place-order.md",
+   "status": 200,
+   "bytes": 8371,
+   "file": "deprecated_api-reference_orders_place-order.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/orders/place-order-batch.md",
+   "status": 200,
+   "bytes": 11982,
+   "file": "deprecated_api-reference_orders_place-order-batch.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/orders/cancel-order-batch.md",
+   "status": 200,
+   "bytes": 11035,
+   "file": "deprecated_api-reference_orders_cancel-order-batch.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/orders/get-order.md",
+   "status": 200,
+   "bytes": 6687,
+   "file": "deprecated_api-reference_orders_get-order.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/orders/cancel-order.md",
+   "status": 200,
+   "bytes": 7755,
+   "file": "deprecated_api-reference_orders_cancel-order.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/orders/cancel-all-orders.md",
+   "status": 200,
+   "bytes": 6859,
+   "file": "deprecated_api-reference_orders_cancel-all-orders.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/orders/get-all-my-orders.md",
+   "status": 200,
+   "bytes": 8565,
+   "file": "deprecated_api-reference_orders_get-all-my-orders.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/positions/get-all-my-fills.md",
+   "status": 200,
+   "bytes": 13730,
+   "file": "deprecated_api-reference_positions_get-all-my-fills.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/positions/get-all-my-positions.md",
+   "status": 200,
+   "bytes": 7228,
+   "file": "deprecated_api-reference_positions_get-all-my-positions.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/markets/get-market.md",
+   "status": 200,
+   "bytes": 12227,
+   "file": "deprecated_api-reference_markets_get-market.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/markets/get-open-markets.md",
+   "status": 200,
+   "bytes": 16484,
+   "file": "deprecated_api-reference_markets_get-open-markets.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/markets/get-order-book.md",
+   "status": 200,
+   "bytes": 8187,
+   "file": "deprecated_api-reference_markets_get-order-book.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/markets/get-markets-by-events-batch.md",
+   "status": 200,
+   "bytes": 15889,
+   "file": "deprecated_api-reference_markets_get-markets-by-events-batch.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/markets/get-markets-by-event.md",
+   "status": 200,
+   "bytes": 15904,
+   "file": "deprecated_api-reference_markets_get-markets-by-event.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/markets/get-lock-status.md",
+   "status": 200,
+   "bytes": 6918,
+   "file": "deprecated_api-reference_markets_get-lock-status.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/markets/request-new-market-strike.md",
+   "status": 200,
+   "bytes": 7388,
+   "file": "deprecated_api-reference_markets_request-new-market-strike.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/markets/get-ticks.md",
+   "status": 200,
+   "bytes": 6435,
+   "file": "deprecated_api-reference_markets_get-ticks.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/events/get-leagues.md",
+   "status": 200,
+   "bytes": 5086,
+   "file": "deprecated_api-reference_events_get-leagues.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/events/get-event-types.md",
+   "status": 200,
+   "bytes": 4944,
+   "file": "deprecated_api-reference_events_get-event-types.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/events/get-event-statuses.md",
+   "status": 200,
+   "bytes": 5096,
+   "file": "deprecated_api-reference_events_get-event-statuses.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/events/get-events.md",
+   "status": 200,
+   "bytes": 10737,
+   "file": "deprecated_api-reference_events_get-events.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/events/get-event.md",
+   "status": 200,
+   "bytes": 9330,
+   "file": "deprecated_api-reference_events_get-event.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/account/get-wallet-balance.md",
+   "status": 200,
+   "bytes": 5382,
+   "file": "deprecated_api-reference_account_get-wallet-balance.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/account/get-open-costs.md",
+   "status": 200,
+   "bytes": 5927,
+   "file": "deprecated_api-reference_account_get-open-costs.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/account/get-dashboard-url.md",
+   "status": 200,
+   "bytes": 7584,
+   "file": "deprecated_api-reference_account_get-dashboard-url.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/account/get-user-transactions.md",
+   "status": 200,
+   "bytes": 8103,
+   "file": "deprecated_api-reference_account_get-user-transactions.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/WSS/overview.md",
+   "status": 200,
+   "bytes": 1990,
+   "file": "deprecated_api-reference_WSS_overview.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/WSS/authentication.md",
+   "status": 200,
+   "bytes": 1647,
+   "file": "deprecated_api-reference_WSS_authentication.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/WSS/orderbook-channel.md",
+   "status": 200,
+   "bytes": 5490,
+   "file": "deprecated_api-reference_WSS_orderbook-channel.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/WSS/lifecycle-channel.md",
+   "status": 200,
+   "bytes": 9836,
+   "file": "deprecated_api-reference_WSS_lifecycle-channel.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/WSS/private-channel.md",
+   "status": 200,
+   "bytes": 4444,
+   "file": "deprecated_api-reference_WSS_private-channel.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/WSS/heartbeat.md",
+   "status": 200,
+   "bytes": 2025,
+   "file": "deprecated_api-reference_WSS_heartbeat.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/WSS/code-examples.md",
+   "status": 200,
+   "bytes": 1813,
+   "file": "deprecated_api-reference_WSS_code-examples.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/rfq/overview.md",
+   "status": 200,
+   "bytes": 4703,
+   "file": "deprecated_api-reference_rfq_overview.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/rfq/eligibility.md",
+   "status": 200,
+   "bytes": 1372,
+   "file": "deprecated_api-reference_rfq_eligibility.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/rfq/settlement.md",
+   "status": 200,
+   "bytes": 2839,
+   "file": "deprecated_api-reference_rfq_settlement.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/rfq/registration.md",
+   "status": 200,
+   "bytes": 7295,
+   "file": "deprecated_api-reference_rfq_registration.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/rfq/websocket.md",
+   "status": 200,
+   "bytes": 29055,
+   "file": "deprecated_api-reference_rfq_websocket.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/rfq/webhooks.md",
+   "status": 200,
+   "bytes": 7146,
+   "file": "deprecated_api-reference_rfq_webhooks.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/rfq/signing.md",
+   "status": 200,
+   "bytes": 1887,
+   "file": "deprecated_api-reference_rfq_signing.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/rfq/executions.md",
+   "status": 200,
+   "bytes": 8521,
+   "file": "deprecated_api-reference_rfq_executions.md"
+  },
+  {
+   "url": "https://docs.novig.com/deprecated/api-reference/trade-data.md",
+   "status": 200,
+   "bytes": 8340,
+   "file": "deprecated_api-reference_trade-data.md"
+  }
+ ]
+}

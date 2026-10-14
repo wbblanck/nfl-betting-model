@@ -1,0 +1,35 @@
+name: Best price dry run
+# Read-only: the best-price record on live prices with this week's DK props as stand-in picks (no S1 record touched).
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/audit/bestprice_dryrun.py', 'src/nflbet/bestprice.py', 'src/nflbet/venues.py', '.github/workflows/bestprice-dryrun.yml']
+permissions:
+  contents: write
+concurrency:
+  group: bestprice-dryrun-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  dryrun:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Best price on stand-in picks
+        run: python scripts/audit/bestprice_dryrun.py
+        env:
+          PARLAY_API_KEY: ${{ secrets.PARLAY_API_KEY }}
+      - name: Commit evidence
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add docs/evidence/bestprice_dryrun || true
+          git commit -m "evidence: best price dry run" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0; sleep $((2**i)); done
+          exit 1

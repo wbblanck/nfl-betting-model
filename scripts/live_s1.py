@@ -15,12 +15,13 @@ import sys
 
 import polars as pl
 
-from nflbet import ats_live as AL, config, depth as D, injuries as Inj, live as Lv, openmarkets as Om, parlay as Pa, props as P
+from nflbet import ats_live as AL, bestprice as Bp, config, depth as D, injuries as Inj, live as Lv, openmarkets as Om, parlay as Pa, props as P
 
 SEASON = 2026
 PICKS = Lv.LIVE / f"s1_picks_{SEASON}.csv"
 RUNS = Lv.LIVE / f"s1_runs_{SEASON}.csv"
 PARLAY_CMP = Lv.LIVE / f"parlay_compare_{SEASON}.csv"
+BEST = Lv.LIVE / f"s1_bestprice_{SEASON}.csv"
 # "S1 on ParlayAPI": the same rule scored on ParlayAPI's DK and FanDuel lines (books-disagree vote = DK vs FanDuel
 # only). A separate record, never pooled with the official S1 record above.
 PA_PICKS = Lv.LIVE / f"s1pa_picks_{SEASON}.csv"
@@ -63,6 +64,8 @@ def do_run() -> None:
         except Exception as e:  # noqa: BLE001 - the second record never stops the official one
             print(f"S1 on ParlayAPI unavailable: {type(e).__name__}: {e}")
     ats_record(week, when)
+    if n_rows > 0:                                                      # scored[0] is official S1
+        bestprice_record(scored[0][1], tmp, pa, week, when)
     if not scored:
         return
     flagged = with_news([x[1] for x in scored], week, when)
@@ -75,6 +78,23 @@ def do_run() -> None:
             print(f"  {r['away']}@{r['home']}  {r['player']:24s} {r['market']:12s} {r['side']:5s} {r['line']:6} {r['odds']:+.0f}"
                   f"  {'INJURY NEWS AGAINST ' if r['inj_against'] else ''}{r['inj_self'] or ''} {r['inj_teammates'] or ''}"
                   f"  {'DEPTH CHART AGAINST ' if r['depth_against'] else ''}{r['depth_note'] or ''}")
+
+
+def bestprice_record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, when: dt.datetime) -> None:
+    """Best available price per official S1 pick at its line and side, all-in (src/nflbet/bestprice.py), appended to
+    data/live/s1_bestprice_2026.csv. Record only: S1 is still graded at its DraftKings price. A failure never stops
+    the run."""
+    try:
+        rows = Bp.record(picks, an_path, pa, week, when)
+        if rows is None or not rows.height:
+            return
+        Lv.append(rows, BEST)
+        for r in rows.iter_rows(named=True):
+            best = f"{r['best_venue']} {r['best_odds']:+.0f} ({r['edge_cents']:+.1f}c vs DK)" if r["best_venue"] else "no venue at this line"
+            print(f"  best price: {r['player']:24s} {r['market']:12s} {r['side']:5s} {r['line']:6} DK {r['dk_odds']:+.0f} -> "
+                  f"{best}, {r['n_venues']} venues")
+    except Exception as e:  # noqa: BLE001
+        print(f"best price record unavailable: {type(e).__name__}: {e}")
 
 
 def ats_record(week: int, when: dt.datetime) -> None:

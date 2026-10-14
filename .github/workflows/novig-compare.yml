@@ -1,0 +1,37 @@
+name: Novig compare
+# Novig vs DraftKings / FanDuel on this week's NFL player props (scripts/novig_compare.py). Read-only.
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/novig_compare.py', '.github/workflows/novig-compare.yml']
+permissions:
+  contents: write
+concurrency:
+  group: novig-compare-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Compare Novig with DraftKings and FanDuel (same run)
+        run: python scripts/novig_compare.py
+        env:
+          PARLAY_API_KEY: ${{ secrets.PARLAY_API_KEY }}
+      - name: Commit evidence
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add docs/evidence/novig_compare || true
+          git add docs/novig_compare.md || true
+          git add docs/novig_compare.json || true
+          git commit -m "evidence: Novig compare" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0; sleep $((2**i)); done
+          exit 1

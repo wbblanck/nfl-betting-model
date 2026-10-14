@@ -1,0 +1,32 @@
+name: Novig docs
+# Read-only: save docs.novig.com's Markdown pages so they can be read offline (scripts/audit/fetch_docs.py).
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/audit/fetch_docs.py', '.github/workflows/novig-docs.yml']
+permissions:
+  contents: write
+concurrency:
+  group: novig-docs-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch docs.novig.com
+        run: python scripts/audit/fetch_docs.py https://docs.novig.com docs/evidence/novig_docs
+      - name: Commit evidence
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add docs/evidence/novig_docs || true
+          git commit -m "evidence: Novig docs" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0; sleep $((2**i)); done
+          exit 1
