@@ -2,8 +2,8 @@
 
 Polymarket threshold markets ("Will X record N+ receiving yards?") equal a sportsbook over at N-0.5. Each matched prop
 is compared on cost per $1 payout: the Polymarket Yes (over) or No (under) price against the book's implied cost
-from American odds. Lower cost = better price for the buyer. Gross = before fees; net = with an assumed fee
-(feeCoefficient x p x (1-p), a formula to confirm against Polymarket's fee schedule).
+from American odds. Lower cost = better price for the buyer. Gross = before fees; net = with Polymarket US's taker fee
+(0.0695 x p x (1-p) per contract, from its published fee schedule).
 """
 from __future__ import annotations
 
@@ -22,7 +22,6 @@ MAP = {"receptions": "rec", "receiving yards": "rec_yds", "rushing yards": "rush
        "passing yards": "pass_yds", "passing completions": "pass_cmp", "passing attempts": "pass_att"}
 PAT = re.compile(r"^Will (.+?) record (\d+)\+ (.+?)\?$")
 FEE = 0.0695
-DOC_FEE = 0.05               # Sports taker rate in docs.polymarket.com's fee table (international exchange); sensitivity only
 WEEK = 6                       # the upcoming slate; the search and the report header both follow this
 
 
@@ -177,12 +176,10 @@ def main():
                 rows2.append({"book": bk, "player": r["nkey"], "market": r["market"], "line": r["line"], "side": side,
                               "poly_cost": pc, "book_odds": bc, "book_cost": book_cost,
                               "gross_diff": book_cost - pc, "net_diff": book_cost - (pc + fee),
-                              "net_diff_doc": book_cost - (pc + DOC_FEE * pc * (1 - pc)),
                               "book_hold": imp(bo) + imp(bu) - 1, "poly_spread": r["poly_spread"]})
     d = pl.DataFrame(rows2) if rows2 else pl.DataFrame(schema={"book": pl.Utf8, "player": pl.Utf8, "market": pl.Utf8, "line": pl.Float64,
                                                               "side": pl.Utf8, "poly_cost": pl.Float64, "book_odds": pl.Float64,
-                                                              "book_cost": pl.Float64, "gross_diff": pl.Float64, "net_diff": pl.Float64,
-                                                              "net_diff_doc": pl.Float64})
+                                                              "book_cost": pl.Float64, "gross_diff": pl.Float64, "net_diff": pl.Float64})
     out = Path("docs/polymarket_compare.md")
     book_src = "live ParlayAPI and Polymarket US pulled together" if "--fetch" in sys.argv else "ParlayAPI 2026-10-09 21:03 UTC (stored), Polymarket US snapshot 2026-10-10 05:02 UTC (stored)"
     L = [f"# Polymarket US vs DraftKings and FanDuel, week {WEEK} player props", "",
@@ -193,9 +190,8 @@ def main():
         if not x.height:
             continue
         L.append(f"- vs {bk.upper()}: {x.height} sides; Polymarket cheaper gross {(x['gross_diff'] > 0).mean():.0%}, "
-                 f"mean {x['gross_diff'].mean()*100:+.2f} cents per $1; cheaper after assumed fee {(x['net_diff'] > 0).mean():.0%}, "
-                 f"mean {x['net_diff'].mean()*100:+.2f} cents; at the docs' Sports rate {DOC_FEE}: cheaper {(x['net_diff_doc'] > 0).mean():.0%}, "
-                 f"mean {x['net_diff_doc'].mean()*100:+.2f} cents.")
+                 f"mean {x['gross_diff'].mean()*100:+.2f} cents per $1; cheaper after fee {(x['net_diff'] > 0).mean():.0%}, "
+                 f"mean {x['net_diff'].mean()*100:+.2f} cents.")
     L += [f"Polymarket threshold markets with no bid/ask (not compared): {n_unquoted} of {n_thr}; "
           f"threshold markets quoted and compared: {poly_df.height}."]
     if d.height:
@@ -206,14 +202,14 @@ def main():
             if hb.len():
                 L.append(f"- {bk.upper()} hold on matched lines: median {hb.median()*100:.1f}% (over+under implied minus 1).")
         L.append(f"- Polymarket hold (quoted Yes + No minus 1, per binary market): median {ps.median()*100:.1f}% of $1.")
-    L += ["", f"Fee (Polymarket docs, taker only): fee = C x feeRate x p x (1-p), applied per share at the side's price p. "
-          f"Main figures use each market's own feeCoefficient ({FEE} on the Polymarket US markets; fallback {FEE}), as the docs "
-          f"direct. docs.polymarket.com's table lists {DOC_FEE} for Sports, but that page covers the international exchange, "
-          f"not Polymarket US; the {DOC_FEE} figures are shown for comparison only.", ""]
+    L += ["", f"Fee: Polymarket US fee schedule (docs.polymarket.us, effective 2026-10-07): taker fee = Θ x C x p x (1-p) with "
+          f"Θ = {FEE} for standard markets, Sports included (only Table Tennis differs, 0.10), charged per contract at the side's price p; "
+          "the markets' own feeCoefficient field carries the same 0.0695. Not modelled: rounding of each fill's fee to the cent "
+          "(banker's rounding) and taker rebates, which start at $250,000 a month in taker volume. Makers pay no taker fee.", ""]
     summ = {"run_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if "--fetch" in sys.argv else None,
             "source": book_src, "threshold_markets": n_thr, "quoted_compared": poly_df.height, "not_compared": n_unquoted,
             "side_quotes": d.height, "player_lines": d.select(pl.struct("player", "market", "line")).n_unique() if d.height else 0,
-            "fee_rate": FEE, "fee_rate_doc": DOC_FEE, "books": {}, "polymarket_hold_median": None, "book_hold_median": {}}
+            "fee_rate": FEE, "books": {}, "polymarket_hold_median": None, "book_hold_median": {}}
     for bk in ("dk", "fd"):
         x = d.filter(pl.col("book") == bk)
         if not x.height:
@@ -221,9 +217,7 @@ def main():
         summ["books"][bk.upper()] = {"sides": x.height, "gross_cheaper": float((x["gross_diff"] > 0).mean()),
                                      "gross_mean_cents": float(x["gross_diff"].mean() * 100),
                                      "net_cheaper": float((x["net_diff"] > 0).mean()),
-                                     "net_mean_cents": float(x["net_diff"].mean() * 100),
-                                     "net_cheaper_doc": float((x["net_diff_doc"] > 0).mean()),
-                                     "net_mean_cents_doc": float(x["net_diff_doc"].mean() * 100)}
+                                     "net_mean_cents": float(x["net_diff"].mean() * 100)}
     if d.height:
         summ["polymarket_hold_median"] = float(d.unique(subset=["player", "market", "line", "side"])["poly_spread"].median())
         bh = d.unique(subset=["book", "player", "market", "line"])
