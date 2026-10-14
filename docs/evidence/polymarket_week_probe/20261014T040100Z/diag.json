@@ -1,0 +1,1119 @@
+{
+ "run_utc": "2026-10-14T04:01:00.535561+00:00",
+ "week": 6,
+ "search": {
+  "NFL Week 6": {
+   "status": 200,
+   "n_events": 20,
+   "events": [
+    {
+     "title": "WAS Commanders vs. SF 49ers",
+     "slug": "nfl-was-sf-2026-10-19",
+     "series": "nfl-2025",
+     "start": "2026-10-20T00:15:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "DAL Cowboys vs. GB Packers",
+     "slug": "nfl-dal-gb-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-19T00:20:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "BUF Bills vs. LV Raiders",
+     "slug": "nfl-buf-lv-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T20:25:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "LA Chargers vs. KC Chiefs",
+     "slug": "nfl-lac-kc-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T20:25:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "ARI Cardinals vs. LA Rams",
+     "slug": "nfl-ari-lar-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T20:05:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "NY Jets vs. NE Patriots",
+     "slug": "nfl-nyj-ne-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "CHI Bears vs. ATL Falcons",
+     "slug": "nfl-chi-atl-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "NO Saints vs. NY Giants",
+     "slug": "nfl-no-nyg-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "BAL Ravens vs. CLE Browns",
+     "slug": "nfl-bal-cle-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "PIT Steelers vs. TB Buccaneers",
+     "slug": "nfl-pit-tb-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "CAR Panthers vs. PHI Eagles",
+     "slug": "nfl-car-phi-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "TEN Titans vs. IND Colts",
+     "slug": "nfl-ten-ind-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "HOU Texans vs. JAC Jaguars",
+     "slug": "nfl-hou-jax-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T13:30:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "SEA Seahawks vs. DEN Broncos",
+     "slug": "nfl-sea-den-2026-10-15",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:15:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "Top D/ST Fantasy Football Week 6",
+     "slug": "nfl-wk6-2026-10-19-dstmostfp",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 28,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Week 6 Receiving Yards Leader",
+     "slug": "nfl-wk6-2026-10-19-mostrecyds",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 36,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Week 6 WR Receiving TDs Leader",
+     "slug": "nfl-wk6-2026-10-19-mostrectds",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 34,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Week 6 Rushing Yards Leader",
+     "slug": "nfl-wk6-2026-10-19-mostrushyds",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 32,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Week 6 RB Rushing TDs Leader",
+     "slug": "nfl-wk6-2026-10-19-mostrushtds",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 30,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Week 6 Passing Yards Leader",
+     "slug": "nfl-wk6-2026-10-19-mostpassyds",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 28,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    }
+   ]
+  },
+  "NFL week 6 props": {
+   "status": 200,
+   "n_events": 20,
+   "events": [
+    {
+     "title": "WAS Commanders vs. SF 49ers",
+     "slug": "nfl-was-sf-2026-10-19",
+     "series": "nfl-2025",
+     "start": "2026-10-20T00:15:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "DAL Cowboys vs. GB Packers",
+     "slug": "nfl-dal-gb-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-19T00:20:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "BUF Bills vs. LV Raiders",
+     "slug": "nfl-buf-lv-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T20:25:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "LA Chargers vs. KC Chiefs",
+     "slug": "nfl-lac-kc-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T20:25:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "ARI Cardinals vs. LA Rams",
+     "slug": "nfl-ari-lar-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T20:05:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "NY Jets vs. NE Patriots",
+     "slug": "nfl-nyj-ne-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "CHI Bears vs. ATL Falcons",
+     "slug": "nfl-chi-atl-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "NO Saints vs. NY Giants",
+     "slug": "nfl-no-nyg-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "BAL Ravens vs. CLE Browns",
+     "slug": "nfl-bal-cle-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "PIT Steelers vs. TB Buccaneers",
+     "slug": "nfl-pit-tb-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "CAR Panthers vs. PHI Eagles",
+     "slug": "nfl-car-phi-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "TEN Titans vs. IND Colts",
+     "slug": "nfl-ten-ind-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T17:00:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "HOU Texans vs. JAC Jaguars",
+     "slug": "nfl-hou-jax-2026-10-18",
+     "series": "nfl-2025",
+     "start": "2026-10-18T13:30:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "SEA Seahawks vs. DEN Broncos",
+     "slug": "nfl-sea-den-2026-10-15",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:15:00Z",
+     "n_markets": 1,
+     "n_record": 0,
+     "verdict": "no 'Will X record N+' markets"
+    },
+    {
+     "title": "Top D/ST Fantasy Football Week 6",
+     "slug": "nfl-wk6-2026-10-19-dstmostfp",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 28,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Week 6 Receiving Yards Leader",
+     "slug": "nfl-wk6-2026-10-19-mostrecyds",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 36,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Week 6 WR Receiving TDs Leader",
+     "slug": "nfl-wk6-2026-10-19-mostrectds",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 34,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Week 6 Rushing Yards Leader",
+     "slug": "nfl-wk6-2026-10-19-mostrushyds",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 32,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Week 6 RB Rushing TDs Leader",
+     "slug": "nfl-wk6-2026-10-19-mostrushtds",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 30,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Week 6 Passing Yards Leader",
+     "slug": "nfl-wk6-2026-10-19-mostpassyds",
+     "series": "nfl-2025",
+     "start": "2026-10-16T00:00:00Z",
+     "n_markets": 28,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    }
+   ]
+  }
+ },
+ "list": {
+  "none": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "2",
+    "3",
+    "4",
+    "...",
+    "50",
+    "51"
+   ],
+   "first_slugs": [
+    "aec-nfl-car-gb-2025-11-02",
+    "aec-nfl-lac-ten-2025-11-02",
+    "aec-nfl-min-det-2025-11-02"
+   ],
+   "in_window_nfl": [],
+   "other_keys": []
+  },
+  "offset=500": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "502",
+    "503",
+    "504",
+    "...",
+    "550",
+    "551"
+   ],
+   "first_slugs": [
+    "aec-cbb-usi-indst-2025-12-07",
+    "aec-cbb-illchi-yale-2025-12-07",
+    "aec-cbb-niagra-stpete-2025-12-07"
+   ],
+   "in_window_nfl": [],
+   "other_keys": []
+  },
+  "seriesSlug=nfl-2025": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "2",
+    "3",
+    "4",
+    "...",
+    "50",
+    "51"
+   ],
+   "first_slugs": [
+    "aec-nfl-car-gb-2025-11-02",
+    "aec-nfl-lac-ten-2025-11-02",
+    "aec-nfl-min-det-2025-11-02"
+   ],
+   "in_window_nfl": [],
+   "other_keys": []
+  },
+  "series_slug=nfl-2025": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "2",
+    "3",
+    "4",
+    "...",
+    "50",
+    "51"
+   ],
+   "first_slugs": [
+    "aec-nfl-car-gb-2025-11-02",
+    "aec-nfl-lac-ten-2025-11-02",
+    "aec-nfl-min-det-2025-11-02"
+   ],
+   "in_window_nfl": [],
+   "other_keys": []
+  },
+  "seriesSlug+active+open": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "6435",
+    "6436",
+    "6437",
+    "...",
+    "17679",
+    "17680"
+   ],
+   "first_slugs": [
+    "mlb-nlchamp-2026-09-27",
+    "mlb-champ-2026-09-27",
+    "mlb-alchamp-2026-09-27"
+   ],
+   "in_window_nfl": [
+    {
+     "title": "AFC West Division Winner",
+     "slug": "nfl-afcwest-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "AFC South Division Winner",
+     "slug": "nfl-afcsouth-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "AFC North Division Winner",
+     "slug": "nfl-afcnorth-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "NFC West Division Winner",
+     "slug": "nfl-nfcwest-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "NFC North Division Winner",
+     "slug": "nfl-nfcnorth-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "AFC East Division Winner",
+     "slug": "nfl-afceast-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "NFC South Division Winner",
+     "slug": "nfl-nfcsouth-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    }
+   ],
+   "other_keys": []
+  },
+  "active+open": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "6435",
+    "6436",
+    "6437",
+    "...",
+    "17679",
+    "17680"
+   ],
+   "first_slugs": [
+    "mlb-nlchamp-2026-09-27",
+    "mlb-champ-2026-09-27",
+    "mlb-alchamp-2026-09-27"
+   ],
+   "in_window_nfl": [
+    {
+     "title": "AFC West Division Winner",
+     "slug": "nfl-afcwest-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "AFC South Division Winner",
+     "slug": "nfl-afcsouth-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "AFC North Division Winner",
+     "slug": "nfl-afcnorth-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "NFC West Division Winner",
+     "slug": "nfl-nfcwest-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "NFC North Division Winner",
+     "slug": "nfl-nfcnorth-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "AFC East Division Winner",
+     "slug": "nfl-afceast-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "NFC South Division Winner",
+     "slug": "nfl-nfcsouth-2027-01-10-w",
+     "series": "nfl-2025",
+     "start": "2026-09-10T00:20:00Z",
+     "n_markets": 4,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    }
+   ],
+   "other_keys": []
+  },
+  "tag=nfl": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "2",
+    "3",
+    "4",
+    "...",
+    "50",
+    "51"
+   ],
+   "first_slugs": [
+    "aec-nfl-car-gb-2025-11-02",
+    "aec-nfl-lac-ten-2025-11-02",
+    "aec-nfl-min-det-2025-11-02"
+   ],
+   "in_window_nfl": [],
+   "other_keys": []
+  },
+  "tagSlug=nfl": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "2",
+    "3",
+    "4",
+    "...",
+    "125",
+    "126"
+   ],
+   "first_slugs": [
+    "aec-nfl-car-gb-2025-11-02",
+    "aec-nfl-lac-ten-2025-11-02",
+    "aec-nfl-min-det-2025-11-02"
+   ],
+   "in_window_nfl": [],
+   "other_keys": []
+  },
+  "league=nfl": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "2",
+    "3",
+    "4",
+    "...",
+    "50",
+    "51"
+   ],
+   "first_slugs": [
+    "aec-nfl-car-gb-2025-11-02",
+    "aec-nfl-lac-ten-2025-11-02",
+    "aec-nfl-min-det-2025-11-02"
+   ],
+   "in_window_nfl": [],
+   "other_keys": []
+  },
+  "startDateMin=now": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "7680",
+    "7681",
+    "8349",
+    "...",
+    "40969",
+    "40970"
+   ],
+   "first_slugs": [
+    "uss-midterms-2026-11-03",
+    "ush-midterms-2026-11-03",
+    "usho-midterms-2026-11-03"
+   ],
+   "in_window_nfl": [
+    {
+     "title": "Pro Football Defensive Player of the Year",
+     "slug": "nfl-dpoy-2027-02-11-w",
+     "series": "nfl-2025",
+     "start": "2027-02-12T01:00:00Z",
+     "n_markets": 51,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Pro Football Offensive Rookie of the Year",
+     "slug": "nfl-oroy-2027-02-11-w",
+     "series": "nfl-2025",
+     "start": "2027-02-12T01:00:00Z",
+     "n_markets": 24,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Pro Football MVP",
+     "slug": "nfl-mvp-2027-02-11-w",
+     "series": "nfl-2025",
+     "start": "2027-02-12T01:00:00Z",
+     "n_markets": 50,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Pro Football Offensive Player of the Year",
+     "slug": "nfl-opoy-2027-02-11-w",
+     "series": "nfl-2025",
+     "start": "2027-02-12T01:00:00Z",
+     "n_markets": 49,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Pro Football Comeback Player of the Year",
+     "slug": "nfl-cbpoty-2027-02-11-w",
+     "series": "nfl-2025",
+     "start": "2027-02-12T01:00:00Z",
+     "n_markets": 15,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Pro Football Coach of the Year",
+     "slug": "nfl-coty-2027-02-11-w",
+     "series": "nfl-2025",
+     "start": "2027-02-12T01:00:00Z",
+     "n_markets": 32,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    },
+    {
+     "title": "Pro Football Defensive Rookie of the Year",
+     "slug": "nfl-droy-2027-02-11-w",
+     "series": "nfl-2025",
+     "start": "2027-02-12T01:00:00Z",
+     "n_markets": 21,
+     "n_record": 0,
+     "verdict": "title has no ' vs. '"
+    }
+   ],
+   "other_keys": []
+  },
+  "order=startTime desc": {
+   "status": 200,
+   "n": 50,
+   "ids": [
+    "2",
+    "3",
+    "4",
+    "...",
+    "50",
+    "51"
+   ],
+   "first_slugs": [
+    "aec-nfl-car-gb-2025-11-02",
+    "aec-nfl-lac-ten-2025-11-02",
+    "aec-nfl-min-det-2025-11-02"
+   ],
+   "in_window_nfl": [],
+   "other_keys": []
+  }
+ },
+ "slug_lookup": [
+  {
+   "game_id": "2026_06_SEA_DEN",
+   "away": "SEA",
+   "home": "DEN",
+   "et_date": "2026-10-15",
+   "kick_utc": "2026-10-16T00:15:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-sea-den-2026-10-15",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "SEA Seahawks vs. DEN Broncos",
+    "slug": "nfl-sea-den-2026-10-15",
+    "series": "nfl-2025",
+    "start": "2026-10-16T00:15:00Z",
+    "n_markets": 714,
+    "n_record": 254,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_HOU_JAX",
+   "away": "HOU",
+   "home": "JAX",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T13:30:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-hou-jax-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "HOU Texans vs. JAC Jaguars",
+    "slug": "nfl-hou-jax-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T13:30:00Z",
+    "n_markets": 665,
+    "n_record": 223,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_CHI_ATL",
+   "away": "CHI",
+   "home": "ATL",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T17:00:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-chi-atl-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "CHI Bears vs. ATL Falcons",
+    "slug": "nfl-chi-atl-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T17:00:00Z",
+    "n_markets": 560,
+    "n_record": 130,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_BAL_CLE",
+   "away": "BAL",
+   "home": "CLE",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T17:00:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-bal-cle-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "BAL Ravens vs. CLE Browns",
+    "slug": "nfl-bal-cle-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T17:00:00Z",
+    "n_markets": 458,
+    "n_record": 38,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_TEN_IND",
+   "away": "TEN",
+   "home": "IND",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T17:00:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-ten-ind-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "TEN Titans vs. IND Colts",
+    "slug": "nfl-ten-ind-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T17:00:00Z",
+    "n_markets": 507,
+    "n_record": 71,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_NYJ_NE",
+   "away": "NYJ",
+   "home": "NE",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T17:00:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-nyj-ne-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "NY Jets vs. NE Patriots",
+    "slug": "nfl-nyj-ne-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T17:00:00Z",
+    "n_markets": 541,
+    "n_record": 109,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_NO_NYG",
+   "away": "NO",
+   "home": "NYG",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T17:00:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-no-nyg-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "NO Saints vs. NY Giants",
+    "slug": "nfl-no-nyg-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T17:00:00Z",
+    "n_markets": 575,
+    "n_record": 143,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_CAR_PHI",
+   "away": "CAR",
+   "home": "PHI",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T17:00:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-car-phi-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "CAR Panthers vs. PHI Eagles",
+    "slug": "nfl-car-phi-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T17:00:00Z",
+    "n_markets": 471,
+    "n_record": 47,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_PIT_TB",
+   "away": "PIT",
+   "home": "TB",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T17:00:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-pit-tb-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "PIT Steelers vs. TB Buccaneers",
+    "slug": "nfl-pit-tb-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T17:00:00Z",
+    "n_markets": 484,
+    "n_record": 56,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_ARI_LA",
+   "away": "ARI",
+   "home": "LA",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T20:05:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-ari-lar-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "ARI Cardinals vs. LA Rams",
+    "slug": "nfl-ari-lar-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T20:05:00Z",
+    "n_markets": 578,
+    "n_record": 144,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_LAC_KC",
+   "away": "LAC",
+   "home": "KC",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T20:25:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-lac-kc-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "LA Chargers vs. KC Chiefs",
+    "slug": "nfl-lac-kc-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T20:25:00Z",
+    "n_markets": 508,
+    "n_record": 80,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_BUF_LV",
+   "away": "BUF",
+   "home": "LV",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-18T20:25:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-buf-lv-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "BUF Bills vs. LV Raiders",
+    "slug": "nfl-buf-lv-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-18T20:25:00Z",
+    "n_markets": 578,
+    "n_record": 144,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_DAL_GB",
+   "away": "DAL",
+   "home": "GB",
+   "et_date": "2026-10-18",
+   "kick_utc": "2026-10-19T00:20:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-dal-gb-2026-10-18",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "DAL Cowboys vs. GB Packers",
+    "slug": "nfl-dal-gb-2026-10-18",
+    "series": "nfl-2025",
+    "start": "2026-10-19T00:20:00Z",
+    "n_markets": 594,
+    "n_record": 160,
+    "verdict": "kept"
+   }
+  },
+  {
+   "game_id": "2026_06_WAS_SF",
+   "away": "WAS",
+   "home": "SF",
+   "et_date": "2026-10-19",
+   "kick_utc": "2026-10-20T00:15:00+00:00",
+   "tries": [
+    {
+     "endpoint": "/v1/events/slug/{s}",
+     "slug": "nfl-was-sf-2026-10-19",
+     "status": 200,
+     "hit": true
+    }
+   ],
+   "found": {
+    "title": "WAS Commanders vs. SF 49ers",
+    "slug": "nfl-was-sf-2026-10-19",
+    "series": "nfl-2025",
+    "start": "2026-10-20T00:15:00Z",
+    "n_markets": 404,
+    "n_record": 0,
+    "verdict": "no 'Will X record N+' markets"
+   }
+  }
+ ]
+}

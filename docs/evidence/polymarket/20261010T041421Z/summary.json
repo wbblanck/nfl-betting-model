@@ -1,0 +1,48 @@
+{
+ "tags": {
+  "status": 200,
+  "nfl": [
+   {
+    "id": "103357",
+    "label": "Influenza",
+    "slug": "influenza",
+    "createdAt": "2026-01-30T13:40:35.374347Z",
+    "updatedAt": "2026-04-17T20:15:31.325558Z"
+   }
+  ]
+ },
+ "search_passing yards": {
+  "status": 200,
+  "sample": "{\"events\": [{\"id\": \"922068\", \"ticker\": \"ncaa-football-2026-d1-passing-yards-leader-20260804194626818\", \"slug\": \"ncaa-football-2026-d1-passing-yards-leader-20260804194626818\", \"title\": \"NCAA Football: 2026 D1 Passing Yards Leader\", \"description\": \"This market will resolve in favor of the player that finishes the 2026 NCAA FBS regular season with the most passing yards.\\n\\nIn the event of a tie, this market will resolve in favor of the player with more passing touchdowns during the 2026 NCAA FBS regular season. If a tie still persists, this market will resolve in favor of the player with a higher passing yards per attempt. If a tie still persists, this market will resolve to \\\"Other\\\".\\n\\nIf the 2026 NCAA FBS season concludes early, is shortened, or is truncated for any reason, the outcome shall be determined using available NCAA FBS statistics for completed games.\\n\\nIf the 2026 NCAA FBS regular season is cancelled, postponed after January 3, 2027, 11:59 PM ET, or it is unclear which player led NCAA FBS in passing yards within that timeframe, this market will resolve to \\\"Other\\\".\\n\\nThe resolution source for this market will be official information from the NCAA (https://www.ncaa.com/stats/football/fbs); however, a consensus of credible reporting may also be used.\", \"resolutionSource\": \"\", \"startDate\": \"2026-08-27T18:19:06Z\", \"creationDate\": \"2026-08-27T18:21:15.486237Z\", \"endDate\": \"2027-01-04T04:59:00Z\", \"image\": \"https://polymarket-upload.s3.us-east-2.amazonaws.com/ncaa-fo"
+ },
+ "search_receiving yards": {
+  "status": 200,
+  "sample": "{\"events\": [{\"id\": \"830565\", \"ticker\": \"makai-lemon-receiving-yards-2026-27\", \"slug\": \"makai-lemon-receiving-yards-2026-27\", \"title\": \"Pro Football: Makai Lemon 2026-27 Regular Season Receiving Yards\", \"description\": \"This market will resolve to \\\"Yes\\\" if the number of receiving yards Makai Lemon records during the 2026-27 NFL regular season equals or exceeds the listed number. Otherwise, this market will resolve to \\\"No\\\".\\n\\nIf Makai Lemon does not play in the 2026-27 NFL regular season for any reason, this market will resolve to \\\"No\\\".\\n\\nIf the 2026-27 NFL regular season is shortened, truncated, or ends early for any reason, the outcome shall be determined using available official data for completed games.\\n\\nIf the 2026-27 NFL regular season is cancelled, postponed after January 26, 2027, 11:59 PM ET, or it cannot be determined how many receiving yards Makai Lemon recorded within that timeframe, this market will resolve to \\\"50-50\\\".\\n\\nThe resolution source for this market will be official information from the NFL; however, a consensus of credible reporting may also be used.\", \"resolutionSource\": \"\", \"startDate\": \"2026-08-11T11:54:12.949812Z\", \"creationDate\": \"2026-08-11T13:44:23.892866Z\", \"endDate\": \"2027-01-27T04:59:00Z\", \"image\": \"https://polymarket-upload.s3.us-east-2.amazonaws.com/makai-lemon-receiving-yards-2026-27-KFHOijvIxJWJ.jpg\", \"icon\": \"https://polymarket-upload.s3.us-east-2.amazonaws.com/makai-lemon-receiving-yards-2026-27-KFHOijvIxJWJ.jpg\", \"active\": tru"
+ },
+ "search_rushing yards": {
+  "status": 200,
+  "sample": "{\"events\": [{\"id\": \"927516\", \"ticker\": \"pro-football-2026-27-1000-rushing-yards\", \"slug\": \"pro-football-2026-27-1000-rushing-yards\", \"title\": \"Pro Football: 2026-27 1,000+ Rushing Yards\", \"description\": \"This market will resolve to \\\"Yes\\\" if the number of rushing yards the listed player records during the 2026-27 NFL regular season equals or exceeds 1,000. Otherwise, the associated market will resolve to \\\"No\\\".\\n\\nOnly regular season games count. Playoff games, including Wild Card, Divisional, Conference Championship, and Pro Football Championship games, do not count.\\n\\nIf the listed player does not play in the 2026-27 NFL regular season for any reason, the associated market will resolve to \\\"No\\\".\\n\\nIf the 2026-27 NFL regular season is shortened, truncated, or ends early for any reason, the outcome shall be determined using available official data for completed games.\\n\\nIf the 2026-27 NFL regular season is cancelled, postponed after January 26, 2027, 11:59 PM ET, or it cannot be determined how many rushing yards the listed player recorded within that timeframe, this market will resolve to \\\"50-50\\\".\\n\\nThe resolution source for this market will be official information from the NFL; however, a consensus of credible reporting may also be used.\", \"resolutionSource\": \"\", \"startDate\": \"2026-08-28T20:17:33Z\", \"creationDate\": \"2026-08-28T20:19:16.659153Z\", \"endDate\": \"2027-01-27T04:59:00Z\", \"image\": \"https://polymarket-upload.s3.us-east-2.amazonaws.com/pro-football-2026-27-rus"
+ },
+ "search_receptions": {
+  "status": 200,
+  "sample": "{\"events\": [{\"id\": \"726408\", \"ticker\": \"pro-football-2026-27-receptions-leader-20260715212154222\", \"slug\": \"pro-football-2026-27-receptions-leader-20260715212154222\", \"title\": \"Pro Football: 2026-27 Receptions Leader\", \"description\": \"This market will resolve in favor of the player that finishes the 2026-27 NFL regular season with the most receptions.\\n\\nIn the event of a tie, this market will resolve in favor of the tied player with more receiving yards during the 2026-27 NFL regular season. If a tie still persists, this market will resolve in favor of the player with a higher catch percentage (receptions divided by targets) during the 2026-27 NFL regular season. If a tie still persists, this market will resolve to \\u201cOther\\u201d.\\n\\nIf the 2026-27 NFL season concludes early, is shortened, or is truncated for any reason, the outcome shall be determined using available NFL statistics for completed games.\\n\\nIf the 2026-27 NFL regular season is cancelled, postponed after January 26, 2027, 11:59 PM ET, or it is unclear which player led the NFL in receptions within that timeframe, this market will resolve to \\u201cOther\\u201d.\\n\\nThe resolution source for this market will be official information from the NFL; however, a consensus of credible reporting may also be used.\", \"resolutionSource\": \"\", \"startDate\": \"2026-07-20T19:39:43.863048Z\", \"creationDate\": \"2026-07-20T19:45:34.053946Z\", \"endDate\": \"2027-01-27T04:59:00Z\", \"image\": \"https://polymarket-upload.s3.us-east-2.amazonaws"
+ },
+ "events": {
+  "n": 0,
+  "titles_sample": [],
+  "market_kinds": {},
+  "prop_questions_sample": []
+ },
+ "https://polymarket.us": {
+  "status": 200,
+  "head": "<!DOCTYPE html><html data-dpl-id=\"dpl_3QxRnP3T8u2EiRW5WSoXM8C6fBna\" lang=\"en-US\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0_c68vq5h3t6u.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0_n1f_q5cfjif.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0508wd6o90ri-.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/3nftg_jht-37a.css\" data-precedence=\"next\"/><style data-precedence=\"base-ui:low\" data-href=\"base-ui-disable-scrollbar\">.base-ui-disable-scrollbar{scrollbar-width:none}.base-ui-disable-scrollbar::-webkit-scrollbar{display:none}</style"
+ },
+ "https://www.polymarket.us": {
+  "status": 200,
+  "head": "<!DOCTYPE html><html data-dpl-id=\"dpl_3QxRnP3T8u2EiRW5WSoXM8C6fBna\" lang=\"en-US\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0_c68vq5h3t6u.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0_n1f_q5cfjif.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/0508wd6o90ri-.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/3nftg_jht-37a.css\" data-precedence=\"next\"/><style data-precedence=\"base-ui:low\" data-href=\"base-ui-disable-scrollbar\">.base-ui-disable-scrollbar{scrollbar-width:none}.base-ui-disable-scrollbar::-webkit-scrollbar{display:none}</style"
+ },
+ "https://api.polymarket.us/v1/markets?limit=5": {
+  "status": "HTTP Error 401: Unauthorized",
+  "head": ""
+ }
+}

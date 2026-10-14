@@ -1,0 +1,35 @@
+name: Polymarket probe
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/audit/polymarket_probe.py', 'scripts/polymarket_compare.py', '.github/workflows/polymarket-probe.yml']
+permissions:
+  contents: write
+concurrency:
+  group: polymarket-probe-${{ github.ref }}   # a push run and a dispatch run raced on the same commit (2026-10-14)
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/audit/polymarket_probe.py
+      - run: pip install -e .
+      - name: Compare Polymarket US with DraftKings and FanDuel (same moment)
+        if: always()
+        run: python scripts/polymarket_compare.py --fetch
+        env:
+          PARLAY_API_KEY: ${{ secrets.PARLAY_API_KEY }}
+      - name: Commit evidence
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add docs/evidence/polymarket docs/evidence/polymarket_compare docs/polymarket_compare.md docs/polymarket_compare.json || true
+          git commit -m "evidence: Polymarket NFL props probe" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
