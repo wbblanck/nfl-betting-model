@@ -22,6 +22,8 @@ jobs:
       - run: pip install -e .
       - name: Best price on stand-in picks
         run: python scripts/audit/bestprice_dryrun.py
+        env:
+          PARLAY_API_KEY: ${{ secrets.PARLAY_API_KEY }}
       - name: Commit evidence
         if: always()
         run: |

@@ -1,7 +1,8 @@
 """Dry run of the best-price record (src/nflbet/bestprice.py) on live prices, without touching any S1 record.
 
-Uses this week's DraftKings props on Action Network (both sides) as stand-in picks, fetches Action Network, Polymarket
-US and Novig the way scripts/live_s1.py does, and reports coverage: how many stand-in picks each venue priced at the
+Uses this week's DraftKings props on Action Network (both sides) as stand-in picks, or ParlayAPI's DraftKings lines when
+Action Network has not posted props yet (needs PARLAY_API_KEY); fetches Action Network, Polymarket US and Novig the way
+scripts/live_s1.py does, and reports coverage: how many stand-in picks each venue priced at the
 same line, and how often each venue was cheapest all-in. Writes docs/evidence/bestprice_dryrun/<stamp>/.
 """
 from __future__ import annotations
@@ -16,7 +17,9 @@ from pathlib import Path
 import polars as pl
 
 sys.path.insert(0, "src")
-from nflbet import bestprice as Bp, live as Lv  # noqa: E402
+import os  # noqa: E402
+
+from nflbet import bestprice as Bp, live as Lv, parlay as Pa  # noqa: E402
 
 
 def main() -> None:
@@ -29,15 +32,29 @@ def main() -> None:
     an = pl.read_csv(tmp, infer_schema_length=0)
     dk = an.filter(pl.col("book_id") == "68", pl.col("over_odds").fill_null("") != "", pl.col("under_odds").fill_null("") != "")
     dk = dk.filter(pl.col("start_time").map_elements(Lv.parse_ts, return_dtype=pl.Datetime("us", "UTC")) > now)
-    picks = pl.concat([dk.with_columns(pl.lit(s).alias("side"), pl.col(f"{s}_odds").cast(pl.Float64).alias("odds")) for s in ("over", "under")])
-    picks = picks.select("week", "an_game_id", "start_time", "home", "away", "player", pl.col("an_player_id").alias("player_id"),
-                         "market", pl.col("line").cast(pl.Float64), "side", "odds")
-    rows = Bp.record(picks, tmp, None, week, now)
+    pa = Pa.parse(Pa.fetch()[0]) if os.environ.get("PARLAY_API_KEY") else None
+    if dk.height:
+        source = "Action Network DraftKings"
+        picks = pl.concat([dk.with_columns(pl.lit(s).alias("side"), pl.col(f"{s}_odds").cast(pl.Float64).alias("odds")) for s in ("over", "under")])
+        picks = picks.select("week", "an_game_id", "start_time", "home", "away", "player", pl.col("an_player_id").alias("player_id"),
+                             "market", pl.col("line").cast(pl.Float64), "side", "odds")
+    elif pa is not None and pa.height:
+        source = "ParlayAPI DraftKings (Action Network has no props posted yet)"
+        d = pa.filter(pl.col("book") == "dk").with_columns(pl.col("game").str.split("|").list.get(0).alias("home"),
+                                                           pl.col("game").str.split("|").list.get(1).alias("away"))
+        picks = pl.concat([d.with_columns(pl.lit(s).alias("side"), pl.col(s).alias("odds")) for s in ("over", "under")])
+        picks = picks.select(pl.lit(week).alias("week"), pl.lit("").alias("an_game_id"), pl.lit("").alias("start_time"), "home", "away",
+                             "player", pl.lit("").alias("player_id"), "market", "line", "side", "odds")
+    else:
+        print("nothing to price: Action Network has no props posted and ParlayAPI is unavailable")
+        return
+    print(f"stand-in picks from {source}: {picks.height}")
+    rows = Bp.record(picks, tmp if dk.height else None, pa, week, now)
     n = rows.height
     has = collections.Counter(v for s in rows["venues"].to_list() for v in json.loads(s))
     best = collections.Counter(rows["best_venue"].drop_nulls().to_list())
     beat = rows.filter(pl.col("edge_cents") > 0.005)
-    out = {"run_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "week": week, "stand_in_picks": n,
+    out = {"run_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "week": week, "source": source, "stand_in_picks": n,
            "priced_by_venue": dict(has.most_common()), "cheapest_by_venue": dict(best.most_common()),
            "beat_dk": beat.height, "edge_cents_median_when_beat": float(beat["edge_cents"].median()) if beat.height else None,
            "edge_cents_mean_all": float(rows["edge_cents"].mean()) if n else None}
