@@ -1,4 +1,4 @@
-# Polymarket US vs DraftKings and FanDuel, week 5 player props
+# Polymarket US vs DraftKings and FanDuel, week 6 player props
 
 Props matched: 0 side-quotes across 0 player-lines, source: live ParlayAPI and Polymarket US pulled together. Positive diff = Polymarket is cheaper.
 
