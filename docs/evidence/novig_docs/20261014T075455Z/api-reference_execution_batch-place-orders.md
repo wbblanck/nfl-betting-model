@@ -1,0 +1,709 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.novig.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Batch place orders
+
+> | | |
+| --- | --- |
+| **Key** | `trading` |
+| **Throttle** | `place` |
+| **Cost** | `1 /order` |
+| **Answers** | <span class="st st-ok">201</span> <span class="st st-warn">400</span> <span class="st st-warn">401</span> <span class="st st-warn">403</span> <span class="st st-warn">413</span> <span class="st st-warn">422</span> <span class="st st-hold">423</span> <span class="st st-hold">429</span> <span class="st st-warn">451</span> <span class="st st-bad">503</span> |
+| **Idempotent** | `false` |
+
+All or nothing. A resend places the batch again.
+
+
+
+## OpenAPI
+
+````yaml /api-reference/spec-files/openapi-v3.json post /v3/orders/batch
+openapi: 3.1.0
+info:
+  contact:
+    email: tech@novig.com
+    name: Contact
+    url: https://novig.com
+  description: >-
+    Place orders over signed REST. Watch the book and your fills on one
+    websocket.
+  title: Novig API
+  version: 3.0.0
+servers:
+  - description: Paper
+    url: https://api.paper.novig.com
+security: []
+tags:
+  - description: >-
+      The tradable world: events, markets and outcomes, and the vocabularies
+      their fields use.
+    name: Catalog
+  - description: >-
+      Markets and events that are no longer in the catalog, and the caller's
+      positions. These records have no age limit.
+    name: History
+  - description: 'Signature debugging: the string the server built from your request.'
+    name: Authentication
+  - description: Subaccounts and their ledgers.
+    name: Accounts
+  - description: Orders, and the caller's own trading state.
+    name: Execution
+  - description: The websocket entry point.
+    name: Streaming
+  - description: The rate-limit schedule, read at runtime.
+    name: Throttle
+paths:
+  /v3/orders/batch:
+    post:
+      tags:
+        - Execution
+      summary: Batch place orders
+      description: >-
+        | | |
+
+        | --- | --- |
+
+        | **Key** | `trading` |
+
+        | **Throttle** | `place` |
+
+        | **Cost** | `1 /order` |
+
+        | **Answers** | <span class="st st-ok">201</span> <span class="st
+        st-warn">400</span> <span class="st st-warn">401</span> <span class="st
+        st-warn">403</span> <span class="st st-warn">413</span> <span class="st
+        st-warn">422</span> <span class="st st-hold">423</span> <span class="st
+        st-hold">429</span> <span class="st st-warn">451</span> <span class="st
+        st-bad">503</span> |
+
+        | **Idempotent** | `false` |
+
+
+        All or nothing. A resend places the batch again.
+      operationId: batchPlace
+      requestBody:
+        content:
+          application/json:
+            example:
+              orders:
+                - outcomeId: 3f2504e0-4f89-11d3-9a0c-0305e82c3301
+                  price: '0.665'
+                  qty: 110
+                  tif: GTC
+                - outcomeId: 3f2504e0-4f89-11d3-9a0c-0305e82c3302
+                  price: '0.330'
+                  qty: 50
+                  tif: IOC
+            schema:
+              $ref: '#/components/schemas/BatchPlace'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OrderAccepted'
+                type: array
+          description: Every order accepted and queued.
+        '400':
+          content:
+            application/json:
+              example:
+                code: BATCH_REJECTED
+                message: 2 order(s) refused. `rejected` names each one.
+                rejected:
+                  - index: 1
+                    outcomeId: 3f2504e0-4f89-11d3-9a0c-0305e82c3301
+                    reason: Invalid price
+                  - index: 3
+                    outcomeId: 6ba7b810-9dad-11d1-80b4-00c04fd430c8
+                    reason: Invalid price
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+          description: >-
+            An order is malformed or the exchange refuses it. Nothing was
+            placed.
+        '401':
+          content:
+            application/json:
+              example:
+                code: SIGNATURE_REJECTED
+                message: signature verification failed
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+          description: >-
+            The signature is absent or invalid, or the key is unknown, revoked,
+            or expired.
+        '403':
+          content:
+            application/json:
+              example:
+                code: KYC_REQUIRED
+                message: The account must complete KYC verification before it trades.
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+          description: >-
+            The key's scope does not grant this route, or the trader has not
+            passed KYC. The code says which.
+        '413':
+          content:
+            application/json:
+              example:
+                code: PAYLOAD_TOO_LARGE
+                message: request entity too large
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+          description: >-
+            The body is too large. The edge refuses most oversized bodies before
+            the origin sees them. The edge answers a plain `403` with no error
+            body.
+        '422':
+          content:
+            application/json:
+              example:
+                code: INSUFFICIENT_BALANCE
+                message: Insufficient balance
+                rejected:
+                  - index: 1
+                    outcomeId: 3f2504e0-4f89-11d3-9a0c-0305e82c3301
+                    reason: Insufficient balance
+                  - index: 3
+                    outcomeId: 6ba7b810-9dad-11d1-80b4-00c04fd430c8
+                    reason: Insufficient balance
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+          description: >-
+            The bound wallet does not cover an order. The exchange placed no
+            order.
+        '423':
+          content:
+            application/json:
+              example:
+                code: SELF_EXCLUDED
+                message: The account is self-excluded from trading.
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+          description: >-
+            The account is locked out of trading, or the key holder is
+            self-excluded. The code says which.
+        '429':
+          content:
+            application/json:
+              example:
+                code: RATE_LIMIT_EXCEEDED
+                message: Rate limit exceeded. Please wait before retrying.
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+          description: >-
+            The throttle is empty. Wait the number of seconds in `Retry-After`.
+            Then retry.
+        '451':
+          content:
+            application/json:
+              example:
+                code: ANONYMIZED_NETWORK
+                message: The request came over a VPN, a proxy, or a Tor exit.
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+          description: >-
+            Geolocation refused the request: an anonymized network, a restricted
+            region, or, for a placement, no device geolocation in the last 3
+            days.
+        '503':
+          content:
+            application/json:
+              example:
+                code: GEOLOCATION_SCREENING_UNAVAILABLE
+                message: >-
+                  Geolocation screening is unavailable. Placements are paused;
+                  retry shortly.
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+          description: >-
+            Geolocation screening is unavailable, so this route refuses rather
+            than take on exposure it cannot screen. Retriable: reads and cancels
+            still answer.
+      security:
+        - keyId: []
+          signature: []
+          timestamp: []
+      x-codeSamples:
+        - lang: bash
+          source: |
+            HOST=https://api.paper.novig.com
+            KEY_ID=8f14e45f-ceea-467a-9b1c-3f2a51c8d7e0
+            PEM=desk-1.pem
+
+            REQ_PATH="/v3/orders/batch"
+            QUERY=""
+            BODY='{
+              "orders": [
+                {
+                  "outcomeId": "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
+                  "price": "0.665",
+                  "qty": 110,
+                  "tif": "GTC"
+                },
+                {
+                  "outcomeId": "3f2504e0-4f89-11d3-9a0c-0305e82c3302",
+                  "price": "0.330",
+                  "qty": 50,
+                  "tif": "IOC"
+                }
+              ]
+            }'
+            TS=$(date +%s000)
+            HASH=$(printf %s "$BODY" \
+              | openssl dgst -sha256 -r | cut -d" " -f1)
+
+            # openssl signs a file, not a pipe. base64 -A never wraps.
+            printf 'NOVIG-V3\n%s\nPOST\n%s\n%s\n%s' \
+              "$TS" "$REQ_PATH" "$QUERY" "$HASH" > canon.bin
+            SIG=$(openssl pkeyutl -sign -rawin -inkey "$PEM" \
+              -in canon.bin | openssl base64 -A)
+
+            curl -s -X POST "$HOST$REQ_PATH${QUERY:+?$QUERY}" \
+              -H "Content-Type: application/json" \
+              -H "Novig-Key-Id: $KEY_ID" \
+              -H "Novig-Timestamp: $TS" \
+              -H "Novig-Signature: $SIG" \
+              --data-binary "$BODY"
+        - lang: rust
+          source: |
+            use base64::prelude::*;
+            use ed25519_dalek::pkcs8::DecodePrivateKey;
+            use ed25519_dalek::{Signer, SigningKey};
+            use reqwest::blocking::{Client, Request};
+            use reqwest::{Method, Url};
+            use sha2::{Digest, Sha256};
+            use std::time::{SystemTime, UNIX_EPOCH};
+
+            const HOST: &str = "https://api.paper.novig.com";
+            const KEY_ID: &str =
+                "8f14e45f-ceea-467a-9b1c-3f2a51c8d7e0";
+            const PEM: &str = "desk-1.pem";
+            const BODY: &[u8] = br#"{
+              "orders": [
+                {
+                  "outcomeId": "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
+                  "price": "0.665",
+                  "qty": 110,
+                  "tif": "GTC"
+                },
+                {
+                  "outcomeId": "3f2504e0-4f89-11d3-9a0c-0305e82c3302",
+                  "price": "0.330",
+                  "qty": 50,
+                  "tif": "IOC"
+                }
+              ]
+            }"#;
+
+            fn main() -> anyhow::Result<()> {
+                let key = Key::load(KEY_ID, PEM)?;
+                let client = Client::new();
+                let path = "/v3/orders/batch";
+                let url = format!("{HOST}{path}");
+                let req = client
+                    .post(url)
+                    .header("Content-Type", "application/json")
+                    .body(BODY)
+                    .build()?
+                    .sign(&key)?;
+                println!("{}", client.execute(req)?.text()?);
+                Ok(())
+            }
+
+            /// An API key: the id the server looks up, and the
+            /// private half that signs.
+            struct Key {
+                id: &'static str,
+                signer: SigningKey,
+            }
+
+            impl Key {
+                fn load(id: &'static str, pem: &str) -> anyhow::Result<Self> {
+                    let signer =
+                        SigningKey::read_pkcs8_pem_file(pem)?;
+                    Ok(Self { id, signer })
+                }
+            }
+
+            /// Signs a built request over the method, path, query and
+            /// body it will send, so the two can never disagree.
+            trait Sign: Sized {
+                fn sign(self, key: &Key) -> anyhow::Result<Self>;
+            }
+
+            impl Sign for Request {
+                fn sign(mut self, key: &Key) -> anyhow::Result<Self> {
+                    let ts = SystemTime::now()
+                        .duration_since(UNIX_EPOCH)?
+                        .as_millis()
+                        .to_string();
+                    let body = self.body().and_then(|b| b.as_bytes());
+                    let body = body.unwrap_or_default();
+                    let canon = Canonical::new(
+                        &ts,
+                        self.method(),
+                        self.url(),
+                        body,
+                    );
+                    let sig = key.signer.sign(canon.0.as_bytes());
+                    let sig = BASE64_STANDARD.encode(sig.to_bytes());
+                    let headers = self.headers_mut();
+                    headers.insert("Novig-Key-Id", key.id.parse()?);
+                    headers.insert("Novig-Timestamp", ts.parse()?);
+                    headers.insert("Novig-Signature", sig.parse()?);
+                    Ok(self)
+                }
+            }
+
+            /// The six NOVIG-V3 lines, joined by LF.
+            struct Canonical(String);
+
+            impl Canonical {
+                fn new(
+                    ts: &str,
+                    method: &Method,
+                    url: &Url,
+                    body: &[u8],
+                ) -> Self {
+                    let query =
+                        Query::from(url.query().unwrap_or(""));
+                    let hash = format!("{:x}", Sha256::digest(body));
+                    let method = method.as_str();
+                    let path = url.path();
+                    let lines = [
+                        "NOVIG-V3", ts, method, path, &query.0, &hash,
+                    ];
+                    Self(lines.join("\n"))
+                }
+            }
+
+            /// Each part decoded and re-encoded, then sorted by
+            /// name and value.
+            struct Query(String);
+
+            impl From<&str> for Query {
+                fn from(raw: &str) -> Self {
+                    let mut pairs = raw
+                        .split('&')
+                        .filter(|pair| !pair.is_empty())
+                        .map(|pair| {
+                            pair.split_once('=').unwrap_or((pair, ""))
+                        })
+                        .map(|(k, v)| {
+                            (Self::encode(k), Self::encode(v))
+                        })
+                        .collect::<Vec<_>>();
+                    pairs.sort();
+                    let pairs =
+                        pairs.iter().map(|(k, v)| format!("{k}={v}"));
+                    Self(pairs.collect::<Vec<_>>().join("&"))
+                }
+            }
+
+            impl Query {
+                fn encode(part: &str) -> String {
+                    Self::decode(part)
+                        .iter()
+                        .map(|&b| match b {
+                            b'-' | b'.' | b'_' | b'~' => {
+                                (b as char).to_string()
+                            }
+                            _ if b.is_ascii_alphanumeric() => {
+                                (b as char).to_string()
+                            }
+                            _ => format!("%{b:02X}"),
+                        })
+                        .collect()
+                }
+
+                /// Only `%XX` decodes. A bare `+` stays a `+`.
+                fn decode(part: &str) -> Vec<u8> {
+                    let raw = part.as_bytes();
+                    let mut out = Vec::with_capacity(raw.len());
+                    let mut i = 0;
+                    while i < raw.len() {
+                        let escape =
+                            raw.get(i + 1..i + 3).and_then(Self::hex);
+                        match (raw[i], escape) {
+                            (b'%', Some(byte)) => {
+                                out.push(byte);
+                                i += 3;
+                            }
+                            (byte, _) => {
+                                out.push(byte);
+                                i += 1;
+                            }
+                        }
+                    }
+                    out
+                }
+
+                fn hex(pair: &[u8]) -> Option<u8> {
+                    let hi = (pair[0] as char).to_digit(16)?;
+                    let lo = (pair[1] as char).to_digit(16)?;
+                    Some((hi * 16 + lo) as u8)
+                }
+            }
+        - lang: python
+          source: |
+            import base64, hashlib, time, urllib.request
+            from cryptography.hazmat.primitives.serialization import (
+                load_pem_private_key)
+
+            HOST = "https://api.paper.novig.com"
+            KEY_ID = "8f14e45f-ceea-467a-9b1c-3f2a51c8d7e0"
+            PEM = "desk-1.pem"
+
+            path = "/v3/orders/batch"
+            query = ""
+            body = b"""{
+              "orders": [
+                {
+                  "outcomeId": "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
+                  "price": "0.665",
+                  "qty": 110,
+                  "tif": "GTC"
+                },
+                {
+                  "outcomeId": "3f2504e0-4f89-11d3-9a0c-0305e82c3302",
+                  "price": "0.330",
+                  "qty": 50,
+                  "tif": "IOC"
+                }
+              ]
+            }"""
+
+            ts = str(int(time.time() * 1000))
+            canon = "\n".join(["NOVIG-V3", ts, "POST", path, query,
+                               hashlib.sha256(body).hexdigest()])
+            key = load_pem_private_key(open(PEM, "rb").read(), None)
+            headers = {
+                "Novig-Key-Id": KEY_ID,
+                "Novig-Timestamp": ts,
+                "Novig-Signature": base64.b64encode(
+                    key.sign(canon.encode())).decode(),
+                "Content-Type": "application/json",
+            }
+            url = f"{HOST}{path}"
+            req = urllib.request.Request(
+                url, data=body or None,
+                method="POST", headers=headers)
+            print(urllib.request.urlopen(req).read().decode())
+        - lang: typescript
+          source: |
+            import {
+              createHash, createPrivateKey, sign,
+            } from "node:crypto";
+            import { readFileSync } from "node:fs";
+
+            const HOST = "https://api.paper.novig.com";
+            const KEY_ID = "8f14e45f-ceea-467a-9b1c-3f2a51c8d7e0";
+            const PEM = "desk-1.pem";
+
+            const path = "/v3/orders/batch";
+            const query = "";
+            const body = `{
+              "orders": [
+                {
+                  "outcomeId": "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
+                  "price": "0.665",
+                  "qty": 110,
+                  "tif": "GTC"
+                },
+                {
+                  "outcomeId": "3f2504e0-4f89-11d3-9a0c-0305e82c3302",
+                  "price": "0.330",
+                  "qty": 50,
+                  "tif": "IOC"
+                }
+              ]
+            }`;
+
+            const ts = Date.now().toString();
+            const hash =
+              createHash("sha256").update(body).digest("hex");
+            const canon = [
+              "NOVIG-V3", ts, "POST", path, query, hash,
+            ].join("\n");
+            const key = createPrivateKey(readFileSync(PEM));
+            const headers: Record<string, string> = {
+              "Novig-Key-Id": KEY_ID,
+              "Novig-Timestamp": ts,
+              "Novig-Signature": sign(null, Buffer.from(canon), key)
+                .toString("base64"),
+              "Content-Type": "application/json",
+            };
+            const url = `${HOST}${path}`;
+            const r = await fetch(url, {
+              method: "POST",
+              headers,
+              body,
+            });
+            console.log(await r.text());
+components:
+  schemas:
+    BatchPlace:
+      description: >-
+        Up to 256 orders, one `place` token each. The exchange judges each order
+        on its own. The edge caps the raw body. A large batch meets that cap
+        before the origin sees it. Split a batch that answers `403` with no
+        error body.
+      properties:
+        orders:
+          items:
+            $ref: '#/components/schemas/PlaceOrder'
+          maxItems: 256
+          type: array
+      required:
+        - orders
+      type: object
+    OrderAccepted:
+      description: >-
+        Accepted and queued, not resting. The order rests when the `open` event
+        arrives on the private stream.
+      properties:
+        clientId:
+          description: Echoed when sent.
+          format: uuid
+          type: string
+        orderId:
+          format: uuid
+          type: string
+      required:
+        - orderId
+      type: object
+    ErrorBody:
+      description: Every error on the surface carries this body.
+      properties:
+        code:
+          description: Stable identifier. The only field to branch on.
+          example: MARKET_NOT_FOUND
+          type: string
+        message:
+          description: Human-readable. Not stable. Never match on it.
+          type: string
+        nonce:
+          description: The websocket request that failed. Absent on REST.
+          format: int64
+          maximum: 9007199254740991
+          minimum: 0
+          type:
+            - integer
+            - 'null'
+        rejected:
+          description: >-
+            One entry per refused order in a batch. Present only on an error
+            that a batch caused.
+          items:
+            $ref: '#/components/schemas/BatchOrderError'
+          type:
+            - array
+            - 'null'
+      required:
+        - code
+        - message
+      type: object
+    PlaceOrder:
+      additionalProperties: false
+      properties:
+        clientId:
+          description: >-
+            Your label for the order. Echoed on the answer, on `open`, and on
+            every `fill`. The exchange never checks it for uniqueness, so a
+            replay places a second order.
+          format: uuid
+          type:
+            - string
+            - 'null'
+        outcomeId:
+          description: The side you are buying. Never a market ID.
+          format: uuid
+          type: string
+        price:
+          description: >-
+            Decimal probability on the submittable grid, as a string. Three
+            bands: `0.001`–`0.050` in steps of `0.001`, `0.055`–`0.945` in steps
+            of `0.005`, and `0.950`–`0.999` in steps of `0.001`. The exchange
+            refuses a price off the grid with `INVALID_PRICE`.
+          example: '0.667'
+          type: string
+        qty:
+          description: Number of contracts. A winning contract pays full value, 1¢.
+          example: 110
+          format: int32
+          minimum: 1
+          type: integer
+        tif:
+          $ref: '#/components/schemas/TimeInForce'
+        ttl:
+          description: >-
+            Milliseconds. Required for `GTT`, optional for `PO`, forbidden
+            otherwise.
+          format: int64
+          minimum: 0
+          type:
+            - integer
+            - 'null'
+      required:
+        - outcomeId
+        - price
+        - qty
+        - tif
+      type: object
+    BatchOrderError:
+      description: >-
+        One rejected order within a batch placement: which order failed, and
+        why.
+      properties:
+        index:
+          description: Zero-based position in the request.
+          minimum: 0
+          type: integer
+        outcomeId:
+          description: The outcome ID of the rejected order.
+          type: string
+        reason:
+          description: >-
+            Human-readable. Not stable. Branch on the envelope's `code` and on
+            `index`.
+          type: string
+      required:
+        - index
+        - outcomeId
+        - reason
+      type: object
+    TimeInForce:
+      description: '`ttl` is required for `GTT`, optional for `PO`, forbidden otherwise.'
+      enum:
+        - GTC
+        - GTT
+        - IOC
+        - FOK
+        - PO
+      type: string
+  securitySchemes:
+    keyId:
+      description: The key's UUID.
+      in: header
+      name: Novig-Key-Id
+      type: apiKey
+    signature:
+      description: Standard padded base64 of the NOVIG-V3 signature.
+      in: header
+      name: Novig-Signature
+      type: apiKey
+    timestamp:
+      description: Unix milliseconds. ±30 s.
+      in: header
+      name: Novig-Timestamp
+      type: apiKey
+
+````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

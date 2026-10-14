@@ -17,7 +17,7 @@ from zoneinfo import ZoneInfo
 
 import polars as pl
 
-from nflbet import config, explain as Ex, live as Lv
+from nflbet import bestprice as Bp, config, explain as Ex, live as Lv
 
 ET = ZoneInfo("America/New_York")
 SEASON = 2026
@@ -55,7 +55,8 @@ def load(live: Path | None = None) -> dict:
             "pa_rec": _read(live / f"s1pa_record_{SEASON}.csv"),
             "ocmp": _read(live / f"openmarkets_compare_{SEASON}.csv"),
             "ats_runs": _read(live / f"ats_runs_{SEASON}.csv"), "ats_rec": _read(live / f"ats_record_{SEASON}.csv"),
-            "polymarket": _json(Path(__file__).resolve().parents[2] / "docs" / "polymarket_compare.json")}
+            "polymarket": _json(Path(__file__).resolve().parents[2] / "docs" / "polymarket_compare.json"),
+            "best": _read(live / f"s1_bestprice_{SEASON}.csv")}
 
 
 def _json(path: Path) -> dict | None:
@@ -244,9 +245,37 @@ def pick_row(r: dict, locked: bool, tag: str = "") -> str:
         + (f'<div class="news">{"".join(flags)}<span class="detail">{esc(detail)}</span></div>' if flags or detail else "")
         + (f'<div class="news"><span class="detail">{esc(cov)}</span></div>' if (cov := coverage_for_pick(r)) else "")
         + second_source(r)
+        + best_price(r)
         + (('<details class="why"><summary>Why this pick</summary><ul>' + "".join(f"<li>{esc(x)}</li>" for x in r["_why"]) + '</ul></details>')
            if r.get("_why") else "")
         + "</li>")
+
+
+def with_best(rows: list[dict], best: pl.DataFrame | None) -> list[dict]:
+    """Attach each pick's best-price row (data/live/s1_bestprice_2026.csv, src/nflbet/bestprice.py) from the same run."""
+    if best is None or not best.height:
+        return rows
+    idx = {(b["run_utc"], str(b["an_game_id"]), str(b["player_id"]), b["market"], float(b["line"]), b["side"]): b
+           for b in best.iter_rows(named=True)}
+    return [{**r, "_best": idx.get((r["run_utc"], str(r["an_game_id"]), str(r["player_id"]), r["market"], float(r["line"]), r["side"]))}
+            for r in rows]
+
+
+def best_price(r: dict) -> str:
+    """One line: the cheapest all-in price at the pick's line and side at that run, and how it compares with DK."""
+    b = r.get("_best")
+    if not b or b.get("best_venue") in (None, "") or not int(b.get("n_venues") or 0):
+        return ""
+    try:
+        venues = json.loads(b.get("venues") or "{}")
+    except ValueError:
+        venues = {}
+    tip = "; ".join(f"{k} {Bp.american(v[0]):+.0f}" + (f" (${v[1]:,.0f})" if v[1] else "") for k, v in venues.items())
+    size = f", ${float(b['best_size']):,.0f} available" if b.get("best_size") not in (None, "") else ""
+    edge = float(b["edge_cents"])
+    vs = "same as DraftKings" if abs(edge) < 0.005 else f"{edge:+.1f}¢ per $1 vs DraftKings"
+    return (f'<div class="news"><span class="detail" title="{esc(tip)}">Best price at this line: {esc(b["best_venue"])} '
+            f'{float(b["best_odds"]):+.0f}{esc(size)} ({esc(vs)}; {int(b["n_venues"])} venues, after fees). Record only.</span></div>')
 
 
 def second_source(r: dict) -> str:
@@ -930,7 +959,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
     blocks, quiet = [], []
     for g in games:
         rows = cur.filter(pl.col("an_game_id") == g["an_game_id"]).sort("player").to_dicts() if cur.height else []
-        rows = with_why(rows, live, "an", stats)
+        rows = with_best(with_why(rows, live, "an", stats), data.get("best"))
         (blocks.append(game_block(g, rows, now)) if rows else quiet.append(g))
     if quiet:
         blocks.append('<section class="game quiet"><header><h3>No picks</h3></header><ul class="nopick">' + "".join(
@@ -1039,7 +1068,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
             if w == cur_week:
                 continue
             s = summarize(x)
-            rows = "".join(pick_row(r, True) for r in with_why(x.sort("start_time", "player").to_dicts(), live, "an", stats))
+            rows = "".join(pick_row(r, True) for r in with_best(with_why(x.sort("start_time", "player").to_dicts(), live, "an", stats), data.get("best")))
             old.append(f'<details class="old"><summary>Week {w}: {s["W"]}-{s["L"]}' + (f'-{s["P"]}' if s["P"] else "")
                        + f', {fmt_units(s["units"])} units</summary><ul class="picks">{rows}</ul></details>')
 

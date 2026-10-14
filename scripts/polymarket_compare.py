@@ -18,9 +18,7 @@ import polars as pl
 sys.path.insert(0, "src")
 from nflbet import parlay as Pa, props as P  # noqa: E402
 
-MAP = {"receptions": "rec", "receiving yards": "rec_yds", "rushing yards": "rush_yds", "rushing attempts": "rush_att",
-       "passing yards": "pass_yds", "passing completions": "pass_cmp", "passing attempts": "pass_att"}
-PAT = re.compile(r"^Will (.+?) record (\d+)\+ (.+?)\?$")
+from nflbet.venues import PM as PM, PM_MAP as MAP, PM_PAT as PAT, pm_game as poly_game, pm_markets  # noqa: E402
 FEE = 0.0695
 WEEK = 6                       # the upcoming slate; the search and the report header both follow this
 
@@ -29,86 +27,8 @@ def imp(a):
     return -a / (-a + 100) if a < 0 else 100 / (a + 100)
 
 
-PM = "https://gateway.polymarket.us"
-
-
-SLUG_CODE = {"LA": "lar"}      # nflverse -> Polymarket event-slug code where they differ (others: lower case)
-
-
-def _pm_get(path: str):
-    import urllib.request
-    UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
-    with urllib.request.urlopen(urllib.request.Request(f"{PM}{path}", headers={"User-Agent": UA}), timeout=60) as r:
-        return json.loads(r.read())
-
-
-def week_slugs(now_utc) -> list[str]:
-    """This week's game-event slugs: from the search (title 'X vs. Y', start within the window) and, as a backstop,
-    built from the nflverse schedule as nfl-{away}-{home}-{ET date}. The search alone is capped at 20 events and shares
-    them with season-long markets, so it can miss games."""
-    import urllib.parse
-    from datetime import datetime, timedelta
-    slugs: list[str] = []
-    for q in (f"NFL Week {WEEK}", f"NFL week {WEEK} props"):
-        for e in _pm_get(f"/v1/search?query={urllib.parse.quote(q)}&limit=20").get("events", []):
-            try:
-                t = datetime.fromisoformat((e.get("startTime") or e.get("startDate") or "").replace("Z", "+00:00"))
-            except ValueError:
-                continue
-            if " vs. " in (e.get("title") or "") and now_utc - timedelta(hours=4) <= t <= now_utc + timedelta(days=8):
-                slugs.append(e["slug"])
-    try:
-        import nflreadpy as nfl
-        sch = nfl.load_schedules(seasons=[now_utc.year if now_utc.month >= 3 else now_utc.year - 1])
-        sch = sch.filter((pl.col("game_type") == "REG") & (pl.col("week") == WEEK))
-        for r in sch.iter_rows(named=True):
-            a, h = (SLUG_CODE.get(x, x.lower()) for x in (r["away_team"], r["home_team"]))
-            slugs.append(f"nfl-{a}-{h}-{r['gameday']}")
-    except Exception as e:  # noqa: BLE001 - the search slugs still stand
-        print(f"schedule slugs unavailable: {e!r}"[:200])
-    return list(dict.fromkeys(slugs))
-
-
 def fetch_polymarket(now_utc) -> list[dict]:
-    """This week's player-prop markets from Polymarket US (public, no key). Each game is fetched by slug from
-    /v1/events/slug/{slug}: the search returns the games but embeds only part of their markets, without the player
-    props (2026-10-14 diagnostic, docs/evidence/polymarket_week_probe/). Prints one line per game."""
-    import urllib.error
-    out = []
-    for slug in week_slugs(now_utc):
-        try:
-            body = _pm_get(f"/v1/events/slug/{slug}")
-        except urllib.error.HTTPError as e:
-            print(f"  {slug}: HTTP {e.code}, skipped")
-            continue
-        e = body.get("event", body) if isinstance(body, dict) else {}
-        if e.get("slug") != slug:
-            print(f"  {slug}: no matching event, skipped")
-            continue
-        kept = 0
-        for m in e.get("markets") or []:
-            if "record" in (m.get("question") or "") or "score the first" in (m.get("question") or ""):
-                kept += 1
-                out.append({"event": e["title"], "question": m.get("question"), "marketSides": m.get("marketSides") or [],
-                            "feeCoefficient": m.get("feeCoefficient") or e.get("feeCoefficient"),
-                            "bestBidQuote": m.get("bestBidQuote"), "bestAskQuote": m.get("bestAskQuote"),
-                            "lastTradePrice": m.get("lastTradePrice"), "liquidityNum": m.get("liquidityNum"),
-                            "minimumTradeQty": m.get("minimumTradeQty")})
-        print(f"  {slug}: {e.get('title')}, {len(e.get('markets') or [])} markets, {kept} kept")
-    return out
-
-
-def poly_game(title: str) -> str | None:
-    """'DEN Broncos vs. LA Chargers' -> 'DEN|LAC'. Polymarket writes both Los Angeles teams as 'LA', so each team is
-    matched by its nickname (last word) to parlay.TEAMS, the same abbreviations the book lines use. None if unmapped."""
-    def ab(side: str) -> str | None:
-        nick = side.split()[-1]
-        hits = {v for k, v in Pa.TEAMS.items() if k.split()[-1] == nick}
-        return hits.pop() if len(hits) == 1 else None
-    if " vs. " not in title:
-        return None
-    a, b = (ab(s) for s in title.split(" vs. ", 1))
-    return "|".join(sorted((a, b))) if a and b else None
+    return pm_markets(WEEK, now_utc)
 
 
 def main():
