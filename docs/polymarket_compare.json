@@ -1,31 +1,13 @@
 {
- "run_utc": "2026-10-11T04:17:20Z",
+ "run_utc": "2026-10-14T02:59:13Z",
  "source": "live ParlayAPI and Polymarket US pulled together",
- "threshold_markets": 2074,
- "quoted_compared": 1936,
- "not_compared": 138,
- "side_quotes": 428,
- "player_lines": 131,
+ "threshold_markets": 0,
+ "quoted_compared": 0,
+ "not_compared": 0,
+ "side_quotes": 0,
+ "player_lines": 0,
  "fee_rate": 0.0695,
- "books": {
-  "DK": {
-   "sides": 216,
-   "gross_cheaper": 0.8703703703703703,
-   "gross_mean_cents": 2.1892527675762126,
-   "net_cheaper": 0.5833333333333334,
-   "net_mean_cents": 0.48785415646510083
-  },
-  "FD": {
-   "sides": 212,
-   "gross_cheaper": 0.9386792452830188,
-   "gross_mean_cents": 2.607679398403725,
-   "net_cheaper": 0.6839622641509434,
-   "net_mean_cents": 0.906142370101837
-  }
- },
- "polymarket_hold_median": 0.010000000000000009,
- "book_hold_median": {
-  "DK": 0.05976638212608154,
-  "FD": 0.06991127152417476
- }
+ "books": {},
+ "polymarket_hold_median": null,
+ "book_hold_median": {}
 }
