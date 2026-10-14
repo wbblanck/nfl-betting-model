@@ -300,13 +300,18 @@ def polymarket_card(pm: dict | None) -> str:
         if not b:
             continue
         rows.append([bk, str(b["sides"]), f'{b["gross_cheaper"]:.0%}', f'{b["gross_mean_cents"]:+.2f}¢',
-                     f'{b["net_cheaper"]:.0%}', f'{b["net_mean_cents"]:+.2f}¢', pct(pm.get("book_hold_median", {}).get(bk))])
-    rows.append(["Polymarket US", "–", "–", "–", "–", "–", pct(pm.get("polymarket_hold_median"))])
+                     f'{b["net_cheaper"]:.0%}', f'{b["net_mean_cents"]:+.2f}¢',
+                     f'{b["net_mean_cents_doc"]:+.2f}¢' if b.get("net_mean_cents_doc") is not None else "–",
+                     pct(pm.get("book_hold_median", {}).get(bk))])
+    rows.append(["Polymarket US", "–", "–", "–", "–", "–", "–", pct(pm.get("polymarket_hold_median"))])
     return ('<div class="card"><h3>Polymarket US vs DraftKings and FanDuel</h3>' +
-            table(["Book", "Sides", "Polymarket cheaper, gross", "Mean, gross", "Cheaper after fee", "Mean, after fee", "Hold (median)"], rows, "num") +
+            table(["Book", "Sides", "Polymarket cheaper, gross", "Mean, gross", "Cheaper after fee", "Mean, after fee",
+                   f'Mean, fee {pm.get("fee_rate_doc", 0.05)}', "Hold (median)"], rows, "num") +
             f'<p class="note">{esc(pm.get("player_lines", 0))} player-lines, {esc(pm.get("quoted_compared", 0))} threshold markets quoted and compared; '
             f'{esc(pm.get("not_compared", 0))} unquoted and left out. Price = each side\'s quoted price. Fee: Polymarket\'s taker formula '
-            f'fee = C × feeRate × p × (1 − p), feeRate {esc(pm.get("fee_rate"))}. One snapshot, unvalidated; Kalshi is not in this comparison yet.</p></div>')
+            f'fee = C × feeRate × p × (1 − p), feeRate {esc(pm.get("fee_rate"))} (each Polymarket US market\'s own rate). The 0.05 column uses '
+            'the Sports rate on docs.polymarket.com, which covers the international exchange, for comparison. One snapshot, unvalidated; '
+            'Kalshi is not in this comparison yet.</p></div>')
 
 
 def parlay_card(pc: pl.DataFrame) -> str:
