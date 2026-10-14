@@ -41,7 +41,7 @@ def get(url: str) -> tuple[int, bytes]:
 def name_for(url: str, base: str) -> str:
     path = url[len(base):].strip("/")
     path = "root.md" if path in ("", ".md") else path
-    return re.sub(r"[^A-Za-z0-9._-]+", "_", path)[:150] + ("" if path.endswith((".md", ".txt")) else ".md")
+    return re.sub(r"[^A-Za-z0-9._-]+", "_", path)[:150] + ("" if path.endswith((".md", ".txt", ".json")) else ".md")
 
 
 def main() -> None:
@@ -65,6 +65,8 @@ def main() -> None:
     llms = save(f"{base}/llms.txt").decode("utf-8", "replace")
     save(f"{base}/llms-full.txt")
     save(f"{base}/.md")
+    for spec in ("/api-reference/spec-files/openapi-v3.json", "/openapi.json"):
+        save(f"{base}{spec}")
     links = re.findall(r"\((https?://[^)\s]+)\)", llms) + re.findall(r"^(https?://\S+)$", llms, re.M)
     pages = [u for u in dict.fromkeys(links) if u.startswith(base)]
     for u in pages[:MAX_PAGES]:
