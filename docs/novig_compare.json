@@ -1,0 +1,31 @@
+{
+ "run_utc": "2026-10-14T09:17:19Z",
+ "nv_markets": 2576,
+ "nv_indexed": 2576,
+ "book_lines": 335,
+ "matched_lines": 324,
+ "books": 324,
+ "side_quotes": 790,
+ "player_lines": 308,
+ "books_cmp": {
+  "DK": {
+   "sides": 374,
+   "gross_cheaper": 0.45989304812834225,
+   "gross_mean_cents": -1.796091613885582,
+   "net_cheaper": 0.45989304812834225,
+   "net_mean_cents": -1.796091613885582,
+   "book_hold_median": 0.05660377358490565
+  },
+  "FD": {
+   "sides": 416,
+   "gross_cheaper": 0.6875,
+   "gross_mean_cents": 0.5704649166946586,
+   "net_cheaper": 0.6875,
+   "net_mean_cents": 0.5704649166946586,
+   "book_hold_median": 0.06542056074766345
+  }
+ },
+ "nv_spread_median": 0.06000000000000005,
+ "nv_two_sided_lines": 250,
+ "nv_size_median": 220.5
+}
