@@ -22,6 +22,7 @@ MAP = {"receptions": "rec", "receiving yards": "rec_yds", "rushing yards": "rush
        "passing yards": "pass_yds", "passing completions": "pass_cmp", "passing attempts": "pass_att"}
 PAT = re.compile(r"^Will (.+?) record (\d+)\+ (.+?)\?$")
 FEE = 0.0695
+WEEK = 6                       # the upcoming slate; the search and the report header both follow this
 
 
 def imp(a):
@@ -39,7 +40,7 @@ def fetch_polymarket(now_utc) -> list[dict]:
     from datetime import timedelta
     UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
     out, seen = [], set()
-    for q in ("NFL Week 5", "NFL week 5 props"):
+    for q in (f"NFL Week {WEEK}", f"NFL week {WEEK} props"):
         req = urllib.request.Request(f"{PM}/v1/search?query={urllib.parse.quote(q)}&limit=20", headers={"User-Agent": UA})
         with urllib.request.urlopen(req, timeout=60) as r:
             events = json.loads(r.read()).get("events", [])
@@ -148,7 +149,7 @@ def main():
                                                               "book_cost": pl.Float64, "gross_diff": pl.Float64, "net_diff": pl.Float64})
     out = Path("docs/polymarket_compare.md")
     book_src = "live ParlayAPI and Polymarket US pulled together" if "--fetch" in sys.argv else "ParlayAPI 2026-10-09 21:03 UTC (stored), Polymarket US snapshot 2026-10-10 05:02 UTC (stored)"
-    L = ["# Polymarket US vs DraftKings and FanDuel, week 5 player props", "",
+    L = [f"# Polymarket US vs DraftKings and FanDuel, week {WEEK} player props", "",
          f"Props matched: {d.height} side-quotes across {d.select(pl.struct('player', 'market', 'line')).n_unique() if d.height else 0} player-lines, "
          f"source: {book_src}. Positive diff = Polymarket is cheaper.", ""]
     for bk in ("dk", "fd"):
