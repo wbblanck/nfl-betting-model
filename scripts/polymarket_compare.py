@@ -64,6 +64,19 @@ def fetch_polymarket(now_utc) -> list[dict]:
     return out
 
 
+def poly_game(title: str) -> str | None:
+    """'DEN Broncos vs. LA Chargers' -> 'DEN|LAC'. Polymarket writes both Los Angeles teams as 'LA', so each team is
+    matched by its nickname (last word) to parlay.TEAMS, the same abbreviations the book lines use. None if unmapped."""
+    def ab(side: str) -> str | None:
+        nick = side.split()[-1]
+        hits = {v for k, v in Pa.TEAMS.items() if k.split()[-1] == nick}
+        return hits.pop() if len(hits) == 1 else None
+    if " vs. " not in title:
+        return None
+    a, b = (ab(s) for s in title.split(" vs. ", 1))
+    return "|".join(sorted((a, b))) if a and b else None
+
+
 def main():
     import datetime as dt
     import os
@@ -86,7 +99,7 @@ def main():
         book = Pa.parse(json.load(gzip.open(st, "rt")))
     poly = poly_src
     rows = []
-    n_unquoted, n_thr = 0, 0
+    n_unquoted, n_thr, n_unmapped = 0, 0, 0
     for x in poly:
         m = PAT.match(x["question"] or "")
         if not m or m.group(3) not in MAP:
@@ -103,9 +116,10 @@ def main():
         if yes is None or no is None:
             n_unquoted += 1
             continue
-        head = x["event"].split(" vs. ")
-        game = " ".join(head[0].split()[:1]) + "|" + " ".join(head[1].split()[:1])
-        game = "|".join(sorted(game.split("|")))
+        game = poly_game(x["event"])
+        if game is None:
+            n_unmapped += 1
+            continue
         rows.append({"game": game, "nkey": P.norm_name(m.group(1)), "market": MAP[m.group(3)], "line": float(m.group(2)) - 0.5,
                      "poly_over": yes, "poly_under": no, "fee_coef": x.get("feeCoefficient") or FEE,
                      "poly_spread": yes + no - 1})
