@@ -13,8 +13,9 @@ all-in, and names the cheapest:
 
 Kalshi, ProphetX and BettorEdge (via OpenMarkets) are listed but not eligible for "best": their prices reach us
 without fees and their fee schedules are not confirmed here, so a pre-fee price could look better than it is. A Novig
-price with less than MIN_SIZE dollars of payout behind it is listed but not eligible either: one stray resting order
-can make a side look cheap with a dollar behind it. An edge over CHECK_CENTS is flagged for a look.
+or Polymarket US price with less than MIN_SIZE dollars of payout behind it is listed but not eligible either: one stray
+resting order can make a side look cheap with a dollar behind it. Polymarket's size comes from its order book; if the
+book cannot be read, the price stays eligible without a size. An edge over CHECK_CENTS is flagged for a look.
 
 Written to data/live/s1_bestprice_2026.csv by scripts/live_s1.py; one row per pick per run.
 """
@@ -31,7 +32,7 @@ from nflbet.props import NON_BOOKS, TEAM_FIX, norm_name
 AN_NAME = {"DK NJ": "DraftKings", "FanDuel NJ": "FanDuel", "BetMGM NJ": "BetMGM", "BetRivers NJ": "BetRivers",
            "Caesars NV": "Caesars"}
 PREFEE = {"om_kalshi_odds": "Kalshi", "om_prophetx_odds": "ProphetX", "om_bettoredge_odds": "BettorEdge"}
-MIN_SIZE = 10.0                 # $ of payout at Novig's best price for it to count as "best"
+MIN_SIZE = 10.0                 # $ of payout at Novig's or Polymarket's best price for it to count as "best"
 CHECK_CENTS = 10.0              # an edge over DK larger than this is flagged: usually a stale or stray quote
 COLS = ["run_utc", "week", "an_game_id", "start_time", "home", "away", "player", "player_id", "market", "line", "side",
         "dk_odds", "dk_cost", "best_venue", "best_cost", "best_odds", "best_size", "edge_cents", "n_venues", "venues",
@@ -58,7 +59,8 @@ def an_quotes(an: pl.DataFrame) -> dict[tuple, dict[str, tuple[float, float]]]:
     return out
 
 
-def venue_costs(p: dict, anq: dict, pa_idx: dict, pmq: dict, nv_idx: dict, nv_books: dict) -> dict[str, tuple[float, float | None]]:
+def venue_costs(p: dict, anq: dict, pa_idx: dict, pmq: dict, nv_idx: dict, nv_books: dict,
+                pm_size: dict | None = None) -> dict[str, tuple[float, float | None]]:
     """{venue: (all-in cost per $1 of payout, $ available or None)} at the pick's line and side."""
     side, line = p["side"], float(p["line"])
     nk = norm_name(p["player"])
@@ -73,7 +75,7 @@ def venue_costs(p: dict, anq: dict, pa_idx: dict, pmq: dict, nv_idx: dict, nv_bo
     q = pmq.get((g, nk, p["market"], line))
     if q:
         c = q[side]
-        out["Polymarket US"] = (c + V.pm_fee(c, q["fee"]), None)
+        out["Polymarket US"] = (c + V.pm_fee(c, q["fee"]), (pm_size or {}).get(q.get("slug"), {}).get(side))
     m = nv_idx.get((g, nk, p["market"], line))
     if m and m["marketId"] in nv_books:
         t = V.nv_taker(nv_books[m["marketId"]], m).get(side)
@@ -83,11 +85,11 @@ def venue_costs(p: dict, anq: dict, pa_idx: dict, pmq: dict, nv_idx: dict, nv_bo
 
 
 def best_rows(picks: pl.DataFrame, anq: dict, pa: pl.DataFrame | None, pmq: dict, nv_idx: dict, nv_books: dict,
-              run_utc: str) -> pl.DataFrame:
+              run_utc: str, pm_size: dict | None = None) -> pl.DataFrame:
     pa_idx = {(r["book"], r["game"], r["nkey"], r["market"]): r for r in pa.iter_rows(named=True)} if pa is not None else {}
     rows = []
     for p in picks.iter_rows(named=True):
-        vc = venue_costs(p, anq, pa_idx, pmq, nv_idx, nv_books)
+        vc = venue_costs(p, anq, pa_idx, pmq, nv_idx, nv_books, pm_size)
         dk_cost = imp(float(p["odds"]))
         elig = {k: v for k, v in vc.items() if v[1] is None or v[1] >= MIN_SIZE}
         best = min(elig.items(), key=lambda kv: kv[1][0]) if elig else None
@@ -111,8 +113,17 @@ def record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, whe
     if picks is None or not picks.height:
         return None
     anq = an_quotes(pl.read_csv(an_path, infer_schema_length=0)) if an_path is not None else {}
+    pm_size: dict = {}
     try:
         pmq = V.pm_quotes(V.pm_markets(week, when, verbose=False))
+        for p in picks.iter_rows(named=True):                          # size only for the picks' markets: a few calls
+            g = Pa.game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"]))
+            q = pmq.get((g, norm_name(p["player"]), p["market"], float(p["line"])))
+            if q and q.get("slug") and q["slug"] not in pm_size:
+                try:
+                    pm_size[q["slug"]] = V.pm_sizes(q["slug"])
+                except Exception as e:  # noqa: BLE001 - the price stays, without a size
+                    print(f"best price: Polymarket book for {q['slug']} unavailable: {type(e).__name__}: {e}")
     except Exception as e:  # noqa: BLE001 - one venue down never stops the record
         print(f"best price: Polymarket US unavailable: {type(e).__name__}: {e}")
         pmq = {}
@@ -127,4 +138,4 @@ def record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, whe
                 nv_books[m["marketId"]] = V.nv_book(m["marketId"])
     except Exception as e:  # noqa: BLE001
         print(f"best price: Novig unavailable: {type(e).__name__}: {e}")
-    return best_rows(picks, anq, pa, pmq, nv_idx, nv_books, when.strftime("%Y-%m-%dT%H:%M:%SZ"))
+    return best_rows(picks, anq, pa, pmq, nv_idx, nv_books, when.strftime("%Y-%m-%dT%H:%M:%SZ"), pm_size)

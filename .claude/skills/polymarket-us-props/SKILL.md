@@ -89,11 +89,19 @@ spread. Do **not** use `marketSides[].price`: on 2026-10-10 its Yes + No summed 
 Markets with no quote on a side have no book on that side; skip them. On 2026-10-14 the share of markets with both
 sides quoted was NFL 77%, MLB 91%, NHL 69%, UCL 71%, MLS 71%.
 
-Documented, untested: `GET /v1/markets/{slug}/book` (bids and offers, each `{px: {value}, qty}`, plus stats such as last
-trade and open interest), `GET /v1/markets/{slug}/bbo` (`bestBid`, `bestAsk`, `bidDepth`, `askDepth`, `bidShares`,
-`askShares`, `longQuote`, `shortQuote`), and `GET /v1/price-history?symbol={market slug}` with `fixedInterval` and
-`fidelity`, or `timestamp.startTimestamp` / `timestamp.endTimestamp`. Use them to get the size behind a quote; the
-event payload gives no depth.
+**Size behind a price** (verified 2026-10-14 on 20 NFL prop markets, `docs/evidence/polymarket_book_probe/`):
+`GET /v1/markets/{market slug}/book` returns `marketData.bids` and `marketData.offers`, each a list of
+`{"px": {"value": "0.67"}, "qty": "28"}` sorted best price first (bids high to low, offers low to high). The best offer
+equalled `bestAskQuote` and the best bid `bestBidQuote` on 20 of 20. One contract pays $1, so `qty` is dollars of payout:
+buying Yes takes the best offer's quantity, buying No sells into the best bid's quantity. `src/nflbet/venues.py` `pm_sizes`
+reads it. Sizes at the best price were often $1-$50 and spreads wide (bid 0.67, offer 0.98) four days before kickoff.
+
+`GET /v1/markets/{slug}/bbo` (verified on the same 20) returns `bestBid`, `bestAsk`, `bidShares`, `askShares` (all levels
+summed), and `longQuote` = best ask (Yes cost) and `shortQuote` = 1 - best bid (No cost). On one market its best bid
+(0.47) differed from the book read a moment earlier (0.61); read the book when the size matters.
+
+Documented, untested: `GET /v1/price-history?symbol={market slug}` with `fixedInterval` and `fidelity`, or
+`timestamp.startTimestamp` / `timestamp.endTimestamp`.
 
 ## Fees (verified from the Polymarket US fee schedule)
 

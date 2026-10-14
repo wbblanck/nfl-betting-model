@@ -100,7 +100,7 @@ def pm_markets(week: int, now: dt.datetime, verbose: bool = True) -> list[dict]:
         for m in e.get("markets") or []:
             if "record" in (m.get("question") or "") or "score the first" in (m.get("question") or ""):
                 kept += 1
-                out.append({"event": e["title"], "question": m.get("question"), "marketSides": m.get("marketSides") or [],
+                out.append({"event": e["title"], "question": m.get("question"), "slug": m.get("slug"), "marketSides": m.get("marketSides") or [],
                             "feeCoefficient": m.get("feeCoefficient") or e.get("feeCoefficient"),
                             "bestBidQuote": m.get("bestBidQuote"), "bestAskQuote": m.get("bestAskQuote"),
                             "lastTradePrice": m.get("lastTradePrice"), "liquidityNum": m.get("liquidityNum"),
@@ -111,7 +111,8 @@ def pm_markets(week: int, now: dt.datetime, verbose: bool = True) -> list[dict]:
 
 
 def pm_quotes(markets: list[dict]) -> dict[tuple, dict]:
-    """(game, nkey, market, line) -> {'over': cost, 'under': cost, 'fee': coefficient} for quoted threshold markets."""
+    """(game, nkey, market, line) -> {'over': cost, 'under': cost, 'fee': coefficient, 'slug': market slug} for quoted
+    threshold markets."""
     out = {}
     for x in markets:
         m = PM_PAT.match(x.get("question") or "")
@@ -126,7 +127,26 @@ def pm_quotes(markets: list[dict]) -> dict[tuple, dict]:
         if yes is None or no is None or g is None:
             continue
         out[(g, norm_name(m.group(1)), PM_MAP[m.group(3)], float(m.group(2)) - 0.5)] = {
-            "over": yes, "under": no, "fee": float(x.get("feeCoefficient") or PM_FEE)}
+            "over": yes, "under": no, "fee": float(x.get("feeCoefficient") or PM_FEE), "slug": x.get("slug")}
+    return out
+
+
+def pm_sizes(slug: str) -> dict[str, float]:
+    """$ of payout available at the best price on each side, from GET /v1/markets/{slug}/book (one contract pays $1).
+    Buying Yes (over) takes the lowest offer; buying No (under) sells into the highest bid. A side with no orders is
+    absent. Levels are not assumed to be sorted (docs/evidence/polymarket_book_probe/)."""
+    md = pm_get(f"/v1/markets/{urllib.parse.quote(slug)}/book").get("marketData") or {}
+
+    def px(level: dict) -> float:
+        return float((level.get("px") or {}).get("value"))
+    out = {}
+    offers, bids = md.get("offers") or [], md.get("bids") or []
+    if offers:
+        best = min(px(x) for x in offers)
+        out["over"] = sum(float(x["qty"]) for x in offers if px(x) == best)
+    if bids:
+        best = max(px(x) for x in bids)
+        out["under"] = sum(float(x["qty"]) for x in bids if px(x) == best)
     return out
 
 
