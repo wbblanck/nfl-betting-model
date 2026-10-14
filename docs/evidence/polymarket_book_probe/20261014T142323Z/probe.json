@@ -1,0 +1,1487 @@
+{
+ "run_utc": "2026-10-14T14:23:23.911322+00:00",
+ "n": 20,
+ "offer_matches_ask": 20,
+ "bid_matches_bid": 20,
+ "bids_first_is_best": 20,
+ "offers_first_is_best": 20,
+ "rows": [
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-pyd-bonix-gte100",
+   "question": "Will Bo Nix record 100+ passing yards?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.67,
+    0.66,
+    0.64,
+    0.4,
+    0.01
+   ],
+   "offers_px": [
+    0.98,
+    0.99
+   ],
+   "best_bid": 0.67,
+   "best_bid_qty": 28.0,
+   "best_offer": 0.98,
+   "best_offer_qty": 37.0,
+   "event_best_ask": 0.98,
+   "event_best_bid": 0.67,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-pyd-bonix-gte100",
+    "currentPx": {
+     "value": "0.8250",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.9900",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "45.1800",
+    "openInterest": "20.0900",
+    "bestAsk": {
+     "value": "0.9800",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.6700",
+     "currency": "USD"
+    },
+    "askDepth": 2,
+    "bidDepth": 5,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.9900",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.01",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T13:31:26.120151941Z"
+    },
+    "longQuote": {
+     "value": "0.9800",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.33",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "480",
+    "askShares": "160"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-rec-evaeng-gte1",
+   "question": "Will Evan Engram record 1+ receptions?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.64,
+    0.63,
+    0.61,
+    0.06,
+    0.05
+   ],
+   "offers_px": [
+    0.98,
+    0.99
+   ],
+   "best_bid": 0.64,
+   "best_bid_qty": 20.0,
+   "best_offer": 0.98,
+   "best_offer_qty": 46.0,
+   "event_best_ask": 0.98,
+   "event_best_bid": 0.64,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-rec-evaeng-gte1",
+    "currentPx": {
+     "value": "0.8100",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.8900",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "30.0000",
+    "openInterest": "10.0000",
+    "bestAsk": {
+     "value": "0.9800",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.6400",
+     "currency": "USD"
+    },
+    "askDepth": 2,
+    "bidDepth": 9,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.8900",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.11",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T13:43:17.222961500Z"
+    },
+    "longQuote": {
+     "value": "0.9800",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.36",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "24000",
+    "askShares": "410"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-ryd-jdob-gte10",
+   "question": "Will J.K. Dobbins record 10+ rushing yards?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.67,
+    0.66,
+    0.65,
+    0.02,
+    0.01
+   ],
+   "offers_px": [
+    0.98,
+    0.99
+   ],
+   "best_bid": 0.67,
+   "best_bid_qty": 20.0,
+   "best_offer": 0.98,
+   "best_offer_qty": 22.0,
+   "event_best_ask": 0.98,
+   "event_best_bid": 0.67,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-ryd-jdob-gte10",
+    "currentPx": {
+     "value": "0.8250",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.9000",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "30.0000",
+    "openInterest": "10.0000",
+    "bestAsk": {
+     "value": "0.9800",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.6700",
+     "currency": "USD"
+    },
+    "askDepth": 2,
+    "bidDepth": 5,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.9000",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.1",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T12:15:40.957752055Z"
+    },
+    "longQuote": {
+     "value": "0.9800",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.33",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "350",
+    "askShares": "240"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-patt-bonix-gte28",
+   "question": "Will Bo Nix record 28+ passing attempts?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.66,
+    0.65,
+    0.05,
+    0.04,
+    0.03
+   ],
+   "offers_px": [
+    0.97,
+    0.98,
+    0.99
+   ],
+   "best_bid": 0.66,
+   "best_bid_qty": 25.0,
+   "best_offer": 0.97,
+   "best_offer_qty": 26.0,
+   "event_best_ask": 0.97,
+   "event_best_bid": 0.66,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-patt-bonix-gte28",
+    "currentPx": {
+     "value": "0.8150",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.6600",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "1.0100",
+    "openInterest": "0.9900",
+    "bestAsk": {
+     "value": "0.9700",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.6600",
+     "currency": "USD"
+    },
+    "askDepth": 3,
+    "bidDepth": 7,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.6600",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.34",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:18:13.772339390Z"
+    },
+    "longQuote": {
+     "value": "0.9700",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.34",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "24000",
+    "askShares": "710"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-pyd-samdar-gte125",
+   "question": "Will Sam Darnold record 125+ passing yards?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.73,
+    0.72,
+    0.01
+   ],
+   "offers_px": [
+    0.97,
+    0.98,
+    0.99
+   ],
+   "best_bid": 0.73,
+   "best_bid_qty": 20.0,
+   "best_offer": 0.97,
+   "best_offer_qty": 40.0,
+   "event_best_ask": 0.97,
+   "event_best_bid": 0.73,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-pyd-samdar-gte125",
+    "currentPx": {
+     "value": "0.8500",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.0300",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "20.0800",
+    "openInterest": "10.0400",
+    "bestAsk": {
+     "value": "0.9700",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.7300",
+     "currency": "USD"
+    },
+    "askDepth": 3,
+    "bidDepth": 3,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.0300",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.97",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:09:46.641954818Z"
+    },
+    "longQuote": {
+     "value": "0.9700",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.27",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "450",
+    "askShares": "380"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-ratt-jdob-gte8",
+   "question": "Will J.K. Dobbins record 8+ rushing attempts?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.61,
+    0.6,
+    0.05,
+    0.04,
+    0.03
+   ],
+   "offers_px": [
+    0.97,
+    0.98,
+    0.99
+   ],
+   "best_bid": 0.61,
+   "best_bid_qty": 25.0,
+   "best_offer": 0.97,
+   "best_offer_qty": 25.0,
+   "event_best_ask": 0.97,
+   "event_best_bid": 0.61,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-ratt-jdob-gte8",
+    "currentPx": {
+     "value": "0.7900",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.0200",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "0.0200",
+    "openInterest": "0.0000",
+    "bestAsk": {
+     "value": "0.9700",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.6100",
+     "currency": "USD"
+    },
+    "askDepth": 3,
+    "bidDepth": 7,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.0200",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.98",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T12:45:57.890032556Z"
+    },
+    "longQuote": {
+     "value": "0.9700",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.39",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "24000",
+    "askShares": "680"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-rec-ajbar-gte1",
+   "question": "Will AJ Barner record 1+ receptions?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.58,
+    0.57,
+    0.06,
+    0.05,
+    0.04
+   ],
+   "offers_px": [
+    0.97,
+    0.98,
+    0.99
+   ],
+   "best_bid": 0.58,
+   "best_bid_qty": 20.0,
+   "best_offer": 0.97,
+   "best_offer_qty": 2.0,
+   "event_best_ask": 0.97,
+   "event_best_bid": 0.58,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-rec-ajbar-gte1",
+    "currentPx": {
+     "value": "0.7750",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.0200",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "30.0800",
+    "openInterest": "10.0000",
+    "bestAsk": {
+     "value": "0.9700",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.5800",
+     "currency": "USD"
+    },
+    "askDepth": 3,
+    "bidDepth": 8,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.0200",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.98",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:14:01.106249697Z"
+    },
+    "longQuote": {
+     "value": "0.9700",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.42",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "24000",
+    "askShares": "410"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-recyd-jaywad-gte10",
+   "question": "Will Jaylen Waddle record 10+ receiving yards?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.66,
+    0.65,
+    0.64,
+    0.02,
+    0.01
+   ],
+   "offers_px": [
+    0.97,
+    0.98,
+    0.99
+   ],
+   "best_bid": 0.66,
+   "best_bid_qty": 20.0,
+   "best_offer": 0.97,
+   "best_offer_qty": 2.0,
+   "event_best_ask": 0.97,
+   "event_best_bid": 0.66,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-recyd-jaywad-gte10",
+    "currentPx": {
+     "value": "0.8150",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.9000",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "30.0000",
+    "openInterest": "10.0000",
+    "bestAsk": {
+     "value": "0.9700",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.6600",
+     "currency": "USD"
+    },
+    "askDepth": 3,
+    "bidDepth": 5,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.9000",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.1",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T12:15:40.929667902Z"
+    },
+    "longQuote": {
+     "value": "0.9700",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.34",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "250",
+    "askShares": "130"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-rec-cookup-gte1",
+   "question": "Will Cooper Kupp record 1+ receptions?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.53,
+    0.52,
+    0.51,
+    0.05,
+    0.04
+   ],
+   "offers_px": [
+    0.93,
+    0.94,
+    0.95,
+    0.98,
+    0.99
+   ],
+   "best_bid": 0.53,
+   "best_bid_qty": 50.0,
+   "best_offer": 0.93,
+   "best_offer_qty": 3.0,
+   "event_best_ask": 0.93,
+   "event_best_bid": 0.53,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-rec-cookup-gte1",
+    "currentPx": {
+     "value": "0.7300",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.9100",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "122.5100",
+    "openInterest": "56.0700",
+    "bestAsk": {
+     "value": "0.9300",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.5300",
+     "currency": "USD"
+    },
+    "askDepth": 5,
+    "bidDepth": 8,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.9100",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.09",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:17:12.380867054Z"
+    },
+    "longQuote": {
+     "value": "0.9300",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.47",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "24000",
+    "askShares": "12000"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-rec-jaxnji-gte4",
+   "question": "Will Jaxon Smith-Njigba record 4+ receptions?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.52,
+    0.51,
+    0.5,
+    0.03,
+    0.02
+   ],
+   "offers_px": [
+    0.93,
+    0.94,
+    0.95,
+    0.96,
+    0.97
+   ],
+   "best_bid": 0.52,
+   "best_bid_qty": 7.0,
+   "best_offer": 0.93,
+   "best_offer_qty": 14.0,
+   "event_best_ask": 0.93,
+   "event_best_bid": 0.52,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-rec-jaxnji-gte4",
+    "currentPx": {
+     "value": "0.7250",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.8900",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "10.0000",
+    "openInterest": "10.0000",
+    "bestAsk": {
+     "value": "0.9300",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.5200",
+     "currency": "USD"
+    },
+    "askDepth": 7,
+    "bidDepth": 5,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.8900",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.11",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:23:13.392970402Z"
+    },
+    "longQuote": {
+     "value": "0.9300",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.48",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "26",
+    "askShares": "1100"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-pyd-bonix-gte125",
+   "question": "Will Bo Nix record 125+ passing yards?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.67,
+    0.66,
+    0.01
+   ],
+   "offers_px": [
+    0.9,
+    0.91,
+    0.92,
+    0.97,
+    0.99
+   ],
+   "best_bid": 0.67,
+   "best_bid_qty": 25.0,
+   "best_offer": 0.9,
+   "best_offer_qty": 10.0,
+   "event_best_ask": 0.9,
+   "event_best_bid": 0.67,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-pyd-bonix-gte125",
+    "currentPx": {
+     "value": "0.7850",
+     "currency": "USD"
+    },
+    "lastTradePx": null,
+    "settlementPx": null,
+    "sharesTraded": "0.0000",
+    "openInterest": "",
+    "bestAsk": {
+     "value": "0.9000",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.6700",
+     "currency": "USD"
+    },
+    "askDepth": 5,
+    "bidDepth": 3,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.7850",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.215",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:15:32.774524043Z"
+    },
+    "longQuote": {
+     "value": "0.9000",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.33",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "450",
+    "askShares": "11000"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-ryd-emawil-gte30",
+   "question": "Will Emanuel Wilson record 30+ rushing yards?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.71,
+    0.7,
+    0.69,
+    0.68,
+    0.02
+   ],
+   "offers_px": [
+    0.9,
+    0.91,
+    0.92,
+    0.93,
+    0.94
+   ],
+   "best_bid": 0.71,
+   "best_bid_qty": 3.0,
+   "best_offer": 0.9,
+   "best_offer_qty": 4.48,
+   "event_best_ask": 0.9,
+   "event_best_bid": 0.71,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-ryd-emawil-gte30",
+    "currentPx": {
+     "value": "0.8050",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.9000",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "124.0000",
+    "openInterest": "45.0000",
+    "bestAsk": {
+     "value": "0.9000",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.7100",
+     "currency": "USD"
+    },
+    "askDepth": 7,
+    "bidDepth": 6,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.9000",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.1",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:21:05.082099940Z"
+    },
+    "longQuote": {
+     "value": "0.9000",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.29",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "360",
+    "askShares": "26000"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-ryd-jdob-gte20",
+   "question": "Will J.K. Dobbins record 20+ rushing yards?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.75,
+    0.74,
+    0.02,
+    0.01
+   ],
+   "offers_px": [
+    0.9,
+    0.91,
+    0.92,
+    0.93,
+    0.97
+   ],
+   "best_bid": 0.75,
+   "best_bid_qty": 25.0,
+   "best_offer": 0.9,
+   "best_offer_qty": 17.0,
+   "event_best_ask": 0.9,
+   "event_best_bid": 0.75,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-ryd-jdob-gte20",
+    "currentPx": {
+     "value": "0.8250",
+     "currency": "USD"
+    },
+    "lastTradePx": null,
+    "settlementPx": null,
+    "sharesTraded": "0.0000",
+    "openInterest": "",
+    "bestAsk": {
+     "value": "0.9000",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.7500",
+     "currency": "USD"
+    },
+    "askDepth": 6,
+    "bidDepth": 4,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.8250",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.175",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:12:17.855940429Z"
+    },
+    "longQuote": {
+     "value": "0.9000",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.25",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "350",
+    "askShares": "18000"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-lrec-jaxnji-gte20",
+   "question": "Will Jaxon Smith-Njigba record 20+ longest reception?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.51,
+    0.5
+   ],
+   "offers_px": [
+    0.89,
+    0.9,
+    0.91,
+    0.92,
+    0.93
+   ],
+   "best_bid": 0.51,
+   "best_bid_qty": 5.0,
+   "best_offer": 0.89,
+   "best_offer_qty": 26.0,
+   "event_best_ask": 0.89,
+   "event_best_bid": 0.51,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-lrec-jaxnji-gte20",
+    "currentPx": {
+     "value": "0.7000",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.0400",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "5.8700",
+    "openInterest": "2.8600",
+    "bestAsk": {
+     "value": "0.8900",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.5100",
+     "currency": "USD"
+    },
+    "askDepth": 8,
+    "bidDepth": 2,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.0400",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.96",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:13:52.782422114Z"
+    },
+    "longQuote": {
+     "value": "0.8900",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.49",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "15",
+    "askShares": "1300"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-rec-rassha-gte1",
+   "question": "Will Rashid Shaheed record 1+ receptions?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.61,
+    0.07,
+    0.06,
+    0.05,
+    0.04
+   ],
+   "offers_px": [
+    0.88,
+    0.89,
+    0.91,
+    0.92,
+    0.93
+   ],
+   "best_bid": 0.61,
+   "best_bid_qty": 3.0,
+   "best_offer": 0.88,
+   "best_offer_qty": 6.0,
+   "event_best_ask": 0.88,
+   "event_best_bid": 0.61,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-rec-rassha-gte1",
+    "currentPx": {
+     "value": "0.6750",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.4600",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "1.0000",
+    "openInterest": "1.0000",
+    "bestAsk": {
+     "value": "0.8800",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.4700",
+     "currency": "USD"
+    },
+    "askDepth": 8,
+    "bidDepth": 10,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.4600",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.54",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:23:28.789430746Z"
+    },
+    "longQuote": {
+     "value": "0.8800",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.53",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "24000",
+    "askShares": "16000"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-recyd-jaywad-gte20",
+   "question": "Will Jaylen Waddle record 20+ receiving yards?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.65,
+    0.64,
+    0.61,
+    0.05,
+    0.04
+   ],
+   "offers_px": [
+    0.88,
+    0.89,
+    0.9,
+    0.91,
+    0.95
+   ],
+   "best_bid": 0.65,
+   "best_bid_qty": 28.0,
+   "best_offer": 0.88,
+   "best_offer_qty": 12.0,
+   "event_best_ask": 0.88,
+   "event_best_bid": 0.65,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-recyd-jaywad-gte20",
+    "currentPx": {
+     "value": "0.7650",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.8900",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "2.2200",
+    "openInterest": "2.2200",
+    "bestAsk": {
+     "value": "0.8800",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.6500",
+     "currency": "USD"
+    },
+    "askDepth": 6,
+    "bidDepth": 6,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.8900",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.11",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:19:32.501012754Z"
+    },
+    "longQuote": {
+     "value": "0.8800",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.35",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "360",
+    "askShares": "25000"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-pyd-samdar-gte150",
+   "question": "Will Sam Darnold record 150+ passing yards?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.84,
+    0.83,
+    0.81,
+    0.8,
+    0.06
+   ],
+   "offers_px": [
+    0.86,
+    0.88,
+    0.89,
+    0.9,
+    0.91
+   ],
+   "best_bid": 0.84,
+   "best_bid_qty": 255.0,
+   "best_offer": 0.86,
+   "best_offer_qty": 511.0,
+   "event_best_ask": 0.86,
+   "event_best_bid": 0.84,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-pyd-samdar-gte150",
+    "currentPx": {
+     "value": "0.8500",
+     "currency": "USD"
+    },
+    "lastTradePx": {
+     "value": "0.8800",
+     "currency": "USD"
+    },
+    "settlementPx": null,
+    "sharesTraded": "144.6500",
+    "openInterest": "100.6200",
+    "bestAsk": {
+     "value": "0.8600",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.8400",
+     "currency": "USD"
+    },
+    "askDepth": 12,
+    "bidDepth": 10,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.8800",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.12",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:20:15.256221465Z"
+    },
+    "longQuote": {
+     "value": "0.8600",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.16",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "65000",
+    "askShares": "78000"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-rec-trofra-gte1",
+   "question": "Will Troy Franklin record 1+ receptions?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.38,
+    0.37,
+    0.06,
+    0.05,
+    0.04
+   ],
+   "offers_px": [
+    0.86,
+    0.87,
+    0.88,
+    0.89,
+    0.91
+   ],
+   "best_bid": 0.38,
+   "best_bid_qty": 25.0,
+   "best_offer": 0.86,
+   "best_offer_qty": 481.0,
+   "event_best_ask": 0.86,
+   "event_best_bid": 0.38,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-rec-trofra-gte1",
+    "currentPx": {
+     "value": "0.6200",
+     "currency": "USD"
+    },
+    "lastTradePx": null,
+    "settlementPx": null,
+    "sharesTraded": "0.0000",
+    "openInterest": "",
+    "bestAsk": {
+     "value": "0.8600",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.3800",
+     "currency": "USD"
+    },
+    "askDepth": 7,
+    "bidDepth": 8,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.6200",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.38",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:16:46.850949408Z"
+    },
+    "longQuote": {
+     "value": "0.8600",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.62",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "24000",
+    "askShares": "12000"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-recyd-cousut-gte10",
+   "question": "Will Courtland Sutton record 10+ receiving yards?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.81,
+    0.8,
+    0.02,
+    0.01
+   ],
+   "offers_px": [
+    0.86,
+    0.88,
+    0.89,
+    0.9,
+    0.94
+   ],
+   "best_bid": 0.81,
+   "best_bid_qty": 1.0,
+   "best_offer": 0.86,
+   "best_offer_qty": 2.0,
+   "event_best_ask": 0.86,
+   "event_best_bid": 0.81,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-recyd-cousut-gte10",
+    "currentPx": {
+     "value": "0.8350",
+     "currency": "USD"
+    },
+    "lastTradePx": null,
+    "settlementPx": null,
+    "sharesTraded": "0.0000",
+    "openInterest": "",
+    "bestAsk": {
+     "value": "0.8600",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.8100",
+     "currency": "USD"
+    },
+    "askDepth": 9,
+    "bidDepth": 4,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.8350",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.165",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:15:32.785600586Z"
+    },
+    "longQuote": {
+     "value": "0.8600",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.19",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "100",
+    "askShares": "17000"
+   }
+  },
+  {
+   "slug": "astatc-nfl-sea-den-2026-10-15-rec-cousut-gte2",
+   "question": "Will Courtland Sutton record 2+ receptions?",
+   "book_status": 200,
+   "bbo_status": 200,
+   "bids_px": [
+    0.79,
+    0.78,
+    0.07,
+    0.06,
+    0.05
+   ],
+   "offers_px": [
+    0.85,
+    0.86,
+    0.87,
+    0.88,
+    0.89
+   ],
+   "best_bid": 0.79,
+   "best_bid_qty": 12.0,
+   "best_offer": 0.85,
+   "best_offer_qty": 3.0,
+   "event_best_ask": 0.85,
+   "event_best_bid": 0.79,
+   "offer_matches_ask": true,
+   "bid_matches_bid": true,
+   "bids_first_is_best": true,
+   "offers_first_is_best": true,
+   "bbo": {
+    "marketSlug": "astatc-nfl-sea-den-2026-10-15-rec-cousut-gte2",
+    "currentPx": {
+     "value": "0.8200",
+     "currency": "USD"
+    },
+    "lastTradePx": null,
+    "settlementPx": null,
+    "sharesTraded": "0.0000",
+    "openInterest": "",
+    "bestAsk": {
+     "value": "0.8500",
+     "currency": "USD"
+    },
+    "bestBid": {
+     "value": "0.7900",
+     "currency": "USD"
+    },
+    "askDepth": 12,
+    "bidDepth": 9,
+    "lastPriceSample": {
+     "longPx": {
+      "value": "0.8200",
+      "currency": "USD"
+     },
+     "shortPx": {
+      "value": "0.18",
+      "currency": "USD"
+     },
+     "ts": "2026-10-14T14:22:42.346894438Z"
+    },
+    "longQuote": {
+     "value": "0.8500",
+     "currency": "USD"
+    },
+    "shortQuote": {
+     "value": "0.21",
+     "currency": "USD"
+    },
+    "state": "MARKET_STATE_OPEN",
+    "bidShares": "64000",
+    "askShares": "92000"
+   }
+  }
+ ]
+}

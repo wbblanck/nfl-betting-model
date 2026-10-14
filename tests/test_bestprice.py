@@ -65,10 +65,12 @@ def test_no_comparable_venue_still_records_the_pick():
 
 def test_polymarket_quotes_and_team_mapping():
     mk = [{"event": "DEN Broncos vs. LA Chargers", "question": "Will Ladd McConkey record 5+ receptions?", "feeCoefficient": 0.0695,
+           "slug": "astatc-nfl-lac-den-x-rec-ladmcc-gte5",
            "marketSides": [{"description": "Yes", "quote": {"value": "0.44"}}, {"description": "No", "quote": {"value": "0.60"}}]},
           {"event": "DEN Broncos vs. LA Chargers", "question": "Will Ladd McConkey record 50+ receiving yards?",
            "marketSides": [{"description": "Yes", "quote": {"value": "0.5"}}, {"description": "No"}]}]      # unquoted side: dropped
-    assert V.pm_quotes(mk) == {("DEN|LAC", "ladd mcconkey", "rec", 4.5): {"over": 0.44, "under": 0.60, "fee": 0.0695}}
+    assert V.pm_quotes(mk) == {("DEN|LAC", "ladd mcconkey", "rec", 4.5):
+                               {"over": 0.44, "under": 0.60, "fee": 0.0695, "slug": "astatc-nfl-lac-den-x-rec-ladmcc-gte5"}}
 
 
 def test_dashboard_line_joins_on_the_pick_and_run():
@@ -94,3 +96,23 @@ def test_large_edge_is_flagged():
     big = {"orders": {"o": [{"price": "0.70", "qty": 5000}], "u": [{"price": "0.40", "qty": 900}]}}    # Under 0.30, $50: 30c better
     r = _rows(books={"m1": big})
     assert r["best_venue"] == "Novig" and r["edge_cents"] == 30.0 and r["check"].startswith("edge over 10 cents")
+
+
+def test_polymarket_size_from_unsorted_book(monkeypatch):
+    # Yes (over) takes the lowest offer, No (under) sells into the highest bid; equal-price levels add up
+    book = {"marketData": {"bids": [{"px": {"value": "0.43"}, "qty": "10"}, {"px": {"value": "0.44"}, "qty": "25"}, {"px": {"value": "0.44"}, "qty": "5"}],
+                           "offers": [{"px": {"value": "0.50"}, "qty": "7"}, {"px": {"value": "0.48"}, "qty": "120"}]}}
+    monkeypatch.setattr(V, "pm_get", lambda path: book)
+    assert V.pm_sizes("s") == {"over": 120.0, "under": 30.0}
+    monkeypatch.setattr(V, "pm_get", lambda path: {"marketData": {"bids": [], "offers": []}})
+    assert V.pm_sizes("s") == {}
+
+
+def test_thin_polymarket_price_is_listed_but_not_best():
+    pmq = {("MIN|NO", "aaron jones", "rec", 3.5): {"over": 0.46, "under": 0.45, "fee": 0.0695, "slug": "pm1"}}   # .45 + fee = .4637
+    thin = Bp.best_rows(pl.DataFrame([PICK]), Bp.an_quotes(AN), None, pmq, V.nv_index([NV_MARKET], NV_EVENTS), {"m1": NV_BOOK},
+                        PICK["run_utc"], {"pm1": {"under": 4.0}}).row(0, named=True)
+    assert json.loads(thin["venues"])["Polymarket US"][1] == 4.0 and thin["best_venue"] == "Novig"
+    deep = Bp.best_rows(pl.DataFrame([PICK]), Bp.an_quotes(AN), None, pmq, V.nv_index([NV_MARKET], NV_EVENTS), {"m1": NV_BOOK},
+                        PICK["run_utc"], {"pm1": {"under": 500.0}}).row(0, named=True)
+    assert deep["best_venue"] == "Polymarket US" and deep["best_size"] == 500.0
