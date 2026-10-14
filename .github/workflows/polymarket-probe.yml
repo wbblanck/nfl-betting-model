@@ -6,6 +6,9 @@ on:
     paths: ['scripts/audit/polymarket_probe.py', 'scripts/polymarket_compare.py', '.github/workflows/polymarket-probe.yml']
 permissions:
   contents: write
+concurrency:
+  group: polymarket-probe-${{ github.ref }}   # a push run and a dispatch run raced on the same commit (2026-10-14)
+  cancel-in-progress: false
 jobs:
   probe:
     runs-on: ubuntu-latest

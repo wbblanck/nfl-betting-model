@@ -32,36 +32,69 @@ def imp(a):
 PM = "https://gateway.polymarket.us"
 
 
-def fetch_polymarket(now_utc) -> list[dict]:
-    """Week-5 game events and their prop markets from Polymarket US's public search (no key), keyed like the
-    trimmed file: {event, question, marketSides, feeCoefficient}."""
-    import urllib.parse
+SLUG_CODE = {"LA": "lar"}      # nflverse -> Polymarket event-slug code where they differ (others: lower case)
+
+
+def _pm_get(path: str):
     import urllib.request
-    from datetime import timedelta
     UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
-    out, seen = [], set()
+    with urllib.request.urlopen(urllib.request.Request(f"{PM}{path}", headers={"User-Agent": UA}), timeout=60) as r:
+        return json.loads(r.read())
+
+
+def week_slugs(now_utc) -> list[str]:
+    """This week's game-event slugs: from the search (title 'X vs. Y', start within the window) and, as a backstop,
+    built from the nflverse schedule as nfl-{away}-{home}-{ET date}. The search alone is capped at 20 events and shares
+    them with season-long markets, so it can miss games."""
+    import urllib.parse
+    from datetime import datetime, timedelta
+    slugs: list[str] = []
     for q in (f"NFL Week {WEEK}", f"NFL week {WEEK} props"):
-        req = urllib.request.Request(f"{PM}/v1/search?query={urllib.parse.quote(q)}&limit=20", headers={"User-Agent": UA})
-        with urllib.request.urlopen(req, timeout=60) as r:
-            events = json.loads(r.read()).get("events", [])
-        for e in events:
-            if " vs. " not in (e.get("title") or "") or e.get("title") in seen:
-                continue
-            start = (e.get("startTime") or e.get("startDate") or "").replace("Z", "+00:00")
+        for e in _pm_get(f"/v1/search?query={urllib.parse.quote(q)}&limit=20").get("events", []):
             try:
-                t = __import__("datetime").datetime.fromisoformat(start)
+                t = datetime.fromisoformat((e.get("startTime") or e.get("startDate") or "").replace("Z", "+00:00"))
             except ValueError:
                 continue
-            if not (now_utc - timedelta(hours=4) <= t <= now_utc + timedelta(days=8)):
-                continue
-            seen.add(e["title"])
-            for m in e.get("markets") or []:
-                if "record" in (m.get("question") or "") or "score the first" in (m.get("question") or ""):
-                    out.append({"event": e["title"], "question": m.get("question"), "marketSides": m.get("marketSides") or [],
-                                "feeCoefficient": m.get("feeCoefficient") or e.get("feeCoefficient"),
-                                "bestBid": m.get("bestBid"), "bestAsk": m.get("bestAsk"),
-                                "lastTradePrice": m.get("lastTradePrice"), "liquidityNum": m.get("liquidityNum"),
-                                "minimumTradeQty": m.get("minimumTradeQty")})
+            if " vs. " in (e.get("title") or "") and now_utc - timedelta(hours=4) <= t <= now_utc + timedelta(days=8):
+                slugs.append(e["slug"])
+    try:
+        import nflreadpy as nfl
+        sch = nfl.load_schedules(seasons=[now_utc.year if now_utc.month >= 3 else now_utc.year - 1])
+        sch = sch.filter((pl.col("game_type") == "REG") & (pl.col("week") == WEEK))
+        for r in sch.iter_rows(named=True):
+            a, h = (SLUG_CODE.get(x, x.lower()) for x in (r["away_team"], r["home_team"]))
+            slugs.append(f"nfl-{a}-{h}-{r['gameday']}")
+    except Exception as e:  # noqa: BLE001 - the search slugs still stand
+        print(f"schedule slugs unavailable: {e!r}"[:200])
+    return list(dict.fromkeys(slugs))
+
+
+def fetch_polymarket(now_utc) -> list[dict]:
+    """This week's player-prop markets from Polymarket US (public, no key). Each game is fetched by slug from
+    /v1/events/slug/{slug}: the search returns the games but embeds only part of their markets, without the player
+    props (2026-10-14 diagnostic, docs/evidence/polymarket_week_probe/). Prints one line per game."""
+    import urllib.error
+    out = []
+    for slug in week_slugs(now_utc):
+        try:
+            body = _pm_get(f"/v1/events/slug/{slug}")
+        except urllib.error.HTTPError as e:
+            print(f"  {slug}: HTTP {e.code}, skipped")
+            continue
+        e = body.get("event", body) if isinstance(body, dict) else {}
+        if e.get("slug") != slug:
+            print(f"  {slug}: no matching event, skipped")
+            continue
+        kept = 0
+        for m in e.get("markets") or []:
+            if "record" in (m.get("question") or "") or "score the first" in (m.get("question") or ""):
+                kept += 1
+                out.append({"event": e["title"], "question": m.get("question"), "marketSides": m.get("marketSides") or [],
+                            "feeCoefficient": m.get("feeCoefficient") or e.get("feeCoefficient"),
+                            "bestBidQuote": m.get("bestBidQuote"), "bestAskQuote": m.get("bestAskQuote"),
+                            "lastTradePrice": m.get("lastTradePrice"), "liquidityNum": m.get("liquidityNum"),
+                            "minimumTradeQty": m.get("minimumTradeQty")})
+        print(f"  {slug}: {e.get('title')}, {len(e.get('markets') or [])} markets, {kept} kept")
     return out
 
 
@@ -107,9 +140,9 @@ def main():
             continue
         n_thr += 1
         sides = {s["description"]: s for s in x["marketSides"]}
-        # cost of each side = its `quote` value (marketSides[].quote.value). Live 2026-10-10 run: Yes+No quotes sum
-        # to a median 1.03 on 2,578 threshold markets, while `price` sums to 0.81 and bestBid/bestAsk are absent.
-        # Sides without a quote are counted, not compared.
+        # cost of each side = its `quote` value (marketSides[].quote.value): the buy price. Verified on saved data: the
+        # Yes quote equals the market's bestAskQuote and the No quote equals 1 - bestBidQuote, so Yes+No-1 is the
+        # bid-ask spread. Sides without a quote are counted, not compared.
         def q(side):
             v = (sides.get(side, {}).get("quote") or {}).get("value")
             return float(v) if v not in (None, "") else None
