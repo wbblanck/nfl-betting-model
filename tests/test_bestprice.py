@@ -81,3 +81,16 @@ def test_dashboard_line_joins_on_the_pick_and_run():
     assert "Best price at this line: Novig -113, $250 available (+7.0¢ per $1 vs DraftKings; 4 venues, after fees)" in html
     other_run = D.with_best([{**PICK, "run_utc": "2026-10-18T12:00:00Z"}], best)[0]
     assert D.best_price(other_run) == ""                                               # a different run's price is never shown
+
+
+def test_thin_novig_price_is_listed_but_not_best():
+    thin = {"orders": {"o": [{"price": "0.60", "qty": 300}], "u": [{"price": "0.40", "qty": 900}]}}     # Under 0.40, $3 behind it
+    r = _rows(books={"m1": thin})
+    v = json.loads(r["venues"])
+    assert v["Novig"] == [0.4, 3.0] and r["best_venue"] == "FanDuel" and r["check"] == ""
+
+
+def test_large_edge_is_flagged():
+    big = {"orders": {"o": [{"price": "0.70", "qty": 5000}], "u": [{"price": "0.40", "qty": 900}]}}    # Under 0.30, $50: 30c better
+    r = _rows(books={"m1": big})
+    assert r["best_venue"] == "Novig" and r["edge_cents"] == 30.0 and r["check"].startswith("edge over 10 cents")

@@ -274,7 +274,8 @@ def best_price(r: dict) -> str:
     size = f", ${float(b['best_size']):,.0f} available" if b.get("best_size") not in (None, "") else ""
     edge = float(b["edge_cents"])
     vs = "same as DraftKings" if abs(edge) < 0.005 else f"{edge:+.1f}¢ per $1 vs DraftKings"
-    return (f'<div class="news"><span class="detail" title="{esc(tip)}">Best price at this line: {esc(b["best_venue"])} '
+    flag = chip("warn", "Check quote", "Edge over 10 cents vs DraftKings: usually a stale or stray quote") if b.get("check") else ""
+    return (f'<div class="news">{flag}<span class="detail" title="{esc(tip)}">Best price at this line: {esc(b["best_venue"])} '
             f'{float(b["best_odds"]):+.0f}{esc(size)} ({esc(vs)}; {int(b["n_venues"])} venues, after fees). Record only.</span></div>')
 
 

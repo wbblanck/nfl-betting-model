@@ -12,7 +12,9 @@ all-in, and names the cheapest:
   markets), with the dollars of payout available at that price.
 
 Kalshi, ProphetX and BettorEdge (via OpenMarkets) are listed but not eligible for "best": their prices reach us
-without fees and their fee schedules are not confirmed here, so a pre-fee price could look better than it is.
+without fees and their fee schedules are not confirmed here, so a pre-fee price could look better than it is. A Novig
+price with less than MIN_SIZE dollars of payout behind it is listed but not eligible either: one stray resting order
+can make a side look cheap with a dollar behind it. An edge over CHECK_CENTS is flagged for a look.
 
 Written to data/live/s1_bestprice_2026.csv by scripts/live_s1.py; one row per pick per run.
 """
@@ -29,9 +31,11 @@ from nflbet.props import NON_BOOKS, TEAM_FIX, norm_name
 AN_NAME = {"DK NJ": "DraftKings", "FanDuel NJ": "FanDuel", "BetMGM NJ": "BetMGM", "BetRivers NJ": "BetRivers",
            "Caesars NV": "Caesars"}
 PREFEE = {"om_kalshi_odds": "Kalshi", "om_prophetx_odds": "ProphetX", "om_bettoredge_odds": "BettorEdge"}
+MIN_SIZE = 10.0                 # $ of payout at Novig's best price for it to count as "best"
+CHECK_CENTS = 10.0              # an edge over DK larger than this is flagged: usually a stale or stray quote
 COLS = ["run_utc", "week", "an_game_id", "start_time", "home", "away", "player", "player_id", "market", "line", "side",
         "dk_odds", "dk_cost", "best_venue", "best_cost", "best_odds", "best_size", "edge_cents", "n_venues", "venues",
-        "prefee"]
+        "prefee", "check"]
 
 
 def imp(a: float) -> float:
@@ -85,7 +89,8 @@ def best_rows(picks: pl.DataFrame, anq: dict, pa: pl.DataFrame | None, pmq: dict
     for p in picks.iter_rows(named=True):
         vc = venue_costs(p, anq, pa_idx, pmq, nv_idx, nv_books)
         dk_cost = imp(float(p["odds"]))
-        best = min(vc.items(), key=lambda kv: kv[1][0]) if vc else None
+        elig = {k: v for k, v in vc.items() if v[1] is None or v[1] >= MIN_SIZE}
+        best = min(elig.items(), key=lambda kv: kv[1][0]) if elig else None
         pre = {name: p.get(col) for col, name in PREFEE.items() if p.get(col) is not None}
         rows.append({"run_utc": run_utc, "week": p.get("week"), "an_game_id": p["an_game_id"], "start_time": p["start_time"],
                      "home": p["home"], "away": p["away"], "player": p["player"], "player_id": p.get("player_id"),
@@ -95,7 +100,8 @@ def best_rows(picks: pl.DataFrame, anq: dict, pa: pl.DataFrame | None, pmq: dict
                      "best_odds": round(american(best[1][0])) if best else None, "best_size": best[1][1] if best else None,
                      "edge_cents": round((dk_cost - best[1][0]) * 100, 2) if best else None, "n_venues": len(vc),
                      "venues": json.dumps({k: [round(c, 5), s] for k, (c, s) in sorted(vc.items(), key=lambda kv: kv[1][0])}),
-                     "prefee": json.dumps({k: round(float(v)) for k, v in pre.items()})})
+                     "prefee": json.dumps({k: round(float(v)) for k, v in pre.items()}),
+                     "check": "edge over 10 cents: check the quote" if best and (dk_cost - best[1][0]) * 100 > CHECK_CENTS else ""})
     return pl.DataFrame(rows, schema={c: (pl.Float64 if c in ("line", "dk_odds", "dk_cost", "best_cost", "best_odds", "best_size", "edge_cents")
                                           else pl.Int64 if c == "n_venues" else pl.Utf8) for c in COLS})
 
