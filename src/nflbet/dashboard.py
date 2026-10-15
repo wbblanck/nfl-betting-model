@@ -298,7 +298,7 @@ def second_source(r: dict) -> str:
         html_ += ('<div class="news">' + (chip("warn", "ParlayAPI DK line differs") if differs else "")
                   + f'<span class="detail">ParlayAPI at this run: {esc(", ".join(parts))}</span></div>')
     if om:
-        html_ += f'<div class="news"><span class="detail">Prediction markets at this line: {esc(", ".join(om))}</span></div>'
+        html_ += f'<div class="news"><span class="detail">OpenMarkets at this line, before fees: {esc(", ".join(om))}</span></div>'
     return html_
 
 
@@ -337,7 +337,33 @@ def polymarket_card(pm: dict | None) -> str:
             f'<p class="note">{esc(pm.get("player_lines", 0))} player-lines, {esc(pm.get("quoted_compared", 0))} threshold markets quoted and compared; '
             f'{esc(pm.get("not_compared", 0))} unquoted and left out. Price = each side\'s quoted price. Fee: Polymarket\'s taker formula '
             f'fee = Θ × C × p × (1 − p), Θ = {esc(pm.get("fee_rate"))} (Polymarket US fee schedule, sports included). '
-            'One snapshot, unvalidated; Kalshi is not in this comparison yet.</p></div>')
+            'One snapshot, unvalidated. Polymarket US only; the best-price line on each pick also covers Kalshi and Novig.</p></div>')
+
+
+BEST_VENUES = ("DraftKings, FanDuel, BetMGM, BetRivers and Caesars (Action Network), DraftKings and FanDuel (ParlayAPI), "
+               "Polymarket US (taker fee 0.0695 × p × (1 − p)), Kalshi (read directly; taker fee 0.07 × p × (1 − p) × the series' "
+               "multiplier, 1 on these props) and Novig (no fee pregame)")
+
+
+def best_price_card(best: pl.DataFrame | None) -> str:
+    """Latest run's best-price record (src/nflbet/bestprice.py): which venue was cheapest, by how much vs DraftKings."""
+    note = (f'<p class="note">Record only: S1 is graded at the DraftKings price. Cost per $1 of payout, after fees, at the pick\'s '
+            f'exact line and side, from {esc(BEST_VENUES)}. An exchange price needs ${Bp.MIN_SIZE:.0f} of payout behind it to count. '
+            'OpenMarkets\' Kalshi, ProphetX and BettorEdge prices are listed before fees and never count.</p>')
+    if best is None or not best.height:
+        return '<div class="card"><h3>Best price</h3><p class="note" style="margin-top:2px">No rows yet: the first run with picks writes them.</p>' + note + '</div>'
+    last = best["run_utc"].max()
+    x = best.filter(pl.col("run_utc") == last)
+    won = x.filter(pl.col("best_venue").fill_null("") != "")
+    rows = []
+    for (v,), g in sorted(won.group_by("best_venue"), key=lambda kv: -kv[1].height):
+        e = g["edge_cents"].cast(pl.Float64)
+        rows.append([esc(v), str(g.height), f"{e.median():+.1f}¢", f"{e.max():+.1f}¢"])
+    quoted = sum(1 for r in x.iter_rows(named=True) if "Kalshi" in (r["venues"] or ""))
+    return ('<div class="card"><h3>Best price, latest run</h3>' +
+            table(["Cheapest venue", "Picks", "Median vs DK", "Largest vs DK"], rows, "num") +
+            f'<p class="note" style="margin-top:2px">Run {esc(fmt_dt(last))} ET: {x.height} picks, {won.height} with a comparable price; '
+            f'Kalshi quoted on {quoted}.</p>' + note + '</div>')
 
 
 def parlay_card(pc: pl.DataFrame) -> str:
@@ -1057,7 +1083,8 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
     else:
         runs_html = ""
     pc = parlay_card(data.get("pcmp", pl.DataFrame()))
-    ops = [x for x in (pc, openmarkets_card(data.get("ocmp", pl.DataFrame())), polymarket_card(data.get("polymarket")), runs_html) if x]
+    ops = [x for x in (pc, best_price_card(data.get("best")), openmarkets_card(data.get("ocmp", pl.DataFrame())),
+                       polymarket_card(data.get("polymarket")), runs_html) if x]
     ops_html = (('<section class="block"><div class="sechead"><div><p class="eyebrow">Runs and sources</p><h2>How the picks were made</h2></div></div>'
                  + (stab_html if stab_html else "") + (f'<div class="stack">{"".join(ops)}</div>' if ops else "") + '</section>')
                 if stab_html or ops else "")
