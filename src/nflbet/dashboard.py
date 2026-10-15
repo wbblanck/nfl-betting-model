@@ -902,7 +902,9 @@ JS = """
   apply(m);
   // tabs (remembered per viewer; #ats deep-links)
   var tabs=document.querySelectorAll('.tabs button');
+  var hideTip=function(){};
   function showTab(t){
+    hideTip();
     tabs.forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-tab')===t?'true':'false')});
     document.querySelectorAll('.tabpane').forEach(function(p){p.hidden=p.id!=='tab-'+t});
     try{localStorage.setItem('tab',t)}catch(e){}
@@ -912,6 +914,11 @@ JS = """
   showTab(t0);
   // one tooltip for every chart mark: "headline | detail"
   var tip=document.createElement('div');tip.className='tip';tip.hidden=true;document.body.appendChild(tip);
+  // a tap focuses the mark and touch sends no pointerleave, so a fixed tooltip would stay on screen: hide it on any
+  // scroll, on a tap anywhere else, and on a tab switch
+  hideTip=function(){tip.hidden=true};
+  window.addEventListener('scroll',hideTip,{passive:true,capture:true});
+  document.addEventListener('pointerdown',function(e){if(!(e.target.closest&&e.target.closest('[data-tip]')))hideTip()});
   function show(el,x,y){
     var t=(el.getAttribute('data-tip')||'').split(' | ');
     tip.textContent='';var s=document.createElement('strong');s.textContent=t[1]||t[0];tip.appendChild(s);
@@ -922,7 +929,8 @@ JS = """
   }
   document.querySelectorAll('[data-tip]').forEach(function(el){
     el.addEventListener('pointermove',function(e){show(el,e.clientX,e.clientY)});
-    el.addEventListener('pointerleave',function(){tip.hidden=true});
+    el.addEventListener('pointerdown',function(e){show(el,e.clientX,e.clientY)});
+    el.addEventListener('pointerleave',function(e){if(e.pointerType!=='touch')tip.hidden=true});   // touch: a lift fires it
     el.addEventListener('focus',function(){var r=el.getBoundingClientRect();show(el,r.left+r.width/2,r.top)});
     el.addEventListener('blur',function(){tip.hidden=true});
   });
