@@ -1,0 +1,5338 @@
+{
+ "stamp": "20261015T020547Z",
+ "hosts": {
+  "https://external-api.kalshi.com/trade-api/v2": {
+   "status": 200,
+   "headers": {},
+   "n_series": 3977
+  },
+  "https://api.elections.kalshi.com/trade-api/v2": {
+   "status": 200,
+   "headers": {},
+   "n_series": 3977
+  }
+ },
+ "base": "https://external-api.kalshi.com/trade-api/v2",
+ "series_fields": [
+  "additional_prohibitions",
+  "categories",
+  "category",
+  "contract_terms_url",
+  "contract_url",
+  "exchange_index",
+  "fee_multiplier",
+  "fee_type",
+  "frequency",
+  "last_updated_ts",
+  "settlement_sources",
+  "tags",
+  "ticker",
+  "title"
+ ],
+ "fee_types_sports": {
+  "quadratic|1": 3852,
+  "quadratic_with_maker_fees|1": 106,
+  "quadratic|0.5": 18,
+  "quadratic_with_maker_fees|0.5": 1
+ },
+ "nfl_series": {
+  "KXNFLLONGESTTD": {
+   "title": "Pro Football Longest Touchdown",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSIND": {
+   "title": "Pro football exact wins Indianapolis",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLNEXTCOACHOUT": {
+   "title": "Next NFL Coach Out",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAMTD": {
+   "title": "Pro Football Team Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRSHYDSPROT": {
+   "title": "Rushing Yards Protected",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-DET": {
+   "title": "Pro football wins Detroit",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLANYTD": {
+   "title": "Pro Football Anytime Touchdown",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTTE": {
+   "title": "Pro Football Tight End Drafted",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL2H": {
+   "title": "Pro Football 2nd Half",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSLAC": {
+   "title": "Pro football exact wins Los Angeles C",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTQB": {
+   "title": "Pro Football Quarterback Drafted",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL2HWINNER": {
+   "title": "NFL 2nd Half Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLOROY": {
+   "title": "NFL Offensive Rookie of the Y ear",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-ARI": {
+   "title": "Pro football wins Arizona",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLGAMETD": {
+   "title": "Pro Football Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLREC": {
+   "title": "Pro Football Player Receptions",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL3QTOTAL": {
+   "title": "Pro Football 3rd Quarter Total",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-ANY": {
+   "title": "Pro football wins any team",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPASSATT": {
+   "title": "Pro Football Passing Attempts",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPASSTDSPROT": {
+   "title": "Passing Touchdowns Protected",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSBOUTCOME": {
+   "title": "NFL Championship Outcome",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSDEN": {
+   "title": "Pro football exact wins Denver",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPASSTDS": {
+   "title": "Pro Football player Passing Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLOTWIN": {
+   "title": "Pro Football Overtime Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAM1STDOWNS": {
+   "title": "Pro Football Team 1st Downs",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLADDERRSHYDS": {
+   "title": "Rushing Yards Ladder",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINMARGIN": {
+   "title": "Pro Football Win Margin",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWPMOTY": {
+   "title": "Walter Payton Man of the Year",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDIVISIONWINS": {
+   "title": "Pro Football Division Total Wins",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFPLAYERHIGH": {
+   "title": "Pro Football Player's Highest Scoring Fantasy Performance",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSEASONRSHYDS": {
+   "title": "Rushing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS": {
+   "title": "Pro Football Wins",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-TEN": {
+   "title": "Pro football wins Tennessee",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLONGESTFG": {
+   "title": "Pro Football Longest Field Goal",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAMPTS": {
+   "title": "Who will most/least points in Regular Season",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSEASONPASSTDS": {
+   "title": "Passing Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLBOTH": {
+   "title": "Pro Football Both Teams to Score Points",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRSHYDSH2H": {
+   "title": "Pro Football Head-to-Head Rushing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDSTTD": {
+   "title": "Pro Football D/ST Touchdown",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCAREERRSHTDS": {
+   "title": "NFL Career Rushing Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCOMBO": {
+   "title": "NFL COMBO",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL4QTOTAL": {
+   "title": "Pro Football 4th Quarter Total",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-CIN": {
+   "title": "Pro football wins Cincinnati",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1QBTTS": {
+   "title": "Pro Football Both Teams to Score in 1st Quarter",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLINT": {
+   "title": "Pro Football Interceptions",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLASTPICKPOS": {
+   "title": "NFL Last Pick of the Draft Position",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLONGREC": {
+   "title": "Longest Reception",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLHIGHSCORE": {
+   "title": "Pro Football Highest Scoring Game",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLONGRSH": {
+   "title": "Longest Rush",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSTAGEOFELIM": {
+   "title": "Pro Football Stage of Elimination",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTKL": {
+   "title": "Pro Football Tackles",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLALLPRO": {
+   "title": "Pro Football All-Pro Teams",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLHKANE": {
+   "title": "Harry Kane Pro Football signing",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRSHYDS": {
+   "title": "Pro Football Rushing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFIRSTSTART": {
+   "title": "Pro Football First Start",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-DAL": {
+   "title": "Pro football wins Dallas",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLEADCHANGE": {
+   "title": "Pro Football Lead Changes",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAMYDS": {
+   "title": "Pro Football Team Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAMTO": {
+   "title": "Pro Football Forced Turnovers",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCOMPETE": {
+   "title": "Will an NFL Player Compete in game",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFT1": {
+   "title": "NFL Draft First Pick",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSCAR": {
+   "title": "Pro football exact wins Carolina",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-BAL": {
+   "title": "Pro football wins Baltimore",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTIE": {
+   "title": "NFL Game to Tie",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLADDERREC": {
+   "title": "Receptions Ladder",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFH2HSEASON": {
+   "title": "Season Fantasy Football Head-to-Head",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLESCALATORRECYDS": {
+   "title": "Receiving Yards Escalator",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLREBOOT": {
+   "title": "Reboot Rules",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLNONQBPASS": {
+   "title": "Pro Football Non-QB Passes",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL4Q": {
+   "title": "Pro Football 4th Quarter Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLROUNDQUAL": {
+   "title": "Pro Football Round Qualifier",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSNO": {
+   "title": "Pro football exact wins New Orleans",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-PHI": {
+   "title": "Pro football wins Philadelphia",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINSTREAK": {
+   "title": "Pro Football Win Streak",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLMVPSPECIALS": {
+   "title": "NFL MVP Award Specials",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSCLE": {
+   "title": "Pro football exact wins Cleveland",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-CHI": {
+   "title": "Pro football wins Chicago",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSTEN": {
+   "title": "Pro football exact wins Tennessee",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTRADE": {
+   "title": "Pro Football Players Traded",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPREPACKSGP": {
+   "title": "MVE NFL Pre Pack",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCOMBINE40": {
+   "title": "Pro Football Combine Fastest 40 Time",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFIRSTTDTIME": {
+   "title": "Pro Football First Touchdown Time",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFPTSLADDER": {
+   "title": "Fantasy Ladder",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLNFCWEST": {
+   "title": "National Football Conference West Winner",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-ATL": {
+   "title": "Pro football wins Atlanta",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSWAS": {
+   "title": "Pro football exact wins Washington",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTEDGE": {
+   "title": "Pro Football Edge Drafted",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSBMVPQB": {
+   "title": "Non QB Championship MVP",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFLEADER": {
+   "title": "Best in Fantasy By Position",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL60YARDFGS": {
+   "title": "Pro Football 60+ Yard Field Goals",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDIVLEASTWINS": {
+   "title": "Pro Football Division with the Most Wins",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSACKRECORD": {
+   "title": "NFL Regular Season Sack Record",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLMOSTRECYDS": {
+   "title": "Pro Football Most Receiving Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSLA": {
+   "title": "Pro football exact wins Los Angeles R",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSTADIUM": {
+   "title": "Will NFL Stadium Project be complete by date",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLENDSTREAK": {
+   "title": "When will team end streak",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPASSYDSH2H": {
+   "title": "Pro Football Head-to-Head Passing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLHIRECOACH": {
+   "title": "NFL hire coach",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEVERYWEEKCOMPETE": {
+   "title": "Pro Football Players to Play in Every Week of the Season",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTOTAL": {
+   "title": "Pro Football Total Points",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFWEEKTOP": {
+   "title": "Weekly Fantasy Football Top Players",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPOTM": {
+   "title": "NFL Player of the Month",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSEASONPASSYDS": {
+   "title": "Passing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTOU": {
+   "title": "Will Player be drafted before or after pick?",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDPOTY": {
+   "title": "AP Pro Football Defensive Player Of The Year",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSHOU": {
+   "title": "Pro football exact wins Houston",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTSELECT": {
+   "title": "NFL Draft Exact Selection",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSNYJ": {
+   "title": "Pro football exact wins New York J",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFHIGHSCORE": {
+   "title": "Fantasy Football Highest Scoring Performance",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL2QTOTAL": {
+   "title": "Pro Football 2nd Quarter Total",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPASSCOMP": {
+   "title": "Pro Football Passing Completions",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPASSYDSPROT": {
+   "title": "Passing Yards Protected",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL3Q": {
+   "title": "Pro Football 3rd Quarter Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPASSYDS": {
+   "title": "Pro Football Passing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTTEAMPOS": {
+   "title": "Which team will draft a quarterback in specific round?",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSZNRECORD": {
+   "title": "Will single season record be broken?",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLOT": {
+   "title": "Pro Football Overtime",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFF40PTS": {
+   "title": "Fantasy Football 40 Point Performances",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1HFT": {
+   "title": "1st Half Fulltime Result",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDELAY": {
+   "title": "NFL Weather Delay",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1QSPREAD": {
+   "title": "Pro Football 1st Quarter Spread",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLAFCWEST": {
+   "title": "American Football Conference West Winner",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLOPOTY": {
+   "title": "AP Pro Football Offensive Player Of The Year",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFL1QWINNER": {
+   "title": "Pro Football 1st Quarter Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-CLE": {
+   "title": "Pro football wins Cleveland",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLHALLOFFAME": {
+   "title": "Pro Football Hall of Fame",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPREPACK2ML": {
+   "title": "MVE NFL Pre Pack",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLNBA": {
+   "title": "NFL and NBA Champion Combo",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLHOFINDUCTEES": {
+   "title": "Pro Football Hall of Fame Inductees",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFIRSTTD": {
+   "title": "Pro Football First Touchdown",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-NYJ": {
+   "title": "Pro football wins New York J",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINNINGSTREAK": {
+   "title": "NFL Team Winning Streak",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSNE": {
+   "title": "Pro football exact wins New England",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1HTEAMTOTAL": {
+   "title": "Pro Football 1st Half Team Total",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDIVUNDEFEATED": {
+   "title": "Team to go undefeated in division",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPLAYOFF": {
+   "title": "Pro Football Playoff Qualifiers",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-GB": {
+   "title": "Pro football wins Green Bay",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSMIN": {
+   "title": "Pro football exact wins Minnesota",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-HOU": {
+   "title": "Pro football wins Houston",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1SEED": {
+   "title": "Will team win conference in regular season",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFSEASONTOTAL": {
+   "title": "Pro Football Player's Fantasy Season Total",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1YDPASS": {
+   "title": "Seattle 1 Yard Pass",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFWEEKLEAD": {
+   "title": "Weekly Fantasy Football Leader",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLREDZONEBRANDADS": {
+   "title": "Redzone week 1 brand ads",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLEASTPENALIZED": {
+   "title": "Pro Football Least Penalized Team",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-NYG": {
+   "title": "Pro football wins New York G",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1H": {
+   "title": "Pro Football 1st Half Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDROTY": {
+   "title": "AP Pro Football Defensive Rookie of the Year",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-LA": {
+   "title": "Pro football wins Los Angeles R",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLESCALATORREC": {
+   "title": "Receptions Escalator",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLNOSCOREQ": {
+   "title": "Pro Football Scoreless Quarter",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL2QSPREAD": {
+   "title": "Pro Football 2nd Quarter Spread",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL3QBTTS": {
+   "title": "Pro Football Both Teams to Score in 3rd Quarter",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLGPICKENSCONTRACT": {
+   "title": "Pro Football George Picken's Next Contract Size",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSPHI": {
+   "title": "Pro football exact wins Philadephia",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPREPACK3ML": {
+   "title": "MVE NFL Pre Pack",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTOTALTD": {
+   "title": "Pro Football Total Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDPOY": {
+   "title": "NFL Defensive Player of the Year",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFIRSTPICK": {
+   "title": "First Pick in NFL Draft",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSHORTESTTD": {
+   "title": "Pro Football Shortest Touchdown",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLEADERPINT": {
+   "title": "Pro Football P INT Leader",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLROLE": {
+   "title": "Pro Football Role at Event",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSUPDRAFTPICK": {
+   "title": "Will Player declare for supplemental draft",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRACE": {
+   "title": "Pro Football Race to Points",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSFTY": {
+   "title": "Pro Football Safety",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFT1ST": {
+   "title": "Make the 1st pick in NFL Draft",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRETIRE": {
+   "title": "NFL Retirement",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSEASONRSHTD": {
+   "title": "Rushing Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCAREERPASSTDS": {
+   "title": "NFL Career Passing Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSBMVPDEF": {
+   "title": "Defensive Player Championship MVP",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSNYG": {
+   "title": "Pro football exact wins New York G",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLOPOYSPECIALS": {
+   "title": "NFL Offensive Player of the Year Specials",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTD": {
+   "title": "Pro Football Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-BUF": {
+   "title": "Pro football wins Buffalo",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSDET": {
+   "title": "Pro football exact wins Detroit",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLGAMETO": {
+   "title": "Pro Football Turnovers",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRETURN": {
+   "title": "Pro Football Player to Compete",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLNFCCHAMP": {
+   "title": "National Football Conference Champion",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLPRIMETIME": {
+   "title": "Pro Football Primetime Games",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRRYDS": {
+   "title": "Pro Football Rush and Receiving Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-PIT": {
+   "title": "Pro football wins Pittsburgh",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLAFCCHAMP": {
+   "title": "American Football Conference Champion",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-LV": {
+   "title": "Pro football wins Las Vegas",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFG": {
+   "title": "Pro Football Field Goals",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-CAR": {
+   "title": "Pro football wins Carolina",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLMOSTRSHYDS": {
+   "title": "Pro Football Most Rushing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEQBTTS": {
+   "title": "Pro Football Both Teams to Score in Every Quarter",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSGB": {
+   "title": "Pro football exact wins Green Bay",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLGAMESPECIALS": {
+   "title": "Pro Football Game Specials",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCOACHOUT": {
+   "title": "NFL Coaches Fired",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCOMEBACK": {
+   "title": "Pro Football Comeback",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRECYDSPROT": {
+   "title": "Receiving Yards Protected",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLNEXTINT": {
+   "title": "Pro Football Next Interception",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTIES": {
+   "title": "Pro Football Ties",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1HWINNER": {
+   "title": "NFL 1st Half Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWORSTTOFIRST": {
+   "title": "Pro Football Worst in Division to First",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSCHI": {
+   "title": "Pro football exact wins Chicago",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRECYDSH2H": {
+   "title": "Pro Football Head-to-Head Receiving Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLNFCSOUTH": {
+   "title": "National Football Conference South Winner",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLROTM": {
+   "title": "NFL Rookie of the Month",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSJAC": {
+   "title": "Pro football exact wins Jacksonville",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-MIA": {
+   "title": "Pro football wins Miami",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLAFCNORTH": {
+   "title": "American Football Conference North Winner",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFL2QBTTS": {
+   "title": "Pro Football Both Teams to Score in 2nd Quarter",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1Q": {
+   "title": "Pro Football 1st Quarter Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLGAMELOCATION": {
+   "title": "NFL Game Location",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL2HTD": {
+   "title": "2nd Half Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFTOP": {
+   "title": "Top Fantasy Rank",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCELEBRITYGAME": {
+   "title": "Pro Football Celebrity Flag Football Game",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL2Q": {
+   "title": "Pro Football 2nd Quarter Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAMSACK": {
+   "title": "Pro Football Team Sacks",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSBMVP": {
+   "title": "Pro Football Championship MVP",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSBUF": {
+   "title": "Pro football exact wins Buffalo",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAMDPTS": {
+   "title": "Who will allow the least/most points this season",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-JAC": {
+   "title": "Pro football wins Jacksonville",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDROY": {
+   "title": "NFL Defensive Rookie of the Year",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL2PTCONV": {
+   "title": "Pro Football 2-Point Conversions",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSDAL": {
+   "title": "Pro football exact wins Dallas",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWEEKMOSTPASSYDS": {
+   "title": "Weekly Most Passing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSFPRACFIELD": {
+   "title": "Practice Field Relocation",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDIVMOSTWINS": {
+   "title": "Pro Football Division with the Least Wins",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSEASONRECTD": {
+   "title": "Receiving Touchdowns",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLREDZONEADS": {
+   "title": "NFL Redzone ads",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-SF": {
+   "title": "Pro football wins San Francisco",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSSEA": {
+   "title": "Pro football exact wins Seattle",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLOROTY": {
+   "title": "AP Pro Football Offensive Rookie of the Year",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLSEASONRUSHYDS": {
+   "title": "Rushing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLAFCEAST": {
+   "title": "American Football Conference East Winner",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLNFCNORTH": {
+   "title": "National Football Conference North Winner",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLCAREERRECYDS": {
+   "title": "NFL Career Receiving Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLMVP": {
+   "title": "AP Pro Football Regular Season MVP",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLPLAYOFFC": {
+   "title": "Will both teams make the NFL Playoffs",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAM1POS": {
+   "title": "What position will Team select with first pick",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTOL": {
+   "title": "Pro Football Offensive Line Drafted ",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLOWNERSTAKE": {
+   "title": "Next Pro Football Team to Sell Ownership Stake",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWEEKMOSTRECYDS": {
+   "title": "Weekly Most Receiving Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWEEKTIE": {
+   "title": "NFL Weekly Tie",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFPLAYOFFLEADER": {
+   "title": "Fantasy Football Playoffs Leader",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-KC": {
+   "title": "Pro football wins Kansas City",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCOACHOUTFIRST": {
+   "title": "First NFL coach out",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL4QBTTS": {
+   "title": "Pro Football Both Teams to Score in 4th Quarter",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSPIT": {
+   "title": "Pro football exact wins Pittsburgh",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-NO": {
+   "title": "Pro football wins New Orleans",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINSWEEK": {
+   "title": "NFL wins by week",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSEASONREC": {
+   "title": "Receptions",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLT100TOP": {
+   "title": "Will player be ranked Top X on NFL 100",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTLB": {
+   "title": "Pro Football Linebacker Drafted",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL3QSPREAD": {
+   "title": "Pro Football 3rd Quarter Spread",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL2HTOTAL": {
+   "title": "Pro Football 2nd Half Total",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCAREERPASSYDS": {
+   "title": "NFL Career Passing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSDRAFTTOP": {
+   "title": "Will player be drafted Top X in Supplemental Draft",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCPOTY": {
+   "title": "AP Pro Football Comeback Player of the Year",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLPLAYOFFHOST": {
+   "title": "Team to host a playoff game",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFF50PTS": {
+   "title": "Fantasy Football 50 Point Performances",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXECOTY": {
+   "title": "Pro Football Executive of the Year",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLADDERRECYDS": {
+   "title": "Receiving Yards Ladder",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTCOMPARE": {
+   "title": "NFL Draft Comparison",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLONGESTPLAY": {
+   "title": "NFL Longest Touchdown",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDPOYSPECIALS": {
+   "title": "NFL Defensive Player of the Year Specials",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTPICK": {
+   "title": "NFL Draft Pick",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCONTRACTSIZE": {
+   "title": "Pro Football Next Contract Size",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTEAMPOS": {
+   "title": "Will team draft a position across round",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1HSPREAD": {
+   "title": "Pro Football 1st Half Spread",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPROBOWLWIN": {
+   "title": "Pro Football Pro Bowl Game",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-NE": {
+   "title": "Pro football wins New England",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL2TD": {
+   "title": "Pro Football Multiple Touchdowns",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLNFCEAST": {
+   "title": "National Football Conference East Winner",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLGAMESACK": {
+   "title": "Pro Football Sacks",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSELLOUT": {
+   "title": "Pro Football Sellouts",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL4DCONV": {
+   "title": "Pro Football 4th Down Conversions",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFLEADERTOP": {
+   "title": "Top Fantasy",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL3QWINNER": {
+   "title": "Pro Football 3rd Quarter Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCOACH": {
+   "title": "NFL Coach of the Year",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLASTTOWIN": {
+   "title": "Pro Football last team to win a game",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-IND": {
+   "title": "Pro football wins Indianapolis",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLAWARDFIN": {
+   "title": "Pro Football Award Finalists",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPASSINT": {
+   "title": "Pro Football Passing Interceptions",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLASSCOACH": {
+   "title": "NFL Assistant Coach of the Year",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLAFCSOUTH": {
+   "title": "American Football Conference South Winner",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLSBMVPPOS": {
+   "title": "Pro Football Championship MVP Position",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1HTD": {
+   "title": "1st Half Touchdown",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTWR": {
+   "title": "Pro Football Wide Receiver Drafted ",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPROOTY": {
+   "title": "Pro Football Protector of the Year",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPREPACK1Q1H": {
+   "title": "MVE NFL Pre Pack",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLVIEWERSHIP": {
+   "title": "Pro Football Game Viewership",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLBLOWOUT": {
+   "title": "Pro Football Biggest Blowout",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1QTOTAL": {
+   "title": "Pro Football 1st Quarter Total",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLARGESTLEAD": {
+   "title": "Pro Football Largest Lead",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLGAMEFG": {
+   "title": "Pro Football Field Goals",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSACK": {
+   "title": "Pro Football Sacks",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRECYDSRECORD": {
+   "title": "NFL Regular Season Receiving Yards Record",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL4QWINNER": {
+   "title": "Pro Football 4th Quarter Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-MIN": {
+   "title": "Pro football wins Minnesota",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTSPEC": {
+   "title": "NFL Team Specials",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL4DOWNCONV": {
+   "title": "Pro Football 4th Down Conversions",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCAREERRSHYDS": {
+   "title": "NFL Career Rushing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRECYDS": {
+   "title": "Pro Football Receiving Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLOPOY": {
+   "title": "NFL Offensive Player of the Year",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDEBUT": {
+   "title": "Pro Football Player to Make Debut",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTDT": {
+   "title": "Pro Football Defensive Tackle Drafted",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPREPACK": {
+   "title": "MVE NFL Pre Pack",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-TB": {
+   "title": "Pro football wins Tampa Bay",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDEPTHPOSITIONCLEQB2": {
+   "title": "QB2 CLE",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAMFIRSTTD": {
+   "title": "Pro Football First Touchdown",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLASTTOLOSE": {
+   "title": "Pro Football Last Undefeated Team",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-SEA": {
+   "title": "Pro football wins Seattle",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDIVISIONORDER": {
+   "title": "Pro Football Division Exact Order",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLMATCHUP": {
+   "title": "Pro Football Matchups",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL4QSPREAD": {
+   "title": "Pro Football 4th Quarter Spread",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLNEXTTD": {
+   "title": "Pro Football Next TD scorer",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSMIA": {
+   "title": "Pro football exact wins Miami",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFANTASYMOST": {
+   "title": "Pro Football Most Fantasy Points",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFH2H": {
+   "title": "Weekly Fantasy Football Head-to-Head",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLESCALATORRSHYDS": {
+   "title": "Rushing Yards Escalator",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLNEXTTEAM": {
+   "title": "Player Next Team",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSLV": {
+   "title": "Pro football exact wins Las Vegas",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTTOP": {
+   "title": "Pro Football Top Draft",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSEED": {
+   "title": "NFL Playoff Seed",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCOTY": {
+   "title": "AP Pro Football Coach Of The Year",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTRB": {
+   "title": "Pro Football Running Back Drafted",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSSF": {
+   "title": "Pro football exact wins San Francisco",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-DEN": {
+   "title": "Pro football wins Denver",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSCIN": {
+   "title": "Pro football exact wins Cincinnati",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRECPROT": {
+   "title": "Receptions Protected",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTDB": {
+   "title": "Pro Football Defensive Back Drafted",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLRSHATT": {
+   "title": "Pro Football Rushing Attempts",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSEASONRECYDS": {
+   "title": "Receiving Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLONGFG": {
+   "title": "Pro Football Team Longest Field Goal",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTDPROT": {
+   "title": "Pro Football Touchdowns Protected",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFIRSTTDTEAM": {
+   "title": "Pro Football First Team to Score a Touchdown",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPROBOWL": {
+   "title": "Pro Football Pro Bowl",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLGAME": {
+   "title": "NFL Game",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFLWEEKHIGHSCORE": {
+   "title": "NFL Highest Scoring Team of the Week",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTMATCHUP": {
+   "title": "Pro Football Draft Matchup",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-LAC": {
+   "title": "Pro football wins Los Angeles C",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWEEKMOSTRSHYDS": {
+   "title": "Weekly Most Rushing Yards",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSAFETY": {
+   "title": "Pro Football Safeties",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFPTS": {
+   "title": "Pro Football Player Fantasy Points",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWEEKCOMPETE": {
+   "title": "NFL Player to Play in Week",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL2HSPREAD": {
+   "title": "Pro Football 2nd Half Spread",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLWINS-WAS": {
+   "title": "Pro football wins Washington",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLCOMBINE": {
+   "title": "NFL Combine",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSBAL": {
+   "title": "Pro football exact wins Baltimore",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSKC": {
+   "title": "Pro football exact wins Kansas City",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLARGELEAD": {
+   "title": "Pro Football Largest Lead",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL53MAN": {
+   "title": "Pro Football 53 Man Roster",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSTB": {
+   "title": "Pro football exact wins Tampa Bay",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPREPACK1HFT": {
+   "title": "MVE NFL Pre Pack",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLT100": {
+   "title": "Will player be ranked on Pro Football T100 List",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLLONGESTREC": {
+   "title": "Longest Reception",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLSPREAD": {
+   "title": "Pro Football Spread",
+   "fee_type": "quadratic_with_maker_fees",
+   "fee_multiplier": 1
+  },
+  "KXNFL2QWINNER": {
+   "title": "Pro Football 2nd Quarter Winner",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSARI": {
+   "title": "Pro football exact wins Arizona",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLEXACTWINSATL": {
+   "title": "Pro football exact wins Atlanta",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTCAT": {
+   "title": "Pro Football Draft Category",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFL1HTOTAL": {
+   "title": "Pro Football 1st  Half Total Points",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLPREPACKSGPSPREAD": {
+   "title": "MVE NFL Pre Pack",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLFFPTSSEASON": {
+   "title": "Pro Football Player Fantasy Points",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLHIGHSCOREQ": {
+   "title": "Pro Football Highest Scoring Quarter",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAMFG": {
+   "title": "Pro Football Field Goals",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLH2HWINS": {
+   "title": "Pro Football Head-to-Head Win Totals",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLTEAMTOTAL": {
+   "title": "Pro Football Team Total Points",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  },
+  "KXNFLDRAFTTEAM": {
+   "title": "Pro Football Team Draft",
+   "fee_type": "quadratic",
+   "fee_multiplier": 1
+  }
+ },
+ "fee_changes": {
+  "status": 200,
+  "body": [
+   {
+    "fee_multiplier": 1,
+    "fee_type": "quadratic_with_maker_fees",
+    "id": "babedc22-e303-4aaf-8e0b-5016f1239786",
+    "scheduled_ts": "2026-01-01T08:00:00Z",
+    "series_ticker": "KXNFLGAME"
+   }
+  ]
+ },
+ "openmarkets": {
+  "read_utc": "2026-10-15T02:05:47Z",
+  "kalshi_quotes": 2698,
+  "tickers": 1349
+ },
+ "fee_packet_check": {
+  "n": 2698,
+  "max_abs_err": 0.00014300000000000423,
+  "no_series": 0,
+  "multipliers_seen": {
+   "1.0": 2698
+  }
+ },
+ "markets": [
+  {
+   "ticker": "KXNFLPASSATT-26OCT15SEADEN-SEASDARNOLD14-35",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Sam Darnold: 35+ passing attempts",
+   "yes_sub_title": "Sam Darnold: 35+",
+   "floor_strike": 34.5,
+   "market_fields": {
+    "last_price_dollars": "0.2800",
+    "no_ask_dollars": "0.7400",
+    "no_bid_dollars": "0.7200",
+    "previous_price_dollars": "0.2400",
+    "previous_yes_ask_dollars": "0.2800",
+    "previous_yes_bid_dollars": "0.1700",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.2800",
+    "yes_ask_size_fp": "133.37",
+    "yes_bid_dollars": "0.2600",
+    "yes_bid_size_fp": "91.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      102.0
+     ],
+     [
+      0.03,
+      16.0
+     ],
+     [
+      0.09,
+      100.0
+     ],
+     [
+      0.17,
+      114.0
+     ],
+     [
+      0.22,
+      136.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      6862.0
+     ],
+     [
+      0.02,
+      4520.0
+     ],
+     [
+      0.03,
+      3000.0
+     ],
+     [
+      0.04,
+      13.0
+     ],
+     [
+      0.05,
+      2.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.28,
+    "under": 0.74
+   },
+   "qty_at_ask": {
+    "over": 133.37,
+    "under": 91.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "34.5",
+     "price": 0.28,
+     "available": 133.37,
+     "market_ask": 0.28,
+     "book_ask": 0.28,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 133.37,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 3.5714
+    },
+    {
+     "side": "under",
+     "line": "34.5",
+     "price": 0.74,
+     "available": 91.0,
+     "market_ask": 0.74,
+     "book_ask": 0.74,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 91.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.3514
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSCOMP-26OCT15SEADEN-SEASDARNOLD14-19",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Sam Darnold: 19+ passing completions",
+   "yes_sub_title": "Sam Darnold: 19+",
+   "floor_strike": 18.5,
+   "market_fields": {
+    "last_price_dollars": "0.5600",
+    "no_ask_dollars": "0.4700",
+    "no_bid_dollars": "0.4400",
+    "previous_price_dollars": "0.5300",
+    "previous_yes_ask_dollars": "0.5100",
+    "previous_yes_bid_dollars": "0.5000",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.5600",
+    "yes_ask_size_fp": "5054.39",
+    "yes_bid_dollars": "0.5300",
+    "yes_bid_size_fp": "4.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      200.0
+     ],
+     [
+      0.02,
+      77.1
+     ],
+     [
+      0.03,
+      7.0
+     ],
+     [
+      0.05,
+      1.0
+     ],
+     [
+      0.37,
+      100.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      3125.0
+     ],
+     [
+      0.02,
+      46.1
+     ],
+     [
+      0.03,
+      35.0
+     ],
+     [
+      0.04,
+      1.0
+     ],
+     [
+      0.05,
+      1.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.56,
+    "under": 0.47
+   },
+   "qty_at_ask": {
+    "over": 5054.39,
+    "under": 4.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "18.5",
+     "price": 0.56,
+     "available": 5054.39,
+     "market_ask": 0.56,
+     "book_ask": 0.56,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 5054.39,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.7857
+    },
+    {
+     "side": "under",
+     "line": "18.5",
+     "price": 0.47,
+     "available": 4.0,
+     "market_ask": 0.47,
+     "book_ask": 0.47,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 4.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 2.1277
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSYDS-26OCT18NYJNE-NYJGSMITH7-250",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Geno Smith: 250+ passing yards",
+   "yes_sub_title": "Geno Smith: 250+",
+   "floor_strike": 249.5,
+   "market_fields": {
+    "last_price_dollars": "0.3100",
+    "no_ask_dollars": "0.6900",
+    "no_bid_dollars": "0.6500",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.3500",
+    "previous_yes_bid_dollars": "0.3100",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.3500",
+    "yes_ask_size_fp": "1400.00",
+    "yes_bid_dollars": "0.3100",
+    "yes_bid_size_fp": "500.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      5907.0
+     ],
+     [
+      0.02,
+      7286.0
+     ],
+     [
+      0.03,
+      2040.0
+     ],
+     [
+      0.04,
+      256.0
+     ],
+     [
+      0.05,
+      76.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      10662.0
+     ],
+     [
+      0.02,
+      10960.0
+     ],
+     [
+      0.03,
+      6380.0
+     ],
+     [
+      0.04,
+      230.0
+     ],
+     [
+      0.06,
+      118.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.35,
+    "under": 0.69
+   },
+   "qty_at_ask": {
+    "over": 1400.0,
+    "under": 500.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "249.5",
+     "price": 0.35,
+     "available": 1400.0,
+     "market_ask": 0.35,
+     "book_ask": 0.35,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1400.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 2.8571
+    },
+    {
+     "side": "under",
+     "line": "249.5",
+     "price": 0.69,
+     "available": 500.0,
+     "market_ask": 0.69,
+     "book_ask": 0.69,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 500.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.4493
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLREC-26OCT15SEADEN-DENRHARVEY12-2",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "RJ Harvey: 2+ receptions",
+   "yes_sub_title": "RJ Harvey: 2+",
+   "floor_strike": 1.5,
+   "market_fields": {
+    "last_price_dollars": "0.8700",
+    "no_ask_dollars": "0.1500",
+    "no_bid_dollars": "0.1400",
+    "previous_price_dollars": "0.8600",
+    "previous_yes_ask_dollars": "0.8500",
+    "previous_yes_bid_dollars": "0.8400",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.8600",
+    "yes_ask_size_fp": "662.00",
+    "yes_bid_dollars": "0.8500",
+    "yes_bid_size_fp": "92.39"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      3000.0
+     ],
+     [
+      0.02,
+      229.0
+     ],
+     [
+      0.69,
+      100.0
+     ],
+     [
+      0.78,
+      1.0
+     ],
+     [
+      0.79,
+      186.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      16832.14
+     ],
+     [
+      0.02,
+      2506.92
+     ],
+     [
+      0.03,
+      217.0
+     ],
+     [
+      0.04,
+      301.0
+     ],
+     [
+      0.05,
+      2159.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.86,
+    "under": 0.15
+   },
+   "qty_at_ask": {
+    "over": 662.0,
+    "under": 92.39
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "1.5",
+     "price": 0.15000000000000002,
+     "available": 92.39,
+     "market_ask": 0.15,
+     "book_ask": 0.15,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 92.39,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 6.6667
+    },
+    {
+     "side": "over",
+     "line": "1.5",
+     "price": 0.86,
+     "available": 662.0,
+     "market_ask": 0.86,
+     "book_ask": 0.86,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 662.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.1628
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRECYDS-26OCT18NONYG-NYGILIKELY9-80",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Isaiah Likely: 80+ receiving yards",
+   "yes_sub_title": "Isaiah Likely: 80+",
+   "floor_strike": 79.5,
+   "market_fields": {
+    "last_price_dollars": "0.0000",
+    "no_ask_dollars": "0.8300",
+    "no_bid_dollars": "0.7900",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.2000",
+    "previous_yes_bid_dollars": "0.1500",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.2100",
+    "yes_ask_size_fp": "1367.00",
+    "yes_bid_dollars": "0.1700",
+    "yes_bid_size_fp": "400.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      228.0
+     ],
+     [
+      0.02,
+      107.0
+     ],
+     [
+      0.03,
+      200.0
+     ],
+     [
+      0.06,
+      100.0
+     ],
+     [
+      0.13,
+      88.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      533.0
+     ],
+     [
+      0.02,
+      215.0
+     ],
+     [
+      0.03,
+      30.0
+     ],
+     [
+      0.47,
+      250.0
+     ],
+     [
+      0.54,
+      250.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.21,
+    "under": 0.83
+   },
+   "qty_at_ask": {
+    "over": 1367.0,
+    "under": 400.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "79.5",
+     "price": 0.83,
+     "available": 400.0,
+     "market_ask": 0.83,
+     "book_ask": 0.83,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 400.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.2048
+    },
+    {
+     "side": "over",
+     "line": "79.5",
+     "price": 0.21,
+     "available": 1367.0,
+     "market_ask": 0.21,
+     "book_ask": 0.21,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1367.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 4.7619
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRSHATT-26OCT15SEADEN-DENJDOBBINS27-11",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "J.K. Dobbins: 11+ rushing attempts",
+   "yes_sub_title": "J.K. Dobbins: 11+",
+   "floor_strike": 10.5,
+   "market_fields": {
+    "last_price_dollars": "0.7700",
+    "no_ask_dollars": "0.2500",
+    "no_bid_dollars": "0.2300",
+    "previous_price_dollars": "0.7800",
+    "previous_yes_ask_dollars": "0.7600",
+    "previous_yes_bid_dollars": "0.7400",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.7700",
+    "yes_ask_size_fp": "162.38",
+    "yes_bid_dollars": "0.7500",
+    "yes_bid_size_fp": "17.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      4000.0
+     ],
+     [
+      0.02,
+      49.0
+     ],
+     [
+      0.03,
+      30.0
+     ],
+     [
+      0.05,
+      30.0
+     ],
+     [
+      0.07,
+      1.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      5214.0
+     ],
+     [
+      0.02,
+      834.0
+     ],
+     [
+      0.03,
+      136.0
+     ],
+     [
+      0.04,
+      13.0
+     ],
+     [
+      0.05,
+      30.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.77,
+    "under": 0.25
+   },
+   "qty_at_ask": {
+    "over": 162.38,
+    "under": 17.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "10.5",
+     "price": 0.25,
+     "available": 17.0,
+     "market_ask": 0.25,
+     "book_ask": 0.25,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 17.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 4.0
+    },
+    {
+     "side": "over",
+     "line": "10.5",
+     "price": 0.77,
+     "available": 173.38,
+     "market_ask": 0.77,
+     "book_ask": 0.77,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 162.38,
+     "available_over_qty": 1.0677,
+     "available_over_qty_x_price": 1.3867
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRSHYDS-26OCT18NYJNE-NEDMAYE10-15",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Drake Maye: 15+ rushing yards",
+   "yes_sub_title": "Drake Maye: 15+",
+   "floor_strike": 14.5,
+   "market_fields": {
+    "last_price_dollars": "0.0000",
+    "no_ask_dollars": "0.3000",
+    "no_bid_dollars": "0.2300",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.7800",
+    "previous_yes_bid_dollars": "0.6500",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.7700",
+    "yes_ask_size_fp": "41.00",
+    "yes_bid_dollars": "0.7000",
+    "yes_bid_size_fp": "21.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      2886.0
+     ],
+     [
+      0.02,
+      257.0
+     ],
+     [
+      0.54,
+      100.0
+     ],
+     [
+      0.62,
+      122.0
+     ],
+     [
+      0.66,
+      77.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      3090.0
+     ],
+     [
+      0.02,
+      385.0
+     ],
+     [
+      0.04,
+      50.0
+     ],
+     [
+      0.07,
+      100.0
+     ],
+     [
+      0.09,
+      50.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.77,
+    "under": 0.3
+   },
+   "qty_at_ask": {
+    "over": 41.0,
+    "under": 21.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "14.5",
+     "price": 0.3,
+     "available": 21.0,
+     "market_ask": 0.3,
+     "book_ask": 0.3,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 21.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 3.3333
+    },
+    {
+     "side": "over",
+     "line": "14.5",
+     "price": 0.77,
+     "available": 41.0,
+     "market_ask": 0.77,
+     "book_ask": 0.77,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 41.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.2987
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSATT-26OCT15SEADEN-SEASDARNOLD14-25",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Sam Darnold: 25+ passing attempts",
+   "yes_sub_title": "Sam Darnold: 25+",
+   "floor_strike": 24.5,
+   "market_fields": {
+    "last_price_dollars": "0.7700",
+    "no_ask_dollars": "0.1900",
+    "no_bid_dollars": "0.1700",
+    "previous_price_dollars": "0.7900",
+    "previous_yes_ask_dollars": "0.8000",
+    "previous_yes_bid_dollars": "0.7300",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.8300",
+    "yes_ask_size_fp": "216.00",
+    "yes_bid_dollars": "0.8100",
+    "yes_bid_size_fp": "9.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      50.0
+     ],
+     [
+      0.02,
+      51.0
+     ],
+     [
+      0.03,
+      17.0
+     ],
+     [
+      0.61,
+      100.0
+     ],
+     [
+      0.74,
+      121.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      2782.0
+     ],
+     [
+      0.02,
+      1092.0
+     ],
+     [
+      0.03,
+      180.0
+     ],
+     [
+      0.04,
+      0.16
+     ],
+     [
+      0.05,
+      2.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.83,
+    "under": 0.19
+   },
+   "qty_at_ask": {
+    "over": 216.0,
+    "under": 9.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "24.5",
+     "price": 0.83,
+     "available": 216.0,
+     "market_ask": 0.83,
+     "book_ask": 0.83,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 216.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.2048
+    },
+    {
+     "side": "under",
+     "line": "24.5",
+     "price": 0.18999999999999995,
+     "available": 9.0,
+     "market_ask": 0.19,
+     "book_ask": 0.19,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 9.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 5.2632
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSCOMP-26OCT15SEADEN-DENBNIX10-16",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Bo Nix: 16+ passing completions",
+   "yes_sub_title": "Bo Nix: 16+",
+   "floor_strike": 15.5,
+   "market_fields": {
+    "last_price_dollars": "0.8900",
+    "no_ask_dollars": "0.1300",
+    "no_bid_dollars": "0.1000",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.9200",
+    "previous_yes_bid_dollars": "0.8800",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.9000",
+    "yes_ask_size_fp": "376.00",
+    "yes_bid_dollars": "0.8700",
+    "yes_bid_size_fp": "1.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      213.0
+     ],
+     [
+      0.02,
+      45.0
+     ],
+     [
+      0.2,
+      8.0
+     ],
+     [
+      0.48,
+      207.26
+     ],
+     [
+      0.7,
+      1000.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      2782.0
+     ],
+     [
+      0.02,
+      14.0
+     ],
+     [
+      0.03,
+      544.0
+     ],
+     [
+      0.06,
+      1166.0
+     ],
+     [
+      0.08,
+      200.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.9,
+    "under": 0.13
+   },
+   "qty_at_ask": {
+    "over": 376.0,
+    "under": 1.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "15.5",
+     "price": 0.9,
+     "available": 376.0,
+     "market_ask": 0.9,
+     "book_ask": 0.9,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 376.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.1111
+    },
+    {
+     "side": "under",
+     "line": "15.5",
+     "price": 0.13,
+     "available": 1.0,
+     "market_ask": 0.13,
+     "book_ask": 0.13,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 7.6923
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSYDS-26OCT18NYJNE-NYJGSMITH7-225",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Geno Smith: 225+ passing yards",
+   "yes_sub_title": "Geno Smith: 225+",
+   "floor_strike": 224.5,
+   "market_fields": {
+    "last_price_dollars": "0.4600",
+    "no_ask_dollars": "0.5400",
+    "no_bid_dollars": "0.5100",
+    "previous_price_dollars": "0.5000",
+    "previous_yes_ask_dollars": "0.5000",
+    "previous_yes_bid_dollars": "0.4600",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.4900",
+    "yes_ask_size_fp": "213.00",
+    "yes_bid_dollars": "0.4600",
+    "yes_bid_size_fp": "716.10"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      2902.0
+     ],
+     [
+      0.02,
+      1921.0
+     ],
+     [
+      0.03,
+      696.0
+     ],
+     [
+      0.04,
+      242.0
+     ],
+     [
+      0.05,
+      80.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      3102.0
+     ],
+     [
+      0.02,
+      1973.0
+     ],
+     [
+      0.03,
+      286.0
+     ],
+     [
+      0.04,
+      100.0
+     ],
+     [
+      0.05,
+      31.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.49,
+    "under": 0.54
+   },
+   "qty_at_ask": {
+    "over": 213.0,
+    "under": 716.1
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "224.5",
+     "price": 0.49,
+     "available": 213.0,
+     "market_ask": 0.49,
+     "book_ask": 0.49,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 213.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 2.0408
+    },
+    {
+     "side": "under",
+     "line": "224.5",
+     "price": 0.54,
+     "available": 716.1,
+     "market_ask": 0.54,
+     "book_ask": 0.54,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 716.1,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.8519
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLREC-26OCT15SEADEN-SEAABARNER88-2",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "AJ Barner: 2+ receptions",
+   "yes_sub_title": "AJ Barner: 2+",
+   "floor_strike": 1.5,
+   "market_fields": {
+    "last_price_dollars": "0.7700",
+    "no_ask_dollars": "0.2500",
+    "no_bid_dollars": "0.2400",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.7600",
+    "previous_yes_bid_dollars": "0.7000",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.7600",
+    "yes_ask_size_fp": "5.00",
+    "yes_bid_dollars": "0.7500",
+    "yes_bid_size_fp": "451.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      3000.0
+     ],
+     [
+      0.02,
+      217.0
+     ],
+     [
+      0.3,
+      66.0
+     ],
+     [
+      0.4,
+      25.0
+     ],
+     [
+      0.48,
+      197.52
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      4732.0
+     ],
+     [
+      0.02,
+      195.0
+     ],
+     [
+      0.03,
+      30.0
+     ],
+     [
+      0.05,
+      30.0
+     ],
+     [
+      0.09,
+      100.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.76,
+    "under": 0.25
+   },
+   "qty_at_ask": {
+    "over": 5.0,
+    "under": 451.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "1.5",
+     "price": 0.25,
+     "available": 451.0,
+     "market_ask": 0.25,
+     "book_ask": 0.25,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 451.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 4.0
+    },
+    {
+     "side": "over",
+     "line": "1.5",
+     "price": 0.76,
+     "available": 5.0,
+     "market_ask": 0.76,
+     "book_ask": 0.76,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 5.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.3158
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRECYDS-26OCT18NONYG-NOJJOHNSON83-60",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Juwan Johnson: 60+ receiving yards",
+   "yes_sub_title": "Juwan Johnson: 60+",
+   "floor_strike": 59.5,
+   "market_fields": {
+    "last_price_dollars": "0.0000",
+    "no_ask_dollars": "0.7300",
+    "no_bid_dollars": "0.7000",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.3000",
+    "previous_yes_bid_dollars": "0.2800",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.3000",
+    "yes_ask_size_fp": "25.00",
+    "yes_bid_dollars": "0.2700",
+    "yes_bid_size_fp": "80.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      120.0
+     ],
+     [
+      0.02,
+      152.0
+     ],
+     [
+      0.03,
+      183.0
+     ],
+     [
+      0.13,
+      200.0
+     ],
+     [
+      0.18,
+      100.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      533.0
+     ],
+     [
+      0.02,
+      218.0
+     ],
+     [
+      0.03,
+      30.0
+     ],
+     [
+      0.35,
+      250.0
+     ],
+     [
+      0.42,
+      250.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.3,
+    "under": 0.73
+   },
+   "qty_at_ask": {
+    "over": 25.0,
+    "under": 80.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "59.5",
+     "price": 0.73,
+     "available": 80.0,
+     "market_ask": 0.73,
+     "book_ask": 0.73,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 80.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.3699
+    },
+    {
+     "side": "over",
+     "line": "59.5",
+     "price": 0.3,
+     "available": 25.0,
+     "market_ask": 0.3,
+     "book_ask": 0.3,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 25.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 3.3333
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRSHATT-26OCT15SEADEN-DENRHARVEY12-9",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "RJ Harvey: 9+ rushing attempts",
+   "yes_sub_title": "RJ Harvey: 9+",
+   "floor_strike": 8.5,
+   "market_fields": {
+    "last_price_dollars": "0.0000",
+    "no_ask_dollars": "0.9100",
+    "no_bid_dollars": "0.8800",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.1400",
+    "previous_yes_bid_dollars": "0.1000",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.1200",
+    "yes_ask_size_fp": "25.00",
+    "yes_bid_dollars": "0.0900",
+    "yes_bid_size_fp": "1.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      4053.0
+     ],
+     [
+      0.02,
+      209.0
+     ],
+     [
+      0.03,
+      100.0
+     ],
+     [
+      0.05,
+      100.0
+     ],
+     [
+      0.06,
+      224.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      5213.0
+     ],
+     [
+      0.02,
+      53.0
+     ],
+     [
+      0.37,
+      250.0
+     ],
+     [
+      0.44,
+      250.0
+     ],
+     [
+      0.49,
+      250.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.12,
+    "under": 0.91
+   },
+   "qty_at_ask": {
+    "over": 25.0,
+    "under": 1.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "8.5",
+     "price": 0.12,
+     "available": 25.0,
+     "market_ask": 0.12,
+     "book_ask": 0.12,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 25.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 8.3333
+    },
+    {
+     "side": "under",
+     "line": "8.5",
+     "price": 0.91,
+     "available": 1.0,
+     "market_ask": 0.91,
+     "book_ask": 0.91,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.0989
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRSHYDS-26OCT18NYJNE-NERSTEVENSON38-60",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Rhamondre Stevenson: 60+ rushing yards",
+   "yes_sub_title": "Rhamondre Stevenson: 60+",
+   "floor_strike": 59.5,
+   "market_fields": {
+    "last_price_dollars": "0.5300",
+    "no_ask_dollars": "0.4500",
+    "no_bid_dollars": "0.4000",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.6500",
+    "previous_yes_bid_dollars": "0.5100",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.6000",
+    "yes_ask_size_fp": "1.00",
+    "yes_bid_dollars": "0.5500",
+    "yes_bid_size_fp": "13.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      886.0
+     ],
+     [
+      0.02,
+      598.0
+     ],
+     [
+      0.03,
+      280.0
+     ],
+     [
+      0.05,
+      30.0
+     ],
+     [
+      0.37,
+      100.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      1091.0
+     ],
+     [
+      0.02,
+      1765.0
+     ],
+     [
+      0.03,
+      276.0
+     ],
+     [
+      0.04,
+      115.0
+     ],
+     [
+      0.05,
+      30.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.6,
+    "under": 0.45
+   },
+   "qty_at_ask": {
+    "over": 1.0,
+    "under": 13.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "59.5",
+     "price": 0.44999999999999996,
+     "available": 13.0,
+     "market_ask": 0.45,
+     "book_ask": 0.45,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 13.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 2.2222
+    },
+    {
+     "side": "over",
+     "line": "59.5",
+     "price": 0.6,
+     "available": 1.0,
+     "market_ask": 0.6,
+     "book_ask": 0.6,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.6667
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSATT-26OCT15SEADEN-DENBNIX10-35",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Bo Nix: 35+ passing attempts",
+   "yes_sub_title": "Bo Nix: 35+",
+   "floor_strike": 34.5,
+   "market_fields": {
+    "last_price_dollars": "0.4800",
+    "no_ask_dollars": "0.5200",
+    "no_bid_dollars": "0.5100",
+    "previous_price_dollars": "0.5000",
+    "previous_yes_ask_dollars": "0.5100",
+    "previous_yes_bid_dollars": "0.5000",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.4900",
+    "yes_ask_size_fp": "14.71",
+    "yes_bid_dollars": "0.4800",
+    "yes_bid_size_fp": "2128.48"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      315.0
+     ],
+     [
+      0.02,
+      0.1
+     ],
+     [
+      0.03,
+      95.0
+     ],
+     [
+      0.04,
+      1.0
+     ],
+     [
+      0.33,
+      18.6
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      2782.0
+     ],
+     [
+      0.02,
+      57.1
+     ],
+     [
+      0.03,
+      108.0
+     ],
+     [
+      0.05,
+      3.0
+     ],
+     [
+      0.34,
+      100.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.49,
+    "under": 0.52
+   },
+   "qty_at_ask": {
+    "over": 14.71,
+    "under": 2128.48
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "34.5",
+     "price": 0.49,
+     "available": 14.71,
+     "market_ask": 0.49,
+     "book_ask": 0.49,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 14.71,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 2.0408
+    },
+    {
+     "side": "under",
+     "line": "34.5",
+     "price": 0.52,
+     "available": 2128.48,
+     "market_ask": 0.52,
+     "book_ask": 0.52,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 2128.48,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.9231
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSCOMP-26OCT15SEADEN-DENBNIX10-21",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Bo Nix: 21+ passing completions",
+   "yes_sub_title": "Bo Nix: 21+",
+   "floor_strike": 20.5,
+   "market_fields": {
+    "last_price_dollars": "0.5500",
+    "no_ask_dollars": "0.4500",
+    "no_bid_dollars": "0.4400",
+    "previous_price_dollars": "0.5500",
+    "previous_yes_ask_dollars": "0.5800",
+    "previous_yes_bid_dollars": "0.5500",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.5600",
+    "yes_ask_size_fp": "102.14",
+    "yes_bid_dollars": "0.5500",
+    "yes_bid_size_fp": "310.90"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      396.0
+     ],
+     [
+      0.02,
+      48.0
+     ],
+     [
+      0.03,
+      5.0
+     ],
+     [
+      0.05,
+      1.0
+     ],
+     [
+      0.4,
+      100.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      2782.0
+     ],
+     [
+      0.02,
+      941.0
+     ],
+     [
+      0.03,
+      140.0
+     ],
+     [
+      0.04,
+      1.0
+     ],
+     [
+      0.05,
+      13.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.56,
+    "under": 0.45
+   },
+   "qty_at_ask": {
+    "over": 102.14,
+    "under": 310.9
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "20.5",
+     "price": 0.45,
+     "available": 310.9,
+     "market_ask": 0.45,
+     "book_ask": 0.45,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 310.9,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 2.2222
+    },
+    {
+     "side": "over",
+     "line": "20.5",
+     "price": 0.56,
+     "available": 102.14,
+     "market_ask": 0.56,
+     "book_ask": 0.56,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 102.14,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.7857
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSYDS-26OCT18NYJNE-NEDMAYE10-350",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Drake Maye: 350+ passing yards",
+   "yes_sub_title": "Drake Maye: 350+",
+   "floor_strike": 349.5,
+   "market_fields": {
+    "last_price_dollars": "0.0800",
+    "no_ask_dollars": "0.9500",
+    "no_bid_dollars": "0.9200",
+    "previous_price_dollars": "0.0800",
+    "previous_yes_ask_dollars": "0.0700",
+    "previous_yes_bid_dollars": "0.0500",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.0800",
+    "yes_ask_size_fp": "2000.00",
+    "yes_bid_dollars": "0.0500",
+    "yes_bid_size_fp": "80.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      1371.0
+     ],
+     [
+      0.02,
+      361.0
+     ],
+     [
+      0.03,
+      318.0
+     ],
+     [
+      0.04,
+      74.0
+     ],
+     [
+      0.05,
+      80.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      1102.0
+     ],
+     [
+      0.02,
+      150.0
+     ],
+     [
+      0.03,
+      283.0
+     ],
+     [
+      0.05,
+      30.0
+     ],
+     [
+      0.06,
+      50.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.08,
+    "under": 0.95
+   },
+   "qty_at_ask": {
+    "over": 2000.0,
+    "under": 80.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "349.5",
+     "price": 0.08,
+     "available": 2000.0,
+     "market_ask": 0.08,
+     "book_ask": 0.08,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 2000.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 12.5
+    },
+    {
+     "side": "under",
+     "line": "349.5",
+     "price": 0.95,
+     "available": 80.0,
+     "market_ask": 0.95,
+     "book_ask": 0.95,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 80.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.0526
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLREC-26OCT15SEADEN-SEACKUPP10-3",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Cooper Kupp: 3+ receptions",
+   "yes_sub_title": "Cooper Kupp: 3+",
+   "floor_strike": 2.5,
+   "market_fields": {
+    "last_price_dollars": "0.4400",
+    "no_ask_dollars": "0.5600",
+    "no_bid_dollars": "0.5500",
+    "previous_price_dollars": "0.4500",
+    "previous_yes_ask_dollars": "0.4400",
+    "previous_yes_bid_dollars": "0.4300",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.4500",
+    "yes_ask_size_fp": "2668.00",
+    "yes_bid_dollars": "0.4400",
+    "yes_bid_size_fp": "766.06"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      6360.0
+     ],
+     [
+      0.02,
+      11831.0
+     ],
+     [
+      0.03,
+      3780.0
+     ],
+     [
+      0.04,
+      201.0
+     ],
+     [
+      0.09,
+      111.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      7344.13
+     ],
+     [
+      0.02,
+      8224.0
+     ],
+     [
+      0.03,
+      3620.0
+     ],
+     [
+      0.04,
+      369.0
+     ],
+     [
+      0.05,
+      1.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.45,
+    "under": 0.56
+   },
+   "qty_at_ask": {
+    "over": 2668.0,
+    "under": 766.06
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "2.5",
+     "price": 0.56,
+     "available": 766.06,
+     "market_ask": 0.56,
+     "book_ask": 0.56,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 766.06,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.7857
+    },
+    {
+     "side": "over",
+     "line": "2.5",
+     "price": 0.45,
+     "available": 2668.0,
+     "market_ask": 0.45,
+     "book_ask": 0.45,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 2668.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 2.2222
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRECYDS-26OCT18NONYG-NYGILIKELY9-100",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Isaiah Likely: 100+ receiving yards",
+   "yes_sub_title": "Isaiah Likely: 100+",
+   "floor_strike": 99.5,
+   "market_fields": {
+    "last_price_dollars": "0.0000",
+    "no_ask_dollars": "0.9400",
+    "no_bid_dollars": "0.9000",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.1000",
+    "previous_yes_bid_dollars": "0.0500",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.1000",
+    "yes_ask_size_fp": "400.00",
+    "yes_bid_dollars": "0.0600",
+    "yes_bid_size_fp": "338.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      68.0
+     ],
+     [
+      0.02,
+      50.0
+     ],
+     [
+      0.03,
+      63.0
+     ],
+     [
+      0.05,
+      322.0
+     ],
+     [
+      0.06,
+      338.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      533.0
+     ],
+     [
+      0.02,
+      212.0
+     ],
+     [
+      0.03,
+      30.0
+     ],
+     [
+      0.57,
+      250.0
+     ],
+     [
+      0.64,
+      250.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.1,
+    "under": 0.94
+   },
+   "qty_at_ask": {
+    "over": 400.0,
+    "under": 338.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "99.5",
+     "price": 0.1,
+     "available": 400.0,
+     "market_ask": 0.1,
+     "book_ask": 0.1,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 400.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 10.0
+    },
+    {
+     "side": "under",
+     "line": "99.5",
+     "price": 0.94,
+     "available": 338.0,
+     "market_ask": 0.94,
+     "book_ask": 0.94,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 338.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.0638
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRSHATT-26OCT15SEADEN-SEAGHOLANI36-8",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "George Holani: 8+ rushing attempts",
+   "yes_sub_title": "George Holani: 8+",
+   "floor_strike": 7.5,
+   "market_fields": {
+    "last_price_dollars": "0.0000",
+    "no_ask_dollars": "0.9900",
+    "no_bid_dollars": "0.4700",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.1700",
+    "previous_yes_bid_dollars": "0.1200",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.5300",
+    "yes_ask_size_fp": "100.00",
+    "yes_bid_dollars": "0.0100",
+    "yes_bid_size_fp": "2000.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      2000.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      3213.0
+     ],
+     [
+      0.02,
+      46.0
+     ],
+     [
+      0.2,
+      100.0
+     ],
+     [
+      0.21,
+      13.0
+     ],
+     [
+      0.47,
+      100.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.53,
+    "under": 0.99
+   },
+   "qty_at_ask": {
+    "over": 100.0,
+    "under": 2000.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "7.5",
+     "price": 0.53,
+     "available": 100.0,
+     "market_ask": 0.53,
+     "book_ask": 0.53,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 100.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.8868
+    },
+    {
+     "side": "under",
+     "line": "7.5",
+     "price": 0.99,
+     "available": 2000.0,
+     "market_ask": 0.99,
+     "book_ask": 0.99,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 2000.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.0101
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRSHYDS-26OCT18NYJNE-NEDMAYE10-10",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Drake Maye: 10+ rushing yards",
+   "yes_sub_title": "Drake Maye: 10+",
+   "floor_strike": 9.5,
+   "market_fields": {
+    "last_price_dollars": "0.8600",
+    "no_ask_dollars": "0.2200",
+    "no_bid_dollars": "0.1500",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.8600",
+    "previous_yes_bid_dollars": "0.7400",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.8500",
+    "yes_ask_size_fp": "65.00",
+    "yes_bid_dollars": "0.7800",
+    "yes_bid_size_fp": "28.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      2974.0
+     ],
+     [
+      0.02,
+      223.0
+     ],
+     [
+      0.63,
+      100.0
+     ],
+     [
+      0.64,
+      100.0
+     ],
+     [
+      0.65,
+      20.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      3387.0
+     ],
+     [
+      0.02,
+      741.0
+     ],
+     [
+      0.04,
+      50.0
+     ],
+     [
+      0.07,
+      1384.0
+     ],
+     [
+      0.08,
+      250.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.85,
+    "under": 0.22
+   },
+   "qty_at_ask": {
+    "over": 65.0,
+    "under": 28.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "9.5",
+     "price": 0.22,
+     "available": 28.0,
+     "market_ask": 0.22,
+     "book_ask": 0.22,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 28.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 4.5455
+    },
+    {
+     "side": "over",
+     "line": "9.5",
+     "price": 0.85,
+     "available": 65.0,
+     "market_ask": 0.85,
+     "book_ask": 0.85,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 65.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.1765
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSATT-26OCT15SEADEN-SEASDARNOLD14-30",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Sam Darnold: 30+ passing attempts",
+   "yes_sub_title": "Sam Darnold: 30+",
+   "floor_strike": 29.5,
+   "market_fields": {
+    "last_price_dollars": "0.5300",
+    "no_ask_dollars": "0.4800",
+    "no_bid_dollars": "0.4700",
+    "previous_price_dollars": "0.5100",
+    "previous_yes_ask_dollars": "0.5300",
+    "previous_yes_bid_dollars": "0.5100",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.5300",
+    "yes_ask_size_fp": "531.89",
+    "yes_bid_dollars": "0.5200",
+    "yes_bid_size_fp": "1381.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      97.0
+     ],
+     [
+      0.03,
+      17.0
+     ],
+     [
+      0.05,
+      1.0
+     ],
+     [
+      0.37,
+      100.0
+     ],
+     [
+      0.46,
+      130.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      2818.53
+     ],
+     [
+      0.02,
+      1041.0
+     ],
+     [
+      0.03,
+      30.0
+     ],
+     [
+      0.04,
+      1.0
+     ],
+     [
+      0.05,
+      1.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.53,
+    "under": 0.48
+   },
+   "qty_at_ask": {
+    "over": 531.89,
+    "under": 1381.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "29.5",
+     "price": 0.48,
+     "available": 1381.0,
+     "market_ask": 0.48,
+     "book_ask": 0.48,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1381.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 2.0833
+    },
+    {
+     "side": "over",
+     "line": "29.5",
+     "price": 0.53,
+     "available": 531.89,
+     "market_ask": 0.53,
+     "book_ask": 0.53,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 531.89,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.8868
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSCOMP-26OCT15SEADEN-DENBNIX10-26",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Bo Nix: 26+ passing completions",
+   "yes_sub_title": "Bo Nix: 26+",
+   "floor_strike": 25.5,
+   "market_fields": {
+    "last_price_dollars": "0.0000",
+    "no_ask_dollars": "0.8100",
+    "no_bid_dollars": "0.7800",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.2300",
+    "previous_yes_bid_dollars": "0.1700",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.2200",
+    "yes_ask_size_fp": "1320.00",
+    "yes_bid_dollars": "0.1900",
+    "yes_bid_size_fp": "1000.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      300.0
+     ],
+     [
+      0.02,
+      54.0
+     ],
+     [
+      0.15,
+      100.0
+     ],
+     [
+      0.16,
+      88.0
+     ],
+     [
+      0.17,
+      200.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      2782.0
+     ],
+     [
+      0.02,
+      51.0
+     ],
+     [
+      0.19,
+      65.0
+     ],
+     [
+      0.36,
+      1.0
+     ],
+     [
+      0.42,
+      250.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.22,
+    "under": 0.81
+   },
+   "qty_at_ask": {
+    "over": 1320.0,
+    "under": 1000.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "25.5",
+     "price": 0.22,
+     "available": 1320.0,
+     "market_ask": 0.22,
+     "book_ask": 0.22,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1320.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 4.5455
+    },
+    {
+     "side": "under",
+     "line": "25.5",
+     "price": 0.81,
+     "available": 1000.0,
+     "market_ask": 0.81,
+     "book_ask": 0.81,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1000.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.2346
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSYDS-26OCT18NYJNE-NEDMAYE10-200",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Drake Maye: 200+ passing yards",
+   "yes_sub_title": "Drake Maye: 200+",
+   "floor_strike": 199.5,
+   "market_fields": {
+    "last_price_dollars": "0.0000",
+    "no_ask_dollars": "0.3200",
+    "no_bid_dollars": "0.2600",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.7300",
+    "previous_yes_bid_dollars": "0.6300",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.7400",
+    "yes_ask_size_fp": "400.00",
+    "yes_bid_dollars": "0.6800",
+    "yes_bid_size_fp": "25.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      2902.0
+     ],
+     [
+      0.02,
+      150.0
+     ],
+     [
+      0.03,
+      288.0
+     ],
+     [
+      0.05,
+      50.0
+     ],
+     [
+      0.49,
+      100.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      3102.0
+     ],
+     [
+      0.02,
+      430.0
+     ],
+     [
+      0.03,
+      1.0
+     ],
+     [
+      0.06,
+      50.0
+     ],
+     [
+      0.08,
+      50.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.74,
+    "under": 0.32
+   },
+   "qty_at_ask": {
+    "over": 400.0,
+    "under": 25.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "199.5",
+     "price": 0.32,
+     "available": 25.0,
+     "market_ask": 0.32,
+     "book_ask": 0.32,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 25.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 3.125
+    },
+    {
+     "side": "over",
+     "line": "199.5",
+     "price": 0.74,
+     "available": 400.0,
+     "market_ask": 0.74,
+     "book_ask": 0.74,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 400.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.3514
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLREC-26OCT15SEADEN-DENEENGRAM1-4",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Evan Engram: 4+ receptions",
+   "yes_sub_title": "Evan Engram: 4+",
+   "floor_strike": 3.5,
+   "market_fields": {
+    "last_price_dollars": "0.3600",
+    "no_ask_dollars": "0.6500",
+    "no_bid_dollars": "0.6400",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.3700",
+    "previous_yes_bid_dollars": "0.3500",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.3600",
+    "yes_ask_size_fp": "1481.07",
+    "yes_bid_dollars": "0.3500",
+    "yes_bid_size_fp": "208.53"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      4280.0
+     ],
+     [
+      0.02,
+      5524.0
+     ],
+     [
+      0.03,
+      1539.0
+     ],
+     [
+      0.04,
+      204.0
+     ],
+     [
+      0.05,
+      53.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      8262.0
+     ],
+     [
+      0.02,
+      4120.0
+     ],
+     [
+      0.03,
+      4418.0
+     ],
+     [
+      0.04,
+      224.0
+     ],
+     [
+      0.05,
+      110.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.36,
+    "under": 0.65
+   },
+   "qty_at_ask": {
+    "over": 1481.07,
+    "under": 208.53
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "3.5",
+     "price": 0.36,
+     "available": 1481.07,
+     "market_ask": 0.36,
+     "book_ask": 0.36,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1481.07,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 2.7778
+    },
+    {
+     "side": "under",
+     "line": "3.5",
+     "price": 0.65,
+     "available": 208.53,
+     "market_ask": 0.65,
+     "book_ask": 0.65,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 208.53,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.5385
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRECYDS-26OCT18NONYG-NYGCSKATTEBO44-25",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Cam Skattebo: 25+ receiving yards",
+   "yes_sub_title": "Cam Skattebo: 25+",
+   "floor_strike": 24.5,
+   "market_fields": {
+    "last_price_dollars": "0.0000",
+    "no_ask_dollars": "0.7700",
+    "no_bid_dollars": "0.7300",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.3000",
+    "previous_yes_bid_dollars": "0.2600",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.2700",
+    "yes_ask_size_fp": "400.00",
+    "yes_bid_dollars": "0.2300",
+    "yes_bid_size_fp": "185.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      267.0
+     ],
+     [
+      0.02,
+      50.0
+     ],
+     [
+      0.14,
+      100.0
+     ],
+     [
+      0.18,
+      220.0
+     ],
+     [
+      0.19,
+      120.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      533.0
+     ],
+     [
+      0.02,
+      199.0
+     ],
+     [
+      0.03,
+      30.0
+     ],
+     [
+      0.38,
+      250.0
+     ],
+     [
+      0.45,
+      250.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.27,
+    "under": 0.77
+   },
+   "qty_at_ask": {
+    "over": 400.0,
+    "under": 185.0
+   },
+   "openmarkets": [
+    {
+     "side": "over",
+     "line": "24.5",
+     "price": 0.27,
+     "available": 400.0,
+     "market_ask": 0.27,
+     "book_ask": 0.27,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 400.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 3.7037
+    },
+    {
+     "side": "under",
+     "line": "24.5",
+     "price": 0.77,
+     "available": 185.0,
+     "market_ask": 0.77,
+     "book_ask": 0.77,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 185.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.2987
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRSHATT-26OCT15SEADEN-DENBNIX10-1",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Bo Nix: 1+ rushing attempts",
+   "yes_sub_title": "Bo Nix: 1+",
+   "floor_strike": 0.5,
+   "market_fields": {
+    "last_price_dollars": "0.9600",
+    "no_ask_dollars": "0.1500",
+    "no_bid_dollars": "0.0400",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.9900",
+    "previous_yes_bid_dollars": "0.8600",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.9600",
+    "yes_ask_size_fp": "100.00",
+    "yes_bid_dollars": "0.8500",
+    "yes_bid_size_fp": "1.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      4000.0
+     ],
+     [
+      0.03,
+      30.0
+     ],
+     [
+      0.05,
+      30.0
+     ],
+     [
+      0.08,
+      30.0
+     ],
+     [
+      0.09,
+      1.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      5214.0
+     ],
+     [
+      0.02,
+      200.0
+     ],
+     [
+      0.04,
+      100.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.96,
+    "under": 0.15
+   },
+   "qty_at_ask": {
+    "over": 100.0,
+    "under": 1.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "0.5",
+     "price": 0.15,
+     "available": 1.0,
+     "market_ask": 0.15,
+     "book_ask": 0.15,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 6.6667
+    },
+    {
+     "side": "over",
+     "line": "0.5",
+     "price": 0.96,
+     "available": 100.0,
+     "market_ask": 0.96,
+     "book_ask": 0.96,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 100.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.0417
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLRSHYDS-26OCT18NYJNE-NEDMAYE10-80",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Drake Maye: 80+ rushing yards",
+   "yes_sub_title": "Drake Maye: 80+",
+   "floor_strike": 79.5,
+   "market_fields": {
+    "last_price_dollars": "0.0000",
+    "no_ask_dollars": "0.9800",
+    "no_bid_dollars": "0.9400",
+    "previous_price_dollars": "0.0000",
+    "previous_yes_ask_dollars": "0.0600",
+    "previous_yes_bid_dollars": "0.0200",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.0600",
+    "yes_ask_size_fp": "1320.00",
+    "yes_bid_dollars": "0.0200",
+    "yes_bid_size_fp": "25.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      1036.0
+     ],
+     [
+      0.02,
+      25.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      1090.0
+     ],
+     [
+      0.02,
+      100.0
+     ],
+     [
+      0.03,
+      238.0
+     ],
+     [
+      0.04,
+      50.0
+     ],
+     [
+      0.05,
+      65.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.06,
+    "under": 0.98
+   },
+   "qty_at_ask": {
+    "over": 1320.0,
+    "under": 25.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "79.5",
+     "price": 0.98,
+     "available": 25.0,
+     "market_ask": 0.98,
+     "book_ask": 0.98,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 25.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.0204
+    },
+    {
+     "side": "over",
+     "line": "79.5",
+     "price": 0.06,
+     "available": 1320.0,
+     "market_ask": 0.06,
+     "book_ask": 0.06,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1320.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 16.6667
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSATT-26OCT15SEADEN-DENBNIX10-30",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Bo Nix: 30+ passing attempts",
+   "yes_sub_title": "Bo Nix: 30+",
+   "floor_strike": 29.5,
+   "market_fields": {
+    "last_price_dollars": "0.7500",
+    "no_ask_dollars": "0.2700",
+    "no_bid_dollars": "0.2500",
+    "previous_price_dollars": "0.7500",
+    "previous_yes_ask_dollars": "0.7800",
+    "previous_yes_bid_dollars": "0.7600",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.7500",
+    "yes_ask_size_fp": "186.00",
+    "yes_bid_dollars": "0.7300",
+    "yes_bid_size_fp": "8.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      50.0
+     ],
+     [
+      0.02,
+      43.0
+     ],
+     [
+      0.03,
+      32.0
+     ],
+     [
+      0.37,
+      2.0
+     ],
+     [
+      0.59,
+      100.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      2782.0
+     ],
+     [
+      0.02,
+      719.0
+     ],
+     [
+      0.03,
+      43.0
+     ],
+     [
+      0.05,
+      1.0
+     ],
+     [
+      0.1,
+      100.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.75,
+    "under": 0.27
+   },
+   "qty_at_ask": {
+    "over": 186.0,
+    "under": 8.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "29.5",
+     "price": 0.27,
+     "available": 8.0,
+     "market_ask": 0.27,
+     "book_ask": 0.27,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 8.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 3.7037
+    },
+    {
+     "side": "over",
+     "line": "29.5",
+     "price": 0.75,
+     "available": 186.0,
+     "market_ask": 0.75,
+     "book_ask": 0.75,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 186.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.3333
+    }
+   ]
+  },
+  {
+   "ticker": "KXNFLPASSCOMP-26OCT15SEADEN-SEASDARNOLD14-24",
+   "status_market": 200,
+   "status_book": 200,
+   "market_status": "active",
+   "title": "Sam Darnold: 24+ passing completions",
+   "yes_sub_title": "Sam Darnold: 24+",
+   "floor_strike": 23.5,
+   "market_fields": {
+    "last_price_dollars": "0.1800",
+    "no_ask_dollars": "0.8400",
+    "no_bid_dollars": "0.8200",
+    "previous_price_dollars": "0.1700",
+    "previous_yes_ask_dollars": "0.1700",
+    "previous_yes_bid_dollars": "0.1400",
+    "price_level_structure": "linear_cent",
+    "price_ranges": [
+     {
+      "end": "1.0000",
+      "start": "0.0000",
+      "step": "0.0100"
+     }
+    ],
+    "yes_ask_dollars": "0.1800",
+    "yes_ask_size_fp": "1141.47",
+    "yes_bid_dollars": "0.1600",
+    "yes_bid_size_fp": "1.00"
+   },
+   "book_keys": [
+    "no_dollars",
+    "yes_dollars"
+   ],
+   "book_levels": {
+    "yes": [
+     [
+      0.01,
+      213.0
+     ],
+     [
+      0.02,
+      146.0
+     ],
+     [
+      0.03,
+      6.0
+     ],
+     [
+      0.11,
+      148.0
+     ],
+     [
+      0.12,
+      492.0
+     ]
+    ],
+    "no": [
+     [
+      0.01,
+      6182.0
+     ],
+     [
+      0.02,
+      5823.0
+     ],
+     [
+      0.03,
+      3392.0
+     ],
+     [
+      0.04,
+      98.0
+     ],
+     [
+      0.05,
+      1.0
+     ]
+    ]
+   },
+   "ask_from_book": {
+    "over": 0.18,
+    "under": 0.84
+   },
+   "qty_at_ask": {
+    "over": 1141.47,
+    "under": 1.0
+   },
+   "openmarkets": [
+    {
+     "side": "under",
+     "line": "23.5",
+     "price": 0.84,
+     "available": 1.0,
+     "market_ask": 0.84,
+     "book_ask": 0.84,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1.0,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 1.1905
+    },
+    {
+     "side": "over",
+     "line": "23.5",
+     "price": 0.18,
+     "available": 1141.47,
+     "market_ask": 0.18,
+     "book_ask": 0.18,
+     "price_eq_market_ask": true,
+     "price_eq_book_ask": true,
+     "qty_at_ask": 1141.47,
+     "available_over_qty": 1.0,
+     "available_over_qty_x_price": 5.5556
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "sides": 60,
+  "price_eq_market_ask": 60,
+  "price_eq_book_ask": 60,
+  "available_eq_qty": 59,
+  "available_eq_qty_x_price": 0
+ },
+ "burst": {
+  "statuses": [
+   200,
+   200,
+   200,
+   200,
+   200,
+   200,
+   200,
+   200,
+   200,
+   200,
+   200,
+   200,
+   200,
+   200,
+   200,
+   429,
+   200,
+   429,
+   429,
+   429,
+   200,
+   429,
+   429,
+   429,
+   200,
+   429,
+   429,
+   200,
+   429,
+   429
+  ],
+  "headers_seen": []
+ }
+}

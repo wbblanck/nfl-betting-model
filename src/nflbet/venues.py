@@ -245,3 +245,98 @@ def nv_fee(m: dict, p: float) -> float:
     if f.get("charged") == "ALWAYS" or (f.get("charged") == "WHEN_LIVE" and live):
         return float(f.get("coefficient") or 0) * p * (1 - p)
     return 0.0
+
+
+# Kalshi (external-api.kalshi.com, keyless reads). Checked 2026-10-15 (docs/evidence/kalshi_probe/): OpenMarkets' Kalshi
+# price equalled Kalshi's ask on 60 of 60 prop sides; the S1 prop series are fee_type quadratic, multiplier 1.
+# A market "Sam Darnold: 35+" (yes_sub_title) is the over at 34.5: YES costs yes_ask with yes_ask_size_fp contracts
+# behind it; NO (the under) costs no_ask = 1 - yes_bid, with the YES bid's size behind it. One contract pays $1.
+# Taker fee = M x 0.07 x p x (1 - p) per contract (Kalshi fee schedule; M = the series' fee_multiplier). Each fill's
+# fee is rounded up to the cent; that rounding is not modelled here (as with Polymarket's).
+KS = "https://external-api.kalshi.com/trade-api/v2"
+KS_SERIES = {"KXNFLREC": "rec", "KXNFLRECYDS": "rec_yds", "KXNFLRSHYDS": "rush_yds", "KXNFLRSHATT": "rush_att",
+             "KXNFLPASSYDS": "pass_yds", "KXNFLPASSATT": "pass_att", "KXNFLPASSCOMP": "pass_cmp"}
+KS_TEAM = {"LAR": "LA", "JAC": "JAX"}        # Kalshi event-ticker code -> nflverse code where they differ
+KS_FEE_TYPES = {"quadratic", "quadratic_with_maker_fees"}     # taker fee M x 0.07 x p(1-p) on both
+KS_SUB = re.compile(r"^(.+?):\s*(\d+)\+$")                    # 'Sam Darnold: 35+'
+
+
+def ks_get(path: str, **q):
+    """Paced 0.25 s apart: without a key, back-to-back requests drew HTTP 429 after about 15 (2026-10-15)."""
+    url = KS + path + (("?" + urllib.parse.urlencode(q)) if q else "")
+    for i in range(4):
+        try:
+            time.sleep(0.25)
+            req = urllib.request.Request(url, headers={"User-Agent": "nfl-betting-model/1.0 (read-only research)", "Accept": "application/json"})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return json.loads(r.read())
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and i < 3:
+                time.sleep(2 * 2 ** i)
+                continue
+            raise
+
+
+def ks_game(ticker: str) -> str | None:
+    """'KXNFLREC-26OCT18HOUJAC-...' -> 'HOU|JAX'. The event code is date (7 characters), then away and home codes;
+    the split must be the only one where both halves are team codes."""
+    parts = ticker.split("-")
+    if len(parts) < 2 or len(parts[1]) < 11:
+        return None
+    s, codes = parts[1][7:], set(Pa.TEAMS.values()) | set(KS_TEAM)
+    splits = [(s[:i], s[i:]) for i in (2, 3) if s[:i] in codes and s[i:] in codes]
+    if len(splits) != 1:
+        return None
+    a, b = (KS_TEAM.get(c, c) for c in splits[0])
+    return Pa.game_key(a, b)
+
+
+def ks_markets() -> list[dict]:
+    """Open markets of the S1 prop series, each with its series' fee_type and fee_multiplier (_fee_type, _mult)."""
+    out = []
+    for series in KS_SERIES:
+        s = ks_get(f"/series/{series}").get("series") or {}
+        cursor = None
+        for _ in range(20):
+            q = {"series_ticker": series, "status": "open", "limit": 1000}
+            if cursor:
+                q["cursor"] = cursor
+            r = ks_get("/markets", **q)
+            for m in r.get("markets") or []:
+                out.append({**m, "_series": series, "_fee_type": s.get("fee_type"), "_mult": s.get("fee_multiplier")})
+            cursor = r.get("cursor")
+            if not cursor or not r.get("markets"):
+                break
+    return out
+
+
+def _f(x) -> float | None:
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return None
+
+
+def ks_quotes(markets: list[dict]) -> dict[tuple, dict]:
+    """(game, nkey, market, line) -> {"over": (ask, size) | None, "under": ..., "mult": M or None, "ticker"}.
+    M is None when the series' fee type is not one whose formula is known here: such a price is never "best"."""
+    out: dict = {}
+    for m in markets:
+        mk, g = KS_SERIES.get(m.get("_series")), ks_game(m.get("ticker", ""))
+        x = KS_SUB.match((m.get("yes_sub_title") or "").strip())
+        if not (mk and g and x):
+            continue
+        ya, yb = _f(m.get("yes_ask_dollars")), _f(m.get("yes_bid_dollars"))
+        over = (ya, _f(m.get("yes_ask_size_fp"))) if ya and 0 < ya < 1 else None
+        under = (round(1 - yb, 4), _f(m.get("yes_bid_size_fp"))) if yb and 0 < yb < 1 else None
+        if not (over or under):
+            continue
+        mult = _f(m.get("_mult")) if m.get("_fee_type") in KS_FEE_TYPES else None
+        out[(g, norm_name(x.group(1)), mk, float(x.group(2)) - 0.5)] = {"over": over, "under": under, "mult": mult,
+                                                                         "ticker": m.get("ticker")}
+    return out
+
+
+def ks_fee(p: float, mult: float) -> float:
+    """Kalshi taker fee per $1 of payout at price p (before the per-fill rounding up to the cent)."""
+    return mult * 0.07 * p * (1 - p)

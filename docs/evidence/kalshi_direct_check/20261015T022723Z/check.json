@@ -1,0 +1,231 @@
+{
+ "stamp": "20261015T022723Z",
+ "kalshi_read_utc": "2026-10-15T02:27:33Z",
+ "parse": {
+  "open_markets": 1626,
+  "parsed": 1626,
+  "unparsed": 0,
+  "duplicate_keys": 0,
+  "by_series": {
+   "KXNFLREC": 84,
+   "KXNFLRECYDS": 847,
+   "KXNFLRSHYDS": 443,
+   "KXNFLRSHATT": 17,
+   "KXNFLPASSYDS": 223,
+   "KXNFLPASSATT": 6,
+   "KXNFLPASSCOMP": 6
+  },
+  "fee": [
+   "quadratic|1"
+  ],
+  "floor_strike_mismatch": 0,
+  "floor_strike_examples": [],
+  "unparsed_examples": []
+ },
+ "openmarkets_read_utc": "2026-10-15T02:27:23Z",
+ "vs_openmarkets": {
+  "quotes": 2698,
+  "om_key_unparsed": 0,
+  "key_found": 2698,
+  "ticker_same": 2698,
+  "ticker_other": 0,
+  "ticker_not_in_direct": 0,
+  "price_same": 2680,
+  "size_same": 2654,
+  "compared": 2698,
+  "misses": [],
+  "price_or_size_diffs": [
+   {
+    "ticker": "KXNFLRSHATT-26OCT15SEADEN-SEAGHOLANI36-5",
+    "side": "under",
+    "direct": [
+     0.55,
+     1.0
+    ],
+    "om": [
+     0.54,
+     1
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT15SEADEN-SEAJSMITHNJIGBA11-170",
+    "side": "over",
+    "direct": [
+     0.09,
+     1872.0
+    ],
+    "om": [
+     0.09,
+     2432
+    ]
+   },
+   {
+    "ticker": "KXNFLRSHYDS-26OCT15SEADEN-DENBNIX10-20",
+    "side": "over",
+    "direct": [
+     0.39,
+     604.42
+    ],
+    "om": [
+     0.39,
+     592.13
+    ]
+   },
+   {
+    "ticker": "KXNFLREC-26OCT15SEADEN-DENRHARVEY12-4",
+    "side": "over",
+    "direct": [
+     0.5,
+     5470.13
+    ],
+    "om": [
+     0.5,
+     6094.13
+    ]
+   },
+   {
+    "ticker": "KXNFLREC-26OCT15SEADEN-DENRHARVEY12-4",
+    "side": "under",
+    "direct": [
+     0.51,
+     128.0
+    ],
+    "om": [
+     0.51,
+     70
+    ]
+   },
+   {
+    "ticker": "KXNFLREC-26OCT15SEADEN-DENJWADDLE17-5",
+    "side": "over",
+    "direct": [
+     0.42,
+     831.54
+    ],
+    "om": [
+     0.42,
+     808.67
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT15SEADEN-DENJWADDLE17-80",
+    "side": "under",
+    "direct": [
+     0.82,
+     920.0
+    ],
+    "om": [
+     0.8200000000000001,
+     900
+    ]
+   },
+   {
+    "ticker": "KXNFLRSHATT-26OCT15SEADEN-SEASDARNOLD14-3",
+    "side": "over",
+    "direct": [
+     0.45,
+     403.0
+    ],
+    "om": [
+     0.45,
+     207
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT15SEADEN-DENTFRANKLIN11-15",
+    "side": "over",
+    "direct": [
+     0.56,
+     1862.0
+    ],
+    "om": [
+     0.56,
+     8680
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT18HOUJAC-HOUKBOUTTE14-60",
+    "side": "over",
+    "direct": [
+     0.15,
+     100.0
+    ],
+    "om": [
+     0.15,
+     500
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT18HOUJAC-HOUMHARRISON18-25",
+    "side": "over",
+    "direct": [
+     0.48,
+     200.32
+    ],
+    "om": [
+     0.48,
+     190.27
+    ]
+   },
+   {
+    "ticker": "KXNFLPASSYDS-26OCT18HOUJAC-HOUCSTROUD7-200",
+    "side": "over",
+    "direct": [
+     0.83,
+     3305.0
+    ],
+    "om": [
+     0.83,
+     3945
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT18HOUJAC-HOUKBOUTTE14-80",
+    "side": "over",
+    "direct": [
+     0.08,
+     50.0
+    ],
+    "om": [
+     0.08,
+     450
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT18HOUJAC-HOUKBOUTTE14-50",
+    "side": "over",
+    "direct": [
+     0.21,
+     150.0
+    ],
+    "om": [
+     0.22,
+     400
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT18HOUJAC-HOUKBOUTTE14-50",
+    "side": "under",
+    "direct": [
+     0.82,
+     25.0
+    ],
+    "om": [
+     0.8200000000000001,
+     600
+    ]
+   }
+  ]
+ },
+ "vs_books": {
+  "snapshot": "20261014T1336Z_w6.json.gz",
+  "sides": 96,
+  "kalshi_cheapest": 43,
+  "edge_cents_vs_best_book": {
+   "median": -0.37,
+   "p10": -3.05,
+   "p90": 3.52,
+   "over_10c": 0
+  }
+ }
+}
