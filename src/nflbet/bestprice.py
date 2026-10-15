@@ -10,11 +10,13 @@ all-in, and names the cheapest:
 - Polymarket US: the side's quoted buy price plus the taker fee 0.0695 x p x (1 - p) (src/nflbet/venues.py).
 - Novig: 1 - best resting price on the other outcome, plus its taker fee where charged (none pregame on NFL game
   markets), with the dollars of payout available at that price.
+- Kalshi, read directly (src/nflbet/venues.py): the side's ask plus the taker fee M x 0.07 x p x (1 - p), M from the
+  series, with the contracts at the ask as the size.
 
-Kalshi, ProphetX and BettorEdge (via OpenMarkets) are listed but not eligible for "best": their prices reach us
-without fees and their fee schedules are not confirmed here, so a pre-fee price could look better than it is. A Novig
-or Polymarket US price with less than MIN_SIZE dollars of payout behind it is listed but not eligible either: one stray
-resting order can make a side look cheap with a dollar behind it. Polymarket's size comes from its order book; if the
+The OpenMarkets prices (Kalshi, ProphetX, BettorEdge) stay in `prefee`, listed but not eligible for "best": they reach
+us without fees. OpenMarkets' Kalshi price is a cross-check on the direct read. A Novig, Polymarket US or Kalshi price
+with less than MIN_SIZE dollars of payout behind it is listed but not eligible either: one stray resting order can make
+a side look cheap with a dollar behind it. Polymarket's size comes from its order book; if the
 book cannot be read, the price stays eligible without a size. An edge over CHECK_CENTS is flagged for a look.
 
 Written to data/live/s1_bestprice_2026.csv by scripts/live_s1.py; one row per pick per run.
@@ -32,7 +34,7 @@ from nflbet.props import NON_BOOKS, TEAM_FIX, norm_name
 AN_NAME = {"DK NJ": "DraftKings", "FanDuel NJ": "FanDuel", "BetMGM NJ": "BetMGM", "BetRivers NJ": "BetRivers",
            "Caesars NV": "Caesars"}
 PREFEE = {"om_kalshi_odds": "Kalshi", "om_prophetx_odds": "ProphetX", "om_bettoredge_odds": "BettorEdge"}
-MIN_SIZE = 10.0                 # $ of payout at Novig's or Polymarket's best price for it to count as "best"
+MIN_SIZE = 10.0                 # $ of payout at an exchange's best price (Novig, Polymarket US, Kalshi) for it to count as "best"
 CHECK_CENTS = 10.0              # an edge over DK larger than this is flagged: usually a stale or stray quote
 COLS = ["run_utc", "week", "an_game_id", "start_time", "home", "away", "player", "player_id", "market", "line", "side",
         "dk_odds", "dk_cost", "best_venue", "best_cost", "best_odds", "best_size", "edge_cents", "n_venues", "venues",
@@ -60,7 +62,7 @@ def an_quotes(an: pl.DataFrame) -> dict[tuple, dict[str, tuple[float, float]]]:
 
 
 def venue_costs(p: dict, anq: dict, pa_idx: dict, pmq: dict, nv_idx: dict, nv_books: dict,
-                pm_size: dict | None = None) -> dict[str, tuple[float, float | None]]:
+                pm_size: dict | None = None, ksq: dict | None = None) -> dict[str, tuple[float, float | None]]:
     """{venue: (all-in cost per $1 of payout, $ available or None)} at the pick's line and side."""
     side, line = p["side"], float(p["line"])
     nk = norm_name(p["player"])
@@ -81,15 +83,19 @@ def venue_costs(p: dict, anq: dict, pa_idx: dict, pmq: dict, nv_idx: dict, nv_bo
         t = V.nv_taker(nv_books[m["marketId"]], m).get(side)
         if t:
             out["Novig"] = (t[0] + V.nv_fee(m, t[0]), t[1])
+    k = (ksq or {}).get((g, nk, p["market"], line))
+    if k and k[side] and k["mult"] is not None:          # unknown fee type: not priced, so never "best"
+        c, size = k[side]
+        out["Kalshi"] = (c + V.ks_fee(c, k["mult"]), size or 0.0)
     return out
 
 
 def best_rows(picks: pl.DataFrame, anq: dict, pa: pl.DataFrame | None, pmq: dict, nv_idx: dict, nv_books: dict,
-              run_utc: str, pm_size: dict | None = None) -> pl.DataFrame:
+              run_utc: str, pm_size: dict | None = None, ksq: dict | None = None) -> pl.DataFrame:
     pa_idx = {(r["book"], r["game"], r["nkey"], r["market"]): r for r in pa.iter_rows(named=True)} if pa is not None else {}
     rows = []
     for p in picks.iter_rows(named=True):
-        vc = venue_costs(p, anq, pa_idx, pmq, nv_idx, nv_books, pm_size)
+        vc = venue_costs(p, anq, pa_idx, pmq, nv_idx, nv_books, pm_size, ksq)
         dk_cost = imp(float(p["odds"]))
         elig = {k: v for k, v in vc.items() if v[1] is None or v[1] >= MIN_SIZE}
         best = min(elig.items(), key=lambda kv: kv[1][0]) if elig else None
@@ -109,7 +115,7 @@ def best_rows(picks: pl.DataFrame, anq: dict, pa: pl.DataFrame | None, pmq: dict
 
 
 def record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, when: dt.datetime) -> pl.DataFrame | None:
-    """Fetch Polymarket US and Novig once, price every pick, return the rows (the caller appends them)."""
+    """Fetch Polymarket US, Novig and Kalshi once, price every pick, return the rows (the caller appends them)."""
     if picks is None or not picks.height:
         return None
     anq = an_quotes(pl.read_csv(an_path, infer_schema_length=0)) if an_path is not None else {}
@@ -138,4 +144,9 @@ def record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, whe
                 nv_books[m["marketId"]] = V.nv_book(m["marketId"])
     except Exception as e:  # noqa: BLE001
         print(f"best price: Novig unavailable: {type(e).__name__}: {e}")
-    return best_rows(picks, anq, pa, pmq, nv_idx, nv_books, when.strftime("%Y-%m-%dT%H:%M:%SZ"), pm_size)
+    try:
+        ksq = V.ks_quotes(V.ks_markets())
+    except Exception as e:  # noqa: BLE001
+        print(f"best price: Kalshi unavailable: {type(e).__name__}: {e}")
+        ksq = {}
+    return best_rows(picks, anq, pa, pmq, nv_idx, nv_books, when.strftime("%Y-%m-%dT%H:%M:%SZ"), pm_size, ksq)

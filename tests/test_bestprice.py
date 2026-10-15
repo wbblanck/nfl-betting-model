@@ -116,3 +116,59 @@ def test_thin_polymarket_price_is_listed_but_not_best():
     deep = Bp.best_rows(pl.DataFrame([PICK]), Bp.an_quotes(AN), None, pmq, V.nv_index([NV_MARKET], NV_EVENTS), {"m1": NV_BOOK},
                         PICK["run_utc"], {"pm1": {"under": 500.0}}).row(0, named=True)
     assert deep["best_venue"] == "Polymarket US" and deep["best_size"] == 500.0
+
+
+KS_MKT = {"ticker": "KXNFLREC-26OCT18MINNO-NOAJONES33-4", "_series": "KXNFLREC", "_fee_type": "quadratic", "_mult": 1,
+          "yes_sub_title": "Aaron Jones Sr.: 4+", "yes_ask_dollars": "0.4600", "yes_ask_size_fp": "300.00",
+          "yes_bid_dollars": "0.4900", "yes_bid_size_fp": "75.50"}
+
+
+def test_kalshi_game_from_event_ticker():
+    assert V.ks_game("KXNFLREC-26OCT18HOUJAC-HOUX1-5") == "HOU|JAX"            # JAC -> JAX
+    assert V.ks_game("KXNFLREC-26OCT18ARILAR-X") == "ARI|LA"                   # LAR -> LA
+    assert V.ks_game("KXNFLREC-26OCT18LACKC-X") == "KC|LAC" and V.ks_game("KXNFLREC-26OCT18NONYG-X") == "NO|NYG"
+    assert V.ks_game("KXNFLREC-26OCT18XXXYYY-X") is None and V.ks_game("KXNFLREC") is None
+
+
+def test_kalshi_quotes_sides_and_sizes():
+    # over = YES at the ask (300 contracts); under = NO at 1 - YES bid = .51, with the YES bid's 75.5 contracts behind it
+    q = V.ks_quotes([KS_MKT, {**KS_MKT, "_series": "KXNFLTD"}, {**KS_MKT, "yes_sub_title": "Aaron Jones Sr.: Yes"}])
+    assert q == {("MIN|NO", "aaron jones", "rec", 3.5): {"over": (0.46, 300.0), "under": (0.51, 75.5), "mult": 1.0,
+                                                          "ticker": KS_MKT["ticker"]}}
+    one = V.ks_quotes([{**KS_MKT, "yes_bid_dollars": "0.0000"}])                  # no bid: no under
+    assert one[("MIN|NO", "aaron jones", "rec", 3.5)]["under"] is None
+    assert V.ks_quotes([{**KS_MKT, "_fee_type": "flat"}])[("MIN|NO", "aaron jones", "rec", 3.5)]["mult"] is None
+
+
+def test_kalshi_all_in_cost_and_floor():
+    ksq = V.ks_quotes([KS_MKT])
+    r = Bp.best_rows(pl.DataFrame([{**PICK, "side": "over"}]), Bp.an_quotes(AN), None, {}, {}, {}, PICK["run_utc"], None, ksq).row(0, named=True)
+    # over: .46 + .07 x .46 x .54 = .477388 with $300 behind it; FanDuel +105 = .4878, DK +120 = .4545 (pick's own price -150 aside)
+    v = json.loads(r["venues"])
+    assert abs(v["Kalshi"][0] - 0.477388) < 1e-5 and v["Kalshi"][1] == 300.0
+    thin = V.ks_quotes([{**KS_MKT, "yes_bid_size_fp": "4.00"}])
+    u = Bp.best_rows(pl.DataFrame([PICK]), Bp.an_quotes(AN), None, {}, {}, {}, PICK["run_utc"], None, thin).row(0, named=True)
+    assert json.loads(u["venues"])["Kalshi"][1] == 4.0 and u["best_venue"] == "FanDuel"   # .51 + fee = .5275 but $4: not best
+    deep = Bp.best_rows(pl.DataFrame([PICK]), Bp.an_quotes(AN), None, {}, {}, {}, PICK["run_utc"], None, ksq).row(0, named=True)
+    assert deep["best_venue"] == "Kalshi" and abs(deep["best_cost"] - 0.52749) < 1e-5 and deep["best_size"] == 75.5
+    unknown = V.ks_quotes([{**KS_MKT, "_fee_type": "flat"}])
+    x = Bp.best_rows(pl.DataFrame([PICK]), Bp.an_quotes(AN), None, {}, {}, {}, PICK["run_utc"], None, unknown).row(0, named=True)
+    assert "Kalshi" not in json.loads(x["venues"])                                 # fee unknown: not priced at all
+
+
+def test_kalshi_markets_pages_and_series_fees(monkeypatch):
+    calls = []
+
+    def fake(path, **q):
+        calls.append((path, q.get("cursor")))
+        if path.startswith("/series/"):
+            return {"series": {"fee_type": "quadratic", "fee_multiplier": 0.5}}
+        if q["series_ticker"] == "KXNFLREC" and not q.get("cursor"):
+            return {"markets": [{"ticker": "a"}], "cursor": "c2"}
+        if q["series_ticker"] == "KXNFLREC":
+            return {"markets": [{"ticker": "b"}], "cursor": ""}
+        return {"markets": [], "cursor": ""}
+    monkeypatch.setattr(V, "ks_get", fake)
+    m = V.ks_markets()
+    assert [x["ticker"] for x in m] == ["a", "b"] and m[0]["_mult"] == 0.5 and m[0]["_series"] == "KXNFLREC"
+    assert ("/markets", "c2") in calls

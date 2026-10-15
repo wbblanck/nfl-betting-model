@@ -1,0 +1,44 @@
+name: Kalshi direct check
+# Read-only: the direct Kalshi read in src/nflbet/venues.py vs OpenMarkets' Kalshi tickers and prices, and vs DK/FD
+# (scripts/audit/kalshi_direct_check.py). No Kalshi key.
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/audit/kalshi_direct_check.py', 'src/nflbet/venues.py', '.github/workflows/kalshi-direct-check.yml']
+permissions:
+  contents: write
+concurrency:
+  group: kalshi-direct-check-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Latest committed ParlayAPI snapshots from main
+        run: |
+          git fetch -q origin main
+          mkdir -p "$RUNNER_TEMP/parlay"
+          f=$(git ls-tree --name-only origin/main data/live/parlay/ | grep 'json.gz$' | tail -1)
+          git show "origin/main:$f" > "$RUNNER_TEMP/parlay/$(basename "$f")"
+          ls -l "$RUNNER_TEMP/parlay"
+      - name: Check the direct Kalshi read
+        run: python scripts/audit/kalshi_direct_check.py
+        env:
+          PARLAY_DIR: ${{ runner.temp }}/parlay
+          OPENMARKETS_API_KEY: ${{ secrets.OPENMARKETS_API_KEY }}
+      - name: Commit evidence
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add docs/evidence/kalshi_direct_check || true
+          git commit -m "evidence: Kalshi direct check" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0; sleep $((2**i)); done
+          exit 1
