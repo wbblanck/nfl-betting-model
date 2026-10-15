@@ -452,7 +452,7 @@ def ats_section(runs: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime) -> str:
         return head + '<p class="empty">No ATS runs yet. The first scheduled S1 run records this week\'s games.</p></section>'
     wk = int(runs["week"].cast(pl.Int64).max())
     cur = runs.filter(pl.col("week").cast(pl.Int64) == wk)
-    latest = cur.sort("run_utc", descending=True).unique("game_id", keep="first").sort("start_time")
+    latest = cur.sort("run_utc", descending=True).unique("game_id", keep="first").sort(["start_time", "game_id"])
     rows = []
     for r in latest.to_dicts():
         h = r["side_is_home"] in (True, "true")
@@ -900,9 +900,42 @@ JS = """
   bs.forEach(function(b){b.addEventListener('click',function(){apply(b.getAttribute('data-mode'))})});
   var m='all';try{m=localStorage.getItem('s1-filter')||'all'}catch(e){}
   apply(m);
+  // one tooltip for every chart mark: "headline | detail". A tap focuses the mark and lifting the finger fires
+  // pointerleave, so on touch the tooltip stays until a scroll, a zoom, a tap elsewhere, a second tap on the same
+  // mark or a tab switch. Keyboard focus keeps it and scrolling moves it with the mark.
+  var tip=document.createElement('div');tip.className='tip';tip.hidden=true;document.body.appendChild(tip);
+  var owner=null;
+  function hideTip(){tip.hidden=true;owner=null}
+  function show(el,x,y){
+    owner=el;
+    var t=(el.getAttribute('data-tip')||'').split(' | ');
+    tip.textContent='';var s=document.createElement('strong');s.textContent=t[1]||t[0];tip.appendChild(s);
+    if(t[1]){var d=document.createElement('span');d.textContent=t[0];tip.appendChild(d);}
+    tip.hidden=false;
+    var w=tip.offsetWidth,h=tip.offsetHeight,vw=window.innerWidth;
+    tip.style.left=Math.max(8,Math.min(vw-w-8,x+14))+'px';tip.style.top=Math.max(8,y-h-12)+'px';
+  }
+  function showAt(el){var r=el.getBoundingClientRect();show(el,r.left+r.width/2,r.top)}
+  function keyed(el){try{return el.matches(':focus-visible')}catch(e){return false}}
+  function onMove(){
+    if(tip.hidden)return;
+    if(owner&&owner===document.activeElement&&keyed(owner))showAt(owner);else hideTip();
+  }
+  window.addEventListener('scroll',onMove,{passive:true,capture:true});
+  if(window.visualViewport){visualViewport.addEventListener('scroll',onMove);visualViewport.addEventListener('resize',onMove)}
+  document.addEventListener('pointerdown',function(e){if(!(e.target.closest&&e.target.closest('[data-tip]')))hideTip()});
+  document.querySelectorAll('[data-tip]').forEach(function(el){
+    el.addEventListener('pointermove',function(e){if(e.pointerType!=='touch')show(el,e.clientX,e.clientY)});
+    el.addEventListener('pointerdown',function(e){
+      if(e.pointerType==='touch'&&owner===el&&!tip.hidden)hideTip();else show(el,e.clientX,e.clientY);
+    });
+    el.addEventListener('pointerleave',function(e){if(e.pointerType!=='touch')hideTip()});
+    el.addEventListener('pointercancel',hideTip);
+    el.addEventListener('focus',function(){if(keyed(el))showAt(el)});
+    el.addEventListener('blur',hideTip);
+  });
   // tabs (remembered per viewer; #ats deep-links)
   var tabs=document.querySelectorAll('.tabs button');
-  var hideTip=function(){};
   function showTab(t){
     hideTip();
     tabs.forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-tab')===t?'true':'false')});
@@ -912,28 +945,6 @@ JS = """
   tabs.forEach(function(b){b.addEventListener('click',function(){showTab(b.getAttribute('data-tab'))})});
   var t0=(location.hash==='#ats')?'ats':'s1';try{if(location.hash!=='#ats'){t0=localStorage.getItem('tab')||'s1'}}catch(e){}
   showTab(t0);
-  // one tooltip for every chart mark: "headline | detail"
-  var tip=document.createElement('div');tip.className='tip';tip.hidden=true;document.body.appendChild(tip);
-  // a tap focuses the mark and touch sends no pointerleave, so a fixed tooltip would stay on screen: hide it on any
-  // scroll, on a tap anywhere else, and on a tab switch
-  hideTip=function(){tip.hidden=true};
-  window.addEventListener('scroll',hideTip,{passive:true,capture:true});
-  document.addEventListener('pointerdown',function(e){if(!(e.target.closest&&e.target.closest('[data-tip]')))hideTip()});
-  function show(el,x,y){
-    var t=(el.getAttribute('data-tip')||'').split(' | ');
-    tip.textContent='';var s=document.createElement('strong');s.textContent=t[1]||t[0];tip.appendChild(s);
-    if(t[1]){var d=document.createElement('span');d.textContent=t[0];tip.appendChild(d);}
-    tip.hidden=false;
-    var w=tip.offsetWidth,h=tip.offsetHeight,vw=window.innerWidth;
-    tip.style.left=Math.max(8,Math.min(vw-w-8,x+14))+'px';tip.style.top=Math.max(8,y-h-12)+'px';
-  }
-  document.querySelectorAll('[data-tip]').forEach(function(el){
-    el.addEventListener('pointermove',function(e){show(el,e.clientX,e.clientY)});
-    el.addEventListener('pointerdown',function(e){show(el,e.clientX,e.clientY)});
-    el.addEventListener('pointerleave',function(e){if(e.pointerType!=='touch')tip.hidden=true});   // touch: a lift fires it
-    el.addEventListener('focus',function(){var r=el.getBoundingClientRect();show(el,r.left+r.width/2,r.top)});
-    el.addEventListener('blur',function(){tip.hidden=true});
-  });
 })();
 """
 
