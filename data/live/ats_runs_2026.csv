@@ -162,3 +162,5 @@ game_id,game,start_time,home,away,fair,consensus,exchange,n_exchanges,side,side_
 2026_06_WAS_SF,SF|WAS,2026-10-20T00:15:00.000Z,SF,WAS,8.5,7.5,7.5,6,SF,true,BetMGM,7.5,-105.0,1.0,false,0.24,true,WAS QB Marcus Mariota: Out,No Value,7.5,7.5,7.5,7.5,7.5,2026-10-18T16:09:57Z,6
 2026_06_DAL_GB,DAL|GB,2026-10-19T00:20:00.000Z,GB,DAL,4.28,1.5,0.5,2,GB,true,BetRivers,1.0,-108.0,3.28,true,0.77,false,"",Monitor,1.5,1.5,1.0,1.0,1.5,2026-10-18T21:23:07Z,6
 2026_06_WAS_SF,SF|WAS,2026-10-20T00:15:00.000Z,SF,WAS,8.5,7.5,7.5,2,SF,true,BetMGM,7.5,-105.0,1.0,false,0.24,true,WAS QB Marcus Mariota: Out,No Value,7.5,7.5,7.5,7.5,7.5,2026-10-18T21:23:07Z,6
+2026_06_DAL_GB,DAL|GB,2026-10-19T00:20:00.000Z,GB,DAL,4.28,-1.0,-1.0,6,GB,true,DraftKings,-1.5,-122.0,5.78,true,1.36,true,"",Bet Now,-1.5,1.5,1.0,-1.0,1.5,2026-10-18T21:55:19Z,6
+2026_06_WAS_SF,SF|WAS,2026-10-20T00:15:00.000Z,SF,WAS,8.5,7.5,7.5,6,SF,true,BetMGM,7.5,-105.0,1.0,false,0.24,true,WAS QB Marcus Mariota: Out,No Value,7.5,7.5,7.5,7.5,7.5,2026-10-18T21:55:19Z,6
