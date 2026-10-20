@@ -166,3 +166,4 @@ game_id,game,start_time,home,away,fair,consensus,exchange,n_exchanges,side,side_
 2026_06_WAS_SF,SF|WAS,2026-10-20T00:15:00.000Z,SF,WAS,8.5,7.5,7.5,6,SF,true,BetMGM,7.5,-105.0,1.0,false,0.24,true,WAS QB Marcus Mariota: Out,No Value,7.5,7.5,7.5,7.5,7.5,2026-10-18T21:55:19Z,6
 2026_06_WAS_SF,SF|WAS,2026-10-20T00:15:00.000Z,SF,WAS,8.5,7.5,7.5,6,SF,true,BetMGM,7.5,-105.0,1.0,false,0.24,true,WAS QB Marcus Mariota: Out,No Value,7.5,7.5,7.5,7.5,7.5,2026-10-19T00:29:55Z,6
 2026_06_WAS_SF,SF|WAS,2026-10-20T00:15:00.000Z,SF,WAS,8.5,7.5,7.5,6,SF,true,DraftKings,7.5,-102.0,1.0,false,0.24,true,WAS QB Marcus Mariota: Out,No Value,7.5,7.5,7.5,7.5,7.5,2026-10-19T21:18:53Z,6
+2026_06_WAS_SF,SF|WAS,2026-10-20T00:15:00.000Z,SF,WAS,8.5,7.5,7.25,6,SF,true,Caesars,7.0,-115.0,1.5,false,0.35,true,WAS QB Marcus Mariota: Out,Monitor,7.5,7.5,7.5,7.5,7.0,2026-10-20T00:05:31Z,6

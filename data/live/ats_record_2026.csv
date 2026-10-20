@@ -26,4 +26,4 @@ game_id,game,start_time,home,away,fair,consensus,exchange,n_exchanges,side,side_
 2026_06_LAC_KC,KC|LAC,2026-10-18T20:25:00.000Z,KC,LAC,6.1,7.5,7.5,6,LAC,false,BetRivers,7.5,-112.0,1.4,true,0.33,true,"",Bet Now,7.5,7.5,7.5,7.5,7.5,2026-10-18T16:09:57Z,6,false,16,7.5,L,-1.0,0.0
 2026_06_BUF_LV,BUF|LV,2026-10-18T20:25:00.000Z,LV,BUF,-4.83,-5.5,-4.5,7,LV,true,DraftKings,-5.5,-112.0,0.67,false,0.16,true,"",No Value,-5.5,-5.5,-5.0,-5.0,-5.5,2026-10-18T16:09:57Z,6,true,-3,-5.5,W,0.8928571428571428,0.0
 2026_06_DAL_GB,DAL|GB,2026-10-19T00:20:00.000Z,GB,DAL,4.28,-1.0,-1.0,6,GB,true,DraftKings,-1.5,-122.0,5.78,true,1.36,true,"",Bet Now,-1.5,1.5,1.0,-1.0,1.5,2026-10-18T21:55:19Z,6,true,10,-1.5,W,0.819672131147541,0.0
-2026_06_WAS_SF,SF|WAS,2026-10-20T00:15:00.000Z,SF,WAS,8.5,7.5,7.5,6,SF,true,DraftKings,7.5,-102.0,1.0,false,0.24,true,WAS QB Marcus Mariota: Out,No Value,7.5,7.5,7.5,7.5,7.5,2026-10-19T21:18:53Z,6,true,,7.0,pending,0.0,
+2026_06_WAS_SF,SF|WAS,2026-10-20T00:15:00.000Z,SF,WAS,8.5,7.5,7.25,6,SF,true,Caesars,7.0,-115.0,1.5,false,0.35,true,WAS QB Marcus Mariota: Out,Monitor,7.5,7.5,7.5,7.5,7.0,2026-10-20T00:05:31Z,6,true,,7.5,pending,0.0,
