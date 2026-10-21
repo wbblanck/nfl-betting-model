@@ -16,10 +16,11 @@ import sys
 import numpy as np
 import polars as pl
 
-from nflbet import config, props as P
-from nflbet.sim import Simulator
+from nflbet import config  # noqa: E402
+from nflbet.props import core as P  # noqa: E402
+from nflbet.props.sim import Simulator  # noqa: E402
 
-from nflbet.screener import MARKETS, grade, scored  # noqa: E402,F401
+from nflbet.props.screener import MARKETS, grade, scored  # noqa: E402,F401
 
 
 def main() -> None:

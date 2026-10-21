@@ -6,11 +6,11 @@ all-in, and names the cheapest:
 
 - Action Network books at this run (DraftKings, FanDuel, BetMGM, BetRivers, Caesars): implied probability of the
   American price on the pick's side, only where the book's line equals the pick's line. Vig is already in the price.
-- ParlayAPI's DraftKings and FanDuel at the same line (src/nflbet/parlay.py).
-- Polymarket US: the side's quoted buy price plus the taker fee 0.0695 x p x (1 - p) (src/nflbet/venues.py).
+- ParlayAPI's DraftKings and FanDuel at the same line (src/nflbet/sources/parlay.py).
+- Polymarket US: the side's quoted buy price plus the taker fee 0.0695 x p x (1 - p) (src/nflbet/sources/venues.py).
 - Novig: 1 - best resting price on the other outcome, plus its taker fee where charged (none pregame on NFL game
   markets), with the dollars of payout available at that price.
-- Kalshi, read directly (src/nflbet/venues.py): the side's ask plus the taker fee M x 0.07 x p x (1 - p), M from the
+- Kalshi, read directly (src/nflbet/sources/venues.py): the side's ask plus the taker fee M x 0.07 x p x (1 - p), M from the
   series, with the contracts at the ask as the size.
 
 The OpenMarkets prices (Kalshi, ProphetX, BettorEdge) stay in `prefee`, listed but not eligible for "best": they reach
@@ -28,8 +28,9 @@ import json
 
 import polars as pl
 
-from nflbet import parlay as Pa, venues as V
-from nflbet.props import NON_BOOKS, TEAM_FIX, norm_name
+from nflbet.sources import venues as V
+from nflbet.quant.odds import american_from_prob as american, implied as imp
+from nflbet.sources.ids import NON_BOOKS, TEAM_FIX, game_key, norm_name
 
 AN_NAME = {"DK NJ": "DraftKings", "FanDuel NJ": "FanDuel", "BetMGM NJ": "BetMGM", "BetRivers NJ": "BetRivers",
            "Caesars NV": "Caesars"}
@@ -39,14 +40,6 @@ CHECK_CENTS = 10.0              # an edge over DK larger than this is flagged: u
 COLS = ["run_utc", "week", "an_game_id", "start_time", "home", "away", "player", "player_id", "market", "line", "side",
         "dk_odds", "dk_cost", "best_venue", "best_cost", "best_odds", "best_size", "edge_cents", "n_venues", "venues",
         "prefee", "check"]
-
-
-def imp(a: float) -> float:
-    return -a / (-a + 100) if a < 0 else 100 / (a + 100)
-
-
-def american(p: float) -> float:
-    return -100 * p / (1 - p) if p >= 0.5 else 100 * (1 - p) / p
 
 
 def an_quotes(an: pl.DataFrame) -> dict[tuple, dict[str, tuple[float, float]]]:
@@ -66,7 +59,7 @@ def venue_costs(p: dict, anq: dict, pa_idx: dict, pmq: dict, nv_idx: dict, nv_bo
     """{venue: (all-in cost per $1 of payout, $ available or None)} at the pick's line and side."""
     side, line = p["side"], float(p["line"])
     nk = norm_name(p["player"])
-    g = Pa.game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"]))
+    g = game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"]))
     out: dict = {}
     for book, (o, u) in anq.get((str(p["an_game_id"]), nk, p["market"], line), {}).items():
         out[book] = (imp(u if side == "under" else o), None)
@@ -123,7 +116,7 @@ def record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, whe
     try:
         pmq = V.pm_quotes(V.pm_markets(week, when, verbose=False))
         for p in picks.iter_rows(named=True):                          # size only for the picks' markets: a few calls
-            g = Pa.game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"]))
+            g = game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"]))
             q = pmq.get((g, norm_name(p["player"]), p["market"], float(p["line"])))
             if q and q.get("slug") and q["slug"] not in pm_size:
                 try:
@@ -138,7 +131,7 @@ def record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, whe
         markets, events = V.nv_markets(when)
         nv_idx = V.nv_index(markets, events)
         for p in picks.iter_rows(named=True):
-            g = Pa.game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"]))
+            g = game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"]))
             m = nv_idx.get((g, norm_name(p["player"]), p["market"], float(p["line"])))
             if m and m["marketId"] not in nv_books:
                 nv_books[m["marketId"]] = V.nv_book(m["marketId"])

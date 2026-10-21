@@ -19,7 +19,8 @@ import polars as pl
 sys.path.insert(0, str(Path(__file__).parent))
 import ats_clv2 as C2  # noqa: E402
 
-from nflbet import config, props as P  # noqa: E402
+from nflbet import config  # noqa: E402
+from nflbet.props import core as P  # noqa: E402
 
 
 def crosses_key(o, f, home):

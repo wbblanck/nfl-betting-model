@@ -20,7 +20,8 @@ from pathlib import Path
 
 import polars as pl
 
-from nflbet import config, live as Lv
+from nflbet import config
+from nflbet.props import live as Lv
 
 FIX = {"JAC": "JAX", "LAR": "LA", "WSH": "WAS"}
 K_CATCH, K_COMP = 20.0, 50.0                  # pseudo-attempts pulling a rate toward the league rate

@@ -1,4 +1,4 @@
-"""Dry run of the best-price record (src/nflbet/bestprice.py) on live prices, without touching any S1 record.
+"""Dry run of the best-price record (src/nflbet/props/bestprice.py) on live prices, without touching any S1 record.
 
 Uses this week's DraftKings props on Action Network (both sides) as stand-in picks, or ParlayAPI's DraftKings lines when
 Action Network has not posted props yet (needs PARLAY_API_KEY); fetches Action Network, Polymarket US and Novig the way
@@ -19,7 +19,9 @@ import polars as pl
 sys.path.insert(0, "src")
 import os  # noqa: E402
 
-from nflbet import bestprice as Bp, live as Lv, parlay as Pa  # noqa: E402
+from nflbet.props import bestprice as Bp  # noqa: E402
+from nflbet.props import live as Lv  # noqa: E402
+from nflbet.sources import parlay as Pa  # noqa: E402
 
 
 def main() -> None:

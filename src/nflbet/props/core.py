@@ -9,16 +9,14 @@ last name + first initial that is unique on that team that week. Unmatched props
 """
 from __future__ import annotations
 
-import re
-import unicodedata
 from pathlib import Path
 
-import numpy as np
 import polars as pl
 
 from nflbet import config
+from nflbet.quant.odds import american_to_decimal, profit  # noqa: F401 - used by callers as props.core.*
+from nflbet.sources.ids import NON_BOOKS, TEAM_FIX, last_name, norm_name  # noqa: F401
 
-NON_BOOKS = {"15", "30"}                    # Action Network "Consensus" and "Open"
 STAT = {                                    # market -> nflverse expression for the graded quantity
     "pass_yds": pl.col("passing_yards"), "pass_att": pl.col("attempts"), "pass_cmp": pl.col("completions"),
     "pass_td": pl.col("passing_tds"), "pass_int": pl.col("passing_interceptions"),
@@ -28,34 +26,6 @@ STAT = {                                    # market -> nflverse expression for 
     "anytime_td": pl.col("rushing_tds") + pl.col("receiving_tds") + pl.col("special_teams_tds")
     + pl.col("fumble_recovery_tds"),
 }
-# Action Network abbreviations that differ from nflverse
-TEAM_FIX = {"JAC": "JAX", "LAR": "LA", "WSH": "WAS"}
-
-
-def norm_name(s: str | None) -> str:
-    s = unicodedata.normalize("NFKD", s or "")
-    s = "".join(c for c in s if not unicodedata.combining(c)).lower()
-    s = re.sub(r"[.'`\-]", " ", s)
-    parts = [p for p in s.split() if p not in ("jr", "sr", "ii", "iii", "iv", "v")]
-    out: list[str] = []
-    for p in parts:                          # "d j moore" -> "dj moore", so D.J. and DJ agree
-        if len(p) == 1 and out and len(out[-1]) >= 1 and out[-1].isalpha() and len(out[-1]) <= 2 \
-                and all(len(x) == 1 for x in out[-1]):
-            out[-1] += p
-        else:
-            out.append(p)
-    return " ".join(out)
-
-
-def last_name(s: str) -> str:
-    """Last name plus first initial ("garrett wilson" -> "wilson g"), so a fallback never pairs M. Wilson
-    with Garrett Wilson."""
-    p = norm_name(s).split()
-    return f"{p[-1]} {p[0][0]}" if len(p) >= 2 else (p[0] if p else "")
-
-
-def american_to_decimal(a: float) -> float:
-    return 1 + (a / 100 if a > 0 else 100 / -a)
 
 
 def check_one_line_per_book(d: pl.DataFrame) -> None:
@@ -151,9 +121,3 @@ def graded(d: pl.DataFrame) -> pl.DataFrame:
                            pl.when(pl.col("actual") > pl.col("line")).then(pl.lit("over"))
                            .when(pl.col("actual") < pl.col("line")).then(pl.lit("under"))
                            .otherwise(pl.lit("push")).alias("result"))
-
-
-def profit(odds: np.ndarray, won: np.ndarray) -> np.ndarray:
-    """Profit per 1 unit staked at American odds; won is 1 (win), 0 (loss) or nan (push -> 0)."""
-    dec = np.where(odds > 0, 1 + odds / 100, 1 + 100 / -odds)
-    return np.where(np.isnan(won), 0.0, np.where(won == 1, dec - 1, -1.0))

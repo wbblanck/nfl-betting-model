@@ -9,9 +9,9 @@ from __future__ import annotations
 import numpy as np
 import polars as pl
 
-from nflbet import props as P
-from nflbet import props_confirm as C
-from nflbet import player_proj as M
+from nflbet.props import core as P
+from nflbet.props import confirm as C
+from nflbet.props import player_proj as M
 
 GAP = 0.10
 FIT_SEASON = 2024
@@ -39,7 +39,7 @@ def rule_p1(b: pl.DataFrame) -> pl.DataFrame:
 
 
 def run(season: int) -> dict:
-    from nflbet.props_selective import evaluate
+    from nflbet.props.selective import evaluate
 
     x = rule_p1(dk_bets(season, projections(season)))
     return {"P1_projection_under_dk_high_line": evaluate(x, level=0.025)}

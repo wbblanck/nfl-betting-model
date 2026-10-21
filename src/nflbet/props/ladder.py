@@ -8,7 +8,8 @@ from __future__ import annotations
 import numpy as np
 import polars as pl
 
-from nflbet import config, props as P
+from nflbet import config
+from nflbet.props import core as P
 
 COUNT_MARKETS = {"rec", "rush_att", "pass_att", "pass_cmp", "pass_td"}
 

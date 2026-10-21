@@ -10,7 +10,9 @@ import sys
 import numpy as np
 import polars as pl
 
-from nflbet import config, espn as E, props as P
+from nflbet import config
+from nflbet.sources import espn as E
+from nflbet.props import core as P
 
 
 def main(seasons=(2024, 2025)) -> None:

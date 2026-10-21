@@ -14,14 +14,13 @@ and TE order is often blocking roles, so TEs and WRs are left out.
 """
 from __future__ import annotations
 
-import json
 import re
 import time
-import urllib.request
 
 import polars as pl
 
-from nflbet.injuries import ABSENT, RECENT_WEEKS, UA
+from nflbet.sources.http import BROWSER_UA as UA, get_json
+from nflbet.sources.injuries import ABSENT, RECENT_WEEKS
 
 CORE = "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl"
 SITE = "https://site.api.espn.com/apis/site/v2/sports/football/nfl"
@@ -33,9 +32,7 @@ FLAG_COLS = ["depth_note", "depth_against"]
 
 
 def _get(url: str):
-    req = urllib.request.Request(url.replace("http://", "https://"), headers={"User-Agent": UA, "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=45) as r:
-        return json.loads(r.read())
+    return get_json(url.replace("http://", "https://"), {"User-Agent": UA, "Accept": "application/json"}, timeout=45)
 
 
 def fetch(season: int) -> dict:

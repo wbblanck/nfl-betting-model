@@ -2,7 +2,7 @@
 import numpy as np
 import polars as pl
 
-from nflbet import props as P
+from nflbet.props import core as P
 
 
 def _stats():
@@ -70,7 +70,7 @@ def test_played_without_stats_is_graded_zero():
 def _synthetic_props(seed, p_under_disagree, weeks=12):
     """Per week: 40 DK-only quotes (under wins 50%) and 10 player-games where DK and BetRivers post lines one
     yard apart (under wins p_under_disagree). All at -110."""
-    from nflbet import props_confirm as C  # noqa: F401
+    from nflbet.props import confirm as C  # noqa: F401
     rng = np.random.default_rng(seed)
     rows = []
     for wk in range(1, weeks + 1):
@@ -86,7 +86,7 @@ def _synthetic_props(seed, p_under_disagree, weeks=12):
 
 
 def test_confirm_signal_found_noise_not():
-    from nflbet import props_confirm as C
+    from nflbet.props import confirm as C
     g = _synthetic_props(1, 0.70)
     bets, base = C.disagreement_bets(g), C.baseline(g)
     r = C.evaluate(bets["H1_under_at_highest_line"], base)

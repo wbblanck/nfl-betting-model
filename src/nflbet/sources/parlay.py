@@ -19,7 +19,8 @@ import urllib.request
 
 import polars as pl
 
-from nflbet.props import TEAM_FIX, norm_name
+from nflbet.quant.odds import no_vig_over
+from nflbet.sources.ids import TEAMS, TEAM_FIX, game_key, norm_name  # noqa: F401 - TEAMS kept as parlay.TEAMS for scripts
 
 URL = "https://parlay-api.com/v1/sports/americanfootball_nfl/props"
 BOOKS = {"draftkings": "dk", "fanduel": "fd"}
@@ -33,16 +34,6 @@ KEYS = {   # book's market key -> S1 market (keys as seen in the probe; FanDuel 
     "player_receptions": "rec",
     "player_passing_+_rushing_yards": "pass_rush_yds",
     "player_rushing_+_receiving_yards": "rush_rec_yds", "player_rush_reception_yds": "rush_rec_yds",
-}
-TEAMS = {
-    "Arizona Cardinals": "ARI", "Atlanta Falcons": "ATL", "Baltimore Ravens": "BAL", "Buffalo Bills": "BUF",
-    "Carolina Panthers": "CAR", "Chicago Bears": "CHI", "Cincinnati Bengals": "CIN", "Cleveland Browns": "CLE",
-    "Dallas Cowboys": "DAL", "Denver Broncos": "DEN", "Detroit Lions": "DET", "Green Bay Packers": "GB",
-    "Houston Texans": "HOU", "Indianapolis Colts": "IND", "Jacksonville Jaguars": "JAX", "Kansas City Chiefs": "KC",
-    "Las Vegas Raiders": "LV", "Los Angeles Chargers": "LAC", "Los Angeles Rams": "LA", "Miami Dolphins": "MIA",
-    "Minnesota Vikings": "MIN", "New England Patriots": "NE", "New Orleans Saints": "NO", "New York Giants": "NYG",
-    "New York Jets": "NYJ", "Philadelphia Eagles": "PHI", "Pittsburgh Steelers": "PIT", "Seattle Seahawks": "SEA",
-    "San Francisco 49ers": "SF", "Tampa Bay Buccaneers": "TB", "Tennessee Titans": "TEN", "Washington Commanders": "WAS",
 }
 AN_BOOKS = {"DK NJ": "dk", "FanDuel NJ": "fd"}
 SCHEMA = {"book": pl.Utf8, "game": pl.Utf8, "nkey": pl.Utf8, "player": pl.Utf8, "market": pl.Utf8, "line": pl.Float64,
@@ -58,11 +49,6 @@ def fetch(key: str | None = None) -> tuple[list, dict]:
     with urllib.request.urlopen(req, timeout=60) as r:
         hdr = {k: v for k, v in r.headers.items() if k.lower().startswith("x-requests")}
         return json.loads(r.read()), hdr
-
-
-def game_key(a: str, b: str) -> str:
-    """Teams in sorted order: neutral-site games may list home and away differently by source."""
-    return "|".join(sorted((a, b)))
 
 
 def parse(rows: list) -> pl.DataFrame:
@@ -130,12 +116,6 @@ def to_an_csv(pa: pl.DataFrame, season: int, week: int, path) -> int:
     return len(rows)
 
 
-def _p_over(o: float, u: float) -> float:
-    io = -o / (-o + 100) if o < 0 else 100 / (o + 100)
-    iu = -u / (-u + 100) if u < 0 else 100 / (u + 100)
-    return io / (io + iu)
-
-
 def compare(pa: pl.DataFrame, an: pl.DataFrame) -> list[dict]:
     """Per book: props at each source, props at both, share at the same line, and at the same line the mean absolute
     gap in de-vigged P(over) (points)."""
@@ -144,7 +124,7 @@ def compare(pa: pl.DataFrame, an: pl.DataFrame) -> list[dict]:
         x, y = pa.filter(pl.col("book") == b), an.filter(pl.col("book") == b)
         j = x.join(y, on=["game", "nkey", "market"], how="inner", suffix="_an")
         same = j.filter(pl.col("line") == pl.col("line_an"))
-        gap = [abs(_p_over(r["over"], r["under"]) - _p_over(r["over_an"], r["under_an"])) * 100 for r in same.iter_rows(named=True)]
+        gap = [abs(no_vig_over(r["over"], r["under"]) - no_vig_over(r["over_an"], r["under_an"])) * 100 for r in same.iter_rows(named=True)]
         res.append({"book": b, "n_parlay": x.height, "n_an": y.height, "n_both": j.height,
                     "same_line": same.height, "mean_p_gap_pts": round(sum(gap) / len(gap), 2) if gap else None})
     return res

@@ -1,10 +1,10 @@
-"""Known-answer checks for the per-pick reasons (src/nflbet/explain.py)."""
+"""Known-answer checks for the per-pick reasons (src/nflbet/props/explain.py)."""
 import gzip
 import json
 
 import polars as pl
 
-from nflbet import explain as Ex
+from nflbet.props import explain as Ex
 
 
 def test_stamp_matches_archive_names():

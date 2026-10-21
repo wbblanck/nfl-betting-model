@@ -14,23 +14,20 @@ from pathlib import Path
 import numpy as np
 import polars as pl
 
-from nflbet import config, props as P, props_confirm as C, screener as Sc
-from nflbet import player_proj as M
-from nflbet.props_projection import FIT_SEASON
-from nflbet.sim import Simulator, POS
+from nflbet import config
+from nflbet.execution.clock import now_utc, parse_ts  # noqa: F401 - also used as live.now_utc / live.parse_ts
+from nflbet.execution.records import append, before_kickoff  # noqa: F401 - append also used as live.append
+from nflbet.props import core as P
+from nflbet.props import confirm as C
+from nflbet.props import screener as Sc
+from nflbet.props import player_proj as M
+from nflbet.props.projection import FIT_SEASON
+from nflbet.props.sim import Simulator, POS
 
 LIVE = config.ROOT / "data" / "live"
 PICK_COLS = ["run_utc", "season", "week", "an_game_id", "start_time", "home", "away", "player", "player_id", "team",
              "market", "side",
              "line", "odds", "p_over_dk", "proj", "p_sim", "v_disagree", "v_proj", "v_sim", "v_price"]
-
-
-def now_utc() -> dt.datetime:
-    return dt.datetime.now(dt.timezone.utc)
-
-
-def parse_ts(s: str) -> dt.datetime:
-    return dt.datetime.fromisoformat(s.replace("Z", "+00:00"))
 
 
 def current_week(season: int) -> int | None:
@@ -114,14 +111,6 @@ def run(season: int, lines_path: Path, when: dt.datetime | None = None) -> tuple
     return picks, log.select("run_utc", "season", "week", "an_game_id", "start_time", "home", "away", "props_scored")
 
 
-def append(df: pl.DataFrame, path: Path) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if path.exists() and path.stat().st_size:
-        old = pl.read_csv(path, infer_schema_length=0)
-        df = pl.concat([old, df.select([pl.col(c).cast(pl.Utf8) for c in df.columns])], how="diagonal_relaxed")
-    df.write_csv(path)
-
-
 # --------------------------------------------------------------------------------------------- grading
 
 def official(picks: pl.DataFrame, runs: pl.DataFrame, coverage_guard: float | None = None) -> pl.DataFrame:
@@ -129,8 +118,7 @@ def official(picks: pl.DataFrame, runs: pl.DataFrame, coverage_guard: float | No
     coverage_guard (the ParlayAPI record only, docs/s1_live_rules.md): a run counts for a game only if it scored at
     least this share of the most props any earlier run that week scored for that game, so a thin feed snapshot does
     not erase a pick."""
-    r = runs.filter(pl.col("run_utc").map_elements(parse_ts, return_dtype=pl.Datetime("us", "UTC"))
-                    < pl.col("start_time").map_elements(parse_ts, return_dtype=pl.Datetime("us", "UTC")))
+    r = before_kickoff(runs)
     if coverage_guard is not None and "props_scored" in r.columns:
         r = r.with_columns(pl.col("props_scored").cast(pl.Float64)).sort("run_utc")
         r = r.filter(pl.col("props_scored") >= coverage_guard * pl.col("props_scored").cum_max().over("an_game_id"))

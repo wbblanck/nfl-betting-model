@@ -8,8 +8,8 @@ from __future__ import annotations
 import numpy as np
 import polars as pl
 
-from nflbet import props as P
-from nflbet import props_confirm as C
+from nflbet.props import core as P
+from nflbet.props import confirm as C
 
 RULES = {
     "R1_three_plus_books": pl.col("nb") >= 3,

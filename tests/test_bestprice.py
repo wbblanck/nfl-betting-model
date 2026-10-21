@@ -1,10 +1,10 @@
-"""Known-answer checks for the best-price record (src/nflbet/bestprice.py) and the venue pricing (src/nflbet/venues.py)."""
+"""Known-answer checks for the best-price record (src/nflbet/props/bestprice.py) and the venue pricing (src/nflbet/sources/venues.py)."""
 import json
 
 import polars as pl
 
-from nflbet import bestprice as Bp
-from nflbet import venues as V
+from nflbet.props import bestprice as Bp
+from nflbet.sources import venues as V
 
 PICK = {"run_utc": "2026-10-18T15:50:00Z", "season": 2026, "week": 6, "an_game_id": "300001", "start_time": "2026-10-18T17:00:00.000Z",
         "home": "NO", "away": "MIN", "player": "Aaron Jones Sr.", "player_id": "00-0033293", "market": "rec", "line": 3.5,

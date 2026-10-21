@@ -12,8 +12,10 @@ import sys
 import numpy as np
 import polars as pl
 
-from nflbet import config, espn as E, props as P
-from nflbet import props_projection as R
+from nflbet import config
+from nflbet.sources import espn as E
+from nflbet.props import core as P
+from nflbet.props import projection as R
 
 
 def main() -> None:

@@ -15,7 +15,7 @@ import numpy as np
 import polars as pl
 
 from nflbet import config
-from nflbet import props as P
+from nflbet.props import core as P
 
 OUT = config.ROOT / "docs" / "props_explore_2024.txt"
 

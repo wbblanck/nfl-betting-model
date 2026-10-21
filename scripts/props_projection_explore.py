@@ -8,8 +8,9 @@ import numpy as np
 import polars as pl
 
 from nflbet import config
-from nflbet import props as P, props_confirm as C
-from nflbet import player_proj as M
+from nflbet.props import core as P
+from nflbet.props import confirm as C
+from nflbet.props import player_proj as M
 
 
 def bets(season: int, proj: pl.DataFrame) -> pl.DataFrame:

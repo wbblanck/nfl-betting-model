@@ -19,9 +19,19 @@ Interim 2026 numbers (descriptive only): `docs/grade_2026.md`, refreshed every T
 ## Layout
 
 - `scripts/fetch/an_props.py` fetch one season (refuses held-out seasons without a pre-registration)
-- `src/nflbet/props.py` join lines to nflverse outcomes; data checks
-- `src/nflbet/props_confirm.py`, `props_selective.py`, `props_projection.py` the rules
-- `src/nflbet/player_proj.py` pre-game projection (usage, implied team points, opponent allowance)
+- `src/nflbet/` one package in layers; each layer imports only the ones above it (`tests/test_foundation.py`):
+  - `quant/` shared odds and fee arithmetic (implied probability, de-vig, American/decimal, profit, taker fee)
+  - `execution/` shared run clock and run/record files for the live trackers (runs pipelines; places no bets)
+  - `sources/` one reader per feed (Action Network archives, ParlayAPI, OpenMarkets, Polymarket US, Novig, Kalshi,
+    ESPN, nflverse team stats, SBRO and ASB odds files), the HTTP client, and team/name keys (`ids.py`)
+  - `props/` player-prop research and the S1 tracker: `core.py` joins lines to nflverse outcomes; `confirm.py`,
+    `selective.py`, `projection.py` the rules; `player_proj.py`, `sim.py`, `screener.py`; `live.py` (S1),
+    `bestprice.py`, `explain.py`, `recap.py`
+  - `ats/` spread rating (`rating.py`) and the live ATS tracker (`live.py`)
+  - `dashboard.py` the tracker page, built from both trackers' records
+- Pre-registrations and reports written before 2026-10-21 name modules by their old flat paths
+  (`src/nflbet/props.py` is now `props/core.py`, `props_confirm.py` is `props/confirm.py`, and so on); the
+  commit that moved them keeps each file's history (`git log --follow`).
 - `scripts/grade_2026.py` grades R1-R3 and P1
 - `docs/` pre-registrations, exploration output, reports; `docs/PROVENANCE.md` for where and when each was committed
 

@@ -17,7 +17,12 @@ from zoneinfo import ZoneInfo
 
 import polars as pl
 
-from nflbet import bestprice as Bp, config, explain as Ex, live as Lv
+from nflbet import config
+from nflbet.quant.odds import implied as break_even
+from nflbet.sources.ids import TEAM_FIX
+from nflbet.props import bestprice as Bp
+from nflbet.props import explain as Ex
+from nflbet.props import live as Lv
 
 ET = ZoneInfo("America/New_York")
 SEASON = 2026
@@ -68,10 +73,6 @@ def _json(path: Path) -> dict | None:
 
 
 # ------------------------------------------------------------------------------------------------ numbers
-
-def break_even(odds: float) -> float:
-    return -odds / (-odds + 100) if odds < 0 else 100 / (odds + 100)
-
 
 def with_probs(rec: pl.DataFrame) -> pl.DataFrame:
     """break-even (price incl. vig), market (DraftKings de-vigged) and model win probability for the side taken.
@@ -186,7 +187,6 @@ def esc(x) -> str:
 
 
 COVERAGE_GLOB = "coverage_fantasypoints_2026_w1-*.csv"
-TEAM_FIX = {"JAC": "JAX", "LAR": "LA", "WSH": "WAS"}
 
 
 def coverage_for_pick(r: dict, ext: Path | None = None) -> str:
@@ -252,7 +252,7 @@ def pick_row(r: dict, locked: bool, tag: str = "") -> str:
 
 
 def with_best(rows: list[dict], best: pl.DataFrame | None) -> list[dict]:
-    """Attach each pick's best-price row (data/live/s1_bestprice_2026.csv, src/nflbet/bestprice.py) from the same run."""
+    """Attach each pick's best-price row (data/live/s1_bestprice_2026.csv, src/nflbet/props/bestprice.py) from the same run."""
     if best is None or not best.height:
         return rows
     idx = {(b["run_utc"], str(b["an_game_id"]), str(b["player_id"]), b["market"], float(b["line"]), b["side"]): b
@@ -346,7 +346,7 @@ BEST_VENUES = ("DraftKings, FanDuel, BetMGM, BetRivers and Caesars (Action Netwo
 
 
 def best_price_card(best: pl.DataFrame | None) -> str:
-    """Latest run's best-price record (src/nflbet/bestprice.py): which venue was cheapest, by how much vs DraftKings."""
+    """Latest run's best-price record (src/nflbet/props/bestprice.py): which venue was cheapest, by how much vs DraftKings."""
     note = (f'<p class="note">Record only: S1 is graded at the DraftKings price. Cost per $1 of payout, after fees, at the pick\'s '
             f'exact line and side, from {esc(BEST_VENUES)}. An exchange price needs ${Bp.MIN_SIZE:.0f} of payout behind it to count. '
             'OpenMarkets\' Kalshi, ProphetX and BettorEdge prices are listed before fees and never count.</p>')
@@ -391,13 +391,13 @@ def ftn_context(week: int) -> dict | None:
     """Season-to-date FTN team stats before `week` (cached per build); None when unavailable offline."""
     if "tg" not in _FTN:
         try:
-            from nflbet import teamstats as T
+            from nflbet.sources import teamstats as T
             _FTN["tg"] = T.ftn([SEASON])
         except Exception:  # noqa: BLE001
             _FTN["tg"] = None
     if _FTN["tg"] is None or not _FTN["tg"].height:
         return None
-    from nflbet import teamstats as T
+    from nflbet.sources import teamstats as T
     s = T.season_to_date(_FTN["tg"], SEASON, week)
     if not s.height:
         return None
@@ -406,7 +406,7 @@ def ftn_context(week: int) -> dict | None:
 
 
 def with_why(rows: list[dict], live: Path, source: str, stats: pl.DataFrame | None) -> list[dict]:
-    """Attach the plain-language reasons (src/nflbet/explain.py) to each pick row."""
+    """Attach the plain-language reasons (src/nflbet/props/explain.py) to each pick row."""
     out = []
     for r in rows:
         try:
@@ -424,7 +424,7 @@ def with_why(rows: list[dict], live: Path, source: str, stats: pl.DataFrame | No
 
 def load_stats() -> pl.DataFrame | None:
     try:
-        from nflbet import props as P
+        from nflbet.props import core as P
         return P.load_stats(SEASON)
     except Exception:  # noqa: BLE001 - offline build: picks show without recent games
         return None

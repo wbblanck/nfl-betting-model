@@ -1,4 +1,4 @@
-"""Live player-prop prices from Polymarket US and Novig, for the best-price record (src/nflbet/bestprice.py) and the
+"""Live player-prop prices from Polymarket US and Novig, for the best-price record (src/nflbet/props/bestprice.py) and the
 comparison scripts (scripts/polymarket_compare.py, scripts/novig_compare.py). Public endpoints, no keys, read-only.
 
 Polymarket US (gateway.polymarket.us): each game is fetched by slug from /v1/events/slug/{slug}; the search returns
@@ -15,19 +15,16 @@ the game is live on WHEN_LIVE markets (pregame: none) and always on ALWAYS marke
 from __future__ import annotations
 
 import datetime as dt
-import json
 import re
-import time
 import urllib.error
 import urllib.parse
 import urllib.request
 
 import polars as pl
 
-from nflbet import parlay as Pa
-from nflbet.props import norm_name
-
-UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+from nflbet.quant.fees import taker_fee
+from nflbet.sources.http import BROWSER_UA as UA, RESEARCH_UA, get_json
+from nflbet.sources.ids import TEAMS, game_key, norm_name
 
 # ------------------------------------------------------------------------------------------------ Polymarket US
 PM = "https://gateway.polymarket.us"
@@ -39,8 +36,7 @@ SLUG_CODE = {"LA": "lar"}      # nflverse -> Polymarket event-slug code where th
 
 
 def pm_get(path: str):
-    with urllib.request.urlopen(urllib.request.Request(f"{PM}{path}", headers={"User-Agent": UA}), timeout=60) as r:
-        return json.loads(r.read())
+    return get_json(f"{PM}{path}", {"User-Agent": UA})
 
 
 def pm_game(title: str) -> str | None:
@@ -48,7 +44,7 @@ def pm_game(title: str) -> str | None:
     matched by its nickname (last word) to parlay.TEAMS, the same abbreviations the book lines use. None if unmapped."""
     def ab(side: str) -> str | None:
         nick = side.split()[-1]
-        hits = {v for k, v in Pa.TEAMS.items() if k.split()[-1] == nick}
+        hits = {v for k, v in TEAMS.items() if k.split()[-1] == nick}
         return hits.pop() if len(hits) == 1 else None
     if " vs. " not in title:
         return None
@@ -151,7 +147,7 @@ def pm_sizes(slug: str) -> dict[str, float]:
 
 
 def pm_fee(p: float, coef: float = PM_FEE) -> float:
-    return coef * p * (1 - p)
+    return taker_fee(coef, p)
 
 
 # ------------------------------------------------------------------------------------------------ Novig
@@ -164,17 +160,7 @@ NV_DESC = re.compile(r"^(.+?) (\d+(?:\.\d+)?) ([A-Z_]+)$")       # 'Keenan Allen
 
 def nv_get(path: str, **q):
     url = NV + path + (("?" + urllib.parse.urlencode(q)) if q else "")
-    for i in range(4):
-        try:
-            time.sleep(0.15)
-            req = urllib.request.Request(url, headers={"User-Agent": "nfl-betting-model/1.0 (read-only research)", "Accept": "application/json"})
-            with urllib.request.urlopen(req, timeout=60) as r:
-                return json.loads(r.read())
-        except urllib.error.HTTPError as e:
-            if e.code == 429 and i < 3:
-                time.sleep(5 * 2 ** i)
-                continue
-            raise
+    return get_json(url, {"User-Agent": RESEARCH_UA, "Accept": "application/json"}, pace=0.15, retries_429=3, backoff=5)
 
 
 def nv_game(desc: str) -> str | None:
@@ -182,8 +168,8 @@ def nv_game(desc: str) -> str | None:
     parts = desc.split(" @ ")
     if len(parts) != 2:
         return None
-    a, h = (Pa.TEAMS.get(x.strip()) for x in parts)
-    return Pa.game_key(a, h) if a and h else None
+    a, h = (TEAMS.get(x.strip()) for x in parts)
+    return game_key(a, h) if a and h else None
 
 
 def nv_markets(now: dt.datetime) -> tuple[list[dict], dict[str, dict]]:
@@ -243,7 +229,7 @@ def nv_fee(m: dict, p: float) -> float:
     f = m.get("fee") or {}
     live = (m.get("_event") or {}).get("status") == "OPEN_INGAME"
     if f.get("charged") == "ALWAYS" or (f.get("charged") == "WHEN_LIVE" and live):
-        return float(f.get("coefficient") or 0) * p * (1 - p)
+        return taker_fee(float(f.get("coefficient") or 0), p)
     return 0.0
 
 
@@ -264,17 +250,7 @@ KS_SUB = re.compile(r"^(.+?):\s*(\d+)\+$")                    # 'Sam Darnold: 35
 def ks_get(path: str, **q):
     """Paced 0.25 s apart: without a key, back-to-back requests drew HTTP 429 after about 15 (2026-10-15)."""
     url = KS + path + (("?" + urllib.parse.urlencode(q)) if q else "")
-    for i in range(4):
-        try:
-            time.sleep(0.25)
-            req = urllib.request.Request(url, headers={"User-Agent": "nfl-betting-model/1.0 (read-only research)", "Accept": "application/json"})
-            with urllib.request.urlopen(req, timeout=60) as r:
-                return json.loads(r.read())
-        except urllib.error.HTTPError as e:
-            if e.code == 429 and i < 3:
-                time.sleep(2 * 2 ** i)
-                continue
-            raise
+    return get_json(url, {"User-Agent": RESEARCH_UA, "Accept": "application/json"}, pace=0.25, retries_429=3, backoff=2)
 
 
 def ks_game(ticker: str) -> str | None:
@@ -283,12 +259,12 @@ def ks_game(ticker: str) -> str | None:
     parts = ticker.split("-")
     if len(parts) < 2 or len(parts[1]) < 11:
         return None
-    s, codes = parts[1][7:], set(Pa.TEAMS.values()) | set(KS_TEAM)
+    s, codes = parts[1][7:], set(TEAMS.values()) | set(KS_TEAM)
     splits = [(s[:i], s[i:]) for i in (2, 3) if s[:i] in codes and s[i:] in codes]
     if len(splits) != 1:
         return None
     a, b = (KS_TEAM.get(c, c) for c in splits[0])
-    return Pa.game_key(a, b)
+    return game_key(a, b)
 
 
 def ks_markets() -> list[dict]:
@@ -339,4 +315,4 @@ def ks_quotes(markets: list[dict]) -> dict[tuple, dict]:
 
 def ks_fee(p: float, mult: float) -> float:
     """Kalshi taker fee per $1 of payout at price p (before the per-fill rounding up to the cent)."""
-    return mult * 0.07 * p * (1 - p)
+    return taker_fee(mult * 0.07, p)

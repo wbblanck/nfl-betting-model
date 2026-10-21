@@ -1,4 +1,4 @@
-"""Check the direct Kalshi read (src/nflbet/venues.py ks_markets / ks_quotes) before it counts in the best-price record.
+"""Check the direct Kalshi read (src/nflbet/sources/venues.py ks_markets / ks_quotes) before it counts in the best-price record.
 
 1. Parsing: how many open markets of the S1 prop series parse to (game, player, market, line); the line must equal the
    market's floor_strike; unparsed examples are saved.
@@ -21,9 +21,11 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, "src")
-from nflbet import openmarkets as Om, parlay as Pa, venues as V  # noqa: E402
-from nflbet.bestprice import MIN_SIZE, imp  # noqa: E402
-from nflbet.props import norm_name  # noqa: E402
+from nflbet.sources import openmarkets as Om  # noqa: E402
+from nflbet.sources import parlay as Pa  # noqa: E402
+from nflbet.sources import venues as V  # noqa: E402
+from nflbet.props.bestprice import MIN_SIZE, imp  # noqa: E402
+from nflbet.props.core import norm_name  # noqa: E402
 
 
 def main() -> None:

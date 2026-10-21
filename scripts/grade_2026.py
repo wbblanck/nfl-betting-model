@@ -12,10 +12,10 @@ import json
 import polars as pl
 
 from nflbet import config
-from nflbet import props_projection as R
-from nflbet import props_selective as S
-from nflbet import screener as Sc
-from nflbet.sim import Simulator
+from nflbet.props import projection as R
+from nflbet.props import selective as S
+from nflbet.props import screener as Sc
+from nflbet.props.sim import Simulator
 
 SEASON = 2026
 

@@ -2,7 +2,7 @@
 import numpy as np
 import polars as pl
 
-from nflbet import sim as S
+from nflbet.props import sim as S
 
 
 def _pg(n=10, tgt=8.0, rec=6.0, yds=60.0, last_yds=60.0):
@@ -36,7 +36,7 @@ def test_simulated_means_match_rates():
 
 
 def test_center_matches_market_and_recovers_shape():
-    from nflbet import ladder as L
+    from nflbet.props import ladder as L
     rng = np.random.default_rng(3)
     true = rng.gamma(4.0, 15.0, 200000)                      # "real" yards distribution, mean 60
     sim = rng.gamma(4.0, 15.0, 200000) * 0.8                 # simulator with the right shape, mean 20% too low

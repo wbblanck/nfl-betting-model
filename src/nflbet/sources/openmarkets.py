@@ -12,17 +12,16 @@ points on average; median fillable amount $76-$200. One call per game per run (a
 from __future__ import annotations
 
 import datetime as dt
-import json
 import os
 import re
-import time
 import urllib.parse
 import urllib.request
 
 import polars as pl
 
-from nflbet.parlay import TEAMS, game_key
-from nflbet.props import TEAM_FIX, norm_name
+from nflbet.quant.odds import american_from_prob as american, no_vig_over
+from nflbet.sources.http import get_json
+from nflbet.sources.ids import TEAMS, TEAM_FIX, game_key, norm_name
 
 BASE = "https://api.openmarkets.ai/flow/v1"
 MARKETS = {"player_receptions": "rec", "player_receiving_yards": "rec_yds", "player_rushing_yards": "rush_yds",
@@ -36,10 +35,7 @@ SCHEMA = {"venue": pl.Utf8, "game": pl.Utf8, "nkey": pl.Utf8, "player": pl.Utf8,
 
 def _get(path: str, key: str, **q):
     url = f"{BASE}{path}" + (("?" + urllib.parse.urlencode(q)) if q else "")
-    time.sleep(1.0)
-    req = urllib.request.Request(url, headers={"X-API-Key": key, "Accept": "application/json", "User-Agent": "nfl-betting-model/1.0"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.loads(r.read())
+    return get_json(url, {"X-API-Key": key, "Accept": "application/json", "User-Agent": "nfl-betting-model/1.0"}, pace=1.0)
 
 
 def fetch(key: str | None = None, now: dt.datetime | None = None, days: int = 8, spreads: bool = True) -> list[dict]:
@@ -100,17 +96,6 @@ def parse(rows: list[dict]) -> pl.DataFrame:
     return pl.DataFrame(out, schema=SCHEMA)
 
 
-def american(p: float) -> float:
-    """Price as a probability (cost of a share paying 1) -> American odds."""
-    return -100 * p / (1 - p) if p >= 0.5 else 100 * (1 - p) / p
-
-
-def _nv(o: float, u: float) -> float:
-    io = -o / (-o + 100) if o < 0 else 100 / (o + 100)
-    iu = -u / (-u + 100) if u < 0 else 100 / (u + 100)
-    return io / (io + iu)
-
-
 def compare(om: pl.DataFrame, dk: pl.DataFrame) -> list[dict]:
     """Per venue against DraftKings at DK's exact line. dk: parlay.parse/an_lines shape filtered to book 'dk'.
     n_both = DK props with a two-sided venue quote at that line; gap = mean |no-vig P(over) difference| in points;
@@ -121,7 +106,7 @@ def compare(om: pl.DataFrame, dk: pl.DataFrame) -> list[dict]:
         gaps, depth = [], []
         for r in j.iter_rows(named=True):
             pv = r["p_over"] / (r["p_over"] + r["p_under"])
-            gaps.append(abs(_nv(r["over"], r["under"]) - pv) * 100)
+            gaps.append(abs(no_vig_over(r["over"], r["under"]) - pv) * 100)
             depth.append(min(r["avail_over"], r["avail_under"]))
         res.append({"venue": ven, "n_dk": dk.height, "n_both": j.height,
                     "mean_gap_pts": round(sum(gaps) / len(gaps), 2) if gaps else None,

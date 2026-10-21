@@ -8,8 +8,13 @@ import json
 import numpy as np
 import polars as pl
 
-from nflbet import config, props as P, props_confirm as C, props_projection as R, props_selective as S, screener as Sc
-from nflbet.sim import Simulator
+from nflbet import config
+from nflbet.props import core as P
+from nflbet.props import confirm as C
+from nflbet.props import projection as R
+from nflbet.props import selective as S
+from nflbet.props import screener as Sc
+from nflbet.props.sim import Simulator
 
 FAMILY = 12
 LEVEL = 0.025 / FAMILY

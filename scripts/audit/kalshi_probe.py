@@ -24,7 +24,7 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, "src")
-from nflbet import openmarkets as Om  # noqa: E402
+from nflbet.sources import openmarkets as Om  # noqa: E402
 
 HOSTS = ["https://external-api.kalshi.com/trade-api/v2", "https://api.elections.kalshi.com/trade-api/v2"]
 UA = "nfl-betting-model/1.0 (read-only research)"
