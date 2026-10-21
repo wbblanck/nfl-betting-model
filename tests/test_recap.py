@@ -1,7 +1,7 @@
-"""Known-answer checks for the weekly recap split (src/nflbet/recap.py)."""
+"""Known-answer checks for the weekly recap split (src/nflbet/props/recap.py)."""
 import polars as pl
 
-from nflbet import recap as R
+from nflbet.props import recap as R
 
 
 def test_shapley_two_and_three_factors():

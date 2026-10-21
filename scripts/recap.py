@@ -3,7 +3,8 @@ import sys
 
 import polars as pl
 
-from nflbet import live as Lv, recap
+from nflbet.props import live as Lv
+from nflbet.props import recap
 
 if __name__ == "__main__":
     rec = pl.read_csv(Lv.LIVE / "s1_record_2026.csv", infer_schema_length=0)

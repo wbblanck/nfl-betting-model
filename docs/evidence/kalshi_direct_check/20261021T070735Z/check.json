@@ -1,0 +1,207 @@
+{
+ "stamp": "20261021T070735Z",
+ "kalshi_read_utc": "2026-10-21T07:07:41Z",
+ "parse": {
+  "open_markets": 1036,
+  "parsed": 1036,
+  "unparsed": 0,
+  "duplicate_keys": 0,
+  "by_series": {
+   "KXNFLREC": 80,
+   "KXNFLRECYDS": 508,
+   "KXNFLRSHYDS": 276,
+   "KXNFLRSHATT": 15,
+   "KXNFLPASSYDS": 145,
+   "KXNFLPASSATT": 6,
+   "KXNFLPASSCOMP": 6
+  },
+  "fee": [
+   "quadratic|1"
+  ],
+  "floor_strike_mismatch": 0,
+  "floor_strike_examples": [],
+  "unparsed_examples": []
+ },
+ "openmarkets_read_utc": "2026-10-21T07:07:35Z",
+ "vs_openmarkets": {
+  "quotes": 1980,
+  "om_key_unparsed": 0,
+  "key_found": 1980,
+  "ticker_same": 1980,
+  "ticker_other": 0,
+  "ticker_not_in_direct": 0,
+  "price_same": 1974,
+  "size_same": 1969,
+  "compared": 1980,
+  "misses": [],
+  "price_or_size_diffs": [
+   {
+    "ticker": "KXNFLRSHYDS-26OCT22NECHI-NEDMAYE10-15",
+    "side": "over",
+    "direct": [
+     0.8,
+     6.0
+    ],
+    "om": [
+     0.8,
+     17
+    ]
+   },
+   {
+    "ticker": "KXNFLPASSATT-26OCT22NECHI-NEDMAYE10-32",
+    "side": "over",
+    "direct": [
+     0.5,
+     1308.0
+    ],
+    "om": [
+     0.5,
+     1300
+    ]
+   },
+   {
+    "ticker": "KXNFLRSHYDS-26OCT22NECHI-CHICWILLIAMS18-15",
+    "side": "over",
+    "direct": [
+     0.65,
+     2.0
+    ],
+    "om": [
+     0.65,
+     7
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT22NECHI-NEDDOUGLAS3-60",
+    "side": "over",
+    "direct": [
+     0.25,
+     500.0
+    ],
+    "om": [
+     0.24,
+     500
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT22NECHI-NEDDOUGLAS3-70",
+    "side": "under",
+    "direct": [
+     0.85,
+     18.0
+    ],
+    "om": [
+     0.85,
+     39
+    ]
+   },
+   {
+    "ticker": "KXNFLPASSCOMP-26OCT22NECHI-NEDMAYE10-17",
+    "side": "over",
+    "direct": [
+     0.84,
+     26.0
+    ],
+    "om": [
+     0.84,
+     40
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT25PITNO-NOCOLAVE12-100",
+    "side": "over",
+    "direct": [
+     0.28,
+     1.0
+    ],
+    "om": [
+     0.29,
+     1
+    ]
+   },
+   {
+    "ticker": "KXNFLRSHYDS-26OCT25PITNO-PITARODGERS8-20",
+    "side": "under",
+    "direct": [
+     0.96,
+     18.0
+    ],
+    "om": [
+     0.96,
+     17
+    ]
+   },
+   {
+    "ticker": "KXNFLRSHYDS-26OCT25PITNO-PITARODGERS8-20",
+    "side": "over",
+    "direct": [
+     0.11,
+     6.0
+    ],
+    "om": [
+     0.12,
+     502
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT25INDMIN-INDJTAYLOR28-40",
+    "side": "under",
+    "direct": [
+     0.97,
+     26.0
+    ],
+    "om": [
+     0.94,
+     1
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT25GBDET-GBTKRAFT85-25",
+    "side": "over",
+    "direct": [
+     0.82,
+     228.0
+    ],
+    "om": [
+     0.81,
+     25
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26OCT25LARLV-LARTHIGBEE89-80",
+    "side": "under",
+    "direct": [
+     0.96,
+     25.0
+    ],
+    "om": [
+     0.94,
+     1
+    ]
+   },
+   {
+    "ticker": "KXNFLPASSYDS-26OCT25KCSEA-SEASDARNOLD14-275",
+    "side": "over",
+    "direct": [
+     0.26,
+     449.0
+    ],
+    "om": [
+     0.26,
+     825
+    ]
+   }
+  ]
+ },
+ "vs_books": {
+  "snapshot": "20261020T0005Z_w6.json.gz",
+  "sides": 20,
+  "kalshi_cheapest": 10,
+  "edge_cents_vs_best_book": {
+   "median": 0.72,
+   "p10": -1.59,
+   "p90": 4.77,
+   "over_10c": 0
+  }
+ }
+}

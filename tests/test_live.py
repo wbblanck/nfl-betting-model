@@ -1,7 +1,7 @@
 """Known-answer checks for the S1 live tracker's grading."""
 import polars as pl
 
-from nflbet import live as Lv
+from nflbet.props import live as Lv
 
 
 def _picks():
@@ -55,7 +55,7 @@ def test_settle_results_and_units():
 def test_load_lines_ignores_in_play_lines_of_started_games(tmp_path):
     """A game in progress carries several live lines per prop; the one-line-per-book guard must not stop a run that
     only scores games not yet started (2026-10-04: the 11:50 AM ET run failed on IND@WAS in-play lines)."""
-    from nflbet import props as P
+    from nflbet.props import core as P
 
     cols = ["season", "week", "an_game_id", "start_time", "home", "away", "market", "an_player_id", "player", "player_team",
             "book_id", "line", "over_odds", "under_odds", "yes_odds"]

@@ -12,8 +12,13 @@ import polars as pl
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent))
 import accuracy_eval as A  # noqa: E402
 
-from nflbet import config, props as P, props_confirm as C, props_projection as R, props_selective as S, screener as Sc  # noqa: E402
-from nflbet.sim import Simulator  # noqa: E402
+from nflbet import config  # noqa: E402
+from nflbet.props import core as P  # noqa: E402
+from nflbet.props import confirm as C  # noqa: E402
+from nflbet.props import projection as R  # noqa: E402
+from nflbet.props import selective as S  # noqa: E402
+from nflbet.props import screener as Sc  # noqa: E402
+from nflbet.props.sim import Simulator  # noqa: E402
 
 MARKETS = A.MARKETS
 

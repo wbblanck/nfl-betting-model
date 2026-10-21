@@ -17,7 +17,7 @@ from __future__ import annotations
 import numpy as np
 import polars as pl
 
-from nflbet.props import STAT
+from nflbet.props.core import STAT
 
 HALF_LIFE = 4.0
 SHRINK = 4.0

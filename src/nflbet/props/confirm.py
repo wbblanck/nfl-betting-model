@@ -16,7 +16,7 @@ from __future__ import annotations
 import numpy as np
 import polars as pl
 
-from nflbet import props as P
+from nflbet.props import core as P
 
 KEY = ["player_id", "week", "market"]
 EXCLUDE = ["pass_td", "pass_int"]

@@ -1,11 +1,11 @@
 name: Kalshi direct check
-# Read-only: the direct Kalshi read in src/nflbet/venues.py vs OpenMarkets' Kalshi tickers and prices, and vs DK/FD
+# Read-only: the direct Kalshi read in src/nflbet/sources/venues.py vs OpenMarkets' Kalshi tickers and prices, and vs DK/FD
 # (scripts/audit/kalshi_direct_check.py). No Kalshi key.
 on:
   workflow_dispatch:
   push:
     branches-ignore: [main]
-    paths: ['scripts/audit/kalshi_direct_check.py', 'src/nflbet/venues.py', '.github/workflows/kalshi-direct-check.yml']
+    paths: ['scripts/audit/kalshi_direct_check.py', 'src/nflbet/sources/venues.py', 'src/nflbet/sources/http.py', 'src/nflbet/quant/**', '.github/workflows/kalshi-direct-check.yml']
 permissions:
   contents: write
 concurrency:

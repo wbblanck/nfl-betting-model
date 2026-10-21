@@ -10,14 +10,13 @@ since 2026-10-02 15:26 UTC, 2.5 h before the week-4 run that picked Braelon Alle
 """
 from __future__ import annotations
 
-import json
 import re
-import urllib.request
 
 import polars as pl
 
+from nflbet.sources.http import BROWSER_UA as UA, get_json
+
 SITE = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries"
-UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 ABSENT = {"Out", "Doubtful", "Injured Reserve", "Suspension", "Physically Unable to Perform"}
 SHOWN = ABSENT | {"Questionable"}
 GROUP = {"QB": "QB", "RB": "RB", "FB": "RB", "WR": "REC", "TE": "REC"}
@@ -27,9 +26,7 @@ FLAG_COLS = ["inj_self", "inj_teammates", "inj_against"]
 
 
 def fetch() -> dict:
-    req = urllib.request.Request(SITE, headers={"User-Agent": UA, "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=45) as r:
-        return json.loads(r.read())
+    return get_json(SITE, {"User-Agent": UA, "Accept": "application/json"}, timeout=45)
 
 
 def parse(body: dict) -> pl.DataFrame:

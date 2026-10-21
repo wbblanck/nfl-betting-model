@@ -12,8 +12,11 @@ import sys
 import numpy as np
 import polars as pl
 
-from nflbet import config, ladder as L, props as P, props_confirm as C
-from nflbet.sim import Simulator
+from nflbet import config
+from nflbet.props import ladder as L
+from nflbet.props import core as P
+from nflbet.props import confirm as C
+from nflbet.props.sim import Simulator
 
 
 def main() -> None:

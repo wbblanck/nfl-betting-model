@@ -11,7 +11,8 @@ import polars as pl
 sys.path.insert(0, str(Path(__file__).parent))
 import ats_clv as C  # noqa: E402
 
-from nflbet import ats as A, config  # noqa: E402
+from nflbet import config  # noqa: E402
+from nflbet.ats import rating as A  # noqa: E402
 
 
 def frame(seasons, k):

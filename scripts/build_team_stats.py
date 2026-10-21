@@ -1,9 +1,10 @@
-"""Build data/external/team_pass_participation_2016_2025.csv and team_ftn_<years>.csv (src/nflbet/teamstats.py)."""
+"""Build data/external/team_pass_participation_2016_2025.csv and team_ftn_<years>.csv (src/nflbet/sources/teamstats.py)."""
 from __future__ import annotations
 
 import datetime as dt
 
-from nflbet import config, teamstats as T
+from nflbet import config
+from nflbet.sources import teamstats as T
 
 
 def main() -> None:

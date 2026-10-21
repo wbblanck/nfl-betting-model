@@ -1,8 +1,8 @@
-"""Known-answer checks for the OpenMarkets record (src/nflbet/openmarkets.py)."""
+"""Known-answer checks for the OpenMarkets record (src/nflbet/sources/openmarkets.py)."""
 import polars as pl
 
-from nflbet import openmarkets as Om
-from nflbet import parlay as Pa
+from nflbet.sources import openmarkets as Om
+from nflbet.sources import parlay as Pa
 
 
 def _pos(side, line, quotes, mk="player_receptions", name="Aaron Jones Sr."):

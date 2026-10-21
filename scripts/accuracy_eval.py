@@ -7,8 +7,10 @@ import json
 import numpy as np
 import polars as pl
 
-from nflbet import config, player_proj as M, props_projection as R
-from nflbet.sim import Simulator
+from nflbet import config
+from nflbet.props import player_proj as M
+from nflbet.props import projection as R
+from nflbet.props.sim import Simulator
 
 MARKETS = ["rec", "rec_yds", "rush_att", "rush_yds", "rush_rec_yds", "pass_att", "pass_cmp", "pass_yds", "pass_rush_yds"]
 FLOOR = {"rec": 2, "rec_yds": 20, "rush_att": 6, "rush_yds": 25, "rush_rec_yds": 30, "pass_att": 20, "pass_cmp": 12,

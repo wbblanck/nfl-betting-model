@@ -31,12 +31,12 @@ on closing-line value and ATS result. It goes live only after its pre-registered
   first initial; never guess.
 - **Injury news is invisible to the model** (it projects from past usage) and **nflverse injury reports lag**: on
   Friday night of 2026 week 4 they had game statuses for 9 of 291 rows, while ESPN listed Breece Hall Out from
-  15:26 UTC that Friday. Live statuses come from ESPN's site API (`nflbet.injuries`); the S1 tracker flags picks
+  15:26 UTC that Friday. Live statuses come from ESPN's site API (`nflbet.sources.injuries`); the S1 tracker flags picks
   with injury news against them. ESPN depth charts do NOT track injuries (9 listed offensive starters were Out on
-  2026-10-03); use them only for healthy starter changes (`nflbet.depth`).
+  2026-10-03); use them only for healthy starter changes (`nflbet.sources.depth`).
 - **ParlayAPI NFL props:** an unfiltered call stops at its 10,000-row cap (mostly correct-score and milestone rows),
   so filter by `bookmakers` and `markets`; each book files a market under its own key (DK `player_receiving_yards`,
-  FanDuel `player_rec_yds`; map in `nflbet.parlay.KEYS`). Free tier: 1,000 requests a month, 3 per props call.
+  FanDuel `player_rec_yds`; map in `nflbet.sources.parlay.KEYS`). Free tier: 1,000 requests a month, 3 per props call.
 - Sandbox cannot reach Action Network or ESPN; fetch in GitHub Actions. Scheduled workflows run only from `main`.
 
 ## Agent team rules

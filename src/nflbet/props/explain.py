@@ -16,7 +16,7 @@ from pathlib import Path
 
 import polars as pl
 
-from nflbet import props as P
+from nflbet.props import core as P
 
 UNIT = {"rec": "receptions", "rec_yds": "receiving yards", "rush_att": "rush attempts", "rush_yds": "rushing yards",
         "rush_rec_yds": "rush + rec yards", "pass_att": "pass attempts", "pass_cmp": "completions",
@@ -37,7 +37,7 @@ def book_lines(live: Path, r: dict, source: str) -> dict[str, float]:
     st = stamp(r["run_utc"])
     try:
         if source == "parlay":
-            from nflbet import parlay as Pa
+            from nflbet.sources import parlay as Pa
 
             f = live / "parlay" / f"{st}_w{r['week']}.json.gz"
             with gzip.open(f, "rt") as fh:

@@ -16,9 +16,10 @@ from pathlib import Path
 import polars as pl
 
 sys.path.insert(0, "src")
-from nflbet import parlay as Pa, props as P  # noqa: E402
+from nflbet.sources import parlay as Pa  # noqa: E402
+from nflbet.props import core as P  # noqa: E402
 
-from nflbet.venues import PM as PM, PM_MAP as MAP, PM_PAT as PAT, pm_game as poly_game, pm_markets  # noqa: E402
+from nflbet.sources.venues import PM as PM, PM_MAP as MAP, PM_PAT as PAT, pm_game as poly_game, pm_markets  # noqa: E402
 FEE = 0.0695
 WEEK = 6                       # the upcoming slate; the search and the report header both follow this
 
@@ -35,7 +36,7 @@ def main():
     import datetime as dt
     import os
     if os.environ.get("PARLAY_API_KEY") and "--fetch" in sys.argv:
-        from nflbet import parlay as Pa2
+        from nflbet.sources import parlay as Pa2
         now = dt.datetime.now(dt.timezone.utc)
         poly = fetch_polymarket(now)
         raw = Pa2.fetch()[0]

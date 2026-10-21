@@ -16,12 +16,14 @@ import urllib.request
 
 import polars as pl
 
-from nflbet import ats as A, config
-from nflbet.parlay import game_key
-from nflbet.props import TEAM_FIX
+from nflbet import config
+from nflbet.ats import rating as A
+from nflbet.execution.records import before_kickoff
+from nflbet.quant.odds import american_to_decimal
+from nflbet.sources.http import BROWSER_UA as UA
+from nflbet.sources.ids import TEAM_FIX, game_key
 
 AN = "https://api.actionnetwork.com/web/v2/scoreboard/nfl?season={s}&week={w}&periods=event"
-UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 BOOKS = {68: "DraftKings", 69: "FanDuel", 71: "BetRivers", 75: "BetMGM", 49: "Caesars"}
 CONSENSUS = 15                       # Action Network consensus, a reference, not a book; 30 ("Open") is ignored
 CLV_PER_POINT = 0.235                # line moves this share of (fair - line) by the close: bet365 2022-24, docs/ats_clv2.md
@@ -125,8 +127,9 @@ def evaluate(fair: pl.DataFrame, books: pl.DataFrame, exch: pl.DataFrame | None,
 
 def qb_flags(season: int, week: int) -> dict[str, str]:
     """{team: note} when a team's recent starting QB (most attempts in its last 3 weeks) is listed Questionable or
-    worse on ESPN right now (src/nflbet/injuries.py, src/nflbet/depth.py)."""
-    from nflbet import depth as D, injuries as Inj
+    worse on ESPN right now (src/nflbet/sources/injuries.py, src/nflbet/sources/depth.py)."""
+    from nflbet.sources import depth as D
+    from nflbet.sources import injuries as Inj
 
     inj = Inj.parse(Inj.fetch())
     ids = Inj.espn_ids()
@@ -140,10 +143,7 @@ def qb_flags(season: int, week: int) -> dict[str, str]:
 
 def official(runs: pl.DataFrame) -> pl.DataFrame:
     """The last run before each game's kickoff."""
-    from nflbet import live as Lv
-
-    r = runs.filter(pl.col("run_utc").map_elements(Lv.parse_ts, return_dtype=pl.Datetime("us", "UTC"))
-                    < pl.col("start_time").map_elements(Lv.parse_ts, return_dtype=pl.Datetime("us", "UTC")))
+    r = before_kickoff(runs)
     last = r.group_by("game_id").agg(pl.col("run_utc").max())
     return r.join(last, on=["game_id", "run_utc"])
 
@@ -153,8 +153,6 @@ def grade(runs: pl.DataFrame, season: int) -> pl.DataFrame:
     number; nflverse closing spread_line) and the ATS result at the recorded number and price (Bet Now / Wait /
     Monitor rows only; No Value rows keep CLV for reference)."""
     import nflreadpy as nfl
-
-    from nflbet import props as P
 
     off = official(runs).with_columns(pl.col("best_line").cast(pl.Float64), pl.col("best_odds").cast(pl.Float64),
                                       (pl.col("side_is_home").cast(pl.Utf8) == "true").alias("home_side"))
@@ -171,5 +169,5 @@ def grade(runs: pl.DataFrame, season: int) -> pl.DataFrame:
             res.append("P"); units.append(0.0); continue
         won = (m > ln) if h else (m < ln)
         res.append("W" if won else "L")
-        units.append((P.american_to_decimal(r["best_odds"]) - 1) if won else -1.0)
+        units.append((american_to_decimal(r["best_odds"]) - 1) if won else -1.0)
     return d.with_columns(pl.Series("result_ats", res), pl.Series("units", units), pl.Series("clv", clv, dtype=pl.Float64))

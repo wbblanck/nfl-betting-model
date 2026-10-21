@@ -22,8 +22,8 @@ from pathlib import Path
 import polars as pl
 
 sys.path.insert(0, "src")
-from nflbet import parlay as Pa  # noqa: E402
-from nflbet.venues import NV_MAP as MAP, nv_book, nv_fee as fee, nv_index as index_novig, nv_markets as fetch_novig, nv_taker as taker_side  # noqa: E402
+from nflbet.sources import parlay as Pa  # noqa: E402
+from nflbet.sources.venues import NV_MAP as MAP, nv_book, nv_fee as fee, nv_index as index_novig, nv_markets as fetch_novig, nv_taker as taker_side  # noqa: E402
 
 def imp(a: float) -> float:
     return -a / (-a + 100) if a < 0 else 100 / (a + 100)

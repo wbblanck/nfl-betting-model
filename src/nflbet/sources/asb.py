@@ -13,7 +13,8 @@ import datetime as dt
 import polars as pl
 
 from nflbet import config
-from nflbet.parlay import TEAMS
+from nflbet.quant.odds import decimal_to_american
+from nflbet.sources.ids import TEAMS
 
 PATH = config.ROOT / "data" / "odds" / "asb" / "nfl.xlsx"
 OLD = {"San Diego Chargers": "LAC", "St. Louis Rams": "LA", "Oakland Raiders": "LV", "Washington Redskins": "WAS",
@@ -25,9 +26,7 @@ def american(d):
     d = _f(d)
     if d is None:
         return None
-    if d <= 1:
-        return None
-    return round((d - 1) * 100) if d >= 2 else round(-100 / (d - 1))
+    return decimal_to_american(d)
 
 
 def raw() -> list[dict]:

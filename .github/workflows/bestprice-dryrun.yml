@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches-ignore: [main]
-    paths: ['scripts/audit/bestprice_dryrun.py', 'src/nflbet/bestprice.py', 'src/nflbet/venues.py', '.github/workflows/bestprice-dryrun.yml']
+    paths: ['scripts/audit/bestprice_dryrun.py', 'src/nflbet/props/bestprice.py', 'src/nflbet/sources/venues.py', 'src/nflbet/sources/http.py', 'src/nflbet/sources/ids.py', 'src/nflbet/quant/**', '.github/workflows/bestprice-dryrun.yml']
 permissions:
   contents: write
 concurrency:

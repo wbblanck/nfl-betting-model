@@ -1,7 +1,7 @@
-"""Known-answer checks for the ParlayAPI second price record (src/nflbet/parlay.py)."""
+"""Known-answer checks for the ParlayAPI second price record (src/nflbet/sources/parlay.py)."""
 import polars as pl
 
-from nflbet import parlay as Pa
+from nflbet.sources import parlay as Pa
 
 
 def _row(**k):

@@ -12,7 +12,7 @@ coverage and fees change: re-check anything a result depends on, and add new evi
 Polymarket US (`polymarket.us`) is a separate exchange from Polymarket's international site (`polymarket.com`).
 Never use docs.polymarket.com for US facts: its fee table (Sports 0.05) does not apply here.
 
-Working code: `src/nflbet/venues.py` (`pm_get`, `pm_slugs`, `pm_markets`, `pm_quotes`, `pm_fee`, `pm_game`). It is NFL-only
+Working code: `src/nflbet/sources/venues.py` (`pm_get`, `pm_slugs`, `pm_markets`, `pm_quotes`, `pm_fee`, `pm_game`). It is NFL-only
 today (`PM_MAP` and `PM_PAT` match the NFL "record N+" wording); other sports need the "at least N" pattern below.
 
 ## Two APIs
@@ -93,7 +93,7 @@ sides quoted was NFL 77%, MLB 91%, NHL 69%, UCL 71%, MLS 71%.
 `GET /v1/markets/{market slug}/book` returns `marketData.bids` and `marketData.offers`, each a list of
 `{"px": {"value": "0.67"}, "qty": "28"}` sorted best price first (bids high to low, offers low to high). The best offer
 equalled `bestAskQuote` and the best bid `bestBidQuote` on 20 of 20. One contract pays $1, so `qty` is dollars of payout:
-buying Yes takes the best offer's quantity, buying No sells into the best bid's quantity. `src/nflbet/venues.py` `pm_sizes`
+buying Yes takes the best offer's quantity, buying No sells into the best bid's quantity. `src/nflbet/sources/venues.py` `pm_sizes`
 reads it. Sizes at the best price were often $1-$50 and spreads wide (bid 0.67, offer 0.98) four days before kickoff.
 
 `GET /v1/markets/{slug}/bbo` (verified on the same 20) returns `bestBid`, `bestAsk`, `bidShares`, `askShares` (all levels
@@ -117,11 +117,11 @@ effective exchange-wide from 10 AM ET, 2026-10-07.
 - Combos (parlays): taker fee = C × p × [0.0695 × (1 - p) + 0.06 × (1 - p)^4], no maker rebate.
 
 **All-in taker cost per $1 of payout** = p + 0.0695 × p × (1 - p). Compare it with a sportsbook's implied probability
-of its American price (vig already included). `src/nflbet/venues.py` `pm_fee` and `src/nflbet/bestprice.py` do this.
+of its American price (vig already included). `src/nflbet/sources/venues.py` `pm_fee` and `src/nflbet/props/bestprice.py` do this.
 
 ## Matching to sportsbook lines
 
-- **No player ID**: the player is only in the question text. Normalise names (`nflbet.props.norm_name` strips suffixes
+- **No player ID**: the player is only in the question text. Normalise names (`nflbet.sources.ids.norm_name` strips suffixes
   like Jr., Sr., III) and match on game + player + stat + line.
 - **Teams**: map by nickname, not by the title's first word. NFL titles write both Los Angeles teams as "LA"; a
   first-word key sent every Chargers game to the Rams (fixed 2026-10-14; `venues.pm_game` maps the last word of each

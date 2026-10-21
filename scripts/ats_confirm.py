@@ -7,7 +7,9 @@ import json
 import numpy as np
 import polars as pl
 
-from nflbet import ats as A, config, props as P
+from nflbet import config
+from nflbet.ats import rating as A
+from nflbet.props import core as P
 
 CONFIRM = [2022, 2023, 2024, 2025]
 B = 4000

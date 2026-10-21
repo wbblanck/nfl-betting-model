@@ -11,8 +11,10 @@ import sys
 import numpy as np
 import polars as pl
 
-from nflbet import config, props as P, props_confirm as C
-from nflbet.sim import Simulator
+from nflbet import config
+from nflbet.props import core as P
+from nflbet.props import confirm as C
+from nflbet.props.sim import Simulator
 
 MARKETS = ["rec", "rec_yds", "rush_att", "rush_yds", "rush_rec_yds", "pass_att", "pass_cmp", "pass_yds", "pass_rush_yds"]
 

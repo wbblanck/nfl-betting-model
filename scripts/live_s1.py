@@ -15,7 +15,15 @@ import sys
 
 import polars as pl
 
-from nflbet import ats_live as AL, bestprice as Bp, config, depth as D, injuries as Inj, live as Lv, openmarkets as Om, parlay as Pa, props as P
+from nflbet import config
+from nflbet.ats import live as AL
+from nflbet.props import bestprice as Bp
+from nflbet.sources import depth as D
+from nflbet.sources import injuries as Inj
+from nflbet.props import live as Lv
+from nflbet.sources import openmarkets as Om
+from nflbet.sources import parlay as Pa
+from nflbet.props import core as P
 
 SEASON = 2026
 PICKS = Lv.LIVE / f"s1_picks_{SEASON}.csv"
@@ -81,7 +89,7 @@ def do_run() -> None:
 
 
 def bestprice_record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, when: dt.datetime) -> None:
-    """Best available price per official S1 pick at its line and side, all-in (src/nflbet/bestprice.py), appended to
+    """Best available price per official S1 pick at its line and side, all-in (src/nflbet/props/bestprice.py), appended to
     data/live/s1_bestprice_2026.csv. Record only: S1 is still graded at its DraftKings price. A failure never stops
     the run."""
     try:
@@ -98,7 +106,7 @@ def bestprice_record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week
 
 
 def ats_record(week: int, when: dt.datetime) -> None:
-    """Live ATS tracker (src/nflbet/ats_live.py, docs/ats_live_rules.md): every game not yet started, appended to
+    """Live ATS tracker (src/nflbet/ats/live.py, docs/ats_live_rules.md): every game not yet started, appended to
     data/live/ats_runs_2026.csv. Descriptive; a failure never stops the S1 run."""
     try:
         books = AL.parse_an(AL.fetch_an(SEASON, week))
@@ -124,7 +132,7 @@ def ats_record(week: int, when: dt.datetime) -> None:
 
 
 def openmarkets_record(week: int, when: dt.datetime, pa: pl.DataFrame | None, an_path) -> pl.DataFrame | None:
-    """Third price record (src/nflbet/openmarkets.py): Kalshi, ProphetX and BettorEdge player-prop quotes, archived in
+    """Third price record (src/nflbet/sources/openmarkets.py): Kalshi, ProphetX and BettorEdge player-prop quotes, archived in
     data/live/openmarkets/, compared per venue with DraftKings at DraftKings' line (ParlayAPI's DK if available, else
     Action Network's) in data/live/openmarkets_compare_2026.csv. Skipped without OPENMARKETS_API_KEY; a failure
     never stops the run."""
@@ -153,7 +161,7 @@ def openmarkets_record(week: int, when: dt.datetime, pa: pl.DataFrame | None, an
 
 
 def parlay_record(week: int, when: dt.datetime, an_path) -> pl.DataFrame | None:
-    """Second price record (src/nflbet/parlay.py): ParlayAPI's DK and FanDuel lines, archived in data/live/parlay/,
+    """Second price record (src/nflbet/sources/parlay.py): ParlayAPI's DK and FanDuel lines, archived in data/live/parlay/,
     and per book how they compare with Action Network's at this run (data/live/parlay_compare_2026.csv). Descriptive;
     S1 still runs on Action Network. Skipped without PARLAY_API_KEY; a failure never stops the run."""
     if not os.environ.get("PARLAY_API_KEY"):
@@ -192,7 +200,7 @@ def _archive(body, kind: str, week: int, when: dt.datetime) -> None:
 
 
 def with_news(frames: list[pl.DataFrame], week: int, when: dt.datetime) -> list[pl.DataFrame]:
-    """Descriptive flags (src/nflbet/injuries.py, src/nflbet/depth.py) from ESPN at run time, fetched once and applied
+    """Descriptive flags (src/nflbet/sources/injuries.py, src/nflbet/sources/depth.py) from ESPN at run time, fetched once and applied
     to every record's picks; responses are archived. A failed fetch leaves that flag empty and never stops the run."""
     inj = None
     try:

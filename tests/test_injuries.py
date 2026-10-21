@@ -5,7 +5,7 @@ import json
 
 import polars as pl
 
-from nflbet import injuries as Inj
+from nflbet.sources import injuries as Inj
 
 
 def test_parse_runner_snapshot():
@@ -37,7 +37,7 @@ def test_flag_known_answer():
 
 
 def test_depth_parse_and_changes_on_runner_snapshot():
-    from nflbet import depth as D
+    from nflbet.sources import depth as D
 
     d = sorted(glob.glob("docs/evidence/espn_depth/*/"))[0]
     charts = {k: {"id": v["id"], "body": v["body"]} for k, v in json.load(gzip.open(d + "core_depthcharts.json.gz", "rt")).items()}
@@ -53,7 +53,7 @@ def test_depth_parse_and_changes_on_runner_snapshot():
 
 
 def test_depth_flag_known_answer():
-    from nflbet import depth as D
+    from nflbet.sources import depth as D
 
     ch = pl.DataFrame({"team": ["SEA", "GB"], "pos": ["QB", "RB"], "starter_id": ["new", "kj"], "starter_name": ["New", "KJ"],
                        "starter_n": [10, 12], "leader_id": ["old", "ml"], "leader_name": ["Old", "ML"], "leader_n": [60, 23]})

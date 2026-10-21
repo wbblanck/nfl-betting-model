@@ -6,7 +6,9 @@ import json
 import numpy as np
 import polars as pl
 
-from nflbet import ats as A, config, props as P
+from nflbet import config
+from nflbet.ats import rating as A
+from nflbet.props import core as P
 
 TEST, DESC = list(range(2008, 2016)), list(range(2016, 2022))
 B = 4000

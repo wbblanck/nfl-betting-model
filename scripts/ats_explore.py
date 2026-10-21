@@ -10,7 +10,8 @@ import math
 import numpy as np
 import polars as pl
 
-from nflbet import ats as A, config
+from nflbet import config
+from nflbet.ats import rating as A
 
 EXPLORE = list(range(2016, 2022))
 

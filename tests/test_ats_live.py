@@ -1,7 +1,8 @@
-"""Known-answer checks for the live ATS tracker (src/nflbet/ats_live.py)."""
+"""Known-answer checks for the live ATS tracker (src/nflbet/ats/live.py)."""
 import polars as pl
 
-from nflbet import ats as A, ats_live as AL
+from nflbet.ats import rating as A
+from nflbet.ats import live as AL
 
 
 def _sb():
