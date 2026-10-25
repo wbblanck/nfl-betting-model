@@ -208,3 +208,8 @@ game_id,game,start_time,home,away,fair,consensus,exchange,n_exchanges,side,side_
 2026_07_LA_LV,LA|LV,2026-10-25T20:25:00.000Z,LV,LA,-4.65,-3.5,-3.5,6,LA,false,DraftKings,-3.0,-118.0,1.65,false,0.39,true,"",Monitor,-3.0,-3.5,-3.5,-3.5,-3.0,2026-10-24T13:48:10Z,7
 2026_07_KC_SEA,KC|SEA,2026-10-26T00:20:00.000Z,SEA,KC,3.95,2.5,2.5,5,SEA,true,BetRivers,2.5,-115.0,1.45,true,0.34,true,"",Bet Now,3.0,2.5,2.5,3.0,3.0,2026-10-24T13:48:10Z,7
 2026_07_DAL_PHI,DAL|PHI,2026-10-27T00:15:00.000Z,PHI,DAL,3.06,-4.5,-4.5,4,PHI,true,DraftKings,-4.5,-108.0,7.56,true,1.78,true,PHI QB Jalen Hurts: Injured Reserve,Wait,-4.5,-4.5,-4.5,-4.5,-4.5,2026-10-24T13:48:10Z,7
+2026_07_DEN_ARI,ARI|DEN,2026-10-25T20:05:00.000Z,ARI,DEN,-3.24,-4.5,-4.5,6,ARI,true,BetRivers,-5.5,-108.0,2.26,false,0.53,true,"",Monitor,-4.5,-4.5,-5.5,-4.5,-4.5,2026-10-25T18:23:59Z,7
+2026_07_GB_DET,DET|GB,2026-10-25T20:25:00.000Z,DET,GB,1.42,3.5,3.5,6,GB,false,FanDuel,3.5,-108.0,2.08,true,0.49,true,"",Bet Now,3.5,3.5,3.5,3.5,3.5,2026-10-25T18:23:59Z,7
+2026_07_LA_LV,LA|LV,2026-10-25T20:25:00.000Z,LV,LA,-4.65,-3.5,-3.5,6,LA,false,BetRivers,-3.0,-115.0,1.65,false,0.39,true,"",Monitor,-3.5,-3.5,-3.0,-3.5,-3.5,2026-10-25T18:23:59Z,7
+2026_07_KC_SEA,KC|SEA,2026-10-26T00:20:00.000Z,SEA,KC,3.95,3.0,2.75,6,SEA,true,BetRivers,2.5,-115.0,1.45,true,0.34,true,"",Bet Now,3.0,3.0,2.5,3.0,3.0,2026-10-25T18:23:59Z,7
+2026_07_DAL_PHI,DAL|PHI,2026-10-27T00:15:00.000Z,PHI,DAL,3.06,-4.5,-4.5,6,PHI,true,FanDuel,-4.5,-105.0,7.56,true,1.78,true,PHI QB Jalen Hurts: Injured Reserve,Wait,-4.5,-4.5,-4.5,-4.5,-4.5,2026-10-25T18:23:59Z,7
