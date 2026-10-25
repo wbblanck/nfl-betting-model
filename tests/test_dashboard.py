@@ -128,6 +128,45 @@ def test_ats_section():
                          "side_is_home": ["true"], "best_book": ["DraftKings"], "best_line": ["2.5"], "best_odds": ["-115"], "gap": ["1.5"],
                          "key": ["true"], "exp_clv": ["0.35"], "label": ["Bet Now"], "qb_note": [""]})
     html = D.ats_section(runs, pl.DataFrame(), dt.datetime(2026, 10, 9, tzinfo=dt.timezone.utc))
-    assert "PIT -2.5" in html and "PIT -4" in html and "Bet Now" in html and "DraftKings -115" in html
+    # home line 2.5 (PIT favored) backed on PIT: PIT gives 2.5, fair says it should give 4
+    assert '<span class="ats-team">PIT</span> <span class="ats-num">−2.5</span>' in html
+    assert "PIT −4" in html and "Bet Now" in html and "-115 at DraftKings" in html
+    assert "1.5-point edge across −3" in html and "1.5 pts" in html and "+0.35 pts" in html
     assert "No ATS runs yet" in D.ats_section(pl.DataFrame(), pl.DataFrame(), dt.datetime(2026, 10, 9, tzinfo=dt.timezone.utc))
     assert D.hcp("IND", 3.0, False) == "IND +3" and D.hcp("PIT", 0.0, True) == "PIT PK"
+
+
+def test_ats_side_view_and_keys():
+    assert D.side_view("3.5", True) == -3.5 and D.side_view("3.5", False) == 3.5 and D.side_view("", True) is None
+    assert D.fmt_line(-2.5) == "−2.5" and D.fmt_line(3.0) == "+3" and D.fmt_line(0.0) == "PK"
+    # side view: best -2.5 vs fair -6.1 sits on the better side of -3 (and not of -7)
+    assert D.keys_crossed(-2.5, -6.1) == [-3]
+    assert D.keys_crossed(7.5, 2.0) == [3, 7]
+    assert D.keys_crossed(-3.0, -3.5) == []              # landing on 3 is not the better side of it
+    assert D.keys_crossed(-2.5, -3.0) == [-3]            # fair exactly 3, best better than 3 (ats.rating.crosses_key)
+    from nflbet.ats.rating import crosses_key
+    for best, fair in ((-2.5, -6.1), (7.5, 2.0), (-3.0, -3.5), (-2.5, -3.0), (1.0, 0.5), (-6.5, -7.0)):
+        # side view on an away side equals the home-margin line, so crosses_key(line, fair, home=False) applies directly
+        assert bool(D.keys_crossed(best, fair)) == crosses_key(best, fair, False)
+
+
+def test_ats_label_reasons():
+    base = {"key": "true", "beats_ref": "true", "qb_note": ""}
+    assert D.label_reason(dict(base, gap="3.6", label="Bet Now"), -2.5, -6.1).startswith("3.6-point edge across −3")
+    assert "but GB QB Jordan Love: Questionable" in D.label_reason(
+        dict(base, gap="1.6", label="Wait", qb_note="GB QB Jordan Love: Questionable"), 3.0, 1.4)
+    assert D.label_reason(dict(base, gap="2.3", key="false", label="Monitor"), 3.0, 0.7) == \
+        "2.3-point edge, short of Bet Now: no key number between fair and the best line."
+    assert "exchanges have a better number" in D.label_reason(dict(base, gap="1.2", beats_ref="false", label="Monitor"), -2.5, -3.7)
+    assert D.label_reason(dict(base, gap="0.4", key="false", label="No Value"), 3.0, 2.6) == "Edge of 0.4 points, under the 1-point minimum."
+    assert D.label_reason(dict(base, gap="1.2", key="false", label="No Value"), -3.5, -4.7) == \
+        "Edge of 1.2 points with no key number; Monitor needs 1.5."
+    # fields that do not reproduce the label: say only what was recorded
+    assert D.label_reason(dict(base, gap="0.2", label="Bet Now"), 1.0, 0.8) == "Recorded as Bet Now by the run."
+
+
+def test_ats_reasons_reproduce_every_recorded_label():
+    runs = pl.read_csv(D.config.ROOT / "data" / "live" / "ats_runs_2026.csv", infer_schema_length=0)
+    for r in runs.to_dicts():
+        h = r["side_is_home"] == "true"
+        assert not D.label_reason(r, D.side_view(r["best_line"], h), D.side_view(r["fair"], h)).startswith("Recorded as"), r["game_id"]
