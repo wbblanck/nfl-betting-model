@@ -439,51 +439,219 @@ def hcp(team: str, home_line, side_is_home: bool) -> str:
 
 
 LABEL_CHIP = {"Bet Now": "win", "Wait": "flag", "Monitor": "state open", "No Value": "idle"}
+LABEL_ORDER = {"Bet Now": 0, "Wait": 1, "Monitor": 2, "No Value": 3}
+LABEL_MEANS = {
+    "Bet Now": "edge of 1+ point across 3 or 7, at least as good as the exchanges, starting QBs clear",
+    "Wait": "meets Bet Now, but a starting QB is listed Questionable or worse",
+    "Monitor": "edge of 1.5+ points, or 1+ across 3 or 7, without the rest of Bet Now",
+    "No Value": "edge under 1 point, or under 1.5 with no key number",
+}
+BOOK_COLS = [("draftkings_line", "DraftKings"), ("fanduel_line", "FanDuel"), ("betrivers_line", "BetRivers"),
+             ("betmgm_line", "BetMGM"), ("caesars_line", "Caesars")]
+
+
+def _f(v) -> float | None:
+    try:
+        return None if v in (None, "") else float(v)
+    except (TypeError, ValueError):
+        return None
+
+
+def side_view(home_line, side_is_home: bool) -> float | None:
+    """A home margin line (positive = home favored) as the bet side's handicap (negative = side gives points)."""
+    v = _f(home_line)
+    return None if v is None else (-v if side_is_home else v)
+
+
+def fmt_line(v: float | None) -> str:
+    if v is None:
+        return "–"
+    if v == 0:
+        return "PK"
+    return f"{v:+g}".replace("-", "−")
+
+
+def keys_crossed(best: float, fair: float) -> list[int]:
+    """Key numbers (±3, ±7) the best number sits on the better side of, relative to fair (both side view);
+    the same test as ats.rating.crosses_key."""
+    return [kk for kk in (-7, -3, 3, 7) if best > kk > fair or (best > kk and fair == kk)]
+
+
+def label_reason(r: dict, best: float, fair: float) -> str:
+    """One sentence on why the run gave this label, rebuilt from the pre-registered rules (docs/ats_live_rules.md).
+    Falls back to a plain statement if the recorded fields do not reproduce the recorded label."""
+    gap, label = _f(r.get("gap")) or 0.0, r.get("label")
+    key, beats, qb = r.get("key") in (True, "true"), r.get("beats_ref") in (True, "true", None, ""), r.get("qb_note") or ""
+    kc = keys_crossed(best, fair)
+    across = f"across {fmt_line(kc[0]).replace('+', '')}" if kc else "across a key number"
+    if label == "Bet Now" and gap >= 1 and key and beats and not qb:
+        return f"{gap:.1f}-point edge {across}, at least as good as the exchanges, and both starting QBs are clear."
+    if label == "Wait" and gap >= 1 and key and beats and qb:
+        return f"Meets Bet Now ({gap:.1f}-point edge {across}), but {qb}. The label waits on that news."
+    if label == "Monitor":
+        if gap >= 1.5:
+            miss = [m for m, bad in (("no key number between fair and the best line", not key),
+                                     ("the exchanges have a better number than any book", not beats),
+                                     (qb, bool(qb) and key and beats)) if bad]
+            return f"{gap:.1f}-point edge, short of Bet Now: " + ("; ".join(miss) or "see rules") + "."
+        if gap >= 1 and key and not beats:
+            return f"{gap:.1f}-point edge {across}, but the exchanges have a better number than any book."
+    if label == "No Value":
+        return (f"Edge of {gap:.1f} points, under the 1-point minimum." if gap < 1
+                else f"Edge of {gap:.1f} points with no key number; Monitor needs 1.5.")
+    return f"Recorded as {label} by the run."
+
+
+def ats_line_chart(r: dict, fair: float, best: float, cons: float | None, exch: float | None) -> str:
+    """Number line of the side's handicap: more points (better for the side) to the right. Ring = rating's fair line,
+    tick = market consensus, diamond = exchanges, dot = best number at a book; the shaded span is the edge."""
+    side = r["side"]
+    vals = [v for v in (fair, best, cons, exch) if v is not None]
+    lo, hi = min(vals) - 1.5, max(vals) + 1.5
+    if hi - lo < 6:
+        pad = (6 - (hi - lo)) / 2
+        lo, hi = lo - pad, hi + pad
+    W, L, R, y = 380, 14, 14, 42
+    px = scale([], lo, hi, L, W - R)
+    out = [f'<line class="zero" x1="{L}" x2="{W - R}" y1="{y}" y2="{y}"/>']
+    for t in range(int(math.ceil(lo)), int(math.floor(hi)) + 1):
+        if hi - lo <= 8 or t % 2 == 0:
+            out.append(f'<line class="grid" x1="{px(t):.1f}" x2="{px(t):.1f}" y1="{y - 4}" y2="{y + 4}"/>'
+                       f'<text class="tick" x="{px(t):.1f}" y="{y + 30}" text-anchor="middle">{esc(fmt_line(float(t)))}</text>')
+    for kk in (-7, -3, 3, 7):
+        if lo < kk < hi:
+            out.append(f'<line class="keyl" x1="{px(kk):.1f}" x2="{px(kk):.1f}" y1="{y - 16}" y2="{y + 16}"/>')
+    a, b = sorted((px(fair), px(best)))
+    edge_cls = "edge" if best >= fair else "edge neg"
+    out.append(f'<rect class="{edge_cls}" x="{a:.1f}" y="{y - 7}" width="{max(b - a, 1):.1f}" height="14" rx="4"/>')
+    if cons is not None:
+        out.append(f'<rect class="mk" x="{px(cons) - 1.5:.1f}" y="{y - 9}" width="3" height="18" rx="1.5"/>')
+    if exch is not None:
+        ex = px(exch)
+        out.append(f'<path class="exd" d="M{ex:.1f},{y - 6} L{ex + 6:.1f},{y} L{ex:.1f},{y + 6} L{ex - 6:.1f},{y} Z"/>')
+    out.append(f'<circle class="be" cx="{px(fair):.1f}" cy="{y}" r="6"/><circle class="md" cx="{px(best):.1f}" cy="{y}" r="6"/>')
+    left_is_fair = px(fair) <= px(best)
+    for v, txt, is_left in ((fair, f"Fair {fmt_line(fair)}", left_is_fair), (best, f"Best {fmt_line(best)}", not left_is_fair)):
+        anchor, dx = ("end", -2) if is_left else ("start", 2)
+        out.append(f'<text class="capl" x="{px(v) + dx:.1f}" y="{y - 14}" text-anchor="{anchor}">{esc(txt)}</text>')
+    out.append(f'<text class="tick" x="{L}" y="12">← fewer points for {esc(side)}</text>'
+               f'<text class="tick" x="{W - R}" y="12" text-anchor="end">more points for {esc(side)} →</text>')
+    aria = (f"{side} handicap: rating's fair line {fmt_line(fair)}, best available {fmt_line(best)}"
+            + (f", market consensus {fmt_line(cons)}" if cons is not None else "")
+            + (f", exchanges {fmt_line(exch)}" if exch is not None else ""))
+    tip = (f"{side}: fair {fmt_line(fair)}, best {fmt_line(best)}" + (f", consensus {fmt_line(cons)}" if cons is not None else "")
+           + (f", exchanges {fmt_line(exch)}" if exch is not None else "") + f" | edge {abs(best - fair):.1f} pts")
+    return (f'<svg class="chart atsline" viewBox="0 0 {W} 84" role="img" aria-label="{esc(aria)}">'
+            f'<g{tipattr(tip)}><rect class="hit" x="0" y="0" width="{W}" height="84"/>'
+            + "".join(out) + "</g></svg>")
+
+
+def ats_card(r: dict, now: dt.datetime) -> str:
+    h = r["side_is_home"] in (True, "true")
+    fair_raw, best = side_view(r["fair"], h), side_view(r["best_line"], h)
+    fair = round(fair_raw, 1)                 # display only; key and label logic use fair_raw
+    cons, exch = side_view(r.get("consensus"), h), side_view(r.get("exchange"), h)
+    locked = Lv.parse_ts(r["start_time"]) <= now
+    label = r["label"]
+    odds = _f(r.get("best_odds"))
+    gap, clv = _f(r.get("gap")), _f(r.get("exp_clv"))
+    books = []
+    for col, name in BOOK_COLS:
+        v = side_view(r.get(col), h)
+        if v is not None:
+            mark = " is-best" if name == r.get("best_book") else ""
+            books.append(f'<li class="bk{mark}"><span>{esc(name)}</span><b>{esc(fmt_line(v))}</b></li>')
+    kc = keys_crossed(best, fair_raw) if r.get("key") in (True, "true") else []
+    facts = [("Rating's fair line", f"{r['side']} {fmt_line(fair)}"),
+             ("Market consensus", f"{r['side']} {fmt_line(cons)}"),
+             ("Exchanges", f"{r['side']} {fmt_line(exch)}" if exch is not None else "–"),
+             ("Edge", f"{gap:.1f} pts" if gap is not None else "–"),
+             ("Expected CLV", f"{clv:+.2f} pts" if clv is not None else "–"),
+             ("Key number", ("crosses " + ", ".join(fmt_line(k).replace("+", "") for k in kc)) if kc else "no")]
+    qb = f'<p class="ats-qb"><span class="chip warn">QB news</span> {esc(r["qb_note"])}</p>' if r.get("qb_note") else ""
+    state = '<span class="chip state">Kicked off · locked</span>' if locked else ""
+    lab_cls = {"Bet Now": "bet", "Wait": "wait", "Monitor": "mon", "No Value": "none"}.get(label, "none")
+    return (f'<article class="ats-card lab-{lab_cls}{" locked" if locked else ""}">'
+            f'<header class="ats-head"><div><p class="ats-game">{esc(r["away"])} at {esc(r["home"])} · {esc(fmt_dt(r["start_time"]))} ET</p>'
+            f'<p class="ats-pick"><span class="ats-team">{esc(r["side"])}</span> <span class="ats-num">{esc(fmt_line(best))}</span>'
+            f' <span class="ats-price">{esc(f"{odds:+.0f}") if odds is not None else ""} at {esc(r.get("best_book") or "")}</span></p></div>'
+            f'<div class="ats-labels">{chip(LABEL_CHIP.get(label, "idle"), label)}{state}</div></header>'
+            + ats_line_chart(r, fair, best, cons, exch)
+            + '<dl class="ats-facts">' + "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in facts) + '</dl>'
+            + f'<p class="ats-why">{esc(label_reason(r, best, fair_raw))}</p>' + qb
+            + (f'<ul class="ats-books" aria-label="Each book\'s line for {esc(r["side"])}">' + "".join(books) + "</ul>" if books else "")
+            + "</article>")
+
+
+def ats_row_brief(r: dict) -> str:
+    h = r["side_is_home"] in (True, "true")
+    fair, best = side_view(r["fair"], h), side_view(r["best_line"], h)
+    fair = round(fair, 1)
+    odds = _f(r.get("best_odds"))
+    return (f'<li><span class="ats-game">{esc(r["away"])} at {esc(r["home"])} · {esc(fmt_dt(r["start_time"]))}</span>'
+            f'<span>{esc(r["side"])} {esc(fmt_line(best))} {esc(f"{odds:+.0f}") if odds is not None else ""} at {esc(r.get("best_book") or "")}'
+            f' · fair {esc(fmt_line(fair))} · edge {float(r["gap"]):.1f}</span></li>')
 
 
 def ats_section(runs: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime) -> str:
-    """Live ATS tab (docs/ats_live_rules.md)."""
+    """Live ATS tab (docs/ats_live_rules.md): one card per game, from the rating's side."""
     head = ('<section class="block"><div class="sechead"><div><p class="eyebrow">NFL against the spread · unvalidated tracker</p>'
-            '<h2>Line value and expected CLV</h2></div></div>'
-            '<p class="lede">Each run compares the rating\'s fair line with every book\'s spread and the exchanges\' price. The rating does not beat '
-            'closing spreads (2022-2025 backtest), but its side gained about half a point of closing-line value from opening lines (2008-2024). '
-            'Labels follow the pre-registered rules; they are tracker records, not recommendations.</p>')
+            '<h2>What the rating backs this week</h2></div></div>'
+            '<p class="lede">For every game the rating picks a side, then finds the best number for that side across five books. '
+            'The <b>edge</b> is how many points better that number is than the rating\'s fair line; <b>expected CLV</b> is the part of '
+            'the edge the line has historically moved toward the rating by kickoff (0.235 × edge). The rating does not beat closing '
+            'spreads (2022-2025 backtest); its case is closing-line value from opening lines (2008-2024). Labels follow the '
+            'pre-registered rules; they are tracker records, not recommendations.</p>')
     if not runs.height:
         return head + '<p class="empty">No ATS runs yet. The first scheduled S1 run records this week\'s games.</p></section>'
     wk = int(runs["week"].cast(pl.Int64).max())
     cur = runs.filter(pl.col("week").cast(pl.Int64) == wk)
-    latest = cur.sort("run_utc", descending=True).unique("game_id", keep="first").sort(["start_time", "game_id"])
-    rows = []
-    for r in latest.to_dicts():
-        h = r["side_is_home"] in (True, "true")
-        locked = Lv.parse_ts(r["start_time"]) <= now
-        rows.append([esc(fmt_dt(r["start_time"])), f'{esc(r["away"])} at {esc(r["home"])}',
-                     esc(hcp(r["home"], r["fair"], True)),
-                     esc(hcp(r["home"], r["consensus"], True)), esc(hcp(r["home"], r["exchange"], True)) if r.get("exchange") not in (None, "") else "–",
-                     f'<b>{esc(hcp(r["side"], r["best_line"], h))}</b> <span class="muted">{esc(r["best_book"])} {float(r["best_odds"]):+.0f}</span>',
-                     f'{float(r["gap"]):+.1f}', f'{float(r["exp_clv"]):+.2f}', "3/7" if r["key"] in (True, "true") else "",
-                     chip(LABEL_CHIP.get(r["label"], "idle"), ("Kicked off · " if locked else "") + r["label"], r.get("qb_note") or "")])
-    table_html = table(["Kickoff (ET)", "Game", "Fair (home)", "Consensus", "Exchanges", "Rating's side at best number", "Gap", "Exp. CLV", "Key", "Label"], rows)
-    last = latest["run_utc"].max()
+    latest = cur.sort("run_utc", descending=True).unique("game_id", keep="first").sort(["start_time", "game_id"]).to_dicts()
+    is_locked = lambda r: Lv.parse_ts(r["start_time"]) <= now
+    open_ = sorted((r for r in latest if not is_locked(r)), key=lambda r: (LABEL_ORDER.get(r["label"], 9), r["start_time"], r["game_id"]))
+    done = [r for r in latest if is_locked(r)]
+    counts = {lab: sum(1 for r in open_ if r["label"] == lab) for lab in LABEL_ORDER}
+    legend = ('<div class="ats-legend">' + "".join(
+        f'<div class="ats-leg"><span class="ats-count">{counts[lab]}</span>{chip(LABEL_CHIP[lab], lab)}<span class="muted">{esc(LABEL_MEANS[lab])}</span></div>'
+        for lab in LABEL_ORDER) + '</div>')
+    key_html = ('<div class="legend"><span><i class="k1"></i>Rating\'s fair line</span><span><i class="k2"></i>Best number at a book</span>'
+                '<span><i class="k3"></i>Market consensus</span><span><i class="kx"></i>Exchanges</span>'
+                '<span><i class="ke"></i>Edge</span><span><i class="kk"></i>Key number (3, 7)</span></div>')
+    shown = [r for r in open_ if r["label"] != "No Value"]
+    none_ = [r for r in open_ if r["label"] == "No Value"]
+    body = ""
+    if shown:
+        body += '<div class="ats-grid">' + "".join(ats_card(r, now) for r in shown) + "</div>"
+    elif open_:
+        body += '<p class="empty">No game clears Monitor this run.</p>'
+    else:
+        body += '<p class="empty">Every game this week has kicked off.</p>'
+    if none_:
+        body += (f'<details class="old"><summary>No Value: {len(none_)} game{"s" if len(none_) != 1 else ""}</summary>'
+                 '<ul class="ats-brief">' + "".join(ats_row_brief(r) for r in none_) + "</ul></details>")
+    if done:
+        body += (f'<details class="old"><summary>Kicked off: {len(done)} game{"s" if len(done) != 1 else ""}, labels locked</summary>'
+                 '<div class="ats-grid">' + "".join(ats_card(r, now) for r in done) + "</div></details>")
+    last = max(r["run_utc"] for r in latest)
     graded = rec.filter(pl.col("result_ats").is_in(["W", "L", "P"])) if rec.height else rec
-    def summ(x):
-        if not x.height:
-            return "none graded yet"
-        w, l, pu = (int((x["result_ats"] == k).sum()) for k in ("W", "L", "P"))
-        u = float(x["units"].cast(pl.Float64).sum())
-        c = x["clv"].cast(pl.Float64).drop_nulls()
-        return f"{w}-{l}" + (f"-{pu}" if pu else "") + f", {u:+.2f} units, mean CLV {float(c.mean()):+.2f} pts" if c.len() else f"{w}-{l}, {u:+.2f} units"
     rec_html = ""
     if graded.height:
-        lines = []
-        for lab in ("Bet Now", "Wait", "Monitor", "No Value"):
+        rows = []
+        for lab in LABEL_ORDER:
             x = graded.filter(pl.col("label") == lab)
-            if x.height:
-                lines.append(f'<li><b>{esc(lab)}</b>: {esc(summ(x))}</li>')
-        rec_html = '<div class="card"><h3>Season record by label</h3><ul>' + "".join(lines) + '</ul><p class="note">CLV against the nflverse closing spread. No Value rows are graded for reference only.</p></div>'
-    return (head + f'<p class="note">Week {wk}, latest run {esc(fmt_dt(last))} ET. Lines are each team\'s handicap; "Fair (home)" is the rating\'s line for the home team.</p>'
-            + f'<div class="card">{table_html}</div>' + rec_html
-            + '<p class="note">Rules: docs/ats_live_rules.md. Expected CLV = 0.235 × gap, the share of the gap bet365 openers moved by the close in 2022-2024.</p></section>')
+            if not x.height:
+                continue
+            w, l, pu = (int((x["result_ats"] == k).sum()) for k in ("W", "L", "P"))
+            u = float(x["units"].cast(pl.Float64).sum())
+            c = x["clv"].cast(pl.Float64).drop_nulls()
+            rows.append([chip(LABEL_CHIP[lab], lab), f"{w}-{l}" + (f"-{pu}" if pu else ""), f"{u:+.2f}",
+                         f"{float(c.mean()):+.2f}" if c.len() else "–"])
+        rec_html = ('<div class="card"><h3>Season record by label</h3>' + table(["Label", "W-L-P", "Units", "Mean CLV (pts)"], rows, "num")
+                    + '<p class="note">At the recorded best number and price; CLV against the nflverse closing spread. '
+                      'No Value games are graded for reference only. The season-end test uses Bet Now games and needs 30 in 10+ weeks.</p></div>')
+    return (head + legend + f'<p class="note">Week {wk}, latest run {esc(fmt_dt(last))} ET. Every number is from the backed team\'s side: '
+            f'−3 means it gives 3 points.</p>' + key_html + body + rec_html
+            + '<p class="note">Rules: docs/ats_live_rules.md.</p></section>')
 
 
 def pa_section(pa: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime, live: Path | None = None,
@@ -840,6 +1008,43 @@ details.why ul{margin:6px 0 2px;padding-left:18px;display:flex;flex-direction:co
 .tip{position:fixed;z-index:10;pointer-events:none;background:var(--raised);color:var(--ink);border:1px solid var(--line);border-radius:6px;
   padding:7px 10px;font:12.5px/1.4 var(--body);box-shadow:0 4px 14px rgba(0,0,0,.18);max-width:300px}
 .tip strong{display:block;font:600 13px var(--mono)}
+
+/* ATS cards: one game each, read from the backed team's side */
+.ats-legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ats-leg{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;font-size:12.5px}
+.ats-leg .chip{align-self:flex-start}
+.ats-count{font:500 24px/1 var(--mono)}
+.ats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:12px}
+.ats-card{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;padding:14px 16px;
+  display:flex;flex-direction:column;gap:10px;min-width:0;box-shadow:var(--shadow)}
+.ats-card.lab-bet{border-left-color:var(--good)}.ats-card.lab-wait{border-left-color:var(--warn-ink)}.ats-card.lab-mon{border-left-color:var(--accent)}
+.ats-card.locked{opacity:.75}
+.ats-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px 12px;flex-wrap:wrap}
+.ats-game{font:12px var(--mono);color:var(--muted);margin:0}
+.ats-pick{margin:2px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px}
+.ats-team{font:600 28px/1 var(--display);letter-spacing:.02em}
+.ats-num{font:600 28px/1 var(--mono)}
+.ats-price{font:13px var(--mono);color:var(--ink2)}
+.ats-labels{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.chart.atsline{max-width:100%}
+.chart .keyl{stroke:var(--warn-ink);stroke-width:1;stroke-dasharray:3 3;opacity:.55}
+.chart .edge{fill:var(--accent);opacity:.2}.chart .edge.neg{fill:var(--neg)}
+.chart .exd{fill:var(--surface);stroke:var(--accent);stroke-width:2}
+.ats-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 14px;margin:0}
+.ats-facts dt{font:600 11.5px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ats-facts dd{margin:1px 0 0;font:500 14px var(--mono)}
+.ats-why{margin:0;font-size:14px;color:var(--ink2)}
+.ats-qb{margin:0;font-size:13.5px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.ats-books{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.ats-books .bk{display:flex;gap:6px;align-items:baseline;border:1px solid var(--line);border-radius:5px;padding:2px 8px;font-size:12.5px;color:var(--ink2)}
+.ats-books .bk b{font:500 12.5px var(--mono);color:var(--ink)}
+.ats-books .bk.is-best{border-color:var(--accent);color:var(--accent)}.ats-books .bk.is-best b{color:var(--accent)}
+.ats-brief{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.ats-brief li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;font:13px var(--mono);color:var(--ink2);border-top:1px solid var(--line);padding-top:6px}
+.legend .kx{width:10px;height:10px;border-radius:1px;transform:rotate(45deg);border:2px solid var(--accent);background:var(--surface)}
+.legend .ke{width:18px;height:10px;border-radius:3px;background:var(--accent);opacity:.25}
+.legend .kk{width:0;height:13px;border-radius:0;border-left:1px dashed var(--warn-ink)}
+@media (max-width:760px){.ats-legend{grid-template-columns:repeat(2,minmax(0,1fr))}.ats-team,.ats-num{font-size:24px}}
 
 /* tables */
 .tablewrap{overflow-x:auto}
