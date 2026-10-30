@@ -1,0 +1,197 @@
+{
+ "stamp": "20261030T060036Z",
+ "events": 16,
+ "spread_markets": 363,
+ "open": 363,
+ "per_event": {
+  "01a15b22-aa75-7dc3-a127-c8df26ae347e": 29,
+  "01a15b07-880f-7ba2-b578-c362afcdfa12": 28,
+  "01a17f1a-e83b-7773-9d2f-61938db0999f": 13,
+  "01a15b22-aed3-7b03-9606-d3e7fcbd3c59": 27,
+  "01a15b22-a79f-76b0-82f3-c8508b5c918c": 27,
+  "01a15b22-b253-75a2-a61d-86912468d179": 26,
+  "01a15b22-a842-77f3-9c3e-b98e969d0348": 27,
+  "01a15b22-ad93-7780-83dc-1ff57cdd0d4c": 25,
+  "01a15b07-874c-7502-8070-5e1ef92fba2f": 25,
+  "01a15b22-a6d2-7bc1-8f36-7aa51b0fa166": 26,
+  "01a15b07-8687-7642-af5a-ebbcfe1d3b52": 28,
+  "01a15b07-85ee-7fd3-b895-dab50be30774": 25,
+  "01a15b07-889c-7420-9eec-5f43a66b45ff": 31,
+  "01a15b22-ab38-7f60-a028-f6ca6c7a66dd": 26
+ },
+ "sample_markets": [
+  {
+   "marketId": "01a188c1-9fde-72e0-a20e-286c42346743",
+   "description": "CIN -18.5",
+   "eventId": "01a15b22-aa75-7dc3-a127-c8df26ae347e",
+   "marketType": "SPREAD",
+   "strike": "-18.5",
+   "status": "OPEN",
+   "voids": "FMV",
+   "startsTs": 1793556000000,
+   "fee": {
+    "coefficient": "0.06",
+    "makerCredit": "0.25",
+    "charged": "WHEN_LIVE"
+   },
+   "outcomes": [
+    {
+     "outcomeId": "01a188c1-9fde-72e0-a20e-2871d8b28f29",
+     "name": "CIN -18.5",
+     "status": "TBD",
+     "bid": {
+      "price": "0.275",
+      "qty": 100000
+     }
+    },
+    {
+     "outcomeId": "01a188c1-9fde-72e0-a20e-2884561670bb",
+     "name": "TEN +18.5",
+     "status": "TBD",
+     "bid": {
+      "price": "0.68",
+      "qty": 125000
+     }
+    }
+   ],
+   "volume": 0,
+   "openInterest": 0
+  },
+  {
+   "marketId": "01a18124-87a1-7c00-ae43-471aac56029d",
+   "description": "CIN +7.5",
+   "eventId": "01a15b22-aa75-7dc3-a127-c8df26ae347e",
+   "marketType": "SPREAD",
+   "strike": "7.5",
+   "status": "OPEN",
+   "voids": "FMV",
+   "startsTs": 1793556000000,
+   "fee": {
+    "coefficient": "0.06",
+    "makerCredit": "0.25",
+    "charged": "WHEN_LIVE"
+   },
+   "outcomes": [
+    {
+     "outcomeId": "01a18124-87a1-7c00-ae43-472c2f8fdb5e",
+     "name": "CIN +7.5",
+     "status": "TBD",
+     "bid": {
+      "price": "0.94",
+      "qty": 44000
+     }
+    },
+    {
+     "outcomeId": "01a18124-87a1-7c00-ae43-473b625a421b",
+     "name": "TEN -7.5",
+     "status": "TBD",
+     "bid": {
+      "price": "0.04",
+      "qty": 7500
+     }
+    }
+   ],
+   "volume": 0,
+   "openInterest": 0
+  },
+  {
+   "marketId": "01a17fa4-4f3b-74b0-abb8-ee79cfba47ad",
+   "description": "CIN +6.5",
+   "eventId": "01a15b22-aa75-7dc3-a127-c8df26ae347e",
+   "marketType": "SPREAD",
+   "strike": "6.5",
+   "status": "OPEN",
+   "voids": "FMV",
+   "startsTs": 1793556000000,
+   "fee": {
+    "coefficient": "0.06",
+    "makerCredit": "0.25",
+    "charged": "WHEN_LIVE"
+   },
+   "outcomes": [
+    {
+     "outcomeId": "01a17fa4-4f3b-74b0-abb8-ee857e27ead0",
+     "name": "CIN +6.5",
+     "status": "TBD",
+     "bid": {
+      "price": "0.93",
+      "qty": 44000
+     }
+    },
+    {
+     "outcomeId": "01a17fa4-4f3b-74b0-abb8-ee9650bba393",
+     "name": "TEN -6.5",
+     "status": "TBD",
+     "bid": {
+      "price": "0.05",
+      "qty": 44000
+     }
+    }
+   ],
+   "volume": 0,
+   "openInterest": 0
+  },
+  {
+   "marketId": "01a17f52-554a-7793-8c7a-b82fab7801c8",
+   "description": "LAR +10.5",
+   "eventId": "01a15b07-880f-7ba2-b578-c362afcdfa12",
+   "marketType": "SPREAD",
+   "strike": "10.5",
+   "status": "OPEN",
+   "voids": "FMV",
+   "startsTs": 1793567100000,
+   "fee": {
+    "coefficient": "0.06",
+    "makerCredit": "0.25",
+    "charged": "WHEN_LIVE"
+   },
+   "outcomes": [
+    {
+     "outcomeId": "01a17f52-554a-7793-8c7a-b83e2e01f4e0",
+     "name": "LAR +10.5",
+     "status": "TBD",
+     "bid": {
+      "price": "0.92",
+      "qty": 40400
+     }
+    },
+    {
+     "outcomeId": "01a17f52-554a-7793-8c7a-b84e58ea3bbe",
+     "name": "LAC -10.5",
+     "status": "TBD",
+     "bid": {
+      "price": "0.06",
+      "qty": 7500
+     }
+    }
+   ],
+   "volume": 0,
+   "openInterest": 0
+  }
+ ],
+ "sample_book": {
+  "marketId": "01a188c1-9fde-72e0-a20e-286c42346743",
+  "seq": 122,
+  "orders": {
+   "01a188c1-9fde-72e0-a20e-2871d8b28f29": [
+    {
+     "orderId": "01a18b1b-15a2-7500-b4e9-92e734da4fd7",
+     "price": "0.275",
+     "qty": 100000
+    }
+   ],
+   "01a188c1-9fde-72e0-a20e-2884561670bb": [
+    {
+     "orderId": "01a18b1a-aeb5-7e50-89c6-a733af7129b9",
+     "price": "0.68",
+     "qty": 25000
+    },
+    {
+     "orderId": "01a18b1b-15a2-7500-b4e9-92d198cbd9df",
+     "price": "0.68",
+     "qty": 100000
+    }
+   ]
+  }
+ }
+}

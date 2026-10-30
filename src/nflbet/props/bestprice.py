@@ -107,33 +107,38 @@ def best_rows(picks: pl.DataFrame, anq: dict, pa: pl.DataFrame | None, pmq: dict
                                           else pl.Int64 if c == "n_venues" else pl.Utf8) for c in COLS})
 
 
-def record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, when: dt.datetime) -> pl.DataFrame | None:
-    """Fetch Polymarket US, Novig and Kalshi once, price every pick, return the rows (the caller appends them)."""
-    if picks is None or not picks.height:
-        return None
-    anq = an_quotes(pl.read_csv(an_path, infer_schema_length=0)) if an_path is not None else {}
+def fetch_quotes(picks: pl.DataFrame, week: int, when: dt.datetime, extra_lines: bool = False) -> dict:
+    """Fetch Polymarket US, Novig and Kalshi once for this run's picks: {pmq, pm_size, nv_idx, nv_books, ksq}.
+    Order books (Novig) and sizes (Polymarket US) are read for each pick's own line; with `extra_lines` also for
+    every line at least as good for the pick's side, which the your-venues record (src/nflbet/props/your_venues.py)
+    prices. Keep it off for many picks (the dry run's stand-ins): each extra line is a paced call. One venue down
+    never stops the others."""
+    want: dict = {}                                           # (game, nkey, market) -> [(side, line)]
+    for p in picks.iter_rows(named=True):
+        k = (game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"])), norm_name(p["player"]), p["market"])
+        want.setdefault(k, []).append((p["side"], float(p["line"])))
+
+    def needed(g: str, nk: str, mk: str, ln: float) -> bool:
+        return any(ln == line or (extra_lines and (ln > line if side == "under" else ln < line))
+                   for side, line in want.get((g, nk, mk), ()))
     pm_size: dict = {}
     try:
         pmq = V.pm_quotes(V.pm_markets(week, when, verbose=False))
-        for p in picks.iter_rows(named=True):                          # size only for the picks' markets: a few calls
-            g = game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"]))
-            q = pmq.get((g, norm_name(p["player"]), p["market"], float(p["line"])))
-            if q and q.get("slug") and q["slug"] not in pm_size:
+        for (g, nk, mk, ln), q in pmq.items():                         # size only for the picks' lines: a few calls
+            if needed(g, nk, mk, ln) and q.get("slug") and q["slug"] not in pm_size:
                 try:
                     pm_size[q["slug"]] = V.pm_sizes(q["slug"])
                 except Exception as e:  # noqa: BLE001 - the price stays, without a size
                     print(f"best price: Polymarket book for {q['slug']} unavailable: {type(e).__name__}: {e}")
-    except Exception as e:  # noqa: BLE001 - one venue down never stops the record
+    except Exception as e:  # noqa: BLE001
         print(f"best price: Polymarket US unavailable: {type(e).__name__}: {e}")
         pmq = {}
     nv_idx, nv_books = {}, {}
     try:
         markets, events = V.nv_markets(when)
         nv_idx = V.nv_index(markets, events)
-        for p in picks.iter_rows(named=True):
-            g = game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"]))
-            m = nv_idx.get((g, norm_name(p["player"]), p["market"], float(p["line"])))
-            if m and m["marketId"] not in nv_books:
+        for (g, nk, mk, ln), m in nv_idx.items():
+            if needed(g, nk, mk, ln) and m["marketId"] not in nv_books:
                 nv_books[m["marketId"]] = V.nv_book(m["marketId"])
     except Exception as e:  # noqa: BLE001
         print(f"best price: Novig unavailable: {type(e).__name__}: {e}")
@@ -142,4 +147,14 @@ def record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, whe
     except Exception as e:  # noqa: BLE001
         print(f"best price: Kalshi unavailable: {type(e).__name__}: {e}")
         ksq = {}
-    return best_rows(picks, anq, pa, pmq, nv_idx, nv_books, when.strftime("%Y-%m-%dT%H:%M:%SZ"), pm_size, ksq)
+    return {"pmq": pmq, "pm_size": pm_size, "nv_idx": nv_idx, "nv_books": nv_books, "ksq": ksq}
+
+
+def record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week: int, when: dt.datetime,
+           quotes: dict | None = None) -> pl.DataFrame | None:
+    """Price every pick at its line (quotes from fetch_quotes, fetched here if not given); the caller appends the rows."""
+    if picks is None or not picks.height:
+        return None
+    anq = an_quotes(pl.read_csv(an_path, infer_schema_length=0)) if an_path is not None else {}
+    q = quotes if quotes is not None else fetch_quotes(picks, week, when)
+    return best_rows(picks, anq, pa, q["pmq"], q["nv_idx"], q["nv_books"], when.strftime("%Y-%m-%dT%H:%M:%SZ"), q["pm_size"], q["ksq"])

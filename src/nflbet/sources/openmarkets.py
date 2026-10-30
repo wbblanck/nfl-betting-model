@@ -133,6 +133,29 @@ def attach(picks: pl.DataFrame, om: pl.DataFrame | None) -> pl.DataFrame:
 SPREAD_VENUES = {"Kalshi", "Polymarket", "PolymarketUS", "ProphetX", "4Casters", "BettorEdge", "SX Bet", "BetOpenly"}
 
 
+QUOTE_SCHEMA = {"game": pl.Utf8, "venue": pl.Utf8, "home_line": pl.Float64, "side": pl.Utf8, "price": pl.Float64,
+                "avail": pl.Float64}
+
+
+def spread_quotes(rows: list[dict], venues: tuple[str, ...] = ("Kalshi", "PolymarketUS")) -> pl.DataFrame:
+    """Every two-sided game-spread line at the given exchanges (docs/your_venues_rules.md): game, venue, home_line
+    (positive = home favored), side ("home" / "away"), price before fees (cost of a share paying 1), dollars
+    available at that price. A line counts only where both sides are quoted at the same venue."""
+    sides: dict = {}
+    for r in rows:
+        g = _teams(r.get("contest_title"))
+        if r.get("market_key") != "spread" or not g or r.get("side_key") not in ("home", "away") or r.get("variable") in (None, ""):
+            continue
+        v = float(r["variable"])
+        home_line = -v if r["side_key"] == "home" else v
+        for q in r.get("partner_liquidities") or []:
+            if q.get("actionable") and q.get("price") and q.get("partner_name") in venues:
+                sides.setdefault((g, q["partner_name"], home_line), {})[r["side_key"]] = (float(q["price"]), float(q.get("available") or 0))
+    out = [{"game": g, "venue": ven, "home_line": hl, "side": sd, "price": pr, "avail": av}
+           for (g, ven, hl), d in sides.items() if "home" in d and "away" in d for sd, (pr, av) in d.items()]
+    return pl.DataFrame(out, schema=QUOTE_SCHEMA)
+
+
 def spreads(rows: list[dict]) -> pl.DataFrame:
     """Each exchange's main game spread: game, venue, home_line (nflverse sign: positive = home favored), home and
     away price (probabilities). Main line = the two-sided line whose prices are closest to even."""

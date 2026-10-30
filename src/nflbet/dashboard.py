@@ -61,7 +61,8 @@ def load(live: Path | None = None) -> dict:
             "ocmp": _read(live / f"openmarkets_compare_{SEASON}.csv"),
             "ats_runs": _read(live / f"ats_runs_{SEASON}.csv"), "ats_rec": _read(live / f"ats_record_{SEASON}.csv"),
             "polymarket": _json(Path(__file__).resolve().parents[2] / "docs" / "polymarket_compare.json"),
-            "best": _read(live / f"s1_bestprice_{SEASON}.csv")}
+            "best": _read(live / f"s1_bestprice_{SEASON}.csv"),
+            "ats_yv": _read(live / f"ats_yv_runs_{SEASON}.csv"), "s1_yv": _read(live / f"s1_yv_{SEASON}.csv")}
 
 
 def _json(path: Path) -> dict | None:
@@ -244,6 +245,7 @@ def pick_row(r: dict, locked: bool, tag: str = "") -> str:
         + "</div>"
         + (f'<div class="news">{"".join(flags)}<span class="detail">{esc(detail)}</span></div>' if flags or detail else "")
         + (f'<div class="news"><span class="detail">{esc(cov)}</span></div>' if (cov := coverage_for_pick(r)) else "")
+        + yv_price(r)
         + second_source(r)
         + best_price(r)
         + (('<details class="why"><summary>Why this pick</summary><ul>' + "".join(f"<li>{esc(x)}</li>" for x in r["_why"]) + '</ul></details>')
@@ -259,6 +261,32 @@ def with_best(rows: list[dict], best: pl.DataFrame | None) -> list[dict]:
            for b in best.iter_rows(named=True)}
     return [{**r, "_best": idx.get((r["run_utc"], str(r["an_game_id"]), str(r["player_id"]), r["market"], float(r["line"]), r["side"]))}
             for r in rows]
+
+
+PICKEM = {"PrizePicks", "Underdog", "Sleeper"}
+
+
+def with_yv(rows: list[dict], yv: pl.DataFrame | None) -> list[dict]:
+    """Attach each pick's your-venues row (data/live/s1_yv_2026.csv, src/nflbet/props/your_venues.py) from the same run."""
+    if yv is None or not yv.height:
+        return rows
+    idx = {(y["run_utc"], str(y["an_game_id"]), str(y["player_id"]), y["market"], y["side"]): y for y in yv.iter_rows(named=True)}
+    return [{**r, "_yv": idx.get((r["run_utc"], str(r["an_game_id"]), str(r["player_id"]), r["market"], r["side"]))} for r in rows]
+
+
+def yv_price(r: dict) -> str:
+    """One line: the cheapest price for this pick at Will's venues, at a line at least as good as DraftKings'."""
+    y = r.get("_yv")
+    if not y:
+        return ""
+    if y.get("yv_venue") in (None, ""):
+        return f'<div class="news">{chip("idle", "Your venues")}<span class="detail">No line at your venues at {r["line"]:g} or better.</span></div>'
+    ven, line, odds = y["yv_venue"], float(y["yv_line"]), float(y["yv_odds"])
+    how = "per pick in a 2-pick Power" if ven in PICKEM else "after fees"
+    diff = "" if line == float(r["line"]) else f" (DraftKings {r['line']:g})"
+    size = f", ${float(y['yv_size']):,.0f} available" if y.get("yv_size") not in (None, "") else ""
+    return (f'<div class="news">{chip("tag", "Your venues")}<span class="detail"><b>{esc(ven)} {esc(r["side"])} {line:g}{esc(diff)} at '
+            f'{odds:+.0f}</b> {esc(how)}{esc(size)}; break-even {float(y["yv_cost"]):.1%}.</span></div>')
 
 
 def best_price(r: dict) -> str:
@@ -438,13 +466,16 @@ def hcp(team: str, home_line, side_is_home: bool) -> str:
     return f"{team} {'PK' if v == 0 else f'{v:+g}'}"
 
 
-LABEL_CHIP = {"Bet Now": "win", "Wait": "flag", "Monitor": "state open", "No Value": "idle"}
-LABEL_ORDER = {"Bet Now": 0, "Wait": 1, "Monitor": 2, "No Value": 3}
+YV_NO_LINE = "No line at your venues"
+YV_VENUES = "Hard Rock, Kalshi, Polymarket US, Novig"
+LABEL_CHIP = {"Bet Now": "win", "Wait": "flag", "Monitor": "state open", "No Value": "idle", YV_NO_LINE: "idle"}
+LABEL_ORDER = {"Bet Now": 0, "Wait": 1, "Monitor": 2, "No Value": 3, YV_NO_LINE: 4}
 LABEL_MEANS = {
     "Bet Now": "edge of 1+ point across 3 or 7, at least as good as the exchanges, starting QBs clear",
     "Wait": "meets Bet Now, but a starting QB is listed Questionable or worse",
     "Monitor": "edge of 1.5+ points, or 1+ across 3 or 7, without the rest of Bet Now",
     "No Value": "edge under 1 point, or under 1.5 with no key number",
+    YV_NO_LINE: "none of your venues has a number at −120 or cheaper with $10 behind it",
 }
 BOOK_COLS = [("draftkings_line", "DraftKings"), ("fanduel_line", "FanDuel"), ("betrivers_line", "BetRivers"),
              ("betmgm_line", "BetMGM"), ("caesars_line", "Caesars")]
@@ -546,7 +577,37 @@ def ats_line_chart(r: dict, fair: float, best: float, cons: float | None, exch: 
             + "".join(out) + "</g></svg>")
 
 
+def yv_view(r: dict, y: dict | None) -> dict:
+    """The official row seen through the your-venues record (docs/your_venues_rules.md): best number, price, edge and
+    label at Will's venues, the official row kept under "_official". Without a your-venues row, the official row."""
+    if y is None:
+        return r
+    if y.get("yv_line") in (None, ""):
+        return {**r, "label": YV_NO_LINE, "_yv": "none", "_official": r}
+    cost = float(y["yv_cost"])
+    return {**r, "best_line": y["yv_line"], "best_book": y["yv_venue"], "best_odds": round(Bp.american(cost)), "gap": y["gap"],
+            "exp_clv": y["exp_clv"], "key": y["key"], "beats_ref": y["beats_ref"], "label": y["label"], "_yv": "priced",
+            "_venues": y.get("venues") or "{}", "_official": r}
+
+
+def official_note(o: dict) -> str:
+    h = o["side_is_home"] in (True, "true")
+    odds = _f(o.get("best_odds"))
+    return (f'<p class="ats-official"><span class="muted">Official tracker (five books):</span> {esc(o["side"])} '
+            f'{esc(fmt_line(side_view(o["best_line"], h)))} {esc(f"{odds:+.0f}") if odds is not None else ""} at '
+            f'{esc(o.get("best_book") or "")} · {esc(o["label"])}</p>')
+
+
 def ats_card(r: dict, now: dt.datetime) -> str:
+    if r.get("_yv") == "none":
+        locked = Lv.parse_ts(r["start_time"]) <= now
+        state = '<span class="chip state">Kicked off · locked</span>' if locked else ""
+        return (f'<article class="ats-card lab-none{" locked" if locked else ""}"><header class="ats-head"><div>'
+                f'<p class="ats-game">{esc(r["away"])} at {esc(r["home"])} · {esc(fmt_dt(r["start_time"]))} ET</p>'
+                f'<p class="ats-pick"><span class="ats-team">{esc(r["side"])}</span></p></div>'
+                f'<div class="ats-labels">{chip("idle", YV_NO_LINE)}{state}</div></header>'
+                f'<p class="ats-why">None of {esc(YV_VENUES)} quotes the rating\'s side at −120 or cheaper with $10 behind it.</p>'
+                + official_note(r["_official"]) + "</article>")
     h = r["side_is_home"] in (True, "true")
     fair_raw, best = side_view(r["fair"], h), side_view(r["best_line"], h)
     fair = round(fair_raw, 1)                 # display only; key and label logic use fair_raw
@@ -556,11 +617,21 @@ def ats_card(r: dict, now: dt.datetime) -> str:
     odds = _f(r.get("best_odds"))
     gap, clv = _f(r.get("gap")), _f(r.get("exp_clv"))
     books = []
-    for col, name in BOOK_COLS:
-        v = side_view(r.get(col), h)
-        if v is not None:
+    if r.get("_yv") == "priced":
+        try:
+            venues = json.loads(r["_venues"])
+        except ValueError:
+            venues = {}
+        for name, (hl, cost, _size) in venues.items():
             mark = " is-best" if name == r.get("best_book") else ""
-            books.append(f'<li class="bk{mark}"><span>{esc(name)}</span><b>{esc(fmt_line(v))}</b></li>')
+            books.append(f'<li class="bk{mark}"><span>{esc(name)}</span><b>{esc(fmt_line(side_view(hl, h)))} '
+                         f'{Bp.american(float(cost)):+.0f}</b></li>')
+    else:
+        for col, name in BOOK_COLS:
+            v = side_view(r.get(col), h)
+            if v is not None:
+                mark = " is-best" if name == r.get("best_book") else ""
+                books.append(f'<li class="bk{mark}"><span>{esc(name)}</span><b>{esc(fmt_line(v))}</b></li>')
     kc = keys_crossed(best, fair_raw) if r.get("key") in (True, "true") else []
     facts = [("Rating's fair line", f"{r['side']} {fmt_line(fair)}"),
              ("Market consensus", f"{r['side']} {fmt_line(cons)}"),
@@ -574,16 +645,23 @@ def ats_card(r: dict, now: dt.datetime) -> str:
     return (f'<article class="ats-card lab-{lab_cls}{" locked" if locked else ""}">'
             f'<header class="ats-head"><div><p class="ats-game">{esc(r["away"])} at {esc(r["home"])} · {esc(fmt_dt(r["start_time"]))} ET</p>'
             f'<p class="ats-pick"><span class="ats-team">{esc(r["side"])}</span> <span class="ats-num">{esc(fmt_line(best))}</span>'
-            f' <span class="ats-price">{esc(f"{odds:+.0f}") if odds is not None else ""} at {esc(r.get("best_book") or "")}</span></p></div>'
+            f' <span class="ats-price">{esc(f"{odds:+.0f}") if odds is not None else ""} at {esc(r.get("best_book") or "")}'
+            f'{" (after fees)" if r.get("_yv") == "priced" else ""}</span></p></div>'
             f'<div class="ats-labels">{chip(LABEL_CHIP.get(label, "idle"), label)}{state}</div></header>'
             + ats_line_chart(r, fair, best, cons, exch)
             + '<dl class="ats-facts">' + "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in facts) + '</dl>'
             + f'<p class="ats-why">{esc(label_reason(r, best, fair_raw))}</p>' + qb
-            + (f'<ul class="ats-books" aria-label="Each book\'s line for {esc(r["side"])}">' + "".join(books) + "</ul>" if books else "")
+            + (f'<ul class="ats-books" aria-label="Each venue\'s line for {esc(r["side"])}">' + "".join(books) + "</ul>" if books else "")
+            + (official_note(r["_official"]) if r.get("_official") else "")
             + "</article>")
 
 
 def ats_row_brief(r: dict) -> str:
+    if r.get("_yv") == "none":
+        o = r["_official"]
+        return (f'<li><span class="ats-game">{esc(r["away"])} at {esc(r["home"])} · {esc(fmt_dt(r["start_time"]))}</span>'
+                f'<span>{esc(r["side"])}: no line at your venues · official {esc(fmt_line(side_view(o["best_line"], o["side_is_home"] in (True, "true"))))} '
+                f'at {esc(o.get("best_book") or "")} ({esc(o["label"])})</span></li>')
     h = r["side_is_home"] in (True, "true")
     fair, best = side_view(r["fair"], h), side_view(r["best_line"], h)
     fair = round(fair, 1)
@@ -593,11 +671,11 @@ def ats_row_brief(r: dict) -> str:
             f' · fair {esc(fmt_line(fair))} · edge {float(r["gap"]):.1f}</span></li>')
 
 
-def ats_section(runs: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime) -> str:
+def ats_section(runs: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime, yv: pl.DataFrame | None = None) -> str:
     """Live ATS tab (docs/ats_live_rules.md): one card per game, from the rating's side."""
     head = ('<section class="block"><div class="sechead"><div><p class="eyebrow">NFL against the spread · unvalidated tracker</p>'
             '<h2>What the rating backs this week</h2></div></div>'
-            '<p class="lede">For every game the rating picks a side, then finds the best number for that side across five books. '
+            '<p class="lede">For every game the rating picks a side, then finds the best number for that side: at your venues, and across five books for the official record. '
             'The <b>edge</b> is how many points better that number is than the rating\'s fair line; <b>expected CLV</b> is the part of '
             'the edge the line has historically moved toward the rating by kickoff (0.235 × edge). The rating does not beat closing '
             'spreads (2022-2025 backtest); its case is closing-line value from opening lines (2008-2024). Labels follow the '
@@ -607,18 +685,28 @@ def ats_section(runs: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime) -> str:
     wk = int(runs["week"].cast(pl.Int64).max())
     cur = runs.filter(pl.col("week").cast(pl.Int64) == wk)
     latest = cur.sort("run_utc", descending=True).unique("game_id", keep="first").sort(["start_time", "game_id"]).to_dicts()
+    yvi = {}
+    if yv is not None and yv.height:
+        for y in yv.sort("run_utc").iter_rows(named=True):           # same run as the official row, else the latest
+            yvi.setdefault(y["game_id"], {})[y["run_utc"]] = y
+    has_yv = any(r["game_id"] in yvi for r in latest)
+    latest = [yv_view(r, (yvi.get(r["game_id"]) or {}).get(r["run_utc"])
+                      or (list(yvi[r["game_id"]].values())[-1] if r["game_id"] in yvi else None)) for r in latest]
     is_locked = lambda r: Lv.parse_ts(r["start_time"]) <= now
     open_ = sorted((r for r in latest if not is_locked(r)), key=lambda r: (LABEL_ORDER.get(r["label"], 9), r["start_time"], r["game_id"]))
     done = [r for r in latest if is_locked(r)]
-    counts = {lab: sum(1 for r in open_ if r["label"] == lab) for lab in LABEL_ORDER}
-    legend = ('<div class="ats-legend">' + "".join(
+    labs = [lab for lab in LABEL_ORDER if lab != YV_NO_LINE or has_yv]
+    counts = {lab: sum(1 for r in open_ if r["label"] == lab) for lab in labs}
+    legend = ((f'<p class="note">Labels below are for <b>your venues</b> ({esc(YV_VENUES)}; docs/your_venues_rules.md): the '
+               'same rules, at the best number you can get. Each card also shows the official five-book tracker.</p>' if has_yv else "")
+              + '<div class="ats-legend">' + "".join(
         f'<div class="ats-leg"><span class="ats-count">{counts[lab]}</span>{chip(LABEL_CHIP[lab], lab)}<span class="muted">{esc(LABEL_MEANS[lab])}</span></div>'
-        for lab in LABEL_ORDER) + '</div>')
-    key_html = ('<div class="legend"><span><i class="k1"></i>Rating\'s fair line</span><span><i class="k2"></i>Best number at a book</span>'
+        for lab in labs) + '</div>')
+    key_html = ('<div class="legend"><span><i class="k1"></i>Rating\'s fair line</span><span><i class="k2"></i>Best number</span>'
                 '<span><i class="k3"></i>Market consensus</span><span><i class="kx"></i>Exchanges</span>'
                 '<span><i class="ke"></i>Edge</span><span><i class="kk"></i>Key number (3, 7)</span></div>')
-    shown = [r for r in open_ if r["label"] != "No Value"]
-    none_ = [r for r in open_ if r["label"] == "No Value"]
+    shown = [r for r in open_ if r["label"] not in ("No Value", YV_NO_LINE)]
+    none_ = [r for r in open_ if r["label"] in ("No Value", YV_NO_LINE)]
     body = ""
     if shown:
         body += '<div class="ats-grid">' + "".join(ats_card(r, now) for r in shown) + "</div>"
@@ -627,7 +715,7 @@ def ats_section(runs: pl.DataFrame, rec: pl.DataFrame, now: dt.datetime) -> str:
     else:
         body += '<p class="empty">Every game this week has kicked off.</p>'
     if none_:
-        body += (f'<details class="old"><summary>No Value: {len(none_)} game{"s" if len(none_) != 1 else ""}</summary>'
+        body += (f'<details class="old"><summary>{"No Value or no line at your venues" if has_yv else "No Value"}: {len(none_)} game{"s" if len(none_) != 1 else ""}</summary>'
                  '<ul class="ats-brief">' + "".join(ats_row_brief(r) for r in none_) + "</ul></details>")
     if done:
         body += (f'<details class="old"><summary>Kicked off: {len(done)} game{"s" if len(done) != 1 else ""}, labels locked</summary>'
@@ -1034,6 +1122,7 @@ details.why ul{margin:6px 0 2px;padding-left:18px;display:flex;flex-direction:co
 .ats-facts dt{font:600 11.5px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .ats-facts dd{margin:1px 0 0;font:500 14px var(--mono)}
 .ats-why{margin:0;font-size:14px;color:var(--ink2)}
+.ats-official{margin:0;font:12.5px var(--mono);color:var(--ink2);border-top:1px solid var(--line);padding-top:8px}
 .ats-qb{margin:0;font-size:13.5px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
 .ats-books{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .ats-books .bk{display:flex;gap:6px;align-items:baseline;border:1px solid var(--line);border-radius:5px;padding:2px 8px;font-size:12.5px;color:var(--ink2)}
@@ -1210,7 +1299,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
     blocks, quiet = [], []
     for g in games:
         rows = cur.filter(pl.col("an_game_id") == g["an_game_id"]).sort("player").to_dicts() if cur.height else []
-        rows = with_best(with_why(rows, live, "an", stats), data.get("best"))
+        rows = with_yv(with_best(with_why(rows, live, "an", stats), data.get("best")), data.get("s1_yv"))
         (blocks.append(game_block(g, rows, now)) if rows else quiet.append(g))
     if quiet:
         blocks.append('<section class="game quiet"><header><h3>No picks</h3></header><ul class="nopick">' + "".join(
@@ -1320,7 +1409,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
             if w == cur_week:
                 continue
             s = summarize(x)
-            rows = "".join(pick_row(r, True) for r in with_best(with_why(x.sort("start_time", "player").to_dicts(), live, "an", stats), data.get("best")))
+            rows = "".join(pick_row(r, True) for r in with_yv(with_best(with_why(x.sort("start_time", "player").to_dicts(), live, "an", stats), data.get("best")), data.get("s1_yv")))
             old.append(f'<details class="old"><summary>Week {w}: {s["W"]}-{s["L"]}' + (f'-{s["P"]}' if s["P"] else "")
                        + f', {fmt_units(s["units"])} units</summary><ul class="picks">{rows}</ul></details>')
 
@@ -1346,7 +1435,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations.</div>'
         '<nav class="tabs" role="tablist"><button type="button" role="tab" data-tab="s1" aria-selected="true">Player props (S1)</button>'
         '<button type="button" role="tab" data-tab="ats" aria-selected="false">Spreads (ATS)</button></nav>'
-        f'<div class="tabpane" id="tab-ats" hidden>{ats_section(data.get("ats_runs", pl.DataFrame()), data.get("ats_rec", pl.DataFrame()), now)}</div>'
+        f'<div class="tabpane" id="tab-ats" hidden>{ats_section(data.get("ats_runs", pl.DataFrame()), data.get("ats_rec", pl.DataFrame()), now, data.get("ats_yv"))}</div>'
         f'<div class="tabpane" id="tab-s1">{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'
         + ('<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Earlier weeks</h2></div></div><div class="games">' + "".join(old) + "</div></section>" if old else "")
         + '</div>'

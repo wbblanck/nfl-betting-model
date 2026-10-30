@@ -1,0 +1,231 @@
+{
+ "stamp": "20261030T061114Z",
+ "kalshi_read_utc": "2026-10-30T06:11:23Z",
+ "parse": {
+  "open_markets": 2889,
+  "parsed": 2889,
+  "unparsed": 0,
+  "duplicate_keys": 0,
+  "by_series": {
+   "KXNFLREC": 691,
+   "KXNFLRECYDS": 1222,
+   "KXNFLRSHYDS": 517,
+   "KXNFLRSHATT": 93,
+   "KXNFLPASSYDS": 228,
+   "KXNFLPASSATT": 69,
+   "KXNFLPASSCOMP": 69
+  },
+  "fee": [
+   "quadratic|1"
+  ],
+  "floor_strike_mismatch": 0,
+  "floor_strike_examples": [],
+  "unparsed_examples": []
+ },
+ "openmarkets_read_utc": "2026-10-30T06:11:14Z",
+ "vs_openmarkets": {
+  "quotes": 5565,
+  "om_key_unparsed": 0,
+  "key_found": 5565,
+  "ticker_same": 5565,
+  "ticker_other": 0,
+  "ticker_not_in_direct": 0,
+  "price_same": 5511,
+  "size_same": 5502,
+  "compared": 5565,
+  "misses": [],
+  "price_or_size_diffs": [
+   {
+    "ticker": "KXNFLRSHYDS-26NOV01TENCIN-CINCBROWN30-80",
+    "side": "over",
+    "direct": [
+     0.26,
+     117.28
+    ],
+    "om": [
+     0.26,
+     122.28
+    ]
+   },
+   {
+    "ticker": "KXNFLRSHYDS-26NOV01TENCIN-CINCBROWN30-80",
+    "side": "under",
+    "direct": [
+     0.77,
+     48.0
+    ],
+    "om": [
+     0.77,
+     5
+    ]
+   },
+   {
+    "ticker": "KXNFLREC-26NOV01TENCIN-TENGHELM84-4",
+    "side": "over",
+    "direct": [
+     0.26,
+     212.0
+    ],
+    "om": [
+     0.26,
+     185
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26NOV01TENCIN-TENEAYOMANOR5-25",
+    "side": "over",
+    "direct": [
+     0.48,
+     22.0
+    ],
+    "om": [
+     0.48,
+     13
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26NOV01LVNYJ-LVBBOWERS89-110",
+    "side": "under",
+    "direct": [
+     0.88,
+     1.0
+    ],
+    "om": [
+     0.86,
+     1
+    ]
+   },
+   {
+    "ticker": "KXNFLREC-26NOV01LVNYJ-LVAJEANTY2-4",
+    "side": "over",
+    "direct": [
+     0.52,
+     15.0
+    ],
+    "om": [
+     0.51,
+     33
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26NOV01LVNYJ-NYJGWILSON5-100",
+    "side": "under",
+    "direct": [
+     0.81,
+     2.0
+    ],
+    "om": [
+     0.8200000000000001,
+     51
+    ]
+   },
+   {
+    "ticker": "KXNFLPASSYDS-26NOV01LVNYJ-LVKCOUSINS8-225",
+    "side": "under",
+    "direct": [
+     0.43,
+     7.0
+    ],
+    "om": [
+     0.42000000000000004,
+     20
+    ]
+   },
+   {
+    "ticker": "KXNFLREC-26NOV01LVNYJ-LVMMAYER87-3",
+    "side": "over",
+    "direct": [
+     0.58,
+     15.0
+    ],
+    "om": [
+     0.58,
+     89
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26NOV01ARIDAL-ARIKBOURNE17-30",
+    "side": "under",
+    "direct": [
+     0.47,
+     28.0
+    ],
+    "om": [
+     0.45999999999999996,
+     2
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26NOV01ARIDAL-ARIMWILSON14-100",
+    "side": "over",
+    "direct": [
+     0.15,
+     30.0
+    ],
+    "om": [
+     0.16,
+     500
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26NOV01ARIDAL-DALCLAMB88-85",
+    "side": "under",
+    "direct": [
+     0.71,
+     13.13
+    ],
+    "om": [
+     0.7,
+     7
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26NOV01ARIDAL-ARIMWILSON14-100",
+    "side": "under",
+    "direct": [
+     0.88,
+     1.0
+    ],
+    "om": [
+     0.86,
+     1
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26NOV01ARIDAL-DALBSPANNFORD89-10",
+    "side": "over",
+    "direct": [
+     0.65,
+     50.0
+    ],
+    "om": [
+     0.66,
+     263
+    ]
+   },
+   {
+    "ticker": "KXNFLRECYDS-26NOV01ARIDAL-ARITMCBRIDE85-50",
+    "side": "over",
+    "direct": [
+     0.75,
+     52.0
+    ],
+    "om": [
+     0.75,
+     17
+    ]
+   }
+  ]
+ },
+ "vs_books": {
+  "snapshot": "20261029T2342Z_w8.json.gz",
+  "sides": 288,
+  "kalshi_cheapest": 119,
+  "edge_cents_vs_best_book": {
+   "median": -0.27,
+   "p10": -2.15,
+   "p90": 2.24,
+   "over_10c": 0
+  }
+ }
+}
