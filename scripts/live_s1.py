@@ -97,7 +97,7 @@ def bestprice_record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week
     data/live/s1_bestprice_2026.csv. Record only: S1 is still graded at its DraftKings price. A failure never stops
     the run."""
     try:
-        quotes = Bp.fetch_quotes(picks, week, when)
+        quotes = Bp.fetch_quotes(picks, week, when, extra_lines=True)  # few picks: alternate lines are cheap
         yv_s1_record(picks, quotes, when)
         rows = Bp.record(picks, an_path, pa, week, when, quotes=quotes)
         if rows is None or not rows.height:

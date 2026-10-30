@@ -145,3 +145,27 @@ def test_novig_spread_quotes_hand_case():
     # CIN (home) -18.5 = home_line 18.5, bought against TEN's 0.68 bid: cost 0.32, $1,250 of payout behind it
     assert q["home"]["home_line"] == 18.5 and q["home"]["cost"] == pytest.approx(0.32) and q["home"]["size"] == 1250
     assert q["away"]["home_line"] == 18.5 and q["away"]["cost"] == pytest.approx(0.725) and q["away"]["size"] == 1000
+
+
+def test_fetch_quotes_reads_only_needed_lines(monkeypatch):
+    import datetime as dt
+    from nflbet.props import bestprice as Bp
+    key = ("NE|NYJ", "rhamondre stevenson", "rec")
+    pmq = {(*key, ln): {"under": 0.5, "over": 0.5, "fee": 0.0695, "slug": f"s{ln}"} for ln in (2.5, 3.5, 4.5)}
+    nv = {(*key, ln): {"marketId": f"m{ln}"} for ln in (2.5, 3.5, 4.5)}
+    sizes, books = [], []
+    monkeypatch.setattr(Bp.V, "pm_markets", lambda week, when, verbose=False: [])
+    monkeypatch.setattr(Bp.V, "pm_quotes", lambda m: pmq)
+    monkeypatch.setattr(Bp.V, "pm_sizes", lambda slug: sizes.append(slug) or {})
+    monkeypatch.setattr(Bp.V, "nv_markets", lambda when: ([], {}))
+    monkeypatch.setattr(Bp.V, "nv_index", lambda m, e: nv)
+    monkeypatch.setattr(Bp.V, "nv_book", lambda mid: books.append(mid) or {})
+    monkeypatch.setattr(Bp.V, "ks_markets", lambda: [])
+    monkeypatch.setattr(Bp.V, "ks_quotes", lambda m: {})
+    picks = pl.DataFrame([PICK])                                  # under 3.5
+    when = dt.datetime(2026, 11, 1, tzinfo=dt.timezone.utc)
+    Bp.fetch_quotes(picks, 8, when)
+    assert sizes == ["s3.5"] and books == ["m3.5"]                # default: the pick's own line only (dry run stays cheap)
+    sizes.clear(); books.clear()
+    Bp.fetch_quotes(picks, 8, when, extra_lines=True)
+    assert sorted(sizes) == ["s3.5", "s4.5"] and sorted(books) == ["m3.5", "m4.5"]   # never the worse 2.5

@@ -107,18 +107,25 @@ def best_rows(picks: pl.DataFrame, anq: dict, pa: pl.DataFrame | None, pmq: dict
                                           else pl.Int64 if c == "n_venues" else pl.Utf8) for c in COLS})
 
 
-def fetch_quotes(picks: pl.DataFrame, week: int, when: dt.datetime) -> dict:
+def fetch_quotes(picks: pl.DataFrame, week: int, when: dt.datetime, extra_lines: bool = False) -> dict:
     """Fetch Polymarket US, Novig and Kalshi once for this run's picks: {pmq, pm_size, nv_idx, nv_books, ksq}.
-    Order books (Novig) and sizes (Polymarket US) are read for every line of each picked player's market, so the
-    your-venues record (src/nflbet/props/your_venues.py) can price alternate lines; this record reads only the
-    pick's own line. One venue down never stops the others."""
-    keys = {(game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"])), norm_name(p["player"]), p["market"])
-            for p in picks.iter_rows(named=True)}
+    Order books (Novig) and sizes (Polymarket US) are read for each pick's own line; with `extra_lines` also for
+    every line at least as good for the pick's side, which the your-venues record (src/nflbet/props/your_venues.py)
+    prices. Keep it off for many picks (the dry run's stand-ins): each extra line is a paced call. One venue down
+    never stops the others."""
+    want: dict = {}                                           # (game, nkey, market) -> [(side, line)]
+    for p in picks.iter_rows(named=True):
+        k = (game_key(TEAM_FIX.get(p["home"], p["home"]), TEAM_FIX.get(p["away"], p["away"])), norm_name(p["player"]), p["market"])
+        want.setdefault(k, []).append((p["side"], float(p["line"])))
+
+    def needed(g: str, nk: str, mk: str, ln: float) -> bool:
+        return any(ln == line or (extra_lines and (ln > line if side == "under" else ln < line))
+                   for side, line in want.get((g, nk, mk), ()))
     pm_size: dict = {}
     try:
         pmq = V.pm_quotes(V.pm_markets(week, when, verbose=False))
-        for (g, nk, mk, _ln), q in pmq.items():                        # size only for the picks' markets: a few calls
-            if (g, nk, mk) in keys and q.get("slug") and q["slug"] not in pm_size:
+        for (g, nk, mk, ln), q in pmq.items():                         # size only for the picks' lines: a few calls
+            if needed(g, nk, mk, ln) and q.get("slug") and q["slug"] not in pm_size:
                 try:
                     pm_size[q["slug"]] = V.pm_sizes(q["slug"])
                 except Exception as e:  # noqa: BLE001 - the price stays, without a size
@@ -130,8 +137,8 @@ def fetch_quotes(picks: pl.DataFrame, week: int, when: dt.datetime) -> dict:
     try:
         markets, events = V.nv_markets(when)
         nv_idx = V.nv_index(markets, events)
-        for (g, nk, mk, _ln), m in nv_idx.items():
-            if (g, nk, mk) in keys and m["marketId"] not in nv_books:
+        for (g, nk, mk, ln), m in nv_idx.items():
+            if needed(g, nk, mk, ln) and m["marketId"] not in nv_books:
                 nv_books[m["marketId"]] = V.nv_book(m["marketId"])
     except Exception as e:  # noqa: BLE001
         print(f"best price: Novig unavailable: {type(e).__name__}: {e}")
