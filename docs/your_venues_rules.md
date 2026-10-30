@@ -13,10 +13,12 @@ test is attached; their numbers are reported, not judged.
 | Hard Rock Bet (FL) | yes | yes | OddsPapi, bookmaker `hardrockbet` (secret ODDSPAPI_API_KEY) |
 | Kalshi | yes | yes | spreads: OpenMarkets partner `Kalshi`; props: Kalshi read directly (as the best-price record) |
 | Polymarket US | yes | yes | spreads: OpenMarkets partner `PolymarketUS` only (international `Polymarket` excluded); props: Polymarket US gateway |
-| Novig | yes, where its catalog lists game spreads | yes | Novig public catalog (as the best-price record) |
+| Novig | yes | yes | Novig public catalog: `SPREAD` markets, one per line, each listing its two outcomes' best resting bids (docs/evidence/novig_spread_probe); props as the best-price record |
 | PrizePicks | no | standard lines only | ParlayAPI `prizepicks` |
 | Underdog | no | yes | ParlayAPI `underdog` |
 | Sleeper | no | yes | ParlayAPI `sleeper` |
+
+**Hard Rock starts later:** its reader needs the OddsPapi key (pending). Until then both records run on the other six venues; the date Hard Rock joins is added here before its first run.
 
 A venue with no quote at a run is simply absent from that run. If a source cannot be read, the run records that and
 goes on; it never falls back to a book outside this list.
@@ -34,9 +36,9 @@ goes on; it never falls back to a book outside this list.
   - PrizePicks: standard lines only, X = 3, cost 1/√3 = 0.5774. Goblin and demon lines are excluded (their payout is
     not published per pick).
   - Underdog: cost 1/(√3.5 × m), m = the pick's payout multiplier as ParlayAPI reports it (`selection_by_side`).
-    The 3.5 base is what ParlayAPI's own per-pick decimals imply on 653 of 1,563 sides of the 2026-10-08 probe
-    (docs/evidence/parlay/20261008T050251Z); a side whose reported decimal disagrees with √3.5 × m by more than
-    0.02 is excluded and counted.
+    The 3.5 base is what ParlayAPI's own per-pick decimals imply: on S1's markets in the 2026-10-08 probe
+    (docs/evidence/parlay/20261008T050251Z) all 342 Underdog sides had a reported decimal within 0.034 of √3.5 × m
+    (two-decimal rounding at large multipliers); a side off by more than 0.04 is excluded.
   - Sleeper: implied probability of the per-pick American price ParlayAPI reports.
   - Pick'em lines are ParlayAPI's national lines; Florida's apps may differ. That is a known gap, not corrected.
 

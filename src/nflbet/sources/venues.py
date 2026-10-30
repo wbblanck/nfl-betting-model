@@ -24,7 +24,7 @@ import polars as pl
 
 from nflbet.quant.fees import taker_fee
 from nflbet.sources.http import BROWSER_UA as UA, RESEARCH_UA, get_json
-from nflbet.sources.ids import TEAMS, game_key, norm_name
+from nflbet.sources.ids import TEAMS, TEAM_FIX, game_key, norm_name
 
 # ------------------------------------------------------------------------------------------------ Polymarket US
 PM = "https://gateway.polymarket.us"
@@ -187,6 +187,49 @@ def nv_markets(now: dt.datetime) -> tuple[list[dict], dict[str, dict]]:
         if not after:
             break
     return markets, events
+
+
+def nv_spread_markets(now: dt.datetime) -> tuple[list[dict], dict[str, dict]]:
+    """This week's NFL game-spread markets (every line Novig lists) and events by ID. Each market carries its two
+    outcomes' best resting bids, so no order-book calls are needed (docs/evidence/novig_spread_probe)."""
+    lo, hi = int((now - dt.timedelta(hours=6)).timestamp() * 1000), int((now + dt.timedelta(days=8)).timestamp() * 1000)
+    events = {e["eventId"]: e for e in nv_get("/v3/public/catalog/events", league="NFL", startsAfter=lo, startsBefore=hi, limit=500).get("items", [])}
+    body = nv_get("/v3/public/catalog/markets", league="NFL", marketType="SPREAD", startsAfter=lo, startsBefore=hi, limit=5000)
+    return body.get("items", []), events
+
+
+NV_SPREAD_OUT = re.compile(r"^([A-Z]{2,3}) ([+-]?\d+(?:\.\d+)?)$")       # 'CIN -18.5'
+
+
+def nv_spread_quotes(markets: list[dict], events: dict[str, dict]) -> list[dict]:
+    """Novig spread sides for the your-venues ATS record: game, venue, home_line (positive = home favored), side
+    ("home" / "away"), all-in cost per $1 of payout, dollars available. Buying one outcome takes the best resting bid
+    on the other: cost = 1 - that bid (+ fee where charged; none pregame), size = its contracts / 100."""
+    out = []
+    for m in markets:
+        ev = events.get(m.get("eventId"))
+        if m.get("status") != "OPEN" or not ev or " @ " not in (ev.get("description") or ""):
+            continue
+        away_name, home_name = (x.strip() for x in ev["description"].split(" @ "))
+        h, a = TEAMS.get(home_name), TEAMS.get(away_name)
+        g = nv_game(ev["description"])
+        outs = m.get("outcomes") or []
+        if not (h and a and g) or len(outs) != 2:
+            continue
+        for i, o in enumerate(outs):
+            x = NV_SPREAD_OUT.match(o.get("name") or "")
+            bid = (outs[1 - i].get("bid") or {})
+            if not x or not bid.get("price"):
+                continue
+            team, hv = TEAM_FIX.get(x.group(1), x.group(1)), float(x.group(2))
+            if team not in (h, a):
+                continue
+            c = 1 - float(bid["price"])
+            if not 0 < c < 1:
+                continue
+            out.append({"game": g, "venue": "Novig", "home_line": -hv if team == h else hv, "side": "home" if team == h else "away",
+                        "cost": c + nv_fee({**m, "_event": ev}, c), "size": float(bid.get("qty") or 0) / 100})
+    return out
 
 
 def nv_index(markets: list[dict], events: dict[str, dict]) -> dict[tuple, dict]:

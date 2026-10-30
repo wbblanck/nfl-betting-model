@@ -170,3 +170,28 @@ def test_ats_reasons_reproduce_every_recorded_label():
     for r in runs.to_dicts():
         h = r["side_is_home"] == "true"
         assert not D.label_reason(r, D.side_view(r["best_line"], h), D.side_view(r["fair"], h)).startswith("Recorded as"), r["game_id"]
+
+
+def test_ats_card_leads_with_your_venues():
+    off = {"run_utc": "r", "week": "8", "game_id": "g", "game": "DAL|ARI", "start_time": "2026-11-01T18:00:00Z", "home": "DAL",
+           "away": "ARI", "fair": "2.4", "consensus": "7.0", "exchange": "7.0", "side": "ARI", "side_is_home": "false",
+           "best_book": "BetRivers", "best_line": "7.0", "best_odds": "-110", "gap": "4.6", "key": "true", "exp_clv": "1.08",
+           "beats_ref": "true", "qb_note": "", "label": "Bet Now"}
+    yv = {"game_id": "g", "run_utc": "r", "yv_venue": "Novig", "yv_line": "7.5", "yv_cost": "0.535", "gap": "5.1", "key": "true",
+          "exp_clv": "1.2", "beats_ref": "true", "label": "Bet Now", "venues": '{"Kalshi": [7.0, 0.5175, 400.0], "Novig": [7.5, 0.535, 150.0]}'}
+    now = dt.datetime(2026, 11, 1, 12, tzinfo=dt.timezone.utc)
+    html = D.ats_card(D.yv_view(off, yv), now)
+    # away side: home line +7.5 (Dallas favored) is ARI +7.5; cost 0.535 is -115 after fees; the official five-book number stays visible
+    assert '<span class="ats-team">ARI</span> <span class="ats-num">+7.5</span>' in html and "-115 at Novig (after fees)" in html
+    assert "Official tracker (five books):" in html and "+7 -110 at BetRivers · Bet Now" in html and "Kalshi" in html
+    none = D.ats_card(D.yv_view(off, dict(yv, yv_line="", yv_cost="", yv_venue="", label="No line at your venues")), now)
+    assert "No line at your venues" in none and "+7 -110 at BetRivers" in none
+    assert D.yv_view(off, None) is off
+
+
+def test_s1_pick_shows_your_venues_price():
+    r = {"line": 3.5, "side": "under", "_yv": {"yv_venue": "Underdog", "yv_line": "4.5", "yv_odds": "-113", "yv_cost": "0.5314", "yv_size": ""}}
+    html = D.yv_price(r)
+    assert "Underdog under 4.5 (DraftKings 3.5) at -113" in html and "per pick in a 2-pick Power" in html and "53.1%" in html
+    assert "No line at your venues" in D.yv_price({"line": 3.5, "side": "under", "_yv": {"yv_venue": ""}})
+    assert D.yv_price({"line": 3.5, "side": "under"}) == ""

@@ -17,13 +17,16 @@ import polars as pl
 
 from nflbet import config
 from nflbet.ats import live as AL
+from nflbet.ats import your_venues as AY
 from nflbet.props import bestprice as Bp
 from nflbet.sources import depth as D
 from nflbet.sources import injuries as Inj
 from nflbet.props import live as Lv
 from nflbet.sources import openmarkets as Om
 from nflbet.sources import parlay as Pa
+from nflbet.sources import venues as V
 from nflbet.props import core as P
+from nflbet.props import your_venues as SY
 
 SEASON = 2026
 PICKS = Lv.LIVE / f"s1_picks_{SEASON}.csv"
@@ -37,6 +40,7 @@ PA_RUNS = Lv.LIVE / f"s1pa_runs_{SEASON}.csv"
 PA_RECORD = Lv.LIVE / f"s1pa_record_{SEASON}.csv"
 OM_CMP = Lv.LIVE / f"openmarkets_compare_{SEASON}.csv"
 _OM_ROWS: list = []
+_PA_ROWS: list = []                                                 # raw ParlayAPI rows: pick'em quotes for the your-venues record
 
 
 def do_run() -> None:
@@ -93,7 +97,9 @@ def bestprice_record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week
     data/live/s1_bestprice_2026.csv. Record only: S1 is still graded at its DraftKings price. A failure never stops
     the run."""
     try:
-        rows = Bp.record(picks, an_path, pa, week, when)
+        quotes = Bp.fetch_quotes(picks, week, when)
+        yv_s1_record(picks, quotes, when)
+        rows = Bp.record(picks, an_path, pa, week, when, quotes=quotes)
         if rows is None or not rows.height:
             return
         Lv.append(rows, BEST)
@@ -103,6 +109,50 @@ def bestprice_record(picks: pl.DataFrame, an_path, pa: pl.DataFrame | None, week
                   f"{best}, {r['n_venues']} venues")
     except Exception as e:  # noqa: BLE001
         print(f"best price record unavailable: {type(e).__name__}: {e}")
+
+
+def yv_s1_record(picks: pl.DataFrame, quotes: dict, when: dt.datetime) -> None:
+    """S1 on Will's venues (src/nflbet/props/your_venues.py, docs/your_venues_rules.md): each official pick priced at the
+    cheapest of his venues at a line at least as good as DK's, appended to data/live/s1_yv_2026.csv. Descriptive; a
+    failure never stops the run."""
+    try:
+        if picks is None or not picks.height:
+            return
+        pickem = Pa.parse_pickem(_PA_ROWS) if _PA_ROWS else None
+        qs = [SY.exchange_quotes(p, quotes["pmq"], quotes["pm_size"], quotes["nv_idx"], quotes["nv_books"], quotes["ksq"])
+              + SY.pickem_quotes(p, pickem) for p in picks.iter_rows(named=True)]
+        rows = SY.rows(picks, qs, when.strftime("%Y-%m-%dT%H:%M:%SZ"))
+        Lv.append(rows, SY.ROWS)
+        for r in rows.iter_rows(named=True):
+            at = f"{r['yv_venue']} {r['yv_line']:g} ({r['yv_odds']:+.0f})" if r["yv_venue"] else r["label"]
+            print(f"  your venues: {r['player']:24s} {r['market']:12s} {r['side']:5s} DK {r['dk_line']:g} -> {at}, {r['n_quotes']} quotes")
+    except Exception as e:  # noqa: BLE001
+        print(f"your-venues S1 record unavailable: {type(e).__name__}: {e}")
+
+
+def yv_ats_record(fair: pl.DataFrame, ev: pl.DataFrame, week: int, when: dt.datetime) -> None:
+    """ATS on Will's venues (src/nflbet/ats/your_venues.py): the official rules at the best number among Kalshi and
+    Polymarket US (OpenMarkets, fees added) and Novig (its public catalog), appended to data/live/ats_yv_runs_2026.csv. Descriptive; a failure never
+    stops the run."""
+    try:
+        frames = [AY.exchange_quotes(Om.spread_quotes(_OM_ROWS))]                      # Kalshi, Polymarket US (fees added)
+        try:
+            nv = V.nv_spread_quotes(*V.nv_spread_markets(when))
+            frames.append(pl.DataFrame(nv, schema=AY.QUOTE_SCHEMA))
+        except Exception as e:  # noqa: BLE001 - one venue down never stops the record
+            print(f"your-venues ATS: Novig spreads unavailable: {type(e).__name__}: {e}")
+        quotes = pl.concat(frames)
+        yv = AY.evaluate(fair, ev, quotes)
+        if not yv.height:
+            return
+        yv = yv.with_columns(pl.lit(when.strftime("%Y-%m-%dT%H:%M:%SZ")).alias("run_utc"), pl.lit(week).alias("week"))
+        Lv.append(yv, AY.RUNS)
+        for r in yv.sort("start_time").iter_rows(named=True):
+            at = (f"{r['side']} {r['yv_line']:+g} at {r['yv_venue']} (cost {r['yv_cost']:.3f}), gap {r['gap']:+.2f}"
+                  if r["yv_venue"] else "no eligible quote")
+            print(f"ATS your venues {r['away']}@{r['home']}: {at}: {r['label']}")
+    except Exception as e:  # noqa: BLE001
+        print(f"your-venues ATS record unavailable: {type(e).__name__}: {e}")
 
 
 def ats_record(week: int, when: dt.datetime) -> None:
@@ -123,6 +173,7 @@ def ats_record(week: int, when: dt.datetime) -> None:
         ev = ev.filter(pl.col("start_time").map_elements(lambda t: Lv.parse_ts(t) > when, return_dtype=pl.Boolean))
         ev = ev.with_columns(pl.lit(when.strftime("%Y-%m-%dT%H:%M:%SZ")).alias("run_utc"), pl.lit(week).alias("week"))
         Lv.append(ev, AL.RUNS)
+        yv_ats_record(fair, ev, week, when)
         for r in ev.sort("start_time").iter_rows(named=True):
             print(f"ATS {r['away']}@{r['home']}: fair {r['fair']:+.1f}, consensus {r['consensus']:+.1f}, exchange {r['exchange']}, "
                   f"{r['side']} at {r['best_book']} {r['best_line']:+.1f} ({r['best_odds']:+.0f}), gap {r['gap']:+.2f}, "
@@ -169,6 +220,7 @@ def parlay_record(week: int, when: dt.datetime, an_path) -> pl.DataFrame | None:
         return None
     try:
         rows, hdr = Pa.fetch()
+        _PA_ROWS[:] = rows
         _archive(rows, "parlay", week, when)
         pa = Pa.parse(rows)
         an = Pa.an_lines(an_path) if an_path is not None else Pa.parse([])
@@ -277,6 +329,13 @@ def do_grade() -> None:
             print(f"ATS tracker: {g.height} official games; Bet Now graded {bn.height}")
         except Exception as e:  # noqa: BLE001
             print(f"ATS grading unavailable: {type(e).__name__}: {e}")
+    if AY.RUNS.exists() and AY.RUNS.stat().st_size:
+        try:
+            g = AY.grade(pl.read_csv(AY.RUNS, infer_schema_length=0), SEASON)
+            g.write_csv(AY.RECORD)
+            print(f"ATS your venues: {g.height} official games, {int(g['result_ats'].is_in(['W', 'L', 'P']).sum())} graded")
+        except Exception as e:  # noqa: BLE001
+            print(f"your-venues ATS grading unavailable: {type(e).__name__}: {e}")
     pa = settle_record(PA_PICKS, PA_RUNS, PA_RECORD, coverage_guard=0.5)   # ParlayAPI's DK feed thins out overnight
     if pa is not None:
         t = Lv.record(pa)
@@ -284,6 +343,14 @@ def do_grade() -> None:
     d = settle_record(PICKS, RUNS, Lv.LIVE / f"s1_record_{SEASON}.csv")
     if d is None:
         print("no picks yet"); return
+    if SY.ROWS.exists() and SY.ROWS.stat().st_size:
+        try:
+            g = SY.grade(pl.read_csv(SY.ROWS, infer_schema_length=0), d)
+            g.write_csv(SY.RECORD)
+            print(f"S1 your venues: {g.height} official picks, {int(g['result'].is_in(['W', 'L', 'P']).sum())} graded, "
+                  f"{int((g['result'] == 'no line').sum())} with no line")
+        except Exception as e:  # noqa: BLE001
+            print(f"your-venues S1 grading unavailable: {type(e).__name__}: {e}")
     tot = Lv.record(d)
     lines = [f"# S1 live tracker, {SEASON}", "",
              "Rule S1: bet only props where all four signals agree (docs/simulator_confirm.md). NOT validated: in 2025 it",
