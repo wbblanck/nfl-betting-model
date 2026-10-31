@@ -195,3 +195,9 @@ def test_s1_pick_shows_your_venues_price():
     assert "Underdog under 4.5 (DraftKings 3.5) at -113" in html and "per pick in a 2-pick Power" in html and "53.1%" in html
     assert "No line at your venues" in D.yv_price({"line": 3.5, "side": "under", "_yv": {"yv_venue": ""}})
     assert D.yv_price({"line": 3.5, "side": "under"}) == ""
+
+
+def test_hidden_attribute_wins_over_display_rules():
+    # .tabpane sets display:flex, which would otherwise override [hidden] and show both tabs at once
+    from nflbet.dashboard import CSS
+    assert "[hidden]{display:none!important}" in CSS
