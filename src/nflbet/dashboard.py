@@ -1032,6 +1032,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[data-tip]:focus-visi
 .tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
 .tabs button:hover{color:var(--ink)}
 .tabpane{display:flex;flex-direction:column;gap:28px}
+[hidden]{display:none!important}
 
 /* games and picks */
 .games{display:flex;flex-direction:column;gap:10px}
