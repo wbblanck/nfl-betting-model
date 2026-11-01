@@ -125,6 +125,12 @@ def fmt_dt(ts: str) -> str:
     return f"{t:%a} {t.hour % 12 or 12}:{t:%M} {'AM' if t.hour < 12 else 'PM'}"
 
 
+def fmt_date(ts: str) -> str:
+    """fmt_dt with the date, for times that may be weeks old (e.g. "Sun Oct 4, 9:17 PM")."""
+    t = to_et(ts)
+    return f"{t:%a %b} {t.day}, {t.hour % 12 or 12}:{t:%M} {'AM' if t.hour < 12 else 'PM'}"
+
+
 def fmt_pct(x, digits=0, sign=False) -> str:
     return "–" if x is None else f"{x * 100:{'+' if sign else ''}.{digits}f}%"
 
@@ -1033,6 +1039,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[data-tip]:focus-visi
 .tabs button:hover{color:var(--ink)}
 .tabpane{display:flex;flex-direction:column;gap:28px}
 [hidden]{display:none!important}
+.lede.alert{border-left:3px solid var(--bad);padding-left:12px}
 
 /* games and picks */
 .games{display:flex;flex-direction:column;gap:10px}
@@ -1310,6 +1317,14 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
     n_flag = sum(1 for r in cur.to_dicts() if r.get("inj_against") == "true" or r.get("depth_against") == "true") if cur.height else 0
     if cur_week is None:
         week_html = '<p class="empty">No runs yet.</p>'
+    elif not games and pa.height and (pa["week"] == cur_week).any():
+        # DraftKings props reached ParlayAPI this week, so an empty Action Network feed is an outage, not "not posted yet"
+        last_wk = int(runs["week"].cast(pl.Int64).max()) if runs.height else None
+        since = (f' Its last run was week {last_wk}, {esc(fmt_date(last_run))} ET.' if last_run else '')
+        week_html = (f'<section class="block" id="week"><div class="sechead"><div><p class="eyebrow">Official S1 · Action Network lines</p>'
+                     f'<h2>Week {cur_week}: no official picks, Action Network feed empty</h2></div></div>'
+                     '<p class="lede alert">DraftKings has posted this week\'s props (the ParlayAPI record below has them), but Action Network '
+                     f'returned none, so official S1 has nothing to score.{since} Missed weeks cannot be filled in after kickoff.</p></section>')
     elif not games:
         week_html = (f'<section class="block" id="week"><div class="sechead"><div><p class="eyebrow">Official S1 · Action Network lines</p>'
                      f'<h2>Week {cur_week}: waiting for Action Network</h2></div></div>'
@@ -1414,7 +1429,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
             old.append(f'<details class="old"><summary>Week {w}: {s["W"]}-{s["L"]}' + (f'-{s["P"]}' if s["P"] else "")
                        + f', {fmt_units(s["units"])} units</summary><ul class="picks">{rows}</ul></details>')
 
-    stamp = f'Built {fmt_dt(now.strftime("%Y-%m-%dT%H:%M:%SZ"))} ET' + (f' · last official run {fmt_dt(last_run)} ET' if last_run else "")
+    stamp = f'Built {fmt_dt(now.strftime("%Y-%m-%dT%H:%M:%SZ"))} ET' + (f' · last official run {fmt_date(last_run)} ET' if last_run else "")
     foot = (
         '<footer class="foot"><ul>'
         f'<li>Rule S1: DraftKings props where the disagree, projection, simulator and price signals all point the same way. Locked before the season; '

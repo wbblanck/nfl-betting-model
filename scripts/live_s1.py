@@ -43,6 +43,15 @@ _OM_ROWS: list = []
 _PA_ROWS: list = []                                                 # raw ParlayAPI rows: pick'em quotes for the your-venues record
 
 
+def an_outage(week: int, n_rows: int, pa: pl.DataFrame | None) -> str | None:
+    """An alarm message when Action Network returned no props although DraftKings has posted them (ParlayAPI's DK
+    rows), else None. Zero rows with no DK props anywhere is the normal early-week state, not an alarm."""
+    n_dk = pa.filter(pl.col("book") == "dk").height if pa is not None and pa.height else 0
+    if n_rows > 0 or n_dk == 0:
+        return None
+    return f"week {week}: Action Network returned 0 player props, but ParlayAPI has {n_dk} DraftKings props; official S1 cannot run"
+
+
 def do_run() -> None:
     week = Lv.current_week(SEASON)
     if week is None:
@@ -64,6 +73,9 @@ def do_run() -> None:
             shutil.copyfileobj(f, g)
         picks, log = Lv.run(SEASON, tmp, when)
         scored.append(("S1 (Action Network)", Om.attach(Pa.attach(picks, pa), om), log, PICKS, RUNS))
+    elif msg := an_outage(week, n_rows, pa):                           # DK has posted, so the empty feed is an outage
+        print(f"::error::{msg}")
+        (Lv.LIVE / "tmp" / "ALERT").write_text(msg + "\n")             # the workflow's Alarm step turns the job red
     else:                                                                # books have not posted this week's props yet
         print(f"week {week}: Action Network has no player props posted yet; official S1 has nothing to score (not an error)")
     if pa is not None and pa.height:
