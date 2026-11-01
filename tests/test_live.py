@@ -116,3 +116,22 @@ def test_coverage_guard_ignores_thin_runs():
     assert Lv.official(picks, runs, 0.5)["player"].to_list() == ["Aaron Jones"]   # 7 < 0.5 * 20: 08:00 does not count
     runs2 = runs.with_columns(pl.Series("props_scored", ["18", "20", "15"]))
     assert Lv.official(picks, runs2, 0.5).height == 0                    # a full run with no pick still drops it
+
+
+def test_an_outage_alarm_only_when_draftkings_has_posted():
+    """2026 weeks 5-8: Action Network returned 0 props while ParlayAPI had DK's, and the run called it "not posted yet"."""
+    import importlib.util
+    import sys
+
+    import polars as pl
+
+    spec = importlib.util.spec_from_file_location("live_s1", "scripts/live_s1.py")
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules["live_s1"] = mod
+    spec.loader.exec_module(mod)
+    pa = pl.DataFrame({"book": ["dk", "dk", "fd"]})
+    assert mod.an_outage(8, 0, pa) == ("week 8: Action Network returned 0 player props, but ParlayAPI has 2 DraftKings props; "
+                                       "official S1 cannot run")
+    assert mod.an_outage(8, 120, pa) is None                       # Action Network has props: fine
+    assert mod.an_outage(8, 0, pl.DataFrame({"book": ["fd"]})) is None   # nobody has DK props yet: early week
+    assert mod.an_outage(8, 0, None) is None                       # ParlayAPI unavailable: no evidence of an outage

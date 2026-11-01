@@ -201,3 +201,25 @@ def test_hidden_attribute_wins_over_display_rules():
     # .tabpane sets display:flex, which would otherwise override [hidden] and show both tabs at once
     from nflbet.dashboard import CSS
     assert "[hidden]{display:none!important}" in CSS
+
+
+def test_fmt_date_carries_the_date():
+    assert D.fmt_date("2026-10-05T01:17:59Z") == "Sun Oct 4, 9:17 PM"
+
+
+def test_empty_action_network_week_reads_as_outage_when_parlay_has_the_week(tmp_path):
+    t = "2026-10-05T01:17:59Z"
+    _write(tmp_path, [pick(t, "Won", "-120")], [{"run_utc": t, "season": "2026", "week": "4", "an_game_id": "1",
+                                                   "start_time": START1, "home": "BUF", "away": "NE", "props_scored": "40"}])
+    base = {"run_utc": "2026-10-11T12:00:00Z", "season": "2026", "week": "5", "an_game_id": "pa_1",
+            "start_time": "2026-10-11T17:00:00.000Z", "away": "IND", "home": "PIT", "team": "IND", "player": "Josh Downs",
+            "player_id": "a", "market": "rec", "side": "under", "line": "4.5", "odds": "-151", "p_sim": "0.258",
+            "p_over_dk": "0.43", "proj": "3.1", "units": "0", "result": "pending", "actual": "",
+            "inj_against": "false", "depth_against": "false"}
+    pl.DataFrame([base]).write_csv(tmp_path / "s1pa_record_2026.csv")
+    now = dt.datetime(2026, 10, 11, 13, 0, tzinfo=dt.timezone.utc)
+    page = D.build(D.load(tmp_path), now)
+    assert "Week 5: no official picks, Action Network feed empty" in page
+    assert "Its last run was week 4, Sun Oct 4, 9:17 PM ET." in page
+    assert "last official run Sun Oct 4, 9:17 PM ET" in page
+    assert "waiting for Action Network" not in page

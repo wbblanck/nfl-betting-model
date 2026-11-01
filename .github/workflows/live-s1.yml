@@ -80,3 +80,8 @@ jobs:
           [ -f data/live/recap_ledger_2026.csv ] && git add data/live/recap_ledger_2026.csv
           git commit -m "S1 live: ${{ github.event.schedule || github.event.inputs.step }}" || exit 0
           for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
+      - name: Alarm
+        if: always()
+        run: |
+          # The run itself carries on (other records, dashboard, commit); this step turns the job red so GitHub emails Will.
+          if [ -f data/live/tmp/ALERT ]; then cat data/live/tmp/ALERT; exit 1; fi
