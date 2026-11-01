@@ -88,6 +88,25 @@ def main() -> None:
             s["props"][f"w{week}_{g['id']}"] = sh
             print(week, g["id"], sh.get("top_keys"), sh.get("known_markets_present"), sh.get("parsed_rows"), flush=True)
 
+    # Round 2 (after round 1 found every props response empty, week 4 included): request variants on one week-8 game
+    gid = picks[8][0]["id"] if picks.get(8) else None
+    books = "15,30,68,69,71,75,49"
+    variants = {"plain": f"/web/v2/games/{gid}/props", "bookIds": f"/web/v2/games/{gid}/props?bookIds={books}",
+                "state_nj": f"/web/v2/games/{gid}/props?bookIds={books}&stateCode=NJ",
+                "periods": f"/web/v2/games/{gid}/props?periods=event", "v1": f"/web/v1/games/{gid}/props",
+                "v2_game": f"/web/v2/games/{gid}?bookIds={books}", "player_props_v1": f"/web/v1/nfl/props?gameId={gid}"}
+    s["variants"] = {}
+    if gid is not None:
+        for name, path in variants.items():
+            body = F.get(F.AN + path, 1.0)
+            save(f"variant_{name}", body)
+            pp = body.get("player_props") if isinstance(body, dict) else None
+            s["variants"][name] = {"path": path, "type": type(body).__name__, "bytes": len(json.dumps(body)),
+                                   "top_keys": sorted(body.keys())[:20] if isinstance(body, dict) else None,
+                                   "player_props_n": len(pp) if isinstance(pp, dict) else None,
+                                   "head": json.dumps(body)[:300]}
+            print("variant", name, s["variants"][name]["bytes"], s["variants"][name]["player_props_n"], flush=True)
+
     (out / "summary.json").write_text(json.dumps(s, indent=1, default=str))
     print("wrote", out)
 
