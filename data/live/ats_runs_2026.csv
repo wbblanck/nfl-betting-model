@@ -317,3 +317,5 @@ game_id,game,start_time,home,away,fair,consensus,exchange,n_exchanges,side,side_
 2026_08_NE_MIA,MIA|NE,2026-11-01T21:25:00.000Z,MIA,NE,-7.99,-7.0,-7.0,6,NE,false,BetMGM,-7.0,-102.0,0.99,false,0.23,true,"",No Value,-7.0,-7.5,-7.0,-7.0,-7.0,2026-11-01T19:59:36Z,8
 2026_08_PHI_WAS,PHI|WAS,2026-11-02T01:20:00.000Z,WAS,PHI,0.89,6.0,5.5,6,PHI,false,DraftKings,6.0,-108.0,5.11,true,1.2,true,"",Bet Now,6.0,5.5,6.0,6.0,6.0,2026-11-01T19:59:36Z,8
 2026_08_CHI_SEA,CHI|SEA,2026-11-03T01:15:00.000Z,SEA,CHI,4.54,3.0,3.5,6,SEA,true,BetRivers,3.0,-110.0,1.54,false,0.36,true,"",Monitor,3.0,3.0,3.0,3.0,3.0,2026-11-01T19:59:36Z,8
+2026_08_PHI_WAS,PHI|WAS,2026-11-02T01:20:00.000Z,WAS,PHI,0.89,5.5,5.5,6,PHI,false,DraftKings,6.0,-108.0,5.11,true,1.2,true,"",Bet Now,6.0,5.5,6.0,5.5,6.0,2026-11-01T22:41:48Z,8
+2026_08_CHI_SEA,CHI|SEA,2026-11-03T01:15:00.000Z,SEA,CHI,4.54,3.0,3.5,6,SEA,true,BetRivers,3.0,-107.0,1.54,false,0.36,true,"",Monitor,3.0,3.0,3.0,3.0,3.0,2026-11-01T22:41:48Z,8
