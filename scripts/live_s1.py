@@ -38,6 +38,10 @@ BEST = Lv.LIVE / f"s1_bestprice_{SEASON}.csv"
 PA_PICKS = Lv.LIVE / f"s1pa_picks_{SEASON}.csv"
 PA_RUNS = Lv.LIVE / f"s1pa_runs_{SEASON}.csv"
 PA_RECORD = Lv.LIVE / f"s1pa_record_{SEASON}.csv"
+# Source switch (docs/s1_live_rules.md, pre-registered 2026-11-02): Action Network stopped serving props after week 4,
+# so from this week on official S1 is scored on ParlayAPI's DK + FanDuel lines (the same computation as the record
+# above, including its thin-feed guard), for the rest of 2026 whatever Action Network does.
+SWITCH_WEEK = Lv.SOURCE_SWITCH_WEEK
 OM_CMP = Lv.LIVE / f"openmarkets_compare_{SEASON}.csv"
 _OM_ROWS: list = []
 _PA_ROWS: list = []                                                 # raw ParlayAPI rows: pick'em quotes for the your-venues record
@@ -50,6 +54,14 @@ def an_outage(week: int, n_rows: int, pa: pl.DataFrame | None) -> str | None:
     if n_rows > 0 or n_dk == 0:
         return None
     return f"week {week}: Action Network returned 0 player props, but ParlayAPI has {n_dk} DraftKings props; official S1 cannot run"
+
+
+def pa_outage(week: int, pa: pl.DataFrame | None) -> str | None:
+    """From SWITCH_WEEK official S1 depends on ParlayAPI: an alarm when its call failed (pa is None). An empty but
+    successful answer is the normal early-week state (DraftKings has not posted), not an alarm."""
+    if pa is not None:
+        return None
+    return f"week {week}: ParlayAPI unavailable; official S1 (ParlayAPI DK + FanDuel lines from week {SWITCH_WEEK}) cannot run"
 
 
 def do_run() -> None:
@@ -66,7 +78,18 @@ def do_run() -> None:
     pa = parlay_record(week, when, tmp if n_rows > 0 else None)
     om = openmarkets_record(week, when, pa, tmp if n_rows > 0 else None)
     scored = []                                                          # (label, picks, log, picks file, runs file)
-    if n_rows > 0:
+    switched = week >= SWITCH_WEEK
+    if n_rows > 0 and switched:                                          # kept as evidence only; not scored
+        arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"
+        arch.parent.mkdir(parents=True, exist_ok=True)
+        with open(tmp, "rb") as f, gzip.open(arch, "wb") as g:
+            shutil.copyfileobj(f, g)
+        print(f"week {week}: Action Network has {n_rows} prop rows; archived, not scored (official S1 is on ParlayAPI from week {SWITCH_WEEK})")
+    if switched:
+        if msg := pa_outage(week, pa):
+            print(f"::error::{msg}")
+            (Lv.LIVE / "tmp" / "ALERT").write_text(msg + "\n")
+    elif n_rows > 0:
         arch = Lv.LIVE / "lines" / f"{when.strftime('%Y%m%dT%H%MZ')}_w{week}.csv.gz"   # saved first: a failed run leaves its input
         arch.parent.mkdir(parents=True, exist_ok=True)
         with open(tmp, "rb") as f, gzip.open(arch, "wb") as g:
@@ -84,11 +107,20 @@ def do_run() -> None:
             n = Pa.to_an_csv(pa, SEASON, week, pa_csv)
             if n:
                 picks, log = Lv.run(SEASON, pa_csv, when)
-                scored.append(("S1 on ParlayAPI (DK + FanDuel)", Om.attach(picks, om), log, PA_PICKS, PA_RUNS))
-        except Exception as e:  # noqa: BLE001 - the second record never stops the official one
+                picks = Om.attach(picks, om)
+                if switched:                                             # official S1 = this record from SWITCH_WEEK on
+                    scored.insert(0, ("S1 (official, ParlayAPI DK + FanDuel)", Pa.attach(picks, pa), log, PICKS, RUNS))
+                scored.append(("S1 on ParlayAPI (DK + FanDuel)", picks, log, PA_PICKS, PA_RUNS))
+        except Exception as e:  # noqa: BLE001 - before SWITCH_WEEK the second record never stops the official one
             print(f"S1 on ParlayAPI unavailable: {type(e).__name__}: {e}")
+            if switched:                                                 # from SWITCH_WEEK it is the official record
+                msg = f"week {week}: scoring ParlayAPI lines failed ({type(e).__name__}); official S1 did not run"
+                print(f"::error::{msg}")
+                (Lv.LIVE / "tmp" / "ALERT").write_text(msg + "\n")
     ats_record(week, when)
-    if n_rows > 0:                                                      # scored[0] is official S1
+    if switched and scored and scored[0][3] == PICKS:                   # scored[0] is official S1
+        bestprice_record(scored[0][1], Lv.LIVE / "tmp" / "pa_props_live.csv", pa, week, when)
+    elif not switched and n_rows > 0:
         bestprice_record(scored[0][1], tmp, pa, week, when)
     if not scored:
         return
@@ -306,15 +338,27 @@ def news(r: dict) -> str:
     return "; ".join(x for x in (inj, dep) if x)
 
 
-def settle_record(picks_path, runs_path, out_path, coverage_guard: float | None = None) -> pl.DataFrame | None:
-    """Official picks (last run before kickoff) settled against nflverse; written to out_path."""
+def official_mixed(picks: pl.DataFrame, runs: pl.DataFrame, coverage_guard: float | None,
+                   guard_prefix: str | None) -> pl.DataFrame:
+    """Lv.official, with the coverage guard limited to games whose id starts with guard_prefix (None: all games)."""
+    if guard_prefix is None or coverage_guard is None:
+        return Lv.official(picks, runs, coverage_guard)
+    is_g = pl.col("an_game_id").str.starts_with(guard_prefix)
+    return pl.concat([Lv.official(picks.filter(~is_g), runs.filter(~is_g)),
+                      Lv.official(picks.filter(is_g), runs.filter(is_g), coverage_guard)], how="diagonal_relaxed")
+
+
+def settle_record(picks_path, runs_path, out_path, coverage_guard: float | None = None,
+                  guard_prefix: str | None = None) -> pl.DataFrame | None:
+    """Official picks (last run before kickoff) settled against nflverse; written to out_path. With guard_prefix, the
+    thin-feed guard applies only to games whose an_game_id starts with it (official S1: the ParlayAPI weeks)."""
     import nflreadpy as nfl
 
     if not picks_path.exists() or not picks_path.stat().st_size:
         return None
     picks = pl.read_csv(picks_path, infer_schema_length=0)
     runs = pl.read_csv(runs_path, infer_schema_length=0)
-    off = Lv.official(picks, runs, coverage_guard)
+    off = official_mixed(picks, runs, coverage_guard, guard_prefix)
     sched = nfl.load_schedules(seasons=[SEASON]).filter(pl.col("game_type") == "REG")
     fix = lambda c: pl.col(c).replace(P.TEAM_FIX)  # noqa: E731
     final = sched.filter(pl.col("result").is_not_null()).select("week", "home_team", "away_team")
@@ -352,7 +396,7 @@ def do_grade() -> None:
     if pa is not None:
         t = Lv.record(pa)
         print(f"S1 on ParlayAPI: {t['W']}-{t['L']}-{t['P']}, {t['units']:+.2f} units (pending {t['pending']}, void {t['void']})")
-    d = settle_record(PICKS, RUNS, Lv.LIVE / f"s1_record_{SEASON}.csv")
+    d = settle_record(PICKS, RUNS, Lv.LIVE / f"s1_record_{SEASON}.csv", coverage_guard=0.5, guard_prefix="pa_")
     if d is None:
         print("no picks yet"); return
     if SY.ROWS.exists() and SY.ROWS.stat().st_size:

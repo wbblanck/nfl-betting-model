@@ -223,3 +223,19 @@ def test_empty_action_network_week_reads_as_outage_when_parlay_has_the_week(tmp_
     assert "Its last run was week 4, Sun Oct 4, 9:17 PM ET." in page
     assert "last official run Sun Oct 4, 9:17 PM ET" in page
     assert "waiting for Action Network" not in page
+
+
+def test_week9_without_official_runs_waits_for_parlayapi(tmp_path):
+    t = "2026-10-05T01:17:59Z"
+    _write(tmp_path, [pick(t, "Won", "-120")], [{"run_utc": t, "season": "2026", "week": "4", "an_game_id": "1",
+                                                   "start_time": START1, "home": "BUF", "away": "NE", "props_scored": "40"}])
+    base = {"run_utc": "2026-11-05T12:00:00Z", "season": "2026", "week": "9", "an_game_id": "pa_1",
+            "start_time": "2026-11-06T01:15:00.000Z", "away": "IND", "home": "PIT", "team": "IND", "player": "Josh Downs",
+            "player_id": "a", "market": "rec", "side": "under", "line": "4.5", "odds": "-151", "p_sim": "0.258",
+            "p_over_dk": "0.43", "proj": "3.1", "units": "0", "result": "pending", "actual": "",
+            "inj_against": "false", "depth_against": "false"}
+    pl.DataFrame([base]).write_csv(tmp_path / "s1pa_record_2026.csv")
+    page = D.build(D.load(tmp_path), dt.datetime(2026, 11, 5, 13, 0, tzinfo=dt.timezone.utc))
+    assert "Week 9: waiting for DraftKings props on ParlayAPI" in page
+    assert "Official S1 · ParlayAPI lines (DraftKings + FanDuel)" in page
+    assert "Action Network feed empty" not in page

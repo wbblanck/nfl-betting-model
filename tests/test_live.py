@@ -135,3 +135,73 @@ def test_an_outage_alarm_only_when_draftkings_has_posted():
     assert mod.an_outage(8, 120, pa) is None                       # Action Network has props: fine
     assert mod.an_outage(8, 0, pl.DataFrame({"book": ["fd"]})) is None   # nobody has DK props yet: early week
     assert mod.an_outage(8, 0, None) is None                       # ParlayAPI unavailable: no evidence of an outage
+
+
+def _load_live_s1():
+    import importlib.util
+    import sys
+
+    spec = importlib.util.spec_from_file_location("live_s1", "scripts/live_s1.py")
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules["live_s1"] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _switched_env(mod, tmp_path, monkeypatch, pa):
+    """Week 9 run with Action Network empty; ParlayAPI answers with `pa` (None = the call failed)."""
+    monkeypatch.setattr(mod.Lv, "LIVE", tmp_path)
+    for name in ("PICKS", "RUNS", "PA_PICKS", "PA_RUNS"):
+        monkeypatch.setattr(mod, name, tmp_path / f"{name.lower()}.csv")
+    monkeypatch.setattr(mod.Lv, "current_week", lambda season: 9)
+    hdr = "season,week,an_game_id,start_time,home,away,market,an_player_id,player,player_team,book_id,book,line,over_odds,under_odds,yes_odds\n"
+    monkeypatch.setattr(mod.subprocess, "run", lambda cmd, check: open(cmd[cmd.index("--out") + 1], "w").write(hdr))
+    monkeypatch.setattr(mod, "parlay_record", lambda week, when, an: pa)
+    monkeypatch.setattr(mod, "openmarkets_record", lambda week, when, pa, an: None)
+    monkeypatch.setattr(mod, "ats_record", lambda week, when: None)
+    monkeypatch.setattr(mod, "with_news", lambda frames, week, when: frames)
+    seen = {}
+    monkeypatch.setattr(mod, "bestprice_record", lambda picks, an_path, pa, week, when: seen.setdefault("best", picks.height))
+    monkeypatch.setattr(mod.Pa, "to_an_csv", lambda pa, season, week, path: open(path, "w").write(hdr) and 1)
+    pick = pl.DataFrame([{"run_utc": "2026-11-05T16:00:00Z", "week": "9", "an_game_id": "pa_2026_09_X_Y", "start_time": "2026-11-06T01:15:00.000Z",
+                          "home": "Y", "away": "X", "player": "A B", "player_id": "p", "market": "rec", "side": "under",
+                          "line": 4.5, "odds": -150.0, "inj_against": False, "inj_self": "", "inj_teammates": "",
+                          "depth_against": False, "depth_note": ""}])
+    log = pl.DataFrame([{"run_utc": "2026-11-05T16:00:00Z", "season": 2026, "week": 9, "an_game_id": "pa_2026_09_X_Y",
+                         "start_time": "2026-11-06T01:15:00.000Z", "home": "Y", "away": "X", "props_scored": 40}])
+    monkeypatch.setattr(mod.Lv, "run", lambda season, path, when: (pick, log))
+    monkeypatch.setattr(mod.Om, "attach", lambda picks, om: picks)
+    monkeypatch.setattr(mod.Pa, "attach", lambda picks, pa: picks)
+    return seen
+
+
+def test_week9_official_s1_is_scored_on_parlayapi(tmp_path, monkeypatch, capsys):
+    """Source switch (docs/s1_live_rules.md): from week 9 ParlayAPI's DK + FanDuel lines are the official S1 input."""
+    mod = _load_live_s1()
+    seen = _switched_env(mod, tmp_path, monkeypatch, pl.DataFrame({"book": ["dk", "fd"]}))
+    mod.do_run()
+    out = capsys.readouterr().out
+    assert "S1 (official, ParlayAPI DK + FanDuel), week 9" in out and "S1 on ParlayAPI (DK + FanDuel), week 9" in out
+    for name in ("picks", "pa_picks"):
+        assert pl.read_csv(tmp_path / f"{name}.csv")["player"].to_list() == ["A B"]
+    assert pl.read_csv(tmp_path / "runs.csv")["an_game_id"].to_list() == ["pa_2026_09_X_Y"]
+    assert seen["best"] == 1                                     # best-price / your-venues records get the official pick
+    assert not (tmp_path / "tmp" / "ALERT").exists()             # Action Network empty is no alarm after the switch
+
+
+def test_week9_parlayapi_failure_alarms_and_records_nothing(tmp_path, monkeypatch):
+    mod = _load_live_s1()
+    _switched_env(mod, tmp_path, monkeypatch, None)
+    mod.do_run()
+    assert "ParlayAPI unavailable" in (tmp_path / "tmp" / "ALERT").read_text()
+    assert not (tmp_path / "picks.csv").exists()
+
+
+def test_official_guard_applies_to_parlayapi_games_only():
+    mod = _load_live_s1()
+    runs = pl.DataFrame({"run_utc": ["2026-11-05T05:00:00Z", "2026-11-05T20:00:00Z"] * 2,
+                         "an_game_id": ["290901", "290901", "pa_g", "pa_g"],
+                         "start_time": ["2026-11-06T01:15:00.000Z"] * 4, "props_scored": ["20", "7", "20", "7"]})
+    picks = pl.DataFrame({"run_utc": ["2026-11-05T05:00:00Z"] * 2, "an_game_id": ["290901", "pa_g"], "player": ["an", "pa"]})
+    off = mod.official_mixed(picks, runs, 0.5, "pa_")
+    assert off["player"].to_list() == ["pa"]                     # thin later run ignored for pa_ only; AN game keeps plain rule
