@@ -1,0 +1,42 @@
+name: Wind totals test
+# docs/wind_totals_preregistration.md. Phase 1 (no data/weather/stadiums.csv yet): dump the stadium list only.
+# Phase 2 (coordinates committed): fetch game-time wind, then run the one pre-registered evaluation.
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/fetch/game_wind.py', 'scripts/wind_totals_eval.py', 'src/nflbet/sources/weather.py',
+            'data/weather/stadiums.csv', '.github/workflows/wind-totals.yml']
+permissions:
+  contents: write
+concurrency:
+  group: wind-totals-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  wind:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Phase 1, stadium list
+        if: hashFiles('data/weather/stadiums.csv') == ''
+        run: python scripts/fetch/game_wind.py --stadiums
+      - name: Phase 2, game-time wind
+        if: hashFiles('data/weather/stadiums.csv') != '' && hashFiles('data/weather/game_wind.csv') == ''
+        run: python scripts/fetch/game_wind.py
+      - name: Phase 2, evaluation (runs once)
+        if: hashFiles('data/weather/stadiums.csv') != '' && hashFiles('docs/wind_totals_report.md') == ''
+        run: python scripts/wind_totals_eval.py
+      - name: Commit outputs
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add data/weather docs/wind_totals_report.md 2>/dev/null || true
+          git commit -m "wind totals: workflow outputs" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0; sleep $((2**i)); done
+          exit 1
