@@ -1,0 +1,33 @@
+K1 same seed reproduces: True
+K2 average teams vs 2016-2020 actual (pass = within 10%):
+   points per team-game: sim 22.091, actual 23.088, -4.3% PASS
+   snaps per game: sim 137.006, actual 134.681, +1.7% PASS
+   touchdowns per game: sim 4.820, actual 5.241, -8.0% PASS
+   field goals made per game: sim 3.500, actual 3.228, +8.4% PASS
+   share of margins = 3: sim 0.120, actual 0.142, -15.6% FAIL
+   share of margins = 7: sim 0.106, actual 0.094, +13.2% FAIL
+HFA calibration: mean margin at yard factor [0.0, 0.05, 0.1] = [0.046, 1.844, 5.781]
+HFA: target home margin 1.506 (2016-2020, non-neutral); yard factor 0.0317; check mean margin 0.703
+K3a equal teams: mean margin 0.703 vs home-field term 1.506: FAIL
+K3b planted stronger home passing offense: mean margin +7.49 (equal teams +0.02): PASS
+K1b no look-ahead (2020 week 10 factors with later games deleted are identical): True
+   2021 h=4.0 k=4.0 r=0.5: MAE 11.215
+   2021 h=4.0 k=4.0 r=0.7: MAE 11.285
+   2021 h=4.0 k=8.0 r=0.5: MAE 11.372
+   2021 h=4.0 k=8.0 r=0.7: MAE 11.241
+   2021 h=4.0 k=16.0 r=0.5: MAE 11.634
+   2021 h=4.0 k=16.0 r=0.7: MAE 11.357
+   2021 h=8.0 k=4.0 r=0.5: MAE 11.346
+   2021 h=8.0 k=4.0 r=0.7: MAE 11.258
+   2021 h=8.0 k=8.0 r=0.5: MAE 11.368
+   2021 h=8.0 k=8.0 r=0.7: MAE 11.159
+   2021 h=8.0 k=16.0 r=0.5: MAE 11.458
+   2021 h=8.0 k=16.0 r=0.7: MAE 11.368
+   2021 h=16.0 k=4.0 r=0.5: MAE 11.353
+   2021 h=16.0 k=4.0 r=0.7: MAE 11.313
+   2021 h=16.0 k=8.0 r=0.5: MAE 11.427
+   2021 h=16.0 k=8.0 r=0.7: MAE 11.198
+   2021 h=16.0 k=16.0 r=0.5: MAE 11.496
+   2021 h=16.0 k=16.0 r=0.7: MAE 11.237
+2021 chosen: {'h': 8.0, 'k': 8.0, 'r': 0.7, 'mae': 11.159427087595759}; closing spread MAE on the same games 10.682
+HFA refit (bisection, 200k games per step): steps [(0.03, 0.642), (0.045, 1.505), (0.0525, 1.901), (0.04875, 1.695), (0.04688, 1.624), (0.04594, 1.521), (0.04547, 1.524)]; yard factor 0.0452; check mean margin 1.552 vs target 1.506: K3a PASS
