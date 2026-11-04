@@ -43,12 +43,16 @@ jobs:
       - name: Grade 2026 (interim until the season is final)
         if: env.SEASON == '2026' && github.event.inputs.milestones_only != 'true'
         run: python scripts/grade_2026.py
+      - name: DK/FD rules D1-D2 (interim, descriptive)
+        if: env.SEASON == '2026' && github.event.inputs.milestones_only != 'true'
+        continue-on-error: true
+        run: python scripts/dkfd_rules.py interim
       - name: Commit
         if: always()
         run: |
           git config user.name "nfl-betting-model"
           git config user.email "nfl-betting-model@users.noreply.github.com"
-          for f in "data/props/an_props_${SEASON}.csv" "data/props/an_milestones_${SEASON}.csv" data/backtests/grade_2026.json docs/grade_2026.md; do
+          for f in "data/props/an_props_${SEASON}.csv" "data/props/an_milestones_${SEASON}.csv" data/backtests/grade_2026.json docs/grade_2026.md docs/dkfd_rules_report.md; do
             [ -f "$f" ] && git add "$f"
           done
           git commit -m "props: lines ${SEASON}$( [ "$SEASON" = 2026 ] && echo ' + 2026 grade')" || exit 0

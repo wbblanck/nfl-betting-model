@@ -15,6 +15,7 @@ pick lists.
 | P1 projection ≥ 10% under DraftKings' high line, books disagree | fit 2024, check 2025 (+5.9%), test 2026 | pending |
 | Injury redistribution: hand absent teammates' usage to the rest (projection accuracy, no lines) | train 2019-2021, confirm 2022-2023 | **Fail** in all 5 markets (`docs/injury_redist_report.md`) |
 | A-D QB change, snap trend, NGS, wind (projection accuracy, no lines) | train 2019-2021, confirm 2022-2023 | 7 of 11 pass; only snap trend is clearly a real signal (`docs/signals_report.md`) |
+| D1 P1 on DK/FD only; D2 higher line's under below −120 (replace R1-R3, P1 after the Action Network outage) | test 2026 wk 9-18 | pending (`docs/dkfd_rules_preregistration.md`) |
 | E1-E2 exchange (Kalshi / BettorEdge) 3+ points from DK's no-vig price | explore 2026 wk 5-8, confirm wk 9-18 | pending, judged after week 18 (`docs/sharp_soft_confirm.md`) |
 
 Interim 2026 numbers (descriptive only): `docs/grade_2026.md`, refreshed every Tuesday by `fetch-props.yml`.
