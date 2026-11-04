@@ -23,7 +23,8 @@ from nflbet.props import core as PC  # noqa: E402
 
 CONFIRM = [2022, 2023, 2024, 2025]
 ALPHA = 0.05 / 6
-SIMS = 1000
+SIMS = int(sys.argv[2]) if len(sys.argv) > 2 else 1000
+SUFFIX = "" if SIMS == 1000 else f"_{SIMS}"
 
 
 def t1(x):
@@ -108,9 +109,9 @@ def main(d):
         x = o.select("game_id", "fair").join(games, on="game_id")
         res[name] = {"T1": t1(x), "T2": t2(x), "T3": t3(x), "descriptive": describe(x)}
     res["G3_minus_G2_mae"] = res["G3"]["descriptive"]["mae_fair"] - res["G2"]["descriptive"]["mae_fair"]
-    (config.ROOT / "data" / "backtests" / "gamesim_confirm.json").write_text(json.dumps(res, indent=1, default=str))
-    pickle.dump((out2, out3), open(f"{d}/confirm_out.pkl", "wb"))
-    L = ["# Game simulator: confirm 2022-2025", "", "Pre-registration: docs/gamesim_preregistration.md; constants: "
+    (config.ROOT / "data" / "backtests" / f"gamesim_confirm{SUFFIX}.json").write_text(json.dumps(res, indent=1, default=str))
+    pickle.dump((out2, out3), open(f"{d}/confirm_out{SUFFIX}.pkl", "wb"))
+    L = ["# Game simulator: confirm 2022-2025" + ("" if SUFFIX == "" else f" (descriptive rerun at {SIMS} simulations per game; the registered result is docs/gamesim_confirm.md)"), "", "Pre-registration: docs/gamesim_preregistration.md; constants: "
          "data/backtests/gamesim_constants.json (frozen before this ran). Regular season weeks 2-18, "
          f"{SIMS} simulations per game. Each test at 0.05 / 6.", ""]
     for name in ("G2", "G3"):
@@ -127,7 +128,7 @@ def main(d):
         L += ["", "| |fair − close| ≥ | Bets | Covers | ROI |", "|---|---|---|---|"]
         L += [f"| {t} | {v['n']} | {v['cover']:.1%} | {v['roi']:+.1%} |" for t, v in dd["thresholds"].items()] + [""]
     L += [f"G3 minus G2 MAE: {res['G3_minus_G2_mae']:+.3f} (negative = personnel layer closer to the actual margin).", ""]
-    (config.ROOT / "docs" / "gamesim_confirm.md").write_text("\n".join(L) + "\n")
+    (config.ROOT / "docs" / f"gamesim_confirm{SUFFIX}.md").write_text("\n".join(L) + "\n")
     print("\n".join(L))
 
 
