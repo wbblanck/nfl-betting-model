@@ -1,0 +1,246 @@
+[
+ {
+  "season": 2026,
+  "week": 9,
+  "game": 290957,
+  "start": "2026-11-06T01:15:00.000Z",
+  "game_keys": [
+   "attendance",
+   "away_rotation_number",
+   "away_team_id",
+   "broadcast",
+   "core_id",
+   "coverage",
+   "home_rotation_number",
+   "home_team_id",
+   "id",
+   "is_free",
+   "league_id",
+   "league_name",
+   "markets",
+   "meta",
+   "num_bets",
+   "real_status",
+   "season",
+   "start_time",
+   "status",
+   "status_display",
+   "teams",
+   "trending",
+   "type",
+   "week",
+   "winning_team_id"
+  ]
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/games/290957/props",
+  "status": 200,
+  "bytes": 82,
+  "head": "{\"game_props\":{},\"player_props\":{},\"prop_order\":[],\"players\":{},\"market_rules\":{}}",
+  "keys": [
+   "game_props",
+   "market_rules",
+   "player_props",
+   "players",
+   "prop_order"
+  ],
+  "sizes": {
+   "game_props": 0,
+   "player_props": 0,
+   "prop_order": 0,
+   "players": 0,
+   "market_rules": 0
+  }
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/games/290957/props?bookIds=4616,5204,67,60,2417,30,45,250,2394,4559,4596,68,2493,261,71,79,247,348,16,74,255,2535,3287,256,2194,258,315,2676,257,279,3019,121,347,3094,3583,350,358,357,3646,3882",
+  "status": 200,
+  "bytes": 82,
+  "head": "{\"game_props\":{},\"player_props\":{},\"prop_order\":[],\"players\":{},\"market_rules\":{}}",
+  "keys": [
+   "game_props",
+   "market_rules",
+   "player_props",
+   "players",
+   "prop_order"
+  ],
+  "sizes": {
+   "game_props": 0,
+   "player_props": 0,
+   "prop_order": 0,
+   "players": 0,
+   "market_rules": 0
+  }
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v1/games/290957/props",
+  "status": 404,
+  "body": "{\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"No Content found\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/games/290957",
+  "status": 404,
+  "body": "{\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"No Content found\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/games/290957/props?periods=event",
+  "status": 400,
+  "body": "{\"message\":\"Invalid data submitted as payload\",\"statusCode\":400,\"error\":\"Bad Request\",\"errorCode\":\"INVALID_DATA\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v1/leagues/1/props/core_bet_type_16_receiving_yards?date=20261106",
+  "status": 404,
+  "body": "{\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"No Content found\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/leagues/1/props/core_bet_type_16_receiving_yards?date=20261106",
+  "status": 404,
+  "body": "{\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"No Content found\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v1/leagues/1/props/core_bet_type_16_receiving_yards?date=20261106&bookIds=4616,5204,67,60,2417,30,45,250,2394,4559,4596,68,2493,261,71,79,247,348,16,74,255,2535,3287,256,2194,258,315,2676,257,279,3019,121,347,3094,3583,350,358,357,3646,3882",
+  "status": 404,
+  "body": "{\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"No Content found\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/scoreboard/nfl?season=2026&week=9&periods=event&bookIds=4616,5204,67,60,2417,30,45,250,2394,4559,4596,68,2493,261,71,79,247,348,16,74,255,2535,3287,256,2194,258,315,2676,257,279,3019,121,347,3094,3583,350,358,357,3646,3882",
+  "status": 200,
+  "bytes": 1705955,
+  "head": "{\"league\":{\"id\":1,\"sport\":\"football\",\"name\":\"nfl\",\"description\":\"National Football League\",\"logo\":\"https://static.sprtactn.co/leagues/500/nfl.png\",\"current_season\":\"2026\",\"current_season_type\":\"reg\",\"pre_season_start\":\"2026-07-30T07:00:00.000Z\",\"pre_season_end\":\"2026-09-02T06:59:59.000Z\",\"reg_season_start\":\"2026-08-30T07:00:00.000Z\",\"reg_season_end\":\"2027-01-18T07:59:59.000Z\",\"post_season_start\":\"",
+  "keys": [
+   "content_live_count",
+   "games",
+   "league",
+   "market_rules"
+  ],
+  "sizes": {
+   "league": 20,
+   "games": 15,
+   "market_rules": 0,
+   "content_live_count": null
+  }
+ },
+ {
+  "season": 2025,
+  "week": 9,
+  "game": 256883,
+  "start": "2025-10-31T00:15:00.000Z",
+  "game_keys": [
+   "attendance",
+   "away_rotation_number",
+   "away_team_id",
+   "boxscore",
+   "broadcast",
+   "core_id",
+   "coverage",
+   "home_rotation_number",
+   "home_team_id",
+   "id",
+   "is_free",
+   "last_play",
+   "league_id",
+   "league_name",
+   "markets",
+   "meta",
+   "num_bets",
+   "real_status",
+   "season",
+   "start_time",
+   "status",
+   "status_display",
+   "teams",
+   "trending",
+   "type",
+   "week",
+   "winning_team_id"
+  ]
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/games/256883/props",
+  "status": 200,
+  "bytes": 82,
+  "head": "{\"game_props\":{},\"player_props\":{},\"prop_order\":[],\"players\":{},\"market_rules\":{}}",
+  "keys": [
+   "game_props",
+   "market_rules",
+   "player_props",
+   "players",
+   "prop_order"
+  ],
+  "sizes": {
+   "game_props": 0,
+   "player_props": 0,
+   "prop_order": 0,
+   "players": 0,
+   "market_rules": 0
+  }
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/games/256883/props?bookIds=4616,5204,67,60,2417,30,45,250,2394,4559,4596,68,2493,261,71,79,247,348,16,74,255,2535,3287,256,2194,258,315,2676,257,279,3019,121,347,3094,3583,350,358,357,3646,3882",
+  "status": 200,
+  "bytes": 82,
+  "head": "{\"game_props\":{},\"player_props\":{},\"prop_order\":[],\"players\":{},\"market_rules\":{}}",
+  "keys": [
+   "game_props",
+   "market_rules",
+   "player_props",
+   "players",
+   "prop_order"
+  ],
+  "sizes": {
+   "game_props": 0,
+   "player_props": 0,
+   "prop_order": 0,
+   "players": 0,
+   "market_rules": 0
+  }
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v1/games/256883/props",
+  "status": 404,
+  "body": "{\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"No Content found\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/games/256883",
+  "status": 404,
+  "body": "{\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"No Content found\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/games/256883/props?periods=event",
+  "status": 400,
+  "body": "{\"message\":\"Invalid data submitted as payload\",\"statusCode\":400,\"error\":\"Bad Request\",\"errorCode\":\"INVALID_DATA\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v1/leagues/1/props/core_bet_type_16_receiving_yards?date=20251031",
+  "status": 404,
+  "body": "{\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"No Content found\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/leagues/1/props/core_bet_type_16_receiving_yards?date=20251031",
+  "status": 404,
+  "body": "{\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"No Content found\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v1/leagues/1/props/core_bet_type_16_receiving_yards?date=20251031&bookIds=4616,5204,67,60,2417,30,45,250,2394,4559,4596,68,2493,261,71,79,247,348,16,74,255,2535,3287,256,2194,258,315,2676,257,279,3019,121,347,3094,3583,350,358,357,3646,3882",
+  "status": 404,
+  "body": "{\"statusCode\":404,\"error\":\"Not Found\",\"message\":\"No Content found\"}"
+ },
+ {
+  "url": "https://api.actionnetwork.com/web/v2/scoreboard/nfl?season=2025&week=9&periods=event&bookIds=4616,5204,67,60,2417,30,45,250,2394,4559,4596,68,2493,261,71,79,247,348,16,74,255,2535,3287,256,2194,258,315,2676,257,279,3019,121,347,3094,3583,350,358,357,3646,3882",
+  "status": 200,
+  "bytes": 1075828,
+  "head": "{\"league\":{\"id\":1,\"sport\":\"football\",\"name\":\"nfl\",\"description\":\"National Football League\",\"logo\":\"https://static.sprtactn.co/leagues/500/nfl.png\",\"current_season\":\"2026\",\"current_season_type\":\"reg\",\"pre_season_start\":\"2026-07-30T07:00:00.000Z\",\"pre_season_end\":\"2026-09-02T06:59:59.000Z\",\"reg_season_start\":\"2026-08-30T07:00:00.000Z\",\"reg_season_end\":\"2027-01-18T07:59:59.000Z\",\"post_season_start\":\"",
+  "keys": [
+   "content_live_count",
+   "games",
+   "league",
+   "market_rules"
+  ],
+  "sizes": {
+   "league": 20,
+   "games": 14,
+   "market_rules": 0,
+   "content_live_count": null
+  }
+ }
+]
