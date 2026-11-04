@@ -41,7 +41,8 @@ def shares(rec: pl.DataFrame, inj: pl.DataFrame, markets: list[str]) -> pl.DataF
     """Long frame (team, season, week, player_id, market, q, active). `inj`: player_id, team, season, week,
     report_status. active = recent pool player not listed; q is the team-game-market freed ratio."""
     listed = inj.filter(pl.col("report_status").is_in(OUT_STATUS)).select("player_id", "team", "season", "week") \
-        .unique().with_columns(pl.lit(True).alias("listed"))
+        .unique().with_columns(pl.lit(True).alias("listed"), pl.col("season").cast(rec.schema["season"]),
+                               pl.col("week").cast(rec.schema["week"]))
     r = rec.join(listed, on=["player_id", "team", "season", "week"], how="left") \
         .with_columns(pl.col("listed").fill_null(False))
     parts = []
