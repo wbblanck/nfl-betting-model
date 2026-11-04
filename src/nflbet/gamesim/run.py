@@ -42,7 +42,8 @@ def pools_for(games: pl.DataFrame, kicks: pl.DataFrame, xps: pl.DataFrame):
 
 
 def simulate_games(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, xps, hfa: float, sims: int = 400,
-                   seed: int = 0, chunk: int = 60000, shift: dict | None = None) -> pl.DataFrame:
+                   seed: int = 0, chunk: int = 60000, shift: dict | None = None,
+                   want_counts: bool = False):
     """games: season, week, game_id, home_team, away_team, neutral. fac: per team-game factors (o*/d*).
     shift: optional extra per-team-game factor shifts {(game_id, team): {factor: value}} (personnel layer).
     Returns per game: mean home margin (fair), mean total, P(margin > x) is left to the caller via `margins`."""
@@ -56,6 +57,8 @@ def simulate_games(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, 
     margins = np.zeros((G, sims), dtype=np.float32)
     totals = np.zeros((G, sims), dtype=np.float32)
     per = max(1, chunk // sims)
+    att = np.zeros((G, sims, 2), np.int16) if want_counts else None
+    car = np.zeros((G, sims, 2), np.int16) if want_counts else None
     for c0 in range(0, G, per):
         sl = slice(c0, min(G, c0 + per))
         gg = g[sl]
@@ -71,23 +74,34 @@ def simulate_games(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, 
         neutral = np.repeat(gg["neutral"].to_numpy(), sims)
         # home-field: engine applies +hfa to home offense yards and -hfa to away; neutral sites get none
         h = np.where(neutral, 0.0, hfa)
+        cnt = {} if want_counts else None
         hh, aa = _sim_hfa(tb, off, dfn, (pools, np.repeat(pidx[sl], sims)), np.repeat(xp[sl], sims),
-                          np.repeat(gg["season"].to_numpy(), sims), h, seed + c0)
+                          np.repeat(gg["season"].to_numpy(), sims), h, seed + c0, cnt)
+        if want_counts:
+            att[sl] = cnt["att"].reshape(-1, sims, 2)
+            car[sl] = cnt["car"].reshape(-1, sims, 2)
         margins[sl] = (hh - aa).reshape(-1, sims)
         totals[sl] = (hh + aa).reshape(-1, sims)
     out = g.select("season", "week", "game_id", "home_team", "away_team").with_columns(
         pl.Series("fair", margins.mean(1).astype(float)), pl.Series("sim_total", totals.mean(1).astype(float)))
+    if want_counts:
+        return out, margins, att, car
     return out, margins
 
 
-def _sim_hfa(tb, off, dfn, kick, xp, season, h, seed):
+def _sim_hfa(tb, off, dfn, kick, xp, season, h, seed, cnt=None):
     """Per-element home-field: the engine takes one scalar; split elements by their h value."""
     N = len(xp)
     hh, aa = np.zeros(N), np.zeros(N)
+    if cnt is not None:
+        cnt["att"], cnt["car"] = np.zeros((N, 2), np.int16), np.zeros((N, 2), np.int16)
     for v in np.unique(h):
         m = h == v
         o = {f: a[m] for f, a in off.items()}
         d = {f: a[m] for f, a in dfn.items()}
-        a1, a2 = E.simulate(tb, o, d, (kick[0], kick[1][m]), xp[m], season[m], float(v), seed=seed + int(v * 1000))
+        c = {} if cnt is not None else None
+        a1, a2 = E.simulate(tb, o, d, (kick[0], kick[1][m]), xp[m], season[m], float(v), seed=seed + int(v * 1000), counts=c)
         hh[m], aa[m] = a1, a2
+        if cnt is not None:
+            cnt["att"][m], cnt["car"][m] = c["att"], c["car"]
     return hh, aa

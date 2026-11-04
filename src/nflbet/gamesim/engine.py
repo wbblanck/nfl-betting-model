@@ -57,7 +57,8 @@ def _draw(rng, pools, bucket):
 
 
 def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, season: np.ndarray, hfa: float,
-             seed: int = 0, clock_mult: float = 1.0, max_steps: int = 600, stats: dict | None = None):
+             seed: int = 0, clock_mult: float = 1.0, max_steps: int = 600, stats: dict | None = None,
+             counts: dict | None = None):
     """off[f] / dfn[f]: arrays (N, 2) of log-odds shifts (sack, scr, int, comp, proe) or log yard scales (ypc, ypr)
     for each element's home (0) and away (1) team. kick: (pools, ids): kickoff start pools (yardline_100 of the
     receiving team) and each element's pool index; xp: (N,) extra-point rate. Returns home and away points, arrays (N,)."""
@@ -116,6 +117,8 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
         mm = m & ot & ~done & (ot_poss >= 3) & (score[:, 0] != score[:, 1])
         done[mm] = True
 
+    c_att = np.zeros((N, 2), np.int16)
+    c_car = np.zeros((N, 2), np.int16)
     tdflag = np.zeros(N, bool)
     st_ = {k: 0.0 for k in ('snap', 'd3', 'c3', 'yds', 'td', 'fg', 'fga', 'punt', 'int', 'fum', 'sack', 'comp', 'inc', 'run', 'scr', 'pen', 'tod')}
     for _ in range(max_steps):
@@ -253,6 +256,9 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
             intc = thr & (u3 < pint)
             comp = thr & ~intc & (u4 < pcomp)
             inc = thr & ~intc & ~comp
+            c_att[ar[thr], p[thr]] += 1
+            rs = run | scr
+            c_car[ar[rs], p[rs]] += 1
             pb_ = L.b_pool(yl)
             cy = _draw(rng, tb.comp_y, pb_)
             sy = _draw(rng, tb.scr_y, pb_)
@@ -355,6 +361,8 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
         for w in (1920.0, 120.0):                 # two-minute warnings
             new = np.where(~ot & (sec > w) & (new < w), w, new)
         sec = np.maximum(new, 0.0)
+    if counts is not None:
+        counts['att'], counts['car'] = c_att, c_car
     if stats is not None:
         stats.update({k: v / N for k, v in st_.items()}); stats['poss'] = npos[0] / N; stats['rz'] = rzc[0] / N; stats['rztd'] = rzc[1] / N
     return score[:, 0], score[:, 1]
