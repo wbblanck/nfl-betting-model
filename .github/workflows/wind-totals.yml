@@ -10,6 +10,7 @@ on:
             'data/weather/stadiums.csv', '.github/workflows/wind-totals.yml']
 permissions:
   contents: write
+  actions: write   # the commit step dispatches the next run while the wind fetch is incomplete
 concurrency:
   group: wind-totals-${{ github.ref }}
   cancel-in-progress: false
@@ -43,5 +44,10 @@ jobs:
           git add data/weather
           [ -f docs/wind_totals_report.md ] && git add docs/wind_totals_report.md
           git commit -m "wind totals: workflow outputs" || exit 0
-          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0; sleep $((2**i)); done
-          exit 1
+          pushed=0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && pushed=1 && break; sleep $((2**i)); done
+          [ "$pushed" = 1 ] || exit 1
+          # Wind still incomplete and this run made progress: start the next run (it resumes from the partial file).
+          if [ ! -f data/weather/game_wind.csv ]; then gh workflow run wind-totals.yml --ref "${GITHUB_REF_NAME}"; fi
+        env:
+          GH_TOKEN: ${{ github.token }}
