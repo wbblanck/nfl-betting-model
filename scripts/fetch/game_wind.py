@@ -24,6 +24,7 @@ from nflbet.sources import weather
 
 DIR = config.ROOT / "data" / "weather"
 SEASONS = list(range(1999, 2027))
+ARCHIVE_LAG_DAYS = 7
 BUDGET_S = 70 * 60  # stop starting new stadium-seasons after this; the workflow commits and dispatches the next run
 COLS = ["game_id", "season", "week", "gameday", "gametime", "stadium_id", "stadium", "roof", "location",
         "home_team"]
@@ -57,6 +58,10 @@ def fetch_wind(g: pl.DataFrame) -> Path | None:
     if missing:
         sys.exit(f"stadiums without coordinates: {missing}")
     g = g.filter(pl.col("gameday").is_not_null(), pl.col("gametime").is_not_null())
+    # The archive lags real time by about five days and answers 400 for later dates: only games played before the
+    # cutoff (this affects the 2026 forward look only, which is descriptive).
+    cutoff = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=ARCHIVE_LAG_DAYS)).date().isoformat()
+    g = g.filter(pl.col("gameday") < cutoff)
     part = DIR / "game_wind_partial.csv"
     fields = ["game_id", "stadium_id", "season", "kickoff_utc", "wind_kn"]
     done = set()
