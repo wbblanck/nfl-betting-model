@@ -133,5 +133,28 @@ def explore() -> None:
     print("\n".join(L))
 
 
+RULES = [("E1_kalshi_gap3_size20", "kalshi", 3, 20), ("E2_bettoredge_gap3", "bettoredge", 3, 0)]   # docs/sharp_soft_confirm.md
+
+
+def confirm(interim: bool = False) -> None:
+    """Weeks 9-18 with the frozen RULES. PASS: n >= 30 in >= 5 weeks and the week-clustered ROI interval
+    (one-sided 0.025 / len(RULES)) has its lower end above 0. With interim=True the table is descriptive."""
+    g = grade(candidates(range(9, 19)))
+    L = [f"# Sharp vs soft: {'INTERIM (descriptive only)' if interim else 'confirm'} 2026 weeks 9-18", "",
+         "Rules frozen in docs/sharp_soft_confirm.md. Interval: week-clustered, one-sided 0.025/2.", "",
+         "| Rule | Bets | Weeks | Won | ROI | Interval | Verdict |", "|---|---|---|---|---|---|---|"]
+    for name, v, t, size in RULES:
+        b = select(g, v, t, size).filter(pl.col("result") != "push") if g.height else g
+        if b.height < 2:
+            L.append(f"| {name} | {b.height} | | | | | |")
+            continue
+        m, lo, hi = roi_ci(b, 0.025 / len(RULES))
+        ok = b.height >= 30 and b["week"].n_unique() >= 5 and lo > 0
+        L.append(f"| {name} | {b.height} | {b['week'].n_unique()} | {(b['result'] == 'win').mean():.1%} | {m:+.1%} | "
+                 f"{lo:+.1%} to {hi:+.1%} | {'' if interim else ('**PASS**' if ok else '**FAIL**')} |")
+    (config.ROOT / "docs" / "sharp_soft_report.md").write_text("\n".join(L) + "\n")
+    print("\n".join(L))
+
+
 if __name__ == "__main__":
-    {"explore": explore}[sys.argv[1]]()
+    {"explore": explore, "confirm": confirm, "interim": lambda: confirm(True)}[sys.argv[1]]()
