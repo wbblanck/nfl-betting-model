@@ -119,6 +119,7 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
 
     c_att = np.zeros((N, 2), np.int16)
     c_car = np.zeros((N, 2), np.int16)
+    q_sc = np.zeros((N, 4, 2), np.int16)
     tdflag = np.zeros(N, bool)
     st_ = {k: 0.0 for k in ('snap', 'd3', 'c3', 'yds', 'td', 'fg', 'fga', 'punt', 'int', 'fum', 'sack', 'comp', 'inc', 'run', 'scr', 'pen', 'tod')}
     for _ in range(max_steps):
@@ -132,6 +133,7 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
             kickoff(h2, 1 - recv1)
         endreg = act & ~ot & (sec <= 0)
         if endreg.any():
+            q_sc[endreg, 3] = score[endreg]
             fin = endreg & (score[:, 0] != score[:, 1])
             done[fin] = True
             st = endreg & ~fin
@@ -356,13 +358,16 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
         dt = tb.secs[stopped.astype(int), sit] * (0.75 + 0.5 * rng.random(N)) * clock_mult
         dt = np.where(kneel, 40.0, dt)
         new = sec - np.where(act, dt, 0)
+        for bnd, qi in ((2700.0, 0), (1800.0, 1), (900.0, 2)):
+            qm = ~ot & (sec > bnd) & (new <= bnd)
+            q_sc[qm, qi] = score[qm]
         b1 = ~ot & (sec > 1800) & (new < 1800)
         new = np.where(b1, 1800.0, new)
         for w in (1920.0, 120.0):                 # two-minute warnings
             new = np.where(~ot & (sec > w) & (new < w), w, new)
         sec = np.maximum(new, 0.0)
     if counts is not None:
-        counts['att'], counts['car'] = c_att, c_car
+        counts['att'], counts['car'], counts['qscore'] = c_att, c_car, q_sc
     if stats is not None:
         stats.update({k: v / N for k, v in st_.items()}); stats['poss'] = npos[0] / N; stats['rz'] = rzc[0] / N; stats['rztd'] = rzc[1] / N
     return score[:, 0], score[:, 1]
