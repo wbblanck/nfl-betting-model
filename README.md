@@ -13,6 +13,7 @@ pick lists.
 | R2 high line's under priced below −120 | explore 2025 (+7.3%), test 2026 | pending |
 | R3 high line at BetRivers or BetMGM | explore 2025 (+7.1%), test 2026 | pending |
 | P1 projection ≥ 10% under DraftKings' high line, books disagree | fit 2024, check 2025 (+5.9%), test 2026 | pending |
+| Injury redistribution: hand absent teammates' usage to the rest (projection accuracy, no lines) | train 2019-2021, confirm 2022-2023 | **Fail** in all 5 markets (`docs/injury_redist_report.md`) |
 
 Interim 2026 numbers (descriptive only): `docs/grade_2026.md`, refreshed every Tuesday by `fetch-props.yml`.
 

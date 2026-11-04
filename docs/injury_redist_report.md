@@ -28,6 +28,6 @@ rushing-carries lean is a hypothesis only, never a reason to add a rule.
   unaffected.
 - Of 1,602 Out/Doubtful report rows for WR/RB/TE in 2019-2023, 1,585 match a player id in the stats; the rest of
   the 5,597 listed rows are other positions.
-- Players placed on IR between weeks are not on the weekly report and count as neither absent nor active only if
-  they drop out of the 4-week window.
+- Players placed on IR between weeks are not on the weekly report: if they played in the previous 4 weeks they
+  count as active, so their volume is not handed out (the adjustment can miss some absences).
 - Found while running: injury-report `season`/`week` arrive as floats; cast before joining (no rule change).
