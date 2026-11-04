@@ -36,7 +36,8 @@ jobs:
         run: |
           git config user.name "nfl-betting-model"
           git config user.email "nfl-betting-model@users.noreply.github.com"
-          git add data/weather docs/wind_totals_report.md 2>/dev/null || true
+          git add data/weather
+          [ -f docs/wind_totals_report.md ] && git add docs/wind_totals_report.md
           git commit -m "wind totals: workflow outputs" || exit 0
           for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0; sleep $((2**i)); done
           exit 1
