@@ -1,6 +1,7 @@
 name: Wind totals test
 # docs/wind_totals_preregistration.md. Phase 1 (no data/weather/stadiums.csv yet): dump the stadium list only.
-# Phase 2 (coordinates committed): fetch game-time wind, then run the one pre-registered evaluation.
+# Phase 2 (coordinates committed): fetch game-time wind (resumable across runs), then run the one pre-registered
+# evaluation once every game has wind.
 on:
   workflow_dispatch:
   push:
@@ -18,6 +19,8 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}   # branch head, so outputs committed by an earlier run are seen
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -27,9 +30,10 @@ jobs:
         run: python scripts/fetch/game_wind.py --stadiums
       - name: Phase 2, game-time wind
         if: hashFiles('data/weather/stadiums.csv') != '' && hashFiles('data/weather/game_wind.csv') == ''
+        timeout-minutes: 75   # leaves time to commit the partial file; rerun resumes
         run: python scripts/fetch/game_wind.py
       - name: Phase 2, evaluation (runs once)
-        if: hashFiles('data/weather/stadiums.csv') != '' && hashFiles('docs/wind_totals_report.md') == ''
+        if: hashFiles('data/weather/game_wind.csv') != '' && hashFiles('docs/wind_totals_report.md') == ''
         run: python scripts/wind_totals_eval.py
       - name: Commit outputs
         if: always()
