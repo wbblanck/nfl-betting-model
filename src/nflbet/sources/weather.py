@@ -7,6 +7,8 @@ Open-Meteo; fetching runs in GitHub Actions (scripts/fetch/game_wind.py).
 from __future__ import annotations
 
 import datetime as dt
+import time
+import urllib.error
 import urllib.parse
 from zoneinfo import ZoneInfo
 
@@ -42,6 +44,17 @@ def fetch_hourly_wind(lat: float, lon: float, start: dt.date, end: dt.date) -> d
     q = urllib.parse.urlencode({"latitude": f"{lat:.4f}", "longitude": f"{lon:.4f}", "start_date": start.isoformat(),
                                 "end_date": end.isoformat(), "hourly": "wind_speed_10m", "wind_speed_unit": "kn",
                                 "timezone": "UTC"})
-    js = get_json(f"{ARCHIVE}?{q}", {"User-Agent": RESEARCH_UA}, timeout=120, pace=0.5, retries_429=5, backoff=10)
+    for attempt in range(6):  # network timeouts and 5xx: retry with backoff; anything else raises
+        try:
+            js = get_json(f"{ARCHIVE}?{q}", {"User-Agent": RESEARCH_UA}, timeout=120, pace=0.5, retries_429=5,
+                          backoff=10)
+            break
+        except urllib.error.HTTPError as e:
+            if e.code < 500 or attempt == 5:
+                raise
+        except (urllib.error.URLError, TimeoutError, ConnectionError):
+            if attempt == 5:
+                raise
+        time.sleep(5 * 2 ** attempt)
     h = js["hourly"]
     return {t: v for t, v in zip(h["time"], h["wind_speed_10m"]) if v is not None}
