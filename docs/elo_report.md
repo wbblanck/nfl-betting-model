@@ -1,6 +1,6 @@
 # Elo + Poisson / negative binomial baseline: results
 
-Pre-registration: docs/elo_preregistration.md (committed before any Elo output). Constants frozen in
+Code: src/nflbet/ats/elo.py. Pre-registration: docs/elo_preregistration.md (committed before any Elo output). Constants frozen in
 data/backtests/elo_constants.json before 2022-2025 was run. Scripts: scripts/elo_fit.py, scripts/elo_g4_fit.py,
 scripts/elo_confirm.py. Numbers: data/backtests/elo_confirm.json, per game data/backtests/elo_confirm_games.csv.
 Confirm sample: 2022-2025 regular season weeks 2-18, 1023 games. Each test at 0.05 / 7, week-clustered bootstrap.
@@ -75,4 +75,5 @@ Confirm sample: 2022-2025 regular season weeks 2-18, 1023 games. Each test at 0.
 - Ratings update through playoff games too (FiveThirtyEight practice); forecasts and tests use regular-season games.
 - The G3 per-game output was regenerated with its frozen constants and seed and reproduced the registered MAE
   (9.983) before E6 and E7 ran. The cache came from a new download script, scripts/gamesim_cache.py.
+- Code lives in src/nflbet/ats/elo.py, not src/nflbet/elo.py as the pre-registration said (the repo layout test forbids new top-level modules); moved after the run, no logic changed.
 - 2022-2025 had already been used to confirm the EPA rating and the simulator; this was the first Elo output on them.

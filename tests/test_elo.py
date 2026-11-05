@@ -4,7 +4,7 @@ import math
 import numpy as np
 import polars as pl
 
-from nflbet import elo as E
+from nflbet.ats import elo as E
 
 
 def league(rng, strength, seasons, weeks=17, sd=13.5):

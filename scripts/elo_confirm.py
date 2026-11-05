@@ -16,7 +16,8 @@ import polars as pl
 sys.path.insert(0, str(Path(__file__).parent))
 import elo_g4_fit as G4  # noqa: E402
 
-from nflbet import config, elo as E  # noqa: E402
+from nflbet import config
+from nflbet.ats import elo as E  # noqa: E402
 from nflbet.gamesim import engine as EN, personnel as P, run as R, teams as TM  # noqa: E402
 from nflbet.props import core as PC  # noqa: E402
 

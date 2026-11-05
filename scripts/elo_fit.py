@@ -11,7 +11,8 @@ import sys
 import numpy as np
 import polars as pl
 
-from nflbet import config, elo as E
+from nflbet import config
+from nflbet.ats import elo as E
 from nflbet.gamesim import personnel as P
 
 FIT = list(range(2016, 2021))
