@@ -57,3 +57,9 @@ Hand cases: kickoff conversion in daylight and standard time; the four-hour wind
 per game), `scripts/wind_totals_eval.py` (gates, test, report `docs/wind_totals_report.md`),
 `.github/workflows/wind-totals.yml` (the sandbox cannot reach Open-Meteo or nflverse, so fetch and evaluation
 run in GitHub Actions).
+
+## Amendment 1 (2026-11-05, before any outcome was read)
+The first evaluation stopped at Gate 1: nflverse schedules carry no `gametime` for any 1999 game (192 sample
+games), so the kickoff rule above cannot place their wind window and they have no wind value. No under rate,
+bucket count or other outcome had been computed. Will chose (2026-11-05) to **drop 1999**: the confirm sample is
+**2000-2014**. Every other rule, gate and the pass criterion is unchanged. The test still runs once.

@@ -17,7 +17,7 @@ ALPHA = 0.05
 MIN_N = 150
 LO, HI = 8.0, 15.0          # knots, [LO, HI)
 KN_TO_MPH = 1.15078
-CONFIRM = range(1999, 2015)
+CONFIRM = range(2000, 2015)  # 1999 dropped by amendment 2026-11-05 (no kickoff times)
 PUBLISHED = range(2015, 2026)
 FORWARD = 2026
 MIN_WIND_CORR = 0.3
@@ -116,15 +116,15 @@ def main() -> None:
     prim = c.filter(pl.col("bucket") == "moderate 8-15", pl.col("side") != "push")
     n, u = prim.height, int((prim["side"] == "under").sum())
     v, p = verdict(u, n)
-    out += ["## Primary test (1999-2014, 8 <= w < 15 knots)", "",
+    out += ["## Primary test (2000-2014, 8 <= w < 15 knots)", "",
             f"Unders {u} of {n} (pushes dropped) = **{u / n:.3f}** vs break-even 0.524. "
             f"One-sided exact binomial p = {p:.4f}. **{v}**", "",
-            "## Descriptive only (not verdicts)", "", "### 1999-2014 by wind bucket", "", table(summarize(c, "bucket")),
-            "", "### 1999-2014 moderate bucket by season", "",
+            "## Descriptive only (not verdicts)", "", "### 2000-2014 by wind bucket", "", table(summarize(c, "bucket")),
+            "", "### 2000-2014 moderate bucket by season", "",
             table(summarize(c.filter(pl.col("bucket") == "moderate 8-15"), "season")), ""]
     rec = c.filter(pl.col("nflverse_wind_mph").is_not_null()).with_columns(
         pl.col("nflverse_wind_mph").is_between(LO * KN_TO_MPH, HI * KN_TO_MPH, closed="left").alias("moderate_mph"))
-    out += ["### 1999-2014 using nflverse recorded wind (9.2 to 17.3 mph)", "", table(summarize(rec, "moderate_mph")),
+    out += ["### 2000-2014 using nflverse recorded wind (9.2 to 17.3 mph)", "", table(summarize(rec, "moderate_mph")),
             "", "### 2015-2025: outside work already reported these seasons, not a test", "",
             table(summarize(df.filter(pl.col("season").is_in(list(PUBLISHED))), "bucket")), "",
             f"### {FORWARD} games played so far (forward look)", "",
