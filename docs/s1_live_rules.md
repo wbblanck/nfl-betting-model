@@ -94,3 +94,24 @@ Requested by Will on 2026-10-02: run rule S1 live for the 2026 season and track 
   FTN charting numbers from weeks before the pick (blitz rate and pass rushers for passing / receiving props, box
   count for rushing props), against the league rate. Context only, not a signal.
 
+- **Source switch, Action Network → ParlayAPI (pre-registered 2026-11-02, before any week-9 run; Will's decision):**
+  Action Network's props endpoint has returned an empty document for every game since 2026 week 5, including games it
+  served before (probes: `docs/evidence/an_props_probe/`). Official S1 recorded nothing in weeks 5-8; those weeks are
+  lost, because a pick must be recorded before kickoff.
+  - **From week 9 to the end of the 2026 regular season**, official S1 is scored on ParlayAPI's DraftKings and FanDuel
+    lines: exactly the "S1 on ParlayAPI" computation above (`parlay.to_an_csv` → `live.run`), written to the official
+    files (`s1_picks_2026.csv`, `s1_runs_2026.csv`; game ids start `pa_`). Prices and grading stay DraftKings'. The
+    books-disagree vote compares DraftKings with FanDuel only, because ParlayAPI carries neither BetMGM, BetRivers nor
+    Caesars; with DraftKings alone that vote could never fire. This is a weaker version of the vote S1 was locked with,
+    disclosed here.
+  - **Thin-feed guard** (the ParlayAPI record's rule above) applies to official games from week 9.
+  - **No switching back:** if Action Network serves props again, its lines are archived as evidence and not scored, so
+    the source is never chosen after seeing which one picks better.
+  - **Failures:** if the ParlayAPI call fails, or scoring its lines fails, that run records no official picks and the
+    workflow's Alarm step fails the job. An empty answer early in the week is not a failure.
+  - **Reporting:** the official record is reported by source (Action Network weeks 1-4, ParlayAPI weeks 9-18), never
+    blended without saying so. The "S1 on ParlayAPI" record continues unchanged; from week 9 its picks equal the
+    official ones.
+  - **The season-end test (docs/simulator_confirm.md) is not changed here.** It grades S1 on Action Network final lines,
+    and `data/props/an_props_2026.csv` (fetched 2026-10-13) has 0 rows, so it cannot be computed as written. Any
+    replacement test is a separate pre-registration for Will to decide.

@@ -30,6 +30,11 @@ PICK_COLS = ["run_utc", "season", "week", "an_game_id", "start_time", "home", "a
              "line", "odds", "p_over_dk", "proj", "p_sim", "v_disagree", "v_proj", "v_sim", "v_price"]
 
 
+# Official S1's line source from this week of 2026 on is ParlayAPI's DK + FanDuel lines (docs/s1_live_rules.md,
+# "Source switch", pre-registered 2026-11-02 after Action Network stopped serving props).
+SOURCE_SWITCH_WEEK = 9
+
+
 def current_week(season: int) -> int | None:
     import nflreadpy as nfl
 

@@ -41,6 +41,9 @@ No other pick list.
 - **ParlayAPI NFL props:** an unfiltered call stops at its 10,000-row cap (mostly correct-score and milestone rows),
   so filter by `bookmakers` and `markets`; each book files a market under its own key (DK `player_receiving_yards`,
   FanDuel `player_rec_yds`; map in `nflbet.sources.parlay.KEYS`). Free tier: 1,000 requests a month, 3 per props call.
+- **Action Network props went empty after 2026 week 4:** every `games/{id}/props` answer is an empty shell, past games
+  included (`docs/evidence/an_props_probe/`). Official S1 is on ParlayAPI DK + FanDuel from week 9
+  (docs/s1_live_rules.md, "Source switch"); the run alarms (red job) when its line source fails.
 - Sandbox cannot reach Action Network or ESPN; fetch in GitHub Actions. Scheduled workflows run only from `main`.
 
 ## Agent team rules
