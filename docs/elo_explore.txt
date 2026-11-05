@@ -1,0 +1,61 @@
+grid: win-probability log loss, 2016-2020 regular season (ties dropped)
+  K 15 H 20 c 0.250: 0.63180
+  K 15 H 20 c 0.333: 0.63084
+  K 15 H 20 c 0.500: 0.63173
+  K 15 H 35 c 0.250: 0.63023
+  K 15 H 35 c 0.333: 0.62928
+  K 15 H 35 c 0.500: 0.63019
+  K 15 H 50 c 0.250: 0.63046
+  K 15 H 50 c 0.333: 0.62953
+  K 15 H 50 c 0.500: 0.63048
+  K 15 H 65 c 0.250: 0.63249
+  K 15 H 65 c 0.333: 0.63158
+  K 15 H 65 c 0.500: 0.63258
+  K 20 H 20 c 0.250: 0.63085
+  K 20 H 20 c 0.333: 0.62928
+  K 20 H 20 c 0.500: 0.62904
+  K 20 H 35 c 0.250: 0.62919
+  K 20 H 35 c 0.333: 0.62763
+  K 20 H 35 c 0.500: 0.62742
+  K 20 H 50 c 0.250: 0.62937
+  K 20 H 50 c 0.333: 0.62783
+  K 20 H 50 c 0.500: 0.62766
+  K 20 H 65 c 0.250: 0.63137
+  K 20 H 65 c 0.333: 0.62985
+  K 20 H 65 c 0.500: 0.62972
+  K 25 H 20 c 0.250: 0.63215
+  K 25 H 20 c 0.333: 0.63014
+  K 25 H 20 c 0.500: 0.62902
+  K 25 H 35 c 0.250: 0.63043
+  K 25 H 35 c 0.333: 0.62843
+  K 25 H 35 c 0.500: 0.62733
+  K 25 H 50 c 0.250: 0.63057
+  K 25 H 50 c 0.333: 0.62859
+  K 25 H 50 c 0.500: 0.62752
+  K 25 H 65 c 0.250: 0.63255
+  K 25 H 65 c 0.333: 0.63059
+  K 25 H 65 c 0.500: 0.62957
+  K 30 H 20 c 0.250: 0.63506
+  K 30 H 20 c 0.333: 0.63270
+  K 30 H 20 c 0.500: 0.63084
+  K 30 H 35 c 0.250: 0.63327
+  K 30 H 35 c 0.333: 0.63092
+  K 30 H 35 c 0.500: 0.62909
+  K 30 H 50 c 0.250: 0.63338
+  K 30 H 50 c 0.333: 0.63104
+  K 30 H 50 c 0.500: 0.62924
+  K 30 H 65 c 0.250: 0.63536
+  K 30 H 65 c 0.333: 0.63304
+  K 30 H 65 c 0.500: 0.63128
+chosen K 25 H 35 c 0.500 (log loss 0.62733)
+score model: b 0.0853 (points ratio per 100 Elo = exp(2b) = 1.186), NB size theta 5.996
+fit check: mean predicted home pts 23.84 vs actual 23.80; away 22.50 vs 22.37
+fit check: score variance 100.6 vs mean 23.1 (Poisson would make them equal)
+QB term q (Elo points per EPA/dropback) log loss: 0 0.62733, 50 0.62689, 100 0.62650, 150 0.62617, 200 0.62590, 250 0.62568, 300 0.62551, 350 0.62541, 400 0.62535, 450 0.62536, 500 0.62542, 550 0.62553, 600 0.62570, 650 0.62593, 700 0.62620, 750 0.62654, 800 0.62693, 850 0.62737, 900 0.62786, 950 0.62841, 1000 0.62901
+chosen q 400
+
+explore 2021 (descriptive only), regular season weeks 2-18
+  Elo: n 256, win log loss 0.65933, margin MAE 11.304, close MAE 10.682
+    Poisson: count-model win log loss 0.72012, cover log loss 0.79200 (coin 0.69315)
+    NB: count-model win log loss 0.65377, cover log loss 0.72003 (coin 0.69315)
+  Elo+QB: n 256, win log loss 0.65885, margin MAE 11.332, close MAE 10.682

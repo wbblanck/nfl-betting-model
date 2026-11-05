@@ -1,0 +1,7 @@
+c=5: simulated 254 games
+c=10: simulated 254 games
+c=20: simulated 254 games
+c=40: simulated 254 games
+c=80: simulated 254 games
+## Concentration c chosen on 2024 (2,000 runs per game), log loss on 8821 DraftKings props
+c=5: 0.7333, c=10: 0.7314, c=20: 0.7358, c=40: 0.7408, c=80: 0.7453 -> **c = 10**

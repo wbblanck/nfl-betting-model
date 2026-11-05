@@ -1,0 +1,11 @@
+{
+ "status": 200,
+ "credit_headers": {},
+ "body": {
+  "data": {
+   "estimate_only": true,
+   "tool": "get_odds",
+   "credits": 1000
+  }
+ }
+}

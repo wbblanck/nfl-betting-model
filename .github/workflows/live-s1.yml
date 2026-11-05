@@ -53,6 +53,16 @@ jobs:
           else case "${{ github.event.schedule }}" in "7 14 * * 1"|"33 15 * * 2"|"7 14 * * 3") STEP=grade;; *) STEP=run;; esac; fi
           python scripts/live_s1.py "$STEP"
           [ "$STEP" = run ] && python scripts/live_s1.py grade || true
+      - name: Props mix (docs/mix_live_rules.md)
+        # Unvalidated tracker; scores the ParlayAPI DraftKings snapshot this run just saved. Never stops the S1 run.
+        if: always()
+        continue-on-error: true
+        timeout-minutes: 20
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then STEP="${{ github.event.inputs.step }}";
+          else case "${{ github.event.schedule }}" in "7 14 * * 1"|"33 15 * * 2"|"7 14 * * 3") STEP=grade;; *) STEP=run;; esac; fi
+          [ "$STEP" = run ] && python scripts/mix_live.py run || true
+          python scripts/mix_live.py grade
       - name: Weekly recap
         if: always() && (github.event.schedule == '33 15 * * 2' || github.event.schedule == '7 14 * * 3' || github.event.inputs.step == 'grade')
         continue-on-error: true
@@ -66,7 +76,7 @@ jobs:
         run: |
           git config user.name "nfl-betting-model"
           git config user.email "nfl-betting-model@users.noreply.github.com"
-          for f in data/live/s1_picks_2026.csv data/live/s1_runs_2026.csv data/live/s1_record_2026.csv data/live/s1pa_picks_2026.csv data/live/s1pa_runs_2026.csv data/live/s1pa_record_2026.csv data/live/ats_runs_2026.csv data/live/ats_record_2026.csv data/live/s1_bestprice_2026.csv data/live/s1_yv_2026.csv data/live/s1_yv_record_2026.csv data/live/ats_yv_runs_2026.csv data/live/ats_yv_record_2026.csv docs/s1_live.md docs/s1_dashboard.html; do
+          for f in data/live/s1_picks_2026.csv data/live/s1_runs_2026.csv data/live/s1_record_2026.csv data/live/s1pa_picks_2026.csv data/live/s1pa_runs_2026.csv data/live/s1pa_record_2026.csv data/live/ats_runs_2026.csv data/live/ats_record_2026.csv data/live/s1_bestprice_2026.csv data/live/s1_yv_2026.csv data/live/s1_yv_record_2026.csv data/live/ats_yv_runs_2026.csv data/live/ats_yv_record_2026.csv data/live/mix_props_2026.csv data/live/mix_runs_2026.csv data/live/mix_record_2026.csv data/live/mix_bestprice_2026.csv docs/mix_live.md docs/s1_live.md docs/s1_dashboard.html; do
             [ -f "$f" ] && git add "$f"
           done
           [ -d data/live/lines ] && git add data/live/lines

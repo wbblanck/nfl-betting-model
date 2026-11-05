@@ -4,7 +4,11 @@ Owner: Will. Analysis only: ROI, CLV and log loss in backtests are fine; no pick
 exception Will asked for (2026-10-02): the S1 live tracker (docs/s1_live_rules.md) records rule S1's picks before
 kickoff and grades them, labeled as unvalidated. Second exception (Will, 2026-10-09): an NFL against-the-spread
 tracker (docs/ats_declaration.md) may label games Bet Now / Wait / Monitor / No Value, labeled unvalidated and graded
-on closing-line value and ATS result. It goes live only after its pre-registered backtest. No other pick list.
+on closing-line value and ATS result. It goes live only after its pre-registered backtest. Third exception (Will, 2026-11-05): a live wind-unders
+tracker (docs/wind_live_rules.md) records 8-15 knot forecast-wind unders before kickoff, labeled unvalidated (its
+2000-2014 test failed). Fourth exception (Will, 2026-11-05): the props-mix tracker (docs/mix_live_rules.md)
+records the M1 mix's 55%+ sides on the dashboard, labeled unvalidated, graded weekly, judged on log loss after week 18.
+No other pick list.
 
 ## Standing rules
 - Never state a number that was not computed or looked up in the same session; recompute from committed files.

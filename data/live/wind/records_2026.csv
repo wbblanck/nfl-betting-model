@@ -1,0 +1,4 @@
+run_utc,game_id,week,kickoff_utc,away_team,home_team,stadium_id,roof,forecast_kn,bucket,pick,book,dk_total,over_price,under_price,nflverse_total,note
+2026-11-05T04:02Z,2026_09_JAX_BAL,9,2026-11-06T01:15Z,JAX,BAL,BAL00,outdoors,2.38,calm <8,,DraftKings,39.5,-112.0,-108.0,39.5,
+2026-11-05T04:03Z,2026_09_JAX_BAL,9,2026-11-06T01:15Z,JAX,BAL,BAL00,outdoors,2.38,calm <8,,DraftKings,39.5,-112.0,-108.0,39.5,
+2026-11-05T06:25Z,2026_09_JAX_BAL,9,2026-11-06T01:15Z,JAX,BAL,BAL00,outdoors,2.38,calm <8,,DraftKings,39.5,-112.0,-108.0,39.5,

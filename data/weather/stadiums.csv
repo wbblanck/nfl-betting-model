@@ -1,0 +1,43 @@
+stadium_id,name,lat,lon
+ATL97,Mercedes-Benz Stadium,33.7554,-84.4008
+BAL00,M&T Bank Stadium,39.2780,-76.6227
+BOS00,Gillette Stadium,42.0909,-71.2643
+BOS99,Foxboro Stadium,42.0909,-71.2643
+BRG00,Tiger Stadium (LSU),30.4120,-91.1838
+BUF00,Highmark Stadium (Orchard Park),42.7738,-78.7870
+CAR00,Bank of America Stadium,35.2258,-80.8528
+CHI98,Soldier Field,41.8623,-87.6167
+CHI99,Memorial Stadium (Champaign),40.0992,-88.2360
+CIN00,Paul Brown Stadium,39.0954,-84.5160
+CIN99,Cinergy Field,39.0975,-84.5071
+CLE00,Cleveland Browns Stadium,41.5061,-81.6995
+DAL00,AT&T Stadium,32.7473,-97.0945
+DAL99,Texas Stadium,32.8400,-96.9110
+DEN00,Empower Field at Mile High,39.7439,-105.0201
+DEN99,Mile High Stadium,39.7461,-105.0214
+GNB00,Lambeau Field,44.5013,-88.0622
+HOU00,NRG Stadium,29.6847,-95.4107
+IND00,Lucas Oil Stadium,39.7601,-86.1639
+JAX00,EverBank Stadium,30.3239,-81.6373
+KAN00,Arrowhead Stadium,39.0489,-94.4839
+LAX97,StubHub Center (Carson),33.8644,-118.2611
+LAX99,Los Angeles Memorial Coliseum,34.0141,-118.2879
+MIA00,Hard Rock Stadium,25.9580,-80.2389
+MIN98,TCF Bank Stadium,44.9765,-93.2245
+NAS00,Nissan Stadium,36.1665,-86.7713
+NYC00,Giants Stadium,40.8128,-74.0742
+NYC01,MetLife Stadium,40.8135,-74.0745
+OAK00,Oakland-Alameda County Coliseum,37.7516,-122.2005
+PHI00,Lincoln Financial Field,39.9008,-75.1675
+PHI99,Veterans Stadium,39.9070,-75.1710
+PHO00,State Farm Stadium,33.5276,-112.2626
+PHO99,Sun Devil Stadium,33.4264,-111.9325
+PIT00,Acrisure Stadium,40.4468,-80.0158
+PIT99,Three Rivers Stadium,40.4470,-80.0130
+SDG00,Qualcomm Stadium,32.7831,-117.1196
+SEA00,Lumen Field,47.5952,-122.3316
+SEA99,Husky Stadium,47.6503,-122.3016
+SFO00,Candlestick Park,37.7136,-122.3863
+SFO01,Levi's Stadium,37.4033,-121.9694
+TAM00,Raymond James Stadium,27.9759,-82.5033
+WAS00,FedExField (Landover),38.9076,-76.8645

@@ -184,6 +184,13 @@ def main() -> None:
                     stats["props_failed"] += 1
                     continue
                 rows = rows_for_game(props, g, a.season, week, books)
+                if not rows and not stats["shape_logged"]:
+                    stats["shape_logged"] = 1
+                    print("  [shape] no rows for game", g.get("id"), "| top-level keys:", sorted(props)[:30], flush=True)
+                    pp = props.get("player_props")
+                    print("  [shape] player_props:", type(pp).__name__,
+                          sorted(pp)[:15] if isinstance(pp, dict) else str(pp)[:300], flush=True)
+                    print("  [shape] head:", json.dumps(props)[:1500], flush=True)
                 ms = milestone_rows(props, g, a.season, week, books)
                 for r in ms:
                     mw.writerow(r)

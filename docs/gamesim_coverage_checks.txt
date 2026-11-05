@@ -1,0 +1,9 @@
+2022: labeled dropbacks 17979 of 20298 dropback rows in play-by-play
+2023: labeled dropbacks 20610 of 20770 dropback rows in play-by-play
+2024: labeled dropbacks 20070 of 20215 dropback rows in play-by-play
+2025: labeled dropbacks 19717 of 19830 dropback rows in play-by-play
+K1 planted offense (100% vs man, 0% vs zone): comp split man +1.17, zone -1.17 -> PASS
+K1b same with labels shuffled: man +0.01, zone -0.02 -> PASS
+K2 planted 80% man defense after 29 games: m 0.694, by hand 0.694, raw weighted rate 0.792 -> PASS
+K3 engine completion rate: no coverage 0.6526; all-zero splits 0.6522; m = 1 with +1.0 man split 0.8212 -> PASS
+K4 receiver planted at double share against man: targets man-only / zone-only 1.68, expected about 1.73 (= 2 / (1 + share)) -> PASS
