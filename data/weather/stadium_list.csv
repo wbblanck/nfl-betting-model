@@ -1,0 +1,43 @@
+stadium_id,stadium,home_team,roof,first,last,games
+ATL97,Mercedes-Benz Stadium,ATL,open,2017,2026,20
+BAL00,M&T Bank Stadium | PSINet Stadium | Ravens Stadium,BAL,outdoors,1999,2026,227
+BOS00,Gillette Stadium,NE,outdoors,2002,2026,202
+BOS99,Foxboro Stadium,NE,outdoors,1999,2001,24
+BRG00,Tiger Stadium (LSU),NO,outdoors,2005,2005,4
+BUF00,Highmark Stadium | New Era Field | Ralph Wilson Stadium,BUF,outdoors,1999,2026,218
+CAR00,Bank of America Stadium | Ericsson Stadium,CAR,outdoors,1999,2026,226
+CHI98,Soldier Field,CHI,outdoors,1999,2026,218
+CHI99,Memorial Stadium (Champaign),CHI,outdoors,2002,2002,8
+CIN00,Paul Brown Stadium | Paycor Stadium,CIN,outdoors,2000,2026,217
+CIN99,Cinergy Field,CIN,outdoors,1999,1999,8
+CLE00,Cleveland Browns Stadium | FirstEnergy Stadium | Huntington Bank Field,CLE,outdoors,1999,2026,225
+DAL00,AT&T Stadium | Cowboys Stadium,DAL,open,2009,2023,9
+DAL99,Texas Stadium,DAL,outdoors,1999,2008,80
+DEN00,Empower Field at Mile High | Invesco Field at Mile High | Sports Authority Field at Mile High,DEN,outdoors,2001,2026,211
+DEN99,Mile High Stadium,DEN,outdoors,1999,2000,16
+GNB00,Lambeau Field,GB,outdoors,1999,2026,226
+HOU00,NRG Stadium | Reliant Stadium,HOU,open,2002,2023,46
+IND00,Lucas Oil Stadium,IND,open,2008,2026,36
+JAX00,Alltel Stadium | EverBank Field | EverBank Stadium | Jacksonville Municipal Stadium | TIAA Bank Stadium,JAX,outdoors,1999,2026,213
+KAN00,Arrowhead Stadium | GEHA Field at Arrowhead Stadium,KC,outdoors,1999,2026,225
+LAX97,StubHub Center,LAC,outdoors,2017,2019,22
+LAX99,Los Angeles Memorial Coliseum,LA,outdoors,2016,2019,29
+MIA00,Dolphin Stadium | Hard Rock Stadium | Pro Player Stadium | Sun Life Stadium,MIA,outdoors,1999,2026,223
+MIN98,TCF Bank Stadium,MIN,outdoors,2010,2015,17
+NAS00,Adelphia Coliseum | LP Field | Nissan Stadium | The Coliseum,TEN,outdoors,1999,2026,226
+NYC00,Giants Stadium,NO NYG NYJ,outdoors,1999,2009,177
+NYC01,MetLife Stadium | New Meadowlands Stadium,NYG NYJ,outdoors,2010,2026,277
+OAK00,McAfee Coliseum | Network Associates Coliseum | O.co Coliseum | Oakland-Alameda County Coliseum | Ring Central Coliseum,OAK,outdoors,1999,2019,163
+PHI00,Lincoln Financial Field,PHI,outdoors,2003,2026,194
+PHI99,Veterans Stadium,PHI,outdoors,1999,2002,32
+PHO00,State Farm Stadium | University of Phoenix Stadium,ARI,open,2006,2023,21
+PHO99,Sun Devil Stadium,ARI,outdoors,1999,2005,55
+PIT00,Acrisure Stadium | Heinz Field,PIT,outdoors,2001,2026,210
+PIT99,Three Rivers Stadium,PIT,outdoors,1999,2000,16
+SDG00,Qualcomm Stadium,SD,outdoors,1999,2016,143
+SEA00,CenturyLink Field | Lumen Field | Qwest Field | Seahawks Stadium,SEA,outdoors,2002,2026,203
+SEA99,Husky Stadium,SEA,outdoors,2000,2001,16
+SFO00,3Com Park | Candlestick Park | Monster Park,SF,outdoors,1999,2013,119
+SFO01,Levi's Stadium,SF,outdoors,2014,2026,103
+TAM00,Raymond James Stadium,TB,outdoors,1999,2026,223
+WAS00,FedExField | Jack Kent Cooke Stadium | Northwest Stadium,WAS,outdoors,1999,2026,226

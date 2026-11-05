@@ -1,0 +1,41 @@
+name: EndzoneAPI props spot check
+# Free tier: closing props, every book, for 4 seeded-random games of the latest completed week
+# (scripts/fetch/endzone_props.py). Weekly on Tuesday after Monday night; scheduled runs only fire from main.
+on:
+  schedule:
+    - cron: '41 15 * * 2'
+  workflow_dispatch:
+    inputs:
+      week:
+        description: "Week (blank = latest completed)"
+        required: false
+        default: ""
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/fetch/endzone_props.py', '.github/workflows/endzone-props.yml']
+permissions:
+  contents: write
+concurrency:
+  group: endzone-props-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - run: python scripts/fetch/endzone_props.py $( [ -n "${{ github.event.inputs.week }}" ] && echo --week "${{ github.event.inputs.week }}" )
+        env:
+          ENDZONEAPI_API_KEY: ${{ secrets.ENDZONEAPI_API_KEY }}
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add data/live/endzone || exit 0
+          git commit -m "endzone: props spot check" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
