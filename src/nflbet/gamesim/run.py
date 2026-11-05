@@ -67,9 +67,10 @@ def chunk_inputs(gg: pl.DataFrame, sims: int, shift: dict | None):
 
 def simulate_games(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, xps, hfa: float, sims: int = 400,
                    seed: int = 0, chunk: int = 60000, shift: dict | None = None,
-                   want_counts: bool = False):
+                   want_counts: bool = False, cover: tuple | None = None):
     """games: season, week, game_id, home_team, away_team, neutral. fac: per team-game factors (o*/d*).
     shift: optional extra per-team-game factor shifts {(game_id, team): {factor: value}} (personnel layer).
+    cover: optional (coverage dict from nflbet.gamesim.coverage.pregame, k_cov) for the coverage layer.
     Returns per game: mean home margin (fair), mean total, P(margin > x) is left to the caller via `margins`."""
     g, pools, pidx, xp = prep(games, fac, kicks, xps)
     G = g.height
@@ -86,8 +87,12 @@ def simulate_games(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, 
         # home-field: engine applies +hfa to home offense yards and -hfa to away; neutral sites get none
         h = np.where(neutral, 0.0, hfa)
         cnt = {} if want_counts else None
+        cv = None
+        if cover is not None:
+            from . import coverage as CV
+            cv = CV.arrays(gg, sims, cover[0], cover[1])
         hh, aa = _sim_hfa(tb, off, dfn, (pools, np.repeat(pidx[sl], sims)), np.repeat(xp[sl], sims),
-                          np.repeat(gg["season"].to_numpy(), sims), h, seed + c0, cnt)
+                          np.repeat(gg["season"].to_numpy(), sims), h, seed + c0, cnt, cv)
         if want_counts:
             att[sl] = cnt["att"].reshape(-1, sims, 2)
             car[sl] = cnt["car"].reshape(-1, sims, 2)
@@ -100,7 +105,7 @@ def simulate_games(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, 
     return out, margins
 
 
-def _sim_hfa(tb, off, dfn, kick, xp, season, h, seed, cnt=None):
+def _sim_hfa(tb, off, dfn, kick, xp, season, h, seed, cnt=None, cv=None):
     """Per-element home-field: the engine takes one scalar; split elements by their h value."""
     N = len(xp)
     hh, aa = np.zeros(N), np.zeros(N)
@@ -111,7 +116,8 @@ def _sim_hfa(tb, off, dfn, kick, xp, season, h, seed, cnt=None):
         o = {f: a[m] for f, a in off.items()}
         d = {f: a[m] for f, a in dfn.items()}
         c = {} if cnt is not None else None
-        a1, a2 = E.simulate(tb, o, d, (kick[0], kick[1][m]), xp[m], season[m], float(v), seed=seed + int(v * 1000), counts=c)
+        a1, a2 = E.simulate(tb, o, d, (kick[0], kick[1][m]), xp[m], season[m], float(v), seed=seed + int(v * 1000), counts=c,
+                            cover=None if cv is None else {kk: a[m] for kk, a in cv.items()})
         hh[m], aa[m] = a1, a2
         if cnt is not None:
             cnt["att"][m], cnt["car"][m] = c["att"], c["car"]

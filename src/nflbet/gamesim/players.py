@@ -92,12 +92,25 @@ def draw(rs: list, sims: int, c: float, rng: np.random.Generator) -> dict:
             a /= a.sum(2, keepdims=True)
     tcum, rcum = np.cumsum(tsh, 2), np.cumsum(csh, 2)
     tcum[..., -1] = rcum[..., -1] = 1.0
-    return {"tcum": tcum, "rcum": rcum, "cshift": rep(stack("cshift", K, 0.0)), "yscale": rep(stack("yscale", K, 1.0)),
+    extra = {}
+    if all("tmul" in r for pair in rs for r in pair):
+        tm = np.stack([np.stack([np.vstack([r["tmul"], np.ones((K - len(r["ts"]), 2))]) for r in pair]) for pair in rs])
+        ym = np.stack([np.stack([np.vstack([r["ymul"], np.ones((K - len(r["ts"]), 2))]) for r in pair]) for pair in rs])
+        tm, ym = rep(tm), rep(ym)
+        for ci, name in ((0, "tcum_m"), (1, "tcum_z")):
+            a = tsh * tm[..., ci]
+            a = a / np.maximum(a.sum(2, keepdims=True), 1e-12)
+            cc = np.cumsum(a, 2)
+            cc[..., -1] = 1.0
+            extra[name] = cc
+        extra["ymul"] = ym
+    return {**extra, "tcum": tcum, "rcum": rcum, "cshift": rep(stack("cshift", K, 0.0)), "yscale": rep(stack("yscale", K, 1.0)),
             "rscale": rep(stack("rscale", Kc, 1.0))}
 
 
 def simulate(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, xps, hfa: float, ros: dict, sims: int,
-             c: float, seed: int = 0, chunk: int = 60000, shift: dict | None = None, keep_games=None):
+             c: float, seed: int = 0, chunk: int = 60000, shift: dict | None = None, keep_games=None,
+             cover: tuple | None = None):
     """Simulate games with players. Games without a roster for both teams are skipped.
     Returns (game frame, list per game of {stat: array (sims, 2, K)}, list per game of (home roster, away roster),
     home points (G, sims), away points (G, sims))."""
@@ -120,6 +133,10 @@ def simulate(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, xps, h
         rng = np.random.default_rng(seed + 7919 * c0)
         roster = draw(pr, sims, c, rng)
         off, dfn = R.chunk_inputs(gg, sims, shift)
+        cv = None
+        if cover is not None:
+            from . import coverage as CV
+            cv = CV.arrays(gg, sims, cover[0], cover[1])
         h = np.where(np.repeat(gg["neutral"].to_numpy(), sims), 0.0, hfa)
         kid = np.repeat(pidx[sl], sims)
         xpe, sea = np.repeat(xp[sl], sims), np.repeat(gg["season"].to_numpy(), sims)
@@ -132,7 +149,7 @@ def simulate(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, xps, h
             cnt = {}
             a1, a2 = E.simulate(tb, {f: a[m] for f, a in off.items()}, {f: a[m] for f, a in dfn.items()},
                                 (pools, kid[m]), xpe[m], sea[m], float(v), seed=seed + c0 + int(v * 1000), roster=rr,
-                                counts=cnt)
+                                counts=cnt, cover=None if cv is None else {kk: a[m] for kk, a in cv.items()})
             hh[m], aa[m] = a1, a2
             rr["out"]["qscore"] = cnt["qscore"]
             for k, a in rr["out"].items():

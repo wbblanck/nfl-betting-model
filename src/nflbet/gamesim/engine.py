@@ -58,7 +58,8 @@ def _draw(rng, pools, bucket):
 
 def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, season: np.ndarray, hfa: float,
              seed: int = 0, clock_mult: float = 1.0, max_steps: int = 600, stats: dict | None = None,
-             counts: dict | None = None, roster: dict | None = None):
+             counts: dict | None = None, roster: dict | None = None,
+             cover: dict | None = None):
     """off[f] / dfn[f]: arrays (N, 2) of log-odds shifts (sack, scr, int, comp, proe) or log yard scales (ypc, ypr)
     for each element's home (0) and away (1) team. kick: (pools, ids): kickoff start pools (yardline_100 of the
     receiving team) and each element's pool index; xp: (N,) extra-point rate. Returns home and away points, arrays (N,).
@@ -67,7 +68,12 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
       tcum (N, 2, K) cumulative target shares, cshift (N, 2, K) catch log-odds shift, yscale (N, 2, K) catch-yard scale,
       rcum (N, 2, Kc) cumulative designed-run shares (slot 0 = the passer), rscale (N, 2, Kc) run-yard scale.
     Every throw is credited to a receiver slot and every designed run to a rusher slot; scrambles and kneels go to
-    slot 0. Player stats are returned in roster['out']."""
+    slot 0. Player stats are returned in roster['out']. With `cover`, roster may also carry tcum_m / tcum_z (cumulative
+    shares on man / zone dropbacks) and ymul (N, 2, K, 2) yard multipliers by coverage.
+
+    cover (optional, docs/gamesim_coverage_preregistration.md): m (N, 2) man rate of each side's defense, and
+      sp (N, 2, 2, 4) each side's offense deviations [coverage man/zone][comp, int, sack, ypc]. Each dropback draws
+      man with the defense's rate and shifts the offense's pass factors by its split."""
     rng = np.random.default_rng(seed)
     N = len(xp)
     ar = np.arange(N)
@@ -259,14 +265,22 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
             run = play & ~isp
             yb = L.b_yard(yl)
             base = tb.db[yb]
-            ps = _sig(_logit(base[:, 0]) + o["sack"])
+            dv = np.zeros((N, 4))
+            if cover is not None:
+                man = rng.random(N) < cover["m"][ar, 1 - p]
+                cz = np.where(man, 0, 1)
+                dv = cover["sp"][ar, p, cz]
+            ps = _sig(_logit(base[:, 0]) + o["sack"] + dv[:, 2])
             rest = 1 - base[:, 0]
             pscr = _sig(_logit(base[:, 1] / rest) + o["scr"])
             att = (base[:, 2] + base[:, 3] + base[:, 4])
-            pint = _sig(_logit(base[:, 2] / att) + o["int"])
-            pcomp = _sig(_logit(base[:, 3] / (base[:, 3] + base[:, 4])) + o["comp"])
+            pint = _sig(_logit(base[:, 2] / att) + o["int"] + dv[:, 1])
+            pcomp = _sig(_logit(base[:, 3] / (base[:, 3] + base[:, 4])) + o["comp"] + dv[:, 0])
             if roster is not None:
-                ri = np.minimum((rng.random(N)[:, None] > roster["tcum"][ar, p]).sum(1), K - 1)
+                tc = roster["tcum"][ar, p]
+                if cover is not None and "tcum_m" in roster:
+                    tc = np.where(man[:, None], roster["tcum_m"][ar, p], roster["tcum_z"][ar, p])
+                ri = np.minimum((rng.random(N)[:, None] > tc).sum(1), K - 1)
                 ci = np.minimum((rng.random(N)[:, None] > roster["rcum"][ar, p]).sum(1), Kc - 1)
                 pcomp = _sig(_logit(pcomp) + roster["cshift"][ar, p, ri])
             u1, u2, u3, u4 = rng.random((4, N))
@@ -284,11 +298,13 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
             sy = _draw(rng, tb.scr_y, pb_)
             ry = _draw(rng, tb.run_y, pb_)
             ky = _draw(rng, [tb.sack_y], np.zeros(N, int))
-            sc_c = np.exp(o["ypc"]) * yscale
+            sc_c = np.exp(o["ypc"] + dv[:, 3]) * yscale
             sc_r = np.exp(o["ypr"]) * yscale
             sc_d = sc_r
             if roster is not None:
                 sc_c = sc_c * roster["yscale"][ar, p, ri]
+                if cover is not None and "ymul" in roster:
+                    sc_c = sc_c * roster["ymul"][ar, p, ri, cz]
                 sc_d = sc_r * roster["rscale"][ar, p, ci]
             coded = (comp & (cy == L.TD_CODE)) | (scr & (sy == L.TD_CODE)) | (run & (ry == L.TD_CODE))
             yards = np.where(comp, np.where(cy > 0, np.round(cy * sc_c), cy),
