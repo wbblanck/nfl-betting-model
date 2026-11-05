@@ -1181,7 +1181,7 @@ details.old .picks{margin-top:8px}
 
 JS = """
 (function(){
-  var bs=document.querySelectorAll('.filters button');
+  var bs=document.querySelectorAll('.filters button[data-mode]');
   function apply(mode){
     document.querySelectorAll('#week .pick').forEach(function(p){
       var a=p.getAttribute('data-against')==='1';
@@ -1277,14 +1277,32 @@ def mix_current(props: pl.DataFrame, runs: pl.DataFrame, rec: pl.DataFrame, best
     return pk
 
 
-def mix_row(r: dict, locked: bool) -> str:
+def mix_book(r: dict) -> tuple[str, float]:
+    """Where the pick's best price is (DraftKings when nothing beats it) and that price."""
+    dk = float(r["odds"])
+    v, o = r.get("best_venue"), r.get("best_odds")
+    if v in (None, "") or o is None or float(o) == dk:
+        return "DraftKings", dk
+    return str(v).replace(" (ParlayAPI)", ""), float(o)
+
+
+def mix_row(r: dict, locked: bool, matchup: str = "") -> str:
     res = r["result"]
     rc = {"W": "win", "L": "loss"}.get(res, "idle")
     be = break_even(float(r["odds"]))
     p_mkt = float(r["p_over_dk"]) if r["side"] == "over" else 1 - float(r["p_over_dk"])
     edge = float(r["edge"])
+    book, bo = mix_book(r)
+    edge_b = float(r["p_side"]) - break_even(bo)
+    echip = chip("win" if edge > 0 else "idle", f"Edge {edge * 100:+.1f} pts",
+                 "Mix probability minus the break-even of DraftKings' price; shown, not part of the rule")
+    if book != "DraftKings":
+        echip += chip("win" if edge_b > 0 else "idle", f"{book} {edge_b * 100:+.1f} pts",
+                      f"Edge at {book}'s price (record only)")
     return (
-        f'<li class="pick"><div class="who"><span class="name">{esc(r["player"])}</span><span class="team">{esc(r["team"] or "")}</span></div>'
+        f'<li class="pick" data-edge="{edge:.4f}" data-edgeb="{edge_b:.4f}" data-book="{esc(book)}">'
+        f'<div class="who"><span class="name">{esc(r["player"])}</span><span class="team">{esc(r["team"] or "")}</span>'
+        + (f'<span class="team">{esc(matchup)}</span>' if matchup else "") + '</div>'
         f'<div class="bet"><span class="side-pill {esc(r["side"])}">{esc(r["side"])}</span> '
         f'<span class="line">{float(r["line"]):g}</span> <span class="mkt">{esc(MARKET.get(r["market"], r["market"]))}</span></div>'
         f'<div class="price"><span class="actual" title="DraftKings price; every mix pick is scored on DraftKings">DK</span> '
@@ -1298,7 +1316,7 @@ def mix_row(r: dict, locked: bool) -> str:
         f'<div class="res">{chip(rc, (RESULT_ICON.get(res, res) + " " + res) if res != "pending" else ("Locked" if locked else "Open"), "")}'
         + (f'<span class="actual">actual {float(r["actual"]):g}</span>' if r.get("actual") not in (None, "") else "")
         + '</div>'
-        f'<div class="news">{chip("win" if edge > 0 else "idle", f"Edge {edge * 100:+.1f} pts", "Mix probability minus the break-even of the price; shown, not part of the rule")}</div>'
+        f'<div class="news">{echip}</div>'
         '</li>')
 
 
@@ -1347,8 +1365,52 @@ def mix_section(data: dict, now: dt.datetime) -> str:
     colhead = ('<div class="colhead" aria-hidden="true"><span>Player</span><span>Bet</span><span class="r">Price</span>'
                '<span class="p"><span title="Break-even for the price">BE</span><span title="DraftKings, de-vigged">Mkt</span>'
                '<span title="Market + simulator mix">Mix</span></span><span class="r">Result</span></div>')
-    return (board + head.format(title=f"Week {wk}: {cur.height} picks in {len(games)} games")
-            + colhead + f'<div class="games">{"".join(blocks)}</div></section>')
+    allrows = cur.sort("edge", descending=True).to_dicts() if cur.height else []
+    gi = {g["an_game_id"]: g for g in games}
+    flat = "".join(mix_row(x, Lv.parse_ts(gi[x["an_game_id"]]["start_time"]) <= now if x["an_game_id"] in gi else True,
+                           f'{gi[x["an_game_id"]]["away"]} at {gi[x["an_game_id"]]["home"]}' if x["an_game_id"] in gi else "")
+                   for x in allrows)
+    books = sorted({mix_book(x)[0] for x in allrows}, key=lambda b: (b != "DraftKings", b))
+
+    def grp(name: str, label: str, opts: list[tuple[str, str]]) -> str:
+        return (f'<div class="filters" role="group" aria-label="{esc(label)}"><span class="eyebrow" style="align-self:center">{esc(label)}</span>'
+                + "".join(f'<button type="button" data-mix="{name}" data-val="{esc(v)}" aria-pressed="{"true" if i == 0 else "false"}">{esc(t)}</button>'
+                          for i, (v, t) in enumerate(opts)) + '</div>')
+    controls = ('<div class="mixctl" style="display:flex;flex-direction:column;gap:8px">'
+                + grp("edge", "Edge", [("all", "All"), ("dk", "+ at DK"), ("best", "+ at best price")])
+                + grp("book", "Best price at", [("all", "All")] + [(b, b) for b in books])
+                + grp("sort", "Sort", [("game", "By game"), ("edge", "By edge")])
+                + '<p class="note" id="mixcount" aria-live="polite"></p></div>')
+    flatview = (f'<div class="games" id="mixflat" hidden><section class="game"><header><h3>All picks, highest edge first</h3></header>'
+                f'<ul class="picks">{flat or "<li class=none>No picks.</li>"}</ul></section></div>')
+    return (board + head.format(title=f"Week {wk}: {cur.height} picks in {len(games)} games") + controls
+            + colhead + f'<div class="games" id="mixgames">{"".join(blocks)}</div>{flatview}</section>')
+
+
+MIX_JS = """
+(function(){
+  var st={edge:'all',book:'all',sort:'game'};
+  try{var s=JSON.parse(localStorage.getItem('mix-filters')||'{}');for(var k in s)if(k in st)st[k]=s[k]}catch(e){}
+  var bs=document.querySelectorAll('button[data-mix]');if(!bs.length)return;
+  if(!document.querySelector('button[data-mix="book"][data-val="'+st.book+'"]'))st.book='all';
+  function apply(){
+    bs.forEach(function(b){b.setAttribute('aria-pressed',st[b.getAttribute('data-mix')]===b.getAttribute('data-val')?'true':'false')});
+    var g=document.getElementById('mixgames'),f=document.getElementById('mixflat');
+    g.hidden=st.sort!=='game';f.hidden=st.sort!=='edge';
+    var n=0,box=st.sort==='game'?g:f;
+    document.querySelectorAll('#mixgames .pick,#mixflat .pick').forEach(function(p){
+      var e=parseFloat(p.getAttribute(st.edge==='best'?'data-edgeb':'data-edge'));
+      var ok=(st.edge==='all'||e>0)&&(st.book==='all'||p.getAttribute('data-book')===st.book);
+      p.hidden=!ok;if(ok&&box.contains(p))n++;
+    });
+    g.querySelectorAll('.game').forEach(function(x){x.hidden=!!x.querySelector('.pick')&&!x.querySelector('.pick:not([hidden])')});
+    var c=document.getElementById('mixcount');if(c)c.textContent=n+' pick'+(n===1?'':'s')+' shown';
+    try{localStorage.setItem('mix-filters',JSON.stringify(st))}catch(e){}
+  }
+  bs.forEach(function(b){b.addEventListener('click',function(){st[b.getAttribute('data-mix')]=b.getAttribute('data-val');apply()})});
+  apply();
+})();
+"""
 
 
 def stat(k: str, v: str, s: str = "") -> str:
@@ -1543,7 +1605,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         f'<div class="tabpane" id="tab-s1">{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'
         + ('<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Earlier weeks</h2></div></div><div class="games">' + "".join(old) + "</div></section>" if old else "")
         + '</div>'
-        + f'{foot}</div><script>{JS}</script>')
+        + f'{foot}</div><script>{JS}{MIX_JS}</script>')
 
 
 def write(now: dt.datetime | None = None, out: Path | None = None) -> Path:
