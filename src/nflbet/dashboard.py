@@ -1287,9 +1287,10 @@ def mix_row(r: dict, locked: bool) -> str:
         f'<li class="pick"><div class="who"><span class="name">{esc(r["player"])}</span><span class="team">{esc(r["team"] or "")}</span></div>'
         f'<div class="bet"><span class="side-pill {esc(r["side"])}">{esc(r["side"])}</span> '
         f'<span class="line">{float(r["line"]):g}</span> <span class="mkt">{esc(MARKET.get(r["market"], r["market"]))}</span></div>'
-        f'<div class="price">{float(r["odds"]):+.0f}'
-        + (f'<span class="actual" title="Cheapest all-in price recorded at this line and side (record only)">best '
-           f'{esc(r["best_venue"])} {float(r["best_odds"]):+.0f}</span>' if r.get("best_venue") not in (None, "", "DraftKings") and r.get("best_odds") is not None
+        f'<div class="price"><span class="actual" title="DraftKings price; every mix pick is scored on DraftKings">DK</span> '
+        f'{float(r["odds"]):+.0f}'
+        + (f'<span class="actual" style="display:block" title="Cheapest all-in price recorded at this line and side (record only)">best '
+           f'{esc(str(r["best_venue"]).replace(" (ParlayAPI)", ""))} {float(r["best_odds"]):+.0f}</span>' if r.get("best_venue") not in (None, "", "DraftKings") and r.get("best_odds") is not None
            and float(r["best_odds"]) != float(r["odds"]) else "")
         + '</div>'
         f'<div class="probs" title="Break-even for this price, DraftKings de-vigged, mix">'
