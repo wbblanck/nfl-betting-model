@@ -10,24 +10,38 @@ import numpy as np
 from nflbet.props import sim as S
 
 
-def simulate_row_vol(r: dict, att: np.ndarray, car: np.ndarray, pools: dict, rng: np.random.Generator) -> dict:
-    """As nflbet.props.sim.simulate_row (matchup weight 0), with team attempts and carries supplied per run."""
+def _count(rng, trials, share, dist, size):
+    """Volume count with mean trials x share: binomial (default), Poisson, or negative binomial with size `size`
+    (variance mean + mean^2 / size). docs/gamesim_props_dist_preregistration.md."""
+    if dist == "binom":
+        return rng.binomial(trials, share)
+    mu = trials * share
+    if dist == "pois":
+        return rng.poisson(mu)
+    return rng.negative_binomial(size, size / (size + np.maximum(mu, 1e-9)))
+
+
+def simulate_row_vol(r: dict, att: np.ndarray, car: np.ndarray, pools: dict, rng: np.random.Generator,
+                     dist: str = "binom", size: dict | None = None) -> dict:
+    """As nflbet.props.sim.simulate_row (matchup weight 0), with team attempts and carries supplied per run.
+    dist / size choose the count distribution for targets, carries and QB attempts."""
+    size = size or {}
     n = len(att)
     att, car = np.maximum(att.astype(int), 0), np.maximum(car.astype(int), 0)
     out = {}
     pos = r["pos"]
-    tg = rng.binomial(att, S._beta_share(rng, r["tgt_share"] or 0, n))
+    tg = _count(rng, att, S._beta_share(rng, r["tgt_share"] or 0, n), dist, size.get("targets"))
     rec = rng.binomial(tg, float(np.clip(r["catch"], 0.05, 0.99)))
     pool_r = pools.get(("rec", pos))
     out["targets"] = tg.astype(float)
     out["rec"] = rec.astype(float)
     out["rec_yds"] = S._sum_draws(rng, rec, pool_r, r["ypr"] / max(np.mean(pool_r), 1e-6)) if pool_r is not None else rec * r["ypr"]
-    cr = rng.binomial(car, S._beta_share(rng, r["car_share"] or 0, n))
+    cr = _count(rng, car, S._beta_share(rng, r["car_share"] or 0, n), dist, size.get("carries"))
     pool_c = pools.get(("rush", pos))
     out["rush_att"] = cr.astype(float)
     out["rush_yds"] = S._sum_draws(rng, cr, pool_c, r["ypc"] / max(np.mean(pool_c), 1e-6)) if pool_c is not None else cr * r["ypc"]
     if pos == "QB":
-        pa = rng.binomial(att, S._beta_share(rng, r["att_share"] or 0, n))
+        pa = _count(rng, att, S._beta_share(rng, r["att_share"] or 0, n), dist, size.get("qb_att"))
         cm = rng.binomial(pa, float(np.clip(r["cmp"], 0.3, 0.85)))
         out["pass_att"], out["pass_cmp"] = pa.astype(float), cm.astype(float)
         out["pass_yds"] = S._sum_draws(rng, cm, pools["cmp"], r["ypcmp"] / max(np.mean(pools["cmp"]), 1e-6))
