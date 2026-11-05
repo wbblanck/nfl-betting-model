@@ -1,6 +1,6 @@
 # DK/FD prop rules: INTERIM (descriptive only) 2026 weeks 9-18
 
-Pre-registration: docs/dkfd_rules_preregistration.md. Props with both books quoting: 0. Interval: week-clustered, one-sided 0.025/2.
+Pre-registration: docs/dkfd_rules_preregistration.md. Props with both books quoting: 355. Interval: week-clustered, one-sided 0.025/2.
 
 | Rule | Bets | Weeks | Under won | ROI | Interval | Verdict |
 |---|---|---|---|---|---|---|
