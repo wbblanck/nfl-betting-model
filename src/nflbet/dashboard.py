@@ -62,7 +62,9 @@ def load(live: Path | None = None) -> dict:
             "ats_runs": _read(live / f"ats_runs_{SEASON}.csv"), "ats_rec": _read(live / f"ats_record_{SEASON}.csv"),
             "polymarket": _json(Path(__file__).resolve().parents[2] / "docs" / "polymarket_compare.json"),
             "best": _read(live / f"s1_bestprice_{SEASON}.csv"),
-            "ats_yv": _read(live / f"ats_yv_runs_{SEASON}.csv"), "s1_yv": _read(live / f"s1_yv_{SEASON}.csv")}
+            "ats_yv": _read(live / f"ats_yv_runs_{SEASON}.csv"), "s1_yv": _read(live / f"s1_yv_{SEASON}.csv"),
+            "mix_props": _read(live / f"mix_props_{SEASON}.csv"), "mix_runs": _read(live / f"mix_runs_{SEASON}.csv"),
+            "mix_rec": _read(live / f"mix_record_{SEASON}.csv")}
 
 
 def _json(path: Path) -> dict | None:
@@ -1250,6 +1252,91 @@ def meter(k: str, n: int, of: int) -> str:
             f'<i style="width:{min(n / of, 1) * 100:.0f}%"></i></div></div>')
 
 
+# ------------------------------------------------------------------------- props mix (docs/mix_live_rules.md)
+
+def mix_current(props: pl.DataFrame, runs: pl.DataFrame, rec: pl.DataFrame) -> pl.DataFrame:
+    """This week's picks as they stand: last run before kickoff for started games, latest run otherwise, with results
+    from the graded record where available."""
+    from nflbet.gamesim import mix_live as Mx
+
+    if not props.height or not runs.height:
+        return pl.DataFrame()
+    wk = str(int(runs["week"].cast(pl.Int64).max()))
+    off = Mx.official_props(props.filter(pl.col("week") == wk), runs.filter(pl.col("week") == wk))
+    typed = off.with_columns(*[pl.col(c).cast(pl.Float64) for c in ("line", "over_odds", "under_odds", "p_over_dk", "p_sim", "p_mix")],
+                             pl.col("week").cast(pl.Int64))
+    pk = Mx.picks_from(typed)
+    if rec.height and pk.height:
+        r = rec.select("an_game_id", "player_id", "market", "result", "actual", "units")
+        pk = pk.join(r, on=["an_game_id", "player_id", "market"], how="left")
+    if "result" not in pk.columns:
+        pk = pk.with_columns(pl.lit("pending").alias("result"), pl.lit(None).alias("actual"), pl.lit(None).alias("units"))
+    return pk.with_columns(pl.col("result").fill_null("pending"))
+
+
+def mix_row(r: dict, locked: bool) -> str:
+    res = r["result"]
+    rc = {"W": "win", "L": "loss"}.get(res, "idle")
+    be = break_even(float(r["odds"]))
+    p_mkt = float(r["p_over_dk"]) if r["side"] == "over" else 1 - float(r["p_over_dk"])
+    edge = float(r["edge"])
+    return (
+        f'<li class="pick"><div class="who"><span class="name">{esc(r["player"])}</span><span class="team">{esc(r["team"] or "")}</span></div>'
+        f'<div class="bet"><span class="side-pill {esc(r["side"])}">{esc(r["side"])}</span> '
+        f'<span class="line">{float(r["line"]):g}</span> <span class="mkt">{esc(MARKET.get(r["market"], r["market"]))}</span></div>'
+        f'<div class="price">{float(r["odds"]):+.0f}</div>'
+        f'<div class="probs" title="Break-even for this price, DraftKings de-vigged, mix">'
+        f'<span>{fmt_pct(be)}</span><span>{fmt_pct(p_mkt)}</span><span>{fmt_pct(float(r["p_side"]))}</span></div>'
+        f'<div class="res">{chip(rc, (RESULT_ICON.get(res, res) + " " + res) if res != "pending" else ("Locked" if locked else "Open"), "")}'
+        + (f'<span class="actual">actual {float(r["actual"]):g}</span>' if r.get("actual") not in (None, "") else "")
+        + '</div>'
+        f'<div class="news">{chip("win" if edge > 0 else "idle", f"Edge {edge * 100:+.1f} pts", "Mix probability minus the break-even of the price; shown, not part of the rule")}</div>'
+        '</li>')
+
+
+def mix_section(data: dict, now: dt.datetime) -> str:
+    props, runs, rec = data.get("mix_props", pl.DataFrame()), data.get("mix_runs", pl.DataFrame()), data.get("mix_rec", pl.DataFrame())
+    head = ('<section class="block" id="mix"><div class="sechead"><div><p class="eyebrow">Props mix · unvalidated</p>'
+            '<h2>{title}</h2></div></div>'
+            '<p class="lede">DraftKings\' price blended with the game simulator, using weights fit on 2024 '
+            '(<a href="' + REPO + 'docs/mix_live_rules.md">rules</a>). A pick is a side the mix gives 55% or more. On 2025 the mix '
+            'beat DraftKings\' own price on log loss, but mostly by recalibrating that price, and its 55%+ sides returned −0.3% at '
+            'DraftKings odds. Picks are sorted by edge (mix minus break-even). Judged after week 18 on weeks 10-18.</p>')
+    if not runs.height:
+        return head.format(title="Props mix: first run pending") + '<p class="empty">No runs yet.</p></section>'
+    r = rec.with_columns(pl.col("units").cast(pl.Float64), pl.col("odds").cast(pl.Float64)) if rec.height else rec
+    if r.height:
+        r = r.with_columns(pl.col("odds").map_elements(break_even, return_dtype=pl.Float64).alias("be"))
+    tot = summarize(r) if r.height else summarize(pl.DataFrame())
+    from nflbet.gamesim import mix_live as Mx
+    try:
+        j = Mx.judge(props, runs) if props.height else {"n": 0}
+    except Exception:  # noqa: BLE001 - stats feed unavailable
+        j = {"n": 0}
+    board = ('<section class="board" aria-label="Props mix record"><div><p class="eyebrow">Props mix · 2026 season</p>'
+             f'<div class="hero"><div class="big">{tot["W"]}-{tot["L"]}' + (f'-{tot["P"]}' if tot["P"] else "") + '</div><div class="stats">'
+             + stat("Win rate", fmt_pct(tot["win"]), f'break-even {fmt_pct(tot["be"])}' if tot["be"] is not None else "no graded picks")
+             + stat("Units", fmt_units(tot["units"]) if tot["n"] else "–", "1 unit per pick")
+             + stat("ROI", fmt_pct(tot["roi"], 1, True), f'{tot["pending"]} pending')
+             + stat("Log loss, mix vs DK", f'{j["ll_mix"]:.4f} / {j["ll_dk"]:.4f}' if j.get("n") else "–",
+                    f'{j["n"]} props from weeks 10-18' if j.get("n") else "from week 10")
+             + '</div></div></div></section>')
+    cur = mix_current(props, runs, rec)
+    wk = int(runs["week"].cast(pl.Int64).max())
+    games = runs.filter(pl.col("week") == str(wk)).sort("run_utc", descending=True).unique("an_game_id", keep="first").sort("start_time").to_dicts()
+    blocks = []
+    for g in games:
+        rows = cur.filter(pl.col("an_game_id") == g["an_game_id"]).sort("edge", descending=True).to_dicts() if cur.height else []
+        locked = Lv.parse_ts(g["start_time"]) <= now
+        body = "".join(mix_row(x, locked) for x in rows) if rows else '<li class="none">No side at 55% or more.</li>'
+        blocks.append(game_block(g, rows, now, body))
+    colhead = ('<div class="colhead" aria-hidden="true"><span>Player</span><span>Bet</span><span class="r">Price</span>'
+               '<span class="p"><span title="Break-even for the price">BE</span><span title="DraftKings, de-vigged">Mkt</span>'
+               '<span title="Market + simulator mix">Mix</span></span><span class="r">Result</span></div>')
+    return (board + head.format(title=f"Week {wk}: {cur.height} picks in {len(games)} games")
+            + colhead + f'<div class="games">{"".join(blocks)}</div></section>')
+
+
 def stat(k: str, v: str, s: str = "") -> str:
     return f'<div class="stat"><div class="k">{esc(k)}</div><div class="v">{v}</div>' + (f'<div class="s">{esc(s)}</div>' if s else "") + '</div>'
 
@@ -1435,7 +1522,9 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         f'<div class="stamp">{esc(stamp)}</div></header>'
         '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations.</div>'
         '<nav class="tabs" role="tablist"><button type="button" role="tab" data-tab="s1" aria-selected="true">Player props (S1)</button>'
-        '<button type="button" role="tab" data-tab="ats" aria-selected="false">Spreads (ATS)</button></nav>'
+        '<button type="button" role="tab" data-tab="ats" aria-selected="false">Spreads (ATS)</button>'
+        '<button type="button" role="tab" data-tab="mix" aria-selected="false">Props mix</button></nav>'
+        f'<div class="tabpane" id="tab-mix" hidden>{mix_section(data, now)}</div>'
         f'<div class="tabpane" id="tab-ats" hidden>{ats_section(data.get("ats_runs", pl.DataFrame()), data.get("ats_rec", pl.DataFrame()), now, data.get("ats_yv"))}</div>'
         f'<div class="tabpane" id="tab-s1">{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'
         + ('<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Earlier weeks</h2></div></div><div class="games">' + "".join(old) + "</div></section>" if old else "")
