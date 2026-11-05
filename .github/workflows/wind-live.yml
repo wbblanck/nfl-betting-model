@@ -1,0 +1,54 @@
+name: Wind live
+# Live wind-unders tracker (docs/wind_live_rules.md): record forecast wind + DraftKings total before each game
+# window, grade after. Times are UTC. Scheduled runs fire from main only and can start late; each run records every
+# eligible game kicking off in the next 30 hours, and a game's official row is the last one recorded before kickoff.
+on:
+  schedule:
+    - cron: '0 22 * * 4'     # Thursday, before TNF
+    - cron: '0 15 * * 6'     # Saturday (Saturday games and early look at Sunday)
+    - cron: '0 11 * * 0'     # Sunday, before London games
+    - cron: '0 16 * * 0'     # Sunday, before 1 PM ET
+    - cron: '30 19 * * 0'    # Sunday, before 4 PM ET
+    - cron: '0 23 * * 0'     # Sunday, before SNF
+    - cron: '0 21 * * 1'     # Monday, before MNF
+    - cron: '17 15 * * 2'    # Tuesday: grade
+  workflow_dispatch:
+    inputs:
+      step:
+        description: "record or grade"
+        required: true
+        default: "record"
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/wind_live.py', 'src/nflbet/windlive.py', '.github/workflows/wind-live.yml']
+permissions:
+  contents: write
+concurrency:
+  group: wind-live-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Record or grade
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then STEP="${{ github.event.inputs.step }}";
+          elif [ "${{ github.event.schedule }}" = "17 15 * * 2" ]; then STEP=grade; else STEP=record; fi
+          python scripts/wind_live.py "$STEP"
+          [ "$STEP" = record ] && python scripts/wind_live.py grade || true
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add data/live/wind docs/wind_live.md || exit 0
+          git commit -m "wind live: records" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
