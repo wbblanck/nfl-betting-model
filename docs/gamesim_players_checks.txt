@@ -1,0 +1,8 @@
+Scramble share of rush attempts, 2016-2020: 0.0565
+Checks on 2024 week 5: 14 games x 2000 runs
+K1 box scores add up (QB yards = receivers' yards, completions = catches): mismatches 0 -> PASS
+K2 team totals per team-game, with players vs without: pass attempts 33.80 vs 33.67; carries incl. kneels 27.25 vs 26.38 (without kneels); points 21.67 vs 21.77
+K3 planted shares 0.2 vs 0.1 (c=inf): mean targets 6.36 vs 3.27, ratio 1.94 -> PASS
+K3 planted shares 0.2 vs 0.1 (c=20.0): mean targets 6.51 vs 3.21, ratio 2.03 -> PASS
+K4 same seed reproduces: PASS
+Roster share sums before normalizing (2024): targets median 0.929 (min 0.305, max 1.300); carries median 0.998

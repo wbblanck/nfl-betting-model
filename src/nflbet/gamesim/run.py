@@ -41,18 +41,37 @@ def pools_for(games: pl.DataFrame, kicks: pl.DataFrame, xps: pl.DataFrame):
     return pools, np.array(idx), np.array(xp)
 
 
-def simulate_games(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, xps, hfa: float, sims: int = 400,
-                   seed: int = 0, chunk: int = 60000, shift: dict | None = None,
-                   want_counts: bool = False):
-    """games: season, week, game_id, home_team, away_team, neutral. fac: per team-game factors (o*/d*).
-    shift: optional extra per-team-game factor shifts {(game_id, team): {factor: value}} (personnel layer).
-    Returns per game: mean home margin (fair), mean total, P(margin > x) is left to the caller via `margins`."""
+def prep(games: pl.DataFrame, fac: pl.DataFrame, kicks, xps):
+    """Games joined to both teams' factors (h_o*, h_d*, a_o*, a_d*), plus kickoff pools and extra-point rates."""
     g = games.with_columns(pl.col("home_team").replace(FRANCHISE), pl.col("away_team").replace(FRANCHISE))
     cols = [f"o{f}" for f in OFF] + [f"d{f}" for f in OFF]
     fh = fac.select("game_id", pl.col("team").alias("home_team"), *[pl.col(c).alias("h_" + c) for c in cols])
     fa = fac.select("game_id", pl.col("team").alias("away_team"), *[pl.col(c).alias("a_" + c) for c in cols])
     g = g.join(fh, on=["game_id", "home_team"], how="left").join(fa, on=["game_id", "away_team"], how="left").fill_null(0.0)
     pools, pidx, xp = pools_for(g, kicks, xps)
+    return g, pools, pidx, xp
+
+
+def chunk_inputs(gg: pl.DataFrame, sims: int, shift: dict | None):
+    """Per-element offense / defense factor arrays (N, 2) for a chunk of prepared games, personnel shifts applied."""
+    rep = lambda a: np.repeat(np.asarray(a, float), sims)  # noqa: E731
+    off = {f: np.c_[rep(gg["h_o" + f]), rep(gg["a_o" + f])] for f in OFF}
+    dfn = {f: np.c_[rep(gg["h_d" + f]), rep(gg["a_d" + f])] for f in OFF}
+    if shift:
+        for j, (gid, ht, at) in enumerate(zip(gg["game_id"], gg["home_team"], gg["away_team"])):
+            for side, t in ((0, ht), (1, at)):
+                for f, v in shift.get((gid, t), {}).items():
+                    off[f][j * sims:(j + 1) * sims, side] += v
+    return off, dfn
+
+
+def simulate_games(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, xps, hfa: float, sims: int = 400,
+                   seed: int = 0, chunk: int = 60000, shift: dict | None = None,
+                   want_counts: bool = False):
+    """games: season, week, game_id, home_team, away_team, neutral. fac: per team-game factors (o*/d*).
+    shift: optional extra per-team-game factor shifts {(game_id, team): {factor: value}} (personnel layer).
+    Returns per game: mean home margin (fair), mean total, P(margin > x) is left to the caller via `margins`."""
+    g, pools, pidx, xp = prep(games, fac, kicks, xps)
     G = g.height
     margins = np.zeros((G, sims), dtype=np.float32)
     totals = np.zeros((G, sims), dtype=np.float32)
@@ -62,15 +81,7 @@ def simulate_games(games: pl.DataFrame, fac: pl.DataFrame, tb: E.Tables, kicks, 
     for c0 in range(0, G, per):
         sl = slice(c0, min(G, c0 + per))
         gg = g[sl]
-        n = gg.height * sims
-        rep = lambda a: np.repeat(np.asarray(a, float), sims)  # noqa: E731
-        off = {f: np.c_[rep(gg["h_o" + f]), rep(gg["a_o" + f])] for f in OFF}
-        dfn = {f: np.c_[rep(gg["h_d" + f]), rep(gg["a_d" + f])] for f in OFF}
-        if shift:
-            for j, (gid, ht, at) in enumerate(zip(gg["game_id"], gg["home_team"], gg["away_team"])):
-                for side, t in ((0, ht), (1, at)):
-                    for f, v in shift.get((gid, t), {}).items():
-                        off[f][j * sims:(j + 1) * sims, side] += v
+        off, dfn = chunk_inputs(gg, sims, shift)
         neutral = np.repeat(gg["neutral"].to_numpy(), sims)
         # home-field: engine applies +hfa to home offense yards and -hfa to away; neutral sites get none
         h = np.where(neutral, 0.0, hfa)

@@ -58,10 +58,16 @@ def _draw(rng, pools, bucket):
 
 def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, season: np.ndarray, hfa: float,
              seed: int = 0, clock_mult: float = 1.0, max_steps: int = 600, stats: dict | None = None,
-             counts: dict | None = None):
+             counts: dict | None = None, roster: dict | None = None):
     """off[f] / dfn[f]: arrays (N, 2) of log-odds shifts (sack, scr, int, comp, proe) or log yard scales (ypc, ypr)
     for each element's home (0) and away (1) team. kick: (pools, ids): kickoff start pools (yardline_100 of the
-    receiving team) and each element's pool index; xp: (N,) extra-point rate. Returns home and away points, arrays (N,)."""
+    receiving team) and each element's pool index; xp: (N,) extra-point rate. Returns home and away points, arrays (N,).
+
+    roster (optional, docs/gamesim_players_preregistration.md): per element and side,
+      tcum (N, 2, K) cumulative target shares, cshift (N, 2, K) catch log-odds shift, yscale (N, 2, K) catch-yard scale,
+      rcum (N, 2, Kc) cumulative designed-run shares (slot 0 = the passer), rscale (N, 2, Kc) run-yard scale.
+    Every throw is credited to a receiver slot and every designed run to a rusher slot; scrambles and kneels go to
+    slot 0. Player stats are returned in roster['out']."""
     rng = np.random.default_rng(seed)
     N = len(xp)
     ar = np.arange(N)
@@ -121,6 +127,11 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
     c_car = np.zeros((N, 2), np.int16)
     q_sc = np.zeros((N, 4, 2), np.int16)
     tdflag = np.zeros(N, bool)
+    if roster is not None:
+        K, Kc = roster["tcum"].shape[2], roster["rcum"].shape[2]
+        P_ = {k: np.zeros((N, 2, K), np.int16) for k in ("tgt", "rec", "ryd")}
+        P_.update({k: np.zeros((N, 2, Kc), np.int16) for k in ("car", "uyd")})
+        P_.update({k: np.zeros((N, 2), np.int16) for k in ("cmp", "pyd")})
     st_ = {k: 0.0 for k in ('snap', 'd3', 'c3', 'yds', 'td', 'fg', 'fga', 'punt', 'int', 'fum', 'sack', 'comp', 'inc', 'run', 'scr', 'pen', 'tod')}
     for _ in range(max_steps):
         act = ~done
@@ -181,6 +192,9 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
             yl[kneel] += 1
             togo[kneel] += 1
             down[kneel] += 1
+            if roster is not None:
+                P_["car"][ar[kneel], p[kneel], 0] += 1
+                P_["uyd"][ar[kneel], p[kneel], 0] -= 1
         changed = np.zeros(N, bool)
         new_yl = yl.copy()
         # ---- field goals
@@ -251,6 +265,10 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
             att = (base[:, 2] + base[:, 3] + base[:, 4])
             pint = _sig(_logit(base[:, 2] / att) + o["int"])
             pcomp = _sig(_logit(base[:, 3] / (base[:, 3] + base[:, 4])) + o["comp"])
+            if roster is not None:
+                ri = np.minimum((rng.random(N)[:, None] > roster["tcum"][ar, p]).sum(1), K - 1)
+                ci = np.minimum((rng.random(N)[:, None] > roster["rcum"][ar, p]).sum(1), Kc - 1)
+                pcomp = _sig(_logit(pcomp) + roster["cshift"][ar, p, ri])
             u1, u2, u3, u4 = rng.random((4, N))
             sack = isp & (u1 < ps)
             scr = isp & ~sack & (u2 < pscr)
@@ -268,13 +286,28 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
             ky = _draw(rng, [tb.sack_y], np.zeros(N, int))
             sc_c = np.exp(o["ypc"]) * yscale
             sc_r = np.exp(o["ypr"]) * yscale
+            sc_d = sc_r
+            if roster is not None:
+                sc_c = sc_c * roster["yscale"][ar, p, ri]
+                sc_d = sc_r * roster["rscale"][ar, p, ci]
             coded = (comp & (cy == L.TD_CODE)) | (scr & (sy == L.TD_CODE)) | (run & (ry == L.TD_CODE))
             yards = np.where(comp, np.where(cy > 0, np.round(cy * sc_c), cy),
                      np.where(scr, np.where(sy > 0, np.round(sy * sc_r), sy),
-                     np.where(run, np.where(ry > 0, np.round(ry * sc_r), ry),
+                     np.where(run, np.where(ry > 0, np.round(ry * sc_d), ry),
                      np.where(sack, ky, 0.0))))
             yards = np.where(play & ~intc & ~inc, yards, 0.0)
             yards = np.where(coded, yl, np.where((pb_ < 20) & (yards >= yl) & ~sack, yl - 1, yards))
+            if roster is not None:
+                yi = yards.astype(np.int16)
+                for m_, k_, slot in ((thr, "tgt", ri), (comp, "rec", ri)):
+                    P_[k_][ar[m_], p[m_], slot[m_]] += 1
+                P_["ryd"][ar[comp], p[comp], ri[comp]] += yi[comp]
+                P_["cmp"][ar[comp], p[comp]] += 1
+                P_["pyd"][ar[comp], p[comp]] += yi[comp]
+                P_["car"][ar[run], p[run], ci[run]] += 1
+                P_["uyd"][ar[run], p[run], ci[run]] += yi[run]
+                P_["car"][ar[scr], p[scr], 0] += 1
+                P_["uyd"][ar[scr], p[scr], 0] += yi[scr]
             # fumbles lost
             fum = (comp & (rng.random(N) < tb.fum[0])) | (sack & (rng.random(N) < tb.fum[1])) \
                 | ((run | scr) & (rng.random(N) < tb.fum[2]))
@@ -366,6 +399,8 @@ def simulate(tb: Tables, off: dict, dfn: dict, kick: tuple, xp: np.ndarray, seas
         for w in (1920.0, 120.0):                 # two-minute warnings
             new = np.where(~ot & (sec > w) & (new < w), w, new)
         sec = np.maximum(new, 0.0)
+    if roster is not None:
+        roster["out"] = P_
     if counts is not None:
         counts['att'], counts['car'], counts['qscore'] = c_att, c_car, q_sc
     if stats is not None:
