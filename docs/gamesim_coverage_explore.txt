@@ -1,0 +1,14 @@
+## Explore 2022-2023: completion on 35332 labeled attempts
+No split (overall pre-game rate): log loss 0.63978
+k_cov 100: 0.63483
+k_cov 200: 0.63586
+k_cov 400: 0.63705
+k_cov 800: 0.63810
+-> **k_cov = 100**
+k_rec 10: target log loss 2.38540 on 32535 targets
+k_rec 20: target log loss 2.38127 on 32535 targets
+k_rec 40: target log loss 2.37850 on 32535 targets
+k_rec none (overall share): target log loss 2.38045 on 32535 targets
+-> **k_rec = 40**
+
+Descriptive 2022-2023 (511 games, weeks 2-18, 1,000 runs): margin MAE G3 9.694, G4 9.726, close 9.269
