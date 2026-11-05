@@ -65,3 +65,22 @@ def test_with_best_units_at_best_price():
     assert abs(u[0] - 1.0) < 1e-9 and u[1] == -1.0 and abs(u[2] - 1.0) < 1e-9 and u[3] == 0.0
     assert abs(g["best_cost"][2] - 0.5) < 1e-9 and abs(g["best_cost"][3] - 110 / 210) < 1e-9
     assert M.with_best(rec, None)["best_venue"].to_list() == ["DraftKings"] * 4
+
+
+def test_venue_table_hand_case():
+    import json
+    import polars as pl
+    from nflbet.gamesim import mix_live as M
+    row = dict(run_utc="2026-11-08T12:00:00Z", start_time="2026-11-08T18:00:00.000Z", an_game_id="g", market="rec", side="over")
+    best = pl.DataFrame([
+        {**row, "player_id": "a", "dk_cost": "0.55",
+         "venues": json.dumps({"DraftKings (ParlayAPI)": [0.55, None], "Novig": [0.50, 100.0], "Kalshi": [0.60, 5.0]})},
+        {**row, "player_id": "b", "dk_cost": "0.52",
+         "venues": json.dumps({"DraftKings (ParlayAPI)": [0.52, None], "Novig": [0.98, 500.0], "FanDuel (ParlayAPI)": [0.52, None]})},
+        {**row, "player_id": "a", "run_utc": "2026-11-08T19:00:00Z", "dk_cost": "0.40",       # after kickoff: ignored
+         "venues": json.dumps({"Novig": [0.10, 100.0]})},
+    ])
+    t = {r["venue"]: r for r in M.venue_table(best).iter_rows(named=True)}
+    assert t["DraftKings"]["quoted"] == 2 and t["DraftKings"]["cheapest"] == 1      # tied with FanDuel on b
+    assert t["Novig"]["quoted"] == 1 and t["Novig"]["cheapest"] == 1 and abs(t["Novig"]["cents_vs_dk"] - 5.0) < 1e-9
+    assert t["FanDuel"]["cheapest"] == 1 and "Kalshi" not in t                       # Kalshi: under $10 behind it

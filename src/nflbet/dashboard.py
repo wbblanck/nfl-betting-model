@@ -1383,7 +1383,19 @@ def mix_section(data: dict, now: dt.datetime) -> str:
                 + '<p class="note" id="mixcount" aria-live="polite"></p></div>')
     flatview = (f'<div class="games" id="mixflat" hidden><section class="game"><header><h3>All picks, highest edge first</h3></header>'
                 f'<ul class="picks">{flat or "<li class=none>No picks.</li>"}</ul></section></div>')
-    return (board + head.format(title=f"Week {wk}: {cur.height} picks in {len(games)} games") + controls
+    vt = Mx.venue_table(data.get("mix_best"))
+    venues = ""
+    if vt.height:
+        n = int(vt.filter(pl.col("venue") == "DraftKings")["quoted"].sum()) if "DraftKings" in vt["venue"].to_list() else int(vt["quoted"].max())
+        trs = "".join(f'<tr><td>{esc(v["venue"])}</td><td>{v["quoted"]}</td><td>{v["cheapest"]}</td>'
+                      f'<td>{v["cents_vs_dk"]:+.2f}</td></tr>' for v in vt.iter_rows(named=True))
+        venues = ('<details class="old"><summary>Who has the best price? Season to date, ' + str(n) + ' picks</summary>'
+                  '<p class="note">Each pick at its last run before kickoff, at the pick\'s own line and side, fees included. '
+                  'An exchange counts only with $10+ behind its price. Cents vs DK is the venue\'s average price minus '
+                  'DraftKings\' on the picks it quoted, per $1 of payout: positive means cheaper than DraftKings.</p>'
+                  '<div class="tablewrap"><table class="num"><thead><tr><th>Venue</th><th>Quoted</th><th>Cheapest or tied</th>'
+                  f'<th>Cents vs DK</th></tr></thead><tbody>{trs}</tbody></table></div></details>')
+    return (board + head.format(title=f"Week {wk}: {cur.height} picks in {len(games)} games") + venues + controls
             + colhead + f'<div class="games" id="mixgames">{"".join(blocks)}</div>{flatview}</section>')
 
 

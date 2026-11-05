@@ -119,6 +119,37 @@ def with_best(rec: pl.DataFrame, best: pl.DataFrame | None) -> pl.DataFrame:
                           .when(pl.col("result") == "L").then(-1.0).otherwise(0.0).alias("units_best"))
 
 
+def venue_table(best: pl.DataFrame | None, min_size: float = 10.0) -> pl.DataFrame:
+    """Season to date, which venue had the best price on the mix picks (record only). One row per pick of each game's last
+    best-price run before kickoff (picks a later run dropped do not count). Per venue: picks it quoted (an exchange needs `min_size` dollars of payout behind
+    its price, and a quote of 97 cents or more is an empty side), picks where it was cheapest, and its mean price
+    versus DraftKings in cents per $1 of payout (positive = cheaper than DraftKings) on the picks it quoted."""
+    cols = {"venue": pl.Utf8, "quoted": pl.Int64, "cheapest": pl.Int64, "cents_vs_dk": pl.Float64}
+    if best is None or not best.height:
+        return pl.DataFrame(schema=cols)
+    b = best.filter(pl.col("run_utc") < pl.col("start_time").str.slice(0, 19) + "Z")
+    b = b.filter(pl.col("run_utc") == pl.col("run_utc").max().over("an_game_id"))   # each game's official (last) run
+    b = b.unique(["an_game_id", "player_id", "market", "side"], keep="last")
+    st: dict = {}
+    for r in b.iter_rows(named=True):
+        dk = float(r["dk_cost"])
+        quotes = {}
+        for v, (c, size) in json.loads(r["venues"] or "{}").items():
+            if c is None or float(c) >= 0.97 or (size is not None and float(size) < min_size):
+                continue
+            v = v.replace(" (ParlayAPI)", "")
+            quotes[v] = min(float(c), quotes.get(v, 9.0))
+        quotes.setdefault("DraftKings", dk)
+        lo = min(quotes.values())
+        for v, c in quotes.items():
+            x = st.setdefault(v, [0, 0, 0.0])
+            x[0] += 1
+            x[1] += c == lo
+            x[2] += (dk - c) * 100
+    rows = [{"venue": v, "quoted": q, "cheapest": int(w), "cents_vs_dk": round(t / q, 2)} for v, (q, w, t) in st.items()]
+    return pl.DataFrame(rows, schema=cols).sort(["cheapest", "quoted"], descending=True)
+
+
 # ------------------------------------------------------------------------------------ simulation
 
 PBP_FIRST = 2015
