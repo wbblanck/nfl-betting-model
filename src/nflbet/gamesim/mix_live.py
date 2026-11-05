@@ -32,6 +32,7 @@ BT = config.ROOT / "data" / "backtests"
 PROPS = Lv.LIVE / f"mix_props_{SEASON}.csv"        # every scored prop at every run
 RUNS = Lv.LIVE / f"mix_runs_{SEASON}.csv"
 RECORD = Lv.LIVE / f"mix_record_{SEASON}.csv"        # official picks, graded
+BEST = Lv.LIVE / f"mix_bestprice_{SEASON}.csv"       # best all-in price per pick per run (record only, rules amendment)
 PROP_COLS = ["run_utc", "season", "week", "an_game_id", "start_time", "home", "away", "player", "player_id", "team",
              "market", "line", "over_odds", "under_odds", "p_over_dk", "p_sim", "p_mix", "snapshot"]
 PICK_COLS = ["run_utc", "season", "week", "an_game_id", "start_time", "home", "away", "player", "player_id", "team",
@@ -88,6 +89,34 @@ def lines_file(snap: Path, season: int, week: int, out: Path) -> int:
     pa = Pa.parse(rows).filter(pl.col("book") == "dk")
     out.parent.mkdir(parents=True, exist_ok=True)
     return Pa.to_an_csv(pa, season, week, out)
+
+
+def snapshot_books(snap: Path) -> pl.DataFrame:
+    """Every book's two-sided rows (DraftKings and FanDuel) of a saved ParlayAPI snapshot, for the best-price record."""
+    with gzip.open(snap, "rt") as f:
+        return Pa.parse(json.load(f))
+
+
+def with_best(rec: pl.DataFrame, best: pl.DataFrame | None) -> pl.DataFrame:
+    """Graded official picks plus the cheapest all-in price recorded at the pick's own run, line and side
+    (src/nflbet/props/bestprice.py), and the units at that price. Record only: `units` stays at DraftKings' price.
+    A pick with no priced venue keeps DraftKings' price as its best."""
+    keys = ["run_utc", "an_game_id", "player_id", "market", "side"]
+    d = rec
+    if best is not None and best.height:
+        b = best.select(*keys, "best_venue", pl.col("best_cost").cast(pl.Float64), pl.col("best_odds").cast(pl.Float64)) \
+            .unique(keys, keep="last", maintain_order=True)
+        d = d.join(b, on=keys, how="left")
+    else:
+        d = d.with_columns(pl.lit(None, pl.Utf8).alias("best_venue"), pl.lit(None, pl.Float64).alias("best_cost"),
+                           pl.lit(None, pl.Float64).alias("best_odds"))
+    dk = pl.col("odds").cast(pl.Float64)
+    dk_cost = pl.when(dk > 0).then(100 / (dk + 100)).otherwise(-dk / (-dk + 100))
+    d = d.with_columns(pl.col("best_venue").fill_null("DraftKings"),
+                       pl.coalesce(pl.col("best_cost"), dk_cost).alias("best_cost"),
+                       pl.coalesce(pl.col("best_odds"), dk).alias("best_odds"))
+    return d.with_columns(pl.when(pl.col("result") == "W").then(1 / pl.col("best_cost") - 1)
+                          .when(pl.col("result") == "L").then(-1.0).otherwise(0.0).alias("units_best"))
 
 
 # ------------------------------------------------------------------------------------ simulation

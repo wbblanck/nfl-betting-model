@@ -64,7 +64,7 @@ def load(live: Path | None = None) -> dict:
             "best": _read(live / f"s1_bestprice_{SEASON}.csv"),
             "ats_yv": _read(live / f"ats_yv_runs_{SEASON}.csv"), "s1_yv": _read(live / f"s1_yv_{SEASON}.csv"),
             "mix_props": _read(live / f"mix_props_{SEASON}.csv"), "mix_runs": _read(live / f"mix_runs_{SEASON}.csv"),
-            "mix_rec": _read(live / f"mix_record_{SEASON}.csv")}
+            "mix_rec": _read(live / f"mix_record_{SEASON}.csv"), "mix_best": _read(live / f"mix_bestprice_{SEASON}.csv")}
 
 
 def _json(path: Path) -> dict | None:
@@ -1254,7 +1254,7 @@ def meter(k: str, n: int, of: int) -> str:
 
 # ------------------------------------------------------------------------- props mix (docs/mix_live_rules.md)
 
-def mix_current(props: pl.DataFrame, runs: pl.DataFrame, rec: pl.DataFrame) -> pl.DataFrame:
+def mix_current(props: pl.DataFrame, runs: pl.DataFrame, rec: pl.DataFrame, best: pl.DataFrame | None = None) -> pl.DataFrame:
     """This week's picks as they stand: last run before kickoff for started games, latest run otherwise, with results
     from the graded record where available."""
     from nflbet.gamesim import mix_live as Mx
@@ -1271,7 +1271,10 @@ def mix_current(props: pl.DataFrame, runs: pl.DataFrame, rec: pl.DataFrame) -> p
         pk = pk.join(r, on=["an_game_id", "player_id", "market"], how="left")
     if "result" not in pk.columns:
         pk = pk.with_columns(pl.lit("pending").alias("result"), pl.lit(None).alias("actual"), pl.lit(None).alias("units"))
-    return pk.with_columns(pl.col("result").fill_null("pending"))
+    pk = pk.with_columns(pl.col("result").fill_null("pending"))
+    if pk.height:
+        pk = Mx.with_best(pk, best if best is not None and best.height else None)
+    return pk
 
 
 def mix_row(r: dict, locked: bool) -> str:
@@ -1284,7 +1287,10 @@ def mix_row(r: dict, locked: bool) -> str:
         f'<li class="pick"><div class="who"><span class="name">{esc(r["player"])}</span><span class="team">{esc(r["team"] or "")}</span></div>'
         f'<div class="bet"><span class="side-pill {esc(r["side"])}">{esc(r["side"])}</span> '
         f'<span class="line">{float(r["line"]):g}</span> <span class="mkt">{esc(MARKET.get(r["market"], r["market"]))}</span></div>'
-        f'<div class="price">{float(r["odds"]):+.0f}</div>'
+        f'<div class="price">{float(r["odds"]):+.0f}'
+        + (f'<span class="actual" title="Cheapest all-in price recorded at this line and side (record only)">best '
+           f'{esc(r["best_venue"])} {float(r["best_odds"]):+.0f}</span>' if r.get("best_venue") not in (None, "", "DraftKings") else "")
+        + '</div>'
         f'<div class="probs" title="Break-even for this price, DraftKings de-vigged, mix">'
         f'<span>{fmt_pct(be)}</span><span>{fmt_pct(p_mkt)}</span><span>{fmt_pct(float(r["p_side"]))}</span></div>'
         f'<div class="res">{chip(rc, (RESULT_ICON.get(res, res) + " " + res) if res != "pending" else ("Locked" if locked else "Open"), "")}'
@@ -1308,6 +1314,10 @@ def mix_section(data: dict, now: dt.datetime) -> str:
     if r.height:
         r = r.with_columns(pl.col("odds").map_elements(break_even, return_dtype=pl.Float64).alias("be"))
     tot = summarize(r) if r.height else summarize(pl.DataFrame())
+    roi_best = None
+    if r.height and "units_best" in r.columns:
+        g = r.filter(pl.col("result").is_in(["W", "L"]))
+        roi_best = float(g["units_best"].cast(pl.Float64).sum()) / g.height if g.height else None
     from nflbet.gamesim import mix_live as Mx
     try:
         j = Mx.judge(props, runs) if props.height else {"n": 0}
@@ -1318,10 +1328,12 @@ def mix_section(data: dict, now: dt.datetime) -> str:
              + stat("Win rate", fmt_pct(tot["win"]), f'break-even {fmt_pct(tot["be"])}' if tot["be"] is not None else "no graded picks")
              + stat("Units", fmt_units(tot["units"]) if tot["n"] else "–", "1 unit per pick")
              + stat("ROI", fmt_pct(tot["roi"], 1, True), f'{tot["pending"]} pending')
+             + stat("ROI at best price", fmt_pct(roi_best, 1, True) if roi_best is not None else "–",
+                    "cheapest venue per pick, record only")
              + stat("Log loss, mix vs DK", f'{j["ll_mix"]:.4f} / {j["ll_dk"]:.4f}' if j.get("n") else "–",
                     f'{j["n"]} props from weeks 10-18' if j.get("n") else "from week 10")
              + '</div></div></div></section>')
-    cur = mix_current(props, runs, rec)
+    cur = mix_current(props, runs, rec, data.get("mix_best"))
     wk = int(runs["week"].cast(pl.Int64).max())
     games = runs.filter(pl.col("week") == str(wk)).sort("run_utc", descending=True).unique("an_game_id", keep="first").sort("start_time").to_dicts()
     blocks = []
