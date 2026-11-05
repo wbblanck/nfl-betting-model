@@ -10,7 +10,7 @@ import sys
 import polars as pl
 
 from nflbet import config
-from nflbet.props import live as Lv
+from nflbet.props import bestprice as Bp, live as Lv
 from nflbet.gamesim import mix_live as M
 
 
@@ -36,6 +36,25 @@ def do_run() -> None:
     for r in pk.iter_rows(named=True):
         print(f"  {r['away']}@{r['home']}  {r['player']:24s} {r['market']:9s} {r['side']:5s} {r['line']:6} {r['odds']:+.0f}  "
               f"mix {r['p_side']:.1%}  edge {r['edge']:+.1%}")
+    best_record(pk, snap, week, when)
+
+
+def best_record(pk: pl.DataFrame, snap, week: int, when) -> None:
+    """Cheapest all-in price for each pick at its line and side (DraftKings, FanDuel, Kalshi, Novig, Polymarket US;
+    src/nflbet/props/bestprice.py), appended to data/live/mix_bestprice_2026.csv. Record only (docs/mix_live_rules.md
+    amendment): picks are still graded at DraftKings' price. A failure never stops the run."""
+    if not pk.height:
+        return
+    try:
+        rows = Bp.record(pk.with_columns(pl.col("week").cast(pl.Utf8)), None, M.snapshot_books(snap), week, when)
+        if rows is None or not rows.height:
+            return
+        Lv.append(rows, M.BEST)
+        for r in rows.iter_rows(named=True):
+            best = f"{r['best_venue']} {r['best_odds']:+.0f} ({r['edge_cents']:+.1f}c vs DK)" if r["best_venue"] else "no venue at this line"
+            print(f"  best price: {r['player']:24s} {r['market']:9s} {r['side']:5s} {r['line']:6} DK {r['dk_odds']:+.0f} -> {best}")
+    except Exception as e:  # noqa: BLE001
+        print(f"props mix best price unavailable: {type(e).__name__}: {e}")
 
 
 def do_grade() -> None:
@@ -43,9 +62,11 @@ def do_grade() -> None:
         print("props mix: no runs yet"); return
     props = pl.read_csv(M.PROPS, infer_schema_length=0)
     runs = pl.read_csv(M.RUNS, infer_schema_length=0)
-    g = M.grade(props, runs)
+    best = pl.read_csv(M.BEST, infer_schema_length=0) if M.BEST.exists() and M.BEST.stat().st_size else None
+    g = M.with_best(M.grade(props, runs), best)
     g.write_csv(M.RECORD)
     t = Lv.record(g)
+    tb = Lv.record(g.with_columns(pl.col("units_best").alias("units")))
     j = M.judge(props, runs)
     print(f"props mix: {t['W']}-{t['L']}-{t['P']}, {t['units']:+.2f} units (pending {t['pending']}, void {t['void']}); "
           f"log loss on {j.get('n', 0)} official props: mix {j.get('ll_mix', float('nan')):.4f} vs DK {j.get('ll_dk', float('nan')):.4f}")
@@ -55,6 +76,8 @@ def do_grade() -> None:
              f"**Picks: {t['W']}-{t['L']}" + (f"-{t['P']}" if t["P"] else "") +
              (f", {t['units']:+.2f} units, ROI {t['roi']:+.1%}" if t["win_pct"] is not None else "") +
              f"** ({t['pending']} pending, {t['void']} void).", "",
+             "At the best price recorded for each pick (DraftKings, FanDuel, Kalshi, Novig, Polymarket US, all-in; record only): "
+             + (f"{tb['units']:+.2f} units, ROI {tb['roi']:+.1%}." if tb["win_pct"] is not None else "no graded picks yet."), "",
              f"Log loss on {j.get('n', 0)} official props from final games: mix {j.get('ll_mix', float('nan')):.4f}, DraftKings "
              f"{j.get('ll_dk', float('nan')):.4f} (lower is better; judged after week 18 on weeks 10-18).", ""]
     (config.ROOT / "docs" / "mix_live.md").write_text("\n".join(lines) + "\n")

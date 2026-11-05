@@ -27,3 +27,13 @@ sides lost 0.3% at DraftKings prices. **Unvalidated. These are tracker records, 
 - Judged after 2026 week 18, on weeks 10-18: the paired log-loss difference (mix − DK de-vigged) on every official
   scored prop, week-clustered bootstrap, two-sided 0.05. It holds up if the interval is entirely below 0. The picks'
   ROI is reported alongside, descriptively.
+
+## Amendment (Will, 2026-11-05, before week 10): best available price, record only
+Will asked whether line shopping makes the picks profitable. From this date each run also prices every pick at its
+own line and side at every venue the S1 best-price record reads (src/nflbet/props/bestprice.py): DraftKings and
+FanDuel from the same ParlayAPI snapshot, and Kalshi, Novig and Polymarket US read live, all-in with taker fees, with
+the same minimum size ($10 of payout) for an exchange price to count. The cheapest is saved per pick per run in
+`data/live/mix_bestprice_2026.csv`, and the graded record adds the units at the official run's best price
+(`units_best`). A pick with no priced venue keeps DraftKings' price. This changes no pick, no grade at DraftKings'
+price and not the log-loss judgment. The best-price ROI is descriptive. Exchange quotes are read a little after the
+snapshot was saved, so the two may not have been live at the same moment.
