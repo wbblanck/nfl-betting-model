@@ -80,6 +80,13 @@ def do_grade() -> None:
              + (f"{tb['units']:+.2f} units, ROI {tb['roi']:+.1%}." if tb["win_pct"] is not None else "no graded picks yet."), "",
              f"Log loss on {j.get('n', 0)} official props from final games: mix {j.get('ll_mix', float('nan')):.4f}, DraftKings "
              f"{j.get('ll_dk', float('nan')):.4f} (lower is better; judged after week 18 on weeks 10-18).", ""]
+    vt = M.venue_table(best)
+    if vt.height:
+        lines += ["## Who has the best price (season to date, record only)", "",
+                  "Each pick at its last run before kickoff, fees included; exchanges need $10+ behind the price. "
+                  "Cents vs DK: the venue's average price minus DraftKings' on the picks it quoted (positive = cheaper).", "",
+                  "Venue | picks quoted | cheapest or tied | cents vs DK", "---|---|---|---"]
+        lines += [f"{v['venue']} | {v['quoted']} | {v['cheapest']} | {v['cents_vs_dk']:+.2f}" for v in vt.iter_rows(named=True)] + [""]
     (config.ROOT / "docs" / "mix_live.md").write_text("\n".join(lines) + "\n")
 
 
