@@ -1,0 +1,60 @@
+name: Social coverage scan
+# Evidence only: search Reddit (free, no key) and, if a key is set, X for free 2026 NFL coverage data
+# (man/zone, Cover 0-6, pressure) people have posted. Uses mvanhorn/last30days-skill (MIT) at a pinned commit;
+# nothing from it is vendored. Output: docs/evidence/social_coverage/<UTC stamp>/.
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['.github/workflows/social-coverage-scan.yml']
+permissions:
+  contents: write
+concurrency:
+  group: social-coverage-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      L30_COMMIT: e9c31b868ab9d284c1a988e528c3391c51ebf944
+      X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+      XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch last30days at the pinned commit
+        run: |
+          git init -q "$RUNNER_TEMP/l30" && cd "$RUNNER_TEMP/l30"
+          git fetch -q --depth 1 https://github.com/mvanhorn/last30days-skill.git "$L30_COMMIT" && git checkout -q FETCH_HEAD
+      - name: Scan
+        run: |
+          OUT="docs/evidence/social_coverage/$(date -u +%Y%m%dT%H%M%SZ)"; mkdir -p "$OUT"
+          SRC=reddit
+          if [ -n "$X_BEARER_TOKEN" ] || [ -n "$XAI_API_KEY" ]; then SRC=reddit,x; fi
+          echo "sources: $SRC" | tee "$OUT/sources.txt"
+          i=0
+          while IFS= read -r topic; do
+            i=$((i+1))
+            python3 "$RUNNER_TEMP/l30/skills/last30days/scripts/last30days.py" --research-only --no-browser-cookies \
+              --search "$SRC" --days 30 --deep --emit md \
+              --subreddits NFLstatheads,nfl,fantasyfootball,sportsbook,DynastyFF,NFL_Draft \
+              --output "$OUT/topic_$i.md" "$topic" > "$OUT/topic_$i.log" 2>&1 || echo "topic $i failed" | tee -a "$OUT/sources.txt"
+            echo "$i: $topic" >> "$OUT/topics.txt"
+          done <<'TOPICS'
+          NFL 2026 man zone coverage rate by team
+          NFL 2026 Cover 3 Cover 4 Cover 1 rates defense
+          NFL 2026 defensive coverage data free spreadsheet
+          yards per route run vs man vs zone 2026
+          NFL 2026 pressure rate blitz rate by team
+          TOPICS
+      - name: Commit evidence
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add docs/evidence/social_coverage || exit 0
+          git commit -m "evidence: social coverage scan" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
