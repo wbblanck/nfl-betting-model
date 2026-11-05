@@ -16,6 +16,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   wind:
+    if: github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'Merge ')   # merges re-touch watched paths: skip
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:

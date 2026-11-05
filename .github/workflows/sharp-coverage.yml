@@ -15,6 +15,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   snap:
+    if: github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'Merge ')   # merges re-touch watched paths: skip
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
