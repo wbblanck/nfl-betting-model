@@ -1,0 +1,53 @@
+name: Wind totals test
+# docs/wind_totals_preregistration.md. Phase 1 (no data/weather/stadiums.csv yet): dump the stadium list only.
+# Phase 2 (coordinates committed): fetch game-time wind (resumable across runs), then run the one pre-registered
+# evaluation once every game has wind.
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/fetch/game_wind.py', 'scripts/wind_totals_eval.py', 'src/nflbet/sources/weather.py',
+            'data/weather/stadiums.csv', '.github/workflows/wind-totals.yml']
+permissions:
+  contents: write
+  actions: write   # the commit step dispatches the next run while the wind fetch is incomplete
+concurrency:
+  group: wind-totals-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  wind:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}   # branch head, so outputs committed by an earlier run are seen
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Phase 1, stadium list
+        if: hashFiles('data/weather/stadiums.csv') == ''
+        run: python scripts/fetch/game_wind.py --stadiums
+      - name: Phase 2, game-time wind
+        if: hashFiles('data/weather/stadiums.csv') != '' && hashFiles('data/weather/game_wind.csv') == ''
+        timeout-minutes: 75   # leaves time to commit the partial file; rerun resumes
+        run: python scripts/fetch/game_wind.py
+      - name: Phase 2, evaluation (runs once)
+        if: hashFiles('data/weather/game_wind.csv') != '' && hashFiles('docs/wind_totals_report.md') == ''
+        run: python scripts/wind_totals_eval.py
+      - name: Commit outputs
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add data/weather
+          [ -f docs/wind_totals_report.md ] && git add docs/wind_totals_report.md
+          git commit -m "wind totals: workflow outputs" || exit 0
+          pushed=0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && pushed=1 && break; sleep $((2**i)); done
+          [ "$pushed" = 1 ] || exit 1
+          # Wind still incomplete and this run made progress: start the next run (it resumes from the partial file).
+          if [ ! -f data/weather/game_wind.csv ]; then gh workflow run wind-totals.yml --ref "${GITHUB_REF_NAME}"; fi
+        env:
+          GH_TOKEN: ${{ github.token }}
