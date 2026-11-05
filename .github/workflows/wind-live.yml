@@ -20,7 +20,7 @@ on:
         default: "record"
   push:
     branches-ignore: [main]
-    paths: ['scripts/wind_live.py', 'src/nflbet/windlive.py', '.github/workflows/wind-live.yml']
+    paths: ['scripts/wind_live.py', 'src/nflbet/execution/wind.py', '.github/workflows/wind-live.yml']
 permissions:
   contents: write
 concurrency:

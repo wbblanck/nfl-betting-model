@@ -1,6 +1,6 @@
 import datetime as dt
 
-from nflbet import windlive as W
+from nflbet.execution import wind as W
 
 UTC = dt.timezone.utc
 

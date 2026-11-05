@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from nflbet import windlive as W  # noqa: E402
+from nflbet.execution import wind as W  # noqa: E402
 from nflbet.sources.http import BROWSER_UA, RESEARCH_UA, get_json  # noqa: E402
 from nflbet.sources.weather import kickoff_utc, window_mean  # noqa: E402
 
