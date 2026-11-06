@@ -1,0 +1,6 @@
+Touchdowns: c_T 0.11287, b_T 0.0983, theta_T 93701390.75
+Field goals: c_F 0.07010, b_F 0.0318
+Conversions per touchdown: 0 0.1055, 1 0.8541, 2 0.0404; safeties per team-game 0.0336
+Fit games 1280 (2016-2020 regular season)
+Points not explained by the counts: 0.0066 of team-games, mean 0.0070
+Power: in-sample T1 per-game SD 0.2289, SE at 1,000 games 0.0072 (in-sample mean 0.0029, descriptive)
