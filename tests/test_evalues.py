@@ -1,7 +1,7 @@
 """Known-answer checks for the e-value readout (docs/m20_evalues_preregistration.md, checks 1-3)."""
 import numpy as np
 
-from nflbet import evalues as V
+from nflbet.execution import evalues as V
 
 WIN = 100 / 110
 

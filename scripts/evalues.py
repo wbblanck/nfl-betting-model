@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from nflbet import evalues as V  # noqa: E402
+from nflbet.execution import evalues as V  # noqa: E402
 
 LIVE = ROOT / "data" / "live"
 START = 10  # the official readout starts the product at 1 with week 10's bets

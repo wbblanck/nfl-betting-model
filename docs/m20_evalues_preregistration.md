@@ -2,7 +2,7 @@
 
 Requested by Will (2026-11-06, batch 2 of the master list). Committed before 2026 week 10. **Descriptive readout
 only:** it never replaces or changes a tracker's own registered verdict (S1, D1/D2, wind unders, props mix, ATS
-tracker). Those are still judged by their own rules at season's end. Code: `src/nflbet/evalues.py`,
+tracker). Those are still judged by their own rules at season's end. Code: `src/nflbet/execution/evalues.py`,
 `scripts/evalues.py`, tests `tests/test_evalues.py`.
 
 ## Why
