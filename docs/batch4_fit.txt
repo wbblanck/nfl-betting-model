@@ -1,0 +1,2 @@
+Training games 1457 (2016-2021 weeks 2-18); missing feature cells 0
+Trees chosen: 100 (leave-one-season-out MAE 100 10.368, 200 10.428, 300 10.502, 400 10.580, 500 10.648, 600 10.696, 700 10.750, 800 10.799, 900 10.840, 1000 10.890)
