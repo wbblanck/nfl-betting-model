@@ -48,3 +48,12 @@ def test_binom_matches_wind_report():
     # docs/wind_totals_report.md: 420 of 771, p = 0.1296
     assert abs(W.binom_p_greater(420, 771) - 0.1296) < 5e-4
     assert abs(W.binom_p_greater(0, 10) - 1.0) < 1e-9
+
+
+def test_official_skips_failed_forecast():
+    k = "2026-11-08T21:25Z"
+    rows = [{"game_id": "g", "run_utc": "2026-11-07T19:09Z", "kickoff_utc": k, "forecast_kn": "7.42"},
+            {"game_id": "g", "run_utc": "2026-11-08T15:51Z", "kickoff_utc": k, "forecast_kn": ""},
+            {"game_id": "h", "run_utc": "2026-11-08T15:51Z", "kickoff_utc": k, "forecast_kn": ""}]
+    off = {r["game_id"]: r["run_utc"] for r in W.official(rows)}
+    assert off == {"g": "2026-11-07T19:09Z", "h": "2026-11-08T15:51Z"}

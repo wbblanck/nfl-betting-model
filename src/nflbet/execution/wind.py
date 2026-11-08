@@ -32,13 +32,15 @@ def eligible(game: dict, now: dt.datetime, kickoff: dt.datetime, horizon_h: floa
 
 
 def official(rows: list[dict]) -> list[dict]:
-    """rows: recorded rows with ISO 'run_utc' and 'kickoff_utc'. Keep, per game_id, the latest run before kickoff."""
+    """rows: recorded rows with ISO 'run_utc' and 'kickoff_utc'. Keep, per game_id, the latest run before kickoff
+    that has a forecast; a row whose forecast fetch failed counts only when no run before kickoff has one."""
     best: dict[str, dict] = {}
     for r in rows:
         if r["run_utc"] >= r["kickoff_utc"]:
             continue
         b = best.get(r["game_id"])
-        if b is None or r["run_utc"] > b["run_utc"]:
+        has, bhas = r.get("forecast_kn", "x") not in ("", None), b is not None and b.get("forecast_kn", "x") not in ("", None)
+        if b is None or (has, r["run_utc"]) > (bhas, b["run_utc"]):
             best[r["game_id"]] = r
     return sorted(best.values(), key=lambda r: (r["kickoff_utc"], r["game_id"]))
 

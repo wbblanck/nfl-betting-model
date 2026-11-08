@@ -22,7 +22,9 @@ third pick-list exception in CLAUDE.md. Nothing here changes any other tracker o
 4 PM and night games, Monday). Each run records every eligible game kicking off in the next 30 hours to
 `data/live/wind/records_2026.csv` (all buckets, so calm and strong games are kept for description). **The official
 row for a game is the last one recorded before kickoff**; rows recorded at or after kickoff never count. Nothing
-is edited after kickoff. Scheduled runs fire only from `main`.
+is edited after kickoff. **Amendment (2026-11-08, before any week 9 Sunday kickoff):** a row whose forecast fetch
+failed does not replace an earlier row with a forecast (one such failure hit ARI @ SEA at 15:51 UTC); it counts only
+when no run before kickoff got a forecast. Scheduled runs fire only from `main`.
 
 ## Grading
 Final score vs the official line: under wins below the line, push on equal (stake returned), else loss. 1 unit per
