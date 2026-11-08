@@ -1387,9 +1387,12 @@ def mix_section(data: dict, now: dt.datetime) -> str:
     controls = ('<div class="mixctl" style="display:flex;flex-direction:column;gap:8px">'
                 + grp("edge", "Edge", [("all", "All"), ("dk", "+ at DK"), ("best", "+ at best price")])
                 + grp("book", "Best price at", [("all", "All")] + [(b, b) for b in books])
-                + grp("sort", "Sort", [("game", "By game"), ("edge", "By edge")])
+                + grp("min", "Min edge", [("0", "Any"), ("1", "1+ pts"), ("2", "2+ pts"), ("3", "3+ pts"), ("4", "4+ pts")])
+                + grp("sort", "Sort", [("game", "By game"), ("edge", "By DK edge"), ("edgeb", "By best-price edge")])
+                + '<p class="note">Min edge uses DraftKings\' price when Edge is "+ at DK", otherwise the best price. '
+                'Pair "Best price at: Novig" with "By best-price edge" to see the biggest Novig edges first.</p>'
                 + '<p class="note" id="mixcount" aria-live="polite"></p></div>')
-    flatview = (f'<div class="games" id="mixflat" hidden><section class="game"><header><h3>All picks, highest edge first</h3></header>'
+    flatview = (f'<div class="games" id="mixflat" hidden><section class="game"><header><h3 id="mixflath">All picks, highest edge first</h3></header>'
                 f'<ul class="picks">{flat or "<li class=none>No picks.</li>"}</ul></section></div>')
     vt = Mx.venue_table(data.get("mix_best"))
     venues = ""
@@ -1409,18 +1412,27 @@ def mix_section(data: dict, now: dt.datetime) -> str:
 
 MIX_JS = """
 (function(){
-  var st={edge:'all',book:'all',sort:'game'};
+  var st={edge:'all',book:'all',min:'0',sort:'game'};
   try{var s=JSON.parse(localStorage.getItem('mix-filters')||'{}');for(var k in s)if(k in st)st[k]=s[k]}catch(e){}
   var bs=document.querySelectorAll('button[data-mix]');if(!bs.length)return;
   if(!document.querySelector('button[data-mix="book"][data-val="'+st.book+'"]'))st.book='all';
+  if(!document.querySelector('button[data-mix="min"][data-val="'+st.min+'"]'))st.min='0';
+  if(!document.querySelector('button[data-mix="sort"][data-val="'+st.sort+'"]'))st.sort='game';
   function apply(){
     bs.forEach(function(b){b.setAttribute('aria-pressed',st[b.getAttribute('data-mix')]===b.getAttribute('data-val')?'true':'false')});
     var g=document.getElementById('mixgames'),f=document.getElementById('mixflat');
-    g.hidden=st.sort!=='game';f.hidden=st.sort!=='edge';
-    var n=0,box=st.sort==='game'?g:f;
+    g.hidden=st.sort!=='game';f.hidden=st.sort==='game';
+    if(st.sort!=='game'){
+      var key=st.sort==='edgeb'?'data-edgeb':'data-edge',ul=f.querySelector('.picks');
+      Array.prototype.slice.call(ul.querySelectorAll('.pick')).sort(function(a,b){return parseFloat(b.getAttribute(key))-parseFloat(a.getAttribute(key))})
+        .forEach(function(p){ul.appendChild(p)});
+      var h=document.getElementById('mixflath');if(h)h.textContent=st.sort==='edgeb'?'All picks, highest best-price edge first':'All picks, highest DraftKings edge first';
+    }
+    var n=0,box=st.sort==='game'?g:f,min=parseFloat(st.min)/100;
     document.querySelectorAll('#mixgames .pick,#mixflat .pick').forEach(function(p){
-      var e=parseFloat(p.getAttribute(st.edge==='best'?'data-edgeb':'data-edge'));
-      var ok=(st.edge==='all'||e>0)&&(st.book==='all'||p.getAttribute('data-book')===st.book);
+      var e=parseFloat(p.getAttribute(st.edge==='dk'?'data-edge':'data-edgeb'));
+      var e0=parseFloat(p.getAttribute(st.edge==='best'?'data-edgeb':'data-edge'));
+      var ok=(st.edge==='all'||e0>0)&&(min<=0||e>=min-1e-9)&&(st.book==='all'||p.getAttribute('data-book')===st.book);
       p.hidden=!ok;if(ok&&box.contains(p))n++;
     });
     g.querySelectorAll('.game').forEach(function(x){x.hidden=!!x.querySelector('.pick')&&!x.querySelector('.pick:not([hidden])')});
