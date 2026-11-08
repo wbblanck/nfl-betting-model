@@ -1,7 +1,7 @@
 # Live wind unders (unvalidated)
 
 Rules: docs/wind_live_rules.md. **Not validated:** the 2000-2014 test FAILED (docs/wind_totals_report.md). This page records the frozen rule on games after the rules were committed and is graded on final scores.
-Updated 2026-11-08T15:59Z.
+Updated 2026-11-08T20:21Z.
 
 ## Record (official picks, 8 <= forecast wind < 15 knots)
 
@@ -16,8 +16,7 @@ No graded picks yet.
 
 | week | game | kickoff (UTC) | forecast kn | line | under price | source | points | result | units |
 |---|---|---|---|---|---|---|---|---|---|
-| 9 | LA @ WAS | 2026-11-08T18:00Z | 8.3 | 47.5 | -108.0 | DraftKings |  | pending |  |
-| 9 | NYG @ PHI | 2026-11-08T18:00Z | 8.95 | 38.5 | -118.0 | DraftKings |  | pending |  |
+| 9 | NYG @ PHI | 2026-11-08T18:00Z | 8.38 | 38.5 | -118.0 | DraftKings |  | pending |  |
 
 ## Descriptive: every recorded outdoor game by forecast bucket (not picks)
 
