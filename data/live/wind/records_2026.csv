@@ -37,3 +37,7 @@ run_utc,game_id,week,kickoff_utc,away_team,home_team,stadium_id,roof,forecast_kn
 2026-11-08T16:56Z,2026_09_GB_NE,9,2026-11-08T21:25Z,GB,NE,BOS00,outdoors,5.67,calm <8,,DraftKings,44.5,-112.0,-108.0,44.5,
 2026-11-08T16:56Z,2026_09_ARI_SEA,9,2026-11-08T21:25Z,ARI,SEA,SEA00,outdoors,7.5,calm <8,,DraftKings,39.5,-112.0,-108.0,39.5,
 2026-11-08T16:56Z,2026_09_TB_CHI,9,2026-11-09T01:20Z,TB,CHI,CHI98,outdoors,,,,DraftKings,47.5,-108.0,-112.0,47.5,forecast error: URLError
+2026-11-08T20:21Z,2026_09_LV_SF,9,2026-11-08T21:05Z,LV,SF,SFO01,outdoors,4.78,calm <8,,DraftKings,51.5,-118.0,-102.0,51.5,
+2026-11-08T20:21Z,2026_09_GB_NE,9,2026-11-08T21:25Z,GB,NE,BOS00,outdoors,5.65,calm <8,,DraftKings,44.5,-112.0,-108.0,44.5,
+2026-11-08T20:21Z,2026_09_ARI_SEA,9,2026-11-08T21:25Z,ARI,SEA,SEA00,outdoors,7.27,calm <8,,DraftKings,39.5,-112.0,-108.0,39.5,
+2026-11-08T20:21Z,2026_09_TB_CHI,9,2026-11-09T01:20Z,TB,CHI,CHI98,outdoors,6.55,calm <8,,DraftKings,47.5,-108.0,-112.0,47.5,
