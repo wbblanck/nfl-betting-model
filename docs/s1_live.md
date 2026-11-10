@@ -2,7 +2,7 @@
 
 Rule S1: bet only props where all four signals agree (docs/simulator_confirm.md). NOT validated: in 2025 it
 went 38-23 (+5.2%) on 61 bets, an interval of -16% to +27%. Official pick = the last run before kickoff.
-Updated 2026-11-10 03:09 UTC.
+Updated 2026-11-10 21:24 UTC.
 
 **Season: 9-7, 56.2% wins, -0.95 units, ROI -5.9%** (pending 0, void 1)
 
