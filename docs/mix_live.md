@@ -1,7 +1,7 @@
 # Props mix live tracker, 2026
 
 Rules: docs/mix_live_rules.md. **Unvalidated.** A pick is a side the M1 mix gives 55% or more, at DraftKings' price.
-Updated 2026-11-10 21:24 UTC.
+Updated 2026-11-11 21:21 UTC.
 
 **Picks: 74-51, -1.41 units, ROI -1.1%** (0 pending, 1 void).
 
