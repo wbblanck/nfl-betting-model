@@ -1,9 +1,9 @@
 # Props mix live tracker, 2026
 
 Rules: docs/mix_live_rules.md. **Unvalidated.** A pick is a side the M1 mix gives 55% or more, at DraftKings' price.
-Updated 2026-11-11 21:21 UTC.
+Updated 2026-11-12 22:13 UTC.
 
-**Picks: 74-51, -1.41 units, ROI -1.1%** (0 pending, 1 void).
+**Picks: 74-51, -1.41 units, ROI -1.1%** (108 pending, 1 void).
 
 At the best price recorded for each pick (DraftKings, FanDuel, Kalshi, Novig, Polymarket US, all-in; record only): +3.11 units, ROI +2.5%.
 
@@ -15,9 +15,9 @@ Each pick at its last run before kickoff, fees included; exchanges need $10+ beh
 
 Venue | picks quoted | cheapest or tied | cents vs DK
 ---|---|---|---
-Novig | 90 | 66 | +1.29
-DraftKings | 114 | 29 | +0.00
-FanDuel | 79 | 11 | -0.36
-Kalshi | 92 | 8 | +0.49
-Polymarket US | 56 | 1 | +0.15
+Novig | 168 | 110 | +0.53
+DraftKings | 222 | 71 | +0.00
+FanDuel | 155 | 23 | -0.31
+Kalshi | 155 | 16 | +0.30
+Polymarket US | 99 | 4 | -0.48
 
