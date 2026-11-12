@@ -1,0 +1,53 @@
+name: Novig books
+# Record Novig's NFL player-prop and game-line books (scripts/fetch/novig_books.py; docs/engine/NOVIG_INTEGRATION.md).
+# Read-only public catalog, no key, places nothing. Every run saves the catalog with top of book; games starting
+# within 4 hours also get full-depth books. Times are UTC. Scheduled runs fire from main only and can start late.
+on:
+  schedule:
+    - cron: '20 15 * * 3'    # Wednesday: early-week books
+    - cron: '20 15 * * 5'    # Friday: after most injury reports
+    - cron: '40 21 * * 4'    # Thursday, before TNF
+    - cron: '10 23 * * 4'    # Thursday, closer to TNF
+    - cron: '20 14 * * 0'    # Sunday, 1 PM ET games (also catches London games late)
+    - cron: '20 16 * * 0'    # Sunday, 1 PM ET games, closer
+    - cron: '40 19 * * 0'    # Sunday, 4 PM ET games
+    - cron: '40 23 * * 0'    # Sunday, SNF
+    - cron: '40 23 * * 1'    # Monday, MNF
+    - cron: '20 15 * * 6'    # Saturday (late-season Saturday games)
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: "full-depth books for games starting within this many hours"
+        required: true
+        default: "4"
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/fetch/novig_books.py', 'src/nflbet/engine/novig_capture.py', '.github/workflows/novig-books.yml']
+permissions:
+  contents: write
+concurrency:
+  group: novig-books
+  cancel-in-progress: false
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Record Novig books
+        env:
+          HOURS: ${{ github.event.inputs.hours || '4' }}
+        run: python scripts/fetch/novig_books.py --hours "$HOURS"
+      - name: Commit snapshot
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add data/live/novig_books || true
+          git commit -m "novig books: snapshot" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0; sleep $((2**i)); done
+          exit 1

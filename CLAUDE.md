@@ -46,6 +46,17 @@ No other pick list.
   (docs/s1_live_rules.md, "Source switch"); the run alarms (red job) when its line source fails.
 - Sandbox cannot reach Action Network or ESPN; fetch in GitHub Actions. Scheduled workflows run only from `main`.
 
+## Player-prop engine (Will's blueprint, 2026-11-12; docs/engine/README.md)
+- `src/nflbet/engine/`: Engine A (`replication/`) and Engine B (`challenger/`) never import each other, a price, a line
+  reader or a research layer (`props`, `gamesim`, `ats`). Pricing reads predictions and never writes them.
+- Seasons and tests are in docs/engine_preregistration.md: fit 2018-2021, tune 2022-2023, 2024-2025 test outcome
+  accuracy once per frozen version, prices tested prospectively only. Nothing tuned on 2024-2025 elsewhere in the
+  repo may be carried into an engine.
+- The engine is not a pick-list exception. No paper portfolio, priced-sides list or decision record until Will adds
+  one above and its rules are frozen first. No order code; `engine.LIVE_EXECUTION` stays False.
+- Novig contracts are matched exactly or not at all (`engine/contracts.py`); the cost of a side is read from the
+  other side's resting orders; fees come from the market's own fee record saved with the quote.
+
 ## Agent team rules
 - Teammates (`.claude/agents/`: ux, backend on Sonnet at medium effort in their own worktrees; adversary on
   Fable) claim subtasks from the team's shared task list and settle contracts with each other directly.
