@@ -31,3 +31,16 @@ def test_zero_target_week_has_no_efficiency_part():
     act = {"team_att": 30.0, "team_car": 25.0, "targets": 0.0, "rec": 0.0, "carries": 0.0, "att": 0.0, "cmp": 0.0}
     p = R.pick_parts("rec", rows, {}, {"catch": 0.65, "comp": 0.65}, act)
     assert p["actual_stat"] == 0.0 and abs(p["check"]) < 1e-12 and abs(p["parts"]["R"]) < 1e-12   # all of the drop is role
+
+
+def test_recap_uses_the_table_covering_the_most_weeks(tmp_path):
+    from nflbet.props import recap as R
+    cols = "table,team,cov0,cov1,cov2man,cov2,cov3,cov4,cov6,man_total,zone_total,epa_per_db"
+    (tmp_path / "coverage_fantasypoints_2026_w1-4.csv").write_text(cols + "\nall_plays,CAR,1,2,0,3,42.1,5,6,18.0,60.0,0.29\n")
+    (tmp_path / "coverage_fantasypoints_2026_w1-10.csv").write_text(
+        cols + "\nall_plays,CAR,0,0,0,0,50,0,0,10.0,70.0,0.10\nexpected_pass_situations,CAR,0,0,0,0,40,0,0,12.0,60.0,0.05\n")
+    wk, f = R.newest_coverage(tmp_path)
+    assert wk == 10                                              # 10 beats 4 as a number, not as text
+    assert R.coverage_for("CAR", f) == {"man": 10.0, "cov3": 50.0, "epa_db": 0.10, "man_exp_pass": 12.0, "weeks": 10}
+    assert R.newest_coverage(tmp_path / "none") is None
+    r = {"opp_man": 10.0, "opp_cov3": 50.0, "opp_epa_db": 0.1, "opp_weeks": 10}

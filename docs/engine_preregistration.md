@@ -4,6 +4,8 @@ Will supplied the blueprint "NFL Player-Prop Engine: Comprehensive Implementatio
 file is committed before any engine model exists and before any data is fetched for the engine. Will may amend it
 until the commit that first fetches engine data; after that, changes are dated amendments.
 
+**Approved by Will, 2026-11-12, unchanged, before any engine data was fetched.** Changes from here are dated amendments.
+
 ## What is being tested
 Two independently trained engines (A: game-simulation replication; B: direct distributional challenger;
 docs/engine/MODEL_SPECIFICATION.md) each produce a full distribution per player per market before kickoff. Three

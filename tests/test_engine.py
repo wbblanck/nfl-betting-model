@@ -295,3 +295,53 @@ def test_engine_has_no_order_code_and_live_execution_is_off():
         src = f.read_text()
         assert "/execution/" not in src and "orders" not in {n.attr for n in ast.walk(ast.parse(src)) if isinstance(n, ast.Attribute)}
         assert not any(isinstance(n, ast.Call) and getattr(n.func, "attr", "") in {"post", "put", "delete"} for n in ast.walk(ast.parse(src)))
+
+
+# ------------------------------------------------------------------------------------------------ warehouse
+def _pw_inputs():
+    import polars as pl
+    from nflbet.engine.data import player_week as PW
+    z = {c: 0 for c in PW.STATS}
+    def s(pid, week, team, opp, pos="WR", typ="REG", **kw):
+        return {"player_id": pid, "season": 2023, "week": week, "season_type": typ, "game_id": f"2023_{week:02d}", "team": team,
+                "opponent_team": opp, "position": pos, **z, **kw}
+    stats = pl.DataFrame([s("A", 1, "NYJ", "BUF", receptions=5, targets=7, receiving_yards=60),
+                          s("A", 2, "DAL", "NYG", receptions=2, targets=3, receiving_yards=11),      # traded after week 1
+                          s("K", 1, "NYJ", "BUF", pos="K"), s("A", 19, "DAL", "GB", typ="POST")])
+    def n(pfr, week, team, opp, snaps, pos="WR"):
+        return {"game_id": f"2023_{week:02d}", "season": 2023, "game_type": "REG", "week": week, "pfr_player_id": pfr, "position": pos,
+                "team": team, "opponent": opp, "offense_snaps": snaps, "offense_pct": 0.5}
+    snaps = pl.DataFrame([n("pA", 1, "NYJ", "BUF", 40), n("pA", 2, "DAL", "NYG", 30),
+                          n("pB", 1, "NYJ", "BUF", 12),          # played, no stat row -> zeros
+                          n("pC", 1, "NYJ", "BUF", 0),           # dressed, no snaps -> no row
+                          n("pX", 1, "NYJ", "BUF", 9),           # PFR ID unknown -> counted, left out
+                          n("pD", 1, "NYJ", "BUF", 9)])          # PFR ID maps to two players -> counted, left out
+    players = pl.DataFrame({"pfr_id": ["pA", "pB", "pC", "pD", "pD"], "gsis_id": ["A", "B", "C", "D1", "D2"]})
+    return PW, stats, snaps, players
+
+
+def test_player_week_hand_cases():
+    PW, stats, snaps, players = _pw_inputs()
+    out, rep = PW.build(stats, snaps, players)
+    rows = {(r["player_id"], r["week"]): r for r in out.iter_rows(named=True)}
+    assert set(rows) == {("A", 1), ("A", 2), ("B", 1)}                       # kicker, playoff game, zero-snap player: no row
+    assert (rows[("A", 1)]["team"], rows[("A", 2)]["team"]) == ("NYJ", "DAL")   # traded player: one row a week, right team
+    assert rows[("A", 1)]["receiving_yards"] == 60 and rows[("A", 1)]["offense_snaps"] == 40
+    b = rows[("B", 1)]
+    assert b["stat_row"] is False and b["targets"] == 0 and b["offense_snaps"] == 12 and b["team"] == "NYJ"
+    assert rep == {"stat_rows": 2, "snap_rows": 5, "snap_rows_unmapped": 2, "snap_duplicate_keys": 0, "zero_rows_added": 1,
+                   "stat_rows_without_snaps": 0}
+
+
+def test_player_week_refuses_duplicate_stat_rows():
+    import polars as pl
+    PW, stats, snaps, players = _pw_inputs()
+    with pytest.raises(ValueError, match="more than one stat row"):
+        PW.build(pl.concat([stats, stats.head(1)]), snaps, players)
+
+
+def test_team_aliases_map_old_codes_to_the_stats_code():
+    import polars as pl
+    from nflbet.engine.data import player_week as PW
+    df = pl.DataFrame({"t": ["OAK", "SD", "SL", "BLT", "KC"]}).select(PW.team_code("t"))
+    assert df["t"].to_list() == ["LV", "LAC", "LA", "BAL", "KC"]
