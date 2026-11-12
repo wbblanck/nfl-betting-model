@@ -11,6 +11,11 @@ tables posted by @fball_insights (sources named on the images: Fantasy Points Da
 - A single season-to-date snapshot, so it includes the games being reviewed. Use as recap context only; it is not a
   pre-game input (the repo rule on look-ahead applies).
 
+`coverage_fantasypoints_2026_w1-9.csv`: the same table for 2026 weeks 1-9, transcribed from an image Will provided on
+2026-11-12 (same sources named on it). It has one table only, the one with EPA per dropback, filed as `all_plays` to
+match the earlier file; the image does not say which plays it covers. The listed shares sum to 92.3-98.6% per team.
+Same rule: context for week 10 onward, never a pre-game model input, and not used by the player-prop engine.
+
 ## Team pass-rush and coverage stats (built 2026-10-09, `scripts/build_team_stats.py`, `src/nflbet/teamstats.py`)
 - `team_pass_participation_2016_2025.csv`: nflverse participation joined to play-by-play dropbacks; per team-game
   pressure rate generated / allowed, time to throw, man vs zone share, coverage shells (Cover 0/1/2/2-man/3/4/6/9,
