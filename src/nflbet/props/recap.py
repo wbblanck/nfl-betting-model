@@ -15,6 +15,7 @@ This recap is a hypothesis generator: with about 15 picks a week it cannot estab
 """
 from __future__ import annotations
 
+import re
 from itertools import permutations
 from pathlib import Path
 
@@ -163,16 +164,32 @@ def ngs_delta(ngs: pl.DataFrame, pid: str, week: int, cols: list[str], weight: s
     return out
 
 
+def newest_coverage(ext: Path | None = None) -> tuple[int, Path] | None:
+    """(last week covered, file) of the hand-transcribed coverage table covering the most weeks, or None."""
+    found = []
+    for f in (ext or config.ROOT / "data" / "external").glob("coverage_fantasypoints_2026_w1-*.csv"):
+        m = re.search(r"w1-(\d+)\.csv$", f.name)
+        if m:
+            found.append((int(m.group(1)), f))
+    return max(found) if found else None
+
+
 def coverage_for(opp: str, path: Path | None = None) -> dict:
-    p = path or config.ROOT / "data" / "external" / "coverage_fantasypoints_2026_w1-4.csv"
+    """Opponent's coverage mix from `path`, else from the newest table. Recap context only: the table is a
+    season-to-date total and can include the game being reviewed ('weeks' says how far it runs)."""
+    newest = newest_coverage()
+    if path is None and newest is None:
+        return {}
+    p = path or newest[1]
     if not p.exists():
         return {}
+    m = re.search(r"w1-(\d+)\.csv$", p.name)
     d = pl.read_csv(p).filter(pl.col("team") == opp)
     a = d.filter(pl.col("table") == "all_plays")
     e = d.filter(pl.col("table") == "expected_pass_situations")
     return {"man": float(a["man_total"][0]) if a.height else None, "cov3": float(a["cov3"][0]) if a.height else None,
             "epa_db": float(a["epa_per_db"][0]) if a.height else None,
-            "man_exp_pass": float(e["man_total"][0]) if e.height else None}
+            "man_exp_pass": float(e["man_total"][0]) if e.height else None, "weeks": int(m.group(1)) if m else None}
 
 
 def build_rows(rec: pl.DataFrame, inputs: dict, season: int, week: int) -> list[dict]:
@@ -220,7 +237,7 @@ def _f(x, d=1, sign=False):
     return "–" if x is None else f"{x:{'+' if sign else ''}.{d}f}"
 
 
-def card(r: dict) -> str:
+def card(r: dict, week: int | None = None) -> str:
     head = (f"### {r['player']} ({r['team']}): {STAT.get(r['market'], r['market'])} {r['side']} {r['line']:g} at {r['odds']:+.0f}, "
             f"{r['result']}" + (f", actual {r['actual']:g}" if r["actual"] is not None else ""))
     out = [head, ""]
@@ -269,7 +286,9 @@ def card(r: dict) -> str:
     if n:
         out.append("- Next Gen Stats: " + "; ".join(n))
     if r.get("opp_man") is not None:
-        out.append(f"- Opponent defense, weeks 1-4 (includes this game): man {r['opp_man']:.0f}% of plays, Cover 3 {r['opp_cov3']:.0f}%, EPA per DB {_f(r['opp_epa_db'], 2, True)}")
+        thru = r.get("opp_weeks")
+        note = " (includes this game)" if thru is None or week is None or thru >= week else ""
+        out.append(f"- Opponent defense, weeks 1-{thru or '?'}{note}: man {r['opp_man']:.0f}% of plays, Cover 3 {r['opp_cov3']:.0f}%, EPA per DB {_f(r['opp_epa_db'], 2, True)}")
     if r["inj_news"] or r["depth_note"]:
         out.append("- News at pick time: " + "; ".join(x for x in (r["inj_news"], r["depth_note"]) if x))
     out.append("")
@@ -307,11 +326,12 @@ def render(rows: list[dict], week: int) -> str:
                   "'Model minus baseline' is how far the model's projection sat from the usage baseline, toward the pick: a positive number "
                   "means the model was leaning into the pick more than the player's own recent usage did."]
     lines += ["", "## Picks", ""]
-    lines += [card(r) for r in sorted(rows, key=lambda r: (r["result"] != "L", r["player"]))]
+    lines += [card(r, week) for r in sorted(rows, key=lambda r: (r["result"] != "L", r["player"]))]
     lines += ["## Limits", "",
               "- Baseline is the player's own games this season before the week (in games he played; padded with 2025 games when fewer than 2). "
               "Catch and completion rates are shrunk toward the league rate. A different baseline would move the split.",
-              "- Coverage numbers come from a hand-transcribed weeks 1-4 table (`data/external/`), include this game, and omit some coverage types.",
+              "- Coverage numbers come from the newest hand-transcribed season-to-date table (`data/external/`), which includes this game when it "
+              "runs through this week, and omit some coverage types.",
               "- Not measured: man or zone coverage faced by this player, routes run, personnel, and anything in the game's film.", ""]
     return "\n".join(lines)
 
