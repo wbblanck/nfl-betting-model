@@ -33,6 +33,9 @@ Interim 2026 numbers (descriptive only): `docs/grade_2026.md`, refreshed every T
     `bestprice.py`, `explain.py`, `recap.py`
   - `ats/` spread rating (`rating.py`) and the live ATS tracker (`live.py`)
   - `dashboard.py` the tracker page, built from both trackers' records
+  - `engine/` the player-prop engine (docs/engine/README.md): market registry (`config/markets.yaml`), Novig contract
+    matching and book pricing, box-score accounting, hash-chained records, the Novig book recorder. Phase 0 only: no
+    models yet
 - Pre-registrations and reports written before 2026-10-21 name modules by their old flat paths
   (`src/nflbet/props.py` is now `props/core.py`, `props_confirm.py` is `props/confirm.py`, and so on); the
   commit that moved them keeps each file's history (`git log --follow`).

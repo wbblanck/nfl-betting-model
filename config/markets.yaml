@@ -1,0 +1,34 @@
+# Engine market registry (docs/engine/MODEL_SPECIFICATION.md). One entry per player statistic the engine models.
+# key:        engine market key; where one exists it is the key the rest of the repo uses (nflbet.props.core.STAT).
+# stat:       nflverse player-stats columns summed to grade the market (full game, overtime included).
+# family:     yardage | count | rare_event | extreme_value | binary | joint
+# bounded_by: a count that this count can never exceed (enforced on every simulated box score).
+# components: for joint markets, the registry keys whose simulated values are added.
+# novig_type: Novig marketType, only where that type was seen in the saved probe
+#             (docs/evidence/novig_probe/20261014T091702Z/probe.json); null = not seen there, so not matchable.
+# shadow:     true = modelled and scored, never eligible for any price comparison record.
+# Being in this file means "has a statistical definition". It does not mean priced, listed or executable.
+version: 1
+markets:
+  pass_yds:      {positions: [QB], family: yardage, distribution: empirical_or_quantile, stat: [passing_yards], novig_type: PASSING_YARDS, shadow: false}
+  pass_att:      {positions: [QB], family: count, distribution: negative_binomial, stat: [attempts], novig_type: PASSING_ATTEMPTS, shadow: false}
+  pass_cmp:      {positions: [QB], family: count, distribution: beta_binomial, stat: [completions], bounded_by: pass_att, novig_type: PASSING_COMPLETIONS, shadow: false}
+  pass_td:       {positions: [QB], family: rare_event, distribution: hierarchical_count, stat: [passing_tds], novig_type: PASSING_TOUCHDOWNS, shadow: true}
+  pass_int:      {positions: [QB], family: rare_event, distribution: hierarchical_count, stat: [passing_interceptions], novig_type: INTERCEPTIONS_THROWN, shadow: true}
+  long_cmp:      {positions: [QB], family: extreme_value, distribution: event_level, stat: null, novig_type: LONGEST_COMPLETION, shadow: true}
+  rush_yds:      {positions: [QB, RB, WR, TE], family: yardage, distribution: empirical_or_quantile, stat: [rushing_yards], novig_type: RUSHING_YARDS, shadow: false}
+  rush_att:      {positions: [QB, RB, WR, TE], family: count, distribution: negative_binomial, stat: [carries], novig_type: RUSHING_ATTEMPTS, shadow: false}
+  rush_tds:      {positions: [QB, RB, WR, TE], family: rare_event, distribution: hierarchical_count, stat: [rushing_tds], novig_type: null, shadow: true}
+  long_rush:     {positions: [QB, RB, WR, TE], family: extreme_value, distribution: event_level, stat: null, novig_type: LONGEST_RUSH, shadow: true}
+  targets:       {positions: [RB, WR, TE], family: count, distribution: negative_binomial, stat: [targets], novig_type: null, shadow: false}
+  rec:           {positions: [RB, WR, TE], family: count, distribution: beta_binomial, stat: [receptions], bounded_by: targets, novig_type: RECEPTIONS, shadow: false}
+  rec_yds:       {positions: [RB, WR, TE], family: yardage, distribution: empirical_or_quantile, stat: [receiving_yards], novig_type: RECEIVING_YARDS, shadow: false}
+  rec_tds:       {positions: [RB, WR, TE], family: rare_event, distribution: hierarchical_count, stat: [receiving_tds], novig_type: null, shadow: true}
+  long_rec:      {positions: [RB, WR, TE], family: extreme_value, distribution: event_level, stat: null, novig_type: LONGEST_RECEPTION, shadow: true}
+  # Touchdowns scored by the player: rushing + receiving + special teams + fumble recovery, as nflbet.props.core grades anytime_td.
+  tds:           {positions: [QB, RB, WR, TE], family: rare_event, distribution: hierarchical_count, stat: [rushing_tds, receiving_tds, special_teams_tds, fumble_recovery_tds], novig_type: TOUCHDOWNS, shadow: true}
+  anytime_td:    {positions: [QB, RB, WR, TE], family: binary, distribution: bernoulli, stat: [rushing_tds, receiving_tds, special_teams_tds, fumble_recovery_tds], novig_type: ANYTIME_TOUCHDOWN_SCORER, shadow: true}
+  first_td:      {positions: [QB, RB, WR, TE], family: binary, distribution: competing_risk, stat: null, novig_type: FIRST_TOUCHDOWN_SCORER, shadow: true}
+  pass_rush_yds: {positions: [QB], family: joint, distribution: simulated_stat_composition, components: [pass_yds, rush_yds], novig_type: PASSING_AND_RUSHING_YARDS, shadow: false}
+  rush_rec_yds:  {positions: [RB, WR, TE], family: joint, distribution: simulated_stat_composition, components: [rush_yds, rec_yds], novig_type: RUSHING_AND_RECEIVING_YARDS, shadow: false}
+  fantasy_pts:   {positions: [QB, RB, WR, TE], family: joint, distribution: simulated_stat_composition, stat: null, novig_type: null, shadow: true}
