@@ -24,7 +24,8 @@ def load(seasons):
     stats = N.read("player_stats", seasons)
     pw, _ = PW.build(stats, N.read("snap_counts", seasons), N.read("players"))
     pbp = N.read("pbp", seasons)
-    teams = F.team_game(stats, pbp, F.games(N.read("schedules")))
+    sched = N.read("schedules")
+    teams = F.team_game(stats, pbp, F.games(sched), F.scores(sched))
     df = feats.join(pw.select("player_id", "game_id", *OUTCOMES), on=["player_id", "game_id"], how="left")
     assert df.filter(pl.col("played"))[OUTCOMES[0]].null_count() == 0          # everyone who played has an outcome row
     return df.with_columns([pl.col(c).fill_null(0) for c in OUTCOMES]), teams, pbp   # active, did not play: zeros
@@ -55,14 +56,15 @@ def main() -> int:
     tune = df.filter(pl.col("season").is_in(TUNE)).sort("game_id", "team", "player_id")
     runs = {c: np.zeros((tune.height, SIMS), dtype=np.int32) for c in OUTCOMES}
     broke, n_games, at = {}, 0, 0
-    for (gid, team), rows in tune.group_by(["game_id", "team"], maintain_order=True):
-        seed = int.from_bytes(f"{gid}|{team}".encode(), "little") % (2 ** 32)
-        box, s = M.simulate(P, tab, rows, SIMS, np.random.default_rng([0, seed]))
-        for k, v in accounting.violations(box).items():
-            broke[k] = broke.get(k, 0) + v
-        for c in OUTCOMES:
-            runs[c][at:at + rows.height] = s[c]
-        at, n_games = at + rows.height, n_games + 1
+    for (gid,), game in tune.group_by(["game_id"], maintain_order=True):
+        sides = [rows for _, rows in game.group_by(["team"], maintain_order=True)]
+        seed = int.from_bytes(str(gid).encode(), "little") % (2 ** 32)
+        for rows, (box, s) in zip(sides, M.simulate_game(P, tab, sides, SIMS, np.random.default_rng([0, seed]))):
+            for k, v in accounting.violations(box).items():
+                broke[k] = broke.get(k, 0) + v
+            for c in OUTCOMES:
+                runs[c][at:at + rows.height] = s[c]
+            at, n_games = at + rows.height, n_games + 1
     base = json.loads((ROOT / "data" / "backtests" / "engine_baselines.json").read_text())
     res = {"version": M.VERSION, "fit_seasons": FIT, "tune_seasons": TUNE, "sims": SIMS, "team_games": n_games,
            "accounting_violations": broke, "params": {k: v for k, v in P.items() if k not in ("env", "qb")},
@@ -103,6 +105,9 @@ def main() -> int:
           f"{res['qb']['starter_threw_all']:.1%} of games and {res['qb']['starter_mean_share']:.1%} of the passes on average.",
           f"- Chance an active skill player takes a snap, fit seasons: {P['play']['all']:.1%} overall ("
           + ", ".join(f"{k} {x:.1%}" for k, x in sorted(P["play"]["pos"].items())) + ").",
+          f"- Game script in the team-volume means, per point of expected margin: {np.array(P['env']['coef'])[9, 0]:+.3f} pass attempts, "
+          f"{np.array(P['env']['coef'])[9, 1]:+.3f} carries; per point of expected total: {np.array(P['env']['coef'])[10, 0]:+.3f} attempts, "
+          f"{np.array(P['env']['coef'])[10, 1]:+.3f} carries. A game's two offenses share one volume surprise per run.",
           f"- Targets per pass attempt {P['env']['target_rate']:.3f}; sacks per attempt {P['sack_rate']:.3f}; scrambles as a share of quarterback carries {P['scramble_share']:.2f}.",
           "", "Mean of the runs minus mean of the outcomes, by market: "
           + ", ".join(f"{k} {v['mean_bias']:+.2f}" for k, v in res["markets"].items()) + "."]
@@ -125,7 +130,7 @@ def main() -> int:
           "  in attempts in 92.8% of team-games. A change announced during the week and not yet on the chart is missed.",
           "- The weekly depth charts through 2024 carry no timestamp and are taken as that week's pregame chart; from",
           "  2025 they are dated and only a chart from before game day is used.",
-          "- Not in this version: play-by-play game script, the two teams drawn jointly, availability draws,",
+          "- Not in this version: play-by-play game script (volume reacting to the simulated score), availability draws,",
           "  opponent-specific efficiency, touchdowns, interceptions."]
     OUT_JSON.write_text(json.dumps(res, indent=1) + "\n")
     OUT_MD.write_text("\n".join(L) + "\n")

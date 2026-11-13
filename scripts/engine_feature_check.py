@@ -1,5 +1,5 @@
 """Engine phase 2 gate on the real warehouse: build the feature table, then scramble every raw row of every game
-kicking off at or after a cut-off (player stats, snap counts, play-by-play, participation) and rebuild. Rows up to
+kicking off at or after a cut-off (player stats, snap counts, play-by-play, participation, final scores) and rebuild. Rows up to
 the cut-off must be identical. Writes docs/engine/feature_check.md. Reads no outcome for modelling and no price."""
 import sys
 
@@ -20,6 +20,7 @@ def load(seasons):
     return {"stats": N.read("player_stats", seasons), "snaps": N.read("snap_counts", snap),
             "pbp": N.read("pbp", seasons).select("game_id", "play_id", "posteam", "play_type", "qb_scramble", "two_point_attempt", "qb_dropback"),
             "part": N.read("participation", part).select("nflverse_game_id", "play_id", "offense_players"),
+            "sched": N.read("schedules").select("game_id", "game_type", "home_team", "away_team", "home_score", "away_score"),
             "rosters": N.read("rosters_weekly", seasons).select("gsis_id", "season", "week", "team", "position", "status", "game_type"),
             "depth_weekly": N.read("depth_charts", [s for s in seasons if s <= 2024]) if any(s <= 2024 for s in seasons) else None,
             "depth_dated": N.read("depth_charts", [s for s in seasons if s >= 2025]) if any(s >= 2025 for s in seasons) else None}
@@ -27,7 +28,7 @@ def load(seasons):
 
 def features(raw, players, games, with_active=True):
     pw, rep = PW.build(raw["stats"], raw["snaps"], players)
-    tg = F.team_game(raw["stats"], raw["pbp"], games)
+    tg = F.team_game(raw["stats"], raw["pbp"], games, F.scores(raw["sched"]))
     return B.build(pw, tg, F.on_field(raw["part"], raw["pbp"]), F.active(raw["rosters"], tg) if with_active else None,
                    F.depth_rank(raw["depth_weekly"], raw["depth_dated"], tg)), rep
 
@@ -53,6 +54,7 @@ def scramble(raw, late: set, seed=1):
     return {"stats": noise(raw["stats"], "game_id", PW.STATS), "snaps": noise(raw["snaps"], "game_id", ["offense_snaps"], keep_zero=True),
             "pbp": shuffle(raw["pbp"], "game_id", ["play_type", "qb_scramble", "qb_dropback", "two_point_attempt"]),
             "part": shuffle(raw["part"], "nflverse_game_id", ["offense_players"]),
+            "sched": noise(raw["sched"], "game_id", ["home_score", "away_score"]),      # final scores are outcomes too
             "rosters": raw["rosters"],                  # the active list is published before kickoff: not an outcome
             "depth_weekly": raw["depth_weekly"], "depth_dated": raw["depth_dated"]}     # nor is the depth chart
 
@@ -66,8 +68,8 @@ def main() -> int:
     base.write_parquet(N.DIR / "features" / "player_game.parquet")
     L = ["# Feature leakage check (engine phase 2 gate)", "",
          "Written by `scripts/engine_feature_check.py` from the local warehouse. For each cut-off, every raw row of every",
-         "game kicking off at or after it is scrambled (player stats, snap counts, play-by-play, participation), the whole",
-         "pipeline is rebuilt, and the feature rows up to the cut-off are compared with the originals.", "",
+         "game kicking off at or after it is scrambled (player stats, snap counts, play-by-play, participation, final scores), the",
+         "whole pipeline is rebuilt, and the feature rows up to the cut-off are compared with the originals.", "",
          f"Feature table: {base.height:,} player-games ({int(base['played'].sum()):,} played, the rest on the game-day active list "
          f"without playing), {base.width} columns, seasons {seasons[0]}-{seasons[-1]}; "
          f"contents hash `{B.snapshot_hash(base)[:16]}`.", "",

@@ -1,4 +1,4 @@
-# Engine A A-0.3 on the tune seasons
+# Engine A A-0.4 on the tune seasons
 
 Written by `scripts/engine_a_tune.py`. Fitted on 2018-2021; every offense-game of 2022-2023 simulated
 2,000 times (1,086 offense-games). This is tuning, not Test S: no 2024-2025 outcome and no price was read.
@@ -10,12 +10,12 @@ the interval is a week-clustered bootstrap.
 
 | Market | Rows | Baseline | Baseline CRPS | Engine CRPS | Engine minus baseline (95% interval) | Engine central 50% covers | 80% | 90% |
 |---|---|---|---|---|---|---|---|---|
-| pass_att | 1,089 | B5 | 6.189 | 5.355 | -0.834 (-1.194 to -0.468) | 55.5% | 80.4% | 88.6% |
-| pass_yds | 1,089 | B3 | 53.601 | 45.869 | -7.732 (-10.337 to -5.150) | 53.9% | 79.2% | 88.4% |
-| rush_att | 2,029 | B4 | 3.125 | 2.897 | -0.228 (-0.267 to -0.187) | 56.1% | 83.1% | 90.9% |
-| rush_yds | 2,029 | B3 | 18.554 | 17.432 | -1.122 (-1.424 to -0.808) | 48.6% | 78.8% | 88.4% |
-| rec | 4,738 | B4 | 1.221 | 1.223 | +0.002 (-0.010 to +0.015) | 64.5% | 89.5% | 96.4% |
-| rec_yds | 4,738 | B4 | 17.150 | 16.528 | -0.622 (-0.745 to -0.473) | 53.6% | 86.0% | 94.5% |
+| pass_att | 1,089 | B5 | 6.189 | 5.318 | -0.871 (-1.229 to -0.506) | 55.6% | 81.4% | 88.4% |
+| pass_yds | 1,089 | B3 | 53.601 | 45.567 | -8.034 (-10.584 to -5.524) | 54.5% | 79.7% | 88.7% |
+| rush_att | 2,029 | B4 | 3.125 | 2.897 | -0.228 (-0.267 to -0.188) | 56.0% | 83.1% | 90.9% |
+| rush_yds | 2,029 | B3 | 18.554 | 17.420 | -1.133 (-1.429 to -0.821) | 48.6% | 79.2% | 88.4% |
+| rec | 4,738 | B4 | 1.221 | 1.221 | -0.000 (-0.012 to +0.013) | 64.8% | 89.5% | 96.3% |
+| rec_yds | 4,738 | B4 | 17.150 | 16.502 | -0.648 (-0.771 to -0.499) | 54.1% | 85.7% | 94.3% |
 
 ## Fitted on 2018-2021
 
@@ -28,9 +28,10 @@ the interval is a week-clustered bootstrap.
 - Team-wide yardage shock (standard deviation of the multiplier): receiving 0.065, rushing 0.000.
 - Expected starting quarterbacks in the fit seasons: 1,920; they threw every one of their team's passes in 78.9% of games and 95.9% of the passes on average.
 - Chance an active skill player takes a snap, fit seasons: 83.4% overall (QB 56.5%, RB 77.4%, TE 93.5%, WR 92.5%).
+- Game script in the team-volume means, per point of expected margin: +0.116 pass attempts, +0.071 carries; per point of expected total: +0.048 attempts, -0.015 carries. A game's two offenses share one volume surprise per run.
 - Targets per pass attempt 0.964; sacks per attempt 0.068; scrambles as a share of quarterback carries 0.43.
 
-Mean of the runs minus mean of the outcomes, by market: pass_att -0.24, pass_yds +3.08, rush_att -0.35, rush_yds -1.01, rec +0.11, rec_yds +1.60.
+Mean of the runs minus mean of the outcomes, by market: pass_att -0.46, pass_yds +1.48, rush_att -0.35, rush_yds -1.02, rec +0.09, rec_yds +1.30.
 
 ## Reading (limits of this comparison)
 
@@ -52,5 +53,5 @@ Mean of the runs minus mean of the outcomes, by market: pass_att -0.24, pass_yds
   in attempts in 92.8% of team-games. A change announced during the week and not yet on the chart is missed.
 - The weekly depth charts through 2024 carry no timestamp and are taken as that week's pregame chart; from
   2025 they are dated and only a chart from before game day is used.
-- Not in this version: play-by-play game script, the two teams drawn jointly, availability draws,
+- Not in this version: play-by-play game script (volume reacting to the simulated score), availability draws,
   opponent-specific efficiency, touchdowns, interceptions.

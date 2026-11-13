@@ -22,7 +22,18 @@ def games(schedules: pl.DataFrame) -> pl.DataFrame:
                     team_code("home_team").alias("home"), team_code("away_team").alias("away")))
 
 
-def team_game(stats: pl.DataFrame, pbp: pl.DataFrame, games_: pl.DataFrame) -> pl.DataFrame:
+def scores(schedules: pl.DataFrame) -> pl.DataFrame:
+    """Final score per team per regular-season game: team_points (scored) and team_points_against. Outcomes only;
+    the schedule file's betting lines are never read (a price may not enter a feature)."""
+    g = schedules.filter((pl.col("game_type") == "REG") & pl.col("home_score").is_not_null() & pl.col("away_score").is_not_null())
+    home = g.select("game_id", team_code("home_team").alias("team"), pl.col("home_score").cast(pl.Int64).alias("team_points"),
+                    pl.col("away_score").cast(pl.Int64).alias("team_points_against"))
+    away = g.select("game_id", team_code("away_team").alias("team"), pl.col("away_score").cast(pl.Int64).alias("team_points"),
+                    pl.col("home_score").cast(pl.Int64).alias("team_points_against"))
+    return pl.concat([home, away])
+
+
+def team_game(stats: pl.DataFrame, pbp: pl.DataFrame, games_: pl.DataFrame, scores_: pl.DataFrame | None = None) -> pl.DataFrame:
     """One row per offense per game (opponent taken from the schedule): volumes summed from every player's stat row (all positions), scrambles from
     play-by-play, dropbacks = attempts + sacks + scrambles, plays = dropbacks + designed runs."""
     s = (stats.filter(pl.col("season_type") == "REG")
@@ -38,8 +49,11 @@ def team_game(stats: pl.DataFrame, pbp: pl.DataFrame, games_: pl.DataFrame) -> p
     if stray.height:
         raise ValueError(f"{stray.height} team-games name a team that is not in the scheduled game, e.g. {stray.row(0)[:2]}")
     # The opponent comes from the schedule: the stats file leaves it blank on a few rows.
-    return (out.with_columns(pl.when(pl.col("team") == pl.col("home")).then(pl.col("away")).otherwise(pl.col("home")).alias("opponent"))
-            .drop("home", "away"))
+    out = (out.with_columns(pl.when(pl.col("team") == pl.col("home")).then(pl.col("away")).otherwise(pl.col("home")).alias("opponent"))
+           .drop("home", "away"))
+    if scores_ is None:
+        return out.with_columns(pl.lit(None, dtype=pl.Int64).alias("team_points"), pl.lit(None, dtype=pl.Int64).alias("team_points_against"))
+    return out.join(scores_, on=["game_id", "team"], how="left")
 
 
 def on_field(participation: pl.DataFrame, pbp: pl.DataFrame) -> pl.DataFrame:

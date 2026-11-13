@@ -21,7 +21,7 @@ PLAYER = ["offense_snaps", "attempts", "completions", "passing_yards", "sacks_su
           "targets", "receptions", "receiving_yards", "team_att", "team_carries", "team_targets", "team_dropbacks",
           "db_on_field", "team_db_charted"]
 TEAM = ["team_att", "team_cmp", "team_pass_yds", "team_sacks", "team_carries", "team_rush_yds", "team_targets",
-        "team_scrambles", "team_dropbacks", "team_plays"]
+        "team_scrambles", "team_dropbacks", "team_plays", "team_points", "team_points_against"]
 
 
 def _windows(df: pl.DataFrame, subject: list[str], cols: list[str], prefix: str) -> pl.DataFrame:

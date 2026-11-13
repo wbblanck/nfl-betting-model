@@ -43,7 +43,8 @@ games only: its own game and every later game are excluded (`docs/engine/feature
   targets, receptions, receiving yards; his team's attempts, carries, targets and dropbacks in the games he played;
   dropbacks he was on the field for and the team's charted dropbacks (2016 on; the routes stand-in).
 - **`o_*` his offense, `d_*` the opposing defense (what offenses did against it):** attempts, completions, passing
-  yards, sacks, carries, rushing yards, targets, scrambles, dropbacks, plays.
+  yards, sacks, carries, rushing yards, targets, scrambles, dropbacks, plays, points scored and points allowed
+  (final scores from the schedule file; its betting lines are never read).
 - Features are sums, not ratios: a model divides window totals (targets by team targets, yards by carries).
 - Rows: everyone who played, plus everyone on the game-day active list who did not (`played` False; weekly roster
   status ACT, published about 90 minutes before kickoff). A game someone did not play adds nothing to his sums.

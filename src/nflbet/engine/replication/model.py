@@ -8,7 +8,7 @@ What the engine knows: the active list (published about 90 minutes before kickof
 know who goes on to play. A player's forecast is taken from the runs in which he plays, because a prop on a player
 who does not play is void; whether his teammates play stays uncertain in those runs.
 
-Not in 0.3 (docs/engine/MODEL_SPECIFICATION.md section 2): play-by-play game script, the two teams drawn jointly,
+Not in 0.4 (docs/engine/MODEL_SPECIFICATION.md section 2): play-by-play game script (volume reacting to the simulated score),
 availability draws, opponent-specific efficiency, touchdowns and interceptions.
 """
 from __future__ import annotations
@@ -18,7 +18,7 @@ import polars as pl
 
 from nflbet.engine.replication import efficiency as E, environment as V, opportunity as O
 
-VERSION = "A-0.3"
+VERSION = "A-0.4"
 KINDS = {"targets": ("targets", "team_targets"), "carries": ("carries", "team_carries")}
 KEY = ["game_id", "team"]
 
@@ -82,8 +82,16 @@ def fit(df: pl.DataFrame, teams: pl.DataFrame, pools: dict) -> dict:
                               pl.col("team_targets").alias("T_targets")), on=KEY, how="inner").sort(*KEY, "player_id")
     first = df.group_by(KEY, maintain_order=True).first()
     # Sorted: a join does not promise row order, and the residuals are later drawn by position in this list.
-    tf = first.join(teams.select(*KEY, "team_att", "team_carries", "team_targets", "team_sacks", "team_scrambles"), on=KEY).sort(KEY)
-    P = {"version": VERSION, "env": V.fit(tf, tf.select("team_att", "team_carries").to_numpy().astype(float), tf["team_targets"].to_numpy())}
+    tf = first.join(teams.select(*KEY, *[c for c in ("team_att", "team_carries", "team_targets", "team_sacks", "team_scrambles", "team_points")
+                                             if c in teams.columns]), on=KEY).sort(KEY)
+    where = {k: i for i, k in enumerate(zip(tf["game_id"].to_list(), tf["team"].to_list()))}
+    by_game: dict = {}
+    for (g, tm), i in where.items():
+        by_game.setdefault(g, []).append(i)
+    opp = np.array([next((j for j in by_game[g] if j != i), -1) for (g, tm), i in where.items()])
+    pts = tf["team_points"].to_numpy().astype(float) if "team_points" in tf.columns else np.full(tf.height, np.nan)
+    P = {"version": VERSION, "env": V.fit(tf, tf.select("team_att", "team_carries").to_numpy().astype(float), tf["team_targets"].to_numpy(),
+                                          np.where(np.isnan(pts), 22.0, pts), opp)}
     played, keys = everyone["played"].to_numpy().astype(float), np.array(play_bucket(everyone))
     cell = {k: float(played[keys == k].mean()) for k in np.unique(keys) if (keys == k).sum() >= 30}
     by_pos = {p: float(played[_pos(everyone) == p].mean()) for p in np.unique(_pos(everyone))}
@@ -157,12 +165,19 @@ def _yards(rng, tab: dict, pos: np.ndarray, n: np.ndarray, f: np.ndarray, shock:
     return out
 
 
-def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.Generator) -> tuple[dict, dict]:
+def simulate_game(P: dict, tab: dict, sides: list[pl.DataFrame], sims: int, rng: np.random.Generator) -> list[tuple[dict, dict]]:
+    """Both offenses of one game (or one, if only one is given), sharing the volume surprise of each run."""
+    index = V.draw_index(P["env"], sims, rng)
+    return [simulate(P, tab, rows, sims, rng, index, side) for side, rows in enumerate(sides[:2])]
+
+
+def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.Generator, index: np.ndarray | None = None,
+             side: int = 0) -> tuple[dict, dict]:
     """rows: the feature rows of one offense in one game (its active skill players). Returns (box for
     engine.accounting.violations, samples: stat -> [players, sims] in the order of rows)."""
     pos = _pos(rows)
     posx = np.append(pos, "OTH")
-    a, c, t = V.draw(P["env"], V.mean(P["env"], rows.head(1))[0], sims, rng)
+    a, c, t = V.draw(P["env"], V.mean(P["env"], rows.head(1))[0], sims, rng, index, side)
     k = len(pos)
     play = rng.random((sims, k)) < play_prob(P, rows)[None, :]
     qbs = np.flatnonzero(pos == "QB")

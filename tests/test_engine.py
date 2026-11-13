@@ -362,7 +362,8 @@ def _feature_inputs(seed=0, scramble_from=None):
                 r = np.random.default_rng([seed + 1000, season, week, gi]) if scramble_from and kick >= scramble_from else rng
                 for t, o in ((h, a), (a, h)):
                     v = {c: int(r.integers(1, 60)) for c in ("team_att", "team_cmp", "team_pass_yds", "team_sacks", "team_carries",
-                                                             "team_rush_yds", "team_targets", "team_scrambles", "team_dropbacks", "team_plays")}
+                                                             "team_rush_yds", "team_targets", "team_scrambles", "team_dropbacks", "team_plays",
+                                                             "team_points", "team_points_against")}
                     tg.append({"game_id": gid, "team": t, "opponent": o, "season": season, "week": week, "kickoff": kick, **v})
                     for k in range(3):
                         pid = f"{t}{k}"
@@ -531,13 +532,16 @@ def test_environment_recovers_planted_coefficients():
     for pre in ("o_", "d_"):
         for w in ("w8", "std", "prev"):
             cols[f"{pre}n_{w}"] = np.full(n, 8)
-            for c in ("team_att", "team_carries"):
+            for c in ("team_att", "team_carries", "team_points", "team_points_against"):
                 cols[f"{pre}{c}_{w}"] = rng.uniform(20, 45, n) * 8
     df = pl.DataFrame(cols)
     att = 5 + 0.6 * df["o_team_att_w8"].to_numpy() / 8 + 0.3 * df["d_team_att_w8"].to_numpy() / 8 + rng.normal(0, 3, n)
     car = 40 - 0.4 * df["o_team_att_w8"].to_numpy() / 8 + rng.normal(0, 3, n)
-    P = V.fit(df, np.column_stack([att, car]), np.rint(att * 0.95))
-    coef = np.array(P["coef"])                                       # columns: 1, att(o8, std, prev, d8), carries(o8, std, prev, d8)
+    margin, _ = V.expected_script(df, {"points": 22.0})
+    car = car + 0.5 * margin                                         # planted game script: a team expected to lead runs more
+    P = V.fit(df, np.column_stack([att, car]), np.rint(att * 0.95), np.full(n, 22.0))
+    coef = np.array(P["coef"])                                       # columns: 1, att(o8, std, prev, d8), carries(o8, std, prev, d8), margin, total
+    assert coef[9, 1] == pytest.approx(0.5, abs=0.05) and abs(coef[9, 0]) < 0.05 and abs(coef[10, 1]) < 0.05
     assert coef[1, 0] == pytest.approx(0.6, abs=0.03) and coef[4, 0] == pytest.approx(0.3, abs=0.03) and coef[1, 1] == pytest.approx(-0.4, abs=0.03)
     assert abs(coef[2, 0]) < 0.03 and abs(coef[5, 0]) < 0.03         # unrelated inputs get nothing
     a, c, t = V.draw(P, V.mean(P, df.head(1))[0], 5000, rng)
@@ -554,7 +558,7 @@ def _engine_a_inputs(seed=5, games=220):
         T = int(rng.binomial(A, 0.94))
         tg = rng.multinomial(T, rng.dirichlet(30 * np.array([0.4, 0.25, 0.2, 0.1, 0.05])))
         ca = rng.multinomial(C, rng.dirichlet(30 * np.array([0.02, 0.02, 0.03, 0.8, 0.13])))
-        teams.append({"game_id": f"g{g}", "team": "X", "team_att": A, "team_carries": C, "team_targets": T, "team_sacks": 2, "team_scrambles": 1})
+        teams.append({"game_id": f"g{g}", "team": "X", "team_att": A, "team_carries": C, "team_targets": T, "team_sacks": 2, "team_scrambles": 1, "team_points": 22})
         for k, pos in enumerate(["WR", "WR", "TE", "RB", "QB"]):
             rec = int(rng.binomial(tg[k], 0.65))
             r = {"game_id": f"g{g}", "team": "X", "player_id": f"p{k}", "position": pos, "p_last_kickoff": "k", "o_last_kickoff": "k", "targets": int(tg[k]), "receptions": rec,
@@ -569,7 +573,8 @@ def _engine_a_inputs(seed=5, games=220):
                           f"p_receptions_{w}": round(share * 33 * n * 0.65), f"p_receiving_yards_{w}": round(share * 33 * n * 0.65 * 11),
                           f"p_rushing_yards_{w}": round([0.02, 0.02, 0.03, 0.8, 0.13][k] * 27 * n * 4),
                           f"o_n_{w}": n, f"o_team_att_{w}": 35 * n, f"o_team_carries_{w}": 27 * n,
-                          f"d_n_{w}": n, f"d_team_att_{w}": 35 * n, f"d_team_carries_{w}": 27 * n})
+                          f"d_n_{w}": n, f"d_team_att_{w}": 35 * n, f"d_team_carries_{w}": 27 * n,
+                          **{f"{pre}{c}_{w}": 22 * n for pre in ("o_", "d_") for c in ("team_points", "team_points_against")}})
             rows.append(r)
     pools = {"rec": {p: rng.gamma(2.0, 5.5, 4000).round() for p in ("QB", "RB", "WR", "TE", "OTH")},
              "rush": {p: (rng.gamma(1.5, 3.0, 4000) - 0.5).round() for p in ("QB", "RB", "WR", "TE", "OTH")}}
@@ -681,3 +686,18 @@ def test_pick_starter_order():
     assert M.pick_starter(pl.DataFrame([wr, third, listed])) == (2, "starter_share")            # no recent starter: the chart decides
     assert M.pick_starter(pl.DataFrame([wr, third, qb("vol", 0, 100, "old", 9, 99)])) == (2, "new_share")   # neither: volume, new-starter pool
     assert M.pick_starter(pl.DataFrame([wr])) == (None, "new_share")
+
+
+def test_two_offenses_in_a_game_share_their_volume_surprise():
+    from nflbet.engine.replication import environment as V
+    rng = np.random.default_rng(8)
+    n = 2000                                                       # fit games where one side passing more means the other runs more
+    z = rng.normal(0, 5, n)
+    P = {"resid": np.column_stack([z, -z, -z, z]).tolist(), "target_rate": 0.95}
+    idx = V.draw_index(P, 5000, rng)
+    a0, c0, _ = V.draw(P, np.array([35.0, 27.0]), 5000, rng, idx, 0)
+    a1, c1, _ = V.draw(P, np.array([35.0, 27.0]), 5000, rng, idx, 1)
+    assert np.corrcoef(a0, a1)[0, 1] < -0.9 and np.corrcoef(a0, c1)[0, 1] > 0.9      # shared draw: the planted link survives
+    b1, _, _ = V.draw(P, np.array([35.0, 27.0]), 5000, rng, None, 1)
+    assert abs(np.corrcoef(a0, b1)[0, 1]) < 0.05                                      # separate draws: no link
+    assert a1.std() == pytest.approx(b1.std(), rel=0.05)                              # each side's own spread is the same either way
