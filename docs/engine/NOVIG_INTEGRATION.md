@@ -8,12 +8,17 @@ and the reader in `src/nflbet/sources/venues.py`. Everything is read-only throug
   - `events.json.gz`, `markets.json.gz`: this week's NFL events and every market of the registry's Novig types plus
     MONEY, SPREAD, TOTAL and TEAM_TOTAL, exactly as returned. A market row carries each outcome's best resting bid
     and quantity, its fee record, void rule, status, volume and open interest.
-  - `books.jsonl.gz`: for open prop markets with a bid whose game starts within 4 hours, the book at depth 20
+  - `books.jsonl.gz`: for open prop markets with a bid whose game starts within 6 hours, the book at depth 20
     (Novig's maximum), one per line with the time it was fetched and Novig's `seq`.
   - `summary.json`: counts by type, books wanted and saved, errors by kind.
 - The run goes red if the catalog cannot be read, returns no markets, or more than half the wanted books fail.
-- Scheduled runs fire only from `main`. Until this branch is merged, runs happen on pushes that touch the recorder
-  and by manual dispatch.
+- Scheduled runs fire only from `main`, and GitHub starts them late. The first two (Thursday 2026-11-12, set for
+  21:40 and 23:10 UTC) started at 02:08 and 03:23, after kickoff, and saved no books; that night's books exist only
+  because of a manual run at 22:57. Each game window now has two runs, about 6 h and 3.5 h before kickoff, with a
+  6-hour book window, so the early run still lands before kickoff when it is 4.5 h late. A game's books can still be
+  missed if both runs are later than that.
+- Size: the one-game Thursday snapshot was about 420 KB of catalog plus 255 KB of books. A nine-game Sunday window
+  will be several times that per run; repo growth is to be watched.
 - Limits to state plainly: these are snapshots minutes to days apart, not a tick history; the catalog row and a
   book are read at different moments (both times are saved); a quote seen is not a fill.
 - Novig's daily `trades.csv` / `markets.csv` files named in the blueprint are not fetched yet; their location was

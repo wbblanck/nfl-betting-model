@@ -31,8 +31,8 @@ def _gz(path, obj) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--hours", type=float, default=4.0, help="pull full depth for games starting within this many hours")
-    ap.add_argument("--max-books", type=int, default=1200)
+    ap.add_argument("--hours", type=float, default=6.0, help="pull full depth for games starting within this many hours")
+    ap.add_argument("--max-books", type=int, default=5000)   # about 50 minutes of calls; soonest games first if a window has more
     a = ap.parse_args()
     now = _utc()
     lo, hi = C.window_ms(now)
