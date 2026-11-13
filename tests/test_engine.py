@@ -448,3 +448,54 @@ def test_team_facts_follow_the_definitions():
                          "offense_players": ["QB1;TE1;WR1", "QB1;WR1;WR1", "QB1;TE1", "QB1;TE1"]})
     o = {r["player_id"]: (r["db_on_field"], r["team_db_charted"]) for r in F.on_field(part, pbp).iter_rows(named=True)}
     assert o == {"QB1": (2, 2), "TE1": (1, 2), "WR1": (2, 2)}        # run play 6 and two-point play 3 are not dropbacks; a repeated ID counts once
+
+
+# ------------------------------------------------------------------------------------------------ scoring, baselines
+def test_crps_hand_cases_and_against_simulation():
+    from nflbet.engine import scoring as S
+    c = np.zeros((1, 11))
+    c[0, 3:] = 1                                                     # all mass on 3, grid 0..10
+    got = [float(S.crps(c, np.array([y]))[0]) for y in (3, 5, 0, -2, 14)]
+    assert got == [0.0, 2.0, 3.0, 5.0, 11.0]                         # |y - 3|, including below 0 and beyond the grid
+    rng = np.random.default_rng(0)
+    m, r = 6.0, 3.0
+    cdf = S.nb_cdf(np.array([m]), r, 400)
+    x, x2 = rng.negative_binomial(r, r / (r + m), 200_000), rng.negative_binomial(r, r / (r + m), 200_000)
+    for y in (0, 4, 15):                                             # CRPS = E|X - y| - E|X - X'| / 2
+        assert float(S.crps(cdf, np.array([y]))[0]) == pytest.approx(np.abs(x - y).mean() - 0.5 * np.abs(x - x2).mean(), abs=0.03)
+
+
+def test_nb_size_fit_coverage_and_bootstrap_on_planted_data():
+    from nflbet.engine import scoring as S
+    rng = np.random.default_rng(1)
+    mean = rng.uniform(2, 12, 6000)
+    y = rng.negative_binomial(4.0, 4.0 / (4.0 + mean))
+    assert S.fit_nb_size(mean, y) == pytest.approx(4.0, rel=0.2)     # recovers the planted size
+    right, narrow = S.nb_cdf(mean, 4.0, 200), S.nb_cdf(mean, 200.0, 200)
+    assert S.coverage(right, y, 0.8) == pytest.approx(0.8, abs=0.06)  # discrete intervals over-cover a little
+    assert S.coverage(narrow, y, 0.8) < 0.7                           # a too-narrow forecast is caught
+    assert S.crps(right, y).mean() < S.crps(narrow, y).mean() < S.crps(S.nb_cdf(mean * 1.5, 4.0, 200), y).mean()
+    week = rng.integers(0, 30, 6000)
+    d, lo, hi = S.paired_bootstrap(S.crps(right, y) - S.crps(narrow, y), week, n=2000)
+    assert lo < d < hi < 0                                           # the planted improvement is found
+    d, lo, hi = S.paired_bootstrap(rng.normal(0, 1, 6000), week, n=2000)
+    assert lo < 0 < hi                                               # and noise is not
+
+
+def test_baseline_means_and_fallbacks_by_hand():
+    import polars as pl
+    from nflbet.engine import baselines as BL
+    row = {"position": "WR", "p_n_w3": 3, "p_targets_w3": 24, "p_n_w8": 8, "p_n_std": 4, "p_n_prev": 0,
+           "p_receptions_w8": 40, "p_receptions_std": 16, "p_receptions_prev": 0, "p_targets_w8": 64, "p_team_targets_w8": 256,
+           "o_team_targets_w8": 280, "o_n_w8": 8}
+    rookie = {**row, "p_n_w3": 0, "p_targets_w3": 0, "p_n_w8": 0, "p_n_std": 0, "p_receptions_w8": 0, "p_receptions_std": 0,
+              "p_targets_w8": 0, "p_team_targets_w8": 0}
+    df = pl.DataFrame([row, rookie])
+    assert BL.eligible(df, "rec").to_list() == [True, False]         # 8 targets a game >= 3; no history is not eligible
+    const = {"efficiency": {"WR": 0.6}, "cell_mean": {"WR|4": 5.5, "WR|0": 1.0}, "overall_mean": 3.0}
+    m = BL.means(df, "rec", const)
+    assert m["B3"][0] == 5.0 and m["B2"][0] == 4.0                   # 40 / 8 and 16 / 4
+    assert m["B1"][0] == 5.0                                         # no last season: falls back to B3
+    assert m["B4"][0] == pytest.approx((64 / 256) * (280 / 8) * 0.6)  # share x team targets per game x catch rate = 5.25
+    assert m["B5"][0] == 5.5                                         # 8 a game is 2.67x the minimum: band 4
+    assert [m[b][1] for b in ("B1", "B2", "B3", "B4", "B5")] == [1.0] * 5   # nothing on record: every baseline ends at B5
