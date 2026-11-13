@@ -10,12 +10,12 @@ the interval is a week-clustered bootstrap.
 
 | Market | Rows | Baseline | Baseline CRPS | Engine CRPS | Engine minus baseline (95% interval) | Engine central 50% covers | 80% | 90% |
 |---|---|---|---|---|---|---|---|---|
-| pass_att | 1,089 | B5 | 6.189 | 5.481 | -0.708 (-1.120 to -0.283) | 53.3% | 80.9% | 88.3% |
-| pass_yds | 1,089 | B3 | 53.601 | 46.717 | -6.884 (-9.779 to -3.976) | 54.1% | 79.3% | 88.5% |
-| rush_att | 2,029 | B4 | 3.125 | 2.895 | -0.231 (-0.270 to -0.189) | 55.6% | 82.8% | 90.6% |
-| rush_yds | 2,029 | B3 | 18.554 | 17.423 | -1.131 (-1.425 to -0.817) | 48.5% | 78.9% | 88.3% |
-| rec | 4,738 | B4 | 1.221 | 1.222 | +0.001 (-0.011 to +0.014) | 64.7% | 89.4% | 96.1% |
-| rec_yds | 4,738 | B4 | 17.150 | 16.512 | -0.638 (-0.760 to -0.495) | 53.9% | 85.8% | 94.2% |
+| pass_att | 1,089 | B5 | 6.189 | 5.488 | -0.701 (-1.114 to -0.280) | 55.6% | 80.9% | 88.7% |
+| pass_yds | 1,089 | B3 | 53.601 | 46.801 | -6.800 (-9.785 to -3.819) | 54.2% | 80.1% | 88.5% |
+| rush_att | 2,029 | B4 | 3.125 | 2.896 | -0.230 (-0.269 to -0.188) | 56.0% | 83.3% | 90.8% |
+| rush_yds | 2,029 | B3 | 18.554 | 17.423 | -1.131 (-1.431 to -0.818) | 48.6% | 78.8% | 88.3% |
+| rec | 4,738 | B4 | 1.221 | 1.223 | +0.002 (-0.010 to +0.016) | 64.5% | 89.6% | 96.4% |
+| rec_yds | 4,738 | B4 | 17.150 | 16.530 | -0.620 (-0.745 to -0.470) | 53.7% | 86.0% | 94.5% |
 
 ## Fitted on 2018-2021
 
@@ -30,7 +30,7 @@ the interval is a week-clustered bootstrap.
 - Chance an active skill player takes a snap, fit seasons: 83.4% overall (QB 56.5%, RB 77.4%, TE 93.5%, WR 92.5%).
 - Targets per pass attempt 0.964; sacks per attempt 0.068; scrambles as a share of quarterback carries 0.43.
 
-Mean of the runs minus mean of the outcomes, by market: pass_att -0.74, pass_yds -0.53, rush_att -0.32, rush_yds -0.92, rec +0.07, rec_yds +1.12.
+Mean of the runs minus mean of the outcomes, by market: pass_att -0.38, pass_yds +2.02, rush_att -0.36, rush_yds -1.03, rec +0.11, rec_yds +1.59.
 
 ## Reading (limits of this comparison)
 

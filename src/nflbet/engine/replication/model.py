@@ -66,7 +66,8 @@ def fit(df: pl.DataFrame, teams: pl.DataFrame, pools: dict) -> dict:
     df = df.join(teams.select(*KEY, pl.col("team_att").alias("T_attempts"), pl.col("team_carries").alias("T_carries"),
                               pl.col("team_targets").alias("T_targets")), on=KEY, how="inner").sort(*KEY, "player_id")
     first = df.group_by(KEY, maintain_order=True).first()
-    tf = first.join(teams.select(*KEY, "team_att", "team_carries", "team_targets", "team_sacks", "team_scrambles"), on=KEY)
+    # Sorted: a join does not promise row order, and the residuals are later drawn by position in this list.
+    tf = first.join(teams.select(*KEY, "team_att", "team_carries", "team_targets", "team_sacks", "team_scrambles"), on=KEY).sort(KEY)
     P = {"version": VERSION, "env": V.fit(tf, tf.select("team_att", "team_carries").to_numpy().astype(float), tf["team_targets"].to_numpy())}
     played, keys = everyone["played"].to_numpy().astype(float), np.array(play_bucket(everyone))
     cell = {k: float(played[keys == k].mean()) for k in np.unique(keys) if (keys == k).sum() >= 30}
