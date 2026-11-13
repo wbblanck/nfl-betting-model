@@ -68,3 +68,12 @@ and its rules are frozen in their own file first.
 - Any price as a model input (tests/test_engine.py enforces the import rule; the perturbation test in
   docs/engine/TEST_PLAN.md enforces it on outputs).
 - Blending the two engines before each has its own Test S and Test M result.
+
+## Amendment 2026-11-13: Test S sample and baselines frozen (before any 2024-2025 outcome is scored)
+- Sample filter, as the Test S section promised to freeze: a player-game counts when the player had at least 2 of
+  his last 3 games on record and, per game in them, at least 15 pass attempts (pass_att, pass_yds), 5 carries
+  (rush_att, rush_yds) or 3 targets (rec, rec_yds). Code: `nflbet.engine.baselines.eligible`. Set before any result
+  was computed and not tuned.
+- Baseline per market, chosen on 2022-2023 by mean CRPS (docs/engine/baselines.md, constants in
+  data/backtests/engine_baselines.json): pass_att B5, pass_yds B3, rush_att B4, rush_yds B3, rec B4, rec_yds B4.
+  These are what each engine is compared with in Test S.

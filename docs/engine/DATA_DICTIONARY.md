@@ -34,16 +34,22 @@ known-at time is before T. Coverage by season is not asserted here; phase 1 meas
 | Novig catalog | `data/live/novig_books/<stamp>/markets.json.gz` | marketId, eventId, marketType, strike, status, voids, fee, outcomes[].bid{price, qty}, volume, openInterest | `summary.json: catalog_fetched_utc` |
 | Novig books | `.../books.jsonl.gz` | marketId, seq, orders by outcome (orderId, price, qty), depth 20 | each line's `fetched_utc` |
 
-## Feature families (phase 2; each feature records the latest known-at time it used)
-- **Team:** plays, dropback rate, pass rate over expected, pace (seconds per snap), yards per dropback and per carry,
-  sack and scramble rates, red-zone trips; rolling 3, 5, 8 games, season to date, previous season.
-- **Opponent:** the same allowed, plus pressure rate and yards allowed by position group.
-- **Player usage:** snap share, routes per dropback, targets per route, target share, air-yards share, depth of
-  target, carry share by down and distance, goal-line and red-zone shares, two-minute usage, slot and wide rates.
-- **Quarterback:** dropbacks, designed runs, scramble rate, time to throw, air yards per attempt.
-- **Personnel:** which teammates at the same position are active; offensive-line continuity; quarterback change.
-- **Situation:** home, rest days, roof, surface, forecast wind and temperature, divisional game.
-Rolling windows are inputs to fitted models; none is a hand-weighted average that sets the answer.
+## Features (phase 2, built: `engine/features/`)
+One row per skill player (QB, RB, WR, TE) per regular-season game he played or was active for. A row holds sums over EARLIER
+games only: its own game and every later game are excluded (`docs/engine/feature_check.md`).
+- **Windows:** the subject's last 3, 5 and 8 games (across seasons), this season before the game, all of last
+  season; each with its game count (`n_w3` ... `n_prev`) and `last_kickoff`.
+- **`p_*` player:** offensive snaps, attempts, completions, passing yards, sacks taken, carries, rushing yards,
+  targets, receptions, receiving yards; his team's attempts, carries, targets and dropbacks in the games he played;
+  dropbacks he was on the field for and the team's charted dropbacks (2016 on; the routes stand-in).
+- **`o_*` his offense, `d_*` the opposing defense (what offenses did against it):** attempts, completions, passing
+  yards, sacks, carries, rushing yards, targets, scrambles, dropbacks, plays.
+- Features are sums, not ratios: a model divides window totals (targets by team targets, yards by carries).
+- Rows: everyone who played, plus everyone on the game-day active list who did not (`played` False; weekly roster
+  status ACT, published about 90 minutes before kickoff). A game someone did not play adds nothing to his sums.
+  `played` is a fact about the game, not a feature; it defines the Test S sample and is never a model input.
+- Not built yet: coverage, pressure, personnel groupings, weather, rest, injuries, depth chart. Each is added only
+  with its own as-of rule and the same scramble test.
 
 ## Engine records (written once, hash-chained by `engine/ledger.py`)
 | Record | Fields |
