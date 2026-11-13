@@ -85,8 +85,11 @@ Stat rows plus a zero row for anyone with offensive snaps and no stat row. Snap 
 
 - Snap counts start in 2013 and participation and Next Gen Stats in 2016, so snap-based role features exist
   for every fit, tune and test season (2018 on) but not for all of the 2010-2017 history window.
-- The participation `route` column is one value per pass play, not one per receiver. Routes run per player are
-  not published; route participation has to be derived from who was on the field on dropbacks.
+- Routes run per player are not in the free nflverse feeds: the participation `route` column is one value per
+  pass play, and the nflverse Next Gen Stats files have no routes column. Route participation is derived from
+  who was on the field on dropbacks, which overstates it for tight ends and running backs who stay in to block.
+- Sumer Sports publishes routes run per player, but its terms of service (read 2026-11-13) forbid automated
+  collection and use of its content to develop or train machine-learning models, so it is not used.
 - Franchise codes differ between tables in older seasons (for example OAK and LV); `player_week.TEAM_ALIASES`
   maps them, and the roster agreement above is measured after mapping.
 - Injury rows carry `date_modified` through 2024 but the 2025 file has no such column, and only about half the
