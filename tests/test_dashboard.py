@@ -1,4 +1,5 @@
 """Known-answer checks for the S1 dashboard numbers (src/nflbet/dashboard.py)."""
+import json
 import datetime as dt
 
 import polars as pl
@@ -266,3 +267,17 @@ def test_mix_row_shows_ev_at_the_best_price_and_dk():
     assert "Check quote" in stray                              # 12.4 cents under DK
     neg = D.mix_row(mix_pick(p_side=0.5, edge=0.5 - 110 / 210), locked=False)
     assert 'class="ev neg"' in neg and "-4.5% EV" in neg
+
+
+def test_mix_row_market_ev_venue_row_and_count():
+    v = json.dumps({"Novig": [0.48, 200], "DraftKings (ParlayAPI)": [110 / 210, None], "FanDuel (ParlayAPI)": [0.53, None],
+                    "Kalshi": [0.47, 4.0]})
+    o = json.dumps({"Novig": [0.55, 200], "DraftKings (ParlayAPI)": [110 / 210, None], "FanDuel (ParlayAPI)": [0.51, None]})
+    r = mix_pick(best_venue="Novig", best_cost=0.48, best_odds=108.0, venues=v, venues_opp=o)
+    h = D.mix_row(r, locked=False)
+    fair = (0.5 + 0.53 / 1.04) / 2                             # DK and FanDuel de-vigged; Novig left out as the best
+    assert f'data-mev="{fair / 0.48 - 1:.4f}"' in h and f"Mkt {(fair / 0.48 - 1) * 100:+.1f}%" in h
+    assert 'data-nv="3"' in h                                  # Kalshi's $4 side is listed but does not count
+    assert 'class="vq thin"' in h and 'class="vq best"' in h and "$200" in h and "<svg class=\"strip\"" in h
+    dk_only = D.mix_row(mix_pick(), locked=False)              # no venue record: DK no-vig fair (p_over_dk 0.5)
+    assert f'data-mev="{0.5 / (110 / 210) - 1:.4f}"' in dk_only and 'data-nv="1"' in dk_only

@@ -172,3 +172,16 @@ def test_kalshi_markets_pages_and_series_fees(monkeypatch):
     m = V.ks_markets()
     assert [x["ticker"] for x in m] == ["a", "b"] and m[0]["_mult"] == 0.5 and m[0]["_series"] == "KXNFLREC"
     assert ("/markets", "c2") in calls
+
+
+def test_other_side_recorded_for_the_market_fair_price():
+    pmq = {("MIN|NO", "aaron jones", "rec", 3.5): {"over": 0.46, "under": 0.55, "fee": 0.0695}}
+    o = json.loads(_rows(pmq)["venues_opp"])
+    # the over at each venue: DK +120 = .4545, FanDuel +105 = .4878, Polymarket .46 + fee, Novig 1 - .40 = .60 ($9)
+    assert abs(o["DraftKings"][0] - 0.45455) < 1e-5 and abs(o["FanDuel"][0] - 0.4878) < 1e-4
+    assert abs(o["Polymarket US"][0] - (0.46 + 0.0695 * 0.46 * 0.54)) < 1e-5 and o["Novig"] == [0.6, 9.0]
+    from nflbet.props import market_ev as M
+    r = _rows(pmq)
+    fair, n = M.live_fair(r["venues"], r["venues_opp"], r["best_venue"])      # Novig best; its $9 over doesn't count anyway
+    p = sorted([0.6 / (0.6 + 0.45455), 0.565217 / (0.565217 + 0.4878), 0.567201 / (0.567201 + 0.46 + 0.0695 * 0.46 * 0.54)])
+    assert n == 3 and abs(fair - p[1]) < 1e-4

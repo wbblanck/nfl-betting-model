@@ -23,6 +23,7 @@ from nflbet.sources.ids import TEAM_FIX
 from nflbet.props import bestprice as Bp
 from nflbet.props import explain as Ex
 from nflbet.props import live as Lv
+from nflbet.props import market_ev as Mev
 
 ET = ZoneInfo("America/New_York")
 SEASON = 2026
@@ -1068,6 +1069,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[data-tip]:focus-visi
 .evc{display:flex;justify-content:flex-end}
 .ev{font:600 13px var(--mono);padding:3px 9px;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .ev.pos{background:var(--good-bg);color:var(--good)}.ev.neg{background:var(--idle-bg);color:var(--ink2)}
+.evc{flex-direction:column;align-items:flex-end;gap:3px}
+.ev.mkt{font-size:11.5px;padding:1px 8px;background:transparent;border:1px solid var(--line)}
+.ev.mkt.pos{border-color:var(--good);color:var(--good)}.ev.mkt.neg{color:var(--muted)}
+.venues{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center}
+.vq{font:12px var(--mono);border:1px solid var(--line);border-radius:4px;padding:1px 6px;color:var(--ink2);white-space:nowrap}
+.vq b{font:600 11.5px var(--display);letter-spacing:.04em;color:var(--ink);margin-right:2px}
+.vq .impl{display:inline;color:var(--muted);margin-left:3px}
+.vq.best{border-color:var(--good)}.vq.best b{color:var(--good)}.vq.thin{opacity:.55;border-style:dashed}
+.strip{flex:none;margin-right:4px}.strip .ax{stroke:var(--line);stroke-width:1}.strip .fair{stroke:var(--ink);stroke-width:1.5}
+.strip .v{fill:var(--accent);stroke:var(--surface);stroke-width:1}.strip .v.thin{fill:var(--surface);stroke:var(--muted)}
+.strip .b{fill:var(--good);stroke:var(--surface);stroke-width:1}
 .actual{font:11px var(--mono);color:var(--muted)}
 .news{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
 .detail{color:var(--ink2);font-size:13px}
@@ -1315,6 +1327,60 @@ def ev_pill(ev: float, where: str) -> str:
             f'{ev * 100:.1f}% EV</span>')
 
 
+def venue_quotes(r: dict) -> list[tuple[str, float, float | None, bool]]:
+    """(venue, cost, size, counts) for the pick's side, cheapest first, one row per venue name; an exchange with under
+    $10 behind its price or a cost of 97 cents or more is listed but does not count (bestprice.MIN_SIZE)."""
+    try:
+        v = json.loads(r.get("venues") or "{}")
+    except ValueError:
+        v = {}
+    out: dict = {}
+    for k, (c, sz) in v.items():
+        n = k.replace(" (ParlayAPI)", "")
+        if c is None or (n in out and out[n][0] <= float(c)):
+            continue
+        out[n] = (float(c), sz, Mev._counts(c, sz, n))
+    return sorted(((n, c, sz, ok) for n, (c, sz, ok) in out.items()), key=lambda x: x[1])
+
+
+def market_fair(r: dict, p_mkt: float) -> tuple[float, str]:
+    """Fair probability for the pick's side (docs/market_ev_preregistration.md, Part A): leave-one-out median over
+    two-sided venues, else DraftKings' no-vig probability."""
+    fair, n = Mev.live_fair(r.get("venues"), r.get("venues_opp"), r.get("best_venue"))
+    if fair is None:
+        return p_mkt, "DraftKings no-vig"
+    return fair, f"median of {n} other venues, de-vigged"
+
+
+def price_strip(q: list[tuple[str, float, float | None, bool]], fair: float, best: str) -> str:
+    """Each venue's implied % on one scale (best in green, thin quotes hollow) with a tick at the fair probability."""
+    pts = [c for _, c, _, ok in q] + [fair]
+    lo, hi = min(pts) - 0.01, max(pts) + 0.01
+    w, h = 150, 16
+    x = lambda v: 6 + (v - lo) / (hi - lo) * (w - 12)
+    out = [f'<svg class="strip" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" '
+           f'aria-label="Implied probability at each venue, tick at the fair probability {fair * 100:.1f}%">',
+           f'<line class="ax" x1="4" x2="{w - 4}" y1="{h / 2}" y2="{h / 2}"/>',
+           f'<line class="fair" x1="{x(fair):.1f}" x2="{x(fair):.1f}" y1="2" y2="{h - 2}"><title>fair {fair * 100:.1f}%</title></line>']
+    for n, c, _, ok in sorted(q, key=lambda t: t[0] == best):
+        cls = "b" if n == best else ("v" if ok else "v thin")
+        out.append(f'<circle class="{cls}" cx="{x(c):.1f}" cy="{h / 2}" r="4"><title>{esc(n)} {c * 100:.1f}%</title></circle>')
+    return "".join(out) + "</svg>"
+
+
+def venue_row(q: list[tuple[str, float, float | None, bool]], best: str, fair: float) -> str:
+    if not q:
+        return ""
+    cells = []
+    for n, c, sz, ok in q:
+        size = f" · ${float(sz):,.0f}" if sz not in (None, "") else ""
+        cls = "vq best" if n == best else ("vq" if ok else "vq thin")
+        tip = "Listed, but under $10 behind it or an empty side: not counted" if not ok else "All-in price, fees included"
+        cells.append(f'<span class="{cls}" title="{esc(tip)}"><b>{esc(n)}</b> {Bp.american(c):+.0f} '
+                     f'<span class="impl">{c * 100:.1f}%{esc(size)}</span></span>')
+    return f'<div class="venues">{price_strip(q, fair, best)}{"".join(cells)}</div>'
+
+
 def mix_row(r: dict, locked: bool, matchup: str = "") -> str:
     res = r["result"]
     rc = {"W": "win", "L": "loss"}.get(res, "idle")
@@ -1336,8 +1402,18 @@ def mix_row(r: dict, locked: bool, matchup: str = "") -> str:
         if (be - cost_b) * 100 > Bp.CHECK_CENTS:
             echip += chip("warn", "Check quote", "Over 10 cents cheaper than DraftKings: usually a stale or stray quote, so this EV is suspect")
     where = f"{book} {bo:+.0f}"
+    fair, fsrc = market_fair(r, p_mkt)
+    mev = Mev.ev(fair, cost_b)
+    q = venue_quotes(r)
+    nv = sum(1 for x in q if x[3]) or 1
+    mtip = (f"Market EV at {where}: fair probability {fair * 100:.1f}% ({fsrc}) ÷ the price's implied "
+            f"{cost_b * 100:.1f}% − 1. Line shopping against the other venues, no model involved. Unvalidated: the 2025 test "
+            "of this idea had too few bets to tell (docs/market_ev_report.md).")
+    mpill = (f'<span class="ev mkt {"pos" if mev > 0 else "neg"}" title="{esc(mtip)}" '
+             f'aria-label="Market EV {mev * 100:+.1f}%">Mkt {mev * 100:+.1f}%</span>')
     return (
-        f'<li class="pick mixp" data-edge="{edge:.4f}" data-edgeb="{edge_b:.4f}" data-ev="{ev_b:.4f}" data-book="{esc(book)}">'
+        f'<li class="pick mixp" data-edge="{edge:.4f}" data-edgeb="{edge_b:.4f}" data-ev="{ev_b:.4f}" data-mev="{mev:.4f}" '
+        f'data-nv="{nv}" data-book="{esc(book)}">'
         f'<div class="who"><span class="name">{esc(r["player"])}</span><span class="team">{esc(r["team"] or "")}</span>'
         + (f'<span class="team">{esc(matchup)}</span>' if matchup else "") + '</div>'
         f'<div class="bet"><span class="side-pill {esc(r["side"])}">{esc(r["side"])}</span> '
@@ -1353,8 +1429,9 @@ def mix_row(r: dict, locked: bool, matchup: str = "") -> str:
         f'<div class="res">{chip(rc, (RESULT_ICON.get(res, res) + " " + res) if res != "pending" else ("Locked" if locked else "Open"), "")}'
         + (f'<span class="actual">actual {float(r["actual"]):g}</span>' if r.get("actual") not in (None, "") else "")
         + '</div>'
-        f'<div class="evc">{ev_pill(ev_b, where)}</div>'
-        f'<div class="news">{echip}</div>'
+        f'<div class="evc">{ev_pill(ev_b, where)}{mpill}</div>'
+        + venue_row(q, book, fair)
+        + f'<div class="news">{echip}</div>'
         '</li>')
 
 
@@ -1370,7 +1447,14 @@ def mix_section(data: dict, now: dt.datetime) -> str:
             'the mix probability divided by that price\'s implied probability (fees included), minus 1. A 55% side at +100 '
             '(50% implied) shows 10.0% EV. It is only as good as the mix probability, which has not beaten DraftKings on '
             'return, so read it as the model\'s view, not a measured edge. Where the best price is not DraftKings, the EV at '
-            'DraftKings is in the chips below the pick.</p>')
+            'DraftKings is in the chips below the pick.</p>'
+            '<p class="note"><b>Market EV</b> (the "Mkt" pill) judges the same price against the other venues instead of our '
+            'model: the median of their no-vig probabilities, leaving out the venue with the best price, divided by the '
+            'price\'s implied probability, minus 1. It falls back to DraftKings\' no-vig price when fewer than two other '
+            'venues quote both sides. It is line shopping, not a forecast, and it is unvalidated: a pre-registered test on '
+            '2025 found too few bets to tell (<a href="' + REPO + 'docs/market_ev_report.md">report</a>). Under each pick, '
+            'every venue\'s price is listed with its implied % and the dollars behind it; the strip places them on one '
+            'scale, with the tick at the fair probability.</p>')
     if not runs.height:
         return head.format(title="Props mix: first run pending") + '<p class="empty">No runs yet.</p></section>'
     r = rec.with_columns(pl.col("units").cast(pl.Float64), pl.col("odds").cast(pl.Float64)) if rec.height else rec
@@ -1397,6 +1481,11 @@ def mix_section(data: dict, now: dt.datetime) -> str:
                     f'{j["n"]} props from weeks 10-18' if j.get("n") else "from week 10")
              + '</div></div></div></section>')
     cur = mix_current(props, runs, rec, data.get("mix_best"))
+    mb = data.get("mix_best")
+    if cur.height and mb is not None and mb.height:                   # each venue's quote on both sides, same run
+        keys = ["run_utc", "an_game_id", "player_id", "market", "side"]
+        vcols = ["venues"] + (["venues_opp"] if "venues_opp" in mb.columns else [])
+        cur = cur.join(mb.select(*keys, *vcols).unique(keys, keep="last"), on=keys, how="left")
     wk = int(runs["week"].cast(pl.Int64).max())
     games = runs.filter(pl.col("week") == str(wk)).sort("run_utc", descending=True).unique("an_game_id", keep="first").sort("start_time").to_dicts()
     blocks = []
@@ -1415,6 +1504,16 @@ def mix_section(data: dict, now: dt.datetime) -> str:
                    for x in allrows)
     books = sorted({mix_book(x)[0] for x in allrows}, key=lambda b: (b != "DraftKings", b))
 
+    def evs(x: dict) -> tuple[float, float]:
+        bk, bo = mix_book(x)
+        c = float(x["best_cost"]) if bk != "DraftKings" and x.get("best_cost") not in (None, "") else break_even(bo)
+        pm = float(x["p_over_dk"]) if x["side"] == "over" else 1 - float(x["p_over_dk"])
+        return model_ev(float(x["p_side"]), c), Mev.ev(market_fair(x, pm)[0], c)
+    ev_all = [evs(x) for x in allrows]
+    n_model, n_mkt = sum(a > 0 for a, _ in ev_all), sum(b > 0 for _, b in ev_all)
+    n_both = sum(a > 0 and b > 0 for a, b in ev_all)
+    nvmax = max([sum(1 for q in venue_quotes(x) if q[3]) for x in allrows] or [1])
+
     def grp(name: str, label: str, opts: list[tuple[str, str]]) -> str:
         return (f'<div class="filters" role="group" aria-label="{esc(label)}"><span class="eyebrow" style="align-self:center">{esc(label)}</span>'
                 + "".join(f'<button type="button" data-mix="{name}" data-val="{esc(v)}" aria-pressed="{"true" if i == 0 else "false"}">{esc(t)}</button>'
@@ -1423,9 +1522,14 @@ def mix_section(data: dict, now: dt.datetime) -> str:
                 + grp("edge", "Edge", [("all", "All"), ("dk", "+ at DK"), ("best", "+ at best price")])
                 + grp("book", "Best price at", [("all", "All")] + [(b, b) for b in books])
                 + grp("min", "Min edge", [("0", "Any"), ("1", "1+ pts"), ("2", "2+ pts"), ("3", "3+ pts"), ("4", "4+ pts")])
-                + grp("sort", "Sort", [("game", "By game"), ("edge", "By DK edge"), ("edgeb", "By best-price edge"), ("ev", "By model EV")])
+                + grp("mev", "Market EV", [("all", "All"), ("pos", "+ market EV")])
+                + grp("nv", "Venues quoting", [("0", "Any")] + [(str(k), f"{k}+") for k in range(2, nvmax + 1)])
+                + grp("sort", "Sort", [("game", "By game"), ("edge", "By DK edge"), ("edgeb", "By best-price edge"),
+                                       ("ev", "By model EV"), ("mev", "By market EV")])
                 + '<p class="note">Min edge uses DraftKings\' price when Edge is "+ at DK", otherwise the best price. '
                 'Pair "Best price at: Novig" with "By best-price edge" to see the biggest Novig edges first.</p>'
+                + f'<p class="note"><b>This week:</b> {len(allrows)} picks; {n_model} with model EV above 0, {n_mkt} with market EV '
+                f'above 0, {n_both} with both. "Venues quoting" counts venues with a usable price on the pick\'s side.</p>'
                 + '<p class="note" id="mixcount" aria-live="polite"></p></div>')
     flatview = (f'<div class="games" id="mixflat" hidden><section class="game"><header><h3 id="mixflath">All picks, highest edge first</h3></header>'
                 f'<ul class="picks">{flat or "<li class=none>No picks.</li>"}</ul></section></div>')
@@ -1447,27 +1551,29 @@ def mix_section(data: dict, now: dt.datetime) -> str:
 
 MIX_JS = """
 (function(){
-  var st={edge:'all',book:'all',min:'0',sort:'game'};
+  var st={edge:'all',book:'all',min:'0',sort:'game',mev:'all',nv:'0'};
   try{var s=JSON.parse(localStorage.getItem('mix-filters')||'{}');for(var k in s)if(k in st)st[k]=s[k]}catch(e){}
   var bs=document.querySelectorAll('button[data-mix]');if(!bs.length)return;
   if(!document.querySelector('button[data-mix="book"][data-val="'+st.book+'"]'))st.book='all';
   if(!document.querySelector('button[data-mix="min"][data-val="'+st.min+'"]'))st.min='0';
   if(!document.querySelector('button[data-mix="sort"][data-val="'+st.sort+'"]'))st.sort='game';
+  if(!document.querySelector('button[data-mix="nv"][data-val="'+st.nv+'"]'))st.nv='0';
   function apply(){
     bs.forEach(function(b){b.setAttribute('aria-pressed',st[b.getAttribute('data-mix')]===b.getAttribute('data-val')?'true':'false')});
     var g=document.getElementById('mixgames'),f=document.getElementById('mixflat');
     g.hidden=st.sort!=='game';f.hidden=st.sort==='game';
     if(st.sort!=='game'){
-      var key=st.sort==='ev'?'data-ev':st.sort==='edgeb'?'data-edgeb':'data-edge',ul=f.querySelector('.picks');
+      var key=st.sort==='mev'?'data-mev':st.sort==='ev'?'data-ev':st.sort==='edgeb'?'data-edgeb':'data-edge',ul=f.querySelector('.picks');
       Array.prototype.slice.call(ul.querySelectorAll('.pick')).sort(function(a,b){return parseFloat(b.getAttribute(key))-parseFloat(a.getAttribute(key))})
         .forEach(function(p){ul.appendChild(p)});
-      var h=document.getElementById('mixflath');if(h)h.textContent=st.sort==='ev'?'All picks, highest model EV first':st.sort==='edgeb'?'All picks, highest best-price edge first':'All picks, highest DraftKings edge first';
+      var h=document.getElementById('mixflath');if(h)h.textContent=st.sort==='mev'?'All picks, highest market EV first':st.sort==='ev'?'All picks, highest model EV first':st.sort==='edgeb'?'All picks, highest best-price edge first':'All picks, highest DraftKings edge first';
     }
     var n=0,box=st.sort==='game'?g:f,min=parseFloat(st.min)/100;
     document.querySelectorAll('#mixgames .pick,#mixflat .pick').forEach(function(p){
       var e=parseFloat(p.getAttribute(st.edge==='dk'?'data-edge':'data-edgeb'));
       var e0=parseFloat(p.getAttribute(st.edge==='best'?'data-edgeb':'data-edge'));
-      var ok=(st.edge==='all'||e0>0)&&(min<=0||e>=min-1e-9)&&(st.book==='all'||p.getAttribute('data-book')===st.book);
+      var ok=(st.edge==='all'||e0>0)&&(min<=0||e>=min-1e-9)&&(st.book==='all'||p.getAttribute('data-book')===st.book)
+        &&(st.mev==='all'||parseFloat(p.getAttribute('data-mev'))>0)&&(parseInt(p.getAttribute('data-nv')||'1')>=parseInt(st.nv));
       p.hidden=!ok;if(ok&&box.contains(p))n++;
     });
     g.querySelectorAll('.game').forEach(function(x){x.hidden=!!x.querySelector('.pick')&&!x.querySelector('.pick:not([hidden])')});

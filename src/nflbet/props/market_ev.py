@@ -41,7 +41,8 @@ def _name(v: str) -> str:
 def _counts(cost, size, venue: str) -> bool:
     if cost is None or float(cost) >= MAX_COST:
         return False
-    return not (_name(venue) in EXCHANGES and (size is None or float(size) < MIN_SIZE))
+    # as bestprice.MIN_SIZE: an exchange side needs $10 of payout; an unread size (Polymarket book down) still counts
+    return not (_name(venue) in EXCHANGES and size is not None and float(size) < MIN_SIZE)
 
 
 def live_fair(venues: str | None, venues_opp: str | None, best_venue: str | None) -> tuple[float | None, int]:
