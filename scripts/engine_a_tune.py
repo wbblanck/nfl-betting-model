@@ -120,8 +120,11 @@ def main() -> int:
           "- Two earlier runs of this comparison were wrong in opposite directions and are not reported: one told the",
           "  engine who actually played (hindsight, flattering it), the other made it forecast for players regardless of",
           "  whether they played (scoring it on outcomes that are void).",
-          "- The expected starting quarterback is guessed from earlier games. A starter returning from injury is not",
-          "  recognized, which hurts the engine on those rows; a depth-chart input would fix it and is not built.",
+          "- The expected starting quarterback is the recent starter if there is one, otherwise the depth chart's number",
+          "  one, otherwise the active quarterback with the most recent volume. On 2018-2021 that names the actual leader",
+          "  in attempts in 92.8% of team-games. A change announced during the week and not yet on the chart is missed.",
+          "- The weekly depth charts through 2024 carry no timestamp and are taken as that week's pregame chart; from",
+          "  2025 they are dated and only a chart from before game day is used.",
           "- Not in this version: play-by-play game script, the two teams drawn jointly, availability draws,",
           "  opponent-specific efficiency, touchdowns, interceptions."]
     OUT_JSON.write_text(json.dumps(res, indent=1) + "\n")

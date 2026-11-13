@@ -647,3 +647,37 @@ def test_active_list_comes_from_roster_status_only():
     a = F.active(ros, tg)
     assert sorted(a["player_id"].to_list()) == ["a", "d"]            # inactive, kicker, no ID and the bye week are all left out
     assert a["game_id"].to_list() == ["g1", "g1"] and a["team"].to_list() == ["LV", "LV"]
+
+
+def test_depth_rank_uses_only_charts_dated_before_game_day():
+    import polars as pl
+    from nflbet.engine.features import facts as F
+    tg = pl.DataFrame({"game_id": ["g1", "g2", "h1"], "season": [2025, 2025, 2024], "week": [1, 2, 3], "team": ["LV", "LV", "LV"],
+                       "kickoff": ["2025-09-07 13:00", "2025-09-14 13:00", "2024-09-22 13:00"]})
+    def snap(dt, a, b):
+        return [{"dt": dt, "team": "OAK", "gsis_id": a, "pos_abb": "QB", "pos_rank": 1}, {"dt": dt, "team": "OAK", "gsis_id": b, "pos_abb": "QB", "pos_rank": 2},
+                {"dt": dt, "team": "OAK", "gsis_id": "wr", "pos_abb": "WR", "pos_rank": 1}]
+    dated = pl.DataFrame(snap("2025-09-03T10:00:00Z", "old", "new") + snap("2025-09-07T09:00:00Z", "new", "old")      # game-day chart: too late for g1
+                         + snap("2025-09-20T09:00:00Z", "later", "new"))                                              # after both games
+    weekly = pl.DataFrame({"season": [2024, 2024, 2024], "week": [3, 3, 4], "club_code": ["OAK"] * 3, "game_type": ["REG"] * 3,
+                           "position": ["QB"] * 3, "formation": ["Offense"] * 3, "gsis_id": ["w1", "w2", "w9"], "depth_team": ["1", "2", "1"]})
+    d = {(r["game_id"], r["player_id"]): r["depth_rank"] for r in F.depth_rank(weekly, dated, tg).iter_rows(named=True)}
+    assert d == {("g1", "old"): 1, ("g1", "new"): 2,              # the chart from four days before, not the game-day one
+                 ("g2", "new"): 1, ("g2", "old"): 2,              # by week 2 the game-day chart of week 1 is known
+                 ("h1", "w1"): 1, ("h1", "w2"): 2}                # weekly format: that week's chart; week 4 has no game here
+
+
+def test_pick_starter_order():
+    import polars as pl
+    from nflbet.engine.replication import model as M
+    def qb(pid, att3, team3, last, depth, w8):
+        return {"player_id": pid, "position": "QB", "p_attempts_w3": att3, "p_team_att_w3": team3, "p_last_kickoff": last,
+                "o_last_kickoff": "k", "depth_rank": depth, "p_attempts_w8": w8}
+    wr = {**qb("wr", 0, 100, "k", 9, 0), "position": "WR"}
+    recent = qb("recent", 90, 100, "k", 2, 200)                   # started the last three games; chart still lists him second
+    listed = qb("listed", 0, 100, "old", 1, 250)                  # chart's number one, back from injury, did not play last game
+    third = qb("third", 0, 100, "old", 9, 10)
+    assert M.pick_starter(pl.DataFrame([wr, listed, recent, third])) == (2, "starter_share")    # the recent starter outranks the chart
+    assert M.pick_starter(pl.DataFrame([wr, third, listed])) == (2, "starter_share")            # no recent starter: the chart decides
+    assert M.pick_starter(pl.DataFrame([wr, third, qb("vol", 0, 100, "old", 9, 99)])) == (2, "new_share")   # neither: volume, new-starter pool
+    assert M.pick_starter(pl.DataFrame([wr])) == (None, "new_share")

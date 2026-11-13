@@ -20,13 +20,16 @@ def load(seasons):
     return {"stats": N.read("player_stats", seasons), "snaps": N.read("snap_counts", snap),
             "pbp": N.read("pbp", seasons).select("game_id", "play_id", "posteam", "play_type", "qb_scramble", "two_point_attempt", "qb_dropback"),
             "part": N.read("participation", part).select("nflverse_game_id", "play_id", "offense_players"),
-            "rosters": N.read("rosters_weekly", seasons).select("gsis_id", "season", "week", "team", "position", "status", "game_type")}
+            "rosters": N.read("rosters_weekly", seasons).select("gsis_id", "season", "week", "team", "position", "status", "game_type"),
+            "depth_weekly": N.read("depth_charts", [s for s in seasons if s <= 2024]) if any(s <= 2024 for s in seasons) else None,
+            "depth_dated": N.read("depth_charts", [s for s in seasons if s >= 2025]) if any(s >= 2025 for s in seasons) else None}
 
 
 def features(raw, players, games, with_active=True):
     pw, rep = PW.build(raw["stats"], raw["snaps"], players)
     tg = F.team_game(raw["stats"], raw["pbp"], games)
-    return B.build(pw, tg, F.on_field(raw["part"], raw["pbp"]), F.active(raw["rosters"], tg) if with_active else None), rep
+    return B.build(pw, tg, F.on_field(raw["part"], raw["pbp"]), F.active(raw["rosters"], tg) if with_active else None,
+                   F.depth_rank(raw["depth_weekly"], raw["depth_dated"], tg)), rep
 
 
 def scramble(raw, late: set, seed=1):
@@ -50,7 +53,8 @@ def scramble(raw, late: set, seed=1):
     return {"stats": noise(raw["stats"], "game_id", PW.STATS), "snaps": noise(raw["snaps"], "game_id", ["offense_snaps"], keep_zero=True),
             "pbp": shuffle(raw["pbp"], "game_id", ["play_type", "qb_scramble", "qb_dropback", "two_point_attempt"]),
             "part": shuffle(raw["part"], "nflverse_game_id", ["offense_players"]),
-            "rosters": raw["rosters"]}                  # the active list is published before kickoff: not an outcome
+            "rosters": raw["rosters"],                  # the active list is published before kickoff: not an outcome
+            "depth_weekly": raw["depth_weekly"], "depth_dated": raw["depth_dated"]}     # nor is the depth chart
 
 
 def main() -> int:

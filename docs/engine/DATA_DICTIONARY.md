@@ -48,7 +48,9 @@ games only: its own game and every later game are excluded (`docs/engine/feature
 - Rows: everyone who played, plus everyone on the game-day active list who did not (`played` False; weekly roster
   status ACT, published about 90 minutes before kickoff). A game someone did not play adds nothing to his sums.
   `played` is a fact about the game, not a feature; it defines the Test S sample and is never a model input.
-- Not built yet: coverage, pressure, personnel groupings, weather, rest, injuries, depth chart. Each is added only
+- `depth_rank`: the player's rank on his team's pregame depth chart at quarterback (1 = listed starter, 9 = not
+  listed). Through 2024 the weekly chart for that week; from 2025 the latest dated chart from before game day.
+- Not built yet: coverage, pressure, personnel groupings, weather, rest, injuries, depth chart ranks at other positions. Each is added only
   with its own as-of rule and the same scramble test.
 
 ## Engine records (written once, hash-chained by `engine/ledger.py`)

@@ -1,4 +1,4 @@
-# Engine A A-0.2 on the tune seasons
+# Engine A A-0.3 on the tune seasons
 
 Written by `scripts/engine_a_tune.py`. Fitted on 2018-2021; every offense-game of 2022-2023 simulated
 2,000 times (1,086 offense-games). This is tuning, not Test S: no 2024-2025 outcome and no price was read.
@@ -10,12 +10,12 @@ the interval is a week-clustered bootstrap.
 
 | Market | Rows | Baseline | Baseline CRPS | Engine CRPS | Engine minus baseline (95% interval) | Engine central 50% covers | 80% | 90% |
 |---|---|---|---|---|---|---|---|---|
-| pass_att | 1,089 | B5 | 6.189 | 5.488 | -0.701 (-1.114 to -0.280) | 55.6% | 80.9% | 88.7% |
-| pass_yds | 1,089 | B3 | 53.601 | 46.801 | -6.800 (-9.785 to -3.819) | 54.2% | 80.1% | 88.5% |
-| rush_att | 2,029 | B4 | 3.125 | 2.896 | -0.230 (-0.269 to -0.188) | 56.0% | 83.3% | 90.8% |
-| rush_yds | 2,029 | B3 | 18.554 | 17.423 | -1.131 (-1.431 to -0.818) | 48.6% | 78.8% | 88.3% |
-| rec | 4,738 | B4 | 1.221 | 1.223 | +0.002 (-0.010 to +0.016) | 64.5% | 89.6% | 96.4% |
-| rec_yds | 4,738 | B4 | 17.150 | 16.530 | -0.620 (-0.745 to -0.470) | 53.7% | 86.0% | 94.5% |
+| pass_att | 1,089 | B5 | 6.189 | 5.355 | -0.834 (-1.194 to -0.468) | 55.5% | 80.4% | 88.6% |
+| pass_yds | 1,089 | B3 | 53.601 | 45.869 | -7.732 (-10.337 to -5.150) | 53.9% | 79.2% | 88.4% |
+| rush_att | 2,029 | B4 | 3.125 | 2.897 | -0.228 (-0.267 to -0.187) | 56.1% | 83.1% | 90.9% |
+| rush_yds | 2,029 | B3 | 18.554 | 17.432 | -1.122 (-1.424 to -0.808) | 48.6% | 78.8% | 88.4% |
+| rec | 4,738 | B4 | 1.221 | 1.223 | +0.002 (-0.010 to +0.015) | 64.5% | 89.5% | 96.4% |
+| rec_yds | 4,738 | B4 | 17.150 | 16.528 | -0.622 (-0.745 to -0.473) | 53.6% | 86.0% | 94.5% |
 
 ## Fitted on 2018-2021
 
@@ -26,11 +26,11 @@ the interval is a week-clustered bootstrap.
 
 - Catch-rate prior strength: 80 targets. Yards-per-catch factor: 80 catches. Yards-per-carry factor: 160 carries.
 - Team-wide yardage shock (standard deviation of the multiplier): receiving 0.065, rushing 0.000.
-- Expected starting quarterbacks in the fit seasons: 1,876; they threw every one of their team's passes in 78.4% of games and 95.6% of the passes on average.
+- Expected starting quarterbacks in the fit seasons: 1,920; they threw every one of their team's passes in 78.9% of games and 95.9% of the passes on average.
 - Chance an active skill player takes a snap, fit seasons: 83.4% overall (QB 56.5%, RB 77.4%, TE 93.5%, WR 92.5%).
 - Targets per pass attempt 0.964; sacks per attempt 0.068; scrambles as a share of quarterback carries 0.43.
 
-Mean of the runs minus mean of the outcomes, by market: pass_att -0.38, pass_yds +2.02, rush_att -0.36, rush_yds -1.03, rec +0.11, rec_yds +1.59.
+Mean of the runs minus mean of the outcomes, by market: pass_att -0.24, pass_yds +3.08, rush_att -0.35, rush_yds -1.01, rec +0.11, rec_yds +1.60.
 
 ## Reading (limits of this comparison)
 
@@ -47,7 +47,10 @@ Mean of the runs minus mean of the outcomes, by market: pass_att -0.38, pass_yds
 - Two earlier runs of this comparison were wrong in opposite directions and are not reported: one told the
   engine who actually played (hindsight, flattering it), the other made it forecast for players regardless of
   whether they played (scoring it on outcomes that are void).
-- The expected starting quarterback is guessed from earlier games. A starter returning from injury is not
-  recognized, which hurts the engine on those rows; a depth-chart input would fix it and is not built.
+- The expected starting quarterback is the recent starter if there is one, otherwise the depth chart's number
+  one, otherwise the active quarterback with the most recent volume. On 2018-2021 that names the actual leader
+  in attempts in 92.8% of team-games. A change announced during the week and not yet on the chart is missed.
+- The weekly depth charts through 2024 carry no timestamp and are taken as that week's pregame chart; from
+  2025 they are dated and only a chart from before game day is used.
 - Not in this version: play-by-play game script, the two teams drawn jointly, availability draws,
   opponent-specific efficiency, touchdowns, interceptions.

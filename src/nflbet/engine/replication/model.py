@@ -8,7 +8,7 @@ What the engine knows: the active list (published about 90 minutes before kickof
 know who goes on to play. A player's forecast is taken from the runs in which he plays, because a prop on a player
 who does not play is void; whether his teammates play stays uncertain in those runs.
 
-Not in 0.2 (docs/engine/MODEL_SPECIFICATION.md section 2): play-by-play game script, the two teams drawn jointly,
+Not in 0.3 (docs/engine/MODEL_SPECIFICATION.md section 2): play-by-play game script, the two teams drawn jointly,
 availability draws, opponent-specific efficiency, touchdowns and interceptions.
 """
 from __future__ import annotations
@@ -18,7 +18,7 @@ import polars as pl
 
 from nflbet.engine.replication import efficiency as E, environment as V, opportunity as O
 
-VERSION = "A-0.2"
+VERSION = "A-0.3"
 KINDS = {"targets": ("targets", "team_targets"), "carries": ("carries", "team_carries")}
 KEY = ["game_id", "team"]
 
@@ -51,6 +51,21 @@ def play_bucket(df: pl.DataFrame) -> list[str]:
 def play_prob(P: dict, df: pl.DataFrame) -> np.ndarray:
     t = P["play"]
     return np.array([t["cell"].get(k, t["pos"].get(k.split("|")[0], t["all"])) for k in play_bucket(df)])
+
+
+def pick_starter(df: pl.DataFrame) -> tuple[int | None, str]:
+    """(row of the quarterback expected to start among those active, which share pool to draw from).
+    Order: a recent starter (starter_flag) first; then the depth chart's rank; then volume over his last 8 games.
+    On 2018-2021 this named the actual leader in attempts in 92.8% of team-games (history alone 91.1%).
+    'starter_share' when he is a recent starter or the chart's number one, otherwise 'new_share'."""
+    qbs = np.flatnonzero((df["position"] == "QB").to_numpy())
+    if not len(qbs):
+        return None, "new_share"
+    flag = starter_flag(df)[qbs]
+    depth = (df["depth_rank"].to_numpy() if "depth_rank" in df.columns else np.full(df.height, 9))[qbs]
+    vol = df["p_attempts_w8"].to_numpy()[qbs]
+    i = int(np.lexsort((-vol, depth, ~flag))[0])
+    return int(qbs[i]), ("starter_share" if flag[i] or depth[i] == 1 else "new_share")
 
 
 def _lookup(table: dict, pos: np.ndarray) -> np.ndarray:
@@ -99,15 +114,13 @@ def fit(df: pl.DataFrame, teams: pl.DataFrame, pools: dict) -> dict:
         denoms = {w: pad(df[f"p_{tcol}_{w}"].to_numpy().astype(float)) for w in O.WINDOWS}
         f = O.fit(counts, denoms, pad(_lookup(prior, pos)), np.column_stack([xp, x_other]), max(other, 1e-4))
         P["opp"][kind] = {**f, "prior": prior}
-    flag = starter_flag(df)
-    qb = pos == "QB"
-    att_share = df["attempts"].to_numpy() / np.maximum(df["T_attempts"].to_numpy(), 1)
-    has_starter = pad(flag.astype(float)).max(axis=1)[gid] > 0
-    lead = np.zeros(len(gid), dtype=bool)                       # the quarterback with the most recent volume in his team-game
-    w8 = pad(np.where(qb, df["p_attempts_w8"].to_numpy() + 1e-3, -1.0))
-    lead[(w8.argmax(axis=1)[gid] == slot) & qb] = True
-    P["qb"] = {"starter_share": np.clip(att_share[flag], 0, 1).tolist(),
-               "new_share": np.clip(att_share[qb & ~has_starter & lead], 0, 1).tolist()}
+    pools_qb = {"starter_share": [], "new_share": []}
+    tot = dict(zip(zip(teams["game_id"].to_list(), teams["team"].to_list()), teams["team_att"].to_list()))
+    for (g, tm), rows in everyone.sort(*KEY, "player_id").group_by(KEY, maintain_order=True):
+        i, kind = pick_starter(rows)
+        if i is not None and rows["played"][i] and tot.get((g, tm), 0) > 0:     # share he took, given that he played
+            pools_qb[kind].append(float(min(rows["attempts"][i] / tot[(g, tm)], 1.0)))
+    P["qb"] = pools_qb
     rate = {p: float(df["receptions"].to_numpy()[pos == p].sum() / max(df["targets"].to_numpy()[pos == p].sum(), 1)) for p in E.POSITIONS if (pos == p).any()}
     rate["OTH"] = float(df["receptions"].sum() / df["targets"].sum())
     eff = {"catch_rate": rate, "mu": {}, "var": {}, "c": {}, "shock": {}}
@@ -153,11 +166,8 @@ def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.G
     k = len(pos)
     play = rng.random((sims, k)) < play_prob(P, rows)[None, :]
     qbs = np.flatnonzero(pos == "QB")
-    flag = starter_flag(rows)
-    top = None
-    if len(qbs):
-        cand = qbs[flag[qbs]] if flag[qbs].any() else qbs
-        top = int(cand[np.argmax(rows["p_attempts_w8"].to_numpy()[cand])])
+    top, key = pick_starter(rows)
+    if top is not None:
         play[:, top] = True                                     # someone has to take the snaps
     live = np.concatenate([play, np.ones((sims, 1), dtype=bool)], axis=1)
     alloc = {}
@@ -173,7 +183,6 @@ def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.G
     # a backup has a row. Any other quarterback with a row splits what is left; with none, it goes to "other".
     att = np.zeros((sims, k + 1), dtype=np.int64)
     if top is not None:
-        key = "starter_share" if flag[qbs].any() else "new_share"
         pool = np.array(P["qb"][key]) if len(P["qb"][key]) else np.array([1.0])
         att[:, top] = np.rint(a * pool[rng.integers(0, len(pool), sims)]).astype(np.int64)
         rest = [q for q in qbs if q != top]

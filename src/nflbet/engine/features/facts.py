@@ -67,3 +67,32 @@ def active(rosters: pl.DataFrame, team_game_: pl.DataFrame, positions=("QB", "RB
                  team_code("team").alias("team"), "position"))
     return (r.join(team_game_.select("game_id", "season", "week", "team"), on=["season", "week", "team"], how="inner")
             .unique(subset=["player_id", "game_id"], keep="first", maintain_order=True))
+
+
+def depth_rank(weekly: pl.DataFrame | None, dated: pl.DataFrame | None, team_game_: pl.DataFrame, position: str = "QB") -> pl.DataFrame:
+    """Depth-chart rank (1 = starter) of each listed player at a position, per team-game.
+
+    weekly: nflverse depth charts through 2024, one chart per team per week, taken as that week's pregame chart.
+    dated: the 2025-on format, snapshots with a UTC timestamp; a game uses the team's latest snapshot dated before
+    the game's calendar day. Charts do not track injuries (CLAUDE.md), so rank 1 may be inactive."""
+    out = []
+    tg = team_game_.select("game_id", "season", "week", "team", "kickoff")
+    if weekly is not None and weekly.height:
+        w = (weekly.filter((pl.col("game_type") == "REG") & (pl.col("position") == position) & (pl.col("formation") == "Offense")
+                           & pl.col("gsis_id").is_not_null())
+             .select(pl.col("season").cast(pl.Int64), pl.col("week").cast(pl.Int64), team_code("club_code").alias("team"),
+                     pl.col("gsis_id").alias("player_id"), pl.col("depth_team").cast(pl.Int64, strict=False).alias("depth_rank")))
+        out.append(w.join(tg, on=["season", "week", "team"], how="inner").select("game_id", "team", "player_id", "depth_rank"))
+    if dated is not None and dated.height:
+        d = (dated.filter((pl.col("pos_abb") == position) & pl.col("gsis_id").is_not_null())
+             .select(team_code("team").alias("team"), pl.col("dt").str.slice(0, 19).str.to_datetime("%Y-%m-%dT%H:%M:%S").alias("dt"),
+                     pl.col("gsis_id").alias("player_id"), pl.col("pos_rank").cast(pl.Int64).alias("depth_rank")))
+        snaps = d.select("team", "dt").unique().sort("dt")
+        day = tg.with_columns(pl.col("kickoff").str.slice(0, 10).str.to_datetime("%Y-%m-%d").alias("day")).sort("day")
+        day = day.filter(pl.col("day") >= snaps["dt"].min()) if snaps.height else day.head(0)
+        m = day.join_asof(snaps, left_on="day", right_on="dt", by="team", strategy="backward", allow_exact_matches=False)
+        out.append(m.filter(pl.col("dt").is_not_null()).join(d, on=["team", "dt"], how="inner").select("game_id", "team", "player_id", "depth_rank"))
+    if not out:
+        return pl.DataFrame(schema={"game_id": pl.Utf8, "team": pl.Utf8, "player_id": pl.Utf8, "depth_rank": pl.Int64})
+    return (pl.concat(out).drop_nulls("depth_rank").sort("depth_rank")
+            .unique(subset=["game_id", "team", "player_id"], keep="first", maintain_order=True))
