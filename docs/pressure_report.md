@@ -30,8 +30,8 @@ pressure on these seasons with a different recipe.
 
 ## Disclosures
 - PFR passing rows matched every regular-season team-game 2018-2023 (0 missing after mapping OAK to LV).
-- League pressure rate (PFR pressures per nflverse dropback) by season: 2018 0.254, 2019 0.254 (uses 2018),
-  then 2020 0.237, 2021 0.239, 2022 0.238, 2023 0.217 (each season's factors use the previous season's rate).
+- League pressure rate (PFR pressures per nflverse dropback) by season: 2018 0.254, 2019 0.237, 2020 0.239,
+  2021 0.238, 2022 0.217 (each season's factors divide by the previous season's rate; 2023's own rate is not used).
 - Spread of log D and log Q on confirm rows: 0.158 and 0.186 (wider than 2018's 0.105 in the power analysis, which
   had less history), so the power analysis was if anything conservative on spread.
 - The projection's opponent factor (existing code) divides by a league mean taken over every season in the frame,
