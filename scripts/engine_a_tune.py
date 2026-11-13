@@ -25,7 +25,9 @@ def load(seasons):
     pw, _ = PW.build(stats, N.read("snap_counts", seasons), N.read("players"))
     pbp = N.read("pbp", seasons)
     teams = F.team_game(stats, pbp, F.games(N.read("schedules")))
-    return feats.join(pw.select("player_id", "game_id", *OUTCOMES), on=["player_id", "game_id"], how="inner"), teams, pbp
+    df = feats.join(pw.select("player_id", "game_id", *OUTCOMES), on=["player_id", "game_id"], how="left")
+    assert df.filter(pl.col("played"))[OUTCOMES[0]].null_count() == 0          # everyone who played has an outcome row
+    return df.with_columns([pl.col(c).fill_null(0) for c in OUTCOMES]), teams, pbp   # active, did not play: zeros
 
 
 def pools(pbp: pl.DataFrame) -> dict:
@@ -77,7 +79,7 @@ def main() -> int:
          "| Market | Rows | Baseline | Baseline CRPS | Engine CRPS | Engine minus baseline (95% interval) | Engine central 50% covers | 80% | 90% |",
          "|---|---|---|---|---|---|---|---|---|"]
     for market, (ycol, _, _) in BL.MARKETS.items():
-        m = BL.eligible(tune, market).to_numpy()
+        m = BL.eligible(tune, market).to_numpy() & tune["played"].to_numpy()      # Test S sample: eligible and played
         rows, y = tune.filter(pl.Series(m)), tune[ycol].to_numpy()[m]
         b = base["markets"][market]
         chosen = b["chosen"]
@@ -99,6 +101,8 @@ def main() -> int:
           f"- Team-wide yardage shock (standard deviation of the multiplier): receiving {e['shock']['rec']:.3f}, rushing {e['shock']['rush']:.3f}.",
           f"- Expected starting quarterbacks in the fit seasons: {res['qb']['starters']:,}; they threw every one of their team's passes in "
           f"{res['qb']['starter_threw_all']:.1%} of games and {res['qb']['starter_mean_share']:.1%} of the passes on average.",
+          f"- Chance an active skill player takes a snap, fit seasons: {P['play']['all']:.1%} overall ("
+          + ", ".join(f"{k} {x:.1%}" for k, x in sorted(P["play"]["pos"].items())) + ").",
           f"- Targets per pass attempt {P['env']['target_rate']:.3f}; sacks per attempt {P['sack_rate']:.3f}; scrambles as a share of quarterback carries {P['scramble_share']:.2f}.",
           "", "Mean of the runs minus mean of the outcomes, by market: "
           + ", ".join(f"{k} {v['mean_bias']:+.2f}" for k, v in res["markets"].items()) + "."]
@@ -108,10 +112,16 @@ def main() -> int:
           "- In the passing markets much of the gap is shape, not a better average: the baseline is one negative binomial,",
           "  which is too wide for a starter's attempts (docs/engine/baselines.md), while the engine separates the usual",
           "  full game from the occasional short one.",
-          "- The engine is told which skill players took a snap. That matches the inactive list published before kickoff",
-          "  but also reveals a player who only appeared because of an in-game injury. The quarterback split does not use",
-          "  it (a starter's draw ignores whether a backup played). A roster-based active set replaces this in the",
-          "  personnel layer.",
+          "- What the engine is told: each team's game-day active list (published about 90 minutes before kickoff) and",
+          "  earlier games. It is not told who went on to play. Each player's forecast comes from the runs in which he",
+          "  plays, because a prop on a player who does not play is void; his teammates' participation stays uncertain.",
+          "  So these are forecasts as of the active list; a forecast made earlier in the week would also need",
+          "  availability drawn from the injury report, which is not built.",
+          "- Two earlier runs of this comparison were wrong in opposite directions and are not reported: one told the",
+          "  engine who actually played (hindsight, flattering it), the other made it forecast for players regardless of",
+          "  whether they played (scoring it on outcomes that are void).",
+          "- The expected starting quarterback is guessed from earlier games. A starter returning from injury is not",
+          "  recognized, which hurts the engine on those rows; a depth-chart input would fix it and is not built.",
           "- Not in this version: play-by-play game script, the two teams drawn jointly, availability draws,",
           "  opponent-specific efficiency, touchdowns, interceptions."]
     OUT_JSON.write_text(json.dumps(res, indent=1) + "\n")

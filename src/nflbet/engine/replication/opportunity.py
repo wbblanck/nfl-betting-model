@@ -49,6 +49,10 @@ def fit(counts: dict[str, np.ndarray], denoms: dict[str, np.ndarray], prior: np.
 
 
 def allocate(rng: np.random.Generator, total: np.ndarray, mu: np.ndarray, kappa: float) -> np.ndarray:
-    """total [sims] -> counts [sims, K]: shares ~ Dirichlet(kappa x mu), counts ~ Multinomial(total, shares)."""
-    g = rng.gamma(np.maximum(kappa * mu, 1e-9), size=(len(total), len(mu)))
+    """total [sims] -> counts [sims, K]: shares ~ Dirichlet(kappa x mu), counts ~ Multinomial(total, shares).
+    mu is [K], or [sims, K] when the expected shares differ by run (some players not playing in it); a slot with
+    mu = 0 gets exactly nothing."""
+    mu = np.broadcast_to(mu, (len(total), mu.shape[-1]))
+    g = np.where(mu > 0, rng.gamma(np.maximum(kappa * mu, 1e-9)), 0.0)
+    g[g.sum(axis=1) <= 0] = mu[g.sum(axis=1) <= 0]                # numerically empty draw: fall back to the mean shares
     return rng.multinomial(total, g / g.sum(axis=1, keepdims=True)).astype(np.int64)

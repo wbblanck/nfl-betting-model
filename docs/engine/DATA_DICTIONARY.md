@@ -35,7 +35,7 @@ known-at time is before T. Coverage by season is not asserted here; phase 1 meas
 | Novig books | `.../books.jsonl.gz` | marketId, seq, orders by outcome (orderId, price, qty), depth 20 | each line's `fetched_utc` |
 
 ## Features (phase 2, built: `engine/features/`)
-One row per player per regular-season game he played (QB, RB, WR, TE), 206 columns. A row holds sums over EARLIER
+One row per skill player (QB, RB, WR, TE) per regular-season game he played or was active for. A row holds sums over EARLIER
 games only: its own game and every later game are excluded (`docs/engine/feature_check.md`).
 - **Windows:** the subject's last 3, 5 and 8 games (across seasons), this season before the game, all of last
   season; each with its game count (`n_w3` ... `n_prev`) and `last_kickoff`.
@@ -45,8 +45,9 @@ games only: its own game and every later game are excluded (`docs/engine/feature
 - **`o_*` his offense, `d_*` the opposing defense (what offenses did against it):** attempts, completions, passing
   yards, sacks, carries, rushing yards, targets, scrambles, dropbacks, plays.
 - Features are sums, not ratios: a model divides window totals (targets by team targets, yards by carries).
-- A row exists because the player played, which is known only afterwards. That is fine for fitting and grading; live
-  predictions will build rows from the roster instead (phase 3 personnel layer).
+- Rows: everyone who played, plus everyone on the game-day active list who did not (`played` False; weekly roster
+  status ACT, published about 90 minutes before kickoff). A game someone did not play adds nothing to his sums.
+  `played` is a fact about the game, not a feature; it defines the Test S sample and is never a model input.
 - Not built yet: coverage, pressure, personnel groupings, weather, rest, injuries, depth chart. Each is added only
   with its own as-of rule and the same scramble test.
 

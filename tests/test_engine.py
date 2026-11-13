@@ -406,7 +406,10 @@ def test_features_ignore_everything_at_or_after_the_cutoff():
     from nflbet.engine.features import build as B
     import polars as pl
     cut = "2023-09-03 13:00"
-    base, scr = B.build(*_feature_inputs()), B.build(*_feature_inputs(scramble_from=cut))
+    pw0, tg0, _ = _feature_inputs()
+    act = pw0.select("player_id", "game_id", "team", "position").vstack(                 # everyone who played, plus an idle active player
+        tg0.select((pl.lit("IDLE_") + pl.col("team")).alias("player_id"), "game_id", "team", pl.lit("WR").alias("position")))
+    base, scr = B.build(*_feature_inputs(), act), B.build(*_feature_inputs(scramble_from=cut), act)
     keep = pl.col("kickoff") <= cut
     assert base.filter(keep).height > 0 and base.filter(keep).equals(scr.filter(keep))
     assert B.snapshot_hash(base.filter(keep)) == B.snapshot_hash(scr.filter(keep))
@@ -560,6 +563,7 @@ def _engine_a_inputs(seed=5, games=220):
             share = [0.4, 0.25, 0.2, 0.1, 0.05][k]
             for w, n in (("w3", 3), ("w5", 5), ("w8", 8), ("std", 6), ("prev", 16)):
                 r.update({f"p_n_{w}": n, f"p_targets_{w}": round(share * 33 * n), f"p_team_targets_{w}": 35 * n,
+                          f"p_offense_snaps_{w}": 50 * n,
                           f"p_carries_{w}": round([0.02, 0.02, 0.03, 0.8, 0.13][k] * 27 * n), f"p_team_carries_{w}": 27 * n,
                           f"p_attempts_{w}": 35 * n if pos == "QB" else 0, f"p_team_att_{w}": 35 * n,
                           f"p_receptions_{w}": round(share * 33 * n * 0.65), f"p_receiving_yards_{w}": round(share * 33 * n * 0.65 * 11),
@@ -592,6 +596,13 @@ def test_engine_a_fits_simulates_and_every_run_reconciles():
     box3, s3 = M.simulate(P2, tab, rows, 500, np.random.default_rng(1))
     assert np.abs(s3["attempts"][4] - box3["pass_att"] / 2).max() <= 0.5 and accounting.violations(box3) == {}
     assert (s["receptions"] <= s["targets"]).all() and (s["completions"][4] <= s["attempts"][4] + 1).all()
+    assert P["play"]["all"] == 1.0 and (M.play_prob(P, rows) == 1.0).all()           # everyone active plays in this league
+    Pq = {**P, "play": {"cell": {}, "pos": {"WR": 0.5}, "all": 1.0}}                 # now receivers play half the time
+    boxq, sq = M.simulate(Pq, tab, rows, 4000, np.random.default_rng(2))
+    assert accounting.violations(boxq) == {}
+    assert (boxq["targets"][:, 0] == 0).mean() == pytest.approx(0.5, abs=0.05)       # in half the runs he gets nothing...
+    assert (sq["targets"][0] == 0).mean() < 0.05                                     # ...but his forecast is from the runs he plays in
+    assert sq["targets"][0].mean() > s["targets"][0].mean()                          # and is larger: a teammate is often missing
     box2, s2 = M.simulate(P, tab, rows, 3000, np.random.default_rng(0))
     assert all((s[k] == s2[k]).all() for k in s)                                     # same seed, same runs
 
@@ -604,3 +615,35 @@ def test_crps_from_runs_matches_crps_from_the_distribution():
     runs = rng.negative_binomial(5.0, (5.0 / (5.0 + mean))[:, None], size=(40, 40_000))
     assert S.crps_samples(runs, y) == pytest.approx(S.crps(S.nb_cdf(mean, 5.0, 300), y), rel=0.03, abs=0.03)   # Monte Carlo error only
     assert S.coverage_samples(runs, y, 0.8) == pytest.approx(S.coverage(S.nb_cdf(mean, 5.0, 300), y, 0.8), abs=0.06)
+
+
+def test_active_list_rows_get_features_but_add_nothing_to_history():
+    import polars as pl
+    from nflbet.engine.features import build as B, facts as F
+    pw, tg, of = _feature_inputs()
+    # A1 missed 2022 week 3 but was on the active list; a new player Z9 is active for team A all of 2023 and never plays.
+    g3 = tg.filter((pl.col("team") == "A") & (pl.col("season") == 2022) & (pl.col("week") == 3))["game_id"][0]
+    a23 = tg.filter((pl.col("team") == "A") & (pl.col("season") == 2023)).sort("week")["game_id"].to_list()
+    act = pl.DataFrame({"player_id": ["A1"] + ["Z9"] * len(a23) + ["A0"], "game_id": [g3] + a23 + [a23[0]], "team": ["A"] * (len(a23) + 2),
+                        "position": ["WR"] * (len(a23) + 2)})                      # A0 played a23[0]: his active row must not duplicate him
+    base, f = B.build(pw, tg, of), B.build(pw, tg, of, act)
+    assert f.height == base.height + 1 + len(a23) and f.filter(pl.col("played")).height == base.height
+    k = ["player_id", "game_id"]
+    assert f.filter(pl.col("played")).drop("played").sort(k).equals(base.drop("played").sort(k))   # nobody's history changed
+    t = pw.filter(pl.col("player_id") == "A1").sort("season", "week")["targets"].to_list()
+    r = f.filter((pl.col("player_id") == "A1") & (pl.col("game_id") == g3)).row(0, named=True)
+    assert (r["played"], r["p_n_w3"], r["p_targets_w3"], r["p_n_std"]) == (False, 2, t[0] + t[1], 2)   # features as of week 3
+    z = f.filter(pl.col("player_id") == "Z9").sort("kickoff")
+    assert z["played"].sum() == 0 and z["p_n_w8"].sum() == 0 and z["p_targets_prev"].sum() == 0 and z["p_last_kickoff"].null_count() == len(a23)
+    assert z["o_n_w3"].to_list()[-1] == 3                                          # he still carries his team's features
+
+
+def test_active_list_comes_from_roster_status_only():
+    import polars as pl
+    from nflbet.engine.features import facts as F
+    ros = pl.DataFrame({"gsis_id": ["a", "b", "c", "d", None, "a"], "season": [2023] * 6, "week": [1, 1, 1, 1, 1, 2], "team": ["OAK"] * 6,
+                        "position": ["WR", "WR", "K", "QB", "RB", "WR"], "status": ["ACT", "INA", "ACT", "ACT", "ACT", "ACT"], "game_type": ["REG"] * 6})
+    tg = pl.DataFrame({"game_id": ["g1"], "season": [2023], "week": [1], "team": ["LV"]})
+    a = F.active(ros, tg)
+    assert sorted(a["player_id"].to_list()) == ["a", "d"]            # inactive, kicker, no ID and the bye week are all left out
+    assert a["game_id"].to_list() == ["g1", "g1"] and a["team"].to_list() == ["LV", "LV"]

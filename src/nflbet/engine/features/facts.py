@@ -55,3 +55,15 @@ def on_field(participation: pl.DataFrame, pbp: pl.DataFrame) -> pl.DataFrame:
            .filter(pl.col("player_id") != "").unique(subset=["game_id", "play_id", "player_id"])
            .group_by("game_id", "team", "player_id").agg(pl.len().cast(pl.Int64).alias("db_on_field")))
     return per.join(team, on=["game_id", "team"], how="left")
+
+
+def active(rosters: pl.DataFrame, team_game_: pl.DataFrame, positions=("QB", "RB", "WR", "TE")) -> pl.DataFrame:
+    """Skill players on each team's game-day active list (weekly roster status ACT), one row per player per game.
+    The list is published about 90 minutes before kickoff, so it is known before the game; it says nothing about
+    who goes on to play or get hurt."""
+    r = (rosters.filter((pl.col("game_type") == "REG") & (pl.col("status") == "ACT") & pl.col("position").is_in(positions)
+                        & pl.col("gsis_id").is_not_null())
+         .select(pl.col("gsis_id").alias("player_id"), pl.col("season").cast(pl.Int64), pl.col("week").cast(pl.Int64),
+                 team_code("team").alias("team"), "position"))
+    return (r.join(team_game_.select("game_id", "season", "week", "team"), on=["season", "week", "team"], how="inner")
+            .unique(subset=["player_id", "game_id"], keep="first", maintain_order=True))

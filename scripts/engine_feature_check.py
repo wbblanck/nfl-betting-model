@@ -19,12 +19,14 @@ def load(seasons):
     snap = [s for s in seasons if N.path("snap_counts", s).exists()]
     return {"stats": N.read("player_stats", seasons), "snaps": N.read("snap_counts", snap),
             "pbp": N.read("pbp", seasons).select("game_id", "play_id", "posteam", "play_type", "qb_scramble", "two_point_attempt", "qb_dropback"),
-            "part": N.read("participation", part).select("nflverse_game_id", "play_id", "offense_players")}
+            "part": N.read("participation", part).select("nflverse_game_id", "play_id", "offense_players"),
+            "rosters": N.read("rosters_weekly", seasons).select("gsis_id", "season", "week", "team", "position", "status", "game_type")}
 
 
-def features(raw, players, games):
+def features(raw, players, games, with_active=True):
     pw, rep = PW.build(raw["stats"], raw["snaps"], players)
-    return B.build(pw, F.team_game(raw["stats"], raw["pbp"], games), F.on_field(raw["part"], raw["pbp"])), rep
+    tg = F.team_game(raw["stats"], raw["pbp"], games)
+    return B.build(pw, tg, F.on_field(raw["part"], raw["pbp"]), F.active(raw["rosters"], tg) if with_active else None), rep
 
 
 def scramble(raw, late: set, seed=1):
@@ -47,7 +49,8 @@ def scramble(raw, late: set, seed=1):
         return df.with_columns([df[c].gather(idx).alias(c) for c in cols])
     return {"stats": noise(raw["stats"], "game_id", PW.STATS), "snaps": noise(raw["snaps"], "game_id", ["offense_snaps"], keep_zero=True),
             "pbp": shuffle(raw["pbp"], "game_id", ["play_type", "qb_scramble", "qb_dropback", "two_point_attempt"]),
-            "part": shuffle(raw["part"], "nflverse_game_id", ["offense_players"])}
+            "part": shuffle(raw["part"], "nflverse_game_id", ["offense_players"]),
+            "rosters": raw["rosters"]}                  # the active list is published before kickoff: not an outcome
 
 
 def main() -> int:
@@ -61,7 +64,8 @@ def main() -> int:
          "Written by `scripts/engine_feature_check.py` from the local warehouse. For each cut-off, every raw row of every",
          "game kicking off at or after it is scrambled (player stats, snap counts, play-by-play, participation), the whole",
          "pipeline is rebuilt, and the feature rows up to the cut-off are compared with the originals.", "",
-         f"Feature table: {base.height:,} player-games, {base.width} columns, seasons {seasons[0]}-{seasons[-1]}; "
+         f"Feature table: {base.height:,} player-games ({int(base['played'].sum()):,} played, the rest on the game-day active list "
+         f"without playing), {base.width} columns, seasons {seasons[0]}-{seasons[-1]}; "
          f"contents hash `{B.snapshot_hash(base)[:16]}`.", "",
          "| Cut-off kickoff | Games scrambled | Rows up to cut-off | Identical | Later rows changed |", "|---|---|---|---|---|"]
     ok = True

@@ -1,4 +1,4 @@
-# Engine A A-0.1 on the tune seasons
+# Engine A A-0.2 on the tune seasons
 
 Written by `scripts/engine_a_tune.py`. Fitted on 2018-2021; every offense-game of 2022-2023 simulated
 2,000 times (1,086 offense-games). This is tuning, not Test S: no 2024-2025 outcome and no price was read.
@@ -10,12 +10,12 @@ the interval is a week-clustered bootstrap.
 
 | Market | Rows | Baseline | Baseline CRPS | Engine CRPS | Engine minus baseline (95% interval) | Engine central 50% covers | 80% | 90% |
 |---|---|---|---|---|---|---|---|---|
-| pass_att | 1,089 | B5 | 6.189 | 5.094 | -1.094 (-1.459 to -0.699) | 55.3% | 82.7% | 90.7% |
-| pass_yds | 1,089 | B3 | 53.601 | 43.655 | -9.946 (-12.761 to -6.961) | 57.3% | 83.2% | 91.4% |
-| rush_att | 2,029 | B4 | 3.125 | 2.892 | -0.233 (-0.281 to -0.184) | 54.3% | 81.8% | 90.0% |
-| rush_yds | 2,029 | B3 | 18.554 | 17.381 | -1.173 (-1.481 to -0.842) | 47.3% | 78.4% | 88.0% |
-| rec | 4,738 | B4 | 1.221 | 1.225 | +0.004 (-0.010 to +0.019) | 64.2% | 89.2% | 96.0% |
-| rec_yds | 4,738 | B4 | 17.150 | 16.540 | -0.609 (-0.759 to -0.438) | 54.2% | 85.7% | 94.0% |
+| pass_att | 1,089 | B5 | 6.189 | 5.481 | -0.708 (-1.120 to -0.283) | 53.3% | 80.9% | 88.3% |
+| pass_yds | 1,089 | B3 | 53.601 | 46.717 | -6.884 (-9.779 to -3.976) | 54.1% | 79.3% | 88.5% |
+| rush_att | 2,029 | B4 | 3.125 | 2.895 | -0.231 (-0.270 to -0.189) | 55.6% | 82.8% | 90.6% |
+| rush_yds | 2,029 | B3 | 18.554 | 17.423 | -1.131 (-1.425 to -0.817) | 48.5% | 78.9% | 88.3% |
+| rec | 4,738 | B4 | 1.221 | 1.222 | +0.001 (-0.011 to +0.014) | 64.7% | 89.4% | 96.1% |
+| rec_yds | 4,738 | B4 | 17.150 | 16.512 | -0.638 (-0.760 to -0.495) | 53.9% | 85.8% | 94.2% |
 
 ## Fitted on 2018-2021
 
@@ -27,9 +27,10 @@ the interval is a week-clustered bootstrap.
 - Catch-rate prior strength: 80 targets. Yards-per-catch factor: 80 catches. Yards-per-carry factor: 160 carries.
 - Team-wide yardage shock (standard deviation of the multiplier): receiving 0.065, rushing 0.000.
 - Expected starting quarterbacks in the fit seasons: 1,876; they threw every one of their team's passes in 78.4% of games and 95.6% of the passes on average.
+- Chance an active skill player takes a snap, fit seasons: 83.4% overall (QB 56.5%, RB 77.4%, TE 93.5%, WR 92.5%).
 - Targets per pass attempt 0.964; sacks per attempt 0.068; scrambles as a share of quarterback carries 0.43.
 
-Mean of the runs minus mean of the outcomes, by market: pass_att -0.28, pass_yds +2.42, rush_att -0.55, rush_yds -1.87, rec -0.05, rec_yds -0.26.
+Mean of the runs minus mean of the outcomes, by market: pass_att -0.74, pass_yds -0.53, rush_att -0.32, rush_yds -0.92, rec +0.07, rec_yds +1.12.
 
 ## Reading (limits of this comparison)
 
@@ -38,9 +39,15 @@ Mean of the runs minus mean of the outcomes, by market: pass_att -0.28, pass_yds
 - In the passing markets much of the gap is shape, not a better average: the baseline is one negative binomial,
   which is too wide for a starter's attempts (docs/engine/baselines.md), while the engine separates the usual
   full game from the occasional short one.
-- The engine is told which skill players took a snap. That matches the inactive list published before kickoff
-  but also reveals a player who only appeared because of an in-game injury. The quarterback split does not use
-  it (a starter's draw ignores whether a backup played). A roster-based active set replaces this in the
-  personnel layer.
+- What the engine is told: each team's game-day active list (published about 90 minutes before kickoff) and
+  earlier games. It is not told who went on to play. Each player's forecast comes from the runs in which he
+  plays, because a prop on a player who does not play is void; his teammates' participation stays uncertain.
+  So these are forecasts as of the active list; a forecast made earlier in the week would also need
+  availability drawn from the injury report, which is not built.
+- Two earlier runs of this comparison were wrong in opposite directions and are not reported: one told the
+  engine who actually played (hindsight, flattering it), the other made it forecast for players regardless of
+  whether they played (scoring it on outcomes that are void).
+- The expected starting quarterback is guessed from earlier games. A starter returning from injury is not
+  recognized, which hurts the engine on those rows; a depth-chart input would fix it and is not built.
 - Not in this version: play-by-play game script, the two teams drawn jointly, availability draws,
   opponent-specific efficiency, touchdowns, interceptions.
