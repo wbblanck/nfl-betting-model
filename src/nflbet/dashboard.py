@@ -1062,6 +1062,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[data-tip]:focus-visi
 .probs{display:grid;grid-template-columns:repeat(3,1fr);font:12.5px var(--mono);color:var(--ink2);text-align:right;font-variant-numeric:tabular-nums}
 .probs span:last-child{color:var(--accent);font-weight:600}
 .res{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.pick.mixp,.colhead.mixh{grid-template-columns:minmax(150px,1.3fr) minmax(170px,1.3fr) 104px 140px 84px 92px}
+.price .bk{font:600 12px var(--display);letter-spacing:.04em;color:var(--ink2);margin-right:2px}
+.price .impl{display:block;font:11.5px var(--mono);color:var(--muted)}
+.evc{display:flex;justify-content:flex-end}
+.ev{font:600 13px var(--mono);padding:3px 9px;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ev.pos{background:var(--good-bg);color:var(--good)}.ev.neg{background:var(--idle-bg);color:var(--ink2)}
 .actual{font:11px var(--mono);color:var(--muted)}
 .news{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
 .detail{color:var(--ink2);font-size:13px}
@@ -1178,6 +1184,7 @@ details.old .picks{margin-top:8px}
   .pick{grid-template-columns:1fr auto;grid-template-areas:"who price" "bet res" "probs probs"}
   .pick .who{grid-area:who}.pick .bet{grid-area:bet}.pick .price{grid-area:price}.pick .probs{grid-area:probs}
   .pick .res{grid-area:res}
+  .pick.mixp{grid-template-columns:1fr auto;grid-template-areas:"who ev" "bet price" "probs res"}.pick .evc{grid-area:ev}
   .probs{text-align:left;max-width:280px}
   .probs span:nth-child(1)::before{content:"BE ";color:var(--muted)}.probs span:nth-child(2)::before{content:"Mkt ";color:var(--muted)}
   .probs span:nth-child(3)::before{content:"Model ";color:var(--muted)}
@@ -1294,36 +1301,59 @@ def mix_book(r: dict) -> tuple[str, float]:
     return str(v).replace(" (ParlayAPI)", ""), float(o)
 
 
+def model_ev(p: float, cost: float) -> float:
+    """Model-estimated expected value per $1 staked: win probability over the price's cost per $1 of payout, minus 1.
+    `cost` is the break-even probability of the price (fees included for exchange prices). Not a validated edge."""
+    return p / cost - 1
+
+
+def ev_pill(ev: float, where: str) -> str:
+    kind = "pos" if ev > 0 else "neg"
+    tip = (f"Model-estimated EV per $1 staked at {where}: mix probability ÷ the price's break-even − 1. "
+           "Our probability, not a proven edge; 2025's 55%+ mix sides returned −0.3% at DraftKings.")
+    return (f'<span class="ev {kind}" title="{esc(tip)}" aria-label="Model-estimated EV {ev * 100:+.1f}% at {esc(where)}">'
+            f'{ev * 100:.1f}% EV</span>')
+
+
 def mix_row(r: dict, locked: bool, matchup: str = "") -> str:
     res = r["result"]
     rc = {"W": "win", "L": "loss"}.get(res, "idle")
     be = break_even(float(r["odds"]))
     p_mkt = float(r["p_over_dk"]) if r["side"] == "over" else 1 - float(r["p_over_dk"])
+    p = float(r["p_side"])
     edge = float(r["edge"])
     book, bo = mix_book(r)
-    edge_b = float(r["p_side"]) - break_even(bo)
+    cost_b = float(r["best_cost"]) if book != "DraftKings" and r.get("best_cost") not in (None, "") else break_even(bo)
+    edge_b = p - cost_b
+    ev_dk, ev_b = model_ev(p, be), model_ev(p, cost_b)
     echip = chip("win" if edge > 0 else "idle", f"Edge {edge * 100:+.1f} pts",
                  "Mix probability minus the break-even of DraftKings' price; shown, not part of the rule")
     if book != "DraftKings":
         echip += chip("win" if edge_b > 0 else "idle", f"{book} {edge_b * 100:+.1f} pts",
                       f"Edge at {book}'s price (record only)")
+        echip += chip("win" if ev_dk > 0 else "idle", f"EV at DK {ev_dk * 100:+.1f}%",
+                      "Model-estimated EV per $1 staked at DraftKings' price, the price every mix pick is scored on")
+        if (be - cost_b) * 100 > Bp.CHECK_CENTS:
+            echip += chip("warn", "Check quote", "Over 10 cents cheaper than DraftKings: usually a stale or stray quote, so this EV is suspect")
+    where = f"{book} {bo:+.0f}"
     return (
-        f'<li class="pick" data-edge="{edge:.4f}" data-edgeb="{edge_b:.4f}" data-book="{esc(book)}">'
+        f'<li class="pick mixp" data-edge="{edge:.4f}" data-edgeb="{edge_b:.4f}" data-ev="{ev_b:.4f}" data-book="{esc(book)}">'
         f'<div class="who"><span class="name">{esc(r["player"])}</span><span class="team">{esc(r["team"] or "")}</span>'
         + (f'<span class="team">{esc(matchup)}</span>' if matchup else "") + '</div>'
         f'<div class="bet"><span class="side-pill {esc(r["side"])}">{esc(r["side"])}</span> '
         f'<span class="line">{float(r["line"]):g}</span> <span class="mkt">{esc(MARKET.get(r["market"], r["market"]))}</span></div>'
-        f'<div class="price"><span class="actual" title="DraftKings price; every mix pick is scored on DraftKings">DK</span> '
-        f'{float(r["odds"]):+.0f}'
-        + (f'<span class="actual" style="display:block" title="Cheapest all-in price recorded at this line and side (record only)">best '
-           f'{esc(str(r["best_venue"]).replace(" (ParlayAPI)", ""))} {float(r["best_odds"]):+.0f}</span>' if r.get("best_venue") not in (None, "", "DraftKings") and r.get("best_odds") is not None
-           and float(r["best_odds"]) != float(r["odds"]) else "")
+        f'<div class="price"><span class="bk">{esc("DK" if book == "DraftKings" else book)}</span> {bo:+.0f}'
+        f'<span class="impl" title="Implied probability of this price (its break-even{", after fees" if book != "DraftKings" else ""})">'
+        f'{cost_b * 100:.1f}%</span>'
+        + (f'<span class="actual" style="display:block" title="DraftKings price; every mix pick is scored on DraftKings">DK '
+           f'{float(r["odds"]):+.0f}</span>' if book != "DraftKings" else "")
         + '</div>'
-        f'<div class="probs" title="Break-even for this price, DraftKings de-vigged, mix">'
-        f'<span>{fmt_pct(be)}</span><span>{fmt_pct(p_mkt)}</span><span>{fmt_pct(float(r["p_side"]))}</span></div>'
+        f'<div class="probs" title="Break-even for DraftKings\' price, DraftKings de-vigged, mix">'
+        f'<span>{fmt_pct(be)}</span><span>{fmt_pct(p_mkt)}</span><span>{fmt_pct(p)}</span></div>'
         f'<div class="res">{chip(rc, (RESULT_ICON.get(res, res) + " " + res) if res != "pending" else ("Locked" if locked else "Open"), "")}'
         + (f'<span class="actual">actual {float(r["actual"]):g}</span>' if r.get("actual") not in (None, "") else "")
         + '</div>'
+        f'<div class="evc">{ev_pill(ev_b, where)}</div>'
         f'<div class="news">{echip}</div>'
         '</li>')
 
@@ -1335,7 +1365,12 @@ def mix_section(data: dict, now: dt.datetime) -> str:
             '<p class="lede">DraftKings\' price blended with the game simulator, using weights fit on 2024 '
             '(<a href="' + REPO + 'docs/mix_live_rules.md">rules</a>). A pick is a side the mix gives 55% or more. On 2025 the mix '
             'beat DraftKings\' own price on log loss, but mostly by recalibrating that price, and its 55%+ sides returned −0.3% at '
-            'DraftKings odds. Picks are sorted by edge (mix minus break-even). Judged after week 18 on weeks 10-18.</p>')
+            'DraftKings odds. Picks are sorted by edge (mix minus break-even). Judged after week 18 on weeks 10-18.</p>'
+            '<p class="note"><b>Model EV</b> (the green pill) is our estimate of the return per $1 staked at the best price shown: '
+            'the mix probability divided by that price\'s implied probability (fees included), minus 1. A 55% side at +100 '
+            '(50% implied) shows 10.0% EV. It is only as good as the mix probability, which has not beaten DraftKings on '
+            'return, so read it as the model\'s view, not a measured edge. Where the best price is not DraftKings, the EV at '
+            'DraftKings is in the chips below the pick.</p>')
     if not runs.height:
         return head.format(title="Props mix: first run pending") + '<p class="empty">No runs yet.</p></section>'
     r = rec.with_columns(pl.col("units").cast(pl.Float64), pl.col("odds").cast(pl.Float64)) if rec.height else rec
@@ -1370,9 +1405,9 @@ def mix_section(data: dict, now: dt.datetime) -> str:
         locked = Lv.parse_ts(g["start_time"]) <= now
         body = "".join(mix_row(x, locked) for x in rows) if rows else '<li class="none">No side at 55% or more.</li>'
         blocks.append(game_block(g, rows, now, body))
-    colhead = ('<div class="colhead" aria-hidden="true"><span>Player</span><span>Bet</span><span class="r">Price</span>'
-               '<span class="p"><span title="Break-even for the price">BE</span><span title="DraftKings, de-vigged">Mkt</span>'
-               '<span title="Market + simulator mix">Mix</span></span><span class="r">Result</span></div>')
+    colhead = ('<div class="colhead mixh" aria-hidden="true"><span>Player</span><span>Bet</span><span class="r">Best price</span>'
+               '<span class="p"><span title="Break-even for DraftKings\' price">BE</span><span title="DraftKings, de-vigged">Mkt</span>'
+               '<span title="Market + simulator mix">Mix</span></span><span class="r">Result</span><span class="r">Model EV</span></div>')
     allrows = cur.sort("edge", descending=True).to_dicts() if cur.height else []
     gi = {g["an_game_id"]: g for g in games}
     flat = "".join(mix_row(x, Lv.parse_ts(gi[x["an_game_id"]]["start_time"]) <= now if x["an_game_id"] in gi else True,
@@ -1388,7 +1423,7 @@ def mix_section(data: dict, now: dt.datetime) -> str:
                 + grp("edge", "Edge", [("all", "All"), ("dk", "+ at DK"), ("best", "+ at best price")])
                 + grp("book", "Best price at", [("all", "All")] + [(b, b) for b in books])
                 + grp("min", "Min edge", [("0", "Any"), ("1", "1+ pts"), ("2", "2+ pts"), ("3", "3+ pts"), ("4", "4+ pts")])
-                + grp("sort", "Sort", [("game", "By game"), ("edge", "By DK edge"), ("edgeb", "By best-price edge")])
+                + grp("sort", "Sort", [("game", "By game"), ("edge", "By DK edge"), ("edgeb", "By best-price edge"), ("ev", "By model EV")])
                 + '<p class="note">Min edge uses DraftKings\' price when Edge is "+ at DK", otherwise the best price. '
                 'Pair "Best price at: Novig" with "By best-price edge" to see the biggest Novig edges first.</p>'
                 + '<p class="note" id="mixcount" aria-live="polite"></p></div>')
@@ -1423,10 +1458,10 @@ MIX_JS = """
     var g=document.getElementById('mixgames'),f=document.getElementById('mixflat');
     g.hidden=st.sort!=='game';f.hidden=st.sort==='game';
     if(st.sort!=='game'){
-      var key=st.sort==='edgeb'?'data-edgeb':'data-edge',ul=f.querySelector('.picks');
+      var key=st.sort==='ev'?'data-ev':st.sort==='edgeb'?'data-edgeb':'data-edge',ul=f.querySelector('.picks');
       Array.prototype.slice.call(ul.querySelectorAll('.pick')).sort(function(a,b){return parseFloat(b.getAttribute(key))-parseFloat(a.getAttribute(key))})
         .forEach(function(p){ul.appendChild(p)});
-      var h=document.getElementById('mixflath');if(h)h.textContent=st.sort==='edgeb'?'All picks, highest best-price edge first':'All picks, highest DraftKings edge first';
+      var h=document.getElementById('mixflath');if(h)h.textContent=st.sort==='ev'?'All picks, highest model EV first':st.sort==='edgeb'?'All picks, highest best-price edge first':'All picks, highest DraftKings edge first';
     }
     var n=0,box=st.sort==='game'?g:f,min=parseFloat(st.min)/100;
     document.querySelectorAll('#mixgames .pick,#mixflat .pick').forEach(function(p){
