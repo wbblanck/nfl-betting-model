@@ -2,9 +2,9 @@
 
 Rule S1: bet only props where all four signals agree (docs/simulator_confirm.md). NOT validated: in 2025 it
 went 38-23 (+5.2%) on 61 bets, an interval of -16% to +27%. Official pick = the last run before kickoff.
-Updated 2026-11-12 22:11 UTC.
+Updated 2026-11-13 00:49 UTC.
 
-**Season: 9-7, 56.2% wins, -0.95 units, ROI -5.9%** (pending 2, void 1)
+**Season: 9-7, 56.2% wins, -0.95 units, ROI -5.9%** (pending 0, void 1)
 
 | Week | W-L-P | Win % | Units | ROI |
 |---|---|---|---|---|
@@ -14,14 +14,12 @@ Updated 2026-11-12 22:11 UTC.
 News flags (descriptive; S1 unchanged), from ESPN at the pick's run. **Injury against** = an under whose teammate at the same position is Out / Doubtful / IR, or an over whose player is himself listed (from 2026-10-03). **Depth chart against** = the team's listed QB / RB starter differs from its recent usage leader, and the pick is an under on the new starter or an over on the old leader (from 2026-10-03).
 - Injury against: 5-2-0, +1.44 units (pending 0)
 - Depth chart against: 0-0-0 (pending 0)
-- Neither flag against: 4-5-0, -2.39 units (pending 2)
+- Neither flag against: 4-5-0, -2.39 units (pending 0)
 
 ## Picks
 
 | Week | Game | Player | Prop | Side | Line | Odds | News at pick | Result |
 |---|---|---|---|---|---|---|---|---|
-| 10 | MIA@IND | Tyler Warren | rec | under | 6.5 | -152 |  | pending |
-| 10 | PIT@CIN | Jaylen Warren | rec | under | 3.5 | -164 |  | pending |
 | 9 | LV@SF | George Kittle | rec | under | 6.5 | -145 |  | W |
 | 9 | HOU@LAC | Ladd McConkey | rec | under | 4.5 | -143 |  | void |
 | 4 | IND@WAS | Tyler Warren | rec | under | 6.5 | -150 | **Injury against** — WR Alec Pierce: Injured Reserve; WR Keenan Allen: Out | W |
