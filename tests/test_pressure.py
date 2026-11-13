@@ -55,10 +55,11 @@ def test_missing_pfr_game_skipped():
 def test_team_games_oak_and_missing():
     pfr = pl.DataFrame({"season": [2019, 2019], "week": [1, 1], "game_type": ["REG", "REG"], "team": ["OAK", "DEN"],
                         "times_pressured": [7.0, None]})
-    st = pl.DataFrame({"season": [2019] * 3, "week": [1] * 3, "team": ["LV", "LV", "DEN"],
-                       "opponent_team": ["DEN", "DEN", "LV"], "attempts": [30, 1, 35], "sacks_suffered": [2, 0, 1]})
+    st = pl.DataFrame({"season": [2019] * 4, "week": [1] * 4, "team": ["LV", "LV", "DEN", "LV"],
+                       "opponent_team": ["DEN", "DEN", "LV", None], "attempts": [30, 1, 35, 0],
+                       "sacks_suffered": [2, 0, 1, 0]})
     g = P.team_games(pfr, st).sort("team")
-    assert g["team"].to_list() == ["DEN", "LV"]
+    assert g["team"].to_list() == ["DEN", "LV"] and g["opponent"].to_list() == ["LV", "DEN"]
     assert g["pressures"].to_list() == [None, 7.0] and g["dropbacks"].to_list() == [None, 33.0]
 
 

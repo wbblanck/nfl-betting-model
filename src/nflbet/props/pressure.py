@@ -31,8 +31,10 @@ def team_games(pfr: pl.DataFrame, st: pl.DataFrame) -> pl.DataFrame:
          .with_columns(pl.col("team").replace(TEAM_FIX))
          .group_by("season", "week", "team").agg(pl.col("times_pressured").sum().alias("pressures"),
                                                   pl.col("times_pressured").is_null().all().alias("p_missing")))
-    d = (st.group_by("season", "week", "team", "opponent_team")
-         .agg((pl.col("attempts").fill_null(0) + pl.col("sacks_suffered").fill_null(0)).sum().cast(pl.Float64)
+    # one row per team-game even when a stray player row lacks the opponent (2018 week 7 ARI has one)
+    d = (st.group_by("season", "week", "team")
+         .agg(pl.col("opponent_team").drop_nulls().first(),
+              (pl.col("attempts").fill_null(0) + pl.col("sacks_suffered").fill_null(0)).sum().cast(pl.Float64)
               .alias("dropbacks")))
     g = d.join(p, on=["season", "week", "team"], how="left").with_columns(
         pl.col("season").cast(pl.Int64), pl.col("week").cast(pl.Int64))

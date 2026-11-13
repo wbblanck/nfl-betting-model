@@ -71,7 +71,8 @@ def power() -> None:
                 diff = (ys - truth) ** 2 - (ys - proj) ** 2
                 se = float(np.std(P.cluster_boot(diff, cl, n=1000, seed=int(rng.integers(1e9)))))
                 se_conf = se * np.sqrt(n_cl_burn / n_cl_conf)
-                pw.append(NormalDist().cdf(abs(diff.mean()) / se_conf - z))
+                # expected gain is mean((truth - proj)^2); the realized mean adds noise 2 e (truth - proj)
+                pw.append(NormalDist().cdf(float(np.mean((truth - proj) ** 2)) / se_conf - z))
                 mu.append(diff.mean()); eff.append(np.mean(np.abs(truth - proj)))
             per["by_c"][str(c)] = {"power": float(np.mean(pw)), "mean_diff": float(np.mean(mu)),
                                    "mean_abs_shift": float(np.mean(eff))}

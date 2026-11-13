@@ -81,3 +81,25 @@ lag; not checked here).
 ## Side check: nfl_data_py
 The survey says `nfl_data_py` was archived in favor of `nflreadpy`. This repo does not use `nfl_data_py` anywhere
 (pyproject lists `nflreadpy>=0.1.5`; every loader imports `nflreadpy`). No migration needed.
+
+## Addendum 1 (2026-11-13): power analysis on 2018, before training or confirm data were read
+`python scripts/pressure_eval.py --power` → `data/backtests/pressure_power.json`. 2018 weeks 5-17 (13 week
+clusters, 339 starter-QB rows per market); spread of log D 0.105; residual SD of the current projection 80.7
+passing yards, 0.96 interceptions, 1.82 sacks. Power at the Holm first-step level, scaled to 36 confirm weeks:
+
+| True c | pass_yds power (mean shift, yds) | pass_int power | sacks power |
+|---|---|---|---|
+| ±0.25 | 0.14 (5.4) | 0.02-0.03 | 0.04 |
+| ±0.5 | 0.62-0.66 (10.7) | 0.06-0.07 | 0.10-0.13 |
+| ±0.75 | 0.92-0.95 (16.1) | 0.11-0.13 | 0.30-0.33 |
+| ±1.0 | 0.98-0.99 (21.5) | 0.22-0.26 | 0.59-0.61 |
+| ±1.5 | 1.00 (32.4) | 0.45-0.54 | 0.82-0.84 |
+
+Reading: passing yards can detect an effect of about c = 0.6 or more (a defense with 10% more pressure than average
+moving the projection about 6%, roughly 13 yards on a typical shift). Sacks need |c| near 1.5; interceptions are
+underpowered at every c tried, so an interceptions FAIL says little. No rule changes.
+
+Two fixes found while running this step on 2018 (no rule change; tests updated): (1) one 2018 player-stats row
+(ARI, week 7) has no opponent, which split a team-game in two and counted its pressures twice; team-games are now
+keyed by team, season and week only. (2) The power formula first used the realized mean gain, which includes a noise
+term 2e(truth − proj) and overstated power for small c; it now uses the expected gain mean((truth − proj)^2).
