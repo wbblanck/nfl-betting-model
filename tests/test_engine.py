@@ -345,3 +345,106 @@ def test_team_aliases_map_old_codes_to_the_stats_code():
     from nflbet.engine.data import player_week as PW
     df = pl.DataFrame({"t": ["OAK", "SD", "SL", "BLT", "KC"]}).select(PW.team_code("t"))
     assert df["t"].to_list() == ["LV", "LAC", "LA", "BAL", "KC"]
+
+
+# ------------------------------------------------------------------------------------------------ features
+def _feature_inputs(seed=0, scramble_from=None):
+    """Synthetic league: 4 teams, 2 seasons x 6 weeks, 3 players a team. With scramble_from, every fact of every game
+    kicking off at or after it is replaced by different random numbers (the game list itself is unchanged)."""
+    import polars as pl
+    rng = np.random.default_rng(seed)
+    teams, tg, pw, of = ["A", "B", "C", "D"], [], [], []
+    for season in (2022, 2023):
+        for week in range(1, 7):
+            pairs = [("A", "B"), ("C", "D")] if week % 2 else [("A", "C"), ("B", "D")]
+            for gi, (h, a) in enumerate(pairs):
+                gid, kick = f"{season}_{week:02d}_{a}_{h}", f"{season}-09-{week:02d} {13 + 3 * gi}:00"
+                r = np.random.default_rng([seed + 1000, season, week, gi]) if scramble_from and kick >= scramble_from else rng
+                for t, o in ((h, a), (a, h)):
+                    v = {c: int(r.integers(1, 60)) for c in ("team_att", "team_cmp", "team_pass_yds", "team_sacks", "team_carries",
+                                                             "team_rush_yds", "team_targets", "team_scrambles", "team_dropbacks", "team_plays")}
+                    tg.append({"game_id": gid, "team": t, "opponent": o, "season": season, "week": week, "kickoff": kick, **v})
+                    for k in range(3):
+                        pid = f"{t}{k}"
+                        if (season, week, pid) == (2022, 3, "A1"):
+                            continue                                            # a missed game: windows must skip it, not count it
+                        s = {c: int(r.integers(0, 12)) for c in ("attempts", "completions", "passing_yards", "sacks_suffered", "carries",
+                                                                 "rushing_yards", "targets", "receptions", "receiving_yards")}
+                        pw.append({"player_id": pid, "season": season, "week": week, "game_id": gid, "team": t, "opponent": o,
+                                   "position": "WR", "offense_snaps": int(r.integers(1, 70)), **s})
+                        of.append({"game_id": gid, "team": t, "player_id": pid, "db_on_field": int(r.integers(0, 40)), "team_db_charted": int(r.integers(30, 45))})
+    return pl.DataFrame(pw), pl.DataFrame(tg), pl.DataFrame(of)
+
+
+def test_features_match_hand_sums():
+    from nflbet.engine.features import build as B
+    pw, tg, of = _feature_inputs()
+    f = B.build(pw, tg, of)
+    assert f.height == pw.height and not ({"targets", "team_att", "offense_snaps"} & set(f.columns))   # no outcome of the game itself
+    def row(pid, season, week):
+        return f.filter((pl.col("player_id") == pid) & (pl.col("season") == season) & (pl.col("week") == week)).row(0, named=True)
+    import polars as pl
+    hist = pw.filter(pl.col("player_id") == "A1").sort("season", "week")
+    t = hist["targets"].to_list()                                   # A1 played 2022 wk 1,2,4,5,6 and 2023 wk 1-6
+    first = row("A1", 2022, 1)
+    assert (first["p_n_w3"], first["p_targets_w8"], first["p_n_std"], first["p_n_prev"], first["p_last_kickoff"]) == (0, 0, 0, 0, None)
+    r = row("A1", 2022, 5)                                          # earlier games: wk 1, 2, 4
+    assert (r["p_n_w3"], r["p_n_std"], r["p_targets_w3"], r["p_targets_std"]) == (3, 3, sum(t[:3]), sum(t[:3]))
+    assert r["p_last_kickoff"] == "2022-09-04 13:00" or r["p_last_kickoff"].startswith("2022-09-04")
+    r = row("A1", 2023, 2)                                          # earlier: five 2022 games + 2023 wk 1
+    assert (r["p_n_w3"], r["p_n_w8"], r["p_n_std"], r["p_n_prev"]) == (3, 6, 1, 5)
+    assert (r["p_targets_w3"], r["p_targets_w8"], r["p_targets_std"], r["p_targets_prev"]) == (sum(t[3:6]), sum(t[:6]), t[5], sum(t[:5]))
+    a = tg.filter(pl.col("team") == "A").sort("kickoff")["team_att"].to_list()
+    assert (r["o_n_w5"], r["o_team_att_w5"], r["o_team_att_prev"]) == (5, sum(a[2:7]), sum(a[:6]))
+    opp = r["opponent"]                                             # what offenses did against A1's opponent before this game
+    allowed = tg.filter(pl.col("opponent") == opp).sort("kickoff")["team_carries"].to_list()
+    assert (r["d_n_w3"], r["d_team_carries_w3"]) == (3, sum(allowed[4:7]))
+
+
+def test_features_ignore_everything_at_or_after_the_cutoff():
+    """The leakage gate: scramble every fact from a cut-off kickoff on; rows up to and including it must not change."""
+    from nflbet.engine.features import build as B
+    import polars as pl
+    cut = "2023-09-03 13:00"
+    base, scr = B.build(*_feature_inputs()), B.build(*_feature_inputs(scramble_from=cut))
+    keep = pl.col("kickoff") <= cut
+    assert base.filter(keep).height > 0 and base.filter(keep).equals(scr.filter(keep))
+    assert B.snapshot_hash(base.filter(keep)) == B.snapshot_hash(scr.filter(keep))
+    assert not base.filter(~keep).equals(scr.filter(~keep))         # and the scramble really did change later rows
+    assert B.snapshot_hash(base) != B.snapshot_hash(scr)
+
+
+def test_leakage_gate_catches_a_planted_leak():
+    """Same check on a deliberately wrong feature (a window that includes the game itself): it must fail."""
+    import polars as pl
+    cut = "2023-09-03 13:00"
+    leaky = lambda pw: pw.sort("player_id", "season", "week").with_columns(                       # noqa: E731
+        pl.col("targets").rolling_sum(3, min_samples=1).over("player_id").alias("bad")).join(
+        _feature_inputs()[1].select("game_id", "team", "kickoff"), on=["game_id", "team"]).select("player_id", "game_id", "kickoff", "bad")
+    a, b = leaky(_feature_inputs()[0]), leaky(_feature_inputs(scramble_from=cut)[0])
+    assert not a.filter(pl.col("kickoff") <= cut).equals(b.filter(pl.col("kickoff") <= cut))
+
+
+def test_team_facts_follow_the_definitions():
+    import polars as pl
+    from nflbet.engine.features import facts as F
+    sched = pl.DataFrame({"game_id": ["g"], "season": [2023], "game_type": ["REG"], "week": [1], "gameday": ["2023-09-10"],
+                          "gametime": ["13:00"], "home_team": ["OAK"], "away_team": ["KC"]})
+    g = F.games(sched)
+    assert g.row(0, named=True) == {"game_id": "g", "season": 2023, "week": 1, "kickoff": "2023-09-10 13:00", "home": "LV", "away": "KC"}
+    z = {"completions": 0, "passing_yards": 0, "rushing_yards": 0}
+    stats = pl.DataFrame([
+        {"game_id": "g", "season_type": "REG", "team": "KC", "opponent_team": "OAK", "attempts": 30, "sacks_suffered": 3, "carries": 6, "targets": 0, **z},
+        {"game_id": "g", "season_type": "REG", "team": "KC", "opponent_team": "OAK", "attempts": 0, "sacks_suffered": 0, "carries": 20, "targets": 9, **z},
+        {"game_id": "g", "season_type": "REG", "team": "KC", "opponent_team": "OAK", "attempts": 1, "sacks_suffered": 0, "carries": 0, "targets": 19, **z}])
+    def play(i, typ, scr=0, two=0, db=1):
+        return {"game_id": "g", "play_id": float(i), "posteam": "KC", "play_type": typ, "qb_scramble": float(scr), "two_point_attempt": float(two), "qb_dropback": float(db)}
+    pbp = pl.DataFrame([play(1, "run", scr=1), play(2, "run", scr=1), play(3, "run", scr=1, two=1), play(4, "no_play", scr=1), play(5, "pass"), play(6, "run", db=0)])
+    t = F.team_game(stats, pbp, g).row(0, named=True)
+    assert (t["team"], t["opponent"], t["team_att"], t["team_sacks"], t["team_carries"], t["team_targets"]) == ("KC", "LV", 31, 3, 26, 28)
+    assert t["team_scrambles"] == 2                                  # the two-point scramble and the penalty no-play do not count
+    assert t["team_dropbacks"] == 31 + 3 + 2 and t["team_plays"] == 36 + 26 - 2
+    part = pl.DataFrame({"nflverse_game_id": ["g"] * 4, "play_id": [1.0, 5.0, 6.0, 3.0],
+                         "offense_players": ["QB1;TE1;WR1", "QB1;WR1;WR1", "QB1;TE1", "QB1;TE1"]})
+    o = {r["player_id"]: (r["db_on_field"], r["team_db_charted"]) for r in F.on_field(part, pbp).iter_rows(named=True)}
+    assert o == {"QB1": (2, 2), "TE1": (1, 2), "WR1": (2, 2)}        # run play 6 and two-point play 3 are not dropbacks; a repeated ID counts once
