@@ -239,3 +239,30 @@ def test_week9_without_official_runs_waits_for_parlayapi(tmp_path):
     assert "Week 9: waiting for DraftKings props on ParlayAPI" in page
     assert "Official S1 · ParlayAPI lines (DraftKings + FanDuel)" in page
     assert "Action Network feed empty" not in page
+
+
+def mix_pick(**kw):
+    base = dict(result="pending", odds=-110.0, p_over_dk=0.5, p_side=0.55, edge=0.55 - 110 / 210, side="over", line=4.5,
+                market="rec", player="A Player", team="BUF", best_venue="DraftKings", best_cost=110 / 210, best_odds=-110.0)
+    return {**base, **kw}
+
+
+def test_model_ev_hand_cases():
+    assert abs(D.model_ev(0.55, 0.5) - 0.10) < 1e-12           # 55% at +100 -> +10%
+    assert abs(D.model_ev(0.5, 110 / 210) - (0.5 * 210 / 110 - 1)) < 1e-12   # coin flip at -110 -> -4.5%
+    assert abs(D.model_ev(0.5, 110 / 210) + 0.04545) < 1e-4
+    assert D.model_ev(0.4, 0.4) == 0
+
+
+def test_mix_row_shows_ev_at_the_best_price_and_dk():
+    dk = D.mix_row(mix_pick(), locked=False)
+    ev = 0.55 * 210 / 110 - 1                                  # 5.0%
+    assert f'data-ev="{ev:.4f}"' in dk and f"{ev * 100:.1f}% EV" in dk and "52.4%" in dk and "EV at DK" not in dk
+    nv = D.mix_row(mix_pick(best_venue="Novig", best_cost=0.48, best_odds=108.0), locked=False)
+    ev_b = 0.55 / 0.48 - 1                                     # fees-included cost, not the rounded price
+    assert f'data-ev="{ev_b:.4f}"' in nv and f"{ev_b * 100:.1f}% EV" in nv and "Novig</span> +108" in nv
+    assert f"EV at DK {ev * 100:+.1f}%" in nv and "48.0%" in nv and "Check quote" not in nv
+    stray = D.mix_row(mix_pick(best_venue="Novig", best_cost=0.40, best_odds=150.0), locked=False)
+    assert "Check quote" in stray                              # 12.4 cents under DK
+    neg = D.mix_row(mix_pick(p_side=0.5, edge=0.5 - 110 / 210), locked=False)
+    assert 'class="ev neg"' in neg and "-4.5% EV" in neg
