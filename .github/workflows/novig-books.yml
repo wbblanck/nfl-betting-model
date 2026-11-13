@@ -1,25 +1,32 @@
 name: Novig books
 # Record Novig's NFL player-prop and game-line books (scripts/fetch/novig_books.py; docs/engine/NOVIG_INTEGRATION.md).
 # Read-only public catalog, no key, places nothing. Every run saves the catalog with top of book; games starting
-# within 4 hours also get full-depth books. Times are UTC. Scheduled runs fire from main only and can start late.
+# within 6 hours also get full-depth books. Times are UTC. Scheduled runs fire from main only and can start late.
 on:
   schedule:
-    - cron: '20 15 * * 3'    # Wednesday: early-week books
-    - cron: '20 15 * * 5'    # Friday: after most injury reports
-    - cron: '40 21 * * 4'    # Thursday, before TNF
-    - cron: '10 23 * * 4'    # Thursday, closer to TNF
-    - cron: '20 14 * * 0'    # Sunday, 1 PM ET games (also catches London games late)
-    - cron: '20 16 * * 0'    # Sunday, 1 PM ET games, closer
-    - cron: '40 19 * * 0'    # Sunday, 4 PM ET games
-    - cron: '40 23 * * 0'    # Sunday, SNF
-    - cron: '40 23 * * 1'    # Monday, MNF
+    # GitHub starts scheduled runs late: on 2026-11-12 the two Thursday runs set for 21:40 and 23:10 UTC started at
+    # 02:08 and 03:23, after kickoff, and saved no books. So each game window has two runs, about 6 h and 3.5 h
+    # before kickoff, and books are pulled for games starting within 6 hours: the early run still lands before
+    # kickoff when it is 4.5 h late. Kickoffs below are for Eastern Standard Time (UTC-5).
+    - cron: '20 15 * * 3'    # Wednesday: early-week catalog
+    - cron: '20 15 * * 5'    # Friday: catalog after most injury reports
+    - cron: '15 19 * * 4'    # Thursday night game (01:15 UTC Friday), early
+    - cron: '45 21 * * 4'    # Thursday night game, late
+    - cron: '0 12 * * 0'     # Sunday 1 PM ET games (18:00 UTC), early
+    - cron: '30 14 * * 0'    # Sunday 1 PM ET games, late
+    - cron: '10 15 * * 0'    # Sunday 4 PM ET games (21:05 / 21:25 UTC), early
+    - cron: '40 17 * * 0'    # Sunday 4 PM ET games, late
+    - cron: '20 19 * * 0'    # Sunday night game (01:20 UTC Monday), early
+    - cron: '50 21 * * 0'    # Sunday night game, late
+    - cron: '15 19 * * 1'    # Monday night game (01:15 UTC Tuesday), early
+    - cron: '45 21 * * 1'    # Monday night game, late
     - cron: '20 15 * * 6'    # Saturday (late-season Saturday games)
   workflow_dispatch:
     inputs:
       hours:
         description: "full-depth books for games starting within this many hours"
         required: true
-        default: "4"
+        default: "6"
   push:
     branches-ignore: [main]
     paths: ['scripts/fetch/novig_books.py', 'src/nflbet/engine/novig_capture.py', '.github/workflows/novig-books.yml']
@@ -31,7 +38,7 @@ concurrency:
 jobs:
   record:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,7 +47,7 @@ jobs:
       - run: pip install -e .
       - name: Record Novig books
         env:
-          HOURS: ${{ github.event.inputs.hours || '4' }}
+          HOURS: ${{ github.event.inputs.hours || '6' }}
         run: python scripts/fetch/novig_books.py --hours "$HOURS"
       - name: Commit snapshot
         if: always()
