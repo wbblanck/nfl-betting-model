@@ -499,3 +499,108 @@ def test_baseline_means_and_fallbacks_by_hand():
     assert m["B4"][0] == pytest.approx((64 / 256) * (280 / 8) * 0.6)  # share x team targets per game x catch rate = 5.25
     assert m["B5"][0] == 5.5                                         # 8 a game is 2.67x the minimum: band 4
     assert [m[b][1] for b in ("B1", "B2", "B3", "B4", "B5")] == [1.0] * 5   # nothing on record: every baseline ends at B5
+
+
+# ------------------------------------------------------------------------------------------------ Engine A
+def test_dirichlet_multinomial_recovers_planted_concentration_and_keeps_totals():
+    from nflbet.engine.replication import opportunity as O
+    rng = np.random.default_rng(3)
+    mu = np.array([0.4, 0.3, 0.2, 0.1])
+    total = rng.integers(25, 45, 3000)
+    x = O.allocate(rng, total, mu, 40.0)
+    assert (x.sum(axis=1) == total).all() and (x >= 0).all()         # every run deals out exactly the team total
+    assert x.mean(axis=0) / total.mean() == pytest.approx(mu, abs=0.01)
+    ll = {k: O.dm_loglik(x.astype(float), np.tile(mu, (3000, 1)), k) for k in O.KAPPA_GRID}
+    assert max(ll, key=ll.get) == pytest.approx(40.0, rel=0.25)      # the planted concentration is the likeliest
+    wrong = np.tile(np.array([0.25, 0.25, 0.25, 0.25]), (3000, 1))
+    assert max(O.dm_loglik(x.astype(float), wrong, k) for k in O.KAPPA_GRID) < max(ll.values())   # wrong shares fit worse
+    s = O.expected_shares(np.array([10.0, 0.0, 0.0]), np.array([40.0, 0.0, 0.0]), np.array([0.2, 0.2, 0.0]), 10.0, 0.05)
+    raw = np.array([(10 + 2) / 50, (0 + 2) / 10, 0.0, 0.05])        # history, no history (prior only), padded slot, other
+    assert s == pytest.approx(raw / raw.sum()) and s[2] == 0
+
+
+def test_environment_recovers_planted_coefficients():
+    import polars as pl
+    from nflbet.engine.replication import environment as V
+    rng = np.random.default_rng(4)
+    n = 4000
+    cols = {}
+    for pre in ("o_", "d_"):
+        for w in ("w8", "std", "prev"):
+            cols[f"{pre}n_{w}"] = np.full(n, 8)
+            for c in ("team_att", "team_carries"):
+                cols[f"{pre}{c}_{w}"] = rng.uniform(20, 45, n) * 8
+    df = pl.DataFrame(cols)
+    att = 5 + 0.6 * df["o_team_att_w8"].to_numpy() / 8 + 0.3 * df["d_team_att_w8"].to_numpy() / 8 + rng.normal(0, 3, n)
+    car = 40 - 0.4 * df["o_team_att_w8"].to_numpy() / 8 + rng.normal(0, 3, n)
+    P = V.fit(df, np.column_stack([att, car]), np.rint(att * 0.95))
+    coef = np.array(P["coef"])                                       # columns: 1, att(o8, std, prev, d8), carries(o8, std, prev, d8)
+    assert coef[1, 0] == pytest.approx(0.6, abs=0.03) and coef[4, 0] == pytest.approx(0.3, abs=0.03) and coef[1, 1] == pytest.approx(-0.4, abs=0.03)
+    assert abs(coef[2, 0]) < 0.03 and abs(coef[5, 0]) < 0.03         # unrelated inputs get nothing
+    a, c, t = V.draw(P, V.mean(P, df.head(1))[0], 5000, rng)
+    assert a.min() >= V.MIN["A"] and (t <= a).all() and t.mean() / a.mean() == pytest.approx(0.95, abs=0.02)
+
+
+def _engine_a_inputs(seed=5, games=220):
+    """Synthetic league with planted structure: player 0 of each team truly gets 40% of targets."""
+    import polars as pl
+    rng = np.random.default_rng(seed)
+    rows, teams = [], []
+    for g in range(games):
+        A, C = int(rng.integers(28, 42)), int(rng.integers(20, 34))
+        T = int(rng.binomial(A, 0.94))
+        tg = rng.multinomial(T, rng.dirichlet(30 * np.array([0.4, 0.25, 0.2, 0.1, 0.05])))
+        ca = rng.multinomial(C, rng.dirichlet(30 * np.array([0.02, 0.02, 0.03, 0.8, 0.13])))
+        teams.append({"game_id": f"g{g}", "team": "X", "team_att": A, "team_carries": C, "team_targets": T, "team_sacks": 2, "team_scrambles": 1})
+        for k, pos in enumerate(["WR", "WR", "TE", "RB", "QB"]):
+            rec = int(rng.binomial(tg[k], 0.65))
+            r = {"game_id": f"g{g}", "team": "X", "player_id": f"p{k}", "position": pos, "p_last_kickoff": "k", "o_last_kickoff": "k", "targets": int(tg[k]), "receptions": rec,
+                 "receiving_yards": int(rec * 11), "carries": int(ca[k]), "rushing_yards": int(ca[k] * 4),
+                 "attempts": A if pos == "QB" else 0, "completions": 0, "passing_yards": 0}
+            share = [0.4, 0.25, 0.2, 0.1, 0.05][k]
+            for w, n in (("w3", 3), ("w5", 5), ("w8", 8), ("std", 6), ("prev", 16)):
+                r.update({f"p_n_{w}": n, f"p_targets_{w}": round(share * 33 * n), f"p_team_targets_{w}": 35 * n,
+                          f"p_carries_{w}": round([0.02, 0.02, 0.03, 0.8, 0.13][k] * 27 * n), f"p_team_carries_{w}": 27 * n,
+                          f"p_attempts_{w}": 35 * n if pos == "QB" else 0, f"p_team_att_{w}": 35 * n,
+                          f"p_receptions_{w}": round(share * 33 * n * 0.65), f"p_receiving_yards_{w}": round(share * 33 * n * 0.65 * 11),
+                          f"p_rushing_yards_{w}": round([0.02, 0.02, 0.03, 0.8, 0.13][k] * 27 * n * 4),
+                          f"o_n_{w}": n, f"o_team_att_{w}": 35 * n, f"o_team_carries_{w}": 27 * n,
+                          f"d_n_{w}": n, f"d_team_att_{w}": 35 * n, f"d_team_carries_{w}": 27 * n})
+            rows.append(r)
+    pools = {"rec": {p: rng.gamma(2.0, 5.5, 4000).round() for p in ("QB", "RB", "WR", "TE", "OTH")},
+             "rush": {p: (rng.gamma(1.5, 3.0, 4000) - 0.5).round() for p in ("QB", "RB", "WR", "TE", "OTH")}}
+    return pl.DataFrame(rows), pl.DataFrame(teams), pools
+
+
+def test_engine_a_fits_simulates_and_every_run_reconciles():
+    import polars as pl
+    from nflbet.engine.replication import model as M
+    df, teams, pools = _engine_a_inputs()
+    P = M.fit(df, teams, pools)
+    assert P["opp"]["targets"]["prior"]["WR"] == pytest.approx(0.325, abs=0.02)      # mean of the two receivers' true shares
+    assert P["opp"]["targets"]["kappa"] == pytest.approx(30, rel=0.6)                # planted concentration, roughly
+    assert P["eff"]["catch_rate"]["WR"] == pytest.approx(0.65, abs=0.02)
+    tab = M.tables(pools)
+    rows = df.filter(pl.col("game_id") == "g0").sort("player_id")
+    box, s = M.simulate(P, tab, rows, 3000, np.random.default_rng(0))
+    assert accounting.violations(box) == {}                                          # all 3,000 box scores reconcile
+    assert s["targets"].shape == (5, 3000)
+    assert s["targets"][0].mean() / box["targets"].sum(axis=1).mean() == pytest.approx(0.4, abs=0.03)   # the planted 40% share
+    assert (s["attempts"][4] == box["pass_att"]).all()               # the expected starter always threw every pass in this league
+    assert M.starter_flag(rows).tolist() == [False, False, False, False, True] and set(P["qb"]["starter_share"]) == {1.0}
+    P2 = {**P, "qb": {"starter_share": [0.5], "new_share": [1.0]}}  # a league where starters throw half: the rest goes to "other"
+    box3, s3 = M.simulate(P2, tab, rows, 500, np.random.default_rng(1))
+    assert np.abs(s3["attempts"][4] - box3["pass_att"] / 2).max() <= 0.5 and accounting.violations(box3) == {}
+    assert (s["receptions"] <= s["targets"]).all() and (s["completions"][4] <= s["attempts"][4] + 1).all()
+    box2, s2 = M.simulate(P, tab, rows, 3000, np.random.default_rng(0))
+    assert all((s[k] == s2[k]).all() for k in s)                                     # same seed, same runs
+
+
+def test_crps_from_runs_matches_crps_from_the_distribution():
+    from nflbet.engine import scoring as S
+    rng = np.random.default_rng(6)
+    mean = rng.uniform(3, 10, 40)
+    y = rng.negative_binomial(5.0, 5.0 / (5.0 + mean))
+    runs = rng.negative_binomial(5.0, (5.0 / (5.0 + mean))[:, None], size=(40, 40_000))
+    assert S.crps_samples(runs, y) == pytest.approx(S.crps(S.nb_cdf(mean, 5.0, 300), y), rel=0.03, abs=0.03)   # Monte Carlo error only
+    assert S.coverage_samples(runs, y, 0.8) == pytest.approx(S.coverage(S.nb_cdf(mean, 5.0, 300), y, 0.8), abs=0.06)

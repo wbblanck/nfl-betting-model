@@ -61,3 +61,19 @@ def paired_bootstrap(diff: np.ndarray, cluster: np.ndarray, n: int = 10_000, see
     pick = rng.integers(0, len(ids), size=(n, len(ids)))
     means = sums[pick].sum(axis=1) / counts[pick].sum(axis=1)
     return float(diff.mean()), float(np.quantile(means, level / 2)), float(np.quantile(means, 1 - level / 2))
+
+
+def crps_samples(x: np.ndarray, y: np.ndarray) -> np.ndarray:
+    """CRPS per row from simulated outcomes x [n, sims]: E|X - y| - E|X - X'| / 2 (the second term from order
+    statistics). Same quantity as crps() for an integer distribution, estimated from the runs."""
+    x = np.sort(np.asarray(x, float), axis=1)
+    s = x.shape[1]
+    spread = ((2 * np.arange(1, s + 1) - s - 1) * x).sum(axis=1) * 2 / s ** 2
+    return np.abs(x - np.asarray(y, float)[:, None]).mean(axis=1) - spread / 2
+
+
+def coverage_samples(x: np.ndarray, y: np.ndarray, level: float) -> float:
+    """Share of outcomes inside the central interval of the runs (ends included, quantiles taken as in quantile())."""
+    lo = np.quantile(x, (1 - level) / 2, axis=1, method="inverted_cdf")
+    hi = np.quantile(x, 1 - (1 - level) / 2, axis=1, method="inverted_cdf")
+    return float(((y >= lo) & (y <= hi)).mean())
