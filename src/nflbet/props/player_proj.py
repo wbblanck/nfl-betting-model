@@ -26,13 +26,14 @@ GRID = np.round(np.arange(0.0, 1.51, 0.25), 2)
 POS_GROUP = {"QB": "QB", "RB": "RB", "FB": "RB", "WR": "WR", "TE": "TE"}
 
 
-def stats(seasons: list[int]) -> pl.DataFrame:
+def stats(seasons: list[int], stat: dict = STAT) -> pl.DataFrame:
+    """`stat` (market -> nflverse expression) defaults to the prop markets; a test may pass extra markets."""
     import nflreadpy as nfl
 
     s = nfl.load_player_stats(seasons=seasons).filter(pl.col("season_type") == "REG")
     return (s.with_columns(pl.col("position").replace_strict(POS_GROUP, default=None).alias("pos"))
             .filter(pl.col("pos").is_not_null())
-            .select("player_id", "season", "week", "team", "opponent_team", "pos", *[e.alias(m) for m, e in STAT.items()])
+            .select("player_id", "season", "week", "team", "opponent_team", "pos", *[e.alias(m) for m, e in stat.items()])
             .with_columns((pl.col("season") * 100 + pl.col("week")).alias("t")).sort("t"))
 
 
@@ -55,8 +56,8 @@ def _ewm_prior(col: str, by: str) -> pl.Expr:
     return pl.col(col).shift(1).ewm_mean(half_life=HALF_LIFE, ignore_nulls=True).over(by)
 
 
-def features(st: pl.DataFrame, imp: pl.DataFrame) -> pl.DataFrame:
-    markets = list(STAT)
+def features(st: pl.DataFrame, imp: pl.DataFrame, stat: dict = STAT) -> pl.DataFrame:
+    markets = list(stat)
     f = st.with_columns(*[_ewm_prior(m, "player_id").alias(f"u_{m}") for m in markets],
                         pl.col("t").cum_count().over("player_id").alias("n_prior"))
     f = f.with_columns(pl.col("n_prior") - 1)
@@ -74,10 +75,10 @@ def features(st: pl.DataFrame, imp: pl.DataFrame) -> pl.DataFrame:
     return f.join(imp.select("season", "week", "team", "team_factor"), on=["season", "week", "team"], how="left")
 
 
-def long(f: pl.DataFrame) -> pl.DataFrame:
+def long(f: pl.DataFrame, stat: dict = STAT) -> pl.DataFrame:
     """One row per player-game-market with usage, factors and the actual value."""
     parts = []
-    for m in STAT:
+    for m in stat:
         parts.append(f.select("player_id", "season", "week", "team", "pos", "n_prior", "team_factor",
                               pl.lit(m).alias("market"), pl.col(f"u_{m}").alias("usage"),
                               pl.col(f"o_{m}").alias("opp_factor"), pl.col(m).cast(pl.Float64).alias("actual")))
