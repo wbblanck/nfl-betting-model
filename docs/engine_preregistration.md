@@ -77,3 +77,19 @@ and its rules are frozen in their own file first.
 - Baseline per market, chosen on 2022-2023 by mean CRPS (docs/engine/baselines.md, constants in
   data/backtests/engine_baselines.json): pass_att B5, pass_yds B3, rush_att B4, rush_yds B3, rec B4, rec_yds B4.
   These are what each engine is compared with in Test S.
+
+## Amendment 2026-11-14: Engine A version A-1.0 frozen for Test S (before any 2024-2025 outcome is scored)
+- Frozen record: `data/backtests/engine_a_frozen.json` (hashes of the fitted parameters, the yardage pools, the
+  baselines file and the 2018-2023 feature rows). Fitted on 2018-2021; design choices made on 2022-2023
+  (docs/engine/engine_a_tune.md). No tune-season multiplier is applied: the what-if runs did not improve the scores.
+- What the engine is given for a game: the game-day active list and data from earlier games. Each player's forecast
+  is conditional on his taking a snap, which is how the Test S sample (and a prop) is defined.
+- Test procedure, fixed in `scripts/engine_test_s.py` and committed before it is run: 4,000 runs per offense-game,
+  seeds fixed by game; per market the paired CRPS difference (engine minus frozen baseline) with a week-clustered
+  bootstrap of 10,000 resamples at two-sided level 0.05 / 6 / (versions of Engine A tested so far, this one
+  included); PASS when the interval is entirely below 0. The script refuses to run twice for a version, with
+  uncommitted changes, or if the parameters no longer match the frozen record.
+- A dry run of the same script on the tune seasons passed 5 of 6 markets (not receptions). That is not a test
+  result: those are the seasons the design was chosen on.
+- Will approves the run before it is made.
+

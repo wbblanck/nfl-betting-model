@@ -1,4 +1,4 @@
-# Engine A A-0.4 on the tune seasons
+# Engine A A-1.0 on the tune seasons
 
 Written by `scripts/engine_a_tune.py`. Fitted on 2018-2021; every offense-game of 2022-2023 simulated
 2,000 times (1,086 offense-games). This is tuning, not Test S: no 2024-2025 outcome and no price was read.
@@ -6,16 +6,18 @@ Written by `scripts/engine_a_tune.py`. Fitted on 2018-2021; every offense-game o
 Accounting: every simulated box score reconciles (2,172,000 box scores checked).
 
 CRPS is in the stat's own units, lower is better. 'Engine minus baseline' below 0 means the engine is better;
-the interval is a week-clustered bootstrap.
+the interval is a week-clustered bootstrap. Coverage columns show the share of outcomes inside the engine's
+band and, in brackets, the share that would fall inside if the forecast were exactly right (whole-number stats
+with small counts cover more than the nominal level). The two should match.
 
-| Market | Rows | Baseline | Baseline CRPS | Engine CRPS | Engine minus baseline (95% interval) | Engine central 50% covers | 80% | 90% |
+| Market | Rows | Baseline | Baseline CRPS | Engine CRPS | Engine minus baseline (95% interval) | Central 50% covers (if right) | 80% | 90% |
 |---|---|---|---|---|---|---|---|---|
-| pass_att | 1,089 | B5 | 6.189 | 5.318 | -0.871 (-1.229 to -0.506) | 55.6% | 81.4% | 88.4% |
-| pass_yds | 1,089 | B3 | 53.601 | 45.567 | -8.034 (-10.584 to -5.524) | 54.5% | 79.7% | 88.7% |
-| rush_att | 2,029 | B4 | 3.125 | 2.897 | -0.228 (-0.267 to -0.188) | 56.0% | 83.1% | 90.9% |
-| rush_yds | 2,029 | B3 | 18.554 | 17.420 | -1.133 (-1.429 to -0.821) | 48.6% | 79.2% | 88.4% |
-| rec | 4,738 | B4 | 1.221 | 1.221 | -0.000 (-0.012 to +0.013) | 64.8% | 89.5% | 96.3% |
-| rec_yds | 4,738 | B4 | 17.150 | 16.502 | -0.648 (-0.771 to -0.499) | 54.1% | 85.7% | 94.3% |
+| pass_att | 1,089 | B5 | 6.189 | 5.318 | -0.871 (-1.229 to -0.506) | 55.6% (55.5%) | 81.4% (82.8%) | 88.4% (91.0%) |
+| pass_yds | 1,089 | B3 | 53.601 | 45.567 | -8.034 (-10.584 to -5.524) | 54.5% (51.1%) | 79.7% (80.3%) | 88.7% (90.1%) |
+| rush_att | 2,029 | B4 | 3.125 | 2.897 | -0.228 (-0.267 to -0.188) | 56.0% (57.0%) | 83.1% (84.3%) | 90.9% (92.6%) |
+| rush_yds | 2,029 | B3 | 18.554 | 17.420 | -1.133 (-1.429 to -0.821) | 48.6% (51.6%) | 79.2% (81.6%) | 88.4% (91.1%) |
+| rec | 4,738 | B4 | 1.221 | 1.221 | -0.000 (-0.012 to +0.013) | 64.8% (63.9%) | 89.5% (88.5%) | 96.3% (95.1%) |
+| rec_yds | 4,738 | B4 | 17.150 | 16.502 | -0.648 (-0.771 to -0.499) | 54.1% (52.8%) | 85.7% (84.4%) | 94.3% (93.1%) |
 
 ## Fitted on 2018-2021
 

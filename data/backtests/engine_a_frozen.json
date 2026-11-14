@@ -1,0 +1,19 @@
+{
+ "version": "A-1.0",
+ "fit_seasons": [
+  2018,
+  2019,
+  2020,
+  2021
+ ],
+ "tune_seasons": [
+  2022,
+  2023
+ ],
+ "tuning": {},
+ "sims": 4000,
+ "params_sha256": "c3974c2773f4a581c805508538243f266bb801f0c9576418d8d7135a89063eb3",
+ "pools_sha256": "2921fca7412c3fb943a4e15970f275b473218335e33c0dbc14d4f83fb62a1c04",
+ "baselines_sha256": "8aad13ce106cb79b03296b89b82a99c7aec5eefe9504144d6ad5756b15f521ca",
+ "features_sha256_fit_tune": "06bca18670fc6595dd8b1698d31ea8f3fda77797c9ee0bcb95dfd0f618d72fd9"
+}

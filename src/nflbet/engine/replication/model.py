@@ -8,7 +8,7 @@ What the engine knows: the active list (published about 90 minutes before kickof
 know who goes on to play. A player's forecast is taken from the runs in which he plays, because a prop on a player
 who does not play is void; whether his teammates play stays uncertain in those runs.
 
-Not in 0.4 (docs/engine/MODEL_SPECIFICATION.md section 2): play-by-play game script (volume reacting to the simulated score),
+Not in 1.0 (docs/engine/MODEL_SPECIFICATION.md section 2): play-by-play game script (volume reacting to the simulated score),
 availability draws, opponent-specific efficiency, touchdowns and interceptions.
 """
 from __future__ import annotations
@@ -18,9 +18,28 @@ import polars as pl
 
 from nflbet.engine.replication import efficiency as E, environment as V, opportunity as O
 
-VERSION = "A-0.4"
+VERSION = "A-1.0"
 KINDS = {"targets": ("targets", "team_targets"), "carries": ("carries", "team_carries")}
 KEY = ["game_id", "team"]
+# Chosen on the tune seasons (2022-2023), then frozen with the version. Multipliers on fit-season estimates, except
+# the rushing shock, which is a value (its fit-season estimate was 0). {} means "use the fit-season estimates as is".
+TUNING: dict = {}
+
+
+def apply_tuning(P: dict, tuning: dict) -> dict:
+    """Return P with the tune-season settings applied: 'kappa_targets' and 'kappa_carries' multiply the split
+    concentrations, 'catch_strength' multiplies the catch-rate prior strength, 'shock_rec' and 'shock_rush' set the
+    team-wide yardage shock."""
+    import copy
+    P = copy.deepcopy(P)
+    for kind in ("targets", "carries"):
+        P["opp"][kind]["kappa"] *= tuning.get(f"kappa_{kind}", 1.0)
+    P["eff"]["c"]["catch"] *= tuning.get("catch_strength", 1.0)
+    for kind in ("rec", "rush"):
+        if f"shock_{kind}" in tuning:
+            P["eff"]["shock"][kind] = float(tuning[f"shock_{kind}"])
+    P["tuning"] = dict(tuning)
+    return P
 
 
 def _pos(df: pl.DataFrame) -> np.ndarray:
