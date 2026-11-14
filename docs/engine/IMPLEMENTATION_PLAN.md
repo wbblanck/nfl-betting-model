@@ -1,5 +1,25 @@
 # Implementation plan
 
+## Where things stand (2026-11-14) - read this first when picking the work up in a new session
+- **Branch:** `claude/nfl-player-props-engine-qaad48`. Check whether it is merged into `main`; if not, work from the branch.
+- **Engine A is frozen as A-1.0 and Test S has NOT been run.** It needs Will's go-ahead ("run it"). Then, with a
+  clean working tree: `python scripts/engine_test_s.py --run-once`. It runs once per version and refuses otherwise.
+  Do not look at 2024-2025 outcomes any other way.
+- **The warehouse is not in git.** In a fresh container rebuild it first:
+  `python scripts/engine_ingest.py 2010-2025` (about 15 minutes), then `python scripts/engine_feature_check.py`
+  (builds `data/cache/engine/features/player_game.parquet` and must end in PASS), then
+  `python scripts/engine_test_s.py --dry-run`, whose report must say the frozen record matches: True. If it says
+  False, the rebuilt data differs from what was frozen; stop and report, do not run the test.
+- **After Test S:** Engine B (challenger), phase 4. Deferred for a later Engine A version: play-by-play game
+  script, availability before the active list is out.
+- **Novig recorder:** runs on GitHub's schedule, which starts late. Will is setting up an outside cron service to
+  start it on time (docs/engine/NOVIG_INTEGRATION.md). Once he confirms it works, trim the game-window crons in
+  `.github/workflows/novig-books.yml`.
+- **Routes run:** the engine uses the on-field-for-dropbacks stand-in. Sumer Sports data may not be used (its terms).
+  If Will sends finished-season tight end route totals from a source whose terms allow it, use them only to check
+  the stand-in.
+- **Still Will's to decide:** a paper-portfolio exception in CLAUDE.md (needed only at phase 8).
+
 Each phase ends at a gate. The next modelling phase does not start until the gate's tests are in CI and green.
 Paths are under `src/nflbet/engine/` unless they start with another directory.
 
