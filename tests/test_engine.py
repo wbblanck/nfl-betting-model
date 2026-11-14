@@ -701,3 +701,69 @@ def test_two_offenses_in_a_game_share_their_volume_surprise():
     b1, _, _ = V.draw(P, np.array([35.0, 27.0]), 5000, rng, None, 1)
     assert abs(np.corrcoef(a0, b1)[0, 1]) < 0.05                                      # separate draws: no link
     assert a1.std() == pytest.approx(b1.std(), rel=0.05)                              # each side's own spread is the same either way
+
+
+# ------------------------------------------------------------------------------------------------ Engine B (challenger)
+def test_engine_b_negative_binomial_recovers_planted_coefficients_and_ignores_noise():
+    from nflbet.engine.challenger import counts as C
+    rng = np.random.default_rng(3)
+    n = 20000
+    X = rng.normal(size=(n, 3))                                    # column 2 is noise
+    pos = rng.choice(["QB", "RB", "WR", "TE"], n)
+    size = np.where(pos == "QB", 20.0, 4.0)
+    mu = np.exp(1.5 + 0.4 * X[:, 0] - 0.2 * X[:, 1])
+    y = rng.negative_binomial(size, size / (size + mu))
+    f = C.fit_nb(X, y, pos, np.zeros(n), ridge=0.0)
+    assert f["converged"]
+    assert f["beta"] == pytest.approx([1.5, 0.4, -0.2, 0.0], abs=0.03)
+    assert np.exp(f["gamma"]["QB"]) == pytest.approx(20, rel=0.3) and np.exp(f["gamma"]["WR"]) == pytest.approx(4, rel=0.15)
+    m, r = C.nb_params(f, X[:5], pos[:5], np.zeros(5))
+    assert m == pytest.approx(np.exp(np.asarray(f["beta"])[0] + X[:5] @ np.asarray(f["beta"])[1:]))
+
+
+def test_engine_b_logit_and_hurdle_put_the_zero_mass_where_planted():
+    from nflbet.engine.challenger import counts as C
+    rng = np.random.default_rng(4)
+    X = rng.normal(size=(20000, 2))
+    p = 1 / (1 + np.exp(-(-2.0 + 1.0 * X[:, 0])))
+    b = C.fit_logit(X, (rng.random(20000) < p).astype(float), ridge=0.0)
+    assert b == pytest.approx([-2.0, 1.0, 0.0], abs=0.08)
+    x = C.hurdle_draw(rng, np.array([0.1, 0.5]), np.array([3.0, 0.2]), np.array([5.0, 5.0]), 20000)
+    assert x.dtype == np.int32 and x.min() >= 0
+    assert (x == 0).mean(axis=1) == pytest.approx([0.1, 0.5], abs=0.015)   # zeros only from the hurdle, even at a tiny mean
+
+
+def test_engine_b_catches_never_exceed_targets_and_kappa_is_recovered():
+    from nflbet.engine.challenger import counts as C
+    rng = np.random.default_rng(5)
+    n = 30000
+    tgt = rng.integers(1, 12, n)
+    p = rng.uniform(0.5, 0.8, n)
+    rec = rng.binomial(tgt, rng.beta(p * 40, (1 - p) * 40))
+    hist_t = np.full(n, 1e6)                                       # a long history pins the catch rate at p
+    f = C.fit_catch(rec, tgt, p * hist_t, hist_t, np.full(n, "WR"), {"WR": 0.65})
+    assert f["kappa"] in (20, 40, 80)
+    sim_t = rng.integers(0, 15, (200, 500))
+    sim_r = C.catch_draw(rng, sim_t, np.full(200, 0.7), 40)
+    assert (sim_r <= sim_t).all() and sim_r.min() >= 0
+
+
+def test_engine_b_yardage_rearrangement_tails_and_planted_signal():
+    from nflbet.engine.challenger import yardage as Y
+    crossed = np.array([[10, 12, 11, 20, 19, 30, 40], [0, 5, 10, 15, 20, 25, 30]], float)
+    assert Y.crossings(crossed) == 1 and Y.crossings(np.sort(crossed, axis=1)) == 0
+    q = np.sort(crossed, axis=1)
+    u = np.tile(np.linspace(0.001, 0.999, 999), (2, 1))
+    v = Y.quantile_fn(q, {"lo": 1.0, "hi": 1.0}, u)
+    assert (np.diff(v, axis=1) >= -1e-9).all()                     # the whole quantile function is non-decreasing
+    assert v[1, np.argmin(np.abs(u[1] - 0.5))] == pytest.approx(15, abs=0.1)
+    rng = np.random.default_rng(6)                                 # tails: exponential excess above q95 with scale 2 x (q95 - q75)
+    qq = np.tile([0, 2, 5, 10, 15, 18, 20], (40000, 1)).astype(float)
+    y = np.where(rng.random(40000) < 0.05, 20 + rng.exponential(10.0, 40000), 10.0)
+    assert Y.fit_tails(qq, y)["hi"] == pytest.approx(2.0, rel=0.05)
+    X = rng.normal(size=(6000, 2))                                 # planted signal in column 0; column 1 is noise
+    yy = 50 + 20 * X[:, 0] + rng.normal(0, 10, 6000)
+    m = Y.fit(X, yy, seed=0)
+    med = Y.predict(m, np.array([[-1.0, 0.0], [1.0, 0.0], [1.0, 2.0]]))[:, 3]
+    # Boosted trees approach a straight line in steps and stop short of it at 300 shallow rounds: found, slightly shrunk.
+    assert 28 < med[1] - med[0] < 45 and abs(med[2] - med[1]) < 4

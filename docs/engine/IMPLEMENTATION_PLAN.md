@@ -10,8 +10,15 @@
 - **The warehouse is not in git.** In a fresh container rebuild it first:
   `python scripts/engine_ingest.py 2010-2025` (about 15 minutes; the NGS and FTN seasons before 2016 and 2022 come
   back unavailable, which is expected), then `python scripts/engine_feature_check.py` (must end in PASS).
-- **Next: Engine B (challenger), phase 4.** Deferred for a later Engine A version: play-by-play game
-  script, availability before the active list is out.
+- **Engine B (challenger), phase 4: version B-0.1 built and run on the tune seasons** (`docs/engine/engine_b_tune.md`,
+  `python scripts/engine_b_tune.py`, about 3 minutes): hurdle negative binomial counts, beta-binomial catches,
+  boosted quantile yardage with a zero mass where it helped. On 2022-2023 it beat the baselines in all six markets
+  and Engine A's tune scores in all six (tuning, not a test). **Next for Engine B:** the dependence layer (spec 3.4:
+  Gaussian copula per team-game from fit-season residual ranks, then box reconciliation, and a re-run to check it
+  leaves the marginals' scores intact), then freeze B-1.0 and give it its own Test S script and frozen record
+  (`scripts/engine_test_s.py` counts versions with `engine_test_s_A-*.json`; Engine B needs `engine_test_s_B-*`).
+  Running B's Test S needs Will's go-ahead, as A's did. Rare events (spec 3.3) are shadow markets, after that.
+- Deferred for a later Engine A version: play-by-play game script, availability before the active list is out.
 - **Novig recorder:** runs on GitHub's schedule, which starts late. Will is setting up an outside cron service to
   start it on time (docs/engine/NOVIG_INTEGRATION.md). Once he confirms it works, trim the game-window crons in
   `.github/workflows/novig-books.yml`.
@@ -29,7 +36,7 @@ Paths are under `src/nflbet/engine/` unless they start with another directory.
 | 1 | Warehouse: nflverse 2010-2025 to Parquet under `data/cache/engine/` (not in git), manifest with row counts and file hashes; player-week outcome table | `data/nflverse.py`, `data/player_week.py`, `scripts/engine_ingest.py`, `scripts/engine_coverage.py` | zero duplicate player-week keys; every stat row on that week's roster with the same team; games match the schedule; `docs/engine/coverage.md` committed | **done 2026-11-12** |
 | 2 | Features as of a kickoff: per-game facts, then sums over each player's, offense's and defense's earlier games (last 3, 5, 8 games, season to date, last season) | `features/facts.py`, `features/build.py`, `scripts/engine_feature_check.py` | hand-computed sums match; scrambling every raw row from a cut-off on leaves all rows up to it identical, on synthetic data in CI and on the real warehouse (`docs/engine/feature_check.md`); a planted leak is caught | **done 2026-11-13** |
 | 3 | Baselines (spec section 6), then Engine A layers: environment, script, personnel, opportunity, efficiency | `baselines.py`, `scoring.py`, `replication/environment.py`, `opportunity.py`, `efficiency.py`, `model.py`, `scripts/engine_baselines.py`, `scripts/engine_a_tune.py` | accounting holds on every simulated run; planted-signal test for each fitted layer | baselines **done**; Engine A version A-1.0 **frozen 2026-11-14** (`data/backtests/engine_a_frozen.json`) after its run on the tune seasons (`docs/engine/engine_a_tune.md`): team volume, game-day active list with a chance-to-play draw, Dirichlet-multinomial split, catch and yardage. expected starting quarterback from recent starts and the depth chart, expected margin and total in the team-volume means, a game's two offenses drawn together. Deferred to a later version: play-by-play game script, availability before the active list is out. Test S run 2026-11-14: PASS 6 of 6 (`docs/engine/test_s_engine_A-1.0.md`) |
-| 4 | Engine B: quantile, count, hierarchical models, joint layer | `challenger/*.py` | no import of Engine A; quantile crossing zero after correction; support tests | |
+| 4 | Engine B: quantile, count, hierarchical models, joint layer | `challenger/*.py` | no import of Engine A; quantile crossing zero after correction; support tests | B-0.1 marginals **built 2026-11-14** (`design.py`, `counts.py`, `yardage.py`, `model.py`, `scripts/engine_b_tune.py`); gate tests in CI. Joint layer and rare events not built |
 | 5 | Simulator completion: touchdowns, interceptions, longest play, combined stats | `simulation/*.py` | every box score reconciles with its events; seed stability within the Monte Carlo error | |
 | 6 | Pricing against recorded Novig books | `pricing.py`, `contracts.py` (extend) | every matched contract re-derivable from the saved snapshot; unmatched never priced | partly built in phase 0 |
 | 7 | Verification: Test S, calibration, A versus B | `verification/*.py`, `scripts/engine_test_s.py` | Test S run once per frozen version, report committed | |
