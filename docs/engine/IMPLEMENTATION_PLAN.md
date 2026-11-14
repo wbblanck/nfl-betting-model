@@ -1,16 +1,16 @@
 # Implementation plan
 
 ## Where things stand (2026-11-14) - read this first when picking the work up in a new session
-- **Branch:** `claude/nfl-player-props-engine-qaad48`. Check whether it is merged into `main`; if not, work from the branch.
-- **Engine A is frozen as A-1.0 and Test S has NOT been run.** It needs Will's go-ahead ("run it"). Then, with a
-  clean working tree: `python scripts/engine_test_s.py --run-once`. It runs once per version and refuses otherwise.
-  Do not look at 2024-2025 outcomes any other way.
+- **Branch:** `claude/project-thread-qh3gyj` (= `claude/nfl-player-props-engine-qaad48` plus the Test S result). Check
+  whether it is merged into `main`; if not, work from it.
+- **Test S for Engine A-1.0 was run once on 2024-2025 (2026-11-14, Will's go-ahead): PASS in 6 of 6 markets**
+  against the frozen simple baselines (`docs/engine/test_s_engine_A-1.0.md`, `data/backtests/engine_test_s_A-1.0.json`).
+  It cannot be run again for A-1.0; any later Engine A version is a new test and divides the level again. This is
+  distribution accuracy against simple baselines, not against a market price (that is Test M, prospective).
 - **The warehouse is not in git.** In a fresh container rebuild it first:
-  `python scripts/engine_ingest.py 2010-2025` (about 15 minutes), then `python scripts/engine_feature_check.py`
-  (builds `data/cache/engine/features/player_game.parquet` and must end in PASS), then
-  `python scripts/engine_test_s.py --dry-run`, whose report must say the frozen record matches: True. If it says
-  False, the rebuilt data differs from what was frozen; stop and report, do not run the test.
-- **After Test S:** Engine B (challenger), phase 4. Deferred for a later Engine A version: play-by-play game
+  `python scripts/engine_ingest.py 2010-2025` (about 15 minutes; the NGS and FTN seasons before 2016 and 2022 come
+  back unavailable, which is expected), then `python scripts/engine_feature_check.py` (must end in PASS).
+- **Next: Engine B (challenger), phase 4.** Deferred for a later Engine A version: play-by-play game
   script, availability before the active list is out.
 - **Novig recorder:** runs on GitHub's schedule, which starts late. Will is setting up an outside cron service to
   start it on time (docs/engine/NOVIG_INTEGRATION.md). Once he confirms it works, trim the game-window crons in
@@ -28,7 +28,7 @@ Paths are under `src/nflbet/engine/` unless they start with another directory.
 | 0 | Specs, registry, schemas, isolation rules | `config/markets.yaml`, `registry.py`, `contracts.py`, `pricing.py`, `accounting.py`, `ledger.py`, `novig_capture.py`, `scripts/fetch/novig_books.py`, `.github/workflows/novig-books.yml`, `tests/test_engine.py`, `docs/engine/` | registry, matching, pricing, accounting, ledger and isolation tests pass | **done 2026-11-12** |
 | 1 | Warehouse: nflverse 2010-2025 to Parquet under `data/cache/engine/` (not in git), manifest with row counts and file hashes; player-week outcome table | `data/nflverse.py`, `data/player_week.py`, `scripts/engine_ingest.py`, `scripts/engine_coverage.py` | zero duplicate player-week keys; every stat row on that week's roster with the same team; games match the schedule; `docs/engine/coverage.md` committed | **done 2026-11-12** |
 | 2 | Features as of a kickoff: per-game facts, then sums over each player's, offense's and defense's earlier games (last 3, 5, 8 games, season to date, last season) | `features/facts.py`, `features/build.py`, `scripts/engine_feature_check.py` | hand-computed sums match; scrambling every raw row from a cut-off on leaves all rows up to it identical, on synthetic data in CI and on the real warehouse (`docs/engine/feature_check.md`); a planted leak is caught | **done 2026-11-13** |
-| 3 | Baselines (spec section 6), then Engine A layers: environment, script, personnel, opportunity, efficiency | `baselines.py`, `scoring.py`, `replication/environment.py`, `opportunity.py`, `efficiency.py`, `model.py`, `scripts/engine_baselines.py`, `scripts/engine_a_tune.py` | accounting holds on every simulated run; planted-signal test for each fitted layer | baselines **done**; Engine A version A-1.0 **frozen 2026-11-14** (`data/backtests/engine_a_frozen.json`) after its run on the tune seasons (`docs/engine/engine_a_tune.md`): team volume, game-day active list with a chance-to-play draw, Dirichlet-multinomial split, catch and yardage. expected starting quarterback from recent starts and the depth chart, expected margin and total in the team-volume means, a game's two offenses drawn together. Deferred to a later version: play-by-play game script, availability before the active list is out. Test S is run by `scripts/engine_test_s.py --run-once` on Will's go-ahead |
+| 3 | Baselines (spec section 6), then Engine A layers: environment, script, personnel, opportunity, efficiency | `baselines.py`, `scoring.py`, `replication/environment.py`, `opportunity.py`, `efficiency.py`, `model.py`, `scripts/engine_baselines.py`, `scripts/engine_a_tune.py` | accounting holds on every simulated run; planted-signal test for each fitted layer | baselines **done**; Engine A version A-1.0 **frozen 2026-11-14** (`data/backtests/engine_a_frozen.json`) after its run on the tune seasons (`docs/engine/engine_a_tune.md`): team volume, game-day active list with a chance-to-play draw, Dirichlet-multinomial split, catch and yardage. expected starting quarterback from recent starts and the depth chart, expected margin and total in the team-volume means, a game's two offenses drawn together. Deferred to a later version: play-by-play game script, availability before the active list is out. Test S run 2026-11-14: PASS 6 of 6 (`docs/engine/test_s_engine_A-1.0.md`) |
 | 4 | Engine B: quantile, count, hierarchical models, joint layer | `challenger/*.py` | no import of Engine A; quantile crossing zero after correction; support tests | |
 | 5 | Simulator completion: touchdowns, interceptions, longest play, combined stats | `simulation/*.py` | every box score reconciles with its events; seed stability within the Monte Carlo error | |
 | 6 | Pricing against recorded Novig books | `pricing.py`, `contracts.py` (extend) | every matched contract re-derivable from the saved snapshot; unmatched never priced | partly built in phase 0 |
