@@ -9,8 +9,8 @@ Markets and routes:
   rec                     simulated targets (negative binomial) then beta-binomial catches
   pass_yds, rush_yds,     gradient-boosted quantiles with the count model's mean as a feature, rearranged, with
   rec_yds                 fitted tails (yardage)
-The dependence layer (Gaussian copula and box reconciliation, spec 3.4) is not in this version: each market's
-runs are drawn on their own, which leaves every marginal forecast unchanged and is all Test S scores.
+Every market has an inverse CDF (ppf), so the dependence layer (joint.py, spec 3.4) can drive the marginals with
+correlated uniforms and leave each one exactly as it is here.
 """
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ import polars as pl
 from nflbet.engine import baselines as BL
 from nflbet.engine.challenger import counts as C, design as D, yardage as Y
 
-VERSION = "B-0.1"
+VERSION = "B-0.2"
 VOLUME = {"pass_att": "attempts", "rush_att": "carries", "rec": "targets",
           "pass_yds": "attempts", "rush_yds": "carries", "rec_yds": "targets"}
 ELIG = {"attempts": "pass_att", "carries": "rush_att", "targets": "rec"}      # which market's sample fits a volume model
@@ -95,25 +95,69 @@ def fit_tails(P: dict, df: pl.DataFrame) -> dict:
     return P
 
 
+KCOUNT = {"attempts": 90, "carries": 60, "targets": 40}
+
+
+def _ppf_table(cdf: np.ndarray, u: np.ndarray) -> np.ndarray:
+    """Smallest k with cdf[row, k] >= u, per row, for u [rows, sims]."""
+    out = np.empty(u.shape, dtype=np.int32)
+    for i in range(len(cdf)):
+        out[i] = np.searchsorted(cdf[i], u[i], side="left")
+    return np.minimum(out, cdf.shape[1] - 1)
+
+
+def count_pmf(P: dict, df: pl.DataFrame, vol: str) -> np.ndarray:
+    """[rows, KCOUNT + 1] probabilities of the volume (pass attempts, carries or targets) under the chosen family."""
+    from scipy import stats
+    Xs, pos, inst = _count_inputs(P, df, vol)
+    k = np.arange(KCOUNT[vol] + 1)[None, :]
+    if P["family"][ELIG[vol]] == "hurdle":
+        mu, r = C.nb_params(P["hurdle"][vol]["nb"], Xs, pos, inst)
+        nb = stats.nbinom.pmf(k, r[:, None], (r / (r + mu))[:, None])
+        p0 = C.logit_prob(P["hurdle"][vol]["zero"], Xs)[:, None]
+        pmf = (1 - p0) * np.where(k > 0, nb, 0) / np.maximum(1 - nb[:, :1], 1e-12)
+        pmf[:, 0] = p0[:, 0]
+    else:
+        mu, r = C.nb_params(P["count"][vol], Xs, pos, inst)
+        pmf = stats.nbinom.pmf(k, r[:, None], (r / (r + mu))[:, None])
+    return pmf / pmf.sum(axis=1, keepdims=True)
+
+
+def rec_pmf(P: dict, df: pl.DataFrame) -> np.ndarray:
+    """[rows, KCOUNT['targets'] + 1] probabilities of receptions: targets mixed over beta-binomial catches."""
+    from scipy import stats
+    pt = count_pmf(P, df, "targets")
+    hr, ht = _hist_catch(df)
+    c = P["catch"]
+    p = np.clip(C.catch_rate(hr, ht, df["position"].to_numpy(), c["prior"], c["m"]), 0.02, 0.98)[:, None]
+    r = np.arange(pt.shape[1])[None, :]
+    out = np.zeros_like(pt)
+    for t in range(pt.shape[1]):
+        out += pt[:, t:t + 1] * stats.betabinom.pmf(r, t, p * c["kappa"], (1 - p) * c["kappa"])
+    return out / out.sum(axis=1, keepdims=True)
+
+
+def ppf(P: dict, df: pl.DataFrame, market: str, u: np.ndarray) -> np.ndarray:
+    """The market's stat at probabilities u [rows, sims] (inverse CDF), conditional on the player playing. Monotone
+    in u, so correlated uniforms from the dependence layer give correlated stats with these exact marginals."""
+    if market in ("pass_att", "rush_att"):
+        return _ppf_table(np.cumsum(count_pmf(P, df, VOLUME[market]), axis=1), u)
+    if market == "rec":
+        return _ppf_table(np.cumsum(rec_pmf(P, df), axis=1), u)
+    if P["family"][market] != "quantile+zero":
+        return np.rint(Y.quantile_fn(quantiles(P, df, market), P["tails"][market], u)).astype(np.int32)
+    # Zero mass p0 placed at 0 inside the non-zero distribution G: F(y) = p0 1[y >= 0] + (1 - p0) G(y).
+    q, t = quantiles(P, df, market, nonzero=True), P["tails_nz"][market]
+    p0 = C.logit_prob(P["zero"][market], _yard_inputs(P, df, VOLUME[market]))[:, None]
+    grid = np.tile(np.linspace(0.0005, 0.9995, 1000), (len(q), 1))
+    g0 = (Y.quantile_fn(q, t, grid) < 0).mean(axis=1, keepdims=True)          # G(0): share of G below zero
+    lo, hi = (1 - p0) * g0, (1 - p0) * g0 + p0
+    v = np.where(u < lo, u / (1 - p0), (u - p0) / (1 - p0))
+    x = Y.quantile_fn(q, t, np.clip(v, 1e-9, 1 - 1e-9))
+    x = np.where(u < lo, np.minimum(np.rint(x), -1), np.maximum(np.rint(x), 1))   # G has no mass at 0
+    return np.where((u >= lo) & (u < hi), 0, x).astype(np.int32)
+
+
 def simulate(P: dict, df: pl.DataFrame, market: str, sims: int, rng: np.random.Generator) -> np.ndarray:
-    """Runs [rows, sims] of the market's stat for every row of df, conditional on the player playing."""
-    vol = VOLUME[market]
-    if market in ("pass_att", "rush_att", "rec"):
-        Xs, pos, inst = _count_inputs(P, df, vol)
-        if P["family"][ELIG[vol]] == "hurdle":
-            mu, r = C.nb_params(P["hurdle"][vol]["nb"], Xs, pos, inst)
-            n = C.hurdle_draw(rng, C.logit_prob(P["hurdle"][vol]["zero"], Xs), mu, r, sims)
-        else:
-            mu, r = C.nb_params(P["count"][vol], Xs, pos, inst)
-            n = C.nb_draw(rng, mu, r, sims)
-        if market != "rec":
-            return n
-        hr, ht = _hist_catch(df)
-        c = P["catch"]
-        return C.catch_draw(rng, n, C.catch_rate(hr, ht, pos, c["prior"], c["m"]), c["kappa"])
-    if P["family"][market] == "quantile+zero":
-        x = Y.draw(rng, quantiles(P, df, market, nonzero=True), P["tails_nz"][market], sims)
-        x[x == 0] = 1                                  # the zero mass belongs to the logistic part alone
-        p0 = C.logit_prob(P["zero"][market], _yard_inputs(P, df, VOLUME[market]))
-        return np.where(rng.random(x.shape) < p0[:, None], 0, x).astype(np.int32)
-    return Y.draw(rng, quantiles(P, df, market), P["tails"][market], sims)
+    """Runs [rows, sims] of the market's stat for every row of df, each market on its own (no dependence)."""
+    return ppf(P, df, market, rng.random((df.height, sims), dtype=np.float32))

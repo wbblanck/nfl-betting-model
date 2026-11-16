@@ -767,3 +767,62 @@ def test_engine_b_yardage_rearrangement_tails_and_planted_signal():
     med = Y.predict(m, np.array([[-1.0, 0.0], [1.0, 0.0], [1.0, 2.0]]))[:, 3]
     # Boosted trees approach a straight line in steps and stop short of it at 300 shallow rounds: found, slightly shrunk.
     assert 28 < med[1] - med[0] < 45 and abs(med[2] - med[1]) < 4
+
+
+def _fake_joint_frame(n_games: int):
+    import polars as pl
+    rows = []
+    for g in range(n_games):
+        rows += [{"game_id": f"g{g}", "team": "A", "player_id": "qb", "position": "QB"},
+                 {"game_id": f"g{g}", "team": "A", "player_id": "wr1", "position": "WR"},
+                 {"game_id": f"g{g}", "team": "A", "player_id": "wr2", "position": "WR"}]
+    return pl.DataFrame(rows)
+
+
+def test_engine_b_copula_recovers_planted_correlations_and_keeps_marginals(monkeypatch):
+    import polars as pl
+    from scipy import special
+    from nflbet.engine.challenger import joint as J, model as M
+    monkeypatch.setattr(M, "ppf", lambda P, df, m, u: np.rint(special.ndtri(u) * 100).astype(np.int32))   # marginal = N(0, 100^2)
+    n = 3000
+    df = _fake_joint_frame(n)
+    qb = (df["player_id"] == "qb").to_numpy()
+    masks = {"pass_yds": qb, "rec_yds": ~qb}
+    rng = np.random.default_rng(9)
+    R = np.array([[1, 0.4, 0.4], [0.4, 1, -0.2], [0.4, -0.2, 1]])
+    z = rng.standard_normal((n, 3)) @ np.linalg.cholesky(R).T          # planted: QB with each WR 0.4, WRs -0.2
+    y = np.rint(z * 100).reshape(-1)
+    rho = J.fit({}, df, masks, {"pass_yds": y, "rec_yds": y})
+    assert rho["pass_yds|rec_yds|other"]["rho"] == pytest.approx(0.4, abs=0.04)
+    assert rho["rec_yds|rec_yds|other"]["rho"] == pytest.approx(-0.2, abs=0.05)
+    runs, _ = J.simulate({}, rho, df.head(3), {"pass_yds": qb[:3], "rec_yds": ~qb[:3]}, 40000, rng, reconcile_box=False)
+    x = np.vstack([runs["pass_yds"], runs["rec_yds"]]) / 100
+    assert np.corrcoef(x)[0, 1] == pytest.approx(0.4, abs=0.03) and np.corrcoef(x)[1, 2] == pytest.approx(-0.2, abs=0.03)
+    assert x.mean(axis=1) == pytest.approx([0, 0, 0], abs=0.03) and x.std(axis=1) == pytest.approx([1, 1, 1], abs=0.03)
+    indep, _ = J.simulate({}, {}, df.head(3), {"pass_yds": qb[:3], "rec_yds": ~qb[:3]}, 40000, rng, reconcile_box=False)
+    assert abs(np.corrcoef(np.vstack([indep["pass_yds"], indep["rec_yds"]]))[0, 1]) < 0.03   # nothing planted, nothing found
+
+
+def test_engine_b_correlation_matrix_is_valid_even_when_pair_kinds_disagree():
+    from nflbet.engine.challenger import joint as J
+    rho = {J.key("rec", "rec", False): {"rho": -0.9}}                  # three receivers all at -0.9: not a valid matrix
+    R = J.matrix(rho, ["rec", "rec", "rec"], ["a", "b", "c"])
+    assert np.allclose(np.diag(R), 1) and np.linalg.eigvalsh(R).min() > 0
+    np.linalg.cholesky(R)
+
+
+def test_engine_b_reconciliation_rules():
+    import polars as pl
+    from nflbet.engine.challenger import joint as J
+    var = pl.DataFrame({"market": ["pass_att", "pass_yds", "rec", "rec", "rec_yds", "rec_yds"], "tg": ["g|A"] * 6,
+                        "player_id": ["qb", "qb", "w1", "w2", "w1", "w2"]})
+    runs = {"pass_att": np.array([[30, 1, 0]]), "pass_yds": np.array([[200, 10, 0]]), "rec": np.array([[5, 3, 0], [4, 0, 2]]),
+            "rec_yds": np.array([[150, 40, 12], [100, 9, 30]])}
+    fx = J.reconcile({k: v.copy() for k, v in runs.items()}, var, caps=False)
+    assert fx["yards_without_volume"] == 2 and fx["receiving_yards_over_passing"] == 0
+    r = {k: v.copy() for k, v in runs.items()}
+    J.reconcile(r, var, caps=True)
+    assert (r["rec_yds"].sum(axis=0) <= np.maximum(r["pass_yds"][0], 0)).all()
+    assert (r["rec"].sum(axis=0) <= r["pass_att"][0]).all()
+    assert ((r["rec"] > 0) | (r["rec_yds"] == 0)).all()                  # no yards without a catch
+    assert (r["rec_yds"] <= runs["rec_yds"]).all()                       # only ever lowered
