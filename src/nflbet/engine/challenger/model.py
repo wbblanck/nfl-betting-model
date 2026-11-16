@@ -20,7 +20,7 @@ import polars as pl
 from nflbet.engine import baselines as BL
 from nflbet.engine.challenger import counts as C, design as D, yardage as Y
 
-VERSION = "B-0.2"
+VERSION = "B-1.0"
 VOLUME = {"pass_att": "attempts", "rush_att": "carries", "rec": "targets",
           "pass_yds": "attempts", "rush_yds": "carries", "rec_yds": "targets"}
 ELIG = {"attempts": "pass_att", "carries": "rush_att", "targets": "rec"}      # which market's sample fits a volume model

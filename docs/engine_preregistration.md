@@ -93,3 +93,16 @@ and its rules are frozen in their own file first.
   result: those are the seasons the design was chosen on.
 - Will approves the run before it is made.
 
+
+## Amendment 2026-11-16: Engine B version B-1.0 frozen for Test S (before any 2024-2025 outcome is scored)
+- Frozen record: `data/backtests/engine_b_frozen.json` (hashes of the fitted parameters including the copula's
+  correlations, the yardage boosters, the baselines file and the 2018-2023 feature rows). Fitted on 2018-2021; family
+  per market, yardage tree settings and tail scales chosen on 2022-2023 (docs/engine/engine_b_tune.md).
+- What the engine is given for a game: the game-day active list and data from earlier games; each forecast is
+  conditional on the player taking a snap, as for Engine A.
+- Test procedure, fixed in `scripts/engine_test_s_b.py` and committed before it is run: the same sample, frozen
+  baselines, statistic and bootstrap as Engine A's; 4,000 joint runs (copula and the box rule as used, seed 7); level
+  0.05 / 6 / (versions of Engine B tested so far, this one included). PASS when the interval is entirely below 0. The
+  script refuses to run twice for a version, with uncommitted changes, or if the parameters no longer match.
+- A versus B is reported, not tested (as declared above). No blend of the two engines.
+- Will approved the run on 2026-11-16 ("go-ahead") before it was made.

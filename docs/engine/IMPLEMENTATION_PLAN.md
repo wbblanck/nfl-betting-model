@@ -18,9 +18,9 @@
   in all six (tuning, not a test). The spec's quarterback caps (receivers' yards and catches within the forecast
   quarterback's) were tried and left off: another quarterback throws in about 12% of real team-games and the caps
   worsened receiving scores; a full reconciliation needs a team passing total, which Engine B does not forecast.
-  **Next for Engine B:** freeze B-1.0 and give it its own Test S (`scripts/engine_test_s.py` counts versions with
-  `engine_test_s_A-*.json` and calls Engine A; Engine B needs its own frozen record and `engine_test_s_B-*`).
-  Running B's Test S needs Will's go-ahead, as A's did. Rare events (spec 3.3) are shadow markets, after that.
+  **Frozen as B-1.0 on 2026-11-16** (`data/backtests/engine_b_frozen.json`); its Test S is
+  `python scripts/engine_test_s_b.py --run-once` (Will approved the run 2026-11-16). Rare events (spec 3.3) are
+  shadow markets, after that.
 - Deferred for a later Engine A version: play-by-play game script, availability before the active list is out.
 - **Novig recorder:** runs on GitHub's schedule, which starts late. Will is setting up an outside cron service to
   start it on time (docs/engine/NOVIG_INTEGRATION.md). Once he confirms it works, trim the game-window crons in

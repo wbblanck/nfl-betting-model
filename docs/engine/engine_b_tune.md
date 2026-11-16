@@ -1,4 +1,4 @@
-# Engine B B-0.2 on the tune seasons
+# Engine B B-1.0 on the tune seasons
 
 Written by `scripts/engine_b_tune.py`. Fitted on 2018-2021 (yardage tail scales on 2022-2023); every Test S row
 of 2022-2023 forecast with 4,000 runs. This is tuning, not Test S: no 2024-2025 outcome and no price was read.
