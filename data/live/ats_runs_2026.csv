@@ -605,3 +605,4 @@ game_id,game,start_time,home,away,fair,consensus,exchange,n_exchanges,side,side_
 2026_10_LAC_BAL,BAL|LAC,2026-11-17T01:15:00.000Z,BAL,LAC,6.33,4.5,4.5,6,BAL,true,Caesars,4.5,-106.0,1.83,false,0.43,true,"",Monitor,4.5,4.5,4.5,5.0,4.5,2026-11-15T23:22:07Z,10
 2026_10_PIT_CIN,CIN|PIT,2026-11-16T01:20:00.000Z,CIN,PIT,2.04,3.5,3.5,6,PIT,false,Caesars,3.5,-108.0,1.46,true,0.34,true,"",Bet Now,3.5,3.5,3.5,3.5,3.5,2026-11-15T23:31:58Z,10
 2026_10_LAC_BAL,BAL|LAC,2026-11-17T01:15:00.000Z,BAL,LAC,6.33,4.5,4.5,6,BAL,true,Caesars,4.5,-106.0,1.83,false,0.43,true,"",Monitor,4.5,4.5,4.5,5.0,4.5,2026-11-15T23:31:58Z,10
+2026_10_LAC_BAL,BAL|LAC,2026-11-17T01:15:00.000Z,BAL,LAC,6.33,4.5,4.5,6,BAL,true,Caesars,4.5,-106.0,1.83,false,0.43,true,"",Monitor,4.5,4.5,4.5,5.0,4.5,2026-11-16T02:24:09Z,10
