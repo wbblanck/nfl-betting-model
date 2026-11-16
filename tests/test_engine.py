@@ -826,3 +826,74 @@ def test_engine_b_reconciliation_rules():
     assert (r["rec"].sum(axis=0) <= r["pass_att"][0]).all()
     assert ((r["rec"] > 0) | (r["rec_yds"] == 0)).all()                  # no yards without a catch
     assert (r["rec_yds"] <= runs["rec_yds"]).all()                       # only ever lowered
+
+
+# ------------------------------------------------------------------------------------------------ Engine A event layer
+def _event_inputs():
+    import polars as pl
+    from nflbet.engine.replication import events as EV, model as M
+    df, teams, pools = _engine_a_inputs()
+    P = M.fit(df, teams, pools)
+    rng = np.random.default_rng(11)
+    flags = {k: {p: (v >= 20) | (rng.random(len(v)) < 0.02) for p, v in d.items()} for k, d in pools.items()}   # long plays score more
+    sums, ptab = EV.tables(pools, flags, seed=0)
+    rows = df.filter(pl.col("game_id") == "g0").sort("player_id")
+    hist = rows.select("player_id", "game_id").with_columns(*[pl.lit(0.0).alias(f"h_{c}") for c in (
+        "receiving_tds", "rushing_tds", "passing_interceptions", "receptions", "carries", "attempts")])
+    EVp = {"td_rate": {k: {p: float(np.mean(v)) for p, v in d.items()} for k, d in flags.items()}, "c": {"rec": 50.0, "rush": 50.0, "int": 200.0},
+           "int_rate": 0.025}
+    return P, pools, flags, sums, ptab, rows, hist, EVp
+
+
+def test_event_layer_leaves_engine_a_runs_unchanged_and_every_box_matches_its_events():
+    from nflbet.engine.replication import events as EV, model as M
+    P, pools, flags, sums, ptab, rows, hist, EVp = _event_inputs()
+    mt = M.tables(pools, seed=0)
+    assert all(np.array_equal(mt[k][p], sums[k][p]) for k in mt for p in mt[k])          # same tables, same draws
+    box, s, e = EV.simulate(P, EVp, sums, ptab, rows, hist, 3000, np.random.default_rng(4), np.random.default_rng(5))
+    box0, s0 = M.simulate(P, mt, rows, 3000, np.random.default_rng(4))
+    assert all((s[c] == s0[c]).all() for c in s0) and accounting.violations(box) == {}      # A-1.0's runs bit for bit
+    assert EV.violations(e["box"]) == {}
+    b = e["box"]
+    assert (b["rec_plays"].sum(axis=2) == b["rec_yds"]).all() and (b["rush_plays"].sum(axis=2) == b["rush_yds"]).all()
+    es = e["samples"]
+    assert (es["rush_rec_yds"] == s["rushing_yards"] + s["receiving_yards"]).all()
+    assert (es["tds"] >= 0).all() and (es["passing_interceptions"] <= s["attempts"]).all()
+    # Planted: touchdown share per catch close to the pool's (factor 1 with no history), long catches score more often.
+    rec_n = b["rec_n"].sum()
+    assert b["rec_td"].sum() / rec_n == pytest.approx(np.mean([flags["rec"][p].mean() for p in ("WR", "TE", "RB")]), abs=0.03)
+    long_ = b["rec_plays"] >= 20
+    assert b["rec_td"][long_].mean() > 0.9 and b["rec_td"][~long_ & (b["rec_plays"] > 0)].mean() < 0.1
+    # A player with twice his position's touchdown rate on a long history scores about twice as often.
+    import polars as pl
+    hot = hist.with_columns(pl.when(pl.col("player_id") == "p0").then(400.0).otherwise(0.0).alias("h_receptions"))
+    hot = hot.with_columns((pl.col("h_receptions") * 2 * EVp["td_rate"]["rec"]["WR"]).alias("h_receiving_tds"))
+    _, _, eh = EV.simulate(P, EVp, sums, ptab, rows, hot, 3000, np.random.default_rng(4), np.random.default_rng(5))
+    r0 = e["box"]["rec_td"][:, 0].sum() / e["box"]["rec_n"][:, 0].sum()
+    r1 = eh["box"]["rec_td"][:, 0].sum() / eh["box"]["rec_n"][:, 0].sum()
+    assert r1 / r0 == pytest.approx(1.8, abs=0.35)               # shrunk a little toward the position (c = 50, 400 catches)
+
+
+def test_event_layer_planted_breaks_are_found():
+    from nflbet.engine.replication import events as EV
+    P, pools, flags, sums, ptab, rows, hist, EVp = _event_inputs()
+    _, _, e = EV.simulate(P, EVp, sums, ptab, rows, hist, 500, np.random.default_rng(4), np.random.default_rng(5))
+    b = {k: v.copy() for k, v in e["box"].items()}
+    b["rec_plays"][3, 0, 0] += 1
+    assert EV.violations(b) == {"play yards != player yards": 1}
+    b = {k: v.copy() for k, v in e["box"].items()}
+    b["ints"][7, 4] = b["att"][7, 4] + 1
+    assert EV.violations(b) == {"interceptions > attempts": 1}
+
+
+def test_event_layer_two_seeds_agree_within_monte_carlo_error():
+    from nflbet.engine.replication import events as EV
+    P, pools, flags, sums, ptab, rows, hist, EVp = _event_inputs()
+    S = 20000
+    _, _, a = EV.simulate(P, EVp, sums, ptab, rows, hist, S, np.random.default_rng(1), np.random.default_rng(2))
+    _, _, b = EV.simulate(P, EVp, sums, ptab, rows, hist, S, np.random.default_rng(3), np.random.default_rng(4))
+    for c, line in (("tds", 0.5), ("long_rec", 19.5), ("passing_interceptions", 0.5), ("rush_rec_yds", 50.5)):
+        p1, p2 = (a["samples"][c] > line).mean(axis=1), (b["samples"][c] > line).mean(axis=1)
+        p = (p1 + p2) / 2
+        se = np.sqrt(np.maximum(p * (1 - p), 1e-12) * 2 / S)
+        assert (np.abs(p1 - p2) <= 4 * se + 1e-12).all(), c

@@ -174,12 +174,16 @@ def tables(pools: dict, seed: int = 0) -> dict:
     return {kind: {p: E.sum_table(np.asarray(v, float), E.NMAX[kind], rng) for p, v in pools[kind].items()} for kind in ("rec", "rush")}
 
 
-def _yards(rng, tab: dict, pos: np.ndarray, n: np.ndarray, f: np.ndarray, shock: np.ndarray) -> np.ndarray:
-    """n [sims, K] plays -> whole yards [sims, K]; exactly 0 where n is 0."""
+def _yards(rng, tab: dict, pos: np.ndarray, n: np.ndarray, f: np.ndarray, shock: np.ndarray, cols: np.ndarray | None = None) -> np.ndarray:
+    """n [sims, K] plays -> whole yards [sims, K]; exactly 0 where n is 0. If cols is given, the table column drawn for
+    each run and player is written into it (the event layer reads the plays behind each sum from it)."""
     out = np.zeros(n.shape, dtype=np.int64)
     for k, p in enumerate(pos):
         t = tab[p]
-        base = t[np.minimum(n[:, k], t.shape[0] - 1), rng.integers(0, t.shape[1], n.shape[0])]
+        col = rng.integers(0, t.shape[1], n.shape[0])
+        if cols is not None:
+            cols[:, k] = col
+        base = t[np.minimum(n[:, k], t.shape[0] - 1), col]
         out[:, k] = np.where(n[:, k] > 0, np.rint(base * f[k] * shock), 0)
     return out
 
@@ -191,9 +195,10 @@ def simulate_game(P: dict, tab: dict, sides: list[pl.DataFrame], sims: int, rng:
 
 
 def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.Generator, index: np.ndarray | None = None,
-             side: int = 0) -> tuple[dict, dict]:
+             side: int = 0, trace: dict | None = None) -> tuple[dict, dict]:
     """rows: the feature rows of one offense in one game (its active skill players). Returns (box for
-    engine.accounting.violations, samples: stat -> [players, sims] in the order of rows)."""
+    engine.accounting.violations, samples: stat -> [players, sims] in the order of rows). If trace is a dict, what the
+    event layer (replication/events.py) needs is written into it; this draws nothing extra, so the runs are the same."""
     pos = _pos(rows)
     posx = np.append(pos, "OTH")
     a, c, t = V.draw(P["env"], V.mean(P["env"], rows.head(1))[0], sims, rng, index, side)
@@ -238,7 +243,11 @@ def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.G
         mu = _lookup(e["mu"][kind], posx)
         f = np.append(E.factor(_hist(rows, y_col), _hist(rows, n_col), mu[:-1], e["c"][kind]), 1.0)
         s = e["shock"][kind]
-        out[kind] = _yards(rng, tab[kind], posx, n, f, np.exp(s * rng.standard_normal(sims) - s * s / 2))
+        shock = np.exp(s * rng.standard_normal(sims) - s * s / 2)
+        cols = np.zeros(n.shape, dtype=np.int64) if trace is not None else None
+        out[kind] = _yards(rng, tab[kind], posx, n, f, shock, cols)
+        if trace is not None:
+            trace[kind] = {"n": n, "yards": out[kind], "cols": cols, "f": f, "shock": shock}
     cmp_team, yds_team = rec.sum(axis=1), out["rec"].sum(axis=1)
     w = att / np.maximum(a, 1)[:, None]
     sacks = rng.poisson(P["sack_rate"] * a).astype(np.int64)
@@ -258,4 +267,6 @@ def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.G
         idx = np.flatnonzero(play[:, i])
         pick[i] = rng.choice(idx, sims) if 50 <= len(idx) < sims else np.arange(sims)   # plays in every run: runs kept in order
     samples = {name: np.take_along_axis(v.T, pick, axis=1) for name, v in full.items()}
+    if trace is not None:
+        trace.update({"pos": posx, "att": att, "pick": pick, "qbs": qbs, "k": k, "n_play": play.sum(axis=0)})
     return box, samples
