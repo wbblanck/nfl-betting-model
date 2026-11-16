@@ -16,3 +16,16 @@ Rule (committed before the run, not changed after it):
 - Run once: `python scripts/engine_a_seed_recheck.py`. Its result is appended below.
 
 ## Result
+
+Run 2026-11-16: 5,126 probabilities, 0 beyond 4 standard errors. **PASS.**
+
+| Market | Probabilities | Beyond 4 | Largest gap (standard errors) |
+|---|---|---|---|
+| tds | 1,111 | 0 | 3.14 |
+| passing_tds | 162 | 0 | 2.50 |
+| passing_interceptions | 162 | 0 | 2.92 |
+| long_rec | 1,067 | 0 | 3.45 |
+| long_rush | 1,111 | 0 | 3.02 |
+| long_cmp | 162 | 0 | 2.92 |
+| pass_rush_yds | 240 | 0 | 3.50 |
+| rush_rec_yds | 1,111 | 0 | 3.13 |
