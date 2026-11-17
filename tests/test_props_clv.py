@@ -88,3 +88,24 @@ def test_last_close_window_and_pick_clv_hand_case():
     assert r2["line_move"] == 2.0 and r2["clv_ev"] is None
     r3 = C.pick_clv(p2, last, {"rec_yds": 4.0}).row(0, named=True)
     assert r3["converted"] is True and r3["p_close"] == pytest.approx(1 - C.p_over_at(70.5, 0.55, 72.5, "rec_yds", 4.0))
+
+
+def test_dashboard_pinnacle_and_clv_chips():
+    from nflbet import dashboard as D
+
+    cur = pl.DataFrame([{"run_utc": "r1", "an_game_id": "g1", "player_id": "p1", "market": "rec", "side": "under",
+                         "line": 4.5, "home": "HOU", "away": "IND", "player": "Nico Collins"}])
+    pinn = pl.DataFrame([{"game": "HOU|IND", "nkey": "nico collins", "market": "rec", "line": "4.5", "fair_over": "0.4",
+                          "snap_utc": "2026-11-20T00:00:00Z", "max_risk": "250"},
+                         {"game": "HOU|IND", "nkey": "nico collins", "market": "rec", "line": "5.5", "fair_over": "0.3",
+                          "snap_utc": "2026-11-19T00:00:00Z", "max_risk": "250"}])
+    clv = pl.DataFrame([{"run_utc": "r1", "an_game_id": "g1", "player_id": "p1", "market": "rec", "side": "under",
+                         "source": "pinnacle", "clv_ev": "0.031", "line_move": "0.0", "close_line": "4.5"},
+                        {"run_utc": "r1", "an_game_id": "g1", "player_id": "p1", "market": "rec", "side": "under",
+                         "source": "dk", "clv_ev": "", "line_move": "-1.0", "close_line": "5.5"}])
+    r = D.with_pinnacle(cur, pinn, clv).to_dicts()[0]
+    assert r["pinn_line"] == 4.5 and r["pinn_over"] == 0.4          # latest snapshot wins
+    html = D.pinn_chips(r)
+    assert "Pinnacle 60%" in html and "CLV Pin +3.1%" in html and "DK close -1 pts" in html
+    assert "+3.1%" in D.clv_stat(clv)
+    assert "–" in D.clv_stat(None)

@@ -2,6 +2,7 @@
 
   python scripts/props_close.py watch [--hours 5.7]   # snapshot Pinnacle + DK/FD ~20 and ~6 min before each kickoff
   python scripts/props_close.py snapshot              # one snapshot now (games kicking off within 60 minutes)
+  python scripts/props_close.py board                 # whole Pinnacle board now -> pinnacle_runs (dashboard column)
   python scripts/props_close.py fitcheck              # line-move conversion: fit weeks 5-8, check weeks 9-10 (run once)
   python scripts/props_close.py clv                   # CLV per official mix pick -> data/live/mix_clv_2026.csv, docs/props_clv.md
 """
@@ -30,6 +31,7 @@ LIVE = config.ROOT / "data" / "live"
 CLOSE = LIVE / "close"
 PINN = CLOSE / f"pinnacle_{SEASON}.csv"
 BOOKS = CLOSE / f"books_{SEASON}.csv"
+PINN_RUNS = CLOSE / f"pinnacle_runs_{SEASON}.csv"     # whole Pinnacle board at each tracker run (dashboard display)
 FIT = config.ROOT / "data" / "backtests" / "props_clv_linemove.json"
 OUT = LIVE / f"mix_clv_{SEASON}.csv"
 DOC = config.ROOT / "docs" / "props_clv.md"
@@ -185,6 +187,32 @@ def watch(hours: float) -> None:
         _commit(f"props close: {kick:%a %H:%M} T-{off}")
 
 
+def board() -> None:
+    """Whole Pinnacle NFL props board now (all games not started), appended to PINN_RUNS for the dashboard's Pinnacle
+    column. Display only; 1 PinnRadar request. A failure prints and returns."""
+    when = C.now_utc()
+    try:
+        b, hdr = C.fetch_pinnacle()
+    except Exception as e:  # noqa: BLE001
+        print(f"Pinnacle board unavailable: {type(e).__name__}: {str(e)[:200]}"); return
+    d = C.parse_pinnacle(b)
+    rows = []
+    for r in d.iter_rows(named=True):
+        try:
+            k = dt.datetime.strptime(str(r["starts"])[:19], "%Y-%m-%dT%H:%M:%S").replace(tzinfo=dt.timezone.utc)
+        except ValueError:
+            continue
+        lead = (k - when).total_seconds() / 60
+        if lead <= 0:
+            continue
+        f = C.fair_over(r["over_dec"], r["under_dec"])
+        rows.append({**r, "snap_utc": f"{when:%Y-%m-%dT%H:%M:%SZ}", "source": "pinnacle", "kickoff": f"{k:%Y-%m-%dT%H:%M:%SZ}",
+                     "lead_min": round(lead, 2), "fair_over": f[0] if f else None, "hold": f[1] if f else None})
+    out = pl.DataFrame(rows, infer_schema_length=None) if rows else pl.DataFrame()
+    _append(out, PINN_RUNS)
+    print(f"Pinnacle board: {out.height} props in {out['game'].n_unique() if out.height else 0} games {hdr}")
+
+
 # ------------------------------------------------------------------------------------------ line-move check
 
 def dkfd_pairs(weeks: range, last_only: bool) -> pl.DataFrame:
@@ -282,6 +310,8 @@ if __name__ == "__main__":
     if cmd == "watch":
         h = float(sys.argv[sys.argv.index("--hours") + 1]) if "--hours" in sys.argv else 5.7
         watch(h)
+    elif cmd == "board":
+        board()
     elif cmd == "snapshot":
         snapshot()
     elif cmd == "fitcheck":

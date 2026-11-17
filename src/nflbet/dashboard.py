@@ -65,7 +65,8 @@ def load(live: Path | None = None) -> dict:
             "best": _read(live / f"s1_bestprice_{SEASON}.csv"),
             "ats_yv": _read(live / f"ats_yv_runs_{SEASON}.csv"), "s1_yv": _read(live / f"s1_yv_{SEASON}.csv"),
             "mix_props": _read(live / f"mix_props_{SEASON}.csv"), "mix_runs": _read(live / f"mix_runs_{SEASON}.csv"),
-            "mix_rec": _read(live / f"mix_record_{SEASON}.csv"), "mix_best": _read(live / f"mix_bestprice_{SEASON}.csv")}
+            "mix_rec": _read(live / f"mix_record_{SEASON}.csv"), "mix_best": _read(live / f"mix_bestprice_{SEASON}.csv"),
+            "pinn_runs": _read(live / "close" / f"pinnacle_runs_{SEASON}.csv"), "mix_clv": _read(live / f"mix_clv_{SEASON}.csv")}
 
 
 def _json(path: Path) -> dict | None:
@@ -1304,6 +1305,72 @@ def mix_current(props: pl.DataFrame, runs: pl.DataFrame, rec: pl.DataFrame, best
     return pk
 
 
+CLV_SRC = {"pinnacle": "Pin", "dk": "DK", "fd": "FD"}
+
+
+def with_pinnacle(cur: pl.DataFrame, pinn: pl.DataFrame | None, clv: pl.DataFrame | None) -> pl.DataFrame:
+    """Display only (docs/props_clv_rules.md): Pinnacle's latest pre-kickoff line and no-vig P(over) for each pick, and the
+    pick's closing-line value per close source once a close snapshot exists. Never changes a pick."""
+    from nflbet.sources.ids import game_key, norm_name
+
+    if not cur.height:
+        return cur
+    d = cur.with_columns(pl.struct("home", "away").map_elements(lambda r: game_key(r["home"], r["away"]), return_dtype=pl.Utf8).alias("_g"),
+                         pl.col("player").map_elements(norm_name, return_dtype=pl.Utf8).alias("_n"))
+    if pinn is not None and pinn.height:
+        pz = pinn.filter(pl.col("fair_over").is_not_null() & (pl.col("fair_over") != "")).sort("snap_utc") \
+            .group_by(["game", "nkey", "market"], maintain_order=True).last() \
+            .select(pl.col("game").alias("_g"), pl.col("nkey").alias("_n"), "market", pl.col("line").cast(pl.Float64).alias("pinn_line"),
+                    pl.col("fair_over").cast(pl.Float64).alias("pinn_over"), pl.col("snap_utc").alias("pinn_snap"),
+                    pl.col("max_risk").alias("pinn_risk"))
+        d = d.join(pz, on=["_g", "_n", "market"], how="left")
+    if clv is not None and clv.height:
+        keys = ["run_utc", "an_game_id", "player_id", "market", "side"]
+        for src in CLV_SRC:
+            c = clv.filter(pl.col("source") == src).select(*keys, pl.col("clv_ev").alias(f"clv_{src}"),
+                                                            pl.col("line_move").alias(f"lm_{src}"),
+                                                            pl.col("close_line").alias(f"cl_{src}"))
+            if c.height:
+                d = d.join(c.unique(keys, keep="last"), on=keys, how="left")
+    return d.drop("_g", "_n")
+
+
+def clv_stat(clv: pl.DataFrame | None) -> str:
+    """Season mean CLV vs Pinnacle's close (record only)."""
+    if clv is None or not clv.height:
+        return stat("CLV vs Pinnacle close", "–", "from week 11, record only")
+    c = clv.filter((pl.col("source") == "pinnacle") & pl.col("clv_ev").is_not_null() & (pl.col("clv_ev") != ""))
+    if not c.height:
+        return stat("CLV vs Pinnacle close", "–", "no close matched yet")
+    v = c["clv_ev"].cast(pl.Float64)
+    return stat("CLV vs Pinnacle close", fmt_pct(float(v.mean()), 1, True),
+                f"{c.height} picks, {float((v > 0).mean()) * 100:.0f}% positive; record only")
+
+
+def pinn_chips(r: dict) -> str:
+    out = ""
+    if r.get("pinn_line") not in (None, ""):
+        pl_, po = float(r["pinn_line"]), float(r["pinn_over"])
+        ps = po if r["side"] == "over" else 1 - po
+        same = pl_ == float(r["line"])
+        txt = f"Pinnacle {ps * 100:.0f}%" + ("" if same else f" at {pl_:g}")
+        tip = (f"Pinnacle's no-vig chance of {r['side']} {pl_:g}, latest snapshot {fmt_dt(r['pinn_snap'])}"
+               + ("" if same else f" (its line differs from the pick's {float(r['line']):g})")
+               + f". Reference only: Pinnacle takes small prop bets (max risk {r.get('pinn_risk') or '?'}) and is not a US venue.")
+        out += chip("idle", txt, tip)
+    for src, lab in CLV_SRC.items():
+        v, lm, cl = r.get(f"clv_{src}"), r.get(f"lm_{src}"), r.get(f"cl_{src}")
+        if v not in (None, ""):
+            out += chip("win" if float(v) > 0 else "loss", f"CLV {lab} {float(v) * 100:+.1f}%",
+                        f"Closing-line value vs {lab}'s close (line {cl}): the pick's expected return at DraftKings' price if "
+                        "that close's no-vig chance is the truth. Record only, unvalidated (docs/props_clv_rules.md).")
+        elif lm not in (None, ""):
+            out += chip("idle", f"{lab} close {float(lm):+g} pts",
+                        f"{lab}'s closing line was {cl}; positive means it moved toward the pick. No CLV number: converting a "
+                        "line move to a probability failed its check for this market (docs/props_clv_rules.md).")
+    return out
+
+
 def mix_book(r: dict) -> tuple[str, float]:
     """Where the pick's best price is (DraftKings when nothing beats it) and that price."""
     dk = float(r["odds"])
@@ -1431,7 +1498,7 @@ def mix_row(r: dict, locked: bool, matchup: str = "") -> str:
         + '</div>'
         f'<div class="evc">{ev_pill(ev_b, where)}{mpill}</div>'
         + venue_row(q, book, fair)
-        + f'<div class="news">{echip}</div>'
+        + f'<div class="news">{echip}{pinn_chips(r)}</div>'
         '</li>')
 
 
@@ -1454,7 +1521,11 @@ def mix_section(data: dict, now: dt.datetime) -> str:
             'venues quote both sides. It is line shopping, not a forecast, and it is unvalidated: a pre-registered test on '
             '2025 found too few bets to tell (<a href="' + REPO + 'docs/market_ev_report.md">report</a>). Under each pick, '
             'every venue\'s price is listed with its implied % and the dollars behind it; the strip places them on one '
-            'scale, with the tick at the fair probability.</p>')
+            'scale, with the tick at the fair probability.</p>'
+            '<p class="note"><b>Pinnacle</b> chips show Pinnacle\'s no-vig chance of the pick\'s side (PinnRadar feed), for '
+            'reference: Pinnacle takes small prop bets and is not a US venue. <b>CLV</b> chips appear once a close snapshot '
+            '(about 20 and 6 minutes before kickoff) exists: the pick\'s expected return at DraftKings\' price if that close is '
+            'the truth. Record only, unvalidated, and not part of any rule (<a href="' + REPO + 'docs/props_clv_rules.md">rules</a>).</p>')
     if not runs.height:
         return head.format(title="Props mix: first run pending") + '<p class="empty">No runs yet.</p></section>'
     r = rec.with_columns(pl.col("units").cast(pl.Float64), pl.col("odds").cast(pl.Float64)) if rec.height else rec
@@ -1479,6 +1550,7 @@ def mix_section(data: dict, now: dt.datetime) -> str:
                     "cheapest venue per pick, record only")
              + stat("Log loss, mix vs DK", f'{j["ll_mix"]:.4f} / {j["ll_dk"]:.4f}' if j.get("n") else "–",
                     f'{j["n"]} props from weeks 10-18' if j.get("n") else "from week 10")
+             + clv_stat(data.get("mix_clv"))
              + '</div></div></div></section>')
     cur = mix_current(props, runs, rec, data.get("mix_best"))
     mb = data.get("mix_best")
@@ -1486,6 +1558,10 @@ def mix_section(data: dict, now: dt.datetime) -> str:
         keys = ["run_utc", "an_game_id", "player_id", "market", "side"]
         vcols = ["venues"] + (["venues_opp"] if "venues_opp" in mb.columns else [])
         cur = cur.join(mb.select(*keys, *vcols).unique(keys, keep="last"), on=keys, how="left")
+    try:
+        cur = with_pinnacle(cur, data.get("pinn_runs"), data.get("mix_clv"))
+    except Exception as e:  # noqa: BLE001 - display only
+        print(f"Pinnacle/CLV display skipped: {type(e).__name__}: {e}")
     wk = int(runs["week"].cast(pl.Int64).max())
     games = runs.filter(pl.col("week") == str(wk)).sort("run_utc", descending=True).unique("an_game_id", keep="first").sort("start_time").to_dicts()
     blocks = []
