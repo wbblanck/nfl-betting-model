@@ -1,0 +1,23 @@
+{
+ "run_utc": "2026-11-13T22:53:43Z",
+ "week": 10,
+ "source": "ParlayAPI DraftKings (Action Network has no props posted yet)",
+ "stand_in_picks": 1090,
+ "priced_by_venue": {
+  "DraftKings (ParlayAPI)": 1090,
+  "Novig": 1058,
+  "FanDuel (ParlayAPI)": 464,
+  "Kalshi": 438,
+  "Polymarket US": 326
+ },
+ "cheapest_by_venue": {
+  "DraftKings (ParlayAPI)": 607,
+  "Novig": 375,
+  "Kalshi": 64,
+  "FanDuel (ParlayAPI)": 42,
+  "Polymarket US": 2
+ },
+ "beat_dk": 483,
+ "edge_cents_median_when_beat": 1.75,
+ "edge_cents_mean_all": 0.9468165137614679
+}

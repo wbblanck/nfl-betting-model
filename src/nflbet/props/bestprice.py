@@ -39,7 +39,7 @@ MIN_SIZE = 10.0                 # $ of payout at an exchange's best price (Novig
 CHECK_CENTS = 10.0              # an edge over DK larger than this is flagged: usually a stale or stray quote
 COLS = ["run_utc", "week", "an_game_id", "start_time", "home", "away", "player", "player_id", "market", "line", "side",
         "dk_odds", "dk_cost", "best_venue", "best_cost", "best_odds", "best_size", "edge_cents", "n_venues", "venues",
-        "prefee", "check"]
+        "prefee", "check", "venues_opp"]
 
 
 def an_quotes(an: pl.DataFrame) -> dict[tuple, dict[str, tuple[float, float]]]:
@@ -89,6 +89,8 @@ def best_rows(picks: pl.DataFrame, anq: dict, pa: pl.DataFrame | None, pmq: dict
     rows = []
     for p in picks.iter_rows(named=True):
         vc = venue_costs(p, anq, pa_idx, pmq, nv_idx, nv_books, pm_size, ksq)
+        opp = {**p, "side": "under" if p["side"] == "over" else "over"}     # other side, for the market fair price
+        vo = venue_costs(opp, anq, pa_idx, pmq, nv_idx, nv_books, pm_size, ksq)
         dk_cost = imp(float(p["odds"]))
         elig = {k: v for k, v in vc.items() if v[1] is None or v[1] >= MIN_SIZE}
         best = min(elig.items(), key=lambda kv: kv[1][0]) if elig else None
@@ -102,7 +104,8 @@ def best_rows(picks: pl.DataFrame, anq: dict, pa: pl.DataFrame | None, pmq: dict
                      "edge_cents": round((dk_cost - best[1][0]) * 100, 2) if best else None, "n_venues": len(vc),
                      "venues": json.dumps({k: [round(c, 5), s] for k, (c, s) in sorted(vc.items(), key=lambda kv: kv[1][0])}),
                      "prefee": json.dumps({k: round(float(v)) for k, v in pre.items()}),
-                     "check": "edge over 10 cents: check the quote" if best and (dk_cost - best[1][0]) * 100 > CHECK_CENTS else ""})
+                     "check": "edge over 10 cents: check the quote" if best and (dk_cost - best[1][0]) * 100 > CHECK_CENTS else "",
+                     "venues_opp": json.dumps({k: [round(c, 5), s] for k, (c, s) in sorted(vo.items(), key=lambda kv: kv[1][0])})})
     return pl.DataFrame(rows, schema={c: (pl.Float64 if c in ("line", "dk_odds", "dk_cost", "best_cost", "best_odds", "best_size", "edge_cents")
                                           else pl.Int64 if c == "n_venues" else pl.Utf8) for c in COLS})
 
