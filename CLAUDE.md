@@ -44,6 +44,9 @@ No other pick list.
 - **Action Network props went empty after 2026 week 4:** every `games/{id}/props` answer is an empty shell, past games
   included (`docs/evidence/an_props_probe/`). Official S1 is on ParlayAPI DK + FanDuel from week 9
   (docs/s1_live_rules.md, "Source switch"); the run alarms (red job) when its line source fails.
+- **PinnRadar (Pinnacle) free key** (secret `PINN_API`): 100 requests a day in total, 429 until UTC midnight. One
+  `prematch/fixtures?sport_id=5&include_specials=1` call returns every NFL prop; no price history. Props show max_risk 250.
+  Used only for the record-only props CLV (docs/props_clv_rules.md) and a dashboard chip, never as a pick input.
 - Sandbox cannot reach Action Network or ESPN; fetch in GitHub Actions. Scheduled workflows run only from `main`.
 
 ## Player-prop engine (Will's blueprint, 2026-11-12; docs/engine/README.md)

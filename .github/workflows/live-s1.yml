@@ -63,6 +63,18 @@ jobs:
           else case "${{ github.event.schedule }}" in "7 14 * * 1"|"33 15 * * 2"|"7 14 * * 3") STEP=grade;; *) STEP=run;; esac; fi
           [ "$STEP" = run ] && python scripts/mix_live.py run || true
           python scripts/mix_live.py grade
+      - name: Pinnacle board and props CLV (docs/props_clv_rules.md)
+        # Display and record only: Pinnacle's prop board for the dashboard column (1 PinnRadar request per run) and CLV
+        # per mix pick from the close snapshots. Never reads into or changes a pick; never stops the run.
+        if: always()
+        continue-on-error: true
+        env:
+          PINN_API: ${{ secrets.PINN_API }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then STEP="${{ github.event.inputs.step }}";
+          else case "${{ github.event.schedule }}" in "7 14 * * 1"|"33 15 * * 2"|"7 14 * * 3") STEP=grade;; *) STEP=run;; esac; fi
+          [ "$STEP" = run ] && python scripts/props_close.py board || true
+          python scripts/props_close.py clv
       - name: Weekly recap
         if: always() && (github.event.schedule == '33 15 * * 2' || github.event.schedule == '7 14 * * 3' || github.event.inputs.step == 'grade')
         continue-on-error: true
@@ -79,6 +91,8 @@ jobs:
           for f in data/live/s1_picks_2026.csv data/live/s1_runs_2026.csv data/live/s1_record_2026.csv data/live/s1pa_picks_2026.csv data/live/s1pa_runs_2026.csv data/live/s1pa_record_2026.csv data/live/ats_runs_2026.csv data/live/ats_record_2026.csv data/live/s1_bestprice_2026.csv data/live/s1_yv_2026.csv data/live/s1_yv_record_2026.csv data/live/ats_yv_runs_2026.csv data/live/ats_yv_record_2026.csv data/live/mix_props_2026.csv data/live/mix_runs_2026.csv data/live/mix_record_2026.csv data/live/mix_bestprice_2026.csv docs/mix_live.md docs/s1_live.md docs/s1_dashboard.html; do
             [ -f "$f" ] && git add "$f"
           done
+          [ -d data/live/close ] && git add data/live/close
+          for f in data/live/mix_clv_2026.csv docs/props_clv.md; do [ -f "$f" ] && git add "$f"; done
           [ -d data/live/lines ] && git add data/live/lines
           [ -d data/live/injuries ] && git add data/live/injuries
           [ -d data/live/depth ] && git add data/live/depth

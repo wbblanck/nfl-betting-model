@@ -1,0 +1,63 @@
+name: Props close snapshots
+# Record only, unvalidated (docs/props_clv_rules.md): Pinnacle (PinnRadar) + ParlayAPI DK/FanDuel snapshots about 20 and
+# 6 minutes before each kickoff, for closing-line value on the props mix picks. Never feeds a pick: the trackers do not
+# read data/live/close. Each run sleeps to the kickoff marks inside its next 5.7 hours, so a cron that starts late still
+# catches later windows; overlapping crons give a second chance and skip marks already taken. Kickoff times come from
+# the nflverse schedule, so a run with no window in range makes no API call.
+on:
+  schedule:
+    - cron: '0 15 * * 0'     # Sunday: 1 PM ET games
+    - cron: '30 17 * * 0'    # Sunday: 4:05 / 4:25 PM ET games
+    - cron: '30 22 * * 0'    # Sunday night
+    - cron: '30 22 * * 1'    # Monday night
+    - cron: '0 13 * * 4'     # Thursday daytime (Thanksgiving)
+    - cron: '30 17 * * 4'    # Thursday late afternoon (Thanksgiving)
+    - cron: '0 22 * * 4'     # Thursday night
+    - cron: '0 21 * * 3'     # Wednesday night (Christmas)
+    - cron: '0 15 * * 5'     # Friday daytime (Black Friday, Christmas)
+    - cron: '30 19 * * 5'    # Friday evening
+    - cron: '0 17 * * 6'     # Saturday afternoon (late season)
+    - cron: '30 21 * * 6'    # Saturday night (late season)
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: "Hours ahead to watch for kickoff windows"
+        required: false
+        default: "5.7"
+permissions:
+  contents: write
+concurrency:
+  group: props-close
+  cancel-in-progress: false
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Watch kickoff windows
+        env:
+          PINN_API: ${{ secrets.PINN_API }}
+          PARLAY_API_KEY: ${{ secrets.PARLAY_API_KEY }}
+          HOURS: ${{ github.event.inputs.hours || '5.7' }}
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          python scripts/props_close.py watch --hours "$HOURS"
+      - name: CLV per pick
+        if: always()
+        continue-on-error: true
+        run: python scripts/props_close.py clv
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          [ -d data/live/close ] && git add data/live/close
+          for f in data/live/mix_clv_2026.csv docs/props_clv.md; do [ -f "$f" ] && git add "$f"; done
+          git commit -m "props close: CLV" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
