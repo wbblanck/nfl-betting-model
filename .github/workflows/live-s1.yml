@@ -23,6 +23,8 @@ on:
     - cron: '7 14 * * 1'     # Monday morning: grade Sunday's games
     - cron: '33 15 * * 2'    # Tuesday: grade
     - cron: '7 14 * * 3'     # Wednesday: grade Monday night
+    - cron: '0 17 * * 2'     # Tuesday noon ET: first look at next week's DK props (dashboard only; official = last run before kickoff)
+    - cron: '0 17 * * 3'     # Wednesday noon ET: same, after more props post
   workflow_dispatch:
     inputs:
       step:
