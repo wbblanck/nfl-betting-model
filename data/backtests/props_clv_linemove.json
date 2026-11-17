@@ -1,0 +1,56 @@
+{
+ "rules": "docs/props_clv_rules.md",
+ "fit_weeks": "5-8",
+ "check_weeks": "9-10",
+ "markets": {
+  "pass_yds": {
+   "s": 15.000000000000012,
+   "n_fit": 687,
+   "n_check": 65,
+   "mae_model": 0.014472275999107949,
+   "mae_baseline": 0.0032915922656447287,
+   "use": false
+  },
+  "rec": {
+   "s": 1.2400000000000002,
+   "n_fit": 286,
+   "n_check": 61,
+   "mae_model": 0.025722478982884465,
+   "mae_baseline": 0.18458929785763015,
+   "use": true
+  },
+  "rec_yds": {
+   "s": 15.000000000000012,
+   "n_fit": 2167,
+   "n_check": 388,
+   "mae_model": 0.02940201417060824,
+   "mae_baseline": 0.019633771605737114,
+   "use": false
+  },
+  "rush_rec_yds": {
+   "s": 15.000000000000012,
+   "n_fit": 199,
+   "n_check": 79,
+   "mae_model": 0.00483714610437034,
+   "mae_baseline": 0.003698753791814525,
+   "use": false
+  },
+  "rush_yds": {
+   "s": 15.000000000000012,
+   "n_fit": 1289,
+   "n_check": 161,
+   "mae_model": 0.032511682786138196,
+   "mae_baseline": 0.026844546713264313,
+   "use": false
+  }
+ },
+ "overall": {
+  "mae_model": 0.025907514757171717,
+  "mae_baseline": 0.031440288620686006,
+  "n": 754
+ },
+ "use": {
+  "rec": 1.2400000000000002
+ },
+ "run_utc": "2026-11-17T04:02:43Z"
+}
