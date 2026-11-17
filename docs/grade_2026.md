@@ -1,6 +1,6 @@
 # 2026 prop rules: INTERIM (descriptive only)
 
-Regular-season games final: 136 of 272. Generated 2026-11-10T21:26 UTC.
+Regular-season games final: 150 of 272. Generated 2026-11-17T23:03 UTC.
 
 | Rule | Bets | Weeks | Under won | ROI | Interval | Verdict |
 |---|---|---|---|---|---|---|
