@@ -897,3 +897,83 @@ def test_event_layer_two_seeds_agree_within_monte_carlo_error():
         p = (p1 + p2) / 2
         se = np.sqrt(np.maximum(p * (1 - p), 1e-12) * 2 / S)
         assert (np.abs(p1 - p2) <= 4 * se + 1e-12).all(), c
+
+
+# ------------------------------------------------------------------------------------------------ phase 6: Novig quotes
+from nflbet.engine import quotes as NQ                                                      # noqa: E402
+
+CAT = "2027-01-15T07:50:00Z"                     # catalog read 10 minutes before EV's start (1.8e12 ms = 08:00 UTC)
+ROS = {"BUF|NYJ": [{"player_id": "00-1", "name": "Garrett Wilson", "team": "NYJ", "position": "WR"},
+                   {"player_id": "00-2", "name": "Josh Allen", "team": "BUF", "position": "QB"}]}
+
+
+def _book(fetched="2027-01-15T07:55:00Z", under=None, over=None):
+    return {"marketId": "m1", "seq": 7, "fetched_utc": fetched,
+            "orders": {"u": under if under is not None else [{"orderId": "a", "price": "0.48", "qty": 600},
+                                                                {"orderId": "b", "price": "0.45", "qty": 2000}],
+                       "o": over if over is not None else [{"orderId": "c", "price": "0.47", "qty": 20000}]}}
+
+
+def _snap(market=None, book=None, **summary):
+    m = market or _mkt(fee={"coefficient": "0.06", "charged": "WHEN_LIVE"})
+    books = {} if book is False else {m["marketId"]: book or _book()}
+    return {"stamp": "S1", "events": [EV], "markets": [m], "books": books,
+            "summary": {"catalog_fetched_utc": CAT, **summary}}
+
+
+def test_quotes_price_each_side_from_the_other_sides_orders():
+    rows, un = NQ.quotes(_snap(), ROS)
+    assert un == [] and len(rows) == 4
+    q = {(r["side"], r["size"]): r for r in rows}
+    over = q[("Over", 1000)]                     # takes Under: 600 at 0.52, then 400 at 0.55
+    assert (over["filled"], over["unfilled"], over["worst_mills"], over["top_mills"]) == (1000, 0, 550, 520)
+    assert over["avg_cost"] == pytest.approx((600 * 0.52 + 400 * 0.55) / 1000) and over["fee"] == 0      # pregame
+    assert over["all_in"] == over["avg_cost"]
+    assert (q[("Over", 10000)]["filled"], q[("Over", 10000)]["unfilled"]) == (2600, 7400)
+    assert q[("Under", 1000)]["avg_cost"] == pytest.approx(0.53)                                         # takes Over at 0.47
+    assert over["player_id"] == "00-1" and over["resolved_by"] == "name" and over["minutes_before_start"] == 5.0
+
+
+@pytest.mark.parametrize("market, why", [
+    (_mkt(strike="74", description="Garrett Wilson 74 RECEIVING_YARDS",
+          outcomes=[{"outcomeId": "o", "name": "Over 74"}, {"outcomeId": "u", "name": "Under 74"}]), "whole-number line"),
+    (_mkt(description="Garrett Wilson 74.5 RECEIVING_YARDS 1H"), "does not read"),
+    (_mkt(description="Garret Willson 74.5 RECEIVING_YARDS"), "player: not on either roster"),
+])
+def test_unmatched_markets_are_never_priced(market, why):
+    rows, un = NQ.quotes(_snap(market=market), ROS)
+    assert rows == [] and len(un) == 1 and why in un[0]["reason"]
+
+
+def test_ambiguous_player_is_never_priced():
+    ros = {"BUF|NYJ": ROS["BUF|NYJ"] + [{"player_id": "00-9", "name": "Garrett Wilson", "team": "BUF", "position": "WR"}]}
+    rows, un = NQ.quotes(_snap(), ros)
+    assert rows == [] and un[0]["reason"] == "player: ambiguous (name)"
+
+
+@pytest.mark.parametrize("book, market, why", [
+    (False, None, "no book saved"),
+    (_book(fetched="2027-01-15T08:00:00Z"), None, "at or after the start"),
+    (_book(fetched="2027-01-15T06:45:00Z"), None, "more than 60 minutes apart"),
+    (None, _mkt(status="SUSPENDED"), "not open"),
+])
+def test_stale_or_late_books_are_never_priced(book, market, why):
+    rows, un = NQ.quotes(_snap(market=market, book=book), ROS)
+    assert rows == [] and why in un[0]["reason"] and un[0]["matched"] is True
+
+
+def test_rederive_finds_a_changed_book_or_row():
+    snap = _snap()
+    rows, _ = NQ.quotes(snap, ROS)
+    assert all(NQ.rederive(r, snap, ROS) for r in rows)
+    changed = _snap(book=_book(under=[{"orderId": "a", "price": "0.49", "qty": 600}, {"orderId": "b", "price": "0.45", "qty": 2000}]))
+    assert not NQ.rederive(rows[0], changed, ROS)                       # planted: one resting order moved a cent
+    assert not NQ.rederive({**rows[0], "fee": 0.01}, snap, ROS)          # planted: a field edited after the fact
+    assert not NQ.rederive({**rows[0], "stamp": "S2"}, snap, ROS)
+
+
+def test_quotes_module_reads_no_prediction():
+    tree = ast.parse((PKG / "engine" / "quotes.py").read_text())
+    names = {a.name for n in ast.walk(tree) if isinstance(n, (ast.Import, ast.ImportFrom)) for a in n.names}
+    mods = {n.module for n in ast.walk(tree) if isinstance(n, ast.ImportFrom)}
+    assert not ({"replication", "challenger", "props", "gamesim", "ats"} & (names | mods))

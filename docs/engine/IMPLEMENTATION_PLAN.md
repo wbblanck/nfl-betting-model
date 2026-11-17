@@ -30,7 +30,12 @@
   about 0.09 if the errors are right). One re-check, its rule committed first (`docs/engine/seed_recheck.md`), at
   20,000 runs with two new seeds: 5,126 probabilities, none beyond 4 (largest 3.50): PASS. Both results stand as reported.
   Not built: first touchdown scorer, defensive and special-teams touchdowns, Engine B's rare events (spec 3.3).
-- **Next:** phase 6 (pricing against recorded Novig books), then Test M on 2026 games.
+- 2026-11-17: phase 6 built (`engine/quotes.py`, `scripts/engine_novig_quotes.py`): executable Novig costs at $10 and
+  $100 of payout for every exactly matched, roster-resolved contract whose book was fetched pregame and within 60 minutes
+  of the catalog read, across the 6 recorded snapshots with books. Re-derivation gate PASS (29,432 rows, 0 differ).
+  Market data only: no probability, expected value or side. Report: `docs/engine/novig_quotes.md` (Test E, descriptive).
+- **Next:** Test M (prospective, 2026 games, rules in docs/engine_preregistration.md). Pricing engine predictions
+  against these quotes needs a priced-sides rule that Will adds to CLAUDE.md and freezes first.
 - Deferred for a later Engine A version: play-by-play game script, availability before the active list is out.
 - **Novig recorder:** runs on GitHub's schedule, which starts late. Will is setting up an outside cron service to
   start it on time (docs/engine/NOVIG_INTEGRATION.md). Once he confirms it works, trim the game-window crons in
@@ -51,7 +56,7 @@ Paths are under `src/nflbet/engine/` unless they start with another directory.
 | 3 | Baselines (spec section 6), then Engine A layers: environment, script, personnel, opportunity, efficiency | `baselines.py`, `scoring.py`, `replication/environment.py`, `opportunity.py`, `efficiency.py`, `model.py`, `scripts/engine_baselines.py`, `scripts/engine_a_tune.py` | accounting holds on every simulated run; planted-signal test for each fitted layer | baselines **done**; Engine A version A-1.0 **frozen 2026-11-14** (`data/backtests/engine_a_frozen.json`) after its run on the tune seasons (`docs/engine/engine_a_tune.md`): team volume, game-day active list with a chance-to-play draw, Dirichlet-multinomial split, catch and yardage. expected starting quarterback from recent starts and the depth chart, expected margin and total in the team-volume means, a game's two offenses drawn together. Deferred to a later version: play-by-play game script, availability before the active list is out. Test S run 2026-11-14: PASS 6 of 6 (`docs/engine/test_s_engine_A-1.0.md`) |
 | 4 | Engine B: quantile, count, hierarchical models, joint layer | `challenger/*.py` | no import of Engine A; quantile crossing zero after correction; support tests | B-0.1 marginals **built 2026-11-14** (`design.py`, `counts.py`, `yardage.py`, `model.py`, `scripts/engine_b_tune.py`); B-0.2 joint layer (`joint.py`) **built 2026-11-16**; B-1.0 frozen and Test S PASS 6 of 6 (2026-11-16). Rare events not built |
 | 5 | Simulator completion: touchdowns, interceptions, longest play, combined stats | `replication/events.py` (planned as `simulation/*.py`), `scripts/engine_a_events.py` | every box score reconciles with its events; seed stability within the Monte Carlo error | built 2026-11-16; events reconcile on every run; seed check 1 of 4,948 beyond 4 SE at 2,000 runs; pre-declared re-check at 20,000 runs PASS (0 of 5,126) |
-| 6 | Pricing against recorded Novig books | `pricing.py`, `contracts.py` (extend) | every matched contract re-derivable from the saved snapshot; unmatched never priced | partly built in phase 0 |
+| 6 | Pricing against recorded Novig books | `pricing.py`, `contracts.py` (extend) | every matched contract re-derivable from the saved snapshot; unmatched never priced | built 2026-11-17 (`quotes.py`); gate PASS |
 | 7 | Verification: Test S, calibration, A versus B | `verification/*.py`, `scripts/engine_test_s.py` | Test S run once per frozen version, report committed | |
 | 8 | Paper fills against recorded books | `paper.py` | needs Will's CLAUDE.md exception and frozen rules first | blocked on Will |
 | 9 | Dashboard pages and prospective Test M | `src/nflbet/dashboard.py` (extend) | Test M judged on its declared sample | |
