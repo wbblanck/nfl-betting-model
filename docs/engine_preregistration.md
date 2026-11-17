@@ -106,3 +106,50 @@ and its rules are frozen in their own file first.
   script refuses to run twice for a version, with uncommitted changes, or if the parameters no longer match.
 - A versus B is reported, not tested (as declared above). No blend of the two engines.
 - Will approved the run on 2026-11-16 ("go-ahead") before it was made.
+
+## Amendment 2026-11-17: Test M frozen (before any week-11 game is played)
+Written and committed before Thursday 2026-11-19's game, the first of the sample. Nothing below was chosen on a
+2026 Test M outcome: no engine probability has been compared with a DraftKings price on any 2026 game.
+
+- **Engines:** A-1.0 and B-1.0 exactly as frozen (`data/backtests/engine_a_frozen.json`, `engine_b_frozen.json`),
+  fitted on 2018-2021 with settings from 2022-2023; nothing is refitted on later seasons. A week's forecast counts
+  only if, when it is made, both engines' parameters match their frozen records and the 2018-2023 feature rows hash
+  as frozen (`scripts/engine_forecast.py` checks all three and refuses otherwise). 4,000 runs per team-game.
+- **Sample:** the 2026 regular season, weeks 11-18 (8 weeks). The engines and the feature pipeline cover regular-
+  season games only, so the "at least 8 weeks" rule needs every one of these weeks to have scored props; a week with
+  none makes the test inconclusive, not extended.
+- **Forecasts, built only from what was known before each kickoff** (`engine/forecast.py`):
+  - facts of 2026 games before the target week (nflverse), every fact of the target week and later removed, so the
+    target games enter the feature table unplayed;
+  - a projected active list in place of the game-day list, which no free source publishes in time: QB/RB/WR/TE whose
+    latest 2026 weekly roster row before the target week puts them on that team as ACT or INA, or whom the nflverse
+    depth chart dated before the game's day lists there; a player that chart lists on another team is dropped (a
+    trade since the last roster week). Then anyone the latest ESPN injury snapshot in `data/live/injuries/` stamped
+    before kickoff (and at most 72 hours before it) lists as Out, Doubtful, Injured Reserve, Suspension or PUP is
+    removed. A game with no such snapshot is not forecast and leaves the sample for both engines. The depth-chart
+    correction was added after a dry run on week 10 (outside the sample; availability only, no price compared):
+    without it, players traded at the deadline were missed (18 of 553 screened week-10 props had no forecast; with it, 4,
+    all one player absent from every 2026 roster file);
+  - the quarterback depth chart dated before the game's day, as in Test S.
+  The forecasts are computed after each week from those saved inputs, by the code at the commit that adds this
+  amendment; the 2026 nflverse rows used are saved with each week's forecasts so the run can be repeated. Any later
+  change to the forecaster, the engines or the grading code is reported with the result, with both versions'
+  numbers shown, never made silently.
+- **Props:** DraftKings rows (`sources.parlay.parse`, book `dk`: full game, two-sided) in the six Test S markets
+  from the ParlayAPI snapshots in `data/live/parlay/`; per game, the last snapshot stamped before kickoff.
+  Half-point lines only (a whole-number line can push). Screens from CLAUDE.md: de-vigged P(over) (multiplicative,
+  `quant.odds.no_vig_over`) 0.35-0.65 and hold under 10%. The player is matched by normalized full name, else last
+  name and first initial, among the forecast rows of the game's two teams; unmatched or ambiguous props are dropped
+  and counted. A prop counts only if the player played (a stat row or an offensive snap); otherwise it is void, as
+  books grade it. A player with a prop but no forecast (not on the projected list) is dropped and counted.
+- **Statistic:** per prop, log loss of the engine's P(over) (share of its runs above the line, clipped to
+  0.001-0.999) minus log loss of DraftKings' de-vigged P(over); mean over props; week-clustered bootstrap, 10,000
+  resamples, two-sided 0.05 / 2 (two engines). **Pass:** the interval lies entirely below 0 on at least 2,000 props
+  over 8 weeks. Fewer is "inconclusive". Each engine on the props both engines forecast (the same rows).
+- **Reported, not tested:** A minus B on the same props; each market separately; the count of props dropped at each
+  step; the share of props whose player was on the projected list but did not play, and the reverse.
+- **Looks before week 18:** weekly runs report counts only (games forecast, props matched, props dropped by
+  reason). No log loss is computed until week 18 is complete; it is then computed once.
+- **Known handicaps, stated in advance:** the projected list is cruder than the game-day list both engines were
+  tested with; Engine B's route-share feature (`db_share_w3`) is missing for every 2026 game because nflverse
+  publishes no 2026 participation, so it takes its "missing" value throughout. Both work against the engines.

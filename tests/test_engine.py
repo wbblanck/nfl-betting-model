@@ -977,3 +977,60 @@ def test_quotes_module_reads_no_prediction():
     names = {a.name for n in ast.walk(tree) if isinstance(n, (ast.Import, ast.ImportFrom)) for a in n.names}
     mods = {n.module for n in ast.walk(tree) if isinstance(n, ast.ImportFrom)}
     assert not ({"replication", "challenger", "props", "gamesim", "ats"} & (names | mods))
+
+
+# ------------------------------------------------------------------------------------------------ Test M forecasts
+from nflbet.engine import forecast as FO                                                    # noqa: E402
+
+
+def test_snapshot_before_takes_latest_strictly_before_kickoff():
+    names = ["20261119T2000Z_w11.json.gz", "20261120T0114Z_w11.json.gz", "20261120T0116Z_w11.json.gz", "junk.txt"]
+    # 20:15 Eastern on 2026-11-19 is 01:15 UTC on the 20th (standard time)
+    assert FO.kickoff_utc("2026-11-19 20:15").isoformat() == "2026-11-20T01:15:00+00:00"
+    assert FO.snapshot_before(names, "2026-11-19 20:15") == "20261120T0114Z_w11.json.gz"
+    assert FO.snapshot_before(names, "2026-11-19 15:00") is None                      # nothing before
+    assert FO.snapshot_before(names, "2026-11-25 20:15") is None                      # older than 72 hours
+
+
+def test_projected_active_list_rules():
+    import polars as pl
+    ros = pl.DataFrame({"gsis_id": ["q", "w", "w", "t", "r", "x", "k"], "week": [9, 8, 9, 9, 9, 9, 9],
+                        "team": ["NYJ", "BUF", "NYJ", "NYJ", "NYJ", "NYJ", "NYJ"], "position": ["QB", "WR", "WR", "WR", "RB", "TE", "K"],
+                        "status": ["ACT", "ACT", "INA", "ACT", "RES", "ACT", "ACT"]})
+    tg = FO.target_games(pl.DataFrame({"game_id": ["2026_10_NYJ_BUF"], "season": [2026], "week": [10], "kickoff": ["2026-11-15 13:00"],
+                                       "home": ["BUF"], "away": ["NYJ"]}), 2026, 10)
+    assert tg.height == 2 and not tg["played"].any()
+    charts = {"2026_10_NYJ_BUF": {"t": "MIA", "r": "NYJ"}}              # t traded away; r back on the chart
+    out = FO.projected_active(ros, {"2026_10_NYJ_BUF": {"x"}}, tg, charts)
+    nyj = sorted(out.filter(pl.col("team") == "NYJ")["player_id"].to_list())
+    # q ACT; w latest row INA with NYJ; t charted elsewhere; r on the chart; x injured; k not a skill position
+    assert nyj == ["q", "r", "w"]
+    assert out.filter(pl.col("team") == "BUF").height == 0               # w's older BUF row does not count
+
+
+def test_histogram_and_p_over():
+    import polars as pl
+    rows = pl.DataFrame({"game_id": ["g", "g"], "player_id": ["a", "b"]})
+    runs = np.array([[0, 1, 1, 5], [3, 3, 3, 3]])
+    h = FO.histogram("A", rows, "rec", runs)
+    a = h.filter(pl.col("player_id") == "a")
+    assert a["value"].to_list() == [0, 1, 5] and a["count"].to_list() == [1, 2, 1]
+    assert FO.p_over(a, 0.5) == 0.75 and FO.p_over(a, 4.5) == 0.25
+    assert FO.p_over(h.filter(pl.col("player_id") == "b"), 2.5) == 1.0
+
+
+def test_unplayed_team_games_get_features_and_add_nothing():
+    import polars as pl
+    from nflbet.engine.features import build as B
+    pwk = pl.DataFrame({"player_id": ["a", "a"], "game_id": ["g1", "g2"], "team": ["NYJ", "NYJ"], "position": ["WR", "WR"],
+                        "targets": [5, 7], "receptions": [3, 4], "receiving_yards": [30, 50], "offense_snaps": [40, 45]})
+    tg = pl.DataFrame({"game_id": ["g1", "g2"], "team": ["NYJ", "NYJ"], "opponent": ["BUF", "MIA"], "season": [2026, 2026], "week": [1, 2],
+                       "kickoff": ["2026-09-13 13:00", "2026-09-20 13:00"], "team_targets": [30, 35], "team_att": [32, 36]})
+    up = pl.DataFrame({"game_id": ["g3"], "team": ["NYJ"], "opponent": ["NE"], "season": [2026], "week": [3], "kickoff": ["2026-09-27 13:00"],
+                       "played": [False]})
+    act = pl.DataFrame({"player_id": ["a"], "game_id": ["g3"], "team": ["NYJ"], "position": ["WR"]})
+    tg = tg.with_columns([pl.lit(0).alias(c) for c in B.TEAM if c not in tg.columns])
+    pwk = pwk.with_columns([pl.lit(0).alias(c) for c in B.PLAYER if c not in pwk.columns and c not in B.TEAM])
+    f = B.build(pwk, pl.concat([tg.with_columns(pl.lit(True).alias("played")), up], how="diagonal_relaxed"), None, act)
+    r = f.filter(pl.col("game_id") == "g3").row(0, named=True)
+    assert r["played"] is False and r["p_targets_w3"] == 12 and r["p_n_w3"] == 2 and r["o_team_targets_w3"] == 65 and r["o_n_w3"] == 2

@@ -34,8 +34,14 @@
   $100 of payout for every exactly matched, roster-resolved contract whose book was fetched pregame and within 60 minutes
   of the catalog read, across the 6 recorded snapshots with books. Re-derivation gate PASS (29,432 rows, 0 differ).
   Market data only: no probability, expected value or side. Report: `docs/engine/novig_quotes.md` (Test E, descriptive).
-- **Next:** Test M (prospective, 2026 games, rules in docs/engine_preregistration.md). Pricing engine predictions
-  against these quotes needs a priced-sides rule that Will adds to CLAUDE.md and freezes first.
+- 2026-11-17: **Test M frozen** (amendment in docs/engine_preregistration.md, Will chose the rebuild approach): weeks
+  11-18 of 2026; forecasts rebuilt after each week from files saved before kickoff (`scripts/engine_forecast.py
+  2026 <week>`: nflverse facts before the week, projected active list from rosters + dated depth chart minus the
+  ESPN injury snapshot before kickoff); counts per week with `scripts/engine_test_m.py --counts <week>`; graded once
+  after week 18 with `--grade`. Week 10 dry run (outside the sample): both frozen records match, 549 screened
+  DraftKings props matched, no price compared.
+- **Next:** run the forecaster and counts for each week from 11 on (any time after the week; needs the warehouse);
+  grade after week 18. Pricing engine predictions at Novig needs a priced-sides rule Will adds to CLAUDE.md first.
 - Deferred for a later Engine A version: play-by-play game script, availability before the active list is out.
 - **Novig recorder:** runs on GitHub's schedule, which starts late. Will is setting up an outside cron service to
   start it on time (docs/engine/NOVIG_INTEGRATION.md). Once he confirms it works, trim the game-window crons in

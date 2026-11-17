@@ -63,7 +63,11 @@ def build(player_week: pl.DataFrame, team_game: pl.DataFrame, on_field: pl.DataF
     game-day active list who did not (`played` False). Columns: keys, kickoff, played, and p_* (player), o_* (his
     offense), d_* (the opposing defense, i.e. what offenses did against it) features. Outcome columns of the game
     itself are not returned; `played` is the one fact about the game a row carries, and it is not a feature."""
-    tg = team_game.select("game_id", "team", "opponent", "season", "week", "kickoff", *TEAM).with_columns(pl.lit(True).alias("played"))
+    # A team-game row is a played game unless it says otherwise: engine.forecast adds games not yet played
+    # (played = False, every sum empty) so their rows get features as of kickoff and add nothing to any later sum.
+    tg = team_game.select("game_id", "team", "opponent", "season", "week", "kickoff", *TEAM,
+                          *(["played"] if "played" in team_game.columns else []))
+    tg = tg if "played" in tg.columns else tg.with_columns(pl.lit(True).alias("played"))
     base = player_week.select("player_id", "game_id", "team", "position", *[c for c in PLAYER if c in player_week.columns]).with_columns(pl.lit(True).alias("played"))
     if active is not None and active.height:
         extra = active.join(base.select("player_id", "game_id"), on=["player_id", "game_id"], how="anti").select("player_id", "game_id", "team", "position")
