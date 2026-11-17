@@ -1,7 +1,7 @@
 # Live wind unders (unvalidated)
 
 Rules: docs/wind_live_rules.md. **Not validated:** the 2000-2014 test FAILED (docs/wind_totals_report.md). This page records the frozen rule on games after the rules were committed and is graded on final scores.
-Updated 2026-11-17T03:34Z.
+Updated 2026-11-17T22:53Z.
 
 ## Record (official picks, 8 <= forecast wind < 15 knots)
 
@@ -26,6 +26,6 @@ Updated 2026-11-17T03:34Z.
 
 | bucket | graded | unders | pushes |
 |---|---|---|---|
-| calm <8 | 13 | 5 | 0 |
+| calm <8 | 14 | 5 | 0 |
 | moderate 8-15 | 3 | 2 | 0 |
 | strong 15+ | 0 | 0 | 0 |
