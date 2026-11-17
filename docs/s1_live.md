@@ -2,7 +2,7 @@
 
 Rule S1: bet only props where all four signals agree (docs/simulator_confirm.md). NOT validated: in 2025 it
 went 38-23 (+5.2%) on 61 bets, an interval of -16% to +27%. Official pick = the last run before kickoff.
-Updated 2026-11-17 23:06 UTC.
+Updated 2026-11-17 23:45 UTC.
 
 **Season: 9-8, 52.9% wins, -1.95 units, ROI -11.5%** (pending 1, void 1)
 
@@ -21,7 +21,7 @@ News flags (descriptive; S1 unchanged), from ESPN at the pick's run. **Injury ag
 
 | Week | Game | Player | Prop | Side | Line | Odds | News at pick | Result |
 |---|---|---|---|---|---|---|---|---|
-| 11 | MIN@SF | Justin Jefferson | rec | under | 7.5 | -137 |  | pending |
+| 11 | MIN@SF | Justin Jefferson | rec | under | 7.5 | -142 |  | pending |
 | 10 | HOU@CLE | Xavier Hutchinson | rec | under | 3.5 | -166 |  | L |
 | 9 | LV@SF | George Kittle | rec | under | 6.5 | -145 |  | W |
 | 9 | HOU@LAC | Ladd McConkey | rec | under | 4.5 | -143 |  | void |
