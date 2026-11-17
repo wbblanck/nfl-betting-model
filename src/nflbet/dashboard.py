@@ -1084,6 +1084,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[data-tip]:focus-visi
 .actual{font:11px var(--mono);color:var(--muted)}
 .news{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
 .detail{color:var(--ink2);font-size:13px}
+.pagesbar{margin:8px 0;font-size:13.5px}
+.news.live{border-top:1px dashed var(--line);padding-top:4px}
 details.why{grid-column:1/-1;font-size:13.5px;color:var(--ink2)}
 details.why summary{font:600 12.5px var(--display);letter-spacing:.07em;text-transform:uppercase;color:var(--accent);cursor:pointer;width:max-content}
 details.why ul{margin:6px 0 2px;padding-left:18px;display:flex;flex-direction:column;gap:3px;max-width:90ch}
@@ -1448,6 +1450,27 @@ def venue_row(q: list[tuple[str, float, float | None, bool]], best: str, fair: f
     return f'<div class="venues">{price_strip(q, fair, best)}{"".join(cells)}</div>'
 
 
+def live_line(r: dict, p_mkt: float) -> str:
+    """GitHub Pages only: the pick re-priced at the venues at page build time (src/nflbet/dashboard.py (GitHub Pages section)). Display only; the
+    pick is still recorded and graded at the price of its own run."""
+    if not r.get("live_at"):
+        return ""
+    q = venue_quotes({"venues": r.get("live_venues")})
+    if not q:
+        return (f'<div class="news live">{chip("idle", "Live now")}<span class="detail">No venue quotes this line at '
+                f'{esc(fmt_dt(r["live_at"]))} ET.</span></div>')
+    best = r.get("live_best_venue")
+    best = str(best).replace(" (ParlayAPI)", "") if best not in (None, "") else q[0][0]
+    cost = float(r["live_best_cost"]) if r.get("live_best_cost") not in (None, "") else q[0][1]
+    fair, n = Mev.live_fair(r.get("live_venues"), r.get("live_venues_opp"), r.get("live_best_venue"))
+    fair = fair if fair is not None else p_mkt
+    tip = ("Prices when this page was built: Novig, Polymarket US and Kalshi fetched then; DraftKings and FanDuel from "
+           "the newest saved ParlayAPI pull. Display only: the pick is recorded at its own run's price.")
+    return (f'<div class="news live" title="{esc(tip)}">{chip("tag", "Live now")}<span class="detail"><b>{esc(best)} '
+            f'{Bp.american(cost):+.0f}</b> · Mkt {Mev.ev(fair, cost) * 100:+.1f}% · {esc(fmt_dt(r["live_at"]))} ET</span></div>'
+            + venue_row(q, best, fair))
+
+
 def mix_row(r: dict, locked: bool, matchup: str = "") -> str:
     res = r["result"]
     rc = {"W": "win", "L": "loss"}.get(res, "idle")
@@ -1499,7 +1522,8 @@ def mix_row(r: dict, locked: bool, matchup: str = "") -> str:
         f'<div class="evc">{ev_pill(ev_b, where)}{mpill}</div>'
         + venue_row(q, book, fair)
         + f'<div class="news">{echip}{pinn_chips(r)}</div>'
-        '</li>')
+        + ("" if locked else live_line(r, p_mkt))
+        + '</li>')
 
 
 def mix_section(data: dict, now: dt.datetime) -> str:
@@ -1562,6 +1586,13 @@ def mix_section(data: dict, now: dt.datetime) -> str:
         cur = with_pinnacle(cur, data.get("pinn_runs"), data.get("mix_clv"))
     except Exception as e:  # noqa: BLE001 - display only
         print(f"Pinnacle/CLV display skipped: {type(e).__name__}: {e}")
+    now_rows = data.get("mix_now")
+    if cur.height and now_rows is not None and now_rows.height:        # GitHub Pages: live prices, display only
+        ln = now_rows.select("an_game_id", "player_id", "market", "side", pl.col("run_utc").alias("live_at"),
+                             pl.col("best_venue").alias("live_best_venue"), pl.col("best_cost").alias("live_best_cost"),
+                             pl.col("venues").alias("live_venues"), pl.col("venues_opp").alias("live_venues_opp"))
+        cur = cur.join(ln.unique(["an_game_id", "player_id", "market", "side"], keep="last"),
+                       on=["an_game_id", "player_id", "market", "side"], how="left")
     wk = int(runs["week"].cast(pl.Int64).max())
     games = runs.filter(pl.col("week") == str(wk)).sort("run_utc", descending=True).unique("an_game_id", keep="first").sort("start_time").to_dicts()
     blocks = []
@@ -1664,6 +1695,19 @@ MIX_JS = """
 
 def stat(k: str, v: str, s: str = "") -> str:
     return f'<div class="stat"><div class="k">{esc(k)}</div><div class="v">{v}</div>' + (f'<div class="s">{esc(s)}</div>' if s else "") + '</div>'
+
+
+def pages_banner(pg: dict | None) -> str:
+    """GitHub Pages copy only: when the venue prices were fetched and how old the DraftKings/FanDuel pull is."""
+    if not pg:
+        return ""
+    when = lambda t: fmt_dt(t.strftime("%Y-%m-%dT%H:%M:%SZ")) + " ET"
+    dk = f'DraftKings and FanDuel from the tracker pull at {when(pg["snap_at"])}' if pg.get("snap_at") else "no DraftKings/FanDuel pull saved"
+    return (f'<div class="note pagesbar"><b>Live page.</b> Exchange prices (Novig, Polymarket US, Kalshi) fetched '
+            f'{when(pg["refreshed"])} for {pg["n"]} open props-mix picks, shown as "Live now" under each pick; {esc(dk)}. '
+            'Refreshes about every 30 minutes on game days. '
+            f'<a href="{esc(pg["actions"])}">Refresh now</a> (Run workflow, then reload in about 2 minutes). '
+            'Records and grades use each pick\'s own run, not these prices.</div>')
 
 
 def build(data: dict, now: dt.datetime | None = None) -> str:
@@ -1860,6 +1904,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         f'<header class="top"><div><h1>S1 Live Tracker</h1><p class="sub">2026 NFL player props · rule S1, all four signals agree</p></div>'
         f'<div class="stamp">{esc(stamp)}</div></header>'
         '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations.</div>'
+        f'{pages_banner(data.get("pages"))}'
         '<nav class="tabs" role="tablist"><button type="button" role="tab" data-tab="s1" aria-selected="true">Player props (S1)</button>'
         '<button type="button" role="tab" data-tab="ats" aria-selected="false">Spreads (ATS)</button>'
         '<button type="button" role="tab" data-tab="mix" aria-selected="false">Props mix</button></nav>'
@@ -1874,4 +1919,71 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
 def write(now: dt.datetime | None = None, out: Path | None = None) -> Path:
     out = out or OUT
     out.write_text(build(load(), now))
+    return out
+
+
+# ---- GitHub Pages copy (scripts/pages_build.py, .github/workflows/pages.yml)
+# Nothing here writes a tracker record. Official picks, their prices and every graded number still come from the
+# committed files under data/live/. This only re-prices this week's open props-mix picks at the venues right now, so
+# the public page can show a "Live now" line under each pick: Novig, Polymarket US and Kalshi are fetched at build time;
+# DraftKings and FanDuel come from the newest saved ParlayAPI snapshot (no new ParlayAPI request).
+ACTIONS = "https://github.com/wbblanck/nfl-betting-model/actions/workflows/pages.yml"
+
+
+def snapshot_time(snap: Path | None) -> dt.datetime | None:
+    """UTC time in a ParlayAPI snapshot name such as 20261117T0322Z_w10.json.gz."""
+    m = re.match(r"(\d{8}T\d{4})Z", snap.name) if snap else None
+    return dt.datetime.strptime(m.group(1), "%Y%m%dT%H%M").replace(tzinfo=dt.timezone.utc) if m else None
+
+
+def open_picks(data: dict, now: dt.datetime) -> pl.DataFrame:
+    """This week's mix picks whose game has not started, as the dashboard shows them."""
+    cur = mix_current(data.get("mix_props", pl.DataFrame()), data.get("mix_runs", pl.DataFrame()),
+                      data.get("mix_rec", pl.DataFrame()), data.get("mix_best"))
+    if not cur.height:
+        return cur
+    started = [Lv.parse_ts(t) <= now for t in cur["start_time"].to_list()]
+    return cur.filter(~pl.Series(started))
+
+
+def live_quotes(data: dict, now: dt.datetime, quotes: dict | None = None,
+                snap: Path | None = None) -> tuple[pl.DataFrame, dt.datetime | None]:
+    """Best-price rows (src/nflbet/props/bestprice.py) for the open picks at `now`; empty when nothing is open.
+    `quotes` and `snap` are for tests; by default the venues are fetched and the newest snapshot is used."""
+    from nflbet.gamesim import mix_live as Mx
+
+    pk = open_picks(data, now)
+    snap = snap if snap is not None else Mx.latest_snapshot(data.get("live"))
+    if not pk.height:
+        return pl.DataFrame(), snapshot_time(snap)
+    pa = Mx.snapshot_books(snap) if snap is not None else None
+    week = int(pk["week"].cast(pl.Int64).max())
+    pk = pk.with_columns(pl.col("week").cast(pl.Utf8))
+    rows = Bp.record(pk, None, pa, week, now, quotes)
+    return (rows if rows is not None else pl.DataFrame()), snapshot_time(snap)
+
+
+def page(body: str) -> str:
+    """The dashboard fragment as a standalone document."""
+    return ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">'
+            '</head><body>' + body + '</body></html>')
+
+
+def build_site(out_dir: Path, now: dt.datetime | None = None, fetch: bool = True) -> Path:
+    now = now or Lv.now_utc()
+    data = load()
+    rows, snap_at = pl.DataFrame(), None
+    if fetch:
+        try:
+            rows, snap_at = live_quotes(data, now)
+        except Exception as e:  # noqa: BLE001 - the page still builds from the records
+            print(f"live prices unavailable: {type(e).__name__}: {e}")
+    data["mix_now"] = rows
+    data["pages"] = {"refreshed": now, "snap_at": snap_at, "n": rows.height, "actions": ACTIONS}
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out = out_dir / "index.html"
+    out.write_text(page(build(data, now)))
+    (out_dir / ".nojekyll").write_text("")
+    print(f"pages: {out} ({rows.height} open picks priced live)")
     return out
