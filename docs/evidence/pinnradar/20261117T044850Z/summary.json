@@ -1,0 +1,1106 @@
+{
+ "stamp": "20261117T044850Z",
+ "calls": [
+  {
+   "path": "/kit/v1/prematch/fixtures",
+   "status": 200,
+   "headers": {
+    "Content-Type": "application/json"
+   },
+   "bytes": 247108
+  }
+ ],
+ "leagues": [
+  [
+   "NCAA",
+   68
+  ],
+  [
+   "NFL",
+   63
+  ]
+ ],
+ "nfl_games": [
+  {
+   "event_id": 1625949616,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-15T14:32:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1625949617,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-15T14:32:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1625949786,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-15T14:32:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1633099293,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-15T14:30:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1633099305,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-15T14:30:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1633099314,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-22T18:00:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1633099317,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-15T14:30:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1633099335,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-22T18:00:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1633099344,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-15T14:30:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1633099350,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-22T18:00:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1633099365,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-22T18:00:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1633099368,
+   "home": "?",
+   "away": "?",
+   "starts": "2026-11-15T14:30:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "n_specials": 40
+  },
+  {
+   "event_id": 1640095130,
+   "home": "Buffalo Bills",
+   "away": "Miami Dolphins",
+   "starts": "2026-11-22T18:00:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1640095131,
+   "home": "Kansas City Chiefs",
+   "away": "Arizona Cardinals",
+   "starts": "2026-11-22T18:00:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1640125300,
+   "home": "New York Giants",
+   "away": "Jacksonville Jaguars",
+   "starts": "2026-11-22T18:00:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1640125301,
+   "home": "Chicago Bears",
+   "away": "New Orleans Saints",
+   "starts": "2026-11-22T18:00:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1640125302,
+   "home": "Detroit Lions",
+   "away": "Tampa Bay Buccaneers",
+   "starts": "2026-11-22T18:00:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1640125303,
+   "home": "Dallas Cowboys",
+   "away": "Tennessee Titans",
+   "starts": "2026-11-22T18:00:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1640137709,
+   "home": "Philadelphia Eagles",
+   "away": "Pittsburgh Steelers",
+   "starts": "2026-11-22T21:25:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1640142355,
+   "home": "Denver Broncos",
+   "away": "Las Vegas Raiders",
+   "starts": "2026-11-22T21:25:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1640162130,
+   "home": "San Francisco 49ers",
+   "away": "Minnesota Vikings",
+   "starts": "2026-11-23T01:20:00Z",
+   "n_specials": 0
+  },
+  {
+   "event_id": 1640253467,
+   "home": "Washington Commanders",
+   "away": "Cincinnati Bengals",
+   "starts": "2026-11-24T01:15:00Z",
+   "n_specials": 0
+  }
+ ],
+ "n_specials": 40,
+ "special_categories": [
+  [
+   "Player Props",
+   24
+  ],
+  [
+   "Game Props",
+   16
+  ]
+ ],
+ "special_units": [
+  [
+   "Points",
+   16
+  ],
+  [
+   "Receiving Yards",
+   8
+  ],
+  [
+   "Receptions",
+   8
+  ],
+  [
+   "Rushing Yards",
+   4
+  ],
+  [
+   "Passing Yards",
+   2
+  ],
+  [
+   "Touchdown Passes",
+   2
+  ]
+ ],
+ "player_prop_titles_sample": [
+  "Anthony Gould Total Receiving Yards",
+  "Anthony Gould Total Receptions",
+  "Ashton Dulin Total Receiving Yards",
+  "Ashton Dulin Total Receptions",
+  "C.J. Stroud Total Passing Yards",
+  "C.J. Stroud Total Rushing Yards",
+  "C.J. Stroud Total Touchdown Passes",
+  "Dalton Schultz Total Receiving Yards",
+  "Dalton Schultz Total Receptions",
+  "Daniel Jones Total Passing Yards",
+  "Daniel Jones Total Rushing Yards",
+  "Daniel Jones Total Touchdown Passes",
+  "Deion Burks Total Receiving Yards",
+  "Deion Burks Total Receptions",
+  "Jonathan Taylor Total Receiving Yards",
+  "Jonathan Taylor Total Receptions",
+  "Jonathan Taylor Total Rushing Yards",
+  "Laquon Treadwell Total Receiving Yards",
+  "Laquon Treadwell Total Receptions",
+  "Nico Collins Total Receiving Yards",
+  "Nico Collins Total Receptions",
+  "Seth McGowan Total Rushing Yards",
+  "Tyler Warren Total Receiving Yards",
+  "Tyler Warren Total Receptions"
+ ],
+ "special_row_keys": [
+  "away",
+  "event_id",
+  "event_type",
+  "home",
+  "is_have_odds",
+  "is_have_periods",
+  "last",
+  "league_id",
+  "league_name",
+  "live_mode",
+  "live_status_id",
+  "parent_id",
+  "period_results",
+  "periods",
+  "quarter",
+  "special",
+  "special_category",
+  "special_markets",
+  "special_units",
+  "sport_id",
+  "start_ts",
+  "starts",
+  "state",
+  "time_remaining_in_qtr"
+ ],
+ "player_props_with_prices_on_board": 24,
+ "max_risk": {
+  "n": 24,
+  "min": 250,
+  "max": 250,
+  "median": 250,
+  "counts": [
+   [
+    250,
+    24
+   ]
+  ]
+ },
+ "examples": [
+  {
+   "event_id": 1640580940,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "C.J. Stroud Total Passing Yards",
+   "special_category": "Player Props",
+   "special_units": "Passing Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580941,
+        "points": 263.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580942,
+        "points": 263.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580943,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Daniel Jones Total Passing Yards",
+   "special_category": "Player Props",
+   "special_units": "Passing Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580944,
+        "points": 181.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580945,
+        "points": 181.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580946,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Anthony Gould Total Receiving Yards",
+   "special_category": "Player Props",
+   "special_units": "Receiving Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580947,
+        "points": 23.5,
+        "price": 1.862
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580948,
+        "points": 23.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580949,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Ashton Dulin Total Receiving Yards",
+   "special_category": "Player Props",
+   "special_units": "Receiving Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580950,
+        "points": 16.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580951,
+        "points": 16.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580952,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Dalton Schultz Total Receiving Yards",
+   "special_category": "Player Props",
+   "special_units": "Receiving Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580953,
+        "points": 29.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580954,
+        "points": 29.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580955,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Deion Burks Total Receiving Yards",
+   "special_category": "Player Props",
+   "special_units": "Receiving Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580956,
+        "points": 15.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580957,
+        "points": 15.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580958,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Jonathan Taylor Total Receiving Yards",
+   "special_category": "Player Props",
+   "special_units": "Receiving Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580959,
+        "points": 19.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580960,
+        "points": 19.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580961,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Laquon Treadwell Total Receiving Yards",
+   "special_category": "Player Props",
+   "special_units": "Receiving Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580962,
+        "points": 29.5,
+        "price": 1.862
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580963,
+        "points": 29.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580964,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Nico Collins Total Receiving Yards",
+   "special_category": "Player Props",
+   "special_units": "Receiving Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580965,
+        "points": 67.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580966,
+        "points": 67.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580967,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Tyler Warren Total Receiving Yards",
+   "special_category": "Player Props",
+   "special_units": "Receiving Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580968,
+        "points": 40.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580969,
+        "points": 40.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580970,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "C.J. Stroud Total Rushing Yards",
+   "special_category": "Player Props",
+   "special_units": "Rushing Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580971,
+        "points": 10.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580972,
+        "points": 10.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580973,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Daniel Jones Total Rushing Yards",
+   "special_category": "Player Props",
+   "special_units": "Rushing Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580974,
+        "points": 7.5,
+        "price": 1.961
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580975,
+        "points": 7.5,
+        "price": 1.8
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580976,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Jonathan Taylor Total Rushing Yards",
+   "special_category": "Player Props",
+   "special_units": "Rushing Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580977,
+        "points": 50.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580978,
+        "points": 50.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580979,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Seth McGowan Total Rushing Yards",
+   "special_category": "Player Props",
+   "special_units": "Rushing Yards",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580980,
+        "points": 27.5,
+        "price": 1.877
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580981,
+        "points": 27.5,
+        "price": 1.877
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580982,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "C.J. Stroud Total Touchdown Passes",
+   "special_category": "Player Props",
+   "special_units": "Touchdown Passes",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580983,
+        "points": 1.5,
+        "price": 1.444
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580984,
+        "points": 1.5,
+        "price": 2.64
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640580985,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Daniel Jones Total Touchdown Passes",
+   "special_category": "Player Props",
+   "special_units": "Touchdown Passes",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640580986,
+        "points": 0.5,
+        "price": 1.684
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640580987,
+        "points": 0.5,
+        "price": 2.1
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640581613,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Anthony Gould Total Receptions",
+   "special_category": "Player Props",
+   "special_units": "Receptions",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640581614,
+        "points": 2.5,
+        "price": 1.98
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640581615,
+        "points": 2.5,
+        "price": 1.769
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640581616,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Ashton Dulin Total Receptions",
+   "special_category": "Player Props",
+   "special_units": "Receptions",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640581617,
+        "points": 1.5,
+        "price": 2.22
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640581618,
+        "points": 1.5,
+        "price": 1.617
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640581619,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Dalton Schultz Total Receptions",
+   "special_category": "Player Props",
+   "special_units": "Receptions",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640581620,
+        "points": 3.5,
+        "price": 1.98
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640581621,
+        "points": 3.5,
+        "price": 1.769
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640581622,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Deion Burks Total Receptions",
+   "special_category": "Player Props",
+   "special_units": "Receptions",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640581623,
+        "points": 1.5,
+        "price": 1.709
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640581624,
+        "points": 1.5,
+        "price": 2.07
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640581625,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Jonathan Taylor Total Receptions",
+   "special_category": "Player Props",
+   "special_units": "Receptions",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640581626,
+        "points": 3.5,
+        "price": 2.16
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640581627,
+        "points": 3.5,
+        "price": 1.649
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640581628,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Laquon Treadwell Total Receptions",
+   "special_category": "Player Props",
+   "special_units": "Receptions",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640581629,
+        "points": 2.5,
+        "price": 1.769
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640581630,
+        "points": 2.5,
+        "price": 1.98
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640581631,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Nico Collins Total Receptions",
+   "special_category": "Player Props",
+   "special_units": "Receptions",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640581632,
+        "points": 4.5,
+        "price": 1.819
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640581633,
+        "points": 4.5,
+        "price": 1.925
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "event_id": 1640581634,
+   "parent_id": 1639904657,
+   "home": "Houston Texans",
+   "away": "Indianapolis Colts",
+   "starts": "2026-11-20T01:15:00Z",
+   "special": "Tyler Warren Total Receptions",
+   "special_category": "Player Props",
+   "special_units": "Receptions",
+   "special_markets": {
+    "num_0": [
+     {
+      "type": "total",
+      "key": "s;0;ou",
+      "side": null,
+      "max_risk": 250,
+      "prices": [
+       {
+        "name": "Over",
+        "participant_id": 1640581635,
+        "points": 5.5,
+        "price": 2.12
+       },
+       {
+        "name": "Under",
+        "participant_id": 1640581636,
+        "points": 5.5,
+        "price": 1.675
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}
