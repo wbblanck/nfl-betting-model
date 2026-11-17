@@ -1,0 +1,42 @@
+name: pages
+# Public GitHub Pages copy of the dashboard (src/nflbet/dashboard.py (GitHub Pages section)). Rebuilds from the committed tracker files and adds
+# live Novig / Polymarket US / Kalshi prices for open props-mix picks. Display only: commits nothing, writes no record,
+# uses no secrets and no ParlayAPI requests. Pages source must be "GitHub Actions" (Settings > Pages).
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["S1 live"]
+    types: [completed]
+  schedule:
+    - cron: '*/30 12-23 * * 0,1,4,6'   # game days, 8 AM ET onward (UTC)
+    - cron: '*/30 0-2 * * 1,2,5,0'     # the same game days' evenings, after midnight UTC
+    - cron: '15 */3 * * 2,3,5'         # midweek, every 3 hours: next week's picks post Tuesday-Wednesday
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - run: python scripts/pages_build.py site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4
