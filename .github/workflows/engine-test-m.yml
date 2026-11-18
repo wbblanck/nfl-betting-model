@@ -1,0 +1,54 @@
+name: Engine Test M
+# Test M forecasts (docs/engine_preregistration.md, amendment of 2026-11-17): after each sample week, rebuild both
+# frozen engines' forecasts from files saved before kickoff and write counts only. No price is compared before week
+# 18. Scheduled runs fire from main only. A push to a branch that touches this machinery runs the week-10 dry run
+# (outside the sample, commits nothing) to check the frozen records still match on GitHub's machines.
+on:
+  schedule:
+    - cron: '23 15 * * 3'    # Wednesday: after Monday night's game and nflverse's overnight update
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/engine_forecast.py', 'scripts/engine_test_m.py', 'scripts/engine_test_m_weekly.py',
+            'src/nflbet/engine/forecast.py', '.github/workflows/engine-test-m.yml']
+permissions:
+  contents: write
+concurrency:
+  group: engine-test-m-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      # The frozen records were made with these versions; others can move the fitted numbers and the run refuses.
+      - run: pip install -e . "polars==2.1.0" "numpy==2.5.3" "scipy==1.18.1" "xgboost==3.4.1" "nflreadpy==0.1.5" "pyarrow==26.0.1"
+      - uses: actions/cache@v4
+        with:
+          path: data/cache/engine
+          key: engine-warehouse-2010-2025-v1
+      - name: Warehouse and feature table
+        run: |
+          python scripts/engine_ingest.py 2010-2025
+          PYTHONPATH=scripts python scripts/engine_feature_check.py | tail -3
+      - name: Forecast
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            PYTHONPATH=scripts python scripts/engine_test_m_weekly.py --dry-run
+          else
+            PYTHONPATH=scripts python scripts/engine_test_m_weekly.py
+          fi
+      - name: Commit
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add data/live/engine_forecasts || exit 0
+          git commit -m "engine Test M: forecasts and counts" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
