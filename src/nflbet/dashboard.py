@@ -69,7 +69,8 @@ def load(live: Path | None = None) -> dict:
             "pinn_runs": _read(live / "close" / f"pinnacle_runs_{SEASON}.csv"), "mix_clv": _read(live / f"mix_clv_{SEASON}.csv"),
             "engine_interim": _json(live / "engine_forecasts" / "interim.json"),
             "engine_paper": _json(live / "engine_paper" / "summary.json"),
-            "engine_fills": engine_fills(live / "engine_paper")}
+            "engine_fills": engine_fills(live / "engine_paper"),
+            "engine_preview": engine_preview(live / "engine_paper")}
 
 
 def _json(path: Path) -> dict | None:
@@ -1708,6 +1709,40 @@ def engine_fills(folder: Path) -> pl.DataFrame:
     return pl.concat(frames, how="diagonal_relaxed") if frames else pl.DataFrame()
 
 
+def engine_preview(folder: Path) -> tuple[pl.DataFrame, dict | None]:
+    """The newest week's pre-game view (scripts/engine_preview.py) and its run record; empty if none yet."""
+    files = sorted(folder.glob("2026_w*/preview.csv")) if folder.exists() else []
+    if not files:
+        return pl.DataFrame(), None
+    f = files[-1]
+    df = pl.read_csv(f, infer_schema_length=0) if f.stat().st_size else pl.DataFrame()
+    return df, _json(f.parent / "preview_run.json")
+
+
+def preview_section(pv: tuple[pl.DataFrame, dict | None] | None) -> str:
+    """Pre-game view: each engine's sides with a 0.03+ edge at the latest recorded Novig book. Provisional."""
+    head = ('<section class="block"><div class="sechead"><div><p class="eyebrow">Provisional · paper only · unvalidated</p>'
+            '<h2>Engine sides before kickoff</h2></div></div>'
+            '<p class="lede">Each engine\'s sides with an edge of 0.03 or more against the latest Novig book recorded so far, '
+            'refreshed after every recorder run. Books are saved only within about 6 hours of a kickoff, so a game\'s sides '
+            'appear from then. Sides can come and go as prices and injury news change; the official fills use the last book '
+            'before kickoff and are graded after the week.</p>')
+    df, run = pv if pv else (pl.DataFrame(), None)
+    if not df.height:
+        when = f' Last run {esc(fmt_dt(run["run_utc"].replace("+00:00", "Z")))} ET.' if run else ""
+        return head + f'<p class="empty">No engine sides yet this week.{when}</p></section>'
+    df = df.with_columns(pl.col("edge").cast(pl.Float64))
+    wk = int(df["week"].cast(pl.Int64).max())
+    out = head + (f'<p class="note">Week {wk}. Last run {esc(fmt_dt(run["run_utc"].replace("+00:00", "Z")))} ET.</p>' if run else "")
+    for e in sorted(df["engine"].unique().to_list()):
+        d = df.filter(pl.col("engine") == e).sort(["kickoff_et", "edge"], descending=[False, True])
+        rows = [[esc(r["kickoff_et"]), esc(r["player"]), esc(r["market"]), esc(r["line"]), esc(r["side"]), esc(r["p"]),
+                 esc(r["all_in"]), esc(f'{r["edge"]:.3f}'), esc(fmt_dt(r["book_fetched_utc"]))] for r in d.head(120).to_dicts()]
+        out += (f'<h3>{esc(ENGINE_NAMES.get(e, e))}: {d.height:,} sides' + (" (first 120 by kickoff, then edge)" if d.height > 120 else "") + '</h3>'
+                + table(["Kickoff (ET)", "Player", "Market", "Line", "Side", "Chance", "All-in", "Edge", "Book (ET)"], rows))
+    return out + '</section>'
+
+
 def _ll(x) -> str:
     return "–" if x is None else f"{x:.4f}"
 
@@ -1737,7 +1772,7 @@ def engine_section(data: dict) -> str:
                         [[esc(w), f'{r["n"]:,}', _ll(r["dk"]), _ll(r.get("A")), _ll(r.get("B"))] for w, r in tm.get("by_week", {}).items()])
                 + table(["Market", "Props", "DraftKings", "A", "B"],
                         [[esc(m), f'{r["n"]:,}', _ll(r["dk"]), _ll(r.get("A")), _ll(r.get("B"))] for m, r in tm.get("by_market", {}).items()]))
-    out = head + body + '</section>'
+    out = preview_section(data.get("engine_preview")) + head + body + '</section>'
 
     out += ('<section class="block"><div class="sechead"><div><p class="eyebrow">Paper only · no orders · unvalidated</p>'
             '<h2>Paper fills at Novig</h2></div></div>'

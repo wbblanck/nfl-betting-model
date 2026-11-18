@@ -43,3 +43,13 @@ made before the week it first applies to, and the weeks before it are kept as th
 `src/nflbet/engine/paper.py` (choice and grading), `scripts/engine_paper.py` (one week), records in
 `data/live/engine_paper/`, run by `.github/workflows/engine-test-m.yml` after each week, shown on the dashboard's
 Engine tab beside the Test M interim numbers.
+
+## Pre-game view (added 2026-11-18 at Will's request, before any week-11 game)
+Will asked to see the engines' sides before the games. After each Novig recorder run,
+`scripts/engine_preview.py` (`.github/workflows/engine-preview.yml`) applies the rules above to the **latest** book
+recorded so far for every game not yet started, with forecasts rebuilt from nflverse fetched at that run and the
+latest injury snapshot at or before the book's fetch time. It writes `data/live/engine_paper/2026_wNN/preview.csv`
+(the current view; a started game keeps its last pre-game rows) and appends every run to `preview_log.csv`. The
+dashboard's Engine tab shows it as **provisional**. It is not graded and changes nothing above: the official fills are
+still the last book before kickoff, computed and graded after the week by `scripts/engine_paper.py`. Because the
+recorder saves full books only within about 6 hours of a kickoff, a game's sides appear only from then.

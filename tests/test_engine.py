@@ -1067,3 +1067,18 @@ def test_snapshot_at_or_before_respects_the_book_time():
     cut = dt.datetime(2026, 11, 20, 0, 0, tzinfo=dt.timezone.utc)
     assert FO.snapshot_at_or_before(names, "2026-11-19 20:15", cut) == "20261119T2000Z_w11.json.gz"
     assert FO.snapshot_at_or_before(names, "2026-11-19 20:15", cut + dt.timedelta(hours=1)) == "20261120T0030Z_w11.json.gz"
+
+
+def test_preview_merge_keeps_started_games_only():
+    import datetime as dt
+    import sys
+    import polars as pl
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import engine_preview as EV
+    row = lambda g, run: {**{k: None for k in EV.COLS}, "game_id": g, "run_utc": run, "kickoff_et": "2026-11-19 20:15", "engine": "A", "edge": 0.1}
+    games = {"g1": ("A|B", "2026-11-19 20:15"), "g2": ("C|D", "2026-11-22 13:00")}
+    old = pl.DataFrame([row("g1", "old"), row("g2", "old")], schema=EV.COLS)
+    new = pl.DataFrame([row("g2", "new")], schema=EV.COLS)
+    now = dt.datetime(2026, 11, 20, 12, tzinfo=dt.timezone.utc)                # g1 has started, g2 not
+    m = EV.merge(old, new, games, now)
+    assert sorted(zip(m["game_id"], m["run_utc"])) == [("g1", "old"), ("g2", "new")]
