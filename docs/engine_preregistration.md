@@ -199,3 +199,6 @@ receiving-yards forecasts for regular WRs from about 37-70 yards to under 1.
 - **Prices seen:** checking B-1.1's week-10 forecasts, means of P(over) by market were compared with DraftKings'
   week-10 de-vigged P(over). Week 10 is outside the sample and nothing was tuned on it: B-1.1's settings come from
   2022-2023 only and the eligibility rule was set before any result. Reported here so the look is on record.
+- **Result (2026-11-18, Will chose this option):** B-1.1's Test S ran once on 2024-2025 at 0.05 / 6 / 2: PASS in all
+  six markets (`docs/engine/test_s_engine_B-1.1.md`). B-1.1 replaces B-1.0 in Test M and the paper fills from week 11;
+  Test M's level stays 0.05 / 2.

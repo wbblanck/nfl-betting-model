@@ -44,7 +44,7 @@
   main, or by hand any time after the week; needs the warehouse);
   grade after week 18. The same weekly job writes the interim (descriptive) Test M numbers and the paper fills.
 - **Engine B-1.1** (amendment 2026-11-18 (3)): B-1.0 collapses on 2026 rows (no route share). B-1.1 is tuned and
-  frozen; its Test S runs once only on Will's go-ahead, and it replaces B-1.0 in Test M only if it passes 6 of 6.
+  frozen; Test S 2026-11-18 PASS 6 of 6 (`docs/engine/test_s_engine_B-1.1.md`), so it replaces B-1.0 in Test M.
 - Deferred for a later Engine A version: play-by-play game script, availability before the active list is out.
 - **Novig recorder:** runs on GitHub's schedule, which starts late. Will is setting up an outside cron service to
   start it on time (docs/engine/NOVIG_INTEGRATION.md). Once he confirms it works, trim the game-window crons in
