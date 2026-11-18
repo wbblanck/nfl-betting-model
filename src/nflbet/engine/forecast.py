@@ -46,6 +46,15 @@ def snapshot_before(names: list[str], kickoff: str, max_hours: float = 72.0) -> 
     return max(ok)[1] if ok else None
 
 
+def snapshot_at_or_before(names: list[str], kickoff: str, cutoff: dt.datetime, max_hours: float = 72.0) -> str | None:
+    """Paper fills: the latest snapshot stamped at or before cutoff (a book's fetch time), before kickoff, and no more
+    than max_hours before kickoff."""
+    k = kickoff_utc(kickoff)
+    ok = [(t, n) for n in names if (t := stamp_utc(n)) is not None and t <= cutoff and t < k
+          and (k - t).total_seconds() <= max_hours * 3600]
+    return max(ok)[1] if ok else None
+
+
 def target_games(games_: pl.DataFrame, season: int, week: int) -> pl.DataFrame:
     """Both team rows of every regular-season game of the week, as unplayed team-games (played False, sums empty)."""
     g = games_.filter((pl.col("season") == season) & (pl.col("week") == week))

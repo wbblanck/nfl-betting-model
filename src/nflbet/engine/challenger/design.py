@@ -33,8 +33,10 @@ def active_share(df: pl.DataFrame, vol: str) -> np.ndarray:
     return np.where(team > 0, tot / np.maximum(team, 1e-9), np.nan)
 
 
-def matrix(df: pl.DataFrame, vol: str) -> tuple[np.ndarray, list[str]]:
-    """Raw (unstandardized) features for a player's volume `vol` (attempts, carries or targets) and its yardage."""
+def matrix(df: pl.DataFrame, vol: str, route_share: bool = True) -> tuple[np.ndarray, list[str]]:
+    """Raw (unstandardized) features for a player's volume `vol` (attempts, carries or targets) and its yardage.
+    route_share False (B-1.1 on) leaves out db_share_w3: nflverse publishes no participation for the current season,
+    and B-1.0 read its absence as a fringe player (docs/engine_preregistration.md, amendment 2026-11-18 (3))."""
     cols, names = [], []
 
     def add(name, x, flag=False):
@@ -67,7 +69,8 @@ def matrix(df: pl.DataFrame, vol: str) -> tuple[np.ndarray, list[str]]:
     add("opp_points_allowed_pg", _rate(df, "d_team_points_w8", "d_n_w8"))
     add("opp_points_scored_pg", _rate(df, "d_team_points_against_w8", "d_n_w8"))
     add("log_snaps_pg_w3", np.log1p(_rate(df, "p_offense_snaps_w3", "p_n_w3")))
-    add("db_share_w3", _rate(df, "p_db_on_field_w3", "p_team_db_charted_w3"), flag=True)
+    if route_share:
+        add("db_share_w3", _rate(df, "p_db_on_field_w3", "p_team_db_charted_w3"), flag=True)
     pos = df["position"].to_numpy()
     for p in ("RB", "WR", "TE"):
         add(f"pos_{p}", (pos == p).astype(float))

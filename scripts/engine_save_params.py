@@ -2,10 +2,14 @@
 2026-11-18). Refitting needs the nflverse warehouse exactly as it stood at the freeze, and nflverse revises its
 players and schedule tables daily, so a refit elsewhere moves the numbers and the frozen-record check refuses.
 
-Refits A-1.0 and B-1.0 from the local warehouse, refuses unless both match their frozen records, and writes
-data/backtests/engine_A-1.0_params.pkl.gz and engine_B-1.0_params.pkl.gz plus their SHA-256 in
+Refits A-1.0 and the current Engine B version from the local warehouse, refuses unless both match their frozen records, and writes
+data/backtests/engine_A-1.0_params.pkl.gz and engine_<B version>_params.pkl.gz plus their SHA-256 in
 data/backtests/engine_params_sha256.json. engine.forecast loads them only if the file hashes match that record and
 the loaded parameters reproduce the frozen records.
+
+  python scripts/engine_save_params.py        A-1.0 and the current Engine B version (as at the 2026-11-18 freeze)
+  python scripts/engine_save_params.py --b    the current Engine B version only (B-1.1, amendment 2026-11-18 (3));
+                                              the saved A file and its hash are left as they are
 """
 import gzip
 import hashlib
@@ -21,21 +25,31 @@ from nflbet.config import ROOT
 DIR = ROOT / "data" / "backtests"
 
 
-def main() -> int:
-    PA, tab, pools = TA.fitted()
-    fa = SA.fingerprint_of(PA, pools)
-    fb, PB = SB.fingerprint()
-    ok_a = all(json.loads(SA.FROZEN.read_text())[k] == fa[k] for k in fa)
-    ok_b = all(json.loads(SB.FROZEN.read_text())[k] == fb[k] for k in fb)
-    if not (ok_a and ok_b):
-        print(f"REFUSED: frozen record matches A={ok_a} B={ok_b}")
-        return 1
-    shas = {}
-    for name, obj in (("engine_A-1.0_params.pkl.gz", {"P": PA, "tab": tab, "pools": pools}), ("engine_B-1.0_params.pkl.gz", {"P": PB})):
+def save(items, shas: dict) -> dict:
+    for name, obj in items:
         with gzip.GzipFile(DIR / name, "wb", mtime=0) as f:
             pickle.dump(obj, f, protocol=5)
         shas[name] = hashlib.sha256((DIR / name).read_bytes()).hexdigest()
-    (DIR / "engine_params_sha256.json").write_text(json.dumps(shas, indent=1, sort_keys=True) + "\n")
+    return shas
+
+
+def main() -> int:
+    only_b = "--b" in sys.argv
+    fb, PB = SB.fingerprint()
+    ok_b = all(json.loads(SB.FROZEN.read_text())[k] == fb[k] for k in fb)
+    items = [(f"engine_{SB.M.VERSION}_params.pkl.gz", {"P": PB})]
+    ok_a = True
+    if not only_b:
+        PA, tab, pools = TA.fitted()
+        fa = SA.fingerprint_of(PA, pools)
+        ok_a = all(json.loads(SA.FROZEN.read_text())[k] == fa[k] for k in fa)
+        items.insert(0, ("engine_A-1.0_params.pkl.gz", {"P": PA, "tab": tab, "pools": pools}))
+    if not (ok_a and ok_b):
+        print(f"REFUSED: frozen record matches A={ok_a} B={ok_b}")
+        return 1
+    path = DIR / "engine_params_sha256.json"
+    shas = save(items, json.loads(path.read_text()) if path.exists() else {})
+    path.write_text(json.dumps(shas, indent=1, sort_keys=True) + "\n")
     print(json.dumps(shas, indent=1))
     return 0
 

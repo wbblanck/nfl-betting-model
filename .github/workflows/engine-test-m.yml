@@ -1,7 +1,8 @@
 name: Engine Test M
 # Test M forecasts (docs/engine_preregistration.md, amendment of 2026-11-17): after each sample week, rebuild both
-# frozen engines' forecasts from files saved before kickoff and write counts only. No price is compared before week
-# 18. Scheduled runs fire from main only. A push to a branch that touches this machinery runs the week-10 dry run
+# frozen engines' forecasts from files saved before kickoff, write counts, the interim (descriptive) log loss and the
+# paper fills at Novig (amendment 2026-11-18 (2), docs/engine/paper_rules.md). The verdict is still after week 18.
+# Scheduled runs fire from main only. A push to a branch that touches this machinery runs the week-10 dry run
 # (outside the sample, commits nothing) to check the frozen records still match on GitHub's machines.
 on:
   schedule:
@@ -10,7 +11,8 @@ on:
   push:
     branches-ignore: [main]
     paths: ['scripts/engine_forecast.py', 'scripts/engine_test_m.py', 'scripts/engine_test_m_weekly.py',
-            'src/nflbet/engine/forecast.py', 'data/backtests/engine_params_sha256.json',
+            'src/nflbet/engine/forecast.py', 'src/nflbet/engine/paper.py', 'scripts/engine_paper.py',
+            'data/backtests/engine_params_sha256.json',
             '.github/workflows/engine-test-m.yml']
 permissions:
   contents: write
@@ -48,6 +50,6 @@ jobs:
         run: |
           git config user.name "nfl-betting-model"
           git config user.email "nfl-betting-model@users.noreply.github.com"
-          git add data/live/engine_forecasts || exit 0
-          git commit -m "engine Test M: forecasts and counts" || exit 0
+          git add data/live/engine_forecasts data/live/engine_paper docs/engine || exit 0
+          git commit -m "engine Test M: forecasts, counts, interim and paper fills" || exit 0
           for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done

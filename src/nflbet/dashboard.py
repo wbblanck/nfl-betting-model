@@ -66,7 +66,10 @@ def load(live: Path | None = None) -> dict:
             "ats_yv": _read(live / f"ats_yv_runs_{SEASON}.csv"), "s1_yv": _read(live / f"s1_yv_{SEASON}.csv"),
             "mix_props": _read(live / f"mix_props_{SEASON}.csv"), "mix_runs": _read(live / f"mix_runs_{SEASON}.csv"),
             "mix_rec": _read(live / f"mix_record_{SEASON}.csv"), "mix_best": _read(live / f"mix_bestprice_{SEASON}.csv"),
-            "pinn_runs": _read(live / "close" / f"pinnacle_runs_{SEASON}.csv"), "mix_clv": _read(live / f"mix_clv_{SEASON}.csv")}
+            "pinn_runs": _read(live / "close" / f"pinnacle_runs_{SEASON}.csv"), "mix_clv": _read(live / f"mix_clv_{SEASON}.csv"),
+            "engine_interim": _json(live / "engine_forecasts" / "interim.json"),
+            "engine_paper": _json(live / "engine_paper" / "summary.json"),
+            "engine_fills": engine_fills(live / "engine_paper")}
 
 
 def _json(path: Path) -> dict | None:
@@ -1693,6 +1696,76 @@ MIX_JS = """
 """
 
 
+# ------------------------------------------------------------------------------------------------ engine (phase 9)
+ENGINE_NAMES = {"A": "Engine A (replication)", "B": "Engine B (challenger)"}
+
+
+def engine_fills(folder: Path) -> pl.DataFrame:
+    """Every week's paper fills (scripts/engine_paper.py), newest week first; empty if none yet."""
+    files = sorted(folder.glob("2026_w*/fills.csv")) if folder.exists() else []
+    frames = [pl.read_csv(f, infer_schema_length=0) for f in files if f.stat().st_size]
+    frames = [f for f in frames if f.height]
+    return pl.concat(frames, how="diagonal_relaxed") if frames else pl.DataFrame()
+
+
+def _ll(x) -> str:
+    return "–" if x is None else f"{x:.4f}"
+
+
+def engine_section(data: dict) -> str:
+    """Engine tab: Test M interim log loss (descriptive) and the paper fills at Novig (docs/engine/paper_rules.md)."""
+    head = ('<section class="block"><div class="sechead"><div><p class="eyebrow">Player-prop engine · unvalidated, interim</p>'
+            '<h2>Test M so far</h2></div></div>'
+            '<p class="lede">Both frozen engines forecast every player-game before kickoff. Test M compares their chance of the '
+            'over at the DraftKings line with DraftKings\' own no-vig chance, by log loss (lower is better). These are running, '
+            'descriptive numbers; the pass or fail is decided once, after week 18, on all eight weeks.</p>')
+    tm = data.get("engine_interim")
+    if not tm:
+        body = '<p class="empty">No sample week graded yet. Week 11 is graded the Wednesday after its games.</p>'
+    else:
+        wk = tm.get("weeks_in", [])
+        span = f"week {wk[0]}" if len(wk) == 1 else f"weeks {wk[0]}-{wk[-1]}"
+        rows = []
+        for e, r in tm["engines"].items():
+            d, lo, hi = r["diff"]
+            ci = f" ({lo:+.4f} to {hi:+.4f})" if len(wk) >= 2 else ""
+            rows.append([esc(ENGINE_NAMES.get(e, e)), _ll(r["log_loss"]), _ll(tm["dk_log_loss"]), f"{d:+.4f}{esc(ci)}"])
+        body = (f'<p class="note">{esc(span)} of 11-18 · {tm["props"]:,} props. The interval is week-clustered and appears '
+                'from two weeks on; it is descriptive.</p>'
+                + table(["Engine", "Log loss", "DraftKings", "Engine − DraftKings"], rows)
+                + table(["Week", "Props", "DraftKings", "A", "B"],
+                        [[esc(w), f'{r["n"]:,}', _ll(r["dk"]), _ll(r.get("A")), _ll(r.get("B"))] for w, r in tm.get("by_week", {}).items()])
+                + table(["Market", "Props", "DraftKings", "A", "B"],
+                        [[esc(m), f'{r["n"]:,}', _ll(r["dk"]), _ll(r.get("A")), _ll(r.get("B"))] for m, r in tm.get("by_market", {}).items()]))
+    out = head + body + '</section>'
+
+    out += ('<section class="block"><div class="sechead"><div><p class="eyebrow">Paper only · no orders · unvalidated</p>'
+            '<h2>Paper fills at Novig</h2></div></div>'
+            '<p class="lede">For each Novig contract with a recorded book before kickoff, an engine takes the side whose chance '
+            'beats its all-in cost (after fees, at 1,000 contracts) by 0.03 or more. Profit is per fill on a $10 payout; a player '
+            'who did not play is void. Each engine is scored on its own.</p>')
+    ps = data.get("engine_paper")
+    if not ps or not any(r["fills"] for r in ps["engines"].values()):
+        return out + '<p class="empty">No paper fills yet. The first are recorded for week 11.</p></section>'
+    rows = []
+    for e, r in ps["engines"].items():
+        roi = "–" if r["roi"] is None else fmt_pct(r["roi"], 1, sign=True)
+        ci = r.get("roi_interval_per_fill")
+        rows.append([esc(ENGINE_NAMES.get(e, e)), f'{r["fills"]:,}', f'{r["void"]:,}', f'${r["cost"]:,.2f}',
+                     f'{"+" if r["profit"] >= 0 else "−"}${abs(r["profit"]):,.2f}', roi,
+                     esc(f"{ci[1]:+.1%} to {ci[2]:+.1%}") if ci else "–", "–" if r["mean_edge"] is None else f'{r["mean_edge"]:.3f}'])
+    out += table(["Engine", "Fills", "Void", "Cost", "Profit", "ROI", "ROI interval (by week)", "Mean edge"], rows)
+    f = data.get("engine_fills")
+    if f is not None and f.height:
+        wk = int(f["week"].cast(pl.Int64).max())
+        cur = f.filter(pl.col("week").cast(pl.Int64) == wk).with_columns(pl.col("edge").cast(pl.Float64)).sort("edge", descending=True)
+        lines = [[esc(r["engine"]), esc(r["player"]), esc(r["market"]), esc(r["line"]), esc(r["side"]), esc(r["p"]),
+                  esc(r["all_in"]), esc(f'{r["edge"]:.3f}'), esc(r["result"] or "open"), esc(r["profit"])] for r in cur.head(60).to_dicts()]
+        out += (f'<p class="note">Week {wk}: {cur.height:,} fills, largest edges first' + (" (first 60 shown)" if cur.height > 60 else "") + '.</p>'
+                + table(["Engine", "Player", "Market", "Line", "Side", "Chance", "All-in", "Edge", "Result", "Profit"], lines))
+    return out + '</section>'
+
+
 def stat(k: str, v: str, s: str = "") -> str:
     return f'<div class="stat"><div class="k">{esc(k)}</div><div class="v">{v}</div>' + (f'<div class="s">{esc(s)}</div>' if s else "") + '</div>'
 
@@ -1907,7 +1980,9 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         f'{pages_banner(data.get("pages"))}'
         '<nav class="tabs" role="tablist"><button type="button" role="tab" data-tab="s1" aria-selected="true">Player props (S1)</button>'
         '<button type="button" role="tab" data-tab="ats" aria-selected="false">Spreads (ATS)</button>'
-        '<button type="button" role="tab" data-tab="mix" aria-selected="false">Props mix</button></nav>'
+        '<button type="button" role="tab" data-tab="mix" aria-selected="false">Props mix</button>'
+        '<button type="button" role="tab" data-tab="engine" aria-selected="false">Engine</button></nav>'
+        f'<div class="tabpane" id="tab-engine" hidden>{engine_section(data)}</div>'
         f'<div class="tabpane" id="tab-mix" hidden>{mix_section(data, now)}</div>'
         f'<div class="tabpane" id="tab-ats" hidden>{ats_section(data.get("ats_runs", pl.DataFrame()), data.get("ats_rec", pl.DataFrame()), now, data.get("ats_yv"))}</div>'
         f'<div class="tabpane" id="tab-s1">{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'

@@ -174,3 +174,28 @@ statistic, the level or the pass rule, and the test is not stopped early in eith
 `--grade` run after week 18, as frozen. The paper fills (docs/engine/paper_rules.md) can rebuild a game's forecast
 with an earlier injury snapshot, through an option of the forecaster that Test M's own forecasts do not use; with the
 option off the forecaster's output is unchanged (checked on the week-10 dry run).
+
+## Amendment 2026-11-18 (3): Engine B-1.1 in place of B-1.0 (before any week-11 game is played; pending Will's choice)
+A dry run on 2026 week 10 (outside the sample) showed B-1.0 forecasting near-zero yards for regular receivers
+(CeeDee Lamb about 0.8 receiving yards against about 102 from A). The "known handicap" stated above is far larger than
+expected: B-1.0 learned that a missing route share (`db_share_w3`) marks a fringe player, and nflverse publishes no
+2026 participation, so every 2026 row looks like one. On 2023 week 10, blanking that one input dropped B's
+receiving-yards forecasts for regular WRs from about 37-70 yards to under 1.
+
+- **B-1.1** is B-1.0 without the route-share input (`challenger/model.py`: `ROUTE_SHARE = False`), everything else
+  unchanged: same fit seasons (2018-2021), the same tuning procedure on 2022-2023 (`docs/engine/engine_b_tune_B-1.1.md`;
+  it beats the frozen baselines in all six markets there, and the family choice is unchanged), frozen in
+  `data/backtests/engine_b_frozen_B-1.1.json` with its parameters saved in `engine_B-1.1_params.pkl.gz` before any
+  2024-2025 outcome was read for it.
+- **Test S for B-1.1** is run once on 2024-2025 as for every version, at 0.05 / 6 / 2 per market (second version of
+  Engine B). B-1.1 enters Test M only if it passes all six markets; otherwise Test M and the paper fills run Engine A
+  alone and Test M's level becomes 0.05 (one engine).
+- **Rows B-1.1 forecasts:** a market only for the player-games it was fitted and tested on, the Test S eligibility
+  (`baselines.eligible`: at least 2 of the last 3 games on record at the market's minimum volume, from earlier games
+  only). Outside them its fitted models extrapolate (on week 10 it gave tight ends about 25 rushing yards). Test M
+  scores both engines on the props both forecast, as frozen above, so those props now leave Test M for both engines:
+  on the week-10 dry run 384 of 549 screened DraftKings props remain, about 3,000 over eight weeks against the
+  2,000 minimum. Engine A is unchanged.
+- **Prices seen:** checking B-1.1's week-10 forecasts, means of P(over) by market were compared with DraftKings'
+  week-10 de-vigged P(over). Week 10 is outside the sample and nothing was tuned on it: B-1.1's settings come from
+  2022-2023 only and the eligibility rule was set before any result. Reported here so the look is on record.

@@ -7,7 +7,9 @@ made before the week it first applies to, and the weeks before it are kept as th
 
 ## What is filled
 - Weeks: 2026 regular season, weeks 11-18.
-- Engines: A-1.0 and B-1.0 as frozen (the parameters Test M uses), kept as two separate portfolios. No blend.
+- Engines: A-1.0 and the Engine B version Test M uses (B-1.1 from amendment 2026-11-18 (3) of docs/engine_preregistration.md
+  if it passes its Test S, else none), kept as two separate portfolios. No blend. B fills only where it forecasts
+  (the Test S eligibility rows).
 - Markets: the six Test S markets at Novig (PASSING_ATTEMPTS, PASSING_YARDS, RUSHING_ATTEMPTS, RUSHING_YARDS,
   RECEPTIONS, RECEIVING_YARDS), contracts matched exactly by `engine/contracts.py` (half-point lines, full game).
 - Book: per contract, the **last** book recorded in `data/live/novig_books/` before kickoff that `engine/quotes.py`

@@ -14,7 +14,8 @@ from nflbet.engine.data import nflverse as N, player_week as PW
 
 FIT, TUNE, SIMS = (2018, 2019, 2020, 2021), (2022, 2023), 4000
 KMAX = {"pass_att": 90, "pass_yds": 700, "rush_att": 60, "rush_yds": 350, "rec": 30, "rec_yds": 350}
-OUT_MD, OUT_JSON = ROOT / "docs" / "engine" / "engine_b_tune.md", ROOT / "data" / "backtests" / "engine_b_tune.json"
+_SUF = "" if M.VERSION == "B-1.0" else f"_{M.VERSION}"
+OUT_MD, OUT_JSON = ROOT / "docs" / "engine" / f"engine_b_tune{_SUF}.md", ROOT / "data" / "backtests" / f"engine_b_tune{_SUF}.json"
 OUTCOMES = ["attempts", "completions", "passing_yards", "carries", "rushing_yards", "targets", "receptions", "receiving_yards"]
 
 
