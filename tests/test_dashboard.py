@@ -295,3 +295,14 @@ def test_engine_tab_empty_and_escaped():
                       "p": ["0.6"], "all_in": ["0.5"], "edge": ["0.1"], "result": ["win"], "profit": ["5.0"]})
     h = D.engine_section({"engine_interim": tm, "engine_paper": ps, "engine_fills": f})
     assert "+0.0100</td>" in h and "&lt;x&gt;" in h and "<x>" not in h
+
+
+def test_engine_preview_section_provisional_and_escaped():
+    import polars as pl
+    from nflbet import dashboard as D
+    assert "No engine sides yet this week" in D.preview_section((pl.DataFrame(), None))
+    df = pl.DataFrame({"engine": ["A"], "week": ["11"], "kickoff_et": ["2026-11-19 20:15"], "player": ["<y>"], "market": ["rec"],
+                       "line": ["4.5"], "side": ["Under"], "p": ["0.6"], "all_in": ["0.5"], "edge": ["0.1"],
+                       "book_fetched_utc": ["2026-11-19T22:00:00Z"]})
+    h = D.preview_section((df, {"run_utc": "2026-11-19T22:05:00+00:00"}))
+    assert "Provisional" in h and "&lt;y&gt;" in h and "1 sides" in h
