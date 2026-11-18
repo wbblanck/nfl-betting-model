@@ -164,3 +164,13 @@ saved as they were frozen (`data/backtests/engine_A-1.0_params.pkl.gz`, `engine_
 the loaded parameters reproduce both frozen records, and no longer refits. The 2018-2023 feature hash is still
 computed and reported but no longer gates a forecast. Nothing else in the Test M rules changes; no Test M outcome
 or price existed when this was decided. A week-10 dry run with the saved parameters: both records match.
+
+## Amendment 2026-11-18 (2): weekly interim results shown, at Will's request (before any week-11 game is played)
+Will asked to see Test M results as the weeks go rather than only after week 18. From week 11 on, the weekly job
+also computes the Test M statistic on the weeks completed so far and shows it on the dashboard's Engine tab and in
+`docs/engine/test_m_interim.md`, labeled **interim, descriptive**. Under the standing rule (CLAUDE.md: interim looks
+are descriptive) nothing changes because of an interim number: not the engines, the sample, the screens, the
+statistic, the level or the pass rule, and the test is not stopped early in either direction. The verdict is the
+`--grade` run after week 18, as frozen. The paper fills (docs/engine/paper_rules.md) can rebuild a game's forecast
+with an earlier injury snapshot, through an option of the forecaster that Test M's own forecasts do not use; with the
+option off the forecaster's output is unchanged (checked on the week-10 dry run).

@@ -8,7 +8,9 @@ on closing-line value and ATS result. It goes live only after its pre-registered
 tracker (docs/wind_live_rules.md) records 8-15 knot forecast-wind unders before kickoff, labeled unvalidated (its
 2000-2014 test failed). Fourth exception (Will, 2026-11-05): the props-mix tracker (docs/mix_live_rules.md)
 records the M1 mix's 55%+ sides on the dashboard, labeled unvalidated, graded weekly, judged on log loss after week 18.
-No other pick list.
+Fifth exception (Will, 2026-11-18): engine paper fills at Novig (docs/engine/paper_rules.md) record the frozen engines'
+sides with a 0.03 edge against the recorded books, weeks 11-18 of 2026, labeled unvalidated, paper only (no orders),
+graded weekly and shown on the dashboard's Engine tab. No other pick list.
 
 ## Standing rules
 - Never state a number that was not computed or looked up in the same session; recompute from committed files.
@@ -55,8 +57,9 @@ No other pick list.
 - Seasons and tests are in docs/engine_preregistration.md: fit 2018-2021, tune 2022-2023, 2024-2025 test outcome
   accuracy once per frozen version, prices tested prospectively only. Nothing tuned on 2024-2025 elsewhere in the
   repo may be carried into an engine.
-- The engine is not a pick-list exception. No paper portfolio, priced-sides list or decision record until Will adds
-  one above and its rules are frozen first. No order code; `engine.LIVE_EXECUTION` stays False.
+- The engine's only pick-list exception is the paper fills above (rules frozen in docs/engine/paper_rules.md). No
+  other paper portfolio, priced-sides list or decision record without a new exception. No order code;
+  `engine.LIVE_EXECUTION` stays False.
 - Novig contracts are matched exactly or not at all (`engine/contracts.py`); the cost of a side is read from the
   other side's resting orders; fees come from the market's own fee record saved with the quote.
 
