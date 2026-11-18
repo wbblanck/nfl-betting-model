@@ -1,0 +1,19 @@
+{
+ "version": "B-1.0",
+ "fit_seasons": [
+  2018,
+  2019,
+  2020,
+  2021
+ ],
+ "tune_seasons": [
+  2022,
+  2023
+ ],
+ "sims": 4000,
+ "seed": 7,
+ "params_sha256": "178aab3fa17ca614488a54301a7e3f505b2926235dd5a4e900492d94dcd8139b",
+ "boosters_sha256": "0f90f61f5367d78e27d4cd06d22b9939c866abb7abf1c3e3ec10a22628099138",
+ "baselines_sha256": "8aad13ce106cb79b03296b89b82a99c7aec5eefe9504144d6ad5756b15f521ca",
+ "features_sha256_fit_tune": "06bca18670fc6595dd8b1698d31ea8f3fda77797c9ee0bcb95dfd0f618d72fd9"
+}

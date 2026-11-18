@@ -2,6 +2,7 @@
 with the frozen baselines on the Test S sample. This is tuning (allowed on 2022-2023), not Test S: no 2024-2025
 outcome and no price is read. Writes docs/engine/engine_a_tune.md and data/backtests/engine_a_v01.json."""
 import json
+import os
 import sys
 
 import numpy as np
@@ -14,6 +15,9 @@ from nflbet.engine.features import facts as F
 from nflbet.engine.replication import efficiency as E, model as M
 
 FIT, TUNE, SIMS = (2018, 2019, 2020, 2021), (2022, 2023), 2000
+# Settings chosen on the tune seasons (allowed there), applied on top of the fit-season estimates. An environment
+# variable can override them for a what-if run; such a run writes nothing.
+TUNING = json.loads(os.environ["ENGINE_A_TUNING"]) if "ENGINE_A_TUNING" in os.environ else M.TUNING
 KMAX = {"pass_att": 90, "pass_yds": 700, "rush_att": 60, "rush_yds": 350, "rec": 30, "rec_yds": 350}
 OUT_MD, OUT_JSON = ROOT / "docs" / "engine" / "engine_a_tune.md", ROOT / "data" / "backtests" / "engine_a_v01.json"
 OUTCOMES = ["attempts", "completions", "passing_yards", "carries", "rushing_yards", "targets", "receptions", "receiving_yards"]
@@ -24,7 +28,8 @@ def load(seasons):
     stats = N.read("player_stats", seasons)
     pw, _ = PW.build(stats, N.read("snap_counts", seasons), N.read("players"))
     pbp = N.read("pbp", seasons)
-    teams = F.team_game(stats, pbp, F.games(N.read("schedules")))
+    sched = N.read("schedules")
+    teams = F.team_game(stats, pbp, F.games(sched), F.scores(sched))
     df = feats.join(pw.select("player_id", "game_id", *OUTCOMES), on=["player_id", "game_id"], how="left")
     assert df.filter(pl.col("played"))[OUTCOMES[0]].null_count() == 0          # everyone who played has an outcome row
     return df.with_columns([pl.col(c).fill_null(0) for c in OUTCOMES]), teams, pbp   # active, did not play: zeros
@@ -46,53 +51,87 @@ def pools(pbp: pl.DataFrame) -> dict:
     return out
 
 
-def main() -> int:
-    df, teams, pbp = load([*FIT, *TUNE])
-    assert df["season"].max() <= max(TUNE)
-    pl_fit = pools(pbp.filter(pl.col("season").is_in(FIT)))
-    P = M.fit(df.filter(pl.col("season").is_in(FIT)), teams.filter(pl.col("season").is_in(FIT)), pl_fit)
-    tab = M.tables(pl_fit, seed=0)
-    tune = df.filter(pl.col("season").is_in(TUNE)).sort("game_id", "team", "player_id")
-    runs = {c: np.zeros((tune.height, SIMS), dtype=np.int32) for c in OUTCOMES}
+def score(P: dict, tab: dict, frame: pl.DataFrame, base: dict, sims: int, level: float = 0.05) -> tuple[dict, dict, int]:
+    """Simulate every game in frame and score the six markets against the frozen baselines.
+    Returns (market -> result, accounting violations, offense-games). level is the two-sided level of the interval."""
+    frame = frame.sort("game_id", "team", "player_id")
+    runs = {c: np.zeros((frame.height, sims), dtype=np.int32) for c in OUTCOMES}
     broke, n_games, at = {}, 0, 0
-    for (gid, team), rows in tune.group_by(["game_id", "team"], maintain_order=True):
-        seed = int.from_bytes(f"{gid}|{team}".encode(), "little") % (2 ** 32)
-        box, s = M.simulate(P, tab, rows, SIMS, np.random.default_rng([0, seed]))
-        for k, v in accounting.violations(box).items():
-            broke[k] = broke.get(k, 0) + v
-        for c in OUTCOMES:
-            runs[c][at:at + rows.height] = s[c]
-        at, n_games = at + rows.height, n_games + 1
+    for (gid,), game in frame.group_by(["game_id"], maintain_order=True):
+        sides = [rows for _, rows in game.group_by(["team"], maintain_order=True)]
+        seed = int.from_bytes(str(gid).encode(), "little") % (2 ** 32)
+        for rows, (box, s) in zip(sides, M.simulate_game(P, tab, sides, sims, np.random.default_rng([0, seed]))):
+            for k, v in accounting.violations(box).items():
+                broke[k] = broke.get(k, 0) + v
+            for c in OUTCOMES:
+                runs[c][at:at + rows.height] = s[c]
+            at, n_games = at + rows.height, n_games + 1
+    out = {}
+    for market, (ycol, _, _) in BL.MARKETS.items():
+        m = BL.eligible(frame, market).to_numpy() & frame["played"].to_numpy()      # Test S sample: eligible and played
+        rows, y = frame.filter(pl.Series(m)), frame[ycol].to_numpy()[m]
+        b = base["markets"][market]
+        chosen = b["chosen"]
+        bc = S.crps(S.nb_cdf(BL.means(rows, market, b["constants"])[chosen], b["baselines"][chosen]["size"], KMAX[market]), y)
+        x = runs[ycol][m]
+        ec = S.crps_samples(x, y)
+        week = (rows["season"] * 100 + rows["week"]).to_numpy()
+        d, lo, hi = S.paired_bootstrap(ec - bc, week, level=level)
+        cov = {lv: S.coverage_samples(x, y, lv) for lv in (0.5, 0.8, 0.9)}
+        # What the bands would cover if the forecast were exactly right: score them against the engine's own runs
+        # (20 draws per row, averaged). Whole-number stats with small counts cover more than the nominal level.
+        pick = np.random.default_rng(1).integers(0, x.shape[1], (20, len(y)))
+        ideal = {lv: float(np.mean([S.coverage_samples(x, x[np.arange(len(y)), p], lv) for p in pick])) for lv in (0.5, 0.8, 0.9)}
+        out[market] = {"n": int(m.sum()), "weeks": int(len(np.unique(week))), "baseline": chosen, "baseline_crps": float(bc.mean()),
+                       "engine_crps": float(ec.mean()), "diff": [d, lo, hi], "level": level, "coverage": {str(k): v for k, v in cov.items()},
+                       "coverage_if_right": {str(k): v for k, v in ideal.items()}, "mean_bias": float(x.mean() - y.mean()),
+                       "pinball": {str(q): float(np.mean(np.where(y - np.quantile(x, q, axis=1, method="inverted_cdf") >= 0,
+                                                                   q * (y - np.quantile(x, q, axis=1, method="inverted_cdf")),
+                                                                   (q - 1) * (y - np.quantile(x, q, axis=1, method="inverted_cdf")))))
+                                   for q in (0.05, 0.25, 0.5, 0.75, 0.95)}}
+    return out, broke, n_games
+
+
+def table(markets: dict, label: str) -> list[str]:
+    L = [f"| Market | Rows | Baseline | Baseline CRPS | Engine CRPS | Engine minus baseline ({label}) | Central 50% covers (if right) | 80% | 90% |",
+         "|---|---|---|---|---|---|---|---|---|"]
+    for market, r in markets.items():
+        c, i = r["coverage"], r["coverage_if_right"]
+        L.append(f"| {market} | {r['n']:,} | {r['baseline']} | {r['baseline_crps']:.3f} | {r['engine_crps']:.3f} | "
+                 f"{r['diff'][0]:+.3f} ({r['diff'][1]:+.3f} to {r['diff'][2]:+.3f}) | {c['0.5']:.1%} ({i['0.5']:.1%}) | "
+                 f"{c['0.8']:.1%} ({i['0.8']:.1%}) | {c['0.9']:.1%} ({i['0.9']:.1%}) |")
+    return L
+
+
+def fitted() -> tuple[dict, dict, dict]:
+    """(parameters, yard tables, yard pools): fitted on the fit seasons only, with the frozen tune-season settings."""
+    df, teams, pbp = load(list(FIT))
+    pl_fit = pools(pbp.filter(pl.col("season").is_in(FIT)))
+    P = M.apply_tuning(M.fit(df, teams, pl_fit), TUNING)
+    return P, M.tables(pl_fit, seed=0), pl_fit
+
+
+def main() -> int:
+    P, tab, _ = fitted()
+    df, _, _ = load(list(TUNE))
+    assert df["season"].max() <= max(TUNE)
     base = json.loads((ROOT / "data" / "backtests" / "engine_baselines.json").read_text())
+    markets, broke, n_games = score(P, tab, df, base, SIMS)
     res = {"version": M.VERSION, "fit_seasons": FIT, "tune_seasons": TUNE, "sims": SIMS, "team_games": n_games,
            "accounting_violations": broke, "params": {k: v for k, v in P.items() if k not in ("env", "qb")},
            "qb": {"starters": len(P["qb"]["starter_share"]), "starter_threw_all": float(np.mean(np.array(P["qb"]["starter_share"]) >= 0.999)),
                   "starter_mean_share": float(np.mean(P["qb"]["starter_share"])), "new_starters": len(P["qb"]["new_share"])},
-           "env": {k: v for k, v in P["env"].items() if k != "resid"}, "markets": {}}
+           "env": {k: v for k, v in P["env"].items() if k != "resid"}, "markets": markets}
     L = [f"# Engine A {M.VERSION} on the tune seasons", "",
          "Written by `scripts/engine_a_tune.py`. Fitted on 2018-2021; every offense-game of 2022-2023 simulated",
          f"{SIMS:,} times ({n_games:,} offense-games). This is tuning, not Test S: no 2024-2025 outcome and no price was read.", "",
          f"Accounting: {'every simulated box score reconciles' if not broke else 'VIOLATIONS ' + json.dumps(broke)} "
          f"({n_games * SIMS:,} box scores checked).", "",
          "CRPS is in the stat's own units, lower is better. 'Engine minus baseline' below 0 means the engine is better;",
-         "the interval is a week-clustered bootstrap.", "",
-         "| Market | Rows | Baseline | Baseline CRPS | Engine CRPS | Engine minus baseline (95% interval) | Engine central 50% covers | 80% | 90% |",
-         "|---|---|---|---|---|---|---|---|---|"]
-    for market, (ycol, _, _) in BL.MARKETS.items():
-        m = BL.eligible(tune, market).to_numpy() & tune["played"].to_numpy()      # Test S sample: eligible and played
-        rows, y = tune.filter(pl.Series(m)), tune[ycol].to_numpy()[m]
-        b = base["markets"][market]
-        chosen = b["chosen"]
-        bc = S.crps(S.nb_cdf(BL.means(rows, market, b["constants"])[chosen], b["baselines"][chosen]["size"], KMAX[market]), y)
-        x = runs[ycol][m]
-        ec = S.crps_samples(x, y)
-        d, lo, hi = S.paired_bootstrap(ec - bc, (rows["season"] * 100 + rows["week"]).to_numpy())
-        cov = {lv: S.coverage_samples(x, y, lv) for lv in (0.5, 0.8, 0.9)}
-        res["markets"][market] = {"n": int(m.sum()), "baseline": chosen, "baseline_crps": float(bc.mean()), "engine_crps": float(ec.mean()),
-                                  "diff": [d, lo, hi], "coverage": {str(k): v for k, v in cov.items()},
-                                  "mean_bias": float(x.mean() - y.mean())}
-        L.append(f"| {market} | {int(m.sum()):,} | {chosen} | {bc.mean():.3f} | {ec.mean():.3f} | {d:+.3f} ({lo:+.3f} to {hi:+.3f}) | "
-                 f"{cov[0.5]:.1%} | {cov[0.8]:.1%} | {cov[0.9]:.1%} |")
+         "the interval is a week-clustered bootstrap. Coverage columns show the share of outcomes inside the engine's",
+         "band and, in brackets, the share that would fall inside if the forecast were exactly right (whole-number stats",
+         "with small counts cover more than the nominal level). The two should match.", "",
+         *table(markets, "95% interval")]
     o, e = P["opp"], P["eff"]
     L += ["", "## Fitted on 2018-2021", "",
           "| Split | Window | Prior weight m | Concentration kappa | Share to non-skill players |", "|---|---|---|---|---|"]
@@ -103,6 +142,9 @@ def main() -> int:
           f"{res['qb']['starter_threw_all']:.1%} of games and {res['qb']['starter_mean_share']:.1%} of the passes on average.",
           f"- Chance an active skill player takes a snap, fit seasons: {P['play']['all']:.1%} overall ("
           + ", ".join(f"{k} {x:.1%}" for k, x in sorted(P["play"]["pos"].items())) + ").",
+          f"- Game script in the team-volume means, per point of expected margin: {np.array(P['env']['coef'])[9, 0]:+.3f} pass attempts, "
+          f"{np.array(P['env']['coef'])[9, 1]:+.3f} carries; per point of expected total: {np.array(P['env']['coef'])[10, 0]:+.3f} attempts, "
+          f"{np.array(P['env']['coef'])[10, 1]:+.3f} carries. A game's two offenses share one volume surprise per run.",
           f"- Targets per pass attempt {P['env']['target_rate']:.3f}; sacks per attempt {P['sack_rate']:.3f}; scrambles as a share of quarterback carries {P['scramble_share']:.2f}.",
           "", "Mean of the runs minus mean of the outcomes, by market: "
           + ", ".join(f"{k} {v['mean_bias']:+.2f}" for k, v in res["markets"].items()) + "."]
@@ -120,10 +162,16 @@ def main() -> int:
           "- Two earlier runs of this comparison were wrong in opposite directions and are not reported: one told the",
           "  engine who actually played (hindsight, flattering it), the other made it forecast for players regardless of",
           "  whether they played (scoring it on outcomes that are void).",
-          "- The expected starting quarterback is guessed from earlier games. A starter returning from injury is not",
-          "  recognized, which hurts the engine on those rows; a depth-chart input would fix it and is not built.",
-          "- Not in this version: play-by-play game script, the two teams drawn jointly, availability draws,",
+          "- The expected starting quarterback is the recent starter if there is one, otherwise the depth chart's number",
+          "  one, otherwise the active quarterback with the most recent volume. On 2018-2021 that names the actual leader",
+          "  in attempts in 92.8% of team-games. A change announced during the week and not yet on the chart is missed.",
+          "- The weekly depth charts through 2024 carry no timestamp and are taken as that week's pregame chart; from",
+          "  2025 they are dated and only a chart from before game day is used.",
+          "- Not in this version: play-by-play game script (volume reacting to the simulated score), availability draws,",
           "  opponent-specific efficiency, touchdowns, interceptions."]
+    if "ENGINE_A_TUNING" in os.environ:
+        print("\n".join(table(markets, "95% interval")))
+        return 0
     OUT_JSON.write_text(json.dumps(res, indent=1) + "\n")
     OUT_MD.write_text("\n".join(L) + "\n")
     print("\n".join(L))

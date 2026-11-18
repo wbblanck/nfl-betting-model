@@ -8,7 +8,7 @@ What the engine knows: the active list (published about 90 minutes before kickof
 know who goes on to play. A player's forecast is taken from the runs in which he plays, because a prop on a player
 who does not play is void; whether his teammates play stays uncertain in those runs.
 
-Not in 0.2 (docs/engine/MODEL_SPECIFICATION.md section 2): play-by-play game script, the two teams drawn jointly,
+Not in 1.0 (docs/engine/MODEL_SPECIFICATION.md section 2): play-by-play game script (volume reacting to the simulated score),
 availability draws, opponent-specific efficiency, touchdowns and interceptions.
 """
 from __future__ import annotations
@@ -18,9 +18,28 @@ import polars as pl
 
 from nflbet.engine.replication import efficiency as E, environment as V, opportunity as O
 
-VERSION = "A-0.2"
+VERSION = "A-1.0"
 KINDS = {"targets": ("targets", "team_targets"), "carries": ("carries", "team_carries")}
 KEY = ["game_id", "team"]
+# Chosen on the tune seasons (2022-2023), then frozen with the version. Multipliers on fit-season estimates, except
+# the rushing shock, which is a value (its fit-season estimate was 0). {} means "use the fit-season estimates as is".
+TUNING: dict = {}
+
+
+def apply_tuning(P: dict, tuning: dict) -> dict:
+    """Return P with the tune-season settings applied: 'kappa_targets' and 'kappa_carries' multiply the split
+    concentrations, 'catch_strength' multiplies the catch-rate prior strength, 'shock_rec' and 'shock_rush' set the
+    team-wide yardage shock."""
+    import copy
+    P = copy.deepcopy(P)
+    for kind in ("targets", "carries"):
+        P["opp"][kind]["kappa"] *= tuning.get(f"kappa_{kind}", 1.0)
+    P["eff"]["c"]["catch"] *= tuning.get("catch_strength", 1.0)
+    for kind in ("rec", "rush"):
+        if f"shock_{kind}" in tuning:
+            P["eff"]["shock"][kind] = float(tuning[f"shock_{kind}"])
+    P["tuning"] = dict(tuning)
+    return P
 
 
 def _pos(df: pl.DataFrame) -> np.ndarray:
@@ -53,6 +72,21 @@ def play_prob(P: dict, df: pl.DataFrame) -> np.ndarray:
     return np.array([t["cell"].get(k, t["pos"].get(k.split("|")[0], t["all"])) for k in play_bucket(df)])
 
 
+def pick_starter(df: pl.DataFrame) -> tuple[int | None, str]:
+    """(row of the quarterback expected to start among those active, which share pool to draw from).
+    Order: a recent starter (starter_flag) first; then the depth chart's rank; then volume over his last 8 games.
+    On 2018-2021 this named the actual leader in attempts in 92.8% of team-games (history alone 91.1%).
+    'starter_share' when he is a recent starter or the chart's number one, otherwise 'new_share'."""
+    qbs = np.flatnonzero((df["position"] == "QB").to_numpy())
+    if not len(qbs):
+        return None, "new_share"
+    flag = starter_flag(df)[qbs]
+    depth = (df["depth_rank"].to_numpy() if "depth_rank" in df.columns else np.full(df.height, 9))[qbs]
+    vol = df["p_attempts_w8"].to_numpy()[qbs]
+    i = int(np.lexsort((-vol, depth, ~flag))[0])
+    return int(qbs[i]), ("starter_share" if flag[i] or depth[i] == 1 else "new_share")
+
+
 def _lookup(table: dict, pos: np.ndarray) -> np.ndarray:
     return np.array([table[p] for p in pos])
 
@@ -67,8 +101,16 @@ def fit(df: pl.DataFrame, teams: pl.DataFrame, pools: dict) -> dict:
                               pl.col("team_targets").alias("T_targets")), on=KEY, how="inner").sort(*KEY, "player_id")
     first = df.group_by(KEY, maintain_order=True).first()
     # Sorted: a join does not promise row order, and the residuals are later drawn by position in this list.
-    tf = first.join(teams.select(*KEY, "team_att", "team_carries", "team_targets", "team_sacks", "team_scrambles"), on=KEY).sort(KEY)
-    P = {"version": VERSION, "env": V.fit(tf, tf.select("team_att", "team_carries").to_numpy().astype(float), tf["team_targets"].to_numpy())}
+    tf = first.join(teams.select(*KEY, *[c for c in ("team_att", "team_carries", "team_targets", "team_sacks", "team_scrambles", "team_points")
+                                             if c in teams.columns]), on=KEY).sort(KEY)
+    where = {k: i for i, k in enumerate(zip(tf["game_id"].to_list(), tf["team"].to_list()))}
+    by_game: dict = {}
+    for (g, tm), i in where.items():
+        by_game.setdefault(g, []).append(i)
+    opp = np.array([next((j for j in by_game[g] if j != i), -1) for (g, tm), i in where.items()])
+    pts = tf["team_points"].to_numpy().astype(float) if "team_points" in tf.columns else np.full(tf.height, np.nan)
+    P = {"version": VERSION, "env": V.fit(tf, tf.select("team_att", "team_carries").to_numpy().astype(float), tf["team_targets"].to_numpy(),
+                                          np.where(np.isnan(pts), 22.0, pts), opp)}
     played, keys = everyone["played"].to_numpy().astype(float), np.array(play_bucket(everyone))
     cell = {k: float(played[keys == k].mean()) for k in np.unique(keys) if (keys == k).sum() >= 30}
     by_pos = {p: float(played[_pos(everyone) == p].mean()) for p in np.unique(_pos(everyone))}
@@ -99,15 +141,13 @@ def fit(df: pl.DataFrame, teams: pl.DataFrame, pools: dict) -> dict:
         denoms = {w: pad(df[f"p_{tcol}_{w}"].to_numpy().astype(float)) for w in O.WINDOWS}
         f = O.fit(counts, denoms, pad(_lookup(prior, pos)), np.column_stack([xp, x_other]), max(other, 1e-4))
         P["opp"][kind] = {**f, "prior": prior}
-    flag = starter_flag(df)
-    qb = pos == "QB"
-    att_share = df["attempts"].to_numpy() / np.maximum(df["T_attempts"].to_numpy(), 1)
-    has_starter = pad(flag.astype(float)).max(axis=1)[gid] > 0
-    lead = np.zeros(len(gid), dtype=bool)                       # the quarterback with the most recent volume in his team-game
-    w8 = pad(np.where(qb, df["p_attempts_w8"].to_numpy() + 1e-3, -1.0))
-    lead[(w8.argmax(axis=1)[gid] == slot) & qb] = True
-    P["qb"] = {"starter_share": np.clip(att_share[flag], 0, 1).tolist(),
-               "new_share": np.clip(att_share[qb & ~has_starter & lead], 0, 1).tolist()}
+    pools_qb = {"starter_share": [], "new_share": []}
+    tot = dict(zip(zip(teams["game_id"].to_list(), teams["team"].to_list()), teams["team_att"].to_list()))
+    for (g, tm), rows in everyone.sort(*KEY, "player_id").group_by(KEY, maintain_order=True):
+        i, kind = pick_starter(rows)
+        if i is not None and rows["played"][i] and tot.get((g, tm), 0) > 0:     # share he took, given that he played
+            pools_qb[kind].append(float(min(rows["attempts"][i] / tot[(g, tm)], 1.0)))
+    P["qb"] = pools_qb
     rate = {p: float(df["receptions"].to_numpy()[pos == p].sum() / max(df["targets"].to_numpy()[pos == p].sum(), 1)) for p in E.POSITIONS if (pos == p).any()}
     rate["OTH"] = float(df["receptions"].sum() / df["targets"].sum())
     eff = {"catch_rate": rate, "mu": {}, "var": {}, "c": {}, "shock": {}}
@@ -134,30 +174,39 @@ def tables(pools: dict, seed: int = 0) -> dict:
     return {kind: {p: E.sum_table(np.asarray(v, float), E.NMAX[kind], rng) for p, v in pools[kind].items()} for kind in ("rec", "rush")}
 
 
-def _yards(rng, tab: dict, pos: np.ndarray, n: np.ndarray, f: np.ndarray, shock: np.ndarray) -> np.ndarray:
-    """n [sims, K] plays -> whole yards [sims, K]; exactly 0 where n is 0."""
+def _yards(rng, tab: dict, pos: np.ndarray, n: np.ndarray, f: np.ndarray, shock: np.ndarray, cols: np.ndarray | None = None) -> np.ndarray:
+    """n [sims, K] plays -> whole yards [sims, K]; exactly 0 where n is 0. If cols is given, the table column drawn for
+    each run and player is written into it (the event layer reads the plays behind each sum from it)."""
     out = np.zeros(n.shape, dtype=np.int64)
     for k, p in enumerate(pos):
         t = tab[p]
-        base = t[np.minimum(n[:, k], t.shape[0] - 1), rng.integers(0, t.shape[1], n.shape[0])]
+        col = rng.integers(0, t.shape[1], n.shape[0])
+        if cols is not None:
+            cols[:, k] = col
+        base = t[np.minimum(n[:, k], t.shape[0] - 1), col]
         out[:, k] = np.where(n[:, k] > 0, np.rint(base * f[k] * shock), 0)
     return out
 
 
-def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.Generator) -> tuple[dict, dict]:
+def simulate_game(P: dict, tab: dict, sides: list[pl.DataFrame], sims: int, rng: np.random.Generator) -> list[tuple[dict, dict]]:
+    """Both offenses of one game (or one, if only one is given), sharing the volume surprise of each run."""
+    index = V.draw_index(P["env"], sims, rng)
+    return [simulate(P, tab, rows, sims, rng, index, side) for side, rows in enumerate(sides[:2])]
+
+
+def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.Generator, index: np.ndarray | None = None,
+             side: int = 0, trace: dict | None = None) -> tuple[dict, dict]:
     """rows: the feature rows of one offense in one game (its active skill players). Returns (box for
-    engine.accounting.violations, samples: stat -> [players, sims] in the order of rows)."""
+    engine.accounting.violations, samples: stat -> [players, sims] in the order of rows). If trace is a dict, what the
+    event layer (replication/events.py) needs is written into it; this draws nothing extra, so the runs are the same."""
     pos = _pos(rows)
     posx = np.append(pos, "OTH")
-    a, c, t = V.draw(P["env"], V.mean(P["env"], rows.head(1))[0], sims, rng)
+    a, c, t = V.draw(P["env"], V.mean(P["env"], rows.head(1))[0], sims, rng, index, side)
     k = len(pos)
     play = rng.random((sims, k)) < play_prob(P, rows)[None, :]
     qbs = np.flatnonzero(pos == "QB")
-    flag = starter_flag(rows)
-    top = None
-    if len(qbs):
-        cand = qbs[flag[qbs]] if flag[qbs].any() else qbs
-        top = int(cand[np.argmax(rows["p_attempts_w8"].to_numpy()[cand])])
+    top, key = pick_starter(rows)
+    if top is not None:
         play[:, top] = True                                     # someone has to take the snaps
     live = np.concatenate([play, np.ones((sims, 1), dtype=bool)], axis=1)
     alloc = {}
@@ -173,7 +222,6 @@ def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.G
     # a backup has a row. Any other quarterback with a row splits what is left; with none, it goes to "other".
     att = np.zeros((sims, k + 1), dtype=np.int64)
     if top is not None:
-        key = "starter_share" if flag[qbs].any() else "new_share"
         pool = np.array(P["qb"][key]) if len(P["qb"][key]) else np.array([1.0])
         att[:, top] = np.rint(a * pool[rng.integers(0, len(pool), sims)]).astype(np.int64)
         rest = [q for q in qbs if q != top]
@@ -195,7 +243,11 @@ def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.G
         mu = _lookup(e["mu"][kind], posx)
         f = np.append(E.factor(_hist(rows, y_col), _hist(rows, n_col), mu[:-1], e["c"][kind]), 1.0)
         s = e["shock"][kind]
-        out[kind] = _yards(rng, tab[kind], posx, n, f, np.exp(s * rng.standard_normal(sims) - s * s / 2))
+        shock = np.exp(s * rng.standard_normal(sims) - s * s / 2)
+        cols = np.zeros(n.shape, dtype=np.int64) if trace is not None else None
+        out[kind] = _yards(rng, tab[kind], posx, n, f, shock, cols)
+        if trace is not None:
+            trace[kind] = {"n": n, "yards": out[kind], "cols": cols, "f": f, "shock": shock}
     cmp_team, yds_team = rec.sum(axis=1), out["rec"].sum(axis=1)
     w = att / np.maximum(a, 1)[:, None]
     sacks = rng.poisson(P["sack_rate"] * a).astype(np.int64)
@@ -215,4 +267,6 @@ def simulate(P: dict, tab: dict, rows: pl.DataFrame, sims: int, rng: np.random.G
         idx = np.flatnonzero(play[:, i])
         pick[i] = rng.choice(idx, sims) if 50 <= len(idx) < sims else np.arange(sims)   # plays in every run: runs kept in order
     samples = {name: np.take_along_axis(v.T, pick, axis=1) for name, v in full.items()}
+    if trace is not None:
+        trace.update({"pos": posx, "att": att, "pick": pick, "qbs": qbs, "k": k, "n_play": play.sum(axis=0)})
     return box, samples

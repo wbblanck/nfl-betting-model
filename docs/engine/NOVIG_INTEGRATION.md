@@ -24,6 +24,19 @@ and the reader in `src/nflbet/sources/venues.py`. Everything is read-only throug
 - Novig's daily `trades.csv` / `markets.csv` files named in the blueprint are not fetched yet; their location was
   not in the saved docs. Add once located.
 
+## On-time runs from an outside cron service (Will's choice, 2026-11-13)
+GitHub's schedule is late, and a Claude scheduled task that starts a fresh session has no GitHub access (tried once
+on 2026-11-13: it could not start the workflow). So an outside cron service starts the recorder on time by calling
+GitHub's workflow-dispatch endpoint. Will sets this up; the token is never committed or shared.
+- Token: fine-grained, repository `wbblanck/nfl-betting-model` only, permission Actions: read and write.
+- Request: `POST https://api.github.com/repos/wbblanck/nfl-betting-model/actions/workflows/novig-books.yml/dispatches`
+  with headers `Authorization: Bearer <token>`, `Accept: application/vnd.github+json`,
+  `X-GitHub-Api-Version: 2022-11-28`, `Content-Type: application/json` and body
+  `{"ref":"main","inputs":{"hours":"4"}}`. Success is HTTP 204.
+- Jobs, Eastern time, about 2.5 hours before kickoff: Thursday and Monday 17:45; Sunday 10:30, 13:35 and 17:50.
+  Thanksgiving, Saturday and London games need one-off jobs.
+- GitHub's own schedule stays as the backup until the outside jobs are confirmed, then its game-window runs are trimmed.
+
 ## Contract identity (`engine/contracts.py`)
 A Novig market becomes a `Contract` only if all of these hold; otherwise it is recorded with the reason and never priced:
 - its `marketType` is in `config/markets.yaml`;

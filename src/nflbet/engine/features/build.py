@@ -21,7 +21,7 @@ PLAYER = ["offense_snaps", "attempts", "completions", "passing_yards", "sacks_su
           "targets", "receptions", "receiving_yards", "team_att", "team_carries", "team_targets", "team_dropbacks",
           "db_on_field", "team_db_charted"]
 TEAM = ["team_att", "team_cmp", "team_pass_yds", "team_sacks", "team_carries", "team_rush_yds", "team_targets",
-        "team_scrambles", "team_dropbacks", "team_plays"]
+        "team_scrambles", "team_dropbacks", "team_plays", "team_points", "team_points_against"]
 
 
 def _windows(df: pl.DataFrame, subject: list[str], cols: list[str], prefix: str) -> pl.DataFrame:
@@ -57,13 +57,17 @@ def _windows(df: pl.DataFrame, subject: list[str], cols: list[str], prefix: str)
 
 
 def build(player_week: pl.DataFrame, team_game: pl.DataFrame, on_field: pl.DataFrame | None = None,
-          active: pl.DataFrame | None = None) -> pl.DataFrame:
+          active: pl.DataFrame | None = None, depth: pl.DataFrame | None = None) -> pl.DataFrame:
     """player_week: engine.data.player_week.build output. team_game, on_field, active: engine.features.facts outputs.
     Returns one row per (player_id, game_id) for everyone who played and, when `active` is given, everyone on the
     game-day active list who did not (`played` False). Columns: keys, kickoff, played, and p_* (player), o_* (his
     offense), d_* (the opposing defense, i.e. what offenses did against it) features. Outcome columns of the game
     itself are not returned; `played` is the one fact about the game a row carries, and it is not a feature."""
-    tg = team_game.select("game_id", "team", "opponent", "season", "week", "kickoff", *TEAM).with_columns(pl.lit(True).alias("played"))
+    # A team-game row is a played game unless it says otherwise: engine.forecast adds games not yet played
+    # (played = False, every sum empty) so their rows get features as of kickoff and add nothing to any later sum.
+    tg = team_game.select("game_id", "team", "opponent", "season", "week", "kickoff", *TEAM,
+                          *(["played"] if "played" in team_game.columns else []))
+    tg = tg if "played" in tg.columns else tg.with_columns(pl.lit(True).alias("played"))
     base = player_week.select("player_id", "game_id", "team", "position", *[c for c in PLAYER if c in player_week.columns]).with_columns(pl.lit(True).alias("played"))
     if active is not None and active.height:
         extra = active.join(base.select("player_id", "game_id"), on=["player_id", "game_id"], how="anti").select("player_id", "game_id", "team", "position")
@@ -83,6 +87,12 @@ def build(player_week: pl.DataFrame, team_game: pl.DataFrame, on_field: pl.DataF
     d = (_windows(tg.rename({"team": "offense", "opponent": "team"}), ["team"], TEAM, "d_")
          .drop(TEAM, "offense", "season", "week", "kickoff", "played").rename({"team": "opponent"}))
     out = p.join(o, on=["game_id", "team"], how="left").join(d, on=["game_id", "opponent"], how="left")
+    # Pregame depth-chart rank at quarterback (1 = listed starter); 9 = not listed. A fact about the chart, not a sum.
+    if depth is not None and depth.height:
+        out = out.join(depth.select("game_id", "team", "player_id", "depth_rank"), on=["game_id", "team", "player_id"], how="left")
+        out = out.with_columns(pl.col("depth_rank").fill_null(9))
+    else:
+        out = out.with_columns(pl.lit(9, dtype=pl.Int64).alias("depth_rank"))
     return out.sort("kickoff", "game_id", "player_id")
 
 

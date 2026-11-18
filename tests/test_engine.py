@@ -362,7 +362,8 @@ def _feature_inputs(seed=0, scramble_from=None):
                 r = np.random.default_rng([seed + 1000, season, week, gi]) if scramble_from and kick >= scramble_from else rng
                 for t, o in ((h, a), (a, h)):
                     v = {c: int(r.integers(1, 60)) for c in ("team_att", "team_cmp", "team_pass_yds", "team_sacks", "team_carries",
-                                                             "team_rush_yds", "team_targets", "team_scrambles", "team_dropbacks", "team_plays")}
+                                                             "team_rush_yds", "team_targets", "team_scrambles", "team_dropbacks", "team_plays",
+                                                             "team_points", "team_points_against")}
                     tg.append({"game_id": gid, "team": t, "opponent": o, "season": season, "week": week, "kickoff": kick, **v})
                     for k in range(3):
                         pid = f"{t}{k}"
@@ -531,13 +532,16 @@ def test_environment_recovers_planted_coefficients():
     for pre in ("o_", "d_"):
         for w in ("w8", "std", "prev"):
             cols[f"{pre}n_{w}"] = np.full(n, 8)
-            for c in ("team_att", "team_carries"):
+            for c in ("team_att", "team_carries", "team_points", "team_points_against"):
                 cols[f"{pre}{c}_{w}"] = rng.uniform(20, 45, n) * 8
     df = pl.DataFrame(cols)
     att = 5 + 0.6 * df["o_team_att_w8"].to_numpy() / 8 + 0.3 * df["d_team_att_w8"].to_numpy() / 8 + rng.normal(0, 3, n)
     car = 40 - 0.4 * df["o_team_att_w8"].to_numpy() / 8 + rng.normal(0, 3, n)
-    P = V.fit(df, np.column_stack([att, car]), np.rint(att * 0.95))
-    coef = np.array(P["coef"])                                       # columns: 1, att(o8, std, prev, d8), carries(o8, std, prev, d8)
+    margin, _ = V.expected_script(df, {"points": 22.0})
+    car = car + 0.5 * margin                                         # planted game script: a team expected to lead runs more
+    P = V.fit(df, np.column_stack([att, car]), np.rint(att * 0.95), np.full(n, 22.0))
+    coef = np.array(P["coef"])                                       # columns: 1, att(o8, std, prev, d8), carries(o8, std, prev, d8), margin, total
+    assert coef[9, 1] == pytest.approx(0.5, abs=0.05) and abs(coef[9, 0]) < 0.05 and abs(coef[10, 1]) < 0.05
     assert coef[1, 0] == pytest.approx(0.6, abs=0.03) and coef[4, 0] == pytest.approx(0.3, abs=0.03) and coef[1, 1] == pytest.approx(-0.4, abs=0.03)
     assert abs(coef[2, 0]) < 0.03 and abs(coef[5, 0]) < 0.03         # unrelated inputs get nothing
     a, c, t = V.draw(P, V.mean(P, df.head(1))[0], 5000, rng)
@@ -554,7 +558,7 @@ def _engine_a_inputs(seed=5, games=220):
         T = int(rng.binomial(A, 0.94))
         tg = rng.multinomial(T, rng.dirichlet(30 * np.array([0.4, 0.25, 0.2, 0.1, 0.05])))
         ca = rng.multinomial(C, rng.dirichlet(30 * np.array([0.02, 0.02, 0.03, 0.8, 0.13])))
-        teams.append({"game_id": f"g{g}", "team": "X", "team_att": A, "team_carries": C, "team_targets": T, "team_sacks": 2, "team_scrambles": 1})
+        teams.append({"game_id": f"g{g}", "team": "X", "team_att": A, "team_carries": C, "team_targets": T, "team_sacks": 2, "team_scrambles": 1, "team_points": 22})
         for k, pos in enumerate(["WR", "WR", "TE", "RB", "QB"]):
             rec = int(rng.binomial(tg[k], 0.65))
             r = {"game_id": f"g{g}", "team": "X", "player_id": f"p{k}", "position": pos, "p_last_kickoff": "k", "o_last_kickoff": "k", "targets": int(tg[k]), "receptions": rec,
@@ -569,7 +573,8 @@ def _engine_a_inputs(seed=5, games=220):
                           f"p_receptions_{w}": round(share * 33 * n * 0.65), f"p_receiving_yards_{w}": round(share * 33 * n * 0.65 * 11),
                           f"p_rushing_yards_{w}": round([0.02, 0.02, 0.03, 0.8, 0.13][k] * 27 * n * 4),
                           f"o_n_{w}": n, f"o_team_att_{w}": 35 * n, f"o_team_carries_{w}": 27 * n,
-                          f"d_n_{w}": n, f"d_team_att_{w}": 35 * n, f"d_team_carries_{w}": 27 * n})
+                          f"d_n_{w}": n, f"d_team_att_{w}": 35 * n, f"d_team_carries_{w}": 27 * n,
+                          **{f"{pre}{c}_{w}": 22 * n for pre in ("o_", "d_") for c in ("team_points", "team_points_against")}})
             rows.append(r)
     pools = {"rec": {p: rng.gamma(2.0, 5.5, 4000).round() for p in ("QB", "RB", "WR", "TE", "OTH")},
              "rush": {p: (rng.gamma(1.5, 3.0, 4000) - 0.5).round() for p in ("QB", "RB", "WR", "TE", "OTH")}}
@@ -647,3 +652,385 @@ def test_active_list_comes_from_roster_status_only():
     a = F.active(ros, tg)
     assert sorted(a["player_id"].to_list()) == ["a", "d"]            # inactive, kicker, no ID and the bye week are all left out
     assert a["game_id"].to_list() == ["g1", "g1"] and a["team"].to_list() == ["LV", "LV"]
+
+
+def test_depth_rank_uses_only_charts_dated_before_game_day():
+    import polars as pl
+    from nflbet.engine.features import facts as F
+    tg = pl.DataFrame({"game_id": ["g1", "g2", "h1"], "season": [2025, 2025, 2024], "week": [1, 2, 3], "team": ["LV", "LV", "LV"],
+                       "kickoff": ["2025-09-07 13:00", "2025-09-14 13:00", "2024-09-22 13:00"]})
+    def snap(dt, a, b):
+        return [{"dt": dt, "team": "OAK", "gsis_id": a, "pos_abb": "QB", "pos_rank": 1}, {"dt": dt, "team": "OAK", "gsis_id": b, "pos_abb": "QB", "pos_rank": 2},
+                {"dt": dt, "team": "OAK", "gsis_id": "wr", "pos_abb": "WR", "pos_rank": 1}]
+    dated = pl.DataFrame(snap("2025-09-03T10:00:00Z", "old", "new") + snap("2025-09-07T09:00:00Z", "new", "old")      # game-day chart: too late for g1
+                         + snap("2025-09-20T09:00:00Z", "later", "new"))                                              # after both games
+    weekly = pl.DataFrame({"season": [2024, 2024, 2024], "week": [3, 3, 4], "club_code": ["OAK"] * 3, "game_type": ["REG"] * 3,
+                           "position": ["QB"] * 3, "formation": ["Offense"] * 3, "gsis_id": ["w1", "w2", "w9"], "depth_team": ["1", "2", "1"]})
+    d = {(r["game_id"], r["player_id"]): r["depth_rank"] for r in F.depth_rank(weekly, dated, tg).iter_rows(named=True)}
+    assert d == {("g1", "old"): 1, ("g1", "new"): 2,              # the chart from four days before, not the game-day one
+                 ("g2", "new"): 1, ("g2", "old"): 2,              # by week 2 the game-day chart of week 1 is known
+                 ("h1", "w1"): 1, ("h1", "w2"): 2}                # weekly format: that week's chart; week 4 has no game here
+
+
+def test_pick_starter_order():
+    import polars as pl
+    from nflbet.engine.replication import model as M
+    def qb(pid, att3, team3, last, depth, w8):
+        return {"player_id": pid, "position": "QB", "p_attempts_w3": att3, "p_team_att_w3": team3, "p_last_kickoff": last,
+                "o_last_kickoff": "k", "depth_rank": depth, "p_attempts_w8": w8}
+    wr = {**qb("wr", 0, 100, "k", 9, 0), "position": "WR"}
+    recent = qb("recent", 90, 100, "k", 2, 200)                   # started the last three games; chart still lists him second
+    listed = qb("listed", 0, 100, "old", 1, 250)                  # chart's number one, back from injury, did not play last game
+    third = qb("third", 0, 100, "old", 9, 10)
+    assert M.pick_starter(pl.DataFrame([wr, listed, recent, third])) == (2, "starter_share")    # the recent starter outranks the chart
+    assert M.pick_starter(pl.DataFrame([wr, third, listed])) == (2, "starter_share")            # no recent starter: the chart decides
+    assert M.pick_starter(pl.DataFrame([wr, third, qb("vol", 0, 100, "old", 9, 99)])) == (2, "new_share")   # neither: volume, new-starter pool
+    assert M.pick_starter(pl.DataFrame([wr])) == (None, "new_share")
+
+
+def test_two_offenses_in_a_game_share_their_volume_surprise():
+    from nflbet.engine.replication import environment as V
+    rng = np.random.default_rng(8)
+    n = 2000                                                       # fit games where one side passing more means the other runs more
+    z = rng.normal(0, 5, n)
+    P = {"resid": np.column_stack([z, -z, -z, z]).tolist(), "target_rate": 0.95}
+    idx = V.draw_index(P, 5000, rng)
+    a0, c0, _ = V.draw(P, np.array([35.0, 27.0]), 5000, rng, idx, 0)
+    a1, c1, _ = V.draw(P, np.array([35.0, 27.0]), 5000, rng, idx, 1)
+    assert np.corrcoef(a0, a1)[0, 1] < -0.9 and np.corrcoef(a0, c1)[0, 1] > 0.9      # shared draw: the planted link survives
+    b1, _, _ = V.draw(P, np.array([35.0, 27.0]), 5000, rng, None, 1)
+    assert abs(np.corrcoef(a0, b1)[0, 1]) < 0.05                                      # separate draws: no link
+    assert a1.std() == pytest.approx(b1.std(), rel=0.05)                              # each side's own spread is the same either way
+
+
+# ------------------------------------------------------------------------------------------------ Engine B (challenger)
+def test_engine_b_negative_binomial_recovers_planted_coefficients_and_ignores_noise():
+    from nflbet.engine.challenger import counts as C
+    rng = np.random.default_rng(3)
+    n = 20000
+    X = rng.normal(size=(n, 3))                                    # column 2 is noise
+    pos = rng.choice(["QB", "RB", "WR", "TE"], n)
+    size = np.where(pos == "QB", 20.0, 4.0)
+    mu = np.exp(1.5 + 0.4 * X[:, 0] - 0.2 * X[:, 1])
+    y = rng.negative_binomial(size, size / (size + mu))
+    f = C.fit_nb(X, y, pos, np.zeros(n), ridge=0.0)
+    assert f["converged"]
+    assert f["beta"] == pytest.approx([1.5, 0.4, -0.2, 0.0], abs=0.03)
+    assert np.exp(f["gamma"]["QB"]) == pytest.approx(20, rel=0.3) and np.exp(f["gamma"]["WR"]) == pytest.approx(4, rel=0.15)
+    m, r = C.nb_params(f, X[:5], pos[:5], np.zeros(5))
+    assert m == pytest.approx(np.exp(np.asarray(f["beta"])[0] + X[:5] @ np.asarray(f["beta"])[1:]))
+
+
+def test_engine_b_logit_and_hurdle_put_the_zero_mass_where_planted():
+    from nflbet.engine.challenger import counts as C
+    rng = np.random.default_rng(4)
+    X = rng.normal(size=(20000, 2))
+    p = 1 / (1 + np.exp(-(-2.0 + 1.0 * X[:, 0])))
+    b = C.fit_logit(X, (rng.random(20000) < p).astype(float), ridge=0.0)
+    assert b == pytest.approx([-2.0, 1.0, 0.0], abs=0.08)
+    x = C.hurdle_draw(rng, np.array([0.1, 0.5]), np.array([3.0, 0.2]), np.array([5.0, 5.0]), 20000)
+    assert x.dtype == np.int32 and x.min() >= 0
+    assert (x == 0).mean(axis=1) == pytest.approx([0.1, 0.5], abs=0.015)   # zeros only from the hurdle, even at a tiny mean
+
+
+def test_engine_b_catches_never_exceed_targets_and_kappa_is_recovered():
+    from nflbet.engine.challenger import counts as C
+    rng = np.random.default_rng(5)
+    n = 30000
+    tgt = rng.integers(1, 12, n)
+    p = rng.uniform(0.5, 0.8, n)
+    rec = rng.binomial(tgt, rng.beta(p * 40, (1 - p) * 40))
+    hist_t = np.full(n, 1e6)                                       # a long history pins the catch rate at p
+    f = C.fit_catch(rec, tgt, p * hist_t, hist_t, np.full(n, "WR"), {"WR": 0.65})
+    assert f["kappa"] in (20, 40, 80)
+    sim_t = rng.integers(0, 15, (200, 500))
+    sim_r = C.catch_draw(rng, sim_t, np.full(200, 0.7), 40)
+    assert (sim_r <= sim_t).all() and sim_r.min() >= 0
+
+
+def test_engine_b_yardage_rearrangement_tails_and_planted_signal():
+    from nflbet.engine.challenger import yardage as Y
+    crossed = np.array([[10, 12, 11, 20, 19, 30, 40], [0, 5, 10, 15, 20, 25, 30]], float)
+    assert Y.crossings(crossed) == 1 and Y.crossings(np.sort(crossed, axis=1)) == 0
+    q = np.sort(crossed, axis=1)
+    u = np.tile(np.linspace(0.001, 0.999, 999), (2, 1))
+    v = Y.quantile_fn(q, {"lo": 1.0, "hi": 1.0}, u)
+    assert (np.diff(v, axis=1) >= -1e-9).all()                     # the whole quantile function is non-decreasing
+    assert v[1, np.argmin(np.abs(u[1] - 0.5))] == pytest.approx(15, abs=0.1)
+    rng = np.random.default_rng(6)                                 # tails: exponential excess above q95 with scale 2 x (q95 - q75)
+    qq = np.tile([0, 2, 5, 10, 15, 18, 20], (40000, 1)).astype(float)
+    y = np.where(rng.random(40000) < 0.05, 20 + rng.exponential(10.0, 40000), 10.0)
+    assert Y.fit_tails(qq, y)["hi"] == pytest.approx(2.0, rel=0.05)
+    X = rng.normal(size=(6000, 2))                                 # planted signal in column 0; column 1 is noise
+    yy = 50 + 20 * X[:, 0] + rng.normal(0, 10, 6000)
+    m = Y.fit(X, yy, seed=0)
+    med = Y.predict(m, np.array([[-1.0, 0.0], [1.0, 0.0], [1.0, 2.0]]))[:, 3]
+    # Boosted trees approach a straight line in steps and stop short of it at 300 shallow rounds: found, slightly shrunk.
+    assert 28 < med[1] - med[0] < 45 and abs(med[2] - med[1]) < 4
+
+
+def _fake_joint_frame(n_games: int):
+    import polars as pl
+    rows = []
+    for g in range(n_games):
+        rows += [{"game_id": f"g{g}", "team": "A", "player_id": "qb", "position": "QB"},
+                 {"game_id": f"g{g}", "team": "A", "player_id": "wr1", "position": "WR"},
+                 {"game_id": f"g{g}", "team": "A", "player_id": "wr2", "position": "WR"}]
+    return pl.DataFrame(rows)
+
+
+def test_engine_b_copula_recovers_planted_correlations_and_keeps_marginals(monkeypatch):
+    import polars as pl
+    from scipy import special
+    from nflbet.engine.challenger import joint as J, model as M
+    monkeypatch.setattr(M, "ppf", lambda P, df, m, u: np.rint(special.ndtri(u) * 100).astype(np.int32))   # marginal = N(0, 100^2)
+    n = 3000
+    df = _fake_joint_frame(n)
+    qb = (df["player_id"] == "qb").to_numpy()
+    masks = {"pass_yds": qb, "rec_yds": ~qb}
+    rng = np.random.default_rng(9)
+    R = np.array([[1, 0.4, 0.4], [0.4, 1, -0.2], [0.4, -0.2, 1]])
+    z = rng.standard_normal((n, 3)) @ np.linalg.cholesky(R).T          # planted: QB with each WR 0.4, WRs -0.2
+    y = np.rint(z * 100).reshape(-1)
+    rho = J.fit({}, df, masks, {"pass_yds": y, "rec_yds": y})
+    assert rho["pass_yds|rec_yds|other"]["rho"] == pytest.approx(0.4, abs=0.04)
+    assert rho["rec_yds|rec_yds|other"]["rho"] == pytest.approx(-0.2, abs=0.05)
+    runs, _ = J.simulate({}, rho, df.head(3), {"pass_yds": qb[:3], "rec_yds": ~qb[:3]}, 40000, rng, reconcile_box=False)
+    x = np.vstack([runs["pass_yds"], runs["rec_yds"]]) / 100
+    assert np.corrcoef(x)[0, 1] == pytest.approx(0.4, abs=0.03) and np.corrcoef(x)[1, 2] == pytest.approx(-0.2, abs=0.03)
+    assert x.mean(axis=1) == pytest.approx([0, 0, 0], abs=0.03) and x.std(axis=1) == pytest.approx([1, 1, 1], abs=0.03)
+    indep, _ = J.simulate({}, {}, df.head(3), {"pass_yds": qb[:3], "rec_yds": ~qb[:3]}, 40000, rng, reconcile_box=False)
+    assert abs(np.corrcoef(np.vstack([indep["pass_yds"], indep["rec_yds"]]))[0, 1]) < 0.03   # nothing planted, nothing found
+
+
+def test_engine_b_correlation_matrix_is_valid_even_when_pair_kinds_disagree():
+    from nflbet.engine.challenger import joint as J
+    rho = {J.key("rec", "rec", False): {"rho": -0.9}}                  # three receivers all at -0.9: not a valid matrix
+    R = J.matrix(rho, ["rec", "rec", "rec"], ["a", "b", "c"])
+    assert np.allclose(np.diag(R), 1) and np.linalg.eigvalsh(R).min() > 0
+    np.linalg.cholesky(R)
+
+
+def test_engine_b_reconciliation_rules():
+    import polars as pl
+    from nflbet.engine.challenger import joint as J
+    var = pl.DataFrame({"market": ["pass_att", "pass_yds", "rec", "rec", "rec_yds", "rec_yds"], "tg": ["g|A"] * 6,
+                        "player_id": ["qb", "qb", "w1", "w2", "w1", "w2"]})
+    runs = {"pass_att": np.array([[30, 1, 0]]), "pass_yds": np.array([[200, 10, 0]]), "rec": np.array([[5, 3, 0], [4, 0, 2]]),
+            "rec_yds": np.array([[150, 40, 12], [100, 9, 30]])}
+    fx = J.reconcile({k: v.copy() for k, v in runs.items()}, var, caps=False)
+    assert fx["yards_without_volume"] == 2 and fx["receiving_yards_over_passing"] == 0
+    r = {k: v.copy() for k, v in runs.items()}
+    J.reconcile(r, var, caps=True)
+    assert (r["rec_yds"].sum(axis=0) <= np.maximum(r["pass_yds"][0], 0)).all()
+    assert (r["rec"].sum(axis=0) <= r["pass_att"][0]).all()
+    assert ((r["rec"] > 0) | (r["rec_yds"] == 0)).all()                  # no yards without a catch
+    assert (r["rec_yds"] <= runs["rec_yds"]).all()                       # only ever lowered
+
+
+# ------------------------------------------------------------------------------------------------ Engine A event layer
+def _event_inputs():
+    import polars as pl
+    from nflbet.engine.replication import events as EV, model as M
+    df, teams, pools = _engine_a_inputs()
+    P = M.fit(df, teams, pools)
+    rng = np.random.default_rng(11)
+    flags = {k: {p: (v >= 20) | (rng.random(len(v)) < 0.02) for p, v in d.items()} for k, d in pools.items()}   # long plays score more
+    sums, ptab = EV.tables(pools, flags, seed=0)
+    rows = df.filter(pl.col("game_id") == "g0").sort("player_id")
+    hist = rows.select("player_id", "game_id").with_columns(*[pl.lit(0.0).alias(f"h_{c}") for c in (
+        "receiving_tds", "rushing_tds", "passing_interceptions", "receptions", "carries", "attempts")])
+    EVp = {"td_rate": {k: {p: float(np.mean(v)) for p, v in d.items()} for k, d in flags.items()}, "c": {"rec": 50.0, "rush": 50.0, "int": 200.0},
+           "int_rate": 0.025}
+    return P, pools, flags, sums, ptab, rows, hist, EVp
+
+
+def test_event_layer_leaves_engine_a_runs_unchanged_and_every_box_matches_its_events():
+    from nflbet.engine.replication import events as EV, model as M
+    P, pools, flags, sums, ptab, rows, hist, EVp = _event_inputs()
+    mt = M.tables(pools, seed=0)
+    assert all(np.array_equal(mt[k][p], sums[k][p]) for k in mt for p in mt[k])          # same tables, same draws
+    box, s, e = EV.simulate(P, EVp, sums, ptab, rows, hist, 3000, np.random.default_rng(4), np.random.default_rng(5))
+    box0, s0 = M.simulate(P, mt, rows, 3000, np.random.default_rng(4))
+    assert all((s[c] == s0[c]).all() for c in s0) and accounting.violations(box) == {}      # A-1.0's runs bit for bit
+    assert EV.violations(e["box"]) == {}
+    b = e["box"]
+    assert (b["rec_plays"].sum(axis=2) == b["rec_yds"]).all() and (b["rush_plays"].sum(axis=2) == b["rush_yds"]).all()
+    es = e["samples"]
+    assert (es["rush_rec_yds"] == s["rushing_yards"] + s["receiving_yards"]).all()
+    assert (es["tds"] >= 0).all() and (es["passing_interceptions"] <= s["attempts"]).all()
+    # Planted: touchdown share per catch close to the pool's (factor 1 with no history), long catches score more often.
+    rec_n = b["rec_n"].sum()
+    assert b["rec_td"].sum() / rec_n == pytest.approx(np.mean([flags["rec"][p].mean() for p in ("WR", "TE", "RB")]), abs=0.03)
+    long_ = b["rec_plays"] >= 20
+    assert b["rec_td"][long_].mean() > 0.9 and b["rec_td"][~long_ & (b["rec_plays"] > 0)].mean() < 0.1
+    # A player with twice his position's touchdown rate on a long history scores about twice as often.
+    import polars as pl
+    hot = hist.with_columns(pl.when(pl.col("player_id") == "p0").then(400.0).otherwise(0.0).alias("h_receptions"))
+    hot = hot.with_columns((pl.col("h_receptions") * 2 * EVp["td_rate"]["rec"]["WR"]).alias("h_receiving_tds"))
+    _, _, eh = EV.simulate(P, EVp, sums, ptab, rows, hot, 3000, np.random.default_rng(4), np.random.default_rng(5))
+    r0 = e["box"]["rec_td"][:, 0].sum() / e["box"]["rec_n"][:, 0].sum()
+    r1 = eh["box"]["rec_td"][:, 0].sum() / eh["box"]["rec_n"][:, 0].sum()
+    assert r1 / r0 == pytest.approx(1.8, abs=0.35)               # shrunk a little toward the position (c = 50, 400 catches)
+
+
+def test_event_layer_planted_breaks_are_found():
+    from nflbet.engine.replication import events as EV
+    P, pools, flags, sums, ptab, rows, hist, EVp = _event_inputs()
+    _, _, e = EV.simulate(P, EVp, sums, ptab, rows, hist, 500, np.random.default_rng(4), np.random.default_rng(5))
+    b = {k: v.copy() for k, v in e["box"].items()}
+    b["rec_plays"][3, 0, 0] += 1
+    assert EV.violations(b) == {"play yards != player yards": 1}
+    b = {k: v.copy() for k, v in e["box"].items()}
+    b["ints"][7, 4] = b["att"][7, 4] + 1
+    assert EV.violations(b) == {"interceptions > attempts": 1}
+
+
+def test_event_layer_two_seeds_agree_within_monte_carlo_error():
+    from nflbet.engine.replication import events as EV
+    P, pools, flags, sums, ptab, rows, hist, EVp = _event_inputs()
+    S = 20000
+    _, _, a = EV.simulate(P, EVp, sums, ptab, rows, hist, S, np.random.default_rng(1), np.random.default_rng(2))
+    _, _, b = EV.simulate(P, EVp, sums, ptab, rows, hist, S, np.random.default_rng(3), np.random.default_rng(4))
+    for c, line in (("tds", 0.5), ("long_rec", 19.5), ("passing_interceptions", 0.5), ("rush_rec_yds", 50.5)):
+        p1, p2 = (a["samples"][c] > line).mean(axis=1), (b["samples"][c] > line).mean(axis=1)
+        p = (p1 + p2) / 2
+        se = np.sqrt(np.maximum(p * (1 - p), 1e-12) * 2 / S)
+        assert (np.abs(p1 - p2) <= 4 * se + 1e-12).all(), c
+
+
+# ------------------------------------------------------------------------------------------------ phase 6: Novig quotes
+from nflbet.engine import quotes as NQ                                                      # noqa: E402
+
+CAT = "2027-01-15T07:50:00Z"                     # catalog read 10 minutes before EV's start (1.8e12 ms = 08:00 UTC)
+ROS = {"BUF|NYJ": [{"player_id": "00-1", "name": "Garrett Wilson", "team": "NYJ", "position": "WR"},
+                   {"player_id": "00-2", "name": "Josh Allen", "team": "BUF", "position": "QB"}]}
+
+
+def _book(fetched="2027-01-15T07:55:00Z", under=None, over=None):
+    return {"marketId": "m1", "seq": 7, "fetched_utc": fetched,
+            "orders": {"u": under if under is not None else [{"orderId": "a", "price": "0.48", "qty": 600},
+                                                                {"orderId": "b", "price": "0.45", "qty": 2000}],
+                       "o": over if over is not None else [{"orderId": "c", "price": "0.47", "qty": 20000}]}}
+
+
+def _snap(market=None, book=None, **summary):
+    m = market or _mkt(fee={"coefficient": "0.06", "charged": "WHEN_LIVE"})
+    books = {} if book is False else {m["marketId"]: book or _book()}
+    return {"stamp": "S1", "events": [EV], "markets": [m], "books": books,
+            "summary": {"catalog_fetched_utc": CAT, **summary}}
+
+
+def test_quotes_price_each_side_from_the_other_sides_orders():
+    rows, un = NQ.quotes(_snap(), ROS)
+    assert un == [] and len(rows) == 4
+    q = {(r["side"], r["size"]): r for r in rows}
+    over = q[("Over", 1000)]                     # takes Under: 600 at 0.52, then 400 at 0.55
+    assert (over["filled"], over["unfilled"], over["worst_mills"], over["top_mills"]) == (1000, 0, 550, 520)
+    assert over["avg_cost"] == pytest.approx((600 * 0.52 + 400 * 0.55) / 1000) and over["fee"] == 0      # pregame
+    assert over["all_in"] == over["avg_cost"]
+    assert (q[("Over", 10000)]["filled"], q[("Over", 10000)]["unfilled"]) == (2600, 7400)
+    assert q[("Under", 1000)]["avg_cost"] == pytest.approx(0.53)                                         # takes Over at 0.47
+    assert over["player_id"] == "00-1" and over["resolved_by"] == "name" and over["minutes_before_start"] == 5.0
+
+
+@pytest.mark.parametrize("market, why", [
+    (_mkt(strike="74", description="Garrett Wilson 74 RECEIVING_YARDS",
+          outcomes=[{"outcomeId": "o", "name": "Over 74"}, {"outcomeId": "u", "name": "Under 74"}]), "whole-number line"),
+    (_mkt(description="Garrett Wilson 74.5 RECEIVING_YARDS 1H"), "does not read"),
+    (_mkt(description="Garret Willson 74.5 RECEIVING_YARDS"), "player: not on either roster"),
+])
+def test_unmatched_markets_are_never_priced(market, why):
+    rows, un = NQ.quotes(_snap(market=market), ROS)
+    assert rows == [] and len(un) == 1 and why in un[0]["reason"]
+
+
+def test_ambiguous_player_is_never_priced():
+    ros = {"BUF|NYJ": ROS["BUF|NYJ"] + [{"player_id": "00-9", "name": "Garrett Wilson", "team": "BUF", "position": "WR"}]}
+    rows, un = NQ.quotes(_snap(), ros)
+    assert rows == [] and un[0]["reason"] == "player: ambiguous (name)"
+
+
+@pytest.mark.parametrize("book, market, why", [
+    (False, None, "no book saved"),
+    (_book(fetched="2027-01-15T08:00:00Z"), None, "at or after the start"),
+    (_book(fetched="2027-01-15T06:45:00Z"), None, "more than 60 minutes apart"),
+    (None, _mkt(status="SUSPENDED"), "not open"),
+])
+def test_stale_or_late_books_are_never_priced(book, market, why):
+    rows, un = NQ.quotes(_snap(market=market, book=book), ROS)
+    assert rows == [] and why in un[0]["reason"] and un[0]["matched"] is True
+
+
+def test_rederive_finds_a_changed_book_or_row():
+    snap = _snap()
+    rows, _ = NQ.quotes(snap, ROS)
+    assert all(NQ.rederive(r, snap, ROS) for r in rows)
+    changed = _snap(book=_book(under=[{"orderId": "a", "price": "0.49", "qty": 600}, {"orderId": "b", "price": "0.45", "qty": 2000}]))
+    assert not NQ.rederive(rows[0], changed, ROS)                       # planted: one resting order moved a cent
+    assert not NQ.rederive({**rows[0], "fee": 0.01}, snap, ROS)          # planted: a field edited after the fact
+    assert not NQ.rederive({**rows[0], "stamp": "S2"}, snap, ROS)
+
+
+def test_quotes_module_reads_no_prediction():
+    tree = ast.parse((PKG / "engine" / "quotes.py").read_text())
+    names = {a.name for n in ast.walk(tree) if isinstance(n, (ast.Import, ast.ImportFrom)) for a in n.names}
+    mods = {n.module for n in ast.walk(tree) if isinstance(n, ast.ImportFrom)}
+    assert not ({"replication", "challenger", "props", "gamesim", "ats"} & (names | mods))
+
+
+# ------------------------------------------------------------------------------------------------ Test M forecasts
+from nflbet.engine import forecast as FO                                                    # noqa: E402
+
+
+def test_snapshot_before_takes_latest_strictly_before_kickoff():
+    names = ["20261119T2000Z_w11.json.gz", "20261120T0114Z_w11.json.gz", "20261120T0116Z_w11.json.gz", "junk.txt"]
+    # 20:15 Eastern on 2026-11-19 is 01:15 UTC on the 20th (standard time)
+    assert FO.kickoff_utc("2026-11-19 20:15").isoformat() == "2026-11-20T01:15:00+00:00"
+    assert FO.snapshot_before(names, "2026-11-19 20:15") == "20261120T0114Z_w11.json.gz"
+    assert FO.snapshot_before(names, "2026-11-19 15:00") is None                      # nothing before
+    assert FO.snapshot_before(names, "2026-11-25 20:15") is None                      # older than 72 hours
+
+
+def test_projected_active_list_rules():
+    import polars as pl
+    ros = pl.DataFrame({"gsis_id": ["q", "w", "w", "t", "r", "x", "k"], "week": [9, 8, 9, 9, 9, 9, 9],
+                        "team": ["NYJ", "BUF", "NYJ", "NYJ", "NYJ", "NYJ", "NYJ"], "position": ["QB", "WR", "WR", "WR", "RB", "TE", "K"],
+                        "status": ["ACT", "ACT", "INA", "ACT", "RES", "ACT", "ACT"]})
+    tg = FO.target_games(pl.DataFrame({"game_id": ["2026_10_NYJ_BUF"], "season": [2026], "week": [10], "kickoff": ["2026-11-15 13:00"],
+                                       "home": ["BUF"], "away": ["NYJ"]}), 2026, 10)
+    assert tg.height == 2 and not tg["played"].any()
+    charts = {"2026_10_NYJ_BUF": {"t": "MIA", "r": "NYJ"}}              # t traded away; r back on the chart
+    out = FO.projected_active(ros, {"2026_10_NYJ_BUF": {"x"}}, tg, charts)
+    nyj = sorted(out.filter(pl.col("team") == "NYJ")["player_id"].to_list())
+    # q ACT; w latest row INA with NYJ; t charted elsewhere; r on the chart; x injured; k not a skill position
+    assert nyj == ["q", "r", "w"]
+    assert out.filter(pl.col("team") == "BUF").height == 0               # w's older BUF row does not count
+
+
+def test_histogram_and_p_over():
+    import polars as pl
+    rows = pl.DataFrame({"game_id": ["g", "g"], "player_id": ["a", "b"]})
+    runs = np.array([[0, 1, 1, 5], [3, 3, 3, 3]])
+    h = FO.histogram("A", rows, "rec", runs)
+    a = h.filter(pl.col("player_id") == "a")
+    assert a["value"].to_list() == [0, 1, 5] and a["count"].to_list() == [1, 2, 1]
+    assert FO.p_over(a, 0.5) == 0.75 and FO.p_over(a, 4.5) == 0.25
+    assert FO.p_over(h.filter(pl.col("player_id") == "b"), 2.5) == 1.0
+
+
+def test_unplayed_team_games_get_features_and_add_nothing():
+    import polars as pl
+    from nflbet.engine.features import build as B
+    pwk = pl.DataFrame({"player_id": ["a", "a"], "game_id": ["g1", "g2"], "team": ["NYJ", "NYJ"], "position": ["WR", "WR"],
+                        "targets": [5, 7], "receptions": [3, 4], "receiving_yards": [30, 50], "offense_snaps": [40, 45]})
+    tg = pl.DataFrame({"game_id": ["g1", "g2"], "team": ["NYJ", "NYJ"], "opponent": ["BUF", "MIA"], "season": [2026, 2026], "week": [1, 2],
+                       "kickoff": ["2026-09-13 13:00", "2026-09-20 13:00"], "team_targets": [30, 35], "team_att": [32, 36]})
+    up = pl.DataFrame({"game_id": ["g3"], "team": ["NYJ"], "opponent": ["NE"], "season": [2026], "week": [3], "kickoff": ["2026-09-27 13:00"],
+                       "played": [False]})
+    act = pl.DataFrame({"player_id": ["a"], "game_id": ["g3"], "team": ["NYJ"], "position": ["WR"]})
+    tg = tg.with_columns([pl.lit(0).alias(c) for c in B.TEAM if c not in tg.columns])
+    pwk = pwk.with_columns([pl.lit(0).alias(c) for c in B.PLAYER if c not in pwk.columns and c not in B.TEAM])
+    f = B.build(pwk, pl.concat([tg.with_columns(pl.lit(True).alias("played")), up], how="diagonal_relaxed"), None, act)
+    r = f.filter(pl.col("game_id") == "g3").row(0, named=True)
+    assert r["played"] is False and r["p_targets_w3"] == 12 and r["p_n_w3"] == 2 and r["o_team_targets_w3"] == 65 and r["o_n_w3"] == 2

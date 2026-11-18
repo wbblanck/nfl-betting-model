@@ -77,3 +77,90 @@ and its rules are frozen in their own file first.
 - Baseline per market, chosen on 2022-2023 by mean CRPS (docs/engine/baselines.md, constants in
   data/backtests/engine_baselines.json): pass_att B5, pass_yds B3, rush_att B4, rush_yds B3, rec B4, rec_yds B4.
   These are what each engine is compared with in Test S.
+
+## Amendment 2026-11-14: Engine A version A-1.0 frozen for Test S (before any 2024-2025 outcome is scored)
+- Frozen record: `data/backtests/engine_a_frozen.json` (hashes of the fitted parameters, the yardage pools, the
+  baselines file and the 2018-2023 feature rows). Fitted on 2018-2021; design choices made on 2022-2023
+  (docs/engine/engine_a_tune.md). No tune-season multiplier is applied: the what-if runs did not improve the scores.
+- What the engine is given for a game: the game-day active list and data from earlier games. Each player's forecast
+  is conditional on his taking a snap, which is how the Test S sample (and a prop) is defined.
+- Test procedure, fixed in `scripts/engine_test_s.py` and committed before it is run: 4,000 runs per offense-game,
+  seeds fixed by game; per market the paired CRPS difference (engine minus frozen baseline) with a week-clustered
+  bootstrap of 10,000 resamples at two-sided level 0.05 / 6 / (versions of Engine A tested so far, this one
+  included); PASS when the interval is entirely below 0. The script refuses to run twice for a version, with
+  uncommitted changes, or if the parameters no longer match the frozen record.
+- A dry run of the same script on the tune seasons passed 5 of 6 markets (not receptions). That is not a test
+  result: those are the seasons the design was chosen on.
+- Will approves the run before it is made.
+
+
+## Amendment 2026-11-16: Engine B version B-1.0 frozen for Test S (before any 2024-2025 outcome is scored)
+- Frozen record: `data/backtests/engine_b_frozen.json` (hashes of the fitted parameters including the copula's
+  correlations, the yardage boosters, the baselines file and the 2018-2023 feature rows). Fitted on 2018-2021; family
+  per market, yardage tree settings and tail scales chosen on 2022-2023 (docs/engine/engine_b_tune.md).
+- What the engine is given for a game: the game-day active list and data from earlier games; each forecast is
+  conditional on the player taking a snap, as for Engine A.
+- Test procedure, fixed in `scripts/engine_test_s_b.py` and committed before it is run: the same sample, frozen
+  baselines, statistic and bootstrap as Engine A's; 4,000 joint runs (copula and the box rule as used, seed 7); level
+  0.05 / 6 / (versions of Engine B tested so far, this one included). PASS when the interval is entirely below 0. The
+  script refuses to run twice for a version, with uncommitted changes, or if the parameters no longer match.
+- A versus B is reported, not tested (as declared above). No blend of the two engines.
+- Will approved the run on 2026-11-16 ("go-ahead") before it was made.
+
+## Amendment 2026-11-17: Test M frozen (before any week-11 game is played)
+Written and committed before Thursday 2026-11-19's game, the first of the sample. Nothing below was chosen on a
+2026 Test M outcome: no engine probability has been compared with a DraftKings price on any 2026 game.
+
+- **Engines:** A-1.0 and B-1.0 exactly as frozen (`data/backtests/engine_a_frozen.json`, `engine_b_frozen.json`),
+  fitted on 2018-2021 with settings from 2022-2023; nothing is refitted on later seasons. A week's forecast counts
+  only if, when it is made, both engines' parameters match their frozen records and the 2018-2023 feature rows hash
+  as frozen (`scripts/engine_forecast.py` checks all three and refuses otherwise). 4,000 runs per team-game.
+- **Sample:** the 2026 regular season, weeks 11-18 (8 weeks). The engines and the feature pipeline cover regular-
+  season games only, so the "at least 8 weeks" rule needs every one of these weeks to have scored props; a week with
+  none makes the test inconclusive, not extended.
+- **Forecasts, built only from what was known before each kickoff** (`engine/forecast.py`):
+  - facts of 2026 games before the target week (nflverse), every fact of the target week and later removed, so the
+    target games enter the feature table unplayed;
+  - a projected active list in place of the game-day list, which no free source publishes in time: QB/RB/WR/TE whose
+    latest 2026 weekly roster row before the target week puts them on that team as ACT or INA, or whom the nflverse
+    depth chart dated before the game's day lists there; a player that chart lists on another team is dropped (a
+    trade since the last roster week). Then anyone the latest ESPN injury snapshot in `data/live/injuries/` stamped
+    before kickoff (and at most 72 hours before it) lists as Out, Doubtful, Injured Reserve, Suspension or PUP is
+    removed. A game with no such snapshot is not forecast and leaves the sample for both engines. The depth-chart
+    correction was added after a dry run on week 10 (outside the sample; availability only, no price compared):
+    without it, players traded at the deadline were missed (18 of 553 screened week-10 props had no forecast; with it, 4,
+    all one player absent from every 2026 roster file);
+  - the quarterback depth chart dated before the game's day, as in Test S.
+  The forecasts are computed after each week from those saved inputs, by the code at the commit that adds this
+  amendment; the 2026 nflverse rows used are saved with each week's forecasts so the run can be repeated. Any later
+  change to the forecaster, the engines or the grading code is reported with the result, with both versions'
+  numbers shown, never made silently.
+- **Props:** DraftKings rows (`sources.parlay.parse`, book `dk`: full game, two-sided) in the six Test S markets
+  from the ParlayAPI snapshots in `data/live/parlay/`; per game, the last snapshot stamped before kickoff.
+  Half-point lines only (a whole-number line can push). Screens from CLAUDE.md: de-vigged P(over) (multiplicative,
+  `quant.odds.no_vig_over`) 0.35-0.65 and hold under 10%. The player is matched by normalized full name, else last
+  name and first initial, among the forecast rows of the game's two teams; unmatched or ambiguous props are dropped
+  and counted. A prop counts only if the player played (a stat row or an offensive snap); otherwise it is void, as
+  books grade it. A player with a prop but no forecast (not on the projected list) is dropped and counted.
+- **Statistic:** per prop, log loss of the engine's P(over) (share of its runs above the line, clipped to
+  0.001-0.999) minus log loss of DraftKings' de-vigged P(over); mean over props; week-clustered bootstrap, 10,000
+  resamples, two-sided 0.05 / 2 (two engines). **Pass:** the interval lies entirely below 0 on at least 2,000 props
+  over 8 weeks. Fewer is "inconclusive". Each engine on the props both engines forecast (the same rows).
+- **Reported, not tested:** A minus B on the same props; each market separately; the count of props dropped at each
+  step; the share of props whose player was on the projected list but did not play, and the reverse.
+- **Looks before week 18:** weekly runs report counts only (games forecast, props matched, props dropped by
+  reason). No log loss is computed until week 18 is complete; it is then computed once.
+- **Known handicaps, stated in advance:** the projected list is cruder than the game-day list both engines were
+  tested with; Engine B's route-share feature (`db_share_w3`) is missing for every 2026 game because nflverse
+  publishes no 2026 participation, so it takes its "missing" value throughout. Both work against the engines.
+
+## Amendment 2026-11-18: frozen parameters saved (before any week-11 game is played)
+A dry run of the weekly job on GitHub's machines refused: refitting the engines there did not reproduce the frozen
+records, because nflverse revises its players and schedule tables daily (positions, team, kickoff times), so a
+warehouse rebuilt later is not the one the engines were frozen on. The fitted parameters of A-1.0 and B-1.0 are now
+saved as they were frozen (`data/backtests/engine_A-1.0_params.pkl.gz`, `engine_B-1.0_params.pkl.gz`, written by
+`scripts/engine_save_params.py` only after the refit matched both frozen records), with their SHA-256 in
+`data/backtests/engine_params_sha256.json`. The forecaster loads them, refuses unless the files hash as recorded and
+the loaded parameters reproduce both frozen records, and no longer refits. The 2018-2023 feature hash is still
+computed and reported but no longer gates a forecast. Nothing else in the Test M rules changes; no Test M outcome
+or price existed when this was decided. A week-10 dry run with the saved parameters: both records match.

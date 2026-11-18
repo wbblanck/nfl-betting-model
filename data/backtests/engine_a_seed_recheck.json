@@ -1,0 +1,53 @@
+{
+ "runs": 20000,
+ "games": 40,
+ "seed_bases": [
+  30,
+  40
+ ],
+ "checked": 5126,
+ "beyond_4": [],
+ "by_market": {
+  "tds": {
+   "checked": 1111,
+   "beyond_4": 0,
+   "largest_z": 3.1389000885900886
+  },
+  "passing_tds": {
+   "checked": 162,
+   "beyond_4": 0,
+   "largest_z": 2.497205217993041
+  },
+  "passing_interceptions": {
+   "checked": 162,
+   "beyond_4": 0,
+   "largest_z": 2.9157848489263603
+  },
+  "long_rec": {
+   "checked": 1067,
+   "beyond_4": 0,
+   "largest_z": 3.454786480563092
+  },
+  "long_rush": {
+   "checked": 1111,
+   "beyond_4": 0,
+   "largest_z": 3.0207775267822385
+  },
+  "long_cmp": {
+   "checked": 162,
+   "beyond_4": 0,
+   "largest_z": 2.9200714101532395
+  },
+  "pass_rush_yds": {
+   "checked": 240,
+   "beyond_4": 0,
+   "largest_z": 3.497407488775259
+  },
+  "rush_rec_yds": {
+   "checked": 1111,
+   "beyond_4": 0,
+   "largest_z": 3.127393083112893
+  }
+ },
+ "verdict": "PASS"
+}
