@@ -281,3 +281,17 @@ def test_mix_row_market_ev_venue_row_and_count():
     assert 'class="vq thin"' in h and 'class="vq best"' in h and "$200" in h and "<svg class=\"strip\"" in h
     dk_only = D.mix_row(mix_pick(), locked=False)              # no venue record: DK no-vig fair (p_over_dk 0.5)
     assert f'data-mev="{0.5 / (110 / 210) - 1:.4f}"' in dk_only and 'data-nv="1"' in dk_only
+
+
+def test_engine_tab_empty_and_escaped():
+    """Engine tab (docs/engine/paper_rules.md): renders with no files, shows no interval for one week, escapes names."""
+    import polars as pl
+    from nflbet import dashboard as D
+    assert "No sample week graded yet" in D.engine_section({})
+    tm = {"weeks_in": [11], "props": 10, "dk_log_loss": 0.68, "by_week": {}, "by_market": {},
+          "engines": {"A": {"log_loss": 0.69, "diff": [0.01, 0.01, 0.01]}}}
+    ps = {"engines": {"A": {"fills": 1, "void": 0, "cost": 5.0, "profit": 5.0, "roi": 1.0, "mean_edge": 0.05}}}
+    f = pl.DataFrame({"engine": ["A"], "week": ["11"], "player": ["<x>"], "market": ["rec"], "line": ["4.5"], "side": ["Over"],
+                      "p": ["0.6"], "all_in": ["0.5"], "edge": ["0.1"], "result": ["win"], "profit": ["5.0"]})
+    h = D.engine_section({"engine_interim": tm, "engine_paper": ps, "engine_fills": f})
+    assert "+0.0100</td>" in h and "&lt;x&gt;" in h and "<x>" not in h

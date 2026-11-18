@@ -26,7 +26,7 @@ from nflbet.engine.data import nflverse as N
 from nflbet.engine.features import build as B
 
 TEST, SIMS, MARKETS, SEED = (2024, 2025), 4000, 6, 7
-FROZEN = ROOT / "data" / "backtests" / "engine_b_frozen.json"
+FROZEN = ROOT / "data" / "backtests" / ("engine_b_frozen.json" if M.VERSION == "B-1.0" else f"engine_b_frozen_{M.VERSION}.json")
 RESULT = ROOT / "data" / "backtests" / f"engine_test_s_{M.VERSION}.json"
 REPORT = ROOT / "docs" / "engine" / f"test_s_engine_{M.VERSION}.md"
 
@@ -100,7 +100,7 @@ def main() -> int:
     head = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=ROOT).stdout.strip()
     L = [f"# Test S: Engine {M.VERSION} on {seasons[0]}-{seasons[-1]}" + (" (DRY RUN on the tune seasons)" if mode == "--dry-run" else ""), "",
          "Pre-registration: docs/engine_preregistration.md. Written by `scripts/engine_test_s_b.py`.",
-         f"Code at commit `{head[:10]}`; frozen record `data/backtests/engine_b_frozen.json` matches: {same}.",
+         f"Code at commit `{head[:10]}`; frozen record `data/backtests/{FROZEN.name}` matches: {same}.",
          f"Fitted on {T.FIT[0]}-{T.FIT[-1]}, settings and tail scales chosen on {T.TUNE[0]}-{T.TUNE[-1]}; {SIMS:,} joint runs per team-game. No price was read.",
          "Box rule (a player's yards need his own catch, carry or attempt) changed "
          + ", ".join(f"{v:,} values ({k.replace('_', ' ')})" for k, v in fixes.items() if v) + ".",

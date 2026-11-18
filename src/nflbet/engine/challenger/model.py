@@ -20,7 +20,8 @@ import polars as pl
 from nflbet.engine import baselines as BL
 from nflbet.engine.challenger import counts as C, design as D, yardage as Y
 
-VERSION = "B-1.0"
+VERSION = "B-1.1"
+ROUTE_SHARE = False     # B-1.0 had True; parameters saved without the key are B-1.0 and read it as True
 VOLUME = {"pass_att": "attempts", "rush_att": "carries", "rec": "targets",
           "pass_yds": "attempts", "rush_yds": "carries", "rec_yds": "targets"}
 ELIG = {"attempts": "pass_att", "carries": "rush_att", "targets": "rec"}      # which market's sample fits a volume model
@@ -42,7 +43,7 @@ def _hist_catch(df: pl.DataFrame) -> tuple[np.ndarray, np.ndarray]:
 
 
 def _count_inputs(P: dict, df: pl.DataFrame, vol: str) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    X, _ = D.matrix(df, vol)
+    X, _ = D.matrix(df, vol, P.get("route_share", True))
     return P["scaler"][vol](X), df["position"].to_numpy(), D.instability(df, vol)
 
 
@@ -55,10 +56,10 @@ def _yard_inputs(P: dict, df: pl.DataFrame, vol: str) -> np.ndarray:
 def fit(df: pl.DataFrame, seed: int = 0) -> dict:
     """df: fit-season feature rows with outcome columns joined on. Returns the fitted parameters (tails not set)."""
     P = {"version": VERSION, "scaler": {}, "count": {}, "hurdle": {}, "yards": {}, "yards_nz": {}, "zero": {}, "names": {},
-         "family": dict(FAMILY)}
+         "family": dict(FAMILY), "route_share": ROUTE_SHARE}
     for vol, market in ELIG.items():
         rows = df.filter(pl.Series(_mask(df, market)))
-        X, names = D.matrix(rows, vol)
+        X, names = D.matrix(rows, vol, ROUTE_SHARE)
         P["scaler"][vol] = D.Scaler(X)
         P["names"][vol] = names
         Xs, y, pos, inst = P["scaler"][vol](X), rows[OUTCOME[vol]].to_numpy(), rows["position"].to_numpy(), D.instability(rows, vol)

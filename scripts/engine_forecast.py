@@ -30,7 +30,7 @@ import engine_feature_check as FC
 import engine_test_s as SA
 import engine_test_s_b as SB
 from nflbet.config import ROOT
-from nflbet.engine import accounting, forecast as FO
+from nflbet.engine import accounting, baselines as BL, forecast as FO
 from nflbet.engine.challenger import joint as J
 from nflbet.engine.data import nflverse as N, player_week as PW
 from nflbet.engine.features import build as B, facts as F
@@ -93,8 +93,16 @@ def main() -> int:
         print(__doc__)
         return 2
     season, week = int(args[0]), int(args[1])
+    opt = dict(a[2:].split("=", 1) for a in sys.argv[1:] if a.startswith("--") and "=" in a)
     out = (Path(os.environ.get("ENGINE_FORECAST_DRY", "/tmp")) / "engine_forecast_dry" if dry else OUT) / f"{season}_w{week:02d}"
-    cur = fetch_current(season, week, out / "inputs")
+    # Paper fills only (docs/engine/paper_rules.md): --book-cutoffs=<json game_id -> UTC time> forecasts just those
+    # games, each with the latest injury snapshot at or before its time, into --out=<dir>, reading the week's saved
+    # inputs from --inputs=<dir>. Test M's own forecasts never pass these options.
+    cutoffs = {g: dt.datetime.fromisoformat(t) for g, t in json.loads(Path(opt["book-cutoffs"]).read_text()).items()} \
+        if "book-cutoffs" in opt else None
+    if cutoffs is not None:
+        out = Path(opt["out"])
+    cur = fetch_current(season, week, Path(opt["inputs"]) if "inputs" in opt else out / "inputs")
     raw = raw_inputs(season, cur)
     players, sched = N.read("players"), raw["sched"]
     games_ = F.games(sched)
@@ -107,8 +115,10 @@ def main() -> int:
     snaps = sorted(p.name for p in INJURIES.glob("*.json.gz"))
     ids = players.select(pl.col("espn_id").cast(pl.Utf8), pl.col("gsis_id").alias("player_id")).drop_nulls().unique("espn_id")
     used, absent = {}, {}
+    if cutoffs is not None:
+        targets = targets.filter(pl.col("game_id").is_in(list(cutoffs)))
     for gid, ko in targets.select("game_id", "kickoff").unique(maintain_order=True).iter_rows():
-        name = FO.snapshot_before(snaps, ko)
+        name = FO.snapshot_before(snaps, ko) if cutoffs is None else FO.snapshot_at_or_before(snaps, ko, cutoffs[gid])
         used[gid] = {"kickoff_et": ko, "injury_snapshot": name}
         if name is not None:
             absent[gid] = FO.absent_ids(INJ.parse(json.load(gzip.open(INJURIES / name, "rt"))), ids)
@@ -132,15 +142,16 @@ def main() -> int:
     # nflverse revises its players and schedule tables, so a later warehouse rebuild can differ (amendment 2026-11-18).
     shas = json.loads((ROOT / "data" / "backtests" / "engine_params_sha256.json").read_text())
     loaded = {}
-    for name in ("engine_A-1.0_params.pkl.gz", "engine_B-1.0_params.pkl.gz"):
+    b_file = f"engine_{SB.M.VERSION}_params.pkl.gz"          # B-1.1 from amendment 2026-11-18 (3)
+    for name in ("engine_A-1.0_params.pkl.gz", b_file):
         path = ROOT / "data" / "backtests" / name
-        if hashlib.sha256(path.read_bytes()).hexdigest() != shas[name]:
+        if name not in shas or not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest() != shas[name]:
             print(f"REFUSED: {name} does not hash as recorded")
             return 1
         with gzip.open(path, "rb") as f:
             loaded[name] = pickle.load(f)          # the repo's own committed file, hash-checked above
     a = loaded["engine_A-1.0_params.pkl.gz"]
-    PA, tab, PB = a["P"], a["tab"], loaded["engine_B-1.0_params.pkl.gz"]["P"]
+    PA, tab, PB = a["P"], a["tab"], loaded[b_file]["P"]
     fa, fb = SA.fingerprint_of(PA, a["pools"]), SB.fingerprint_of(PB)
     froz_a, froz_b = json.loads(SA.FROZEN.read_text()), json.loads(SB.FROZEN.read_text())
     checks = {"engine_a_frozen_matches": all(froz_a[k] == fa[k] for k in fa),
@@ -156,10 +167,14 @@ def main() -> int:
                 broke[k] = broke.get(k, 0) + v
             for market, col in FO.MARKETS.items():
                 hists.append(FO.histogram("A", side_rows, market, s[col]))
-        every = {m: np.ones(game.height, dtype=bool) for m in FO.MARKETS}
-        runs, _ = J.simulate(PB, PB["rho"], game, every, SIMS, np.random.default_rng([SB.SEED, seed]))
+        # B-1.1 forecasts a market only for the rows it was fitted and tested on (Test S eligibility, from earlier
+        # games only); elsewhere its fitted models extrapolate (amendment 2026-11-18 (3)). B-1.0 forecast every row.
+        rows_b = {m: (BL.eligible(game, m).to_numpy() if SB.M.VERSION != "B-1.0" else np.ones(game.height, dtype=bool))
+                  for m in FO.MARKETS}
+        runs, _ = J.simulate(PB, PB["rho"], game, rows_b, SIMS, np.random.default_rng([SB.SEED, seed]))
         for market in FO.MARKETS:
-            hists.append(FO.histogram("B", game, market, runs[market]))
+            if rows_b[market].any():
+                hists.append(FO.histogram("B", game.filter(pl.Series(rows_b[market])), market, runs[market]))
     fc = pl.concat(hists)
 
     head = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=ROOT).stdout.strip()

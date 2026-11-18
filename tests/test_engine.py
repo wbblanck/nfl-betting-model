@@ -1034,3 +1034,36 @@ def test_unplayed_team_games_get_features_and_add_nothing():
     f = B.build(pwk, pl.concat([tg.with_columns(pl.lit(True).alias("played")), up], how="diagonal_relaxed"), None, act)
     r = f.filter(pl.col("game_id") == "g3").row(0, named=True)
     assert r["played"] is False and r["p_targets_w3"] == 12 and r["p_n_w3"] == 2 and r["o_team_targets_w3"] == 65 and r["o_n_w3"] == 2
+
+
+# ------------------------------------------------------------------------------------------------ paper fills
+from nflbet.engine import paper as PP                                                       # noqa: E402
+
+
+def _q(side, all_in, unfilled=0, size=1000):
+    return {"side": side, "all_in": all_in, "unfilled": unfilled, "size": size}
+
+
+def test_paper_choose_takes_the_larger_edge_at_or_above_the_minimum():
+    f = PP.choose(_q("Over", 0.52), _q("Under", 0.51), 0.58)        # Over edge 0.06, Under 0.42 - 0.51 < 0
+    assert f["side"] == "Over" and abs(f["edge"] - 0.06) < 1e-12 and abs(f["cost"] - 5.2) < 1e-12
+    f = PP.choose(_q("Over", 0.52), _q("Under", 0.40), 0.50)        # Under edge 0.10 beats Over -0.02
+    assert f["side"] == "Under"
+    assert PP.choose(_q("Over", 0.52), _q("Under", 0.51), 0.549) is None      # edge 0.029 < 0.03
+    assert PP.choose(_q("Over", 0.52, unfilled=5), _q("Under", 0.60), 0.70) is None   # Over cannot fill all 1,000
+    assert PP.choose(_q("Over", 0.52), _q("Under", 0.51), float("nan")) is None
+
+
+def test_paper_settle():
+    assert PP.settle("Over", 74.5, 80, 5.2) == ("win", 10 - 5.2)
+    assert PP.settle("Over", 74.5, 70, 5.2) == ("loss", -5.2)
+    assert PP.settle("Under", 74.5, 70, 4.0) == ("win", 6.0)
+    assert PP.settle("Under", 74.5, None, 4.0) == ("void", 0.0)
+
+
+def test_snapshot_at_or_before_respects_the_book_time():
+    import datetime as dt
+    names = ["20261119T2000Z_w11.json.gz", "20261120T0030Z_w11.json.gz"]
+    cut = dt.datetime(2026, 11, 20, 0, 0, tzinfo=dt.timezone.utc)
+    assert FO.snapshot_at_or_before(names, "2026-11-19 20:15", cut) == "20261119T2000Z_w11.json.gz"
+    assert FO.snapshot_at_or_before(names, "2026-11-19 20:15", cut + dt.timedelta(hours=1)) == "20261120T0030Z_w11.json.gz"

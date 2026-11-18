@@ -42,7 +42,9 @@
   DraftKings props matched, no price compared.
 - **Next:** run the forecaster and counts for each week from 11 on (`.github/workflows/engine-test-m.yml`, Wednesdays once on
   main, or by hand any time after the week; needs the warehouse);
-  grade after week 18. Pricing engine predictions at Novig needs a priced-sides rule Will adds to CLAUDE.md first.
+  grade after week 18. The same weekly job writes the interim (descriptive) Test M numbers and the paper fills.
+- **Engine B-1.1** (amendment 2026-11-18 (3)): B-1.0 collapses on 2026 rows (no route share). B-1.1 is tuned and
+  frozen; Test S 2026-11-18 PASS 6 of 6 (`docs/engine/test_s_engine_B-1.1.md`), so it replaces B-1.0 in Test M.
 - Deferred for a later Engine A version: play-by-play game script, availability before the active list is out.
 - **Novig recorder:** runs on GitHub's schedule, which starts late. Will is setting up an outside cron service to
   start it on time (docs/engine/NOVIG_INTEGRATION.md). Once he confirms it works, trim the game-window crons in
@@ -50,7 +52,6 @@
 - **Routes run:** the engine uses the on-field-for-dropbacks stand-in. Sumer Sports data may not be used (its terms).
   If Will sends finished-season tight end route totals from a source whose terms allow it, use them only to check
   the stand-in.
-- **Still Will's to decide:** a paper-portfolio exception in CLAUDE.md (needed only at phase 8).
 
 Each phase ends at a gate. The next modelling phase does not start until the gate's tests are in CI and green.
 Paths are under `src/nflbet/engine/` unless they start with another directory.
@@ -65,8 +66,8 @@ Paths are under `src/nflbet/engine/` unless they start with another directory.
 | 5 | Simulator completion: touchdowns, interceptions, longest play, combined stats | `replication/events.py` (planned as `simulation/*.py`), `scripts/engine_a_events.py` | every box score reconciles with its events; seed stability within the Monte Carlo error | built 2026-11-16; events reconcile on every run; seed check 1 of 4,948 beyond 4 SE at 2,000 runs; pre-declared re-check at 20,000 runs PASS (0 of 5,126) |
 | 6 | Pricing against recorded Novig books | `pricing.py`, `contracts.py` (extend) | every matched contract re-derivable from the saved snapshot; unmatched never priced | built 2026-11-17 (`quotes.py`); gate PASS |
 | 7 | Verification: Test S, calibration, A versus B | `verification/*.py`, `scripts/engine_test_s.py` | Test S run once per frozen version, report committed | done 2026-11-18: both Test S reports; `docs/engine/verification.md` (calibration, A vs B, from the stored results) |
-| 8 | Paper fills against recorded books | `paper.py` | needs Will's CLAUDE.md exception and frozen rules first | blocked on Will |
-| 9 | Dashboard pages and prospective Test M | `src/nflbet/dashboard.py` (extend) | Test M judged on its declared sample | |
+| 8 | Paper fills against recorded books | `paper.py` | needs Will's CLAUDE.md exception and frozen rules first | built 2026-11-18: CLAUDE.md fifth exception (Will), rules in `docs/engine/paper_rules.md`, `scripts/engine_paper.py`; weeks 11-18 |
+| 9 | Dashboard pages and prospective Test M | `src/nflbet/dashboard.py` (extend) | Test M judged on its declared sample | Engine tab built 2026-11-18 (interim Test M log loss, paper fills); Test M weeks 11-18 running, verdict after week 18 |
 
 ## Phase 1 detail (the next commit)
 1. `scripts/engine_ingest.py --seasons 2010-2025` pulls, per season: play-by-play, player stats, weekly rosters,

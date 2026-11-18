@@ -4,6 +4,9 @@ against DraftKings' de-vigged P(over), on 2026 weeks 11-18.
   python scripts/engine_test_m.py --counts 11     counts only for one week (props, matches, drops by reason); no
                                                   probability is compared with a price. Writes
                                                   data/live/engine_forecasts/2026_w11/counts.json
+  python scripts/engine_test_m.py --interim       the statistic on the weeks done so far, labeled interim and
+                                                  descriptive (amendment 2026-11-18 (2)); writes
+                                                  data/live/engine_forecasts/interim.json, docs/engine/test_m_interim.md
   python scripts/engine_test_m.py --grade         the test itself, once, after week 18; refuses if any week's
                                                   forecasts are missing or failed their checks, if a result exists,
                                                   or if the working tree has uncommitted changes
@@ -121,32 +124,12 @@ def log_loss(p: np.ndarray, y: np.ndarray) -> np.ndarray:
     return -(y * np.log(p) + (1 - y) * np.log(1 - p))
 
 
-def main() -> int:
-    mode = sys.argv[1] if len(sys.argv) > 1 else ""
-    players = N.read("players")
-    if mode == "--counts" and len(sys.argv) == 3:
-        week = int(sys.argv[2])
-        props, man, _ = week_rows(week, players, None)
-        out = {"week": week, "games_forecast": sum(1 for u in man["games"].values() if u.get("injury_snapshot")),
-               "player_games_forecast": man["player_games"], "props_matched": props.height, "drops": man["drops"],
-               "by_market": dict(Counter(props["market"].to_list()))}
-        (FC / f"{SEASON}_w{week:02d}" / "counts.json").write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
-        print(json.dumps(out, indent=1))
-        return 0
-    if mode != "--grade":
-        print(__doc__)
-        return 2
-    dirty = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True, cwd=ROOT).stdout.strip()
-    missing = [w for w in WEEKS if not (FC / f"{SEASON}_w{w:02d}" / "manifest.json").exists()]
-    failed = [w for w in WEEKS if w not in missing and not all(json.loads((FC / f"{SEASON}_w{w:02d}" / "manifest.json").read_text())[k]
-                                                                for k in ("engine_a_frozen_matches", "engine_b_frozen_matches"))]
-    if RESULT.exists() or dirty or missing or failed:
-        print(f"REFUSED: result exists={RESULT.exists()}, uncommitted={bool(dirty)}, missing weeks={missing}, failed checks={failed}")
-        return 1
+def compute(weeks, players) -> tuple[dict, pl.DataFrame]:
+    """The Test M statistic on the given weeks (verdicts only if all sample weeks are in)."""
     import nflreadpy as nr
     pw, _ = PW.build(nr.load_player_stats([SEASON]), nr.load_snap_counts([SEASON]), players)
     frames, drops = [], Counter()
-    for w in WEEKS:
+    for w in weeks:
         props, man, fc = week_rows(w, players, pw)
         for e in ENGINES:
             props = props.with_columns(pl.Series(f"p_{e}", engine_p(props, fc, e)))
@@ -170,6 +153,74 @@ def main() -> int:
         if k.any():
             res["by_market"][m] = {"n": int(k.sum()), "dk": float(ll_dk[k].mean()),
                                    **{e: float(log_loss(df[f"p_{e}"].to_numpy()[k], y[k]).mean()) for e in ENGINES}}
+    return res, df
+
+
+INTERIM_JSON, INTERIM_MD = FC / "interim.json", ROOT / "docs" / "engine" / "test_m_interim.md"
+
+
+def interim(players) -> int:
+    """Amendment 2026-11-18 (2): the statistic on the sample weeks done so far, shown as interim and descriptive.
+    No verdict; nothing changes because of it."""
+    weeks = [w for w in WEEKS if (FC / f"{SEASON}_w{w:02d}" / "manifest.json").exists()
+             and all(json.loads((FC / f"{SEASON}_w{w:02d}" / "manifest.json").read_text())[k]
+                     for k in ("engine_a_frozen_matches", "engine_b_frozen_matches"))]
+    if not weeks:
+        print("no sample week forecast yet")
+        return 0
+    res, df = compute(weeks, players)
+    res["weeks_in"] = weeks
+    for e in ENGINES:
+        res["engines"][e]["verdict"] = "interim"
+    res["by_week"] = {}
+    for w in weeks:
+        k = (df["week"] == w).to_numpy()
+        if k.any():
+            y = (df["y"].to_numpy()[k] > df["line"].to_numpy()[k]).astype(float)
+            res["by_week"][str(w)] = {"n": int(k.sum()), "dk": float(log_loss(df["p_dk"].to_numpy()[k], y).mean()),
+                                      **{e: float(log_loss(df[f"p_{e}"].to_numpy()[k], y).mean()) for e in ENGINES}}
+    INTERIM_JSON.write_text(json.dumps(res, indent=1) + "\n")
+    L = [f"# Test M interim: weeks {weeks[0]}-{weeks[-1]} of {WEEKS[0]}-{WEEKS[-1]} (descriptive, not the verdict)", "",
+         "Shown at Will's request (amendment of 2026-11-18 (2)). Nothing changes because of these numbers; the verdict",
+         f"is the single `--grade` run after week {WEEKS[-1]}. Lower log loss is better. {res['props']:,} props so far.", "",
+         f"| Engine | Log loss | DraftKings | Engine minus DraftKings ({100 * (1 - LEVEL):.1f}% interval) |", "|---|---|---|---|"]
+    for e, r in res["engines"].items():
+        ci = f" ({r['diff'][1]:+.4f} to {r['diff'][2]:+.4f})" if len(weeks) >= 2 else " (interval from two weeks on)"
+        L.append(f"| {e} | {r['log_loss']:.4f} | {res['dk_log_loss']:.4f} | {r['diff'][0]:+.4f}{ci} |")
+    L += ["", "| Week | Props | DraftKings | A | B |", "|---|---|---|---|---|"]
+    L += [f"| {w} | {r['n']:,} | {r['dk']:.4f} | {r['A']:.4f} | {r['B']:.4f} |" for w, r in res["by_week"].items()]
+    L += ["", "| Market | Props | DraftKings | A | B |", "|---|---|---|---|---|"]
+    L += [f"| {m} | {r['n']:,} | {r['dk']:.4f} | {r['A']:.4f} | {r['B']:.4f} |" for m, r in res["by_market"].items()]
+    INTERIM_MD.write_text("\n".join(L) + "\n")
+    print("\n".join(L))
+    return 0
+
+
+def main() -> int:
+    mode = sys.argv[1] if len(sys.argv) > 1 else ""
+    players = N.read("players")
+    if mode == "--counts" and len(sys.argv) == 3:
+        week = int(sys.argv[2])
+        props, man, _ = week_rows(week, players, None)
+        out = {"week": week, "games_forecast": sum(1 for u in man["games"].values() if u.get("injury_snapshot")),
+               "player_games_forecast": man["player_games"], "props_matched": props.height, "drops": man["drops"],
+               "by_market": dict(Counter(props["market"].to_list()))}
+        (FC / f"{SEASON}_w{week:02d}" / "counts.json").write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
+        print(json.dumps(out, indent=1))
+        return 0
+    if mode == "--interim":
+        return interim(players)
+    if mode != "--grade":
+        print(__doc__)
+        return 2
+    dirty = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True, cwd=ROOT).stdout.strip()
+    missing = [w for w in WEEKS if not (FC / f"{SEASON}_w{w:02d}" / "manifest.json").exists()]
+    failed = [w for w in WEEKS if w not in missing and not all(json.loads((FC / f"{SEASON}_w{w:02d}" / "manifest.json").read_text())[k]
+                                                                for k in ("engine_a_frozen_matches", "engine_b_frozen_matches"))]
+    if RESULT.exists() or dirty or missing or failed:
+        print(f"REFUSED: result exists={RESULT.exists()}, uncommitted={bool(dirty)}, missing weeks={missing}, failed checks={failed}")
+        return 1
+    res, df = compute(WEEKS, players)
     head = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=ROOT).stdout.strip()
     res["commit"] = head
     L = [f"# Test M: engines A-1.0 and B-1.0 vs DraftKings, {SEASON} weeks {WEEKS[0]}-{WEEKS[-1]}", "",
