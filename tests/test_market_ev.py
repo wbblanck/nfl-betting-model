@@ -65,3 +65,25 @@ def test_planted_signal_found_and_noise_not():
     assert n.height > 100
     roi_n, p_n, _, _ = M.week_bootstrap(n, reps=2000)
     assert p_n > 0.025 and roi_n < 0.02                                       # does not pass
+
+
+def test_forward_rows_tags_both_evs_and_keeps_weeks_11_to_18():
+    cols = ["run_utc", "week", "an_game_id", "player_id", "player", "market", "side", "odds", "p_over_dk", "p_side",
+            "result", "best_venue", "best_cost"]
+    def row(week, result, best_venue="DraftKings", best_cost="", p_side="0.56", p_over_dk="0.5"):
+        return dict(zip(cols, ["2026-11-19T20:00:00Z", str(week), "g", "p", "A", "rec", "over", "-110", p_over_dk, p_side,
+                               result, best_venue, best_cost]))
+    rec = pl.DataFrame([row(10, "W"), row(11, "W"), row(12, "L", "Novig", "0.48"), row(13, "pending"), row(19, "W")])
+    v = json.dumps({"Novig": [0.48, 200], "DraftKings (ParlayAPI)": [110 / 210, None], "FanDuel (ParlayAPI)": [0.53, None]})
+    o = json.dumps({"Novig": [0.55, 200], "DraftKings (ParlayAPI)": [110 / 210, None], "FanDuel (ParlayAPI)": [0.51, None]})
+    best = pl.DataFrame([{"run_utc": "2026-11-19T20:00:00Z", "an_game_id": "g", "player_id": "p", "market": "rec", "side": "over",
+                          "venues": v, "venues_opp": o}])
+    f = M.forward_rows(rec, best)
+    assert f["week"].to_list() == [11, 12]                                  # week 10, pending and week 19 left out
+    dk = f.row(0, named=True)                                               # DK best: model 0.56 / 0.5238 - 1
+    assert abs(dk["model_ev"] - (0.56 * 210 / 110 - 1)) < 1e-12 and abs(dk["units"] - 100 / 110) < 1e-12
+    nv = f.row(1, named=True)                                               # Novig best, fair from DK + FanDuel
+    fair = (0.5 + 0.53 / 1.04) / 2
+    assert abs(nv["market_ev"] - (fair / 0.48 - 1)) < 1e-12 and nv["units"] == -1.0 and nv["units_dk"] == -1.0
+    fair_dk = (0.48 / 1.03 + 0.53 / 1.04) / 2                               # DK best: Novig + FanDuel, DK left out
+    assert abs(dk["market_ev"] - (fair_dk / (110 / 210) - 1)) < 1e-12

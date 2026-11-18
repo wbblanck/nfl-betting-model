@@ -125,3 +125,36 @@ def week_bootstrap(g: pl.DataFrame, reps: int = 10_000, seed: int = 7) -> tuple[
         sims.append(sum(u for u, _ in s) / sum(n for _, n in s))
     sims.sort()
     return roi, sum(x <= 0 for x in sims) / reps, sims[int(0.025 * reps)], sims[int(0.975 * reps) - 1]
+
+
+# ------------------------------------------------------- Part C: 2026 forward test, K vs Mo (docs/ev_rules_2026_preregistration.md)
+
+WEEKS_2026 = (11, 18)
+
+
+def forward_rows(rec: pl.DataFrame, best: pl.DataFrame | None) -> pl.DataFrame:
+    """Graded official mix picks (data/live/mix_record_2026.csv) for weeks 11-18, with W/L only, each tagged with its
+    model EV and market EV at its best price, and units at the best price and at DraftKings."""
+    if not rec.height:
+        return pl.DataFrame()
+    d = rec.filter(pl.col("week").cast(pl.Int64).is_between(*WEEKS_2026), pl.col("result").is_in(["W", "L"]))
+    keys = ["run_utc", "an_game_id", "player_id", "market", "side"]
+    if best is not None and best.height:
+        cols = [c for c in ("venues", "venues_opp") if c in best.columns]
+        d = d.join(best.select(*keys, *cols).unique(keys, keep="last"), on=keys, how="left")
+    rows = []
+    for r in d.iter_rows(named=True):
+        dk = implied(float(r["odds"]))
+        bv, bc = r.get("best_venue"), r.get("best_cost")
+        cost = float(bc) if bv not in (None, "", "DraftKings") and bc not in (None, "") else dk
+        p_dk = float(r["p_over_dk"]) if r["side"] == "over" else 1 - float(r["p_over_dk"])
+        fair, _ = live_fair(r.get("venues"), r.get("venues_opp"), bv)
+        fair = p_dk if fair is None else fair
+        won = r["result"] == "W"
+        rows.append({"week": int(r["week"]), "player": r["player"], "market": r["market"], "side": r["side"],
+                     "model_ev": ev(float(r["p_side"]), cost), "market_ev": ev(fair, cost),
+                     "units": (1 / cost - 1) if won else -1.0, "units_dk": (1 / dk - 1) if won else -1.0})
+    return pl.DataFrame(rows) if rows else pl.DataFrame()
+
+
+FORWARD_RULES = {"K": "market_ev", "Mo": "model_ev"}
