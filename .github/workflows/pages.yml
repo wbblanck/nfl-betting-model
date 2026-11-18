@@ -5,7 +5,7 @@ name: pages
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["S1 live"]
+    workflows: ["S1 live", "Engine paper preview", "Engine Test M"]
     types: [completed]
   schedule:
     # Exchange prices are free (no key), so refresh every 30 minutes, every day, 6 AM-2 AM ET.
