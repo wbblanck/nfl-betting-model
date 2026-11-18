@@ -40,7 +40,8 @@
   ESPN injury snapshot before kickoff); counts per week with `scripts/engine_test_m.py --counts <week>`; graded once
   after week 18 with `--grade`. Week 10 dry run (outside the sample): both frozen records match, 549 screened
   DraftKings props matched, no price compared.
-- **Next:** run the forecaster and counts for each week from 11 on (any time after the week; needs the warehouse);
+- **Next:** run the forecaster and counts for each week from 11 on (`.github/workflows/engine-test-m.yml`, Wednesdays once on
+  main, or by hand any time after the week; needs the warehouse);
   grade after week 18. Pricing engine predictions at Novig needs a priced-sides rule Will adds to CLAUDE.md first.
 - Deferred for a later Engine A version: play-by-play game script, availability before the active list is out.
 - **Novig recorder:** runs on GitHub's schedule, which starts late. Will is setting up an outside cron service to
@@ -63,7 +64,7 @@ Paths are under `src/nflbet/engine/` unless they start with another directory.
 | 4 | Engine B: quantile, count, hierarchical models, joint layer | `challenger/*.py` | no import of Engine A; quantile crossing zero after correction; support tests | B-0.1 marginals **built 2026-11-14** (`design.py`, `counts.py`, `yardage.py`, `model.py`, `scripts/engine_b_tune.py`); B-0.2 joint layer (`joint.py`) **built 2026-11-16**; B-1.0 frozen and Test S PASS 6 of 6 (2026-11-16). Rare events not built |
 | 5 | Simulator completion: touchdowns, interceptions, longest play, combined stats | `replication/events.py` (planned as `simulation/*.py`), `scripts/engine_a_events.py` | every box score reconciles with its events; seed stability within the Monte Carlo error | built 2026-11-16; events reconcile on every run; seed check 1 of 4,948 beyond 4 SE at 2,000 runs; pre-declared re-check at 20,000 runs PASS (0 of 5,126) |
 | 6 | Pricing against recorded Novig books | `pricing.py`, `contracts.py` (extend) | every matched contract re-derivable from the saved snapshot; unmatched never priced | built 2026-11-17 (`quotes.py`); gate PASS |
-| 7 | Verification: Test S, calibration, A versus B | `verification/*.py`, `scripts/engine_test_s.py` | Test S run once per frozen version, report committed | |
+| 7 | Verification: Test S, calibration, A versus B | `verification/*.py`, `scripts/engine_test_s.py` | Test S run once per frozen version, report committed | done 2026-11-18: both Test S reports; `docs/engine/verification.md` (calibration, A vs B, from the stored results) |
 | 8 | Paper fills against recorded books | `paper.py` | needs Will's CLAUDE.md exception and frozen rules first | blocked on Will |
 | 9 | Dashboard pages and prospective Test M | `src/nflbet/dashboard.py` (extend) | Test M judged on its declared sample | |
 
