@@ -9,15 +9,16 @@ What is written (engine.forecast explains each input rule):
 - inputs/*.parquet: the 2026 nflverse rows used (fetched now, every fact of the target week and later removed), so
   the forecast can be re-run from committed files;
 - forecasts.parquet: per engine, game, player and market, the runs as a histogram (value, count);
-- manifest.json: frozen-record checks for both engines, the fit/tune feature hash check, the injury snapshot and
+- manifest.json: frozen-record checks for both engines, the fit/tune feature hash (reported), the injury snapshot and
   roster week used for each game, row counts, the code commit and the time of the run.
-Refuses (exit 1) if either engine's parameters differ from its frozen record or the fit/tune features changed.
+Refuses (exit 1) if the saved parameter files do not hash as recorded or do not reproduce either frozen record.
 """
 import datetime as dt
 import gzip
 import hashlib
 import json
 import os
+import pickle
 import subprocess
 import sys
 from pathlib import Path
@@ -126,13 +127,25 @@ def main() -> int:
     rows = feats.filter(pl.col("game_id").is_in(targets["game_id"].unique().to_list())).sort("game_id", "team", "player_id")
     assert rows.height == act_proj.height and not rows["played"].any()
 
-    # Frozen engines: refit deterministically and compare with the frozen records.
-    fa, PA, tab = SA.fingerprint()
-    fb, PB = SB.fingerprint()
+    # Frozen engines: the parameters saved at the freeze (scripts/engine_save_params.py), loaded only if the files
+    # hash as recorded, then checked against the frozen records. The 2018-2023 feature hash is reported, not gating:
+    # nflverse revises its players and schedule tables, so a later warehouse rebuild can differ (amendment 2026-11-18).
+    shas = json.loads((ROOT / "data" / "backtests" / "engine_params_sha256.json").read_text())
+    loaded = {}
+    for name in ("engine_A-1.0_params.pkl.gz", "engine_B-1.0_params.pkl.gz"):
+        path = ROOT / "data" / "backtests" / name
+        if hashlib.sha256(path.read_bytes()).hexdigest() != shas[name]:
+            print(f"REFUSED: {name} does not hash as recorded")
+            return 1
+        with gzip.open(path, "rb") as f:
+            loaded[name] = pickle.load(f)          # the repo's own committed file, hash-checked above
+    a = loaded["engine_A-1.0_params.pkl.gz"]
+    PA, tab, PB = a["P"], a["tab"], loaded["engine_B-1.0_params.pkl.gz"]["P"]
+    fa, fb = SA.fingerprint_of(PA, a["pools"]), SB.fingerprint_of(PB)
     froz_a, froz_b = json.loads(SA.FROZEN.read_text()), json.loads(SB.FROZEN.read_text())
     checks = {"engine_a_frozen_matches": all(froz_a[k] == fa[k] for k in fa),
-              "engine_b_frozen_matches": all(froz_b[k] == fb[k] for k in fb),
-              "fit_tune_features_match": B.snapshot_hash(feats.filter(pl.col("season").is_in([*SA.T.FIT, *SA.T.TUNE]))) == froz_a["features_sha256_fit_tune"]}
+              "engine_b_frozen_matches": all(froz_b[k] == fb[k] for k in fb)}
+    feature_hash_same = B.snapshot_hash(feats.filter(pl.col("season").is_in([*SA.T.FIT, *SA.T.TUNE]))) == froz_a["features_sha256_fit_tune"]
 
     hists, broke = [], {}
     for (gid,), game in rows.group_by(["game_id"], maintain_order=True):
@@ -152,6 +165,7 @@ def main() -> int:
     head = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=ROOT).stdout.strip()
     man = {"season": season, "week": week, "run_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
            "commit": head, "sims": SIMS, "engines": {"A": MA.VERSION, "B": SB.M.VERSION}, **checks,
+           "fit_tune_features_match_reported": feature_hash_same,
            "accounting_violations": broke, "games": used, "games_without_snapshot": no_snap,
            "player_games": rows.height, "target_rows_sha256": sha(rows),
            "inputs_sha256": {n: sha(df) for n, df in cur.items()}}

@@ -49,15 +49,19 @@ def digest(obj) -> str:
 
 def fingerprint() -> tuple[dict, dict]:
     P = T.fitted()
+    return fingerprint_of(P), P
+
+
+def fingerprint_of(P: dict) -> dict:
+    """The frozen-record fields for fitted parameters (also used on the saved copy, Test M)."""
     plain = {"scaler": {k: v.to_dict() for k, v in P["scaler"].items()}, "count": P["count"], "hurdle": P["hurdle"],
              "zero": P["zero"], "catch": P["catch"], "tails": P["tails"], "tails_nz": P["tails_nz"], "rho": P["rho"],
              "family": P["family"]}
     boosters = {f"{k}|{m}": hashlib.sha256(bytes(b.save_raw("json"))).hexdigest()
                 for k in ("yards", "yards_nz") for m, b in sorted(P[k].items())}
-    fp = {"version": M.VERSION, "fit_seasons": list(T.FIT), "tune_seasons": list(T.TUNE), "sims": SIMS, "seed": SEED,
-          "params_sha256": digest(plain), "boosters_sha256": digest(boosters),
-          "baselines_sha256": hashlib.sha256((ROOT / "data" / "backtests" / "engine_baselines.json").read_bytes()).hexdigest()}
-    return fp, P
+    return {"version": M.VERSION, "fit_seasons": list(T.FIT), "tune_seasons": list(T.TUNE), "sims": SIMS, "seed": SEED,
+            "params_sha256": digest(plain), "boosters_sha256": digest(boosters),
+            "baselines_sha256": hashlib.sha256((ROOT / "data" / "backtests" / "engine_baselines.json").read_bytes()).hexdigest()}
 
 
 def versions_run() -> int:

@@ -10,7 +10,8 @@ on:
   push:
     branches-ignore: [main]
     paths: ['scripts/engine_forecast.py', 'scripts/engine_test_m.py', 'scripts/engine_test_m_weekly.py',
-            'src/nflbet/engine/forecast.py', '.github/workflows/engine-test-m.yml']
+            'src/nflbet/engine/forecast.py', 'data/backtests/engine_params_sha256.json',
+            '.github/workflows/engine-test-m.yml']
 permissions:
   contents: write
 concurrency:
@@ -33,10 +34,8 @@ jobs:
         with:
           path: data/cache/engine
           key: engine-warehouse-2010-2025-v1
-      - name: Warehouse and feature table
-        run: |
-          python scripts/engine_ingest.py 2010-2025
-          PYTHONPATH=scripts python scripts/engine_feature_check.py | tail -3
+      - name: Warehouse
+        run: python scripts/engine_ingest.py 2010-2025 | tail -1
       - name: Forecast
         run: |
           if [ "${{ github.event_name }}" = "push" ]; then

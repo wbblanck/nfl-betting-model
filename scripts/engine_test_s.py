@@ -35,10 +35,14 @@ def digest(obj) -> str:
 
 def fingerprint() -> tuple[dict, dict, dict]:
     P, tab, pools = T.fitted()
-    fp = {"version": M.VERSION, "fit_seasons": list(T.FIT), "tune_seasons": list(T.TUNE), "tuning": M.TUNING, "sims": SIMS,
+    return fingerprint_of(P, pools), P, tab
+
+
+def fingerprint_of(P: dict, pools: dict) -> dict:
+    """The frozen-record fields for fitted parameters and yard pools (also used on the saved copies, Test M)."""
+    return {"version": M.VERSION, "fit_seasons": list(T.FIT), "tune_seasons": list(T.TUNE), "tuning": M.TUNING, "sims": SIMS,
           "params_sha256": digest(P), "pools_sha256": digest({k: {p: [float(x) for x in v] for p, v in d.items()} for k, d in pools.items()}),
           "baselines_sha256": hashlib.sha256((ROOT / "data" / "backtests" / "engine_baselines.json").read_bytes()).hexdigest()}
-    return fp, P, tab
 
 
 def versions_run() -> int:

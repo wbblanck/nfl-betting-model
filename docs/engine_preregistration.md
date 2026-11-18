@@ -153,3 +153,14 @@ Written and committed before Thursday 2026-11-19's game, the first of the sample
 - **Known handicaps, stated in advance:** the projected list is cruder than the game-day list both engines were
   tested with; Engine B's route-share feature (`db_share_w3`) is missing for every 2026 game because nflverse
   publishes no 2026 participation, so it takes its "missing" value throughout. Both work against the engines.
+
+## Amendment 2026-11-18: frozen parameters saved (before any week-11 game is played)
+A dry run of the weekly job on GitHub's machines refused: refitting the engines there did not reproduce the frozen
+records, because nflverse revises its players and schedule tables daily (positions, team, kickoff times), so a
+warehouse rebuilt later is not the one the engines were frozen on. The fitted parameters of A-1.0 and B-1.0 are now
+saved as they were frozen (`data/backtests/engine_A-1.0_params.pkl.gz`, `engine_B-1.0_params.pkl.gz`, written by
+`scripts/engine_save_params.py` only after the refit matched both frozen records), with their SHA-256 in
+`data/backtests/engine_params_sha256.json`. The forecaster loads them, refuses unless the files hash as recorded and
+the loaded parameters reproduce both frozen records, and no longer refits. The 2018-2023 feature hash is still
+computed and reported but no longer gates a forecast. Nothing else in the Test M rules changes; no Test M outcome
+or price existed when this was decided. A week-10 dry run with the saved parameters: both records match.

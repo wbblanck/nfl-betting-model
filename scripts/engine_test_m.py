@@ -139,7 +139,7 @@ def main() -> int:
     dirty = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True, cwd=ROOT).stdout.strip()
     missing = [w for w in WEEKS if not (FC / f"{SEASON}_w{w:02d}" / "manifest.json").exists()]
     failed = [w for w in WEEKS if w not in missing and not all(json.loads((FC / f"{SEASON}_w{w:02d}" / "manifest.json").read_text())[k]
-                                                                for k in ("engine_a_frozen_matches", "engine_b_frozen_matches", "fit_tune_features_match"))]
+                                                                for k in ("engine_a_frozen_matches", "engine_b_frozen_matches"))]
     if RESULT.exists() or dirty or missing or failed:
         print(f"REFUSED: result exists={RESULT.exists()}, uncommitted={bool(dirty)}, missing weeks={missing}, failed checks={failed}")
         return 1
