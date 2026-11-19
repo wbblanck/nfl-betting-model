@@ -27,7 +27,15 @@ line with the over price within 10 cents. Otherwise it is labeled unreliable in 
 shows it. Re-run once the props-close job's ~6-minute DK/FD snapshots (`data/live/close/books_2026.csv`) exist.
 
 ## Results
-Pending (`docs/sgo_close_check.md`).
+Backfill 2026-11-19 (run 44640767769): 150 games, 2026-09-10 to 2026-11-17 (weeks 1-10). Every game has a close on
+at least 98.5% of its rows, so SGO's closes go back to week 1.
+
+Check (`docs/sgo_close_check.md`), 0-30 minute bucket (408 DK and 443 FanDuel props, so the 2-hour fallback is not
+used): DraftKings 76.7% same line, 72.5% same line with price within 10 cents; FanDuel 95.9% and 95.5%.
+**The criterion is not met as a whole: DraftKings fails both thresholds. FanDuel alone meets both.** Agreement falls
+as the snapshot gets older for both books, which fits late line moves; whether DK's gap is SGO's fault or DK moving
+in the last minutes (or ParlayAPI's DK feed lagging) is not known. SGO's DK close stays labeled unreliable; re-run the
+check once the ~6-minute props-close snapshots exist.
 
 Disclosure: while building the check (2026-11-19, before this file was committed) I ran it on the one probe game
 (WAS @ NYG, 2026-11-13) to make sure it worked. With snapshots 27 minutes before kickoff, FanDuel matched 32 of 34
