@@ -1813,7 +1813,7 @@ def pages_banner(pg: dict | None) -> str:
     dk = f'DraftKings and FanDuel from the tracker pull at {when(pg["snap_at"])}' if pg.get("snap_at") else "no DraftKings/FanDuel pull saved"
     return (f'<div class="note pagesbar"><b>Live page.</b> Exchange prices (Novig, Polymarket US, Kalshi) fetched '
             f'{when(pg["refreshed"])} for {pg["n"]} open props-mix picks, shown as "Live now" under each pick; {esc(dk)}. '
-            'Refreshes about every 30 minutes on game days. '
+            'Refreshes about every 30 minutes. '
             f'<a href="{esc(pg["actions"])}">Refresh now</a> (Run workflow, then reload in about 2 minutes). '
             'Records and grades use each pick\'s own run, not these prices.</div>')
 
