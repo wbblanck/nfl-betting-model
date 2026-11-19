@@ -1,0 +1,43 @@
+name: SportsGameOdds probe
+# Evidence only: what the SportsGameOdds key can see and cost. About 8 requests on the free plan.
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/audit/sgo_probe.py', '.github/workflows/sgo-probe.yml']
+permissions:
+  contents: write
+concurrency:
+  group: sgo-probe-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - id: find
+        name: Find the key's secret name (names only)
+        env:
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+        run: |
+          names=$(echo "$ALL_SECRETS" | jq -r 'keys[]')
+          echo "secret names:"; echo "$names"
+          pick=$(echo "$names" | grep -iE 'SPORTS?_?GAME|SGO|GAMEODDS' | head -1)
+          [ -n "$pick" ] || { echo "no SportsGameOdds-like secret"; exit 1; }
+          echo "name=$pick" >> "$GITHUB_OUTPUT"
+      - run: python scripts/audit/sgo_probe.py
+        env:
+          SGO_SECRET_NAME: ${{ steps.find.outputs.name }}
+          SGO_KEY: ${{ secrets[steps.find.outputs.name] }}
+      - name: Commit evidence
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add docs/evidence/sgo_probe || exit 0
+          git commit -m "evidence: SportsGameOdds probe" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done
