@@ -8,9 +8,10 @@ on:
     workflows: ["S1 live", "Engine paper preview", "Engine Test M"]
     types: [completed]
   schedule:
-    # Exchange prices are free (no key), so refresh every 30 minutes, every day, 6 AM-2 AM ET.
-    - cron: '*/30 11-23 * * *'
-    - cron: '*/30 0-6 * * *'
+    # GitHub skips many scheduled runs (2026-11-19: none fired for 11 hours), so each run keeps going: it rebuilds
+    # every 30 minutes for about 5 hours (jobs below). A start every 2 hours is plenty; any trigger replaces the
+    # running loop with a fresh one (concurrency). Exchange prices are free, so this runs every day.
+    - cron: '17 */2 * * *'
 permissions:
   contents: read
   pages: write
@@ -20,12 +21,21 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build:
+    # Ten builds, one after another, 30 minutes apart; each checks out main again so new tracker runs show up.
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        i: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 50
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
+      - name: Wait 30 minutes after the previous build
+        if: matrix.i != 0
+        run: sleep 1800
       - uses: actions/checkout@v4
         with:
           ref: main
@@ -38,5 +48,8 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+          name: github-pages-${{ matrix.i }}
       - id: deploy
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ matrix.i }}
