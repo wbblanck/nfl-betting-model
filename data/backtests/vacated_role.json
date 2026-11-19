@@ -1,0 +1,98 @@
+{
+ "events": {
+  "rb": {
+   "2022": 18,
+   "2023": 28
+  },
+  "tgt": {
+   "2022": 13,
+   "2023": 11
+  }
+ },
+ "team_games": 1086,
+ "played_rows": 13316,
+ "rush_att": {
+  "beneficiary_rows": 129,
+  "beneficiary_crps": 2.799271176356589,
+  "other_crps": 2.1308695723653117,
+  "beneficiary_share_of_total_crps": 0.03468715044393211,
+  "next_n": 45,
+  "next_mean_engine": 9.756488888888889,
+  "next_mean_actual": 10.577777777777778,
+  "next_signed_error": [
+   -0.821288888888889,
+   -2.3717239361702123,
+   0.7225489285714284
+  ],
+  "next_above_p90": 0.13333333333333333
+ },
+ "rush_yds": {
+  "beneficiary_rows": 129,
+  "beneficiary_crps": 14.174230728682168,
+  "other_crps": 8.902307285663168,
+  "beneficiary_share_of_total_crps": 0.03062376461127595,
+  "next_n": 45,
+  "next_mean_engine": 43.00011111111112,
+  "next_mean_actual": 44.24444444444445,
+  "next_signed_error": [
+   -1.2443333333333335,
+   -10.641398041213769,
+   7.787793696581194
+  ],
+  "next_above_p90": 0.13333333333333333
+ },
+ "rec": {
+  "beneficiary_rows": 112,
+  "beneficiary_crps": 0.808603285714286,
+  "other_crps": 1.0484492064260564,
+  "beneficiary_share_of_total_crps": 0.00903806339545365,
+  "next_n": 24,
+  "next_mean_engine": 3.372499999999999,
+  "next_mean_actual": 3.1666666666666665,
+  "next_signed_error": [
+   0.20583333333333342,
+   -0.46288229166666645,
+   0.8557863068181817
+  ],
+  "next_above_p90": 0.08333333333333333
+ },
+ "rec_yds": {
+  "beneficiary_rows": 112,
+  "beneficiary_crps": 11.478544524553573,
+  "other_crps": 10.428292249513001,
+  "beneficiary_share_of_total_crps": 0.010257813219867875,
+  "next_n": 24,
+  "next_mean_engine": 42.50566666666666,
+  "next_mean_actual": 39.5,
+  "next_signed_error": [
+   3.0056666666666665,
+   -6.621332236842108,
+   12.03954376430205
+  ],
+  "next_above_p90": 0.041666666666666664
+ },
+ "style": {
+  "n": 46,
+  "actual_mean_share": 0.5309860846836465,
+  "mae": {
+   "P0": 0.3033822042911152,
+   "P1": 0.30320027722828763,
+   "P2": 0.2899828428248933
+  },
+  "P1_minus_P0": [
+   -0.00018192706282750247,
+   -0.06563420806956842,
+   0.06963008689815202
+  ],
+  "P2_minus_P0": [
+   -0.013399361466221898,
+   -0.05311923949093532,
+   0.026070026079587152
+  ]
+ },
+ "verdict": {
+  "problem_is_real": false,
+  "team_style_helps": false,
+  "recommendation": "nothing to fix at scale"
+ }
+}
