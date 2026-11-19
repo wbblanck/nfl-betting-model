@@ -6,7 +6,7 @@ Not analysed for any question; a schema/coverage check. Calls (about 8 requests,
   3. one finalized NFL event from last week, 2025, 2024 and 2022 with includeOpenCloseOdds=true
      (is history reachable on this plan, and do per-book open/close fields come back?).
 Also saves the public docs (llms-full.txt and the /events parameter list from openapi.json).
-The workflow finds the key by secret NAME and passes only that one as SGO_KEY; its value is never written.
+The workflow passes candidate secret names as K_<name>; the first one set is used. Its value is never written.
 Writes docs/evidence/sgo_probe/<UTC stamp>/.
 """
 from __future__ import annotations
@@ -28,10 +28,11 @@ UA = "nfl-betting-model/1.0 (read-only research)"
 
 
 def find_key() -> tuple[str, str]:
-    key = os.environ.get("SGO_KEY", "")
-    if not key:
-        sys.exit("SGO_KEY not set")
-    return os.environ.get("SGO_SECRET_NAME", "?"), key
+    set_ = [(k[2:], v) for k, v in sorted(os.environ.items()) if k.startswith("K_") and v]
+    print("candidate secrets set:", [n for n, _ in set_], flush=True)
+    if not set_:
+        sys.exit("none of the candidate SportsGameOdds secret names is set")
+    return set_[0]
 
 
 def get(url: str, key: str | None = None, raw: bool = False):
