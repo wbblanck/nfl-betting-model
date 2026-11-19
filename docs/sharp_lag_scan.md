@@ -75,8 +75,8 @@ Run `PYTHONPATH=src python scripts/audit/sharp_lag_scan.py --out <scratch dir>`.
 - Pinnacle props carry about 6.5-7% hold and max stakes of $250-2,000. A 3-5% gap is the size of that vig's
   uncertainty. Outside work (drburke-droid/NFL) found Pinnacle prop closes no sharper than DK/FanDuel.
 - Pinnacle main game lines (5-20k limits, ~3-4% hold) are the sharper reference; gaps there mean more.
-- Novig prices averaged 1.5c worse than DK in our 2026 check (docs/gamesim_calibration.md). Thin books can jump
-  between snapshots.
+- In one snapshot (2026-10-21, docs/novig_compare.md) Novig prop sides cost a mean 1.52 cents more than DK's and
+  0.23 cents more than FanDuel's, with median $200 at the best price. Thin books can jump between snapshots.
 - Not tested, not tracked. No ROI or win-rate claim is possible from one snapshot.
 
 ## Validation (2026-11-19)
