@@ -1,0 +1,661 @@
+{
+ "secret_name": "SPORTSGAMEODDS",
+ "docs_saved": [
+  "llms-full.txt",
+  "openapi_events_get.json",
+  "openapi_paths.txt"
+ ],
+ "usage_before": {
+  "status": 200,
+  "params": {},
+  "headers": {},
+  "notice": null,
+  "usage": {
+   "keyID": "<redacted>",
+   "customerID": "<redacted>",
+   "email": "<redacted>",
+   "isActive": true,
+   "tier": "amateur",
+   "rateLimits": {
+    "per-second": {
+     "max-requests": "unlimited",
+     "max-entities": "unlimited"
+    },
+    "per-minute": {
+     "max-requests": 10,
+     "current-requests": 0,
+     "max-entities": "unlimited"
+    },
+    "per-hour": {
+     "max-requests": 50000,
+     "current-requests": 0,
+     "max-entities": 250000,
+     "current-entities": 0
+    },
+    "per-day": {
+     "max-requests": 500000,
+     "current-requests": 0,
+     "max-entities": 3000000,
+     "current-entities": 0
+    },
+    "per-month": {
+     "max-requests": "unlimited",
+     "max-entities": 2500,
+     "current-entities": 0
+    }
+   }
+  }
+ },
+ "upcoming": {
+  "status": 200,
+  "params": {
+   "leagueID": "NFL",
+   "limit": 1,
+   "oddsAvailable": "true",
+   "includeOpenCloseOdds": "true"
+  },
+  "headers": {},
+  "notice": "Response is missing 5624 bookmaker odds. Upgrade your API key to access all data from this query.",
+  "n_events": 1,
+  "events": [
+   {
+    "eventID": "YlZBEbhTgV80ZeTIIyqm",
+    "startsAt": "2026-11-20T01:15:00.000Z",
+    "teams": [
+     "INDIANAPOLIS_COLTS_NFL",
+     "HOUSTON_TEXANS_NFL"
+    ],
+    "finalized": false,
+    "n_oddIDs": 1692,
+    "n_player_prop_oddIDs": 1421,
+    "prop_stats": {
+     "touchdowns": 251,
+     "receiving_yards": 220,
+     "receiving_receptions": 182,
+     "defense_sacks": 100,
+     "firstTouchdown": 85,
+     "rushing_yards": 74,
+     "fantasyScore": 70,
+     "defense_interceptions": 51,
+     "rushing_attempts": 40,
+     "defense_assistedTackles": 38,
+     "lastTouchdown": 36,
+     "rushing+receiving_yards": 36,
+     "receiving_longestReception": 34,
+     "defense_combinedTackles": 30,
+     "passing_touchdowns": 24,
+     "receiving_targets": 22,
+     "passing_yards": 20,
+     "passing+rushing_yards": 16,
+     "defense_soloTackles": 14,
+     "passing_attempts": 12,
+     "passing_completions": 12,
+     "rushing_longestRush": 12,
+     "passing_interceptions": 8,
+     "fieldGoals_made": 8,
+     "extraPoints_kicksMade": 6,
+     "passing_longestCompletion": 4,
+     "kicking_totalPoints": 4,
+     "punting_numPunts": 4,
+     "passing_sacksTaken": 4,
+     "rushing_yardsPerAttempt": 2,
+     "punting_puntsInside20": 2
+    },
+    "bookmakers": {
+     "draftkings": 763,
+     "fanduel": 635,
+     "espnbet": 412,
+     "bovada": 358,
+     "caesars": 335,
+     "betmgm": 301,
+     "pointsbet": 6,
+     "unibet": 4,
+     "williamhill": 2
+    },
+    "byBookmaker_fields": {
+     "odds": 2816,
+     "lastUpdatedAt": 2816,
+     "available": 2816,
+     "deeplink": 1586,
+     "openOdds": 2812,
+     "spread": 66,
+     "openSpread": 66,
+     "overUnder": 1655,
+     "openOverUnder": 1651
+    },
+    "book_quotes_with_closeOdds": 0,
+    "sample_prop": {
+     "touchdowns-ANDREW_OGLETREE_1_NFL-game-yn-yes": {
+      "oddID": "touchdowns-ANDREW_OGLETREE_1_NFL-game-yn-yes",
+      "opposingOddID": "touchdowns-ANDREW_OGLETREE_1_NFL-game-yn-no",
+      "marketName": "Drew Ogletree Any Touchdowns Yes/No",
+      "statID": "touchdowns",
+      "statEntityID": "ANDREW_OGLETREE_1_NFL",
+      "periodID": "game",
+      "betTypeID": "yn",
+      "sideID": "yes",
+      "playerID": "ANDREW_OGLETREE_1_NFL",
+      "started": false,
+      "ended": false,
+      "cancelled": false,
+      "bookOddsAvailable": true,
+      "fairOddsAvailable": true,
+      "bookOdds": "+1627",
+      "openBookOdds": "+1500",
+      "scoringSupported": true,
+      "byBookmaker": {
+       "fanduel": {
+        "lastUpdatedAt": "2026-11-19T18:00:31.313Z",
+        "available": true,
+        "odds": "+1600",
+        "deeplink": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.625840218&selectionId=60885112",
+        "openOdds": "+1500"
+       },
+       "draftkings": {
+        "lastUpdatedAt": "2026-11-19T18:01:30.847Z",
+        "available": true,
+        "odds": "+1500",
+        "deeplink": "https://sportsbook.draftkings.com/event/34118011?outcomes=0QA389630297",
+        "openOdds": "+1400"
+       },
+       "caesars": {
+        "lastUpdatedAt": "2026-11-19T17:56:01.000Z",
+        "available": true,
+        "odds": "+1500",
+        "openOdds": "+1400"
+       },
+       "betmgm": {
+        "lastUpdatedAt": "2026-11-19T17:56:02.000Z",
+        "available": true,
+        "odds": "+1450",
+        "deeplink": "https://www.nj.betmgm.com/en/sports?options=6:44039-4587075-7556603",
+        "openOdds": "+1350"
+       },
+       "bovada": {
+        "lastUpdatedAt": "2026-11-19T17:54:47.000Z",
+        "available": true,
+        "odds": "+1500",
+        "openOdds": "+1600"
+       },
+       "espnbet": {
+        "lastUpdatedAt": "2026-11-19T18:00:11.000Z",
+        "available": true,
+        "odds": "+1500",
+        "openOdds": "+1500"
+       }
+      },
+      "fairOdds": "+1673",
+      "openFairOdds": "+1646"
+     }
+    }
+   }
+  ]
+ },
+ "final_last_week": {
+  "status": 200,
+  "params": {
+   "leagueID": "NFL",
+   "limit": 1,
+   "finalized": "true",
+   "startsAfter": "2026-11-13",
+   "startsBefore": "2026-11-18",
+   "includeOpenCloseOdds": "true"
+  },
+  "headers": {},
+  "notice": "Response is missing 5795 bookmaker odds. Upgrade your API key to access all data from this query.",
+  "n_events": 1,
+  "events": [
+   {
+    "eventID": "Qq8Zi9AOEqVNhRnPgzcx",
+    "startsAt": "2026-11-13T01:15:00.000Z",
+    "teams": [
+     "WASHINGTON_COMMANDERS_NFL",
+     "NEW_YORK_GIANTS_NFL"
+    ],
+    "finalized": true,
+    "n_oddIDs": 1710,
+    "n_player_prop_oddIDs": 1430,
+    "prop_stats": {
+     "touchdowns": 215,
+     "receiving_yards": 214,
+     "receiving_receptions": 150,
+     "fantasyScore": 104,
+     "rushing_yards": 90,
+     "defense_sacks": 88,
+     "firstTouchdown": 78,
+     "defense_interceptions": 74,
+     "rushing+receiving_yards": 36,
+     "defense_assistedTackles": 36,
+     "lastTouchdown": 35,
+     "defense_combinedTackles": 34,
+     "passing_yards": 28,
+     "rushing_attempts": 26,
+     "receiving_longestReception": 26,
+     "defense_soloTackles": 26,
+     "passing_touchdowns": 24,
+     "passing_interceptions": 24,
+     "passing+rushing_yards": 24,
+     "receiving_targets": 20,
+     "passing_attempts": 16,
+     "passing_completions": 16,
+     "rushing_longestRush": 12,
+     "extraPoints_kicksMade": 8,
+     "fieldGoals_made": 8,
+     "kicking_totalPoints": 8,
+     "passing_longestCompletion": 4,
+     "passing_sacksTaken": 4,
+     "rushing_yardsPerAttempt": 2
+    },
+    "bookmakers": {
+     "draftkings": 781,
+     "fanduel": 637,
+     "espnbet": 393,
+     "bovada": 367,
+     "betmgm": 331,
+     "caesars": 323,
+     "pointsbet": 6,
+     "unibet": 4,
+     "williamhill": 2
+    },
+    "byBookmaker_fields": {
+     "odds": 2844,
+     "lastUpdatedAt": 2844,
+     "available": 2844,
+     "deeplink": 1325,
+     "openOdds": 2837,
+     "closeOdds": 2837,
+     "spread": 78,
+     "openSpread": 78,
+     "closeSpread": 78,
+     "overUnder": 1664,
+     "openOverUnder": 1657,
+     "closeOverUnder": 1657
+    },
+    "book_quotes_with_closeOdds": 2837,
+    "sample_prop": {
+     "receiving_receptions-DARNELL_MOONEY_1_NFL-game-ou-over": {
+      "oddID": "receiving_receptions-DARNELL_MOONEY_1_NFL-game-ou-over",
+      "opposingOddID": "receiving_receptions-DARNELL_MOONEY_1_NFL-game-ou-under",
+      "marketName": "Darnell Mooney Receptions Over/Under",
+      "statID": "receiving_receptions",
+      "statEntityID": "DARNELL_MOONEY_1_NFL",
+      "periodID": "game",
+      "betTypeID": "ou",
+      "sideID": "over",
+      "playerID": "DARNELL_MOONEY_1_NFL",
+      "started": true,
+      "ended": true,
+      "cancelled": false,
+      "bookOddsAvailable": false,
+      "fairOddsAvailable": false,
+      "fairOdds": "+121",
+      "bookOdds": "+108",
+      "fairOverUnder": "1.5",
+      "bookOverUnder": "1.5",
+      "openFairOdds": "-112",
+      "openBookOdds": "-123",
+      "openFairOverUnder": "1.5",
+      "openBookOverUnder": "1.5",
+      "scoringSupported": true,
+      "byBookmaker": {
+       "draftkings": {
+        "lastUpdatedAt": "2026-11-13T04:19:11.177Z",
+        "available": false,
+        "odds": "+165",
+        "overUnder": "2.5",
+        "openOdds": "-123",
+        "openOverUnder": "1.5",
+        "closeOdds": "+114",
+        "closeOverUnder": "1.5"
+       },
+       "caesars": {
+        "lastUpdatedAt": "2026-11-13T01:15:34.000Z",
+        "available": false,
+        "odds": "+114",
+        "overUnder": "1.5",
+        "openOdds": "-120",
+        "openOverUnder": "1.5",
+        "closeOdds": "+114",
+        "closeOverUnder": "1.5"
+       },
+       "fanduel": {
+        "lastUpdatedAt": "2026-11-13T02:08:13.000Z",
+        "available": false,
+        "odds": "-225",
+        "overUnder": "1.5",
+        "openOdds": "-122",
+        "openOverUnder": "1.5",
+        "closeOdds": "+106",
+        "closeOverUnder": "1.5"
+       },
+       "bovada": {
+        "lastUpdatedAt": "2026-11-13T04:19:11.177Z",
+        "available": false,
+        "odds": "+115",
+        "overUnder": "1.5",
+        "openOdds": "-115",
+        "openOverUnder": "1.5",
+        "closeOdds": "+115",
+        "closeOverUnder": "1.5"
+       },
+       "espnbet": {
+        "lastUpdatedAt": "2026-11-13T04:19:11.177Z",
+        "available": false,
+        "odds": "+110",
+        "overUnder": "2.5",
+        "openOdds": "-125",
+        "openOverUnder": "1.5",
+        "closeOdds": "+110",
+        "closeOverUnder": "1.5"
+       },
+       "betmgm": {
+        "lastUpdatedAt": "2026-11-13T01:13:27.000Z",
+        "available": false,
+        "odds": "+105",
+        "overUnder": "1.5",
+        "deeplink": "https://www.nj.betmgm.com/en/sports?options=6:44040-4480916-7328839",
+        "openOdds": "-115",
+        "openOverUnder": "1.5",
+        "closeOdds": "+105",
+        "closeOverUnder": "1.5"
+       }
+      },
+      "closeBookOdds": "+112",
+      "closeBookOverUnder": "1.5",
+      "closeFairOdds": "+125",
+      "closeFairOverUnder": "1.5",
+      "score": 2
+     }
+    }
+   }
+  ]
+ },
+ "final_y2025": {
+  "status": 200,
+  "params": {
+   "leagueID": "NFL",
+   "limit": 1,
+   "finalized": "true",
+   "startsAfter": "2025-11-06",
+   "startsBefore": "2025-11-11",
+   "includeOpenCloseOdds": "true"
+  },
+  "headers": {},
+  "notice": "Response is missing 4233 bookmaker odds. Upgrade your API key to access all data from this query.",
+  "n_events": 1,
+  "events": [
+   {
+    "eventID": "S1WF469OAiQFTLTUb5Ow",
+    "startsAt": "2025-11-07T01:15:00.000Z",
+    "teams": [
+     "LAS_VEGAS_RAIDERS_NFL",
+     "DENVER_BRONCOS_NFL"
+    ],
+    "finalized": true,
+    "n_oddIDs": 1041,
+    "n_player_prop_oddIDs": 902,
+    "prop_stats": {
+     "touchdowns": 195,
+     "receiving_yards": 142,
+     "receiving_receptions": 84,
+     "fantasyScore": 68,
+     "rushing_yards": 52,
+     "lastTouchdown": 36,
+     "firstTouchdown": 35,
+     "defense_interceptions": 30,
+     "receiving_longestReception": 28,
+     "defense_sacks": 28,
+     "passing_yards": 24,
+     "defense_combinedTackles": 24,
+     "turnovers": 22,
+     "rushing_attempts": 20,
+     "rushing+receiving_yards": 18,
+     "defense_soloTackles": 16,
+     "defense_assistedTackles": 14,
+     "passing_touchdowns": 12,
+     "passing+rushing_yards": 10,
+     "rushing_longestRush": 10,
+     "passing_attempts": 4,
+     "passing_completions": 4,
+     "passing_interceptions": 4,
+     "passing_longestCompletion": 4,
+     "fieldGoals_made": 4,
+     "kicking_totalPoints": 4,
+     "extraPoints_kicksMade": 4,
+     "rushing_touchdowns": 4,
+     "receiving_touchdowns": 2
+    },
+    "bookmakers": {
+     "draftkings": 463,
+     "fanduel": 371,
+     "espnbet": 364,
+     "bovada": 289,
+     "betmgm": 275,
+     "caesars": 159,
+     "pointsbet": 6,
+     "unibet": 4,
+     "williamhill": 2
+    },
+    "byBookmaker_fields": {
+     "odds": 1933,
+     "lastUpdatedAt": 1933,
+     "available": 1933,
+     "deeplink": 1060,
+     "spread": 71,
+     "overUnder": 1375
+    },
+    "book_quotes_with_closeOdds": 0,
+    "sample_prop": {
+     "firstTouchdown-ADAM_PRENTICE_1_NFL-game-yn-yes": {
+      "oddID": "firstTouchdown-ADAM_PRENTICE_1_NFL-game-yn-yes",
+      "opposingOddID": "firstTouchdown-ADAM_PRENTICE_1_NFL-game-yn-no",
+      "statID": "firstTouchdown",
+      "statEntityID": "ADAM_PRENTICE_1_NFL",
+      "periodID": "game",
+      "betTypeID": "yn",
+      "sideID": "yes",
+      "playerID": "ADAM_PRENTICE_1_NFL",
+      "started": true,
+      "ended": true,
+      "cancelled": true,
+      "bookOddsAvailable": false,
+      "fairOddsAvailable": false,
+      "bookOdds": "+8000",
+      "scoringSupported": false,
+      "byBookmaker": {
+       "draftkings": {
+        "odds": "+5500",
+        "lastUpdatedAt": "2025-11-07T01:13:17.000Z",
+        "available": false,
+        "deeplink": "https://sportsbook.draftkings.com/event/32225571?outcomes=0QA288329684%23390166907_13L88808Q11825879706Q20"
+       },
+       "caesars": {
+        "odds": "+7000",
+        "lastUpdatedAt": "2025-11-07T01:15:18.000Z",
+        "available": false,
+        "deeplink": "https://sportsbook.caesars.com/us/nj/bet/betslip?selectionIds=5f2f2104-62b5-37d2-82f6-b0c6d62f9923"
+       },
+       "fanduel": {
+        "odds": "+10000",
+        "lastUpdatedAt": "2025-11-07T01:17:13.000Z",
+        "available": false,
+        "deeplink": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.538533745&selectionId=47857640"
+       },
+       "bovada": {
+        "odds": "+6000",
+        "lastUpdatedAt": "2025-11-07T01:33:44.000Z",
+        "available": false
+       },
+       "betmgm": {
+        "odds": "+8000",
+        "lastUpdatedAt": "2025-11-07T01:04:11.000Z",
+        "available": false,
+        "deeplink": "https://sports.nj.betmgm.com/en/sports?options=17551728-1398570897--349043061"
+       },
+       "espnbet": {
+        "odds": "+8000",
+        "lastUpdatedAt": "2025-11-07T01:15:17.000Z",
+        "available": false
+       }
+      },
+      "marketName": "Adam Prentice To Record First Touchdown Yes/No",
+      "closeBookOdds": "+8000"
+     }
+    }
+   }
+  ]
+ },
+ "final_y2024": {
+  "status": 200,
+  "params": {
+   "leagueID": "NFL",
+   "limit": 1,
+   "finalized": "true",
+   "startsAfter": "2024-11-07",
+   "startsBefore": "2024-11-12",
+   "includeOpenCloseOdds": "true"
+  },
+  "headers": {},
+  "notice": "Response is missing 804 bookmaker odds. Upgrade your API key to access all data from this query.",
+  "n_events": 1,
+  "events": [
+   {
+    "eventID": "KT6lFKSu3SVsizKZpG2N",
+    "startsAt": "2024-11-08T01:15:00.000Z",
+    "teams": [
+     "CINCINNATI_BENGALS_NFL",
+     "BALTIMORE_RAVENS_NFL"
+    ],
+    "finalized": true,
+    "n_oddIDs": 776,
+    "n_player_prop_oddIDs": 696,
+    "prop_stats": {
+     "touchdowns": 130,
+     "fantasyScore": 94,
+     "receiving_yards": 72,
+     "firstTouchdown": 58,
+     "lastTouchdown": 58,
+     "rushing_yards": 42,
+     "receiving_receptions": 40,
+     "receiving_longestReception": 28,
+     "passing_interceptions": 28,
+     "defense_combinedTackles": 28,
+     "passing_yards": 20,
+     "rushing+receiving_yards": 20,
+     "defense_interceptions": 16,
+     "rushing_attempts": 10,
+     "defense_sacks": 8,
+     "rushing_longestRush": 8,
+     "passing_completions": 4,
+     "kicking_totalPoints": 4,
+     "passing+rushing_yards": 4,
+     "points": 4,
+     "passing_longestCompletion": 4,
+     "passing_attempts": 4,
+     "passing_touchdowns": 4,
+     "extraPoints_kicksMade": 4,
+     "fieldGoals_made": 4
+    },
+    "bookmakers": {
+     "draftkings": 33,
+     "bovada": 17,
+     "unibet": 6,
+     "fanduel": 4,
+     "espnbet": 2,
+     "pointsbet": 2,
+     "betmgm": 2,
+     "caesars": 2
+    },
+    "byBookmaker_fields": {
+     "odds": 68,
+     "lastUpdatedAt": 68,
+     "available": 68,
+     "spread": 10,
+     "overUnder": 23
+    },
+    "book_quotes_with_closeOdds": 0,
+    "sample_prop": {
+     "passing_completions-LAMAR_JACKSON_1_NFL-game-ou-over": {
+      "oddID": "passing_completions-LAMAR_JACKSON_1_NFL-game-ou-over",
+      "opposingOddID": "passing_completions-LAMAR_JACKSON_1_NFL-game-ou-under",
+      "marketName": "Lamar Jackson Passing Completions Over/Under",
+      "statID": "passing_completions",
+      "statEntityID": "LAMAR_JACKSON_1_NFL",
+      "periodID": "game",
+      "betTypeID": "ou",
+      "sideID": "over",
+      "playerID": "LAMAR_JACKSON_1_NFL",
+      "started": true,
+      "ended": true,
+      "cancelled": false,
+      "bookOddsAvailable": false,
+      "fairOddsAvailable": false,
+      "fairOdds": "+177",
+      "bookOdds": "+160",
+      "fairOverUnder": "21.5",
+      "bookOverUnder": "21.5",
+      "score": 25,
+      "scoringSupported": true,
+      "byBookmaker": {}
+     }
+    }
+   }
+  ]
+ },
+ "final_y2022": {
+  "status": 200,
+  "params": {
+   "leagueID": "NFL",
+   "limit": 1,
+   "finalized": "true",
+   "startsAfter": "2022-11-10",
+   "startsBefore": "2022-11-15",
+   "includeOpenCloseOdds": "true"
+  },
+  "headers": {},
+  "notice": null,
+  "n_events": 0,
+  "events": []
+ },
+ "usage_after": {
+  "status": 200,
+  "params": {},
+  "headers": {},
+  "notice": null,
+  "usage": {
+   "keyID": "<redacted>",
+   "customerID": "<redacted>",
+   "email": "<redacted>",
+   "isActive": true,
+   "tier": "amateur",
+   "rateLimits": {
+    "per-second": {
+     "max-requests": "unlimited",
+     "max-entities": "unlimited"
+    },
+    "per-minute": {
+     "max-requests": 10,
+     "current-requests": 5,
+     "max-entities": "unlimited"
+    },
+    "per-hour": {
+     "max-requests": 50000,
+     "current-requests": 5,
+     "max-entities": 250000,
+     "current-entities": 5
+    },
+    "per-day": {
+     "max-requests": 500000,
+     "current-requests": 5,
+     "max-entities": 3000000,
+     "current-entities": 5
+    },
+    "per-month": {
+     "max-requests": "unlimited",
+     "max-entities": 2500,
+     "current-entities": 5
+    }
+   }
+  }
+ }
+}

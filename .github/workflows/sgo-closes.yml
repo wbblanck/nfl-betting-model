@@ -1,0 +1,42 @@
+name: SportsGameOdds closes
+# Record only, unvalidated (docs/sgo_closes.md): per-book open/close for finished NFL games, one SGO object per game.
+# Never feeds a pick. A push of the recorder's own files on a non-main branch runs the 2026 backfill once.
+on:
+  schedule:
+    - cron: '15 11 * * *'    # daily, 6:15 AM ET: every game finished overnight
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/fetch/sgo_closes.py', 'src/nflbet/sources/sgo.py', '.github/workflows/sgo-closes.yml']
+permissions:
+  contents: write
+concurrency:
+  group: sgo-closes
+  cancel-in-progress: false
+jobs:
+  closes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Fetch finished games
+        env:
+          SPORTSGAMEODDS: ${{ secrets.SPORTSGAMEODDS }}
+        run: python scripts/fetch/sgo_closes.py run --max 200
+      - name: Check against our snapshots
+        if: always()
+        continue-on-error: true
+        run: python scripts/sgo_check.py
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          [ -d data/live/sgo ] && git add data/live/sgo
+          [ -f docs/sgo_close_check.md ] && git add docs/sgo_close_check.md
+          git commit -m "sgo closes" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done

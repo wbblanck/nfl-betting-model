@@ -1,0 +1,47 @@
+name: SportsGameOdds probe
+# Evidence only: what the SportsGameOdds key can see and cost. About 8 requests on the free plan.
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/audit/sgo_probe.py', '.github/workflows/sgo-probe.yml']
+permissions:
+  contents: write
+concurrency:
+  group: sgo-probe-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/audit/sgo_probe.py
+        env:
+          # Candidate secret names; only the one that is set is used. Values are never written.
+          K_SPORTSGAMEODDS_API_KEY: ${{ secrets.SPORTSGAMEODDS_API_KEY }}
+          K_SPORTSGAMEODDS_API: ${{ secrets.SPORTSGAMEODDS_API }}
+          K_SPORTSGAMEODDS_KEY: ${{ secrets.SPORTSGAMEODDS_KEY }}
+          K_SPORTSGAMEODDS: ${{ secrets.SPORTSGAMEODDS }}
+          K_SPORTS_GAME_ODDS_API_KEY: ${{ secrets.SPORTS_GAME_ODDS_API_KEY }}
+          K_SPORTS_GAME_ODDS_API: ${{ secrets.SPORTS_GAME_ODDS_API }}
+          K_SPORTS_GAME_ODDS: ${{ secrets.SPORTS_GAME_ODDS }}
+          K_SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
+          K_SGO_API: ${{ secrets.SGO_API }}
+          K_SGO_KEY: ${{ secrets.SGO_KEY }}
+          K_SGO: ${{ secrets.SGO }}
+          K_SPORTSGAMEODDS_APIKEY: ${{ secrets.SPORTSGAMEODDS_APIKEY }}
+          K_SPORTSGAME_ODDS_API_KEY: ${{ secrets.SPORTSGAME_ODDS_API_KEY }}
+          K_SPORTS_ODDS_API_KEY: ${{ secrets.SPORTS_ODDS_API_KEY }}
+          K_SPORTSGAMEODDS_TOKEN: ${{ secrets.SPORTSGAMEODDS_TOKEN }}
+      - name: Commit evidence
+        if: always()
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          git add docs/evidence/sgo_probe || exit 0
+          git commit -m "evidence: SportsGameOdds probe" || exit 0
+          for i in 1 2 3 4; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep $((2**i)); done

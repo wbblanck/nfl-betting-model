@@ -46,6 +46,9 @@ graded weekly and shown on the dashboard's Engine tab. No other pick list.
 - **Action Network props went empty after 2026 week 4:** every `games/{id}/props` answer is an empty shell, past games
   included (`docs/evidence/an_props_probe/`). Official S1 is on ParlayAPI DK + FanDuel from week 9
   (docs/s1_live_rules.md, "Source switch"); the run alarms (red job) when its line source fails.
+- **SportsGameOdds free key** (secret `SPORTSGAMEODDS`): 2,500 objects a month, 1 per game with all markets; 9 US books,
+  no Pinnacle. Per-book open/close only for 2026 games (2025 has none). `/account/usage` returns the account email: never
+  save or print that answer (the repo and its Actions logs are public). Record-only closes: docs/sgo_closes.md.
 - **PinnRadar (Pinnacle) free key** (secret `PINN_API`): 100 requests a day in total, 429 until UTC midnight. One
   `prematch/fixtures?sport_id=5&include_specials=1` call returns every NFL prop; no price history. Props show max_risk 250.
   Used only for the record-only props CLV (docs/props_clv_rules.md) and a dashboard chip, never as a pick input.

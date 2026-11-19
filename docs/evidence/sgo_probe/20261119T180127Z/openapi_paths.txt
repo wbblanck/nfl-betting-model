@@ -1,0 +1,9 @@
+/account/usage
+/events/
+/leagues/
+/markets/
+/players/
+/sports/
+/stats/
+/stream/events
+/teams/
