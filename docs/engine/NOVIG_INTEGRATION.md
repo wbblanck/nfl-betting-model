@@ -25,6 +25,7 @@ and the reader in `src/nflbet/sources/venues.py`. Everything is read-only throug
   not in the saved docs. Add once located.
 
 ## On-time runs from an outside cron service (Will's choice, 2026-11-13)
+Superseded 2026-11-19 by one dispatcher for every scheduled workflow: docs/scheduler.md.
 GitHub's schedule is late, and a Claude scheduled task that starts a fresh session has no GitHub access (tried once
 on 2026-11-13: it could not start the workflow). So an outside cron service starts the recorder on time by calling
 GitHub's workflow-dispatch endpoint. Will sets this up; the token is never committed or shared.
