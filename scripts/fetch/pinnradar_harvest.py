@@ -43,7 +43,7 @@ MCP = "https://mcp.pinnradar.com/mcp"
 SPORT = 5                       # docs "Sport IDs": 5 = Football (Pinnacle 15): NFL and NCAA
 ROOT = Path("data/pinnacle/radar")
 STOP = ROOT / "STOP"
-POLL = 60
+POLL = 20                       # demo plan allows 10/s; ~3 calls a cycle
 FULL_EVERY = 1800
 DROPS_EVERY = 600
 MARKETS_EVERY = 3600
@@ -157,6 +157,8 @@ def my_usage(rec: Recorder) -> dict | None:
         for c in (msg.get("result") or {}).get("content", []) or []:
             if c.get("type") == "text":
                 text = c.get("text")
+    if text:
+        text = re.sub(r'"api_key[a-z_]*"\s*:\s*"[^"]*",?', "", text)   # never store any part of the key
     rec.log("usage.jsonl", {"t": t, "init_status": s1, "status": s2, "text": text,
                             **({"raw": body[:800]} if text is None else {})})
     if s2 in (401, 403, 429):
@@ -174,11 +176,15 @@ def plan_view(info: dict) -> tuple[str, dt.datetime | None]:
     """Best-effort read of plan name and expiry from my_usage, whatever its exact field names."""
     flat = json.dumps(info).lower()
     plan = "unknown"
-    m = re.search(r'"plan[a-z_]*"\s*:\s*"([^"]+)"', flat)
-    if m:
-        plan = m.group(1)
+    p = info.get("plan")
+    if isinstance(p, dict):                       # my_usage 2026-11-19: {"plan": {"id": "demo_3d", ...}}
+        plan = str(p.get("id") or p.get("label") or "unknown").lower()
+    elif isinstance(p, str):
+        plan = p.lower()
     elif re.search(r"\bplan\W+(free|rest|edge|scale|drops)\b", flat):
         plan = re.search(r"\bplan\W+(free|rest|edge|scale|drops)\b", flat).group(1)
+    if plan == "unknown" or "free" in plan or info.get("status") not in (None, "active"):
+        plan = "free?" if plan == "unknown" else f"free? ({plan}, status {info.get('status')})"  # never risk the CLV quota
     exp = None
     m = re.search(r'"(?:expires?|expiry|expires_at|expiration|valid_until|renews?_at|plan_expires[a-z_]*)"\s*:\s*"?([0-9t:\-\.z+ ]{10,})"?', flat)
     if m:
@@ -228,14 +234,18 @@ def main() -> None:
             if t0 - last["usage"] >= USAGE_EVERY:
                 info = my_usage(rec)
                 last["usage"] = t0
+                if info is None:
+                    raise Halt("my_usage unreadable: plan unknown, stopping to protect the free quota")
                 if info is not None:
                     plan, exp = plan_view(info)
                     print(f"plan={plan} expires={exp}", flush=True)
-                    if plan.startswith(("free", "drops")):
+                    if plan.startswith(("free", "drops")) or "free" in plan:
                         stop_file = True
                         raise Halt(f"plan is {plan}: REST paid access over")
-                    if exp is not None:
-                        deadline = min(deadline, exp - dt.timedelta(minutes=2))
+                    if exp is not None and exp - dt.timedelta(minutes=2) < deadline:
+                        deadline = exp - dt.timedelta(minutes=2)
+                        reason = f"plan expires {exp:%Y-%m-%dT%H:%M:%SZ}"
+                        stop_file = True   # later chained jobs must not spend the free quota
             ts = stamp()
             for board, path in (("prematch", "/kit/v1/prematch/fixtures"), ("live", "/kit/v1/markets")):
                 fk = "full" if board == "prematch" else "live_full"
