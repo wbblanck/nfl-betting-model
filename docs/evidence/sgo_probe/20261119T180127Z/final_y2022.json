@@ -1,0 +1,16 @@
+{
+ "status": 200,
+ "params": {
+  "leagueID": "NFL",
+  "limit": 1,
+  "finalized": "true",
+  "startsAfter": "2022-11-10",
+  "startsBefore": "2022-11-15",
+  "includeOpenCloseOdds": "true"
+ },
+ "headers": {},
+ "body": {
+  "success": true,
+  "data": []
+ }
+}

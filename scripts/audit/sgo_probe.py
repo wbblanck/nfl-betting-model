@@ -15,6 +15,7 @@ import collections
 import datetime as dt
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -25,6 +26,8 @@ from pathlib import Path
 BASE = "https://api.sportsgameodds.com/v2/"
 ROOT = Path(__file__).resolve().parents[2]
 UA = "nfl-betting-model/1.0 (read-only research)"
+# The repo and its Actions logs are public: no account email may be written or printed.
+EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 
 
 def find_key() -> tuple[str, str]:
@@ -51,9 +54,11 @@ def get(url: str, key: str | None = None, raw: bool = False):
 
 def redact(obj):
     if isinstance(obj, dict):
-        return {k: ("<redacted>" if k in ("keyID", "customerID", "apiKey") else redact(v)) for k, v in obj.items()}
+        return {k: ("<redacted>" if k in ("keyID", "customerID", "apiKey", "email") else redact(v)) for k, v in obj.items()}
     if isinstance(obj, list):
         return [redact(v) for v in obj]
+    if isinstance(obj, str) and EMAIL.search(obj):
+        return EMAIL.sub("<redacted-email>", obj)
     return obj
 
 

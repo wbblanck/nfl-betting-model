@@ -1,0 +1,43 @@
+{
+ "status": 200,
+ "params": {},
+ "headers": {},
+ "body": {
+  "success": true,
+  "data": {
+   "keyID": "<redacted>",
+   "customerID": "<redacted>",
+   "email": "<redacted>",
+   "isActive": true,
+   "tier": "amateur",
+   "rateLimits": {
+    "per-second": {
+     "max-requests": "unlimited",
+     "max-entities": "unlimited"
+    },
+    "per-minute": {
+     "max-requests": 10,
+     "current-requests": 0,
+     "max-entities": "unlimited"
+    },
+    "per-hour": {
+     "max-requests": 50000,
+     "current-requests": 0,
+     "max-entities": 250000,
+     "current-entities": 0
+    },
+    "per-day": {
+     "max-requests": 500000,
+     "current-requests": 0,
+     "max-entities": 3000000,
+     "current-entities": 0
+    },
+    "per-month": {
+     "max-requests": "unlimited",
+     "max-entities": 2500,
+     "current-entities": 0
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,442 @@
+{
+ "tags": [
+  "Events"
+ ],
+ "description": "Get a list of Events",
+ "operationId": "getEvents",
+ "parameters": [
+  {
+   "name": "eventID",
+   "in": "query",
+   "required": false,
+   "example": "mXCZTRJnbX8ib64z1h3D",
+   "description": "An eventID to get Event data for. If an eventID has since changed, the Event which lists it in its aliases is returned",
+   "schema": {
+    "type": "string"
+   }
+  },
+  {
+   "name": "eventIDs",
+   "in": "query",
+   "required": false,
+   "example": "mXCZTRJnbX8ib64z1h3D,mXCZTRJnbX8ib64z1h3E,mXCZTRJnbX8ib64z1h3F",
+   "description": "A comma separated list of eventIDs to get Event data for. If an eventID has since changed, the Event which lists it in its aliases is returned",
+   "schema": {
+    "type": "string"
+   }
+  },
+  {
+   "name": "sportID",
+   "in": "query",
+   "required": false,
+   "example": "BASKETBALL",
+   "description": "A sportID or comma-separated list of sportIDs to get Events for",
+   "schema": {
+    "type": "string"
+   }
+  },
+  {
+   "name": "leagueID",
+   "in": "query",
+   "required": false,
+   "example": "NBA",
+   "description": "A leagueID or comma-separated list of leagueIDs to get Events for",
+   "schema": {
+    "type": "string"
+   }
+  },
+  {
+   "name": "type",
+   "in": "query",
+   "required": false,
+   "example": "match",
+   "description": "Only include Events of the specified type",
+   "schema": {
+    "type": "string"
+   }
+  },
+  {
+   "name": "oddsAvailable",
+   "in": "query",
+   "required": false,
+   "example": "true",
+   "description": "Whether you want only Events which do (true) or do not (false) have odds markets which are currently available (open for wagering)",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "oddsPresent",
+   "in": "query",
+   "required": false,
+   "example": "true",
+   "description": "Whether you want only Events which do (true) or do not (false) have any associated odds markets regardless of whether those odds markets are currently available (open for wagering)",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "oddID",
+   "in": "query",
+   "required": false,
+   "example": "points-home-game-ml-home,points-home-game-sp-home",
+   "description": "An oddID or comma-separated list of oddIDs to include odds for",
+   "schema": {
+    "type": "string"
+   }
+  },
+  {
+   "name": "includeOpposingOdds",
+   "in": "query",
+   "required": false,
+   "example": true,
+   "description": "Whether to include opposing odds for each included oddID",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "includeAltLines",
+   "in": "query",
+   "required": false,
+   "example": true,
+   "description": "Whether to include alternate lines in the odds byBookmaker data",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "expandResults",
+   "in": "query",
+   "required": false,
+   "example": true,
+   "description": "Whether to expand the results object to include all stat values rather than just the base set",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "includeOpenCloseOdds",
+   "in": "query",
+   "required": false,
+   "example": true,
+   "description": "Whether to include open and close odds values (openOdds, closeOdds, openSpread, closeSpread, openOverUnder, closeOverUnder) in the odds byBookmaker data",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "bookmakerID",
+   "in": "query",
+   "required": false,
+   "example": "draftkings,betmgm",
+   "description": "A bookmakerID or comma-separated list of bookmakerIDs to include odds for",
+   "schema": {
+    "type": "string"
+   }
+  },
+  {
+   "name": "teamID",
+   "in": "query",
+   "required": false,
+   "example": "lal,bos",
+   "description": "A teamID or comma-separated list of teamIDs to include Events for",
+   "schema": {
+    "type": "string"
+   }
+  },
+  {
+   "name": "playerID",
+   "in": "query",
+   "required": false,
+   "example": "lebron,giannis",
+   "description": "A playerID or comma-separated list of playerIDs to include Events (and associated odds) for",
+   "schema": {
+    "type": "string"
+   }
+  },
+  {
+   "name": "finalized",
+   "in": "query",
+   "required": false,
+   "example": true,
+   "description": "Only include finalized Events (true), exclude unfinalized Events (false) or all Events (omit)",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "live",
+   "in": "query",
+   "required": false,
+   "example": true,
+   "description": "Only include live Events (true), only non-live Events (false) or all Events (omit)",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "started",
+   "in": "query",
+   "required": false,
+   "example": true,
+   "description": "Only include Events which have have previously started (true), only Events which have not previously started (false) or all Events (omit)",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "ended",
+   "in": "query",
+   "required": false,
+   "example": true,
+   "description": "Only include Events which have have ended (true), only Events which have not ended (false) or all Events (omit)",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "cancelled",
+   "in": "query",
+   "required": false,
+   "example": true,
+   "description": "Only include cancelled Events (true), only non-cancelled Events (false) or all Events (omit)",
+   "schema": {
+    "type": "boolean"
+   }
+  },
+  {
+   "name": "startsAfter",
+   "in": "query",
+   "required": false,
+   "example": "2024-01-01T00:00:00Z",
+   "description": "Get Events that start after this date",
+   "schema": {
+    "$ref": "#/components/schemas/DateTime"
+   }
+  },
+  {
+   "name": "startsBefore",
+   "in": "query",
+   "required": false,
+   "example": "2024-01-01T00:00:00Z",
+   "description": "Get Events that start before this date",
+   "schema": {
+    "$ref": "#/components/schemas/DateTime"
+   }
+  },
+  {
+   "name": "limit",
+   "in": "query",
+   "required": false,
+   "example": 25,
+   "description": "The maximum number of Events to return",
+   "schema": {
+    "type": "number"
+   }
+  },
+  {
+   "name": "cursor",
+   "in": "query",
+   "required": false,
+   "example": "eyJhbGciOiJIUzI1NiJ9...",
+   "description": "The cursor for the request. Used to get the next group of Events. This is an opaque token \u2014 pass the nextCursor value from the prior response unchanged.",
+   "schema": {
+    "type": "string"
+   }
+  }
+ ],
+ "responses": {
+  "200": {
+   "description": "An array of events",
+   "content": {
+    "application/json": {
+     "schema": {
+      "type": "object",
+      "properties": {
+       "data": {
+        "type": "array",
+        "items": {
+         "$ref": "#/components/schemas/Event"
+        }
+       },
+       "nextCursor": {
+        "$ref": "#/components/schemas/NextCursor"
+       },
+       "notice": {
+        "type": "string",
+        "description": "Optional notice about filtered data due to API key limitations",
+        "example": "Response is missing 5 events and 12 bookmaker odds. Upgrade your API key to access all data from this query."
+       },
+       "success": {
+        "type": "boolean",
+        "example": true
+       }
+      }
+     },
+     "examples": {
+      "EventsExample-Future": {
+       "$ref": "#/components/examples/EventsExample-Future"
+      },
+      "EventsExample-PastMatch": {
+       "$ref": "#/components/examples/EventsExample-PastMatch"
+      },
+      "EventsExample-PastProp": {
+       "$ref": "#/components/examples/EventsExample-PastProp"
+      }
+     }
+    }
+   }
+  },
+  "400": {
+   "description": "Invalid params",
+   "content": {
+    "application/json": {
+     "schema": {
+      "type": "object",
+      "properties": {
+       "error": {
+        "type": "string",
+        "example": "An error message"
+       },
+       "success": {
+        "type": "boolean",
+        "example": false
+       }
+      },
+      "xml": {
+       "name": "main"
+      }
+     }
+    },
+    "application/xml": {
+     "schema": {
+      "type": "object",
+      "properties": {
+       "error": {
+        "type": "string",
+        "example": "An error message"
+       },
+       "success": {
+        "type": "boolean",
+        "example": false
+       }
+      },
+      "xml": {
+       "name": "main"
+      }
+     }
+    }
+   }
+  },
+  "401": {
+   "description": "Invalid API key",
+   "content": {
+    "application/json": {
+     "schema": {
+      "type": "object",
+      "properties": {
+       "error": {
+        "type": "string",
+        "example": "An error message"
+       },
+       "success": {
+        "type": "boolean",
+        "example": false
+       }
+      }
+     }
+    }
+   }
+  },
+  "403": {
+   "description": "Inactive API key",
+   "content": {
+    "application/json": {
+     "schema": {
+      "type": "object",
+      "properties": {
+       "error": {
+        "type": "string",
+        "example": "An error message"
+       },
+       "success": {
+        "type": "boolean",
+        "example": false
+       }
+      }
+     }
+    }
+   }
+  },
+  "429": {
+   "description": "Rate limit exceeded",
+   "content": {
+    "application/json": {
+     "schema": {
+      "type": "object",
+      "properties": {
+       "error": {
+        "type": "string",
+        "example": "An error message"
+       },
+       "success": {
+        "type": "boolean",
+        "example": false
+       }
+      }
+     }
+    }
+   }
+  },
+  "500": {
+   "description": "Query failed",
+   "content": {
+    "application/json": {
+     "schema": {
+      "type": "object",
+      "properties": {
+       "error": {
+        "type": "string",
+        "example": "An error message"
+       },
+       "success": {
+        "type": "boolean",
+        "example": false
+       }
+      },
+      "xml": {
+       "name": "main"
+      }
+     }
+    },
+    "application/xml": {
+     "schema": {
+      "type": "object",
+      "properties": {
+       "error": {
+        "type": "string",
+        "example": "An error message"
+       },
+       "success": {
+        "type": "boolean",
+        "example": false
+       }
+      },
+      "xml": {
+       "name": "main"
+      }
+     }
+    }
+   }
+  }
+ },
+ "security": [
+  {
+   "ApiKeyParam": []
+  },
+  {
+   "ApiKeyHeader": []
+  }
+ ]
+}
