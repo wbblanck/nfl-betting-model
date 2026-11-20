@@ -154,7 +154,8 @@ def shop_quotes(week: int, parlay_path: str | None) -> tuple[dict, dict]:
 
 
 def scan(shop: dict | None = None, state: dict | None = None, t_pin: str | None = None,
-         novig: tuple[dict, list, str] | None = None, opens: dict | None = None) -> tuple[pl.DataFrame, str, str]:
+         novig: tuple[dict, list, str] | None = None, opens: dict | None = None,
+         keep_all: bool = False) -> tuple[pl.DataFrame, str, str]:
     """Every exact-matched side priced against Pinnacle. Default: Pinnacle from the harvest files, move from the tidy
     history. The live tracker (scripts/outliers_live.py) passes `state` (one fetched board, events by id), `novig` and
     `opens` (side id -> Pinnacle proportional fair when first seen), which then sets the move."""
@@ -185,8 +186,10 @@ def scan(shop: dict | None = None, state: dict | None = None, t_pin: str | None 
         cands = ([("Novig", c, depth)] if c is not None else []) + list(extra)
         elig = [x for x in cands if x[1] is not None and (x[2] is None or x[2] >= MIN_DEPTH)]
         if not elig:
-            return
-        venue, c, depth = min(elig, key=lambda x: x[1])
+            if not keep_all:
+                return
+            elig = [(None, float("nan"), None)]       # keep_all: Pinnacle quote only (the live tracker's close)
+        venue, c, depth = min(elig, key=lambda x: x[1]) if elig[0][0] is not None else elig[0]
         others = sorted([x[1] for x in elig if x[0] != venue] + [1 / pin_this])   # Pinnacle counts as a venue
         gap = (1 / c) / (1 / others[0]) - 1 if others and others[0] >= c else 0.0   # bestbook.app's "% better than next"
         pm, pp = devig_mult(pin_this, pin_other), devig_power(pin_this, pin_other)

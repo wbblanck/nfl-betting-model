@@ -70,7 +70,9 @@ def load(live: Path | None = None) -> dict:
             "engine_interim": _json(live / "engine_forecasts" / "interim.json"),
             "engine_paper": _json(live / "engine_paper" / "summary.json"),
             "engine_fills": engine_fills(live / "engine_paper"),
-            "engine_preview": engine_preview(live / "engine_paper")}
+            "engine_preview": engine_preview(live / "engine_paper"),
+            "out_cur": _read(live / "outliers" / "current.csv"), "out_rec": _read(live / "outliers" / f"records_{SEASON}.csv"),
+            "out_sum": _json(live / "outliers" / "summary.json")}
 
 
 def _json(path: Path) -> dict | None:
@@ -1747,6 +1749,74 @@ def _ll(x) -> str:
     return "–" if x is None else f"{x:.4f}"
 
 
+def _am(p: float) -> str:
+    """Implied probability (cost per $1 of payout) as an American price."""
+    return f"{-100 * p / (1 - p):+.0f}" if p >= 0.5 else f"+{100 * (1 - p) / p:.0f}"
+
+
+def outliers_section(data: dict, now: dt.datetime) -> str:
+    """Outliers tab (docs/outliers_live_rules.md): sides at the newest poll whose best price beats the next best by 5%+
+    with a 3%+ edge against Pinnacle no-vig, and the running closing-line value of the recorded rows. Unvalidated."""
+    out = ('<section class="block"><div class="sechead"><div><p class="eyebrow">Record only · unvalidated · not advice</p>'
+           '<h2>Outliers right now</h2></div></div>'
+           '<p class="lede">Sides whose best price (DraftKings, FanDuel, Novig, Kalshi or Polymarket US) is at least 5% better '
+           'than the next best, Pinnacle included, and at least 3% better than Pinnacle\'s no-vig price under both de-vig '
+           'methods. Pinnacle is polled hourly, and every 15 minutes within 3 hours of a kickoff. Each side is recorded the '
+           'first time it qualifies and graded on closing-line value against Pinnacle\'s last quote before kickoff.</p>')
+    cur = data.get("out_cur")
+    if cur is None or not cur.height:
+        out += '<p class="empty">No poll yet.</p>'
+    elif "side_id" not in cur.columns:
+        out += f'<p class="empty">Nothing qualifies at the newest poll ({esc(cur["poll_utc"][0])} UTC).</p>'
+    else:
+        f = cur.with_columns([pl.col(c).cast(pl.Float64, strict=False) for c in
+                              ("gap_next", "best_cost", "best_depth", "edge_power", "edge_mult", "fair_power", "move_pp")])
+        f = f.sort("edge_power", descending=True)
+        rows = []
+        for r in f.to_dicts():
+            c, g = r["best_cost"], r["gap_next"]
+            nxt = _am(min(c * (1 + g), 0.999)) if c is not None and g is not None else "–"
+            dep = "–" if r["best_depth"] is None else f'${r["best_depth"]:,.0f}'
+            mv = "–" if r["move_pp"] is None else f'{r["move_pp"]:+.1f}'
+            rows.append([esc(r["game"]), esc(r["kind"]), esc(r["side"]), esc(r["venue"]), esc(_am(c)), esc(nxt),
+                         fmt_pct(g, 1), esc(_am(r["fair_power"])), fmt_pct(r["edge_power"], 1), fmt_pct(r["edge_mult"], 1),
+                         dep, mv, esc(str(r["starts"]).replace("T", " ").replace(":00Z", " UTC"))])
+        out += (f'<p class="note">Poll at {esc(cur["poll_utc"][0])} UTC · {f.height} sides. Book prices come from the newest '
+                'DraftKings/FanDuel snapshot and count only when it is under 60 minutes old. Move = Pinnacle no-vig change '
+                'in points since the side was first seen.</p>'
+                + table(["Game", "Market", "Side", "Best at", "Price", "Next best", "Gap", "Pinnacle fair", "Edge (power)",
+                         "Edge (prop.)", "Depth", "Move", "Kickoff"], rows))
+    out += '</section>'
+    out += ('<section class="block"><div class="sechead"><div><p class="eyebrow">Descriptive until week 18</p>'
+            '<h2>Closing-line value of recorded outliers</h2></div></div>'
+            '<p class="lede">CLV = Pinnacle\'s closing no-vig chance (power method) divided by the recorded price, minus 1. '
+            'A row has no close when this job has no Pinnacle quote within 30 minutes of kickoff or the line moved. '
+            'The one look after week 18 passes only with 30+ graded rows from 5+ weeks and a week-clustered 95% interval above zero.</p>')
+    s = data.get("out_sum")
+    if not s or not s.get("recorded"):
+        return out + '<p class="empty">Nothing recorded yet.</p></section>'
+    ci = s.get("ci")
+    out += (f'<p class="note">{s["recorded"]:,} recorded · {s["graded"]:,} graded · {s["no_close"]:,} no close · '
+            f'{s["open"]:,} waiting for kickoff.</p>')
+    if s.get("graded"):
+        out += table(["Graded", "Mean CLV", "Share above zero", "Interval (by week)"],
+                     [[f'{s["graded"]:,}', fmt_pct(s["mean_clv"], 1, sign=True), fmt_pct(s["share_pos"]),
+                       esc(f"{ci[0]:+.1%} to {ci[1]:+.1%}") if ci else "from two weeks on"]])
+        out += table(["Week", "Graded", "Mean CLV", "Share above zero"],
+                     [[esc(w), f'{r["n"]:,}', fmt_pct(r["mean_clv"], 1, sign=True), fmt_pct(r["share_pos"])]
+                      for w, r in s.get("by_week", {}).items()])
+    rec = data.get("out_rec")
+    if rec is not None and rec.height:
+        last = rec.sort("first_utc", descending=True).head(40)
+        rows = [[esc(r["first_utc"]), esc(r["game"]), esc(r["side"]), esc(r["venue"]),
+                 esc(_am(float(r["best_cost"]))) if r["best_cost"] else "–",
+                 fmt_pct(float(r["edge_power"]), 1) if r["edge_power"] else "–", esc(r["status"]),
+                 fmt_pct(float(r["clv_power"]), 1, sign=True) if r.get("clv_power") else "–"] for r in last.to_dicts()]
+        out += ('<p class="note">Latest recorded rows (up to 40).</p>'
+                + table(["Recorded (UTC)", "Game", "Side", "Venue", "Price", "Edge", "Status", "CLV"], rows))
+    return out + '</section>'
+
+
 def engine_section(data: dict) -> str:
     """Engine tab: Test M interim log loss (descriptive) and the paper fills at Novig (docs/engine/paper_rules.md)."""
     head = ('<section class="block"><div class="sechead"><div><p class="eyebrow">Player-prop engine · unvalidated, interim</p>'
@@ -2016,8 +2086,10 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         '<nav class="tabs" role="tablist"><button type="button" role="tab" data-tab="s1" aria-selected="true">Player props (S1)</button>'
         '<button type="button" role="tab" data-tab="ats" aria-selected="false">Spreads (ATS)</button>'
         '<button type="button" role="tab" data-tab="mix" aria-selected="false">Props mix</button>'
-        '<button type="button" role="tab" data-tab="engine" aria-selected="false">Engine</button></nav>'
+        '<button type="button" role="tab" data-tab="engine" aria-selected="false">Engine</button>'
+        '<button type="button" role="tab" data-tab="outliers" aria-selected="false">Outliers</button></nav>'
         f'<div class="tabpane" id="tab-engine" hidden>{engine_section(data)}</div>'
+        f'<div class="tabpane" id="tab-outliers" hidden>{outliers_section(data, now)}</div>'
         f'<div class="tabpane" id="tab-mix" hidden>{mix_section(data, now)}</div>'
         f'<div class="tabpane" id="tab-ats" hidden>{ats_section(data.get("ats_runs", pl.DataFrame()), data.get("ats_rec", pl.DataFrame()), now, data.get("ats_yv"))}</div>'
         f'<div class="tabpane" id="tab-s1">{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'
