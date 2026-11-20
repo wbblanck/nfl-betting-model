@@ -87,6 +87,10 @@ NFL spreads, totals or moneylines yet. Report each source's time. **A book price
 compared with is not a lag finding.** When Pinnacle moved after the book snapshot (check the tidy history), say the
 book row is stale and needs a fresh look before anyone acts on it.
 
+**Outlier filter (`--min-gap 0.05`).** Will's bestbook.app shows how much better the best price pays than the
+next-best (decimal payout ratio − 1). Will asked on 2026-11-20 for 5%+ better than the next best and 3%+ edge.
+Pinnacle counts as a venue for "next best". We read fewer venues than bestbook, so our gaps can run larger.
+
 ## 7. Caveats to state
 
 - Pinnacle props carry about 6.5-7% hold and max stakes of $250-2,000. A 3-5% gap is the size of that vig's

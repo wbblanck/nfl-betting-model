@@ -181,8 +181,10 @@ def scan(shop: dict | None = None) -> tuple[pl.DataFrame, str, str]:
         if not elig:
             return
         venue, c, depth = min(elig, key=lambda x: x[1])
+        others = sorted([x[1] for x in elig if x[0] != venue] + [1 / pin_this])   # Pinnacle counts as a venue
+        gap = (1 / c) / (1 / others[0]) - 1 if others and others[0] >= c else 0.0   # bestbook.app's "% better than next"
         pm, pp = devig_mult(pin_this, pin_other), devig_power(pin_this, pin_other)
-        rows.append(dict(kind=kind, game=game, side=bet, venue=venue,
+        rows.append(dict(kind=kind, game=game, side=bet, venue=venue, gap_next=gap,
                          venues="; ".join(f"{v} {american(x)}" + ("" if d is None else f" (${d:,.0f})") for v, x, d in sorted(cands, key=lambda y: y[1])),
                          pin_price=pin_this, pin_other=pin_other,
                          pin_hold=1 / pin_this + 1 / pin_other - 1, fair_mult=pm, fair_power=pp, best_cost=c,
@@ -284,6 +286,7 @@ def main() -> None:
     ap.add_argument("--min-edge", type=float, default=0.03)
     ap.add_argument("--min-depth", type=float, default=50.0)
     ap.add_argument("--move-pp", type=float, default=0.3)
+    ap.add_argument("--min-gap", type=float, default=0.0, help="best price at least this much better than the next best")
     ap.add_argument("--shop", action="store_true", help="best price across Novig, Kalshi, Polymarket US, DK/FD")
     ap.add_argument("--week", type=int, default=0, help="NFL week, for Polymarket US event lookup")
     ap.add_argument("--parlay", default=None, help="ParlayAPI snapshot (.json.gz) for DK/FanDuel prop prices")
@@ -298,7 +301,7 @@ def main() -> None:
     out = Path(a.out) / f"sharp_lag_{t_nv}.csv"
     df.write_csv(out)
     q = df.filter((pl.col("edge_mult") >= a.min_edge) & (pl.col("edge_power") >= a.min_edge)
-                  ).sort("edge_power", descending=True)
+                  & (pl.col("gap_next") >= a.min_gap)).sort("edge_power", descending=True)
     print(f"Pinnacle as of {t_pin}, Novig {t_nv}: {df.height} matched sides, {q.height} qualify -> {out}\n")
     print("| Market | Game | Side | Pinnacle | Pinn fair | Best venue | Best price | Edge | Depth | Pinnacle move | All venues |")
     print("|---|---|---|---|---|---|---|---|---|---|---|")
