@@ -46,7 +46,25 @@ removal row is written. Known-answer check: `tests/test_pinnradar_tidy.py`.
 
 ### Coverage
 
-COVERAGE_PLACEHOLDER
+Computed 2026-11-20 from `calls.jsonl` and the tidy tables (`python scripts/fetch/pinnradar_tidy.py`).
+
+- **Window:** 2026-11-19 17:52 UTC to 2026-11-20 03:00:54 UTC (last call). The job wrote `STOP` at 03:01:14 UTC
+  ("plan expires 2026-11-20T03:02:58Z"). No call was made after expiry.
+- **Calls:** 3,484, all status 200. That breaks down as 1,610 prematch board polls, 1,610 in-play board polls,
+  141 `/prematch/markets`, 112 drops and 11 `/health`. There were also 20 full prematch boards and 20 full in-play
+  boards. Raw files take 15 MB.
+- **Game lines** (`game_lines.csv.gz`): 8,604 price changes. These are 599 moneyline, 4,083 spread, 2,654 total,
+  644 home team-total and 624 away team-total changes. They cover 13 NFL games (2,574 rows), 61 NCAA games and 2 NCAA
+  FCS games. The NFL games are week 11, from Colts at Texans (Thursday) through Bengals at Commanders (Monday).
+- **Specials** (`specials.csv.gz`): 3,079 price changes, 3,075 of them NFL. There are 689 distinct NFL specials
+  under 15 parent events: 1,791 player-prop rows, 1,176 game-prop rows, 88 futures rows and 20 make-the-playoffs
+  rows.
+- **Thursday close (Colts at Texans, kickoff 01:15 UTC):** the last prematch change was recorded at 01:13:54 UTC.
+  At that point the near-even main lines were spread Texans -12.5 (1.943 / 1.952) and total 44 (over 1.952 /
+  under 1.934). The moneyline was 1.146 / 6.26. The game has 942 prematch special changes across 81 props, and in-play
+  prop rows after kickoff are tagged `board = live`.
+- **Not covered:** Sunday and Monday closes. The demo ended before those games, so those closes come only from the
+  free-tier jobs (props CLV, outliers tracker).
 
 ## After the demo: the free tier
 
