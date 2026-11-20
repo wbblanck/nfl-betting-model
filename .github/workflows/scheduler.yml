@@ -1,0 +1,27 @@
+name: Scheduler
+# On-time starts (scripts/scheduler.py): an outside cron service (cron-job.org) dispatches this every 5 minutes, and
+# it starts each workflow whose own schedule came due in the last 30 minutes and has not run since. GitHub's own
+# schedules stay as a backup. Starts workflows only; commits nothing.
+on:
+  workflow_dispatch:
+permissions:
+  actions: write
+  contents: read
+concurrency:
+  group: scheduler
+  cancel-in-progress: false
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install pyyaml==6.0.3
+      - run: python scripts/scheduler.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
