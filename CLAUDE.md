@@ -71,3 +71,10 @@ pick list.
   Fable) claim subtasks from the team's shared task list and settle contracts with each other directly.
 - Teammates must request a security review from the `adversary` teammate, and address or answer every finding,
   before opening a pull request for the lead session.
+
+## Session habits
+- Ask the advisor before committing to a big plan, when the same error shows up a second time, and before calling a
+  long task done.
+- Keep one task per session; when context passes ~150K tokens or the task changes, run /compact or start a new session.
+- Don't spawn a subagent for a single lookup or one page; use explorer/researcher (haiku) only for broad searches.
+- Read files with offset/limit or grep first, and pipe long test/build output through tail or grep for failures.
