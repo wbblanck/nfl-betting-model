@@ -1,0 +1,85 @@
+# One-off PinnRadar (Pinnacle) harvest while the paid REST plan lasts (Will, 2026-11-19; docs/pinnacle_radar_harvest.md).
+# Record only. Four chained jobs of ~5.6 h each (~23 h). The script stops on the plan's expiry, a 401/403 or any 429
+# and then writes data/pinnacle/radar/STOP, so later jobs make no calls and the free 100-a-day budget stays for the
+# props CLV job. Runs only on a push of this file or the script to a non-main branch.
+name: PinnRadar harvest
+on:
+  push:
+    branches-ignore: [main]
+    paths: ['scripts/fetch/pinnradar_harvest.py', '.github/workflows/pinnradar-harvest.yml']
+permissions:
+  contents: write
+concurrency:
+  group: pinnradar-harvest
+  cancel-in-progress: true
+jobs:
+  h1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          python scripts/fetch/pinnradar_harvest.py --hours 5.6
+        env:
+          PINN_API: ${{ secrets.PINN_API }}
+  h2:
+    needs: h1
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          python scripts/fetch/pinnradar_harvest.py --hours 5.6
+        env:
+          PINN_API: ${{ secrets.PINN_API }}
+  h3:
+    needs: h2
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          python scripts/fetch/pinnradar_harvest.py --hours 5.6
+        env:
+          PINN_API: ${{ secrets.PINN_API }}
+  h4:
+    needs: h3
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          python scripts/fetch/pinnradar_harvest.py --hours 5.6
+        env:
+          PINN_API: ${{ secrets.PINN_API }}

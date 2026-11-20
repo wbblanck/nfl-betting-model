@@ -10,7 +10,10 @@ tracker (docs/wind_live_rules.md) records 8-15 knot forecast-wind unders before 
 records the M1 mix's 55%+ sides on the dashboard, labeled unvalidated, graded weekly, judged on log loss after week 18.
 Fifth exception (Will, 2026-11-18): engine paper fills at Novig (docs/engine/paper_rules.md) record the frozen engines'
 sides with a 0.03 edge against the recorded books, weeks 11-18 of 2026, labeled unvalidated, paper only (no orders),
-graded weekly and shown on the dashboard's Engine tab. No other pick list.
+graded weekly and shown on the dashboard's Engine tab. Sixth exception (Will, 2026-11-20): the outliers tracker
+(docs/outliers_live_rules.md) records prop and game-line sides whose best price beats the next best by 5%+ with a 3%+ edge
+against Pinnacle no-vig, labeled unvalidated, graded on closing-line value, shown on the dashboard's Outliers tab. No other
+pick list.
 
 ## Standing rules
 - Never state a number that was not computed or looked up in the same session; recompute from committed files.

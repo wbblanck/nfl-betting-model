@@ -1,0 +1,44 @@
+name: Outliers live
+# Outliers tracker (docs/outliers_live_rules.md; CLAUDE.md sixth exception). Record only, unvalidated.
+# The script decides each poll itself: every 15 min while an NFL game kicks off within 3 h, else hourly 6 AM-2 AM ET,
+# at most 55 PinnRadar calls per UTC day (data/live/outliers/pinn_calls.csv). It makes no ParlayAPI requests.
+# GitHub skips many scheduled runs (2026-11-19: none fired for 11 hours), so each run keeps going for about
+# 5.5 hours, checking every 15 minutes. A start every 2 hours queues at most one follow-on run (no gap, no overlap).
+# No push trigger: every poll spends PINN_API quota, so this never runs from a branch push.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7 */2 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: outliers-live
+  cancel-in-progress: false
+jobs:
+  loop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e .
+      - name: Poll, grade and commit every 15 minutes
+        env:
+          PINN_API: ${{ secrets.PINN_API }}
+        run: |
+          git config user.name "nfl-betting-model"
+          git config user.email "nfl-betting-model@users.noreply.github.com"
+          for n in $(seq 1 22); do
+            git pull --rebase --quiet origin main || true
+            python scripts/outliers_live.py run || echo "run failed (continuing)"
+            python scripts/outliers_live.py grade || echo "grade failed (continuing)"
+            git add data/live/outliers || true
+            if git commit -q -m "outliers live: poll"; then
+              for i in 1 2 3 4; do git pull --rebase --quiet origin main && git push -q origin HEAD:main && break; sleep $((2**i)); done
+            fi
+            if [ "$n" -lt 22 ]; then sleep 900; fi
+          done
