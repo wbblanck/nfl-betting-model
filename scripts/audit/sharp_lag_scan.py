@@ -2,6 +2,8 @@
 Method and caveats: docs/sharp_lag_scan.md. Descriptive one-off snapshot, not a tested edge, not a tracked pick list.
 
   PYTHONPATH=src python scripts/audit/sharp_lag_scan.py [--out DIR] [--min-edge 0.03] [--min-depth 50]
+  PYTHONPATH=src python scripts/audit/sharp_lag_scan.py --shop --week 11 --parlay <ParlayAPI snapshot .json.gz>
+      line shopping: each matched side's best price across Novig, Kalshi, Polymarket US and DK/FanDuel (ParlayAPI)
 
 Reads data/pinnacle/radar/ (run scripts/fetch/pinnradar_tidy.py first for the move column). Fetches Novig's NFL
 catalog (keyless, read-only). Writes <out>/sharp_lag_<UTC stamp>.csv (every matched side) and prints the qualifying
@@ -21,7 +23,7 @@ from pathlib import Path
 import polars as pl
 
 from nflbet.sources import venues as V
-from nflbet.sources.ids import TEAM_FIX, TEAMS, norm_name
+from nflbet.sources.ids import TEAM_FIX, TEAMS, game_key, norm_name
 
 R = Path("data/pinnacle/radar")
 UNITS = {"Receptions": "RECEPTIONS", "Receiving Yards": "RECEIVING_YARDS", "Rushing Yards": "RUSHING_YARDS",
@@ -29,6 +31,7 @@ UNITS = {"Receptions": "RECEPTIONS", "Receiving Yards": "RECEIVING_YARDS", "Rush
          "Pass Completions": "PASSING_COMPLETIONS", "Touchdown Passes": "PASSING_TOUCHDOWNS",
          "Interceptions": "INTERCEPTIONS_THROWN", "Touchdowns": "TOUCHDOWNS"}   # Pinnacle units -> Novig marketType
 NV_SPREAD = re.compile(r"^([A-Z]{2,3}) ([+-]?\d+(?:\.\d+)?)$")
+MIN_DEPTH = 50.0                # $ of payout an exchange price needs behind it to count
 NV_PROP = re.compile(r"^(.+?) (\d+(?:\.\d+)?) ([A-Z_]+)$")
 
 
@@ -106,7 +109,51 @@ def first_fair(tidy: pl.DataFrame, **match) -> float | None:
     return devig_mult(f["price_a"], f["price_b"])
 
 
-def scan() -> tuple[pl.DataFrame, str, str]:
+S1_KEY = {"Receptions": "rec", "Receiving Yards": "rec_yds", "Rushing Yards": "rush_yds", "Rush Attempts": "rush_att",
+          "Passing Yards": "pass_yds", "Pass Attempts": "pass_att", "Pass Completions": "pass_cmp"}
+
+
+def shop_quotes(week: int, parlay_path: str | None) -> tuple[dict, dict]:
+    """(game, nkey, s1 market, line) -> {side: [(venue, cost, depth or None)]} for Kalshi, Polymarket US and DK/FD
+    (ParlayAPI file), and the source times. Costs are all-in per $1 of payout (book vig in the price, exchange fees added)."""
+    from nflbet.quant.odds import implied
+    from nflbet.sources import parlay as P
+    out: dict = collections.defaultdict(lambda: {"over": [], "under": []})
+    times = {}
+    now = dt.datetime.now(dt.timezone.utc)
+    try:
+        for k, q in V.ks_quotes(V.ks_markets()).items():
+            if q["mult"] is None:
+                continue
+            for side in ("over", "under"):
+                if q[side]:
+                    c, sz = q[side]
+                    out[k][side].append(("Kalshi", c + V.ks_fee(c, q["mult"]), sz))
+        times["Kalshi"] = f"{now:%Y%m%dT%H%M%SZ}"
+    except Exception as e:  # noqa: BLE001 - one venue failing leaves the others
+        print(f"Kalshi unavailable: {e!r}"[:200])
+    try:
+        for k, q in V.pm_quotes(V.pm_markets(week, now, verbose=False)).items():
+            for side in ("over", "under"):
+                c = q[side]
+                if 0 < c < 1:
+                    out[k][side].append(("Polymarket US", c + V.pm_fee(c, q["fee"]), None))
+        times["Polymarket US"] = f"{now:%Y%m%dT%H%M%SZ}"
+    except Exception as e:  # noqa: BLE001
+        print(f"Polymarket US unavailable: {e!r}"[:200])
+    if parlay_path:
+        rows = json.load(gzip.open(parlay_path))
+        pa = P.parse(rows)
+        for r in pa.iter_rows(named=True):
+            name = {"dk": "DraftKings", "fd": "FanDuel"}.get(r["book"], r["book"])
+            k = (r["game"], r["nkey"], r["market"], r["line"])
+            out[k]["over"].append((name, implied(r["over"]), None))
+            out[k]["under"].append((name, implied(r["under"]), None))
+        times["DK/FD (ParlayAPI)"] = re.search(r"(\d{8}T\d{4}Z)", parlay_path).group(1) if re.search(r"(\d{8}T\d{4}Z)", parlay_path) else parlay_path
+    return out, times
+
+
+def scan(shop: dict | None = None) -> tuple[pl.DataFrame, str, str]:
     state, t_pin = pinnacle_state()
     nev, nms, t_nv = novig_now()
     tg = pl.read_csv(R / "tidy" / "game_lines.csv.gz").filter(pl.col("board") == "prematch") \
@@ -127,14 +174,19 @@ def scan() -> tuple[pl.DataFrame, str, str]:
             nv_prop[(norm_name(d.group(1)), m["marketType"], float(m["strike"]))] = m
     rows = []
 
-    def add(kind, game, bet, pin_this, pin_other, m, i, p0):
-        c, depth = nv_cost(m, i)
-        if c is None:
+    def add(kind, game, bet, pin_this, pin_other, m, i, p0, extra=()):
+        c, depth = nv_cost(m, i) if m is not None else (None, 0.0)
+        cands = ([("Novig", c, depth)] if c is not None else []) + list(extra)
+        elig = [x for x in cands if x[1] is not None and (x[2] is None or x[2] >= MIN_DEPTH)]
+        if not elig:
             return
+        venue, c, depth = min(elig, key=lambda x: x[1])
         pm, pp = devig_mult(pin_this, pin_other), devig_power(pin_this, pin_other)
-        rows.append(dict(kind=kind, game=game, side=bet, pin_price=pin_this, pin_other=pin_other,
-                         pin_hold=1 / pin_this + 1 / pin_other - 1, fair_mult=pm, fair_power=pp, novig_cost=c,
-                         novig_depth=depth, edge_mult=pm / c - 1, edge_power=pp / c - 1,
+        rows.append(dict(kind=kind, game=game, side=bet, venue=venue,
+                         venues="; ".join(f"{v} {american(x)}" + ("" if d is None else f" (${d:,.0f})") for v, x, d in sorted(cands, key=lambda y: y[1])),
+                         pin_price=pin_this, pin_other=pin_other,
+                         pin_hold=1 / pin_this + 1 / pin_other - 1, fair_mult=pm, fair_power=pp, best_cost=c,
+                         best_depth=depth if depth is not None else float("nan"), edge_mult=pm / c - 1, edge_power=pp / c - 1,
                          move_pp=None if p0 is None else (pm - p0) * 100))
 
     for eid, g in state.items():
@@ -197,7 +249,12 @@ def scan() -> tuple[pl.DataFrame, str, str]:
                 continue
             k = float(pr["Over"]["points"])
             m = nv_prop.get((norm_name(player), u, k))
-            if not m:
+            ext = {"over": [], "under": []}
+            if shop is not None and S1_KEY.get(e.get("special_units")):
+                H, A = TEAMS.get(e.get("home")), TEAMS.get(e.get("away"))
+                if H and A:
+                    ext = shop.get((game_key(H, A), norm_name(player), S1_KEY[e["special_units"]], k), ext)
+            if not m and not (ext["over"] or ext["under"]):
                 continue
             p0 = None
             if ts.height:
@@ -206,11 +263,14 @@ def scan() -> tuple[pl.DataFrame, str, str]:
                     f = {r["outcome"]: float(r["price"]) for r in hist.filter(pl.col("t") == hist["t"][0]).iter_rows(named=True)}
                     if {"Over", "Under"} <= set(f):
                         p0 = devig_mult(f["Over"], f["Under"])
-            for i, o in enumerate(m["outcomes"]):
-                ov = o["name"].startswith("Over")
-                add(f"Prop {e['special_units']}", f"{e['away']} @ {e['home']}", f"{player} {o['name']}",
-                    pr["Over" if ov else "Under"]["price"], pr["Under" if ov else "Over"]["price"], m, i,
-                    None if p0 is None else (p0 if ov else 1 - p0))
+            for ov in (True, False):
+                i = None
+                if m:
+                    i = next((j for j, o in enumerate(m["outcomes"]) if o["name"].startswith("Over") == ov), None)
+                add(f"Prop {e['special_units']}", f"{e['away']} @ {e['home']}", f"{player} {'Over' if ov else 'Under'} {k:g}",
+                    pr["Over" if ov else "Under"]["price"], pr["Under" if ov else "Over"]["price"],
+                    m if i is not None else None, i if i is not None else 0,
+                    None if p0 is None else (p0 if ov else 1 - p0), ext["over" if ov else "under"])
     return pl.DataFrame(rows, infer_schema_length=None), t_pin, t_nv
 
 
@@ -224,22 +284,32 @@ def main() -> None:
     ap.add_argument("--min-edge", type=float, default=0.03)
     ap.add_argument("--min-depth", type=float, default=50.0)
     ap.add_argument("--move-pp", type=float, default=0.3)
+    ap.add_argument("--shop", action="store_true", help="best price across Novig, Kalshi, Polymarket US, DK/FD")
+    ap.add_argument("--week", type=int, default=0, help="NFL week, for Polymarket US event lookup")
+    ap.add_argument("--parlay", default=None, help="ParlayAPI snapshot (.json.gz) for DK/FanDuel prop prices")
     a = ap.parse_args()
-    df, t_pin, t_nv = scan()
+    global MIN_DEPTH
+    MIN_DEPTH = a.min_depth
+    shop, times = shop_quotes(a.week, a.parlay) if a.shop else (None, {})
+    df, t_pin, t_nv = scan(shop)
+    for v, t in times.items():
+        print(f"{v} as of {t}")
     Path(a.out).mkdir(parents=True, exist_ok=True)
     out = Path(a.out) / f"sharp_lag_{t_nv}.csv"
     df.write_csv(out)
     q = df.filter((pl.col("edge_mult") >= a.min_edge) & (pl.col("edge_power") >= a.min_edge)
-                  & (pl.col("novig_depth") >= a.min_depth)).sort("edge_power", descending=True)
+                  ).sort("edge_power", descending=True)
     print(f"Pinnacle as of {t_pin}, Novig {t_nv}: {df.height} matched sides, {q.height} qualify -> {out}\n")
-    print("| Market | Game | Side | Pinnacle | Pinn fair | Novig | Edge | Novig depth | Pinnacle move |")
-    print("|---|---|---|---|---|---|---|---|---|")
+    print("| Market | Game | Side | Pinnacle | Pinn fair | Best venue | Best price | Edge | Depth | Pinnacle move | All venues |")
+    print("|---|---|---|---|---|---|---|---|---|---|---|")
     for r in q.iter_rows(named=True):
         mvp = r["move_pp"]
         d = "n/a" if mvp is None else "toward" if mvp >= a.move_pp else "away" if mvp <= -a.move_pp else "flat"
+        dep = "n/a" if r["best_depth"] != r["best_depth"] else f"${r['best_depth']:,.0f}"
+        mv = "" if mvp is None else f" ({mvp:+.2f}pp)"
         print(f"| {r['kind']} | {r['game']} | {r['side']} | {american(1 / r['pin_price'])} | {r['fair_power'] * 100:.1f}% | "
-              f"{american(r['novig_cost'])} | {min(r['edge_mult'], r['edge_power']) * 100:.1f}% | ${r['novig_depth']:,.0f} | "
-              f"{d}{'' if mvp is None else f' ({mvp:+.2f}pp)'} |")
+              f"{r['venue']} | {american(r['best_cost'])} | {min(r['edge_mult'], r['edge_power']) * 100:.1f}% | {dep} | "
+              f"{d}{mv} | {r['venues']} |")
 
 
 if __name__ == "__main__":

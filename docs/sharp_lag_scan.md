@@ -70,6 +70,23 @@ Run `PYTHONPATH=src python scripts/audit/sharp_lag_scan.py --out <scratch dir>`.
 - The method in one line: matched sides count, times of both snapshots.
 - The caveats in section 7 that apply. Attach the full CSV.
 
+## 6b. Line shopping (`--shop`)
+
+`--shop --week <NFL week> --parlay <ParlayAPI snapshot>` prices each Pinnacle player prop at every venue the repo
+reads, at the exact line, and takes the cheapest eligible price:
+- **Novig:** as above.
+- **Kalshi:** ask + fee M x 0.07 x p(1-p), with the ask's size (`venues.ks_quotes`). "N+" is the over at N − 0.5.
+- **Polymarket US:** quoted price + 0.0695 x p(1-p) (`venues.pm_quotes`). There is no size without a book call, so
+  it stays eligible unsized, as in `props/bestprice.py`.
+- **DraftKings / FanDuel:** implied probability of the American price, vig included, from the newest
+  `data/live/parlay/*.json.gz` on main. ParlayAPI costs quota (1,000 requests a month), so never fetch it just for
+  this scan.
+
+Exchange prices need $50+ behind them. Game lines are priced at Novig only: no other venue the repo reads carries
+NFL spreads, totals or moneylines yet. Report each source's time. **A book price older than the Pinnacle quote it is
+compared with is not a lag finding.** When Pinnacle moved after the book snapshot (check the tidy history), say the
+book row is stale and needs a fresh look before anyone acts on it.
+
 ## 7. Caveats to state
 
 - Pinnacle props carry about 6.5-7% hold and max stakes of $250-2,000. A 3-5% gap is the size of that vig's
