@@ -1,0 +1,33 @@
+{
+ "run_utc": "2026-11-20T01:18:08.647606+00:00",
+ "catalog_fetched_utc": "2026-11-20T01:18:09.704070+00:00",
+ "finished_utc": "2026-11-20T01:18:10.091657+00:00",
+ "events": 21,
+ "markets": 6896,
+ "markets_by_type": {
+  "RECEIVING_YARDS": 1765,
+  "RUSHING_YARDS": 886,
+  "RECEPTIONS": 850,
+  "TOUCHDOWNS": 542,
+  "TOTAL": 471,
+  "SPREAD": 449,
+  "PASSING_YARDS": 435,
+  "FIRST_TOUCHDOWN_SCORER": 362,
+  "LONGEST_RECEPTION": 250,
+  "RUSHING_AND_RECEIVING_YARDS": 186,
+  "PASSING_AND_RUSHING_YARDS": 175,
+  "PASSING_TOUCHDOWNS": 111,
+  "LONGEST_RUSH": 97,
+  "RUSHING_ATTEMPTS": 66,
+  "PASSING_ATTEMPTS": 63,
+  "TEAM_TOTAL": 55,
+  "PASSING_COMPLETIONS": 49,
+  "LONGEST_COMPLETION": 38,
+  "INTERCEPTIONS_THROWN": 28,
+  "MONEY": 18
+ },
+ "book_hours": 6.0,
+ "books_wanted": 0,
+ "books_saved": 0,
+ "book_errors": {}
+}
