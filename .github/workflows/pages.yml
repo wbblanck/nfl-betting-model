@@ -31,7 +31,7 @@ jobs:
     timeout-minutes: 50
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy1.outputs.page_url || steps.deploy2.outputs.page_url }}
     steps:
       - name: Wait 30 minutes after the previous build
         if: matrix.i != 0
@@ -49,7 +49,17 @@ jobs:
         with:
           path: site
           name: github-pages-${{ matrix.i }}
-      - id: deploy
+      - id: deploy1
+        # A deploy right after the upload can fail with "No artifacts named ... were found" (seen 2026-11-19, build 0);
+        # wait and try once more.
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ matrix.i }}
+      - if: steps.deploy1.outcome == 'failure'
+        run: sleep 30
+      - id: deploy2
+        if: steps.deploy1.outcome == 'failure'
         uses: actions/deploy-pages@v4
         with:
           artifact_name: github-pages-${{ matrix.i }}
