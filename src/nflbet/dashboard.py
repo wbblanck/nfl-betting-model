@@ -18,6 +18,7 @@ from zoneinfo import ZoneInfo
 import polars as pl
 
 from nflbet import config
+from nflbet.ui import cards as Cd
 from nflbet.ui import fx as Fx
 from nflbet.ui import trends as Tr
 from nflbet.quant.odds import implied as break_even
@@ -1743,14 +1744,19 @@ def preview_section(pv: tuple[pl.DataFrame, dict | None] | None) -> str:
     df, run = pv if pv else (pl.DataFrame(), None)
     if not df.height:
         when = f' Last run {esc(fmt_dt(run["run_utc"].replace("+00:00", "Z")))} ET.' if run else ""
-        return head + f'<p class="empty">No engine sides yet this week.{when}</p></section>'
+        return head + f'<p class="waiting">No engine sides yet this week.{when}</p></section>'
     df = df.with_columns(pl.col("edge").cast(pl.Float64))
     wk = int(df["week"].cast(pl.Int64).max())
     out = head + (f'<p class="note">Week {wk}. Last run {esc(fmt_dt(run["run_utc"].replace("+00:00", "Z")))} ET.</p>' if run else "")
+    out += Cd.engine_overview(df, ENGINE_NAMES, MARKET)
+    both = Cd.both_keys(df)
     for e in sorted(df["engine"].unique().to_list()):
         d = df.filter(pl.col("engine") == e).sort(["kickoff_et", "edge"], descending=[False, True])
-        rows = [[esc(r["kickoff_et"]), esc(r["player"]), esc(r["market"]), esc(r["line"]), esc(r["side"]), esc(r["p"]),
-                 esc(r["all_in"]), esc(f'{r["edge"]:.3f}'), esc(fmt_dt(r["book_fetched_utc"]))] for r in d.head(120).to_dicts()]
+        rows = [[esc(r["kickoff_et"]), esc(r["player"]), esc(MARKET.get(r["market"], r["market"])), esc(r["line"]),
+                 esc(r["side"]) + ('<span class="bothchip" title="The other engine has this side too">both</span>'
+                                   if (r[Cd.side_key_col(df)], r["market"], r["line"], r["side"]) in both else ""),
+                 Cd.bar_cell(float(r["p"]), 0, 1, r["p"]), esc(r["all_in"]),
+                 Cd.bar_cell(r["edge"], 0, 0.15, f'{r["edge"]:.3f}'), esc(fmt_dt(r["book_fetched_utc"]))] for r in d.head(120).to_dicts()]
         out += (f'<h3>{esc(ENGINE_NAMES.get(e, e))}: {d.height:,} sides' + (" (first 120 by kickoff, then edge)" if d.height > 120 else "") + '</h3>'
                 + table(["Kickoff (ET)", "Player", "Market", "Line", "Side", "Chance", "All-in", "Edge", "Book (ET)"], rows))
     return out + '</section>'
@@ -1776,7 +1782,7 @@ def outliers_section(data: dict, now: dt.datetime) -> str:
            'first time it qualifies and graded on closing-line value against Pinnacle\'s last quote before kickoff.</p>')
     cur = data.get("out_cur")
     if cur is None or not cur.height:
-        out += '<p class="empty">No poll yet.</p>'
+        out += '<p class="waiting">No poll yet.</p>'
     elif "side_id" not in cur.columns:
         out += f'<p class="empty">Nothing qualifies at the newest poll ({esc(cur["poll_utc"][0])} UTC).</p>'
     else:
@@ -1795,8 +1801,10 @@ def outliers_section(data: dict, now: dt.datetime) -> str:
         out += (f'<p class="note">Poll at {esc(cur["poll_utc"][0])} UTC · {f.height} sides. Book prices come from the newest '
                 'DraftKings/FanDuel snapshot and count only when it is under 60 minutes old. Move = Pinnacle no-vig change '
                 'in points since the side was first seen.</p>'
+                + Cd.outliers_overview(f, fmt_dt)
+                + '<details class="tview"><summary>Table view (sortable, searchable)</summary>'
                 + table(["Game", "Market", "Side", "Best at", "Price", "Next best", "Gap", "Pinnacle fair", "Edge (power)",
-                         "Edge (prop.)", "Depth", "Move", "Kickoff"], rows))
+                         "Edge (prop.)", "Depth", "Move", "Kickoff"], rows) + '</details>')
     out += '</section>'
     out += ('<section class="block"><div class="sechead"><div><p class="eyebrow">Descriptive until week 18</p>'
             '<h2>Closing-line value of recorded outliers</h2></div></div>'
@@ -1805,10 +1813,11 @@ def outliers_section(data: dict, now: dt.datetime) -> str:
             'The one look after week 18 passes only with 30+ graded rows from 5+ weeks and a week-clustered 95% interval above zero.</p>')
     s = data.get("out_sum")
     if not s or not s.get("recorded"):
-        return out + '<p class="empty">Nothing recorded yet.</p></section>'
+        return out + '<p class="waiting">Nothing recorded yet.</p></section>'
     ci = s.get("ci")
     out += (f'<p class="note">{s["recorded"]:,} recorded · {s["graded"]:,} graded · {s["no_close"]:,} no close · '
             f'{s["open"]:,} waiting for kickoff.</p>')
+    out += Cd.clv_status(s)
     if s.get("graded"):
         out += table(["Graded", "Mean CLV", "Share above zero", "Interval (by week)"],
                      [[f'{s["graded"]:,}', fmt_pct(s["mean_clv"], 1, sign=True), fmt_pct(s["share_pos"]),
@@ -1837,7 +1846,7 @@ def engine_section(data: dict) -> str:
             'descriptive numbers; the pass or fail is decided once, after week 18, on all eight weeks.</p>')
     tm = data.get("engine_interim")
     if not tm:
-        body = '<p class="empty">No sample week graded yet. Week 11 is graded the Wednesday after its games.</p>'
+        body = '<p class="waiting">No sample week graded yet. Week 11 is graded the Wednesday after its games.</p>'
     else:
         wk = tm.get("weeks_in", [])
         span = f"week {wk[0]}" if len(wk) == 1 else f"weeks {wk[0]}-{wk[-1]}"
@@ -1862,7 +1871,7 @@ def engine_section(data: dict) -> str:
             'who did not play is void. Each engine is scored on its own.</p>')
     ps = data.get("engine_paper")
     if not ps or not any(r["fills"] for r in ps["engines"].values()):
-        return out + '<p class="empty">No paper fills yet. The first are recorded for week 11.</p></section>'
+        return out + '<p class="waiting">No paper fills yet. The first are recorded for week 11.</p></section>'
     rows = []
     for e, r in ps["engines"].items():
         roi = "–" if r["roi"] is None else fmt_pct(r["roi"], 1, sign=True)
@@ -2088,7 +2097,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         '<title>S1 Live Tracker</title>'
         '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">'
-        f'<style>{CSS}{Tr.TABLE_CSS}{Tr.CSS}{Fx.css()}</style>'
+        f'<style>{CSS}{Tr.TABLE_CSS}{Tr.CSS}{Fx.css()}{Cd.CSS}</style>'
         '<div class="wrap">'
         f'<header class="top"><div><h1>S1 Live Tracker</h1><p class="sub">2026 NFL player props · rule S1, all four signals agree</p></div>'
         f'<div class="stamp">{esc(stamp)} <button type="button" class="themebtn" id="themebtn" aria-label="Switch between dark and light theme">Theme</button></div></header>'
@@ -2108,7 +2117,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         f'<div class="tabpane" id="tab-s1">{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'
         + ('<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Earlier weeks</h2></div></div><div class="games">' + "".join(old) + "</div></section>" if old else "")
         + '</div>'
-        + f'{foot}</div><script>{JS}{MIX_JS}{Tr.TABLE_JS}{Tr.JS}{Fx.JS}</script>')
+        + f'{foot}</div><script>{JS}{MIX_JS}{Tr.TABLE_JS}{Tr.JS}{Fx.JS}{Cd.JS}</script>')
 
 
 def write(now: dt.datetime | None = None, out: Path | None = None) -> Path:
