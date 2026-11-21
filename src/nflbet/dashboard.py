@@ -18,6 +18,7 @@ from zoneinfo import ZoneInfo
 import polars as pl
 
 from nflbet import config
+from nflbet.ui import trends as Tr
 from nflbet.quant.odds import implied as break_even
 from nflbet.sources.ids import TEAM_FIX
 from nflbet.props import bestprice as Bp
@@ -937,7 +938,7 @@ def chart_weeks(d: pl.DataFrame) -> str:
 
 
 def table(head: list[str], rows: list[list[str]], cls: str = "") -> str:
-    th = "".join(f"<th>{h}</th>" for h in head)
+    th = "".join(f'<th scope="col">{h}</th>' for h in head)
     tr = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows)
     return f'<div class="tablewrap"><table class="{cls}"><thead><tr>{th}</tr></thead><tbody>{tr}</tbody></table></div>'
 
@@ -977,21 +978,23 @@ CSS = """
 /* Layout: a scoreboard band (season record) up top, then the current week game by game for each record, then the
    charts, then the evidence tables. Labels in Barlow Condensed (stadium-board lettering), body in Barlow, every
    number in IBM Plex Mono. One accent (field-goal-net blue); win / loss are status colors with icons. */
-:root{
-  --bg:#edf0f3;--surface:#fbfcfd;--raised:#ffffff;--ink:#111b25;--ink2:#46535f;--muted:#6c7884;--line:#d9dfe5;--grid:#e4e8ec;
-  --accent:#2a78d6;--accent-soft:#dde9f8;--neg:#e34948;--good:#0b6b0b;--good-bg:#dcf1d9;--bad:#b42b2b;--bad-bg:#f9e0df;
-  --warn-bg:#fcebbd;--warn-ink:#4d3500;--idle-bg:#e7ebef;--board:#122030;--board-ink:#f2f6fa;--board-muted:#9fb0c1;
-  --shadow:0 1px 2px rgba(17,27,37,.06);
+:root{                                   /* dark by default (Will's pick for the redesign); light follows the OS or the toggle */
+  --bg:#0d1217;--surface:#151c23;--raised:#1a222b;--ink:#e8edf2;--ink2:#b2bdc8;--muted:#8d99a5;--line:#2b3641;--grid:#212a33;
+  --accent:#3987e5;--accent-soft:#1b3452;--neg:#e66767;--good:#5fd35f;--good-bg:#16331a;--bad:#ff8c8c;--bad-bg:#3c1d1d;
+  --warn-bg:#47380f;--warn-ink:#ffdf91;--idle-bg:#212a33;--board:#0a1622;--board-ink:#f2f6fa;--board-muted:#8fa2b6;--shadow:none;
+  --accent-btn:#2563b8;--c1:#5aa2f0;--c2:#f0a04b;--c3:#4cc3a1;--c4:#c58af0;--c5:#ee6b8b;color-scheme:dark;
   --display:'Barlow Condensed','Arial Narrow',sans-serif;--body:'Barlow',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0d1217;--surface:#151c23;--raised:#1a222b;--ink:#e8edf2;--ink2:#b2bdc8;--muted:#86929e;--line:#26303a;--grid:#212a33;
-  --accent:#3987e5;--accent-soft:#1b3452;--neg:#e66767;--good:#5fd35f;--good-bg:#16331a;--bad:#ff8c8c;--bad-bg:#3c1d1d;
-  --warn-bg:#47380f;--warn-ink:#ffdf91;--idle-bg:#212a33;--board:#0a1622;--board-ink:#f2f6fa;--board-muted:#8fa2b6;--shadow:none;color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0d1217;--surface:#151c23;--raised:#1a222b;--ink:#e8edf2;--ink2:#b2bdc8;--muted:#86929e;--line:#26303a;--grid:#212a33;
-  --accent:#3987e5;--accent-soft:#1b3452;--neg:#e66767;--good:#5fd35f;--good-bg:#16331a;--bad:#ff8c8c;--bad-bg:#3c1d1d;
-  --warn-bg:#47380f;--warn-ink:#ffdf91;--idle-bg:#212a33;--board:#0a1622;--board-ink:#f2f6fa;--board-muted:#8fa2b6;--shadow:none;color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#edf0f3;--surface:#fbfcfd;--raised:#ffffff;--ink:#111b25;--ink2:#46535f;--muted:#5d6975;--line:#d0d7de;--grid:#e4e8ec;
+  --accent:#1f6fd0;--accent-soft:#dde9f8;--neg:#c93a39;--good:#0b6b0b;--good-bg:#dcf1d9;--bad:#b42b2b;--bad-bg:#f9e0df;
+  --warn-bg:#fcebbd;--warn-ink:#4d3500;--idle-bg:#e7ebef;--board:#122030;--board-ink:#f2f6fa;--board-muted:#9fb0c1;--shadow:0 1px 2px rgba(17,27,37,.06);
+  --accent-btn:#1f6fd0;--c1:#1f6fd0;--c2:#a85c00;--c3:#0b7a5e;--c4:#7a3fb8;--c5:#c42a55;color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#edf0f3;--surface:#fbfcfd;--raised:#ffffff;--ink:#111b25;--ink2:#46535f;--muted:#5d6975;--line:#d0d7de;--grid:#e4e8ec;
+  --accent:#1f6fd0;--accent-soft:#dde9f8;--neg:#c93a39;--good:#0b6b0b;--good-bg:#dcf1d9;--bad:#b42b2b;--bad-bg:#f9e0df;
+  --warn-bg:#fcebbd;--warn-ink:#4d3500;--idle-bg:#e7ebef;--board:#122030;--board-ink:#f2f6fa;--board-muted:#9fb0c1;--shadow:0 1px 2px rgba(17,27,37,.06);
+  --accent-btn:#1f6fd0;--c1:#1f6fd0;--c2:#a85c00;--c3:#0b7a5e;--c4:#7a3fb8;--c5:#c42a55;color-scheme:light}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);margin:0;padding-inline:16px;padding-block:22px 56px}
 .wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
@@ -1042,8 +1045,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[data-tip]:focus-visi
 .filters button{font:600 13px var(--display);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);
   background:var(--surface);color:var(--ink2);padding:5px 12px;border-radius:5px;cursor:pointer}
 .filters button:hover{border-color:var(--accent);color:var(--accent)}
-.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
-.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.filters button[aria-pressed="true"]{background:var(--accent-btn);border-color:var(--accent-btn);color:#fff}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:thin}
+.tabs button{flex:none}
+.themebtn{font:600 12px var(--display);letter-spacing:.08em;text-transform:uppercase;background:var(--surface);color:var(--ink2);border:1px solid var(--line);border-radius:5px;padding:4px 10px;cursor:pointer;min-height:28px}
+.themebtn:hover{border-color:var(--accent);color:var(--ink)}
 .tabs button{font:600 15px var(--display);letter-spacing:.06em;text-transform:uppercase;background:none;border:0;border-bottom:3px solid transparent;
   color:var(--muted);padding:8px 14px;cursor:pointer;margin-bottom:-1px}
 .tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
@@ -1278,6 +1284,10 @@ JS = """
   tabs.forEach(function(b){b.addEventListener('click',function(){showTab(b.getAttribute('data-tab'))})});
   var t0=(location.hash==='#ats')?'ats':'s1';try{if(location.hash!=='#ats'){t0=localStorage.getItem('tab')||'s1'}}catch(e){}
   showTab(t0);
+  var tb=document.getElementById('themebtn');
+  function curTheme(){var t=document.documentElement.getAttribute('data-theme');if(t)return t;return(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}
+  try{var st=localStorage.getItem('theme');if(st)document.documentElement.setAttribute('data-theme',st)}catch(e){}
+  if(tb)tb.addEventListener('click',function(){var n=curTheme()==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}});
 })();
 """
 
@@ -2077,17 +2087,19 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         '<title>S1 Live Tracker</title>'
         '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">'
-        f'<style>{CSS}</style>'
+        f'<style>{CSS}{Tr.TABLE_CSS}{Tr.CSS}</style>'
         '<div class="wrap">'
         f'<header class="top"><div><h1>S1 Live Tracker</h1><p class="sub">2026 NFL player props · rule S1, all four signals agree</p></div>'
-        f'<div class="stamp">{esc(stamp)}</div></header>'
+        f'<div class="stamp">{esc(stamp)} <button type="button" class="themebtn" id="themebtn" aria-label="Switch between dark and light theme">Theme</button></div></header>'
         '<div class="notice">Unvalidated rule. These are tracker records of what S1 selected, not recommendations.</div>'
         f'{pages_banner(data.get("pages"))}'
         '<nav class="tabs" role="tablist"><button type="button" role="tab" data-tab="s1" aria-selected="true">Player props (S1)</button>'
         '<button type="button" role="tab" data-tab="ats" aria-selected="false">Spreads (ATS)</button>'
         '<button type="button" role="tab" data-tab="mix" aria-selected="false">Props mix</button>'
         '<button type="button" role="tab" data-tab="engine" aria-selected="false">Engine</button>'
-        '<button type="button" role="tab" data-tab="outliers" aria-selected="false">Outliers</button></nav>'
+        '<button type="button" role="tab" data-tab="outliers" aria-selected="false">Outliers</button>'
+        '<button type="button" role="tab" data-tab="trends" aria-selected="false">Trends</button></nav>'
+        f'<div class="tabpane" id="tab-trends" hidden>{Tr.section(data, now)}</div>'
         f'<div class="tabpane" id="tab-engine" hidden>{engine_section(data)}</div>'
         f'<div class="tabpane" id="tab-outliers" hidden>{outliers_section(data, now)}</div>'
         f'<div class="tabpane" id="tab-mix" hidden>{mix_section(data, now)}</div>'
@@ -2095,7 +2107,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         f'<div class="tabpane" id="tab-s1">{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'
         + ('<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Earlier weeks</h2></div></div><div class="games">' + "".join(old) + "</div></section>" if old else "")
         + '</div>'
-        + f'{foot}</div><script>{JS}{MIX_JS}</script>')
+        + f'{foot}</div><script>{JS}{MIX_JS}{Tr.TABLE_JS}{Tr.JS}</script>')
 
 
 def write(now: dt.datetime | None = None, out: Path | None = None) -> Path:
