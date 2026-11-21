@@ -18,6 +18,7 @@ from zoneinfo import ZoneInfo
 import polars as pl
 
 from nflbet import config
+from nflbet.ui import fx as Fx
 from nflbet.ui import trends as Tr
 from nflbet.quant.odds import implied as break_even
 from nflbet.sources.ids import TEAM_FIX
@@ -2087,7 +2088,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         '<title>S1 Live Tracker</title>'
         '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">'
-        f'<style>{CSS}{Tr.TABLE_CSS}{Tr.CSS}</style>'
+        f'<style>{CSS}{Tr.TABLE_CSS}{Tr.CSS}{Fx.css()}</style>'
         '<div class="wrap">'
         f'<header class="top"><div><h1>S1 Live Tracker</h1><p class="sub">2026 NFL player props · rule S1, all four signals agree</p></div>'
         f'<div class="stamp">{esc(stamp)} <button type="button" class="themebtn" id="themebtn" aria-label="Switch between dark and light theme">Theme</button></div></header>'
@@ -2107,7 +2108,7 @@ def build(data: dict, now: dt.datetime | None = None) -> str:
         f'<div class="tabpane" id="tab-s1">{board}{week_html}{pa_section(pa_raw, rec, now, live, stats)}{charts}{breakdowns}{ops_html}'
         + ('<section class="block"><div class="sechead"><div><p class="eyebrow">Official S1</p><h2>Earlier weeks</h2></div></div><div class="games">' + "".join(old) + "</div></section>" if old else "")
         + '</div>'
-        + f'{foot}</div><script>{JS}{MIX_JS}{Tr.TABLE_JS}{Tr.JS}</script>')
+        + f'{foot}</div><script>{JS}{MIX_JS}{Tr.TABLE_JS}{Tr.JS}{Fx.JS}</script>')
 
 
 def write(now: dt.datetime | None = None, out: Path | None = None) -> Path:
